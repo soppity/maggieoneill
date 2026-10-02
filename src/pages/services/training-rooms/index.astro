@@ -16,6 +16,7 @@ import Faqs from '../../../components/sections/Faqs.astro';
 import FindUs from '../../../components/sections/FindUs.astro';
 import { accessibility, catering, contact, halfDay, formatPrice, hours, idealFor, layoutTriage, listNames, parking, rateGroups, rooms, site, trainingDayFrom } from '../../../data/facts';
 import { clientLogos, images } from '../../../data/images';
+import { bookingTermsPath, cancellationSummary } from '../../../data/bookingTerms';
 import { breadcrumbNode, faqNode, roomPlaceNode, serviceNode } from '../../../lib/schema';
 
 const path = '/services/training-rooms/';
@@ -41,6 +42,7 @@ const keyFacts = [
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
   { term: 'Access', detail: 'Step-free access, accessible parking and an accessible toilet.' },
   { term: 'Hours', detail: `${hours.summary}. ${hours.extra}` },
+  { term: 'Cancelling', detail: 'Free to change up to 1 business day before a standard booking.', href: bookingTermsPath, linkText: 'Booking terms' },
 ];
 
 const faqs = [
@@ -83,6 +85,10 @@ const faqs = [
   {
     q: 'Is the training venue accessible?',
     a: `Yes. ${accessibility.stepFree} ${accessibility.toilet}`,
+  },
+  {
+    q: 'What happens if I need to cancel?',
+    a: cancellationSummary,
   },
   {
     q: 'Can I book a half day?',
@@ -207,7 +213,7 @@ const schema = [
       <p>
         Need something different? See <a href="/services/meeting-rooms/">meeting room hire in Huyton</a>,
         {' '}<a href="/services/event-space-business-and-community/">events and conferences</a> in the {auditorium.name}, or
-        {' '}<a href="/visit/">come and see the rooms</a> before you book.
+        {' '}<a href="/visit/">come and see the rooms</a> before you book. Read our <a href={bookingTermsPath}>booking and cancellation terms</a>.
       </p>
     </div>
   </section>

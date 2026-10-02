@@ -14,6 +14,7 @@ import CtaBand from '../../components/sections/CtaBand.astro';
 import Photo from '../../components/Photo.astro';
 import { accessibility, catering, formatPrice, halfDay, hours, listNames, parking, rateGroups, rooms, site, trainingDayFrom } from '../../data/facts';
 import { images } from '../../data/images';
+import { bookingTermsPath, cancellationSummary } from '../../data/bookingTerms';
 import { breadcrumbNode, faqNode } from '../../lib/schema';
 
 const path = '/whats-included/';
@@ -80,6 +81,10 @@ const faqs = [
       .map((g) => `${the(g.rooms.map((r) => r.name))} ${g.rooms.length > 1 ? 'cost' : 'costs'} ${formatPrice(g.hour)} an hour or ${formatPrice(g.day)} a day`)
       .map((t) => t.charAt(0).toUpperCase() + t.slice(1))
       .join('. ')}. The ${auditorium.name} costs from ${formatPrice(auditorium.prices!.hourFrom!)} an hour.`,
+  },
+  {
+    q: 'What happens if I need to cancel?',
+    a: cancellationSummary,
   },
   {
     q: 'Can I book a half day?',
@@ -171,7 +176,7 @@ const schema = [
       <p>
         Everything on this page comes with <a href="/services/training-rooms/">training room hire near Liverpool</a>,
         {' '}<a href="/services/meeting-rooms/">meeting room hire in Huyton</a> and
-        {' '}<a href="/services/event-space-business-and-community/">events and conferences</a>. Read <a href="/reviews/">all our Google reviews</a>.
+        {' '}<a href="/services/event-space-business-and-community/">events and conferences</a>. Read <a href="/reviews/">all our Google reviews</a> and our <a href={bookingTermsPath}>booking and cancellation terms</a>.
       </p>
     </div>
   </section>
