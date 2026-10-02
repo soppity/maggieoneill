@@ -1,6 +1,11 @@
 ---
 import Photo from '../Photo.astro';
 import { hostedDay } from '../../data/facts';
+
+interface Props {
+  showMore?: boolean;
+}
+const { showMore = true } = Astro.props;
 ---
 <section class="section" aria-labelledby="hosted-day-heading">
   <div class="container hosted-day">
@@ -17,7 +22,7 @@ import { hostedDay } from '../../data/facts';
       <ul class="tick-list hosted-day__list">
         {hostedDay.map((item) => <li>{item}</li>)}
       </ul>
-      <p class="hosted-day__more"><a href="/whats-included/">See everything that's included</a></p>
+      {showMore && <p class="hosted-day__more"><a href="/whats-included/">See everything that's included</a></p>}
     </div>
   </div>
 </section>

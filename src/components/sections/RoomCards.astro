@@ -1,0 +1,69 @@
+---
+// Every bookable room with its published rates. Genesis is never listed. No capacity grid:
+// only headline capacities that are confirmed in facts.ts are shown.
+import Photo from '../Photo.astro';
+import { booking, formatPrice, rooms, type Room } from '../../data/facts';
+
+interface Props {
+  heading?: string;
+  intro?: string;
+  order?: string[];
+}
+const {
+  heading = 'Which training rooms can you hire?',
+  intro = 'Every room is hosted, set to your layout and has a screen with AirPlay and HDMI. Prices include everything on the Hosted Day list.',
+  order = ['summit', 'forum', 'community-room', 'foundry', 'hub', 'grove', 'auditorium', 'pod'],
+} = Astro.props;
+
+const list = order.map((slug) => rooms.find((r) => r.slug === slug)).filter(Boolean) as Room[];
+const priceLine = (r: Room) =>
+  r.prices?.day
+    ? `${formatPrice(r.prices.hour!)} an hour or ${formatPrice(r.prices.day)} a day`
+    : r.prices?.hourFrom
+      ? `From ${formatPrice(r.prices.hourFrom)} an hour`
+      : 'Price on request';
+const capacityLine = (r: Room) =>
+  r.capacity.cabaret ? `Up to ${r.capacity.cabaret} cabaret` : r.capacity.boardroom ? `Boardroom for ${r.capacity.boardroom}` : null;
+---
+<section class="section section--cream" id="rooms" aria-labelledby="rooms-heading">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Rooms and prices</span>
+      <h2 id="rooms-heading">{heading}</h2>
+      <p>{intro}</p>
+    </div>
+    <ul class="grid room-cards">
+      {list.map((r) => (
+        <li class="card room-card">
+          <Photo n={r.image} width={640} height={400} sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 380px" />
+          <div class="room-card__body">
+            <span class="room-card__kind">{r.kind}</span>
+            <h3>The {r.name}</h3>
+            <p class="room-card__good">{r.goodFor}</p>
+            <p class="room-card__price">{priceLine(r)}</p>
+            {capacityLine(r) && <p class="room-card__cap">{capacityLine(r)}</p>}
+          </div>
+        </li>
+      ))}
+    </ul>
+    <div class="room-cards__foot">
+      <p>Not sure which room? Tell us your numbers and we'll recommend one. <a href="/whats-included/">See everything that's included</a></p>
+      <a class="btn btn--primary" href={booking.url} target="_blank" rel="noopener" data-track="booking_click">Check availability</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .room-cards { list-style: none; margin: 0; padding: 0; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .room-card { display: flex; flex-direction: column; overflow: hidden; }
+  .room-card :global(img) { aspect-ratio: 8 / 5; height: auto; }
+  .room-card__body { padding: 18px 20px 22px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .room-card__kind { font-size: var(--text-caption-size); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--moc-coral-text); }
+  .room-card h3 { font-size: 20px; }
+  .room-card__good { font-size: var(--text-small-size); color: var(--moc-slate-text); }
+  .room-card__price { margin-top: auto; padding-top: 8px; font-weight: 700; color: var(--moc-purple-900); }
+  .room-card__cap { font-size: var(--text-small-size); color: var(--moc-purple-700); font-weight: 600; }
+  .room-cards__foot { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+  @media (max-width: 1100px) { .room-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .room-cards { grid-template-columns: 1fr; } }
+</style>

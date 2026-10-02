@@ -252,7 +252,7 @@ export const virtualOffice = {
     steps: [
       { title: 'Your call is answered', text: 'A human-like AI voice agent picks up every call, day or night, so nobody hits voicemail.' },
       { title: 'The message is taken', text: 'Who called, why, and how to get back to them.' },
-      { title: 'Put through when you want', text: 'Set the hours you want calls put through to you. Outside them, the agent takes the message.' },
+      { title: 'Transferred or messaged', text: 'With your availability on, the call can be transferred to you. With it off, the AI takes the message.' },
       { title: 'Emailed to you', text: 'A summary, a full transcript and a recording of the call arrive by email.' },
       { title: 'Kept in your CRM', text: 'Every call is stored in your CRM account, so you have a record of who rang and what they needed.' },
     ],
@@ -260,6 +260,28 @@ export const virtualOffice = {
 
   areasServed: ['Liverpool', 'Knowsley', 'St Helens', 'Sefton', 'Wirral', 'Halton', 'Warrington', 'West Lancashire'],
 };
+
+// Sector pages under the training rooms hub, with their first sentence (Blueprint 03 · Messaging).
+export const sectorPages = [
+  { name: 'Care and social care', line: 'Mandatory training, in rooms built for it.', href: '/services/training-rooms/care-training-venue/', linkText: 'Care training venue', image: 43 },
+  { name: 'NHS and primary care', line: 'Your clinical and admin teams, trained close to home.', href: '/services/training-rooms/nhs-training-venue/', linkText: 'NHS training venue', image: 67 },
+  { name: 'Councils, schools and public sector', line: 'Train in the borough, and the spend stays local.', href: '/services/training-rooms/council-training-venue/', linkText: 'Council training in Knowsley', image: 114 },
+  { name: 'Fostering and adoption', line: 'Hard conversations need a calm room.', href: '/services/training-rooms/fostering-adoption-training-venue/', linkText: 'Fostering and adoption training venue', image: 105 },
+  { name: 'Oliver McGowan training', line: 'A calm, accessible room for Oliver\u2019s Training.', href: '/services/training-rooms/oliver-mcgowan-training-venue/', linkText: 'Oliver McGowan training venue', image: 117 },
+];
+
+// Room hire is by the hour or the day. There are no half-day rates (owner, Oct 2026).
+export const halfDay = 'There are no half-day rates. Rooms are hired by the hour or by the day, so a shorter session is charged at the hourly rate.';
+
+// Catering is outsourced: the booker deals with Superior Catering directly (owner, Oct 2026).
+export const catering = {
+  partner: 'Superior Catering',
+  summary:
+    "Catering is provided by our partner, Superior Catering. You order and pay for it with them directly, and we'll put you in touch when you book.",
+};
+
+// Who the training rooms suit (PROJECT_NOTES.md).
+export const idealFor = ['Care companies', 'NHS teams', 'Council training', 'CPD', 'First aid', 'Corporate training', 'Colleges', 'Apprenticeships'];
 
 export const sectors = ['care providers', 'the NHS and primary care networks', 'Knowsley Council', 'schools', 'fostering and adoption teams'];
 

@@ -1,0 +1,39 @@
+---
+// Plum CTA band: "Check availability" and the phone number, signed off "Looked after at Maggie's."
+import { booking, contact, site } from '../../data/facts';
+
+interface Props {
+  heading?: string;
+  text?: string;
+}
+const {
+  heading = 'Ready to book your day?',
+  text = "Check availability online, or call and talk it through with your host. We'll recommend the room and layout that suits you.",
+} = Astro.props;
+---
+<section class="cta-band" aria-labelledby="cta-heading">
+  <div class="container cta-band__inner">
+    <img src="/logo/mobtc-badge-icon-coral.svg" alt="" width="72" height="72" loading="lazy" />
+    <div class="cta-band__copy">
+      <h2 id="cta-heading">{heading}</h2>
+      <p>{text}</p>
+      <p class="cta-band__closer">{site.closer} {site.brandLine}</p>
+    </div>
+    <div class="cta-band__actions">
+      <a class="btn btn--primary" href={booking.url} target="_blank" rel="noopener" data-track="booking_click">Check availability</a>
+      <a class="btn btn--light" href={contact.phoneHref} data-track="phone_click">Call {contact.phone}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-band { background: var(--moc-purple-900); color: var(--moc-white); padding: clamp(48px, 7vw, 80px) 0; }
+  .cta-band__inner { display: grid; grid-template-columns: auto 1fr auto; gap: 24px 40px; align-items: center; }
+  .cta-band img { width: 72px; height: 72px; border-radius: 18px; }
+  .cta-band h2 { color: var(--moc-white); font-size: clamp(28px, 3.6vw, 36px); }
+  .cta-band__copy { display: flex; flex-direction: column; gap: 10px; max-width: 640px; }
+  .cta-band__copy p { color: rgba(255, 255, 255, 0.88); }
+  .cta-band__closer { font-weight: 700; color: var(--moc-white) !important; }
+  .cta-band__actions { display: flex; flex-direction: column; gap: 12px; }
+  @media (max-width: 900px) { .cta-band__inner { grid-template-columns: 1fr; } .cta-band__actions { flex-direction: row; flex-wrap: wrap; } }
+</style>

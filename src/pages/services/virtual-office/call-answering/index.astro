@@ -22,13 +22,13 @@ const pod = rooms.find((r) => r.slug === 'pod')!;
 const title = "Call Answering Service, £39 a Month | Maggie O'Neill Centre";
 const description = `Never miss a call. An AI voice agent answers 24/7 and emails you a summary, transcript and recording. ${price} a month from Maggie O'Neill Centre.`;
 
-const intro = `Call answering from the Maggie O'Neill Centre uses a human-like AI voice agent that answers your business calls 24/7. It takes the message, puts calls through when you're available, and emails you a summary, transcript and recording. It costs ${price} a month plus ${per} per AI response, with no charge per call.`;
+const intro = `Call answering from the Maggie O'Neill Centre uses a human-like AI voice agent that answers your business calls 24/7. With your availability switched on, calls can be transferred to you. With it off, the AI takes the message and emails you a summary, transcript and recording. It costs ${price} a month plus ${per} per AI response, with no charge per call.`;
 
 const keyFacts = [
   { term: 'Price', detail: `${price} a month, plus ${per} per AI response. No charge per call.` },
   { term: 'Who answers', detail: 'A human-like AI voice agent.' },
   { term: 'Hours', detail: '24 hours a day, 7 days a week.' },
-  { term: 'Put through', detail: 'Calls come to you during the hours you choose.' },
+  { term: 'Your availability', detail: 'On: calls can be transferred to you. Off: the AI takes the message.' },
   { term: 'By email', detail: 'A summary, transcript and recording of every call.' },
   { term: 'Record', detail: 'Every call is stored in your CRM account.' },
   { term: 'With a virtual office', detail: `Add it to any plan, from ${formatPrice(virtualOffice.from)} a month.`, href: '/services/virtual-office/', linkText: 'See virtual office plans' },
@@ -52,7 +52,7 @@ const faqs = [
   },
   {
     q: 'What hours does call answering cover?',
-    a: 'Call answering from the Maggie O\'Neill Centre runs 24 hours a day, 7 days a week. You choose the hours when calls are put through to you; outside them, the message is taken.',
+    a: 'Call answering from the Maggie O\'Neill Centre runs 24 hours a day, 7 days a week. When your availability is on, calls can be transferred to you; when it is off, the AI takes the message and emails it to you.',
   },
   {
     q: 'How do I get my messages?',
@@ -135,16 +135,16 @@ const schema = [
       <div class="section-head">
         <span class="eyebrow">You choose</span>
         <h2 id="choose-heading">How do you want your calls handled?</h2>
-        <p>Choose when calls come to you. The AI voice agent covers the rest, 24/7.</p>
+        <p>The AI voice agent answers every call, 24/7. Your availability setting decides what happens next.</p>
       </div>
       <div class="grid choices">
         <div class="card choice">
-          <h3>Put through when you're available</h3>
-          <p>Set the hours you want to take calls. During them, calls are put through to you, so urgent calls still reach you.</p>
+          <h3>Availability on: transferred to you</h3>
+          <p>When you're free to take calls, switch your availability on. The AI answers, then the call can be transferred to you, so urgent calls still reach you.</p>
         </div>
         <div class="card choice">
-          <h3>Message taken and emailed</h3>
-          <p>The rest of the time, the message is taken and you get a summary, transcript and recording by email.</p>
+          <h3>Availability off: message emailed</h3>
+          <p>When you're busy or away, switch it off. The AI takes the message and you get a summary, transcript and recording by email.</p>
         </div>
       </div>
     </div>
@@ -196,7 +196,7 @@ const schema = [
 
   <VirtualOfficeForm
     heading="Add call answering"
-    intro="Fill in the form and say you'd like call answering. We'll reply the same working day and set up your hours with you."
+    intro="Fill in the form and say you'd like call answering. We'll reply the same working day and set it up with you."
   />
 </Base>
 

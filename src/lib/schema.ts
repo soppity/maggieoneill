@@ -209,3 +209,23 @@ export function serviceNode(opts: {
   }
   return node;
 }
+
+// A room as a Place inside the venue (SEO spec 4: training hub, meeting rooms, events).
+// maximumAttendeeCapacity only where a capacity is confirmed in facts.ts.
+export function roomPlaceNode(room: { slug: string; name: string; capacity: Record<string, number | undefined> }, image?: string): Node {
+  const node: Node = {
+    '@type': 'Place',
+    '@id': `${site.url}/#room-${room.slug}`,
+    name: `The ${room.name} at the ${site.name}`,
+    containedInPlace: { '@id': id('venue') },
+    amenityFeature: ['Screen with AirPlay and HDMI', 'Free WiFi', 'Tea and coffee included'].map((name) => ({
+      '@type': 'LocationFeatureSpecification',
+      name,
+      value: true,
+    })),
+  };
+  const caps = Object.values(room.capacity).filter((n): n is number => typeof n === 'number');
+  if (caps.length) node.maximumAttendeeCapacity = Math.max(...caps);
+  if (image) node.image = image;
+  return node;
+}

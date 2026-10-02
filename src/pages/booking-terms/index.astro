@@ -1,0 +1,143 @@
+---
+// Booking and cancellation policy (Trust template). Wording from the owner: src/data/bookingTerms.ts.
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Faqs from '../../components/sections/Faqs.astro';
+import CtaBand from '../../components/sections/CtaBand.astro';
+import { contact, site } from '../../data/facts';
+import { images } from '../../data/images';
+import { bookingTermsPath, exceptional, extras, larger, standard, weekly, why } from '../../data/bookingTerms';
+import { breadcrumbNode, faqNode } from '../../lib/schema';
+
+const url = `${site.url}${bookingTermsPath}`;
+const title = "Booking and Cancellation Terms | Maggie O'Neill Centre";
+const description =
+  "Room hire terms at the Maggie O'Neill Centre, Huyton: free changes up to 1 business day before a standard booking, and 25% deposits for larger bookings.";
+
+const faqs = [
+  {
+    q: "Can I cancel a room booking at the Maggie O'Neill Centre?",
+    a: `${standard.definition} ${standard.points[0].split(' Business days')[0]} After that, the full booking cost is payable.`,
+  },
+  {
+    q: 'What counts as a larger booking?',
+    a: `${larger.definition} ${larger.chargeable.split(' If you cancel')[0]}`,
+  },
+  {
+    q: 'Do you take a deposit?',
+    a: `For larger bookings, the Maggie O'Neill Centre takes a 25% deposit to secure your dates. The deposit is non-refundable, and the balance is invoiced 2 weeks before your first booking date.`,
+  },
+  {
+    q: 'Can I move a larger booking to another date?',
+    a: "Yes, once, as long as you tell the Maggie O'Neill Centre at least 2 weeks before the original date. The new date needs to be within 6 months, and what you've paid moves with you.",
+  },
+  {
+    q: 'Do you accept purchase orders?',
+    a: 'Yes. PO numbers are welcome, but the Maggie O’Neill Centre still needs the deposit to secure your dates. You can pay by bank transfer or by card over the phone.',
+  },
+];
+
+const schema = [
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Booking terms', url },
+  ]),
+  faqNode(url, faqs),
+];
+---
+<Base title={title} description={description} ogImage={images[6].src} ogImageAlt={images[6].alt} schema={schema}>
+  <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Booking terms', path: bookingTermsPath }]} />
+
+  <section class="section terms">
+    <div class="container terms__inner">
+      <header class="terms__head">
+        <h1>
+          <span class="terms__kicker">Booking and cancellation terms</span>
+          <span class="terms__display">Clear terms, agreed up front.</span>
+        </h1>
+        <p class="terms__lede">
+          How cancelling, changing and paying for room hire works at the Maggie O'Neill Centre. Questions? Call
+          {' '}<a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>
+          {contact.email && <> or email <a href={`mailto:${contact.email}`} data-track="email_click">{contact.email}</a></>}.
+        </p>
+        <nav class="terms__toc" aria-label="On this page">
+          <a href="#standard">Standard bookings</a>
+          <a href="#larger">Larger bookings</a>
+          <a href="#weekly">Weekly bookings and courses</a>
+          <a href="#extras">Extras</a>
+          <a href="#why">Why we have this policy</a>
+        </nav>
+      </header>
+
+      <div class="terms__body">
+        <section id="standard" aria-labelledby="standard-h">
+          <h2 id="standard-h">Standard bookings</h2>
+          <p class="terms__def">{standard.definition}</p>
+          <ul class="tick-list">
+            {standard.points.map((p) => <li>{p}</li>)}
+          </ul>
+        </section>
+
+        <section id="larger" aria-labelledby="larger-h">
+          <h2 id="larger-h">Larger bookings</h2>
+          <p class="terms__def">{larger.definition}</p>
+          <p>{larger.chargeable}</p>
+          <h3>How payment works</h3>
+          <ol class="terms__steps">
+            {larger.payment.map((p) => <li>{p}</li>)}
+          </ol>
+          <p>{larger.paymentMethods}</p>
+          <h3>One free reschedule</h3>
+          <p>{larger.reschedule}</p>
+        </section>
+
+        <section id="weekly" aria-labelledby="weekly-h">
+          <h2 id="weekly-h">Weekly bookings and courses</h2>
+          {weekly.map((p) => <p>{p}</p>)}
+        </section>
+
+        <section id="extras" aria-labelledby="extras-h">
+          <h2 id="extras-h">Extras</h2>
+          <p>{extras}</p>
+        </section>
+
+        <section aria-labelledby="unexpected-h">
+          <h2 id="unexpected-h">If something goes wrong</h2>
+          <p>{exceptional}</p>
+        </section>
+
+        <section id="why" aria-labelledby="why-h" class="terms__why">
+          <h2 id="why-h">Why we have this policy</h2>
+          {why.map((p) => <p>{p}</p>)}
+        </section>
+
+        <p class="terms__updated">Last updated: October 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <Faqs faqs={faqs} heading="Booking terms: quick answers" />
+
+  <CtaBand />
+</Base>
+
+<style>
+  .terms__inner { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
+  .terms__head { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 20px; }
+  .terms h1 { display: flex; flex-direction: column; gap: 12px; }
+  .terms__kicker { font: 600 var(--text-eyebrow-size)/1.3 var(--font-body); letter-spacing: var(--text-eyebrow-tracking); text-transform: uppercase; color: var(--moc-coral-text); }
+  .terms__display { font-size: clamp(36px, 5vw, var(--text-h1-size)); font-weight: 800; }
+  .terms__lede { font-size: var(--text-lead-size); }
+  .terms__toc { display: flex; flex-direction: column; gap: 4px; border-left: 3px solid var(--moc-purple-tint-2); padding-left: 16px; }
+  .terms__toc a { color: var(--moc-purple-700); text-decoration: none; font-weight: 600; padding: 6px 0; }
+  .terms__toc a:hover { text-decoration: underline; }
+  .terms__body { display: flex; flex-direction: column; gap: 40px; }
+  .terms__body section { display: flex; flex-direction: column; gap: 14px; scroll-margin-top: 100px; }
+  .terms__body h2 { font-size: clamp(26px, 3vw, 32px); }
+  .terms__body h3 { font-size: 20px; margin-top: 8px; }
+  .terms__def { font-weight: 700; color: var(--moc-purple-900); }
+  .terms__steps { margin: 0; padding-left: 22px; display: grid; gap: 10px; }
+  .terms__why { background: var(--moc-purple-tint); border-radius: var(--radius-card); padding: 28px 32px; }
+  .terms__updated { font-size: var(--text-caption-size); color: var(--moc-slate-text); }
+  @media (max-width: 900px) { .terms__inner { grid-template-columns: 1fr; } .terms__head { position: static; } }
+</style>
