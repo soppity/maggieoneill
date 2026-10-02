@@ -1,0 +1,132 @@
+---
+// Homepage. Spec: docs/reference/Website Blueprint.dc.html, page 1 (Template: Home).
+import Base from '../layouts/Base.astro';
+import Hero from '../components/sections/Hero.astro';
+import ProofStrip from '../components/sections/ProofStrip.astro';
+import KeyFacts from '../components/sections/KeyFacts.astro';
+import ClientLogos from '../components/sections/ClientLogos.astro';
+import WhoBooks from '../components/sections/WhoBooks.astro';
+import VirtualOfficeBand from '../components/sections/VirtualOfficeBand.astro';
+import RoomsServices from '../components/sections/RoomsServices.astro';
+import HostedDay from '../components/sections/HostedDay.astro';
+import Comparison from '../components/sections/Comparison.astro';
+import Reviews from '../components/sections/Reviews.astro';
+import Hosts from '../components/sections/Hosts.astro';
+import Faqs from '../components/sections/Faqs.astro';
+import MealsBand from '../components/sections/MealsBand.astro';
+import FindUs from '../components/sections/FindUs.astro';
+import { accessibility, address, contact, formatPrice, hours, parking, rooms, site, virtualOffice } from '../data/facts';
+import { images } from '../data/images';
+import { faqNode } from '../lib/schema';
+
+const title = "Training & Meeting Rooms, Huyton | Maggie O'Neill Centre";
+const description =
+  "Maggie O'Neill Centre: hosted training and meeting rooms in Huyton, L36 8HT. Your host meets you at the door and the room is ready. Free parking.";
+
+const pod = rooms.find((r) => r.slug === 'pod')!;
+const auditorium = rooms.find((r) => r.slug === 'auditorium')!;
+const [voLow, , vo40, vo50] = virtualOffice.plans;
+
+const intro = `The Maggie O'Neill Centre is a charity-run hosted venue at ${address.street}, Huyton, near Liverpool. Care providers, NHS teams, Knowsley Council, schools and fostering and adoption teams hire our training and meeting rooms. A host meets every group, tea and coffee are included and parking is free. Virtual offices start at ${formatPrice(virtualOffice.from)} a month.`;
+
+const keyFacts = [
+  { term: 'Where', detail: `${address.street}, Huyton, ${address.postcode}. Near Liverpool, ${parking.motorway}.` },
+  { term: 'Rooms', detail: `Training, meeting and event rooms, from the ${pod.name}, a boardroom for ${pod.capacity.boardroom}, to the ${auditorium.name} for up to ${auditorium.capacity.cabaret} cabaret.` },
+  { term: 'Included', detail: 'Your host at the door, the room set to your layout, a screen with AirPlay and HDMI, WiFi, and tea and coffee all day.' },
+  { term: 'Prices', detail: `The ${pod.name}: ${formatPrice(pod.prices!.hour!)} an hour or ${formatPrice(pod.prices!.day!)} a day. Other rooms: call for day and half-day rates.`, href: '/whats-included/', linkText: "See what's included" },
+  { term: 'Parking', detail: `Free ${parking.spaces}-space car park on site, on a main bus route.` },
+  { term: 'Access', detail: 'Step-free access, accessible parking, an accessible toilet and a quiet room.' },
+  { term: 'Hours', detail: `${hours.summary}. ${hours.extra}` },
+  { term: 'Virtual office', detail: `From ${formatPrice(virtualOffice.from)} a month for a registered office address.`, href: '/services/virtual-office/', linkText: 'Plans and prices' },
+];
+
+// Visible FAQs and FAQPage schema share this list, so they always match word for word.
+const faqs = [
+  {
+    q: "What is the Maggie O'Neill Centre?",
+    a: `The Maggie O'Neill Centre is a charity-run training, meeting and event venue at ${address.oneLine}. The Maggie O'Neill Centre also provides virtual offices from ${formatPrice(virtualOffice.from)} a month.`,
+  },
+  {
+    q: "Is parking free at the Maggie O'Neill Centre?",
+    a: `Yes. The Maggie O'Neill Centre has a free ${parking.spaces}-space car park on site, ${parking.motorway}, and it is on a main bus route.`,
+  },
+  {
+    q: "What's included when you hire a room at the Maggie O'Neill Centre?",
+    a: 'Every room booking includes a host at the door, the room set to your layout, a screen with AirPlay and HDMI, WiFi, a flipchart, free parking, and tea and coffee in the room all day.',
+  },
+  {
+    q: 'How much does it cost to hire a room?',
+    a: `The ${pod.name}, a boardroom for ${pod.capacity.boardroom}, costs ${formatPrice(pod.prices!.hour!)} an hour or ${formatPrice(pod.prices!.day!)} a day. For day and half-day rates on the larger rooms, call ${contact.phone} or check availability online.`,
+  },
+  {
+    q: "Is the Maggie O'Neill Centre accessible?",
+    a: `Yes. ${accessibility.stepFree} ${accessibility.toilet}`,
+  },
+  {
+    q: "What are the Maggie O'Neill Centre's opening hours?",
+    a: `The Maggie O'Neill Centre is open ${hours.summary}. ${hours.extra}`,
+  },
+  {
+    q: "Is the Maggie O'Neill Centre a charity?",
+    a: `Yes. The Maggie O'Neill Centre is a registered charity in England and Wales, number ${site.charityNumber}. Every booking funds Maggie's Meals and community support in Knowsley.`,
+  },
+  {
+    q: 'How much is a virtual office in Liverpool?',
+    a: `Virtual office plans at the Maggie O'Neill Centre start at ${formatPrice(voLow.price)} a month for a registered office address. The ${formatPrice(vo40.price)} and ${formatPrice(vo50.price)} plans add post opened and scanned and 2 free meeting room hours a month.`,
+  },
+  {
+    q: "Is the Maggie O'Neill Centre the same as MOBTC?",
+    a: `Yes. MOBTC is short for the centre's old name, the Maggie O'Neill Business and Training Centre. It is the same building at ${address.street}, Huyton.`,
+  },
+];
+
+const url = `${site.url}/`;
+const reviews = [
+  { quote: 'Someone waiting at the front door to greet you and point you in the right direction.', name: 'Chloe' },
+  { quote: 'Patrick went above and beyond to make sure everything was perfect.', name: 'Jane Turner' },
+  { quote: 'From booking to the event as easy as possible.', name: 'Anita Johnson' },
+];
+---
+<Base
+  title={title}
+  description={description}
+  ogImage={images[105].src}
+  ogImageAlt={images[105].alt}
+  preloadImage={images[105].src}
+  schema={[faqNode(url, faqs)]}
+>
+  <Hero
+    kicker="Maggie O'Neill Centre · Huyton, Knowsley"
+    display={site.brandLine}
+    lede={`Hosted training and meeting rooms near Liverpool, and virtual offices from ${formatPrice(virtualOffice.from)} a month. ${site.heroLine}`}
+    image={105}
+    secondary={{ label: 'Book a visit', href: '#enquire' }}
+  >
+    <ProofStrip />
+  </Hero>
+
+  <ClientLogos />
+
+  <KeyFacts heading="Who we are, in a few lines" intro={intro} facts={keyFacts} />
+
+  <WhoBooks />
+
+  <VirtualOfficeBand />
+
+  <RoomsServices />
+
+  <HostedDay />
+
+  <Comparison />
+
+  <Reviews reviews={reviews} />
+
+  <Hosts />
+
+  <Faqs faqs={faqs} heading="What do people ask before they book?" />
+
+  <MealsBand />
+
+  <FindUs />
+</Base>
+

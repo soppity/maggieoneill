@@ -1,0 +1,44 @@
+---
+// Visible FAQs as <details>. The page passes the same list to faqNode() so the schema matches word for word.
+interface Props {
+  faqs: { q: string; a: string }[];
+  heading?: string;
+}
+const { faqs, heading = 'Questions people ask before they book' } = Astro.props;
+---
+<section class="section section--cream" aria-labelledby="faq-heading">
+  <div class="container faqs">
+    <div class="section-head">
+      <span class="eyebrow">FAQs</span>
+      <h2 id="faq-heading">{heading}</h2>
+    </div>
+    <div class="faqs__list">
+      {faqs.map((f) => (
+        <details class="faqs__item">
+          <summary><h3>{f.q}</h3></summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faqs { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: clamp(24px, 5vw, 64px); align-items: start; }
+  .faqs__list { display: flex; flex-direction: column; gap: 12px; }
+  .faqs__item { background: var(--moc-white); border-radius: var(--radius-tile); box-shadow: var(--moc-shadow-card); }
+  .faqs__item summary {
+    list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 20px 24px; min-height: 44px;
+  }
+  .faqs__item summary::-webkit-details-marker { display: none; }
+  .faqs__item summary::after {
+    content: ''; flex: none; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--moc-purple-tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 4.5 6 8l3.5-3.5' fill='none' stroke='%234A0D8F' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat;
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+  .faqs__item[open] summary::after { transform: rotate(180deg); }
+  .faqs__item h3 { font-size: 18px; font-weight: 700; }
+  .faqs__item p { padding: 0 24px 22px; }
+  @media (max-width: 900px) { .faqs { grid-template-columns: 1fr; } }
+</style>

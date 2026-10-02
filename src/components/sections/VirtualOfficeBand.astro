@@ -1,0 +1,74 @@
+---
+// Purple band on the homepage and near the end of every room page (Blueprint section library).
+// Leads with the £50 plan, as the growth plan asks, with the £40 plan beside it.
+import Photo from '../Photo.astro';
+import { formatPrice, virtualOffice } from '../../data/facts';
+
+const featured = virtualOffice.plans.filter((p) => p.price >= 40).sort((a, b) => b.price - a.price);
+const addressPlans = virtualOffice.plans.filter((p) => p.price < 40);
+---
+<section class="vo-band" aria-labelledby="vo-band-heading">
+  <div class="container vo-band__inner">
+    <div class="vo-band__copy">
+      <span class="vo-band__eyebrow">Virtual office</span>
+      <h2 id="vo-band-heading">Need a business address? A real one, from {formatPrice(virtualOffice.from)} a month.</h2>
+      <p class="vo-band__lede">A real address, with real people behind it. Tania handles your post and lets you know when it arrives.</p>
+      <div class="vo-band__plans">
+        {featured.map((p) => (
+          <div class:list={['vo-plan', { 'vo-plan--lead': p.lead }]}>
+            {p.lead && <span class="vo-plan__tag">Everything included</span>}
+            <h3>{p.name}</h3>
+            <p class="vo-plan__price"><strong>{formatPrice(p.price)}</strong> a month</p>
+            <p>{p.summary}</p>
+          </div>
+        ))}
+      </div>
+      <p class="vo-band__more">
+        Just need an address? {addressPlans.map((p, i) => <>{i > 0 && ', or '}<strong>{p.name}</strong> at {formatPrice(p.price)} a month</>)}.
+        Add <a href="/services/virtual-office/call-answering/">call answering for {formatPrice(virtualOffice.callAnswering.price)} a month</a>.
+      </p>
+      <div class="vo-band__ctas">
+        <a class="btn btn--primary" href="/services/virtual-office/#get-your-address">Get your address</a>
+        <a class="vo-band__link" href="/services/virtual-office/">Virtual office in Liverpool from {formatPrice(virtualOffice.from)}</a>
+      </div>
+    </div>
+    <div class="vo-band__media">
+      <Photo n={29} width={640} height={720} sizes="(max-width: 900px) 100vw, 440px" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .vo-band { background: var(--moc-band-gradient); color: var(--moc-white); padding: clamp(56px, 8vw, 88px) 0; }
+  .vo-band__inner { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
+  .vo-band__eyebrow {
+    font-size: var(--text-eyebrow-size); font-weight: 600; letter-spacing: var(--text-eyebrow-tracking); text-transform: uppercase;
+    color: var(--moc-purple-tint-2);
+  }
+  .vo-band h2 { color: var(--moc-white); margin-top: 12px; }
+  .vo-band__lede { margin-top: 16px; font-size: var(--text-lead-size); color: rgba(255, 255, 255, 0.9); }
+  .vo-band__plans { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+  .vo-plan {
+    position: relative; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-tile); padding: 22px; display: flex; flex-direction: column; gap: 8px;
+  }
+  .vo-plan--lead { background: var(--moc-white); color: var(--moc-ink); border-color: var(--moc-white); }
+  .vo-plan h3 { color: inherit; font-size: 19px; }
+  .vo-plan--lead h3 { color: var(--moc-purple-900); }
+  .vo-plan__tag {
+    align-self: flex-start; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    background: var(--moc-coral-tint); color: var(--moc-coral-text); padding: 4px 10px; border-radius: var(--radius-pill);
+  }
+  .vo-plan__price strong { font: 800 34px/1 var(--font-display); }
+  .vo-plan p { font-size: var(--text-small-size); }
+  .vo-band__more { margin-top: 20px; font-size: var(--text-small-size); color: rgba(255, 255, 255, 0.9); }
+  .vo-band__more a, .vo-band__link { color: var(--moc-white); }
+  .vo-band__ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin-top: 28px; }
+  .vo-band__link { font-weight: 700; }
+  .vo-band__media :global(img) { aspect-ratio: 8 / 9; border-radius: var(--radius-card); }
+  @media (max-width: 900px) {
+    .vo-band__inner { grid-template-columns: 1fr; }
+    .vo-band__media { display: none; }
+  }
+  @media (max-width: 560px) { .vo-band__plans { grid-template-columns: 1fr; } }
+</style>

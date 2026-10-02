@@ -1,0 +1,101 @@
+---
+// Find us + enquiry. The map only loads when tapped. The GHL general form loads its script on this page only.
+import Photo from '../Photo.astro';
+import { accessibility, address, contact, forms, hours, parking, site } from '../../data/facts';
+
+const form = forms.general;
+const mapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(`${site.name}, ${address.oneLine}`)}&output=embed`;
+---
+<section class="section find-us" id="find-us" aria-labelledby="find-us-heading">
+  <div class="container find-us__inner">
+    <div class="find-us__info">
+      <div class="section-head">
+        <span class="eyebrow">Find us</span>
+        <h2 id="find-us-heading">Where is the Maggie O'Neill Centre?</h2>
+        <p>The Maggie O'Neill Centre is at {address.oneLine}, in Knowsley, {parking.motorway}.</p>
+      </div>
+      <ul class="tick-list">
+        <li>A free {parking.spaces}-space car park outside, and a main bus route past the door.</li>
+        <li>{accessibility.stepFree}</li>
+        <li>{accessibility.toilet}</li>
+        <li>Open {hours.summary}. {hours.extra}</li>
+      </ul>
+      <div class="find-us__map" data-map={mapEmbed}>
+        <Photo n={1} width={800} height={450} sizes="(max-width: 900px) 100vw, 540px" />
+        <button type="button" class="btn btn--light find-us__map-btn">Show the map</button>
+      </div>
+      <p class="find-us__directions">
+        <a href={address.mapsUrl} target="_blank" rel="noopener">Get directions in Google Maps</a>
+      </p>
+    </div>
+
+    <div class="find-us__form" id="enquire">
+      <h3>Book a visit or ask us anything</h3>
+      <p>Come and see the rooms before you book, or tell us your dates and numbers. Prefer to talk? Call <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a> or WhatsApp <a href={contact.whatsappHref} rel="noopener" data-track="whatsapp_click">{contact.text}</a>.</p>
+      <div class="find-us__iframe" style={`min-height:${form.height}px;height:${form.height}px`}>
+        <iframe
+          src={`https://api.leadconnectorhq.com/widget/form/${form.id}`}
+          style="width:100%;height:100%;border:none;border-radius:0px"
+          id={`inline-${form.id}`}
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name={form.name}
+          data-height={form.height}
+          data-layout-iframe-id={`inline-${form.id}`}
+          data-form-id={form.id}
+          data-cookie-consent="true"
+          data-cookie-consent-provider="auto"
+          title={form.name}
+          loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline src="https://link.msgsndr.com/js/form_embed.js" defer></script>
+
+<script>
+  // Tap-to-load map, so Google Maps never slows the first load.
+  document.querySelectorAll<HTMLElement>('.find-us__map').forEach((box) => {
+    box.querySelector('button')?.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = box.dataset.map!;
+      iframe.title = "Map showing the Maggie O'Neill Centre, 433 Liverpool Road, Huyton";
+      iframe.loading = 'lazy';
+      iframe.referrerPolicy = 'no-referrer-when-downgrade';
+      box.replaceChildren(iframe);
+    });
+  });
+
+  // GA4 generate_lead when the general form is submitted. GHL posts messages to the parent window.
+  // TODO: confirm the exact message with a real test submission, then tighten this match.
+  const w = window as unknown as { dataLayer: Record<string, unknown>[] };
+  let sent = false;
+  window.addEventListener('message', (e) => {
+    if (sent || !/leadconnectorhq\.com|msgsndr\.com/.test(e.origin)) return;
+    const data = typeof e.data === 'string' ? e.data : JSON.stringify(e.data ?? '');
+    if (/submit/i.test(data)) {
+      sent = true;
+      (w.dataLayer = w.dataLayer || []).push({ event: 'generate_lead', form_name: 'Website Enquiry' });
+    }
+  });
+</script>
+
+<style>
+  .find-us__inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 64px); align-items: start; }
+  .find-us .tick-list { font-size: var(--text-small-size); }
+  .find-us__map { position: relative; margin-top: 28px; border-radius: var(--radius-card); overflow: hidden; aspect-ratio: 16 / 9; background: var(--moc-purple-tint); }
+  .find-us__map :global(img), .find-us__map :global(iframe) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .find-us__map-btn { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); box-shadow: var(--moc-shadow-card-hover); }
+  .find-us__directions { margin-top: 14px; font-weight: 700; }
+  .find-us__form { background: var(--moc-white); border-radius: var(--radius-card); box-shadow: var(--moc-shadow-card); padding: clamp(24px, 3vw, 36px); }
+  .find-us__form > p { margin: 10px 0 20px; color: var(--moc-slate-text); }
+  .find-us__iframe { width: 100%; }
+  .find-us__iframe iframe { min-height: inherit; }
+  @media (max-width: 900px) { .find-us__inner { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,49 @@
+---
+// Head tags for every page (SEO spec 3.1): title, meta, canonical, Open Graph, Twitter, JSON-LD.
+import { site } from '../data/facts';
+import { graph, sitewideNodes, webPageNode, type Node } from '../lib/schema';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  ogImage: string;
+  ogImageAlt: string;
+  schema?: Node[];
+  pageType?: string;
+  dateModified?: string;
+}
+
+const { title, description, path, ogImage, ogImageAlt, schema = [], pageType, dateModified } = Astro.props;
+const url = new URL(path, site.url).href;
+
+// Deploy previews and branch deploys must never be indexed (SEO spec 2.2).
+// Netlify sets CONTEXT at build time; production builds have CONTEXT=production.
+const context = process.env.CONTEXT;
+const noindex = context !== undefined && context !== 'production';
+
+const jsonLd = graph([
+  ...sitewideNodes(),
+  webPageNode({ url, name: title, description, image: ogImage, type: pageType, dateModified }),
+  ...schema,
+]);
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={url} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:locale" content="en_GB" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={url} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:alt" content={ogImageAlt} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

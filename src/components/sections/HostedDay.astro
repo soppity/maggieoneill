@@ -1,0 +1,34 @@
+---
+import Photo from '../Photo.astro';
+import { hostedDay } from '../../data/facts';
+---
+<section class="section" aria-labelledby="hosted-day-heading">
+  <div class="container hosted-day">
+    <div class="hosted-day__media">
+      <Photo n={54} width={800} height={600} sizes="(max-width: 900px) 100vw, 520px" />
+      <p class="hosted-day__caption">The screen in the Summit, ready for AirPlay before your trainer arrives.</p>
+    </div>
+    <div>
+      <div class="section-head">
+        <span class="eyebrow">The Hosted Day</span>
+        <h2 id="hosted-day-heading">What's included when you hire a room?</h2>
+        <p>Everything below comes with every room booking at the Maggie O'Neill Centre. Nothing to bring: we've got the HDMI cable.</p>
+      </div>
+      <ul class="tick-list hosted-day__list">
+        {hostedDay.map((item) => <li>{item}</li>)}
+      </ul>
+      <p class="hosted-day__more"><a href="/whats-included/">See everything that's included</a></p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hosted-day { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+  .hosted-day__media :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
+  .hosted-day__caption { margin-top: 12px; font-size: var(--text-caption-size); color: var(--moc-slate-text); }
+  .hosted-day .section-head { margin-bottom: 24px; }
+  .hosted-day__list { grid-template-columns: 1fr 1fr; gap: 12px 24px; }
+  .hosted-day__more { margin-top: 24px; font-weight: 700; }
+  @media (max-width: 900px) { .hosted-day { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .hosted-day__list { grid-template-columns: 1fr; } }
+</style>

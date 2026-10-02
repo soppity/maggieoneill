@@ -1,0 +1,47 @@
+---
+import Photo from '../Photo.astro';
+
+// One line each. Owner to confirm the wording before launch.
+const hosts = [
+  { name: 'Patrick', image: 139, line: 'Patrick looks after your booking and makes sure the day goes to plan.' },
+  { name: 'Tania', image: 133, line: 'Tania meets your group at the door and handles the post for virtual office clients.' },
+];
+---
+<section class="section section--white" aria-labelledby="hosts-heading">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Meet your hosts</span>
+      <h2 id="hosts-heading">Who will look after you on the day?</h2>
+      <p>A named host meets every group at the Maggie O'Neill Centre and stays on site all day.</p>
+    </div>
+    <div class="grid hosts">
+      {hosts.map((h) => (
+        <div class="hosts__person">
+          <Photo n={h.image} width={480} height={600} sizes="(max-width: 640px) 100vw, 260px" />
+          <div>
+            <h3>{h.name}</h3>
+            <p class="hosts__role">Host</p>
+            <p>{h.line}</p>
+          </div>
+        </div>
+      ))}
+      <div class="hosts__volunteer card">
+        <h3>Liam</h3>
+        <p class="hosts__role">Volunteer</p>
+        <p>Liam volunteers at the centre, so you may see him helping out on your day.</p>
+        <a href="/about/">About Maggie's and your hosts</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hosts { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; }
+  .hosts__person { display: flex; flex-direction: column; gap: 16px; }
+  .hosts__person :global(img) { aspect-ratio: 4 / 5; border-radius: var(--radius-card); object-position: top; }
+  .hosts__role { font-size: var(--text-caption-size); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--moc-coral-text); margin: 4px 0 8px; }
+  .hosts__volunteer { padding: 28px; background: var(--moc-bg-warm); box-shadow: none; display: flex; flex-direction: column; gap: 0; align-self: stretch; justify-content: center; }
+  .hosts__volunteer a { margin-top: 16px; font-weight: 700; }
+  @media (max-width: 900px) { .hosts { grid-template-columns: 1fr 1fr; } .hosts__volunteer { grid-column: 1 / -1; } }
+  @media (max-width: 520px) { .hosts { grid-template-columns: 1fr; } }
+</style>

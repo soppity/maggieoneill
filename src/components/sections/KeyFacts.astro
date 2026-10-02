@@ -1,0 +1,52 @@
+---
+// Answer-first opening paragraph plus a key facts block (SEO spec 3.2, points 2 and 3).
+interface Props {
+  heading: string;
+  intro: string;
+  facts: { term: string; detail: string; href?: string; linkText?: string }[];
+}
+const { heading, intro, facts } = Astro.props;
+---
+<section class="section section--white key-facts" aria-labelledby="key-facts-heading">
+  <div class="container key-facts__inner">
+    <div class="key-facts__intro">
+      <h2 id="key-facts-heading">{heading}</h2>
+      <p>{intro}</p>
+    </div>
+    <dl class="key-facts__list">
+      {facts.map((f) => (
+        <div>
+          <dt>{f.term}</dt>
+          <dd>
+            {f.detail}
+            {f.href && <> <a href={f.href}>{f.linkText}</a></>}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<style>
+  .key-facts__inner { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .key-facts__intro { display: flex; flex-direction: column; gap: 18px; }
+  .key-facts__intro p { font-size: var(--text-lead-size); line-height: 1.6; }
+  .key-facts__list {
+    margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    border: 1px solid var(--moc-border); border-radius: var(--radius-card); overflow: hidden; background: var(--moc-bg);
+  }
+  .key-facts__list > div { padding: 18px 22px; border-bottom: 1px solid var(--moc-border); }
+  .key-facts__list > div:nth-child(odd) { border-right: 1px solid var(--moc-border); }
+  .key-facts__list > div:nth-last-child(-n + 2) { border-bottom: 0; }
+  .key-facts__list dt {
+    font-size: var(--text-caption-size); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--moc-purple-700); margin-bottom: 4px;
+  }
+  .key-facts__list dd { margin: 0; font-size: var(--text-small-size); line-height: 1.5; }
+  @media (max-width: 900px) { .key-facts__inner { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) {
+    .key-facts__list { grid-template-columns: 1fr; }
+    .key-facts__list > div:nth-child(odd) { border-right: 0; }
+    .key-facts__list > div:nth-last-child(2) { border-bottom: 1px solid var(--moc-border); }
+  }
+</style>

@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import { contact } from '../data/facts';
+import { images } from '../data/images';
+
+const links = [
+  { label: 'Training room hire near Liverpool', href: '/services/training-rooms/' },
+  { label: 'Virtual office in Liverpool', href: '/services/virtual-office/' },
+  { label: 'Meeting room hire in Huyton', href: '/services/meeting-rooms/' },
+  { label: 'Events and conferences', href: '/services/event-space-business-and-community/' },
+  { label: 'Contact us', href: '/contact/' },
+];
+---
+<Base
+  title="Page not found | Maggie O'Neill Centre"
+  description="This page has moved or no longer exists. Find training rooms, meeting rooms and virtual offices at the Maggie O'Neill Centre in Huyton."
+  ogImage={images[1].src}
+  ogImageAlt={images[1].alt}
+>
+  <section class="section not-found">
+    <div class="container">
+      <span class="eyebrow">Page not found</span>
+      <h1>Sorry, we can't find that page.</h1>
+      <p>It may have moved when we rebuilt the site. These pages should help, or call us on <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>.</p>
+      <ul>
+        {links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+      </ul>
+      <a class="btn btn--primary" href="/">Go to the homepage</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .not-found .container { max-width: 760px; display: flex; flex-direction: column; gap: 18px; align-items: flex-start; }
+  .not-found h1 { font-size: clamp(36px, 5vw, var(--text-h1-size)); font-weight: 800; }
+  .not-found ul { padding-left: 20px; margin: 0; display: grid; gap: 6px; font-weight: 600; }
+</style>
