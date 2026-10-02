@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FCFAF7;color:#211A2E;font-family:Figtree,sans-serif;-webkit-font-smoothing:antialiased}a{color:#D64A26}a:hover{color:#4A0D8F}code{font-family:ui-monospace,Menlo,monospace;font-size:.9em;background:#F1EBFA;color:#2A0752;padding:1px 6px;border-radius:5px}</style>
+</helmet>
+<x-import component-from-global-scope="doc-page" from="./doc-page.js" hint-size="100%,100%">
+<div style="display:flex;flex-direction:column;gap:30px;font-size:11pt;line-height:1.6">
+
+  <header style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:2px solid #F0603A">
+    <img src="../assets/logo/mobtc-logo-horizontal.svg" alt="Maggie O'Neill Centre logo" style="height:40px;width:auto;align-self:flex-start">
+    <div style="font-size:9pt;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">Standard operating procedure · v1 · October 2026</div>
+    <h1 style="font-family:Outfit,sans-serif;font-weight:800;font-size:28pt;line-height:1.05;margin:0;color:#2A0752">Building and updating the website</h1>
+    <p style="margin:0;font-size:12pt;color:#4b4658">How the brand work in Claude Design becomes the live site at mobtc.co.uk, using Claude Code, GitHub and Netlify. Written for a first-time setup.</p>
+  </header>
+
+  <section style="display:flex;flex-direction:column;gap:10px">
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:17pt;margin:0;color:#2A0752">1. The four tools and what each one is for</h2>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+      <sc-for list="{{ tools }}" as="t" hint-placeholder-count="4">
+        <div style="background:#fff;border:1px solid #ECE8F1;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;break-inside:avoid">
+          <strong style="font-family:Outfit,sans-serif;font-size:12.5pt;color:#4A0D8F">{{ t.h }}</strong>
+          <span style="font-size:10.5pt;color:#4b4658">{{ t.b }}</span>
+          <span style="font-size:10pt;color:#211A2E"><strong>Master copy of:</strong> {{ t.m }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div style="background:#FAF3EB;border-radius:12px;padding:12px 16px;font-size:10.5pt">
+      <strong>The flow:</strong> Claude Design (brand and plans) → handoff files → GitHub repo → Claude Code builds pages → GitHub → Netlify publishes. Nothing syncs on its own between Claude Design and Claude Code. You move files across by hand, and that's the only manual step.
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:10px">
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:17pt;margin:0;color:#2A0752">2. Is GitHub connected to Claude Design?</h2>
+    <p style="margin:0">Not yet. This project has no repository linked, so Claude Design can't see your code. That's fine: it isn't needed to build the site. Connecting it later lets Claude Design read what Claude Code has built and check it against the brand. Step 3.7 shows how.</p>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:12px">
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:17pt;margin:0;color:#2A0752">3. One-time setup (about an hour)</h2>
+    <sc-for list="{{ setup }}" as="s" hint-placeholder-count="7">
+      <div style="display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;break-inside:avoid">
+        <span style="font-family:Outfit,sans-serif;font-weight:800;font-size:14pt;color:#F0603A">{{ s.n }}</span>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <strong style="font-size:12pt">{{ s.h }}</strong>
+          <sc-for list="{{ s.steps }}" as="x" hint-placeholder-count="3">
+            <div style="display:flex;gap:8px;font-size:10.5pt;color:#4b4658"><span style="flex-shrink:0;width:5px;height:5px;border-radius:50%;background:#4A0D8F;margin-top:8px"></span><span>{{ x }}</span></div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:12px">
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:17pt;margin:0;color:#2A0752">4. Building a page (repeat for every page)</h2>
+    <p style="margin:0">One page at a time, in the order in the README. Each page goes to a preview link first and only goes live once you approve it.</p>
+    <sc-for list="{{ loop }}" as="s" hint-placeholder-count="7">
+      <div style="display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;break-inside:avoid">
+        <span style="font-family:Outfit,sans-serif;font-weight:800;font-size:14pt;color:#F0603A">{{ s.n }}</span>
+        <div style="display:flex;flex-direction:column;gap:3px"><strong style="font-size:12pt">{{ s.h }}</strong><span style="font-size:10.5pt;color:#4b4658">{{ s.b }}</span></div>
+      </div>
+    </sc-for>
+    <div style="background:#2A0752;color:#fff;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;break-inside:avoid">
+      <strong style="font-family:Outfit,sans-serif;font-size:11.5pt;color:#FFB59E">Prompt to start each new page in Claude Code</strong>
+      <span style="font-size:10.5pt">"Create a new branch called page/[page-name]. Build [page name] to its spec in the Website Blueprint, following PROJECT_NOTES.md and the homepage's components. Use images from assets/image-library.md. Run the pre-publish checklist in docs/SOP, then push the branch and open a pull request."</span>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:12px">
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:17pt;margin:0;color:#2A0752">5. Where to make each kind of change</h2>
+    <div style="border:1px solid #ECE8F1;border-radius:12px;overflow:hidden;background:#fff">
+      <sc-for list="{{ where }}" as="w" hint-placeholder-count="8">
+        <div style="display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:12px;padding:9px 14px;border-top:1px solid #F3EEF8;font-size:10.5pt;break-inside:avoid">
+          <span>{{ w.c }}</span><strong style="color:{{ w.col }}">{{ w.t }}</strong>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:12px">
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:17pt;margin:0;color:#2A0752">6. When the brand or a fact changes</h2>
+    <p style="margin:0">Examples: a new price, a new client logo, a new rule ("never mention X"), a reworded tagline.</p>
+    <sc-for list="{{ brandFlow }}" as="s" hint-placeholder-count="5">
+      <div style="display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;break-inside:avoid">
+        <span style="font-family:Outfit,sans-serif;font-weight:800;font-size:14pt;color:#F0603A">{{ s.n }}</span>
+        <div style="display:flex;flex-direction:column;gap:3px"><strong style="font-size:12pt">{{ s.h }}</strong><span style="font-size:10.5pt;color:#4b4658">{{ s.b }}</span></div>
+      </div>
+    </sc-for>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:10px;break-inside:avoid">
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:17pt;margin:0;color:#2A0752">7. Pre-publish checklist (every page)</h2>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 18px">
+      <sc-for list="{{ checks }}" as="c" hint-placeholder-count="14">
+        <div style="display:flex;gap:8px;font-size:10.5pt"><span style="flex-shrink:0;width:13px;height:13px;border:1.5px solid #4A0D8F;border-radius:3px;margin-top:4px"></span><span>{{ c }}</span></div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:12px">
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:17pt;margin:0;color:#2A0752">8. Launch day (once, when every page is approved)</h2>
+    <sc-for list="{{ launch }}" as="s" hint-placeholder-count="6">
+      <div style="display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;break-inside:avoid">
+        <span style="font-family:Outfit,sans-serif;font-weight:800;font-size:14pt;color:#F0603A">{{ s.n }}</span>
+        <div style="display:flex;flex-direction:column;gap:3px"><strong style="font-size:12pt">{{ s.h }}</strong><span style="font-size:10.5pt;color:#4b4658">{{ s.b }}</span></div>
+      </div>
+    </sc-for>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:10px">
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:17pt;margin:0;color:#2A0752">9. If something goes wrong</h2>
+    <sc-for list="{{ trouble }}" as="t" hint-placeholder-count="6">
+      <div style="display:flex;flex-direction:column;gap:2px;padding:8px 0;border-top:1px solid #ECE8F1;break-inside:avoid">
+        <strong style="font-size:11pt">{{ t.q }}</strong><span style="font-size:10.5pt;color:#4b4658">{{ t.a }}</span>
+      </div>
+    </sc-for>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:10px;break-inside:avoid">
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:17pt;margin:0;color:#2A0752">10. Words you'll see</h2>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px">
+      <sc-for list="{{ glossary }}" as="g" hint-placeholder-count="10">
+        <div style="font-size:10.5pt"><strong style="color:#4A0D8F">{{ g.w }}</strong> {{ g.d }}</div>
+      </sc-for>
+    </div>
+  </section>
+
+</div>
+</x-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const tools = [
+      { h: 'Claude Design (this project)', b: 'Brand identity, strategy, messaging, client avatars, site plan, logos and visual explorations.', m: 'brand, strategy and plans' },
+      { h: 'GitHub', b: 'An online folder that stores the website\u2019s code and keeps every past version, so any change can be undone.', m: 'the website code' },
+      { h: 'Claude Code', b: 'Builds and edits the actual website pages, reads the brand docs in the repo, and saves (pushes) changes to GitHub.', m: 'nothing: it works on the GitHub copy' },
+      { h: 'Netlify', b: 'Hosts the website. It watches GitHub, rebuilds the site whenever the code changes, and gives every draft a preview link.', m: 'nothing: it publishes what\u2019s in GitHub' },
+    ];
+    const setup = [
+      { n: '3.1', h: 'Create a GitHub account and repository', steps: ['Sign up at github.com (free). Use a work email.', 'Click New repository. Name it mobtc-website, set it to Private, tick "Add a README", then Create.'] },
+      { n: '3.2', h: 'Install Claude Code', steps: ['Use the Claude desktop app, the terminal version, or claude.ai/code in a browser. On the web version you connect your GitHub account and pick the repo directly.', 'Sign in with the same Claude account you use here.'] },
+      { n: '3.3', h: 'Download the handoff pack from Claude Design', steps: ['Download "Website handoff for Claude Code" (the design_handoff_website folder) and unzip it.', 'Also download this SOP as a PDF.'] },
+      { n: '3.4', h: 'Put the pack into the repo', steps: ['Ask Claude Code: "Clone my repo mobtc-website. Create a /docs folder and copy the handoff pack into it. Put this SOP in /docs/SOP. Commit and push."', 'Or on github.com: open the repo, Add file → Upload files, and drag in the folder contents (put them inside a docs folder).'] },
+      { n: '3.5', h: 'Run the first build', steps: ['In Claude Code, open the repo and paste the "Suggested first prompt" from the bottom of docs/README.md.', 'It sets up the site, builds the homepage only, and stops for your review.'] },
+      { n: '3.6', h: 'Connect Netlify', steps: ['Sign up at netlify.com with your GitHub account.', 'Add new site → Import an existing project → GitHub → choose mobtc-website.', 'Build command: npm run build. Publish directory: dist. Deploy.', 'You now get a free address like mobtc-website.netlify.app. The real domain is switched over on launch day (section 8), not before.', 'Site settings → Build & deploy: make sure Deploy Previews are on, so every pull request gets its own preview link.'] },
+      { n: '3.7', h: 'Optional: connect GitHub to Claude Design', steps: ['Ask in this project: "Connect my GitHub repo mobtc-website."', 'A connect card appears. Approve access and pick the repo.', 'From then on Claude Design can read the built pages and check them against the brand docs. It reads the repo but doesn\u2019t publish to it: publishing stays with Claude Code.'] },
+    ];
+    const loop = [
+      { n: '1', h: 'Plan or tweak it here (optional)', b: 'If the page needs new copy, a new section or a brand decision, sort it out in Claude Design first, and update the docs in the repo (section 6).' },
+      { n: '2', h: 'Ask Claude Code to build it on a branch', b: 'A branch is a safe draft copy of the site. The live site isn\u2019t touched. Use the prompt below.' },
+      { n: '3', h: 'Open the preview link', b: 'Netlify posts a Deploy Preview link on the pull request in GitHub. Check it on your phone and on a laptop.' },
+      { n: '4', h: 'Give feedback in Claude Code', b: 'Be specific: "Hero headline too long on mobile", "Swap the hero photo for #105". Claude Code updates the same branch and the preview refreshes.' },
+      { n: '5', h: 'Run the checklist', b: 'Section 7. Ask Claude Code to run it too, and to report anything that fails.' },
+      { n: '6', h: 'Approve and merge', b: 'In GitHub, open the pull request and click Merge. Netlify publishes it within a minute or two.' },
+      { n: '7', h: 'Note it', b: 'Tell Claude Design "Homepage is live" so the build order and notes here stay current.' },
+    ];
+    const P = '#4A0D8F', C = '#D64A26';
+    const where = [
+      { c: 'A price, plan or service detail', t: 'Claude Design, then copy to repo', col: P },
+      { c: 'A brand rule, tagline or tone of voice', t: 'Claude Design, then copy to repo', col: P },
+      { c: 'A new page idea or a change to the site map', t: 'Claude Design, then copy to repo', col: P },
+      { c: 'New logo or brand asset', t: 'Claude Design, then copy to repo', col: P },
+      { c: 'Wording on a page that\u2019s already built', t: 'Claude Code', col: C },
+      { c: 'Layout, spacing, a broken link, a mobile fix', t: 'Claude Code', col: C },
+      { c: 'Swapping a photo for another from the library', t: 'Claude Code', col: C },
+      { c: 'Forms, tracking, redirects, SEO tags', t: 'Claude Code', col: C },
+    ];
+    const brandFlow = [
+      { n: '1', h: 'Change it in Claude Design', b: 'Tell Claude Design what changed. It updates the right files (project notes, blueprint, avatars, image library and so on).' },
+      { n: '2', h: 'Ask for the changed files', b: '"Give me the updated handoff files for this change." You get a download of just the files that changed, or a fresh pack.' },
+      { n: '3', h: 'Replace them in the repo', b: 'Drop them into /docs in the repo, replacing the old versions (via Claude Code or GitHub upload).' },
+      { n: '4', h: 'Tell Claude Code what changed', b: 'For example: "docs/PROJECT_NOTES.md updated: call answering is now \u00a339 a month. Find and update every page that mentions it, on a branch, and open a pull request."' },
+      { n: '5', h: 'Preview, check, merge', b: 'Same as steps 3 to 6 in section 4.' },
+    ];
+    const checks = [
+      'Title ends "| Maggie O\u2019Neill Centre"', 'Name in the H1 or first paragraph', 'One H1 only', 'Meta description written and under ~155 characters',
+      'Every question answered: price, capacity, layout, tech, parking, access, refreshments, terms', 'Real photos from the image library, with alt text', 'No #142 capacities sheet', 'No hot desking, no "AI receptionist", no Genesis, no training-provider names, no hearing loop',
+      'Internal links as per the blueprint', 'Clear call to action that works', 'Forms submit and arrive in GoHighLevel', 'Phone and WhatsApp links work on mobile',
+      'Looks right on a phone (no sideways scrolling)', 'Page speed checked (PageSpeed Insights 90+)',
+    ];
+    const launch = [
+      { n: '1', h: 'Map every old URL', b: 'Ask Claude Code to crawl the current mobtc.co.uk and list every page, then confirm each one has a new page or a redirect. Nothing indexed should 404.' },
+      { n: '2', h: 'Final checks on the Netlify address', b: 'Click through every page and form on mobtc-website.netlify.app.' },
+      { n: '3', h: 'Point the domain to Netlify', b: 'Netlify: Domain management → Add domain → mobtc.co.uk. Then update DNS where the domain is registered, following Netlify\u2019s instructions. HTTPS is set up automatically.' },
+      { n: '4', h: 'Redirect the virtual office subdomain', b: 'Point virtual.mobtc.co.uk so every page 301s to /services/virtual-office/ (and /ai-receptionist to /services/virtual-office/call-answering/).' },
+      { n: '5', h: 'Tell Google', b: 'In Search Console, submit the new sitemap (mobtc.co.uk/sitemap-index.xml). Check Pages and Indexing over the following weeks.' },
+      { n: '6', h: 'Check tracking', b: 'Confirm GA4 sees UK visits once the cookie banner is accepted, and that form, booking, phone and WhatsApp events come through.' },
+    ];
+    const trouble = [
+      { q: 'The preview link shows an error', a: 'Ask Claude Code: "The Netlify deploy failed. Read the build log and fix it." You can paste the log from Netlify → Deploys.' },
+      { q: 'Something went live that shouldn\u2019t have', a: 'Netlify → Deploys → pick the previous deploy → Publish deploy. The old version is back instantly. Then fix it on a branch.' },
+      { q: 'Claude Code ignored a brand rule', a: 'Point it at the rule: "Re-read docs/PROJECT_NOTES.md. This page breaks the rule about X." If the rule isn\u2019t there, add it in Claude Design first.' },
+      { q: 'Claude Design and the site disagree', a: 'Claude Design wins for brand, facts and plans. The repo wins for code. Update /docs and ask Claude Code to bring the pages in line.' },
+      { q: 'You\u2019re not sure which docs are current', a: 'Check the date on docs/PROJECT_NOTES.md in GitHub against the project notes here. If they differ, ask Claude Design for a fresh handoff pack.' },
+      { q: 'Starting a new Claude Code session', a: 'Begin with: "Read docs/README.md and docs/PROJECT_NOTES.md before doing anything."' },
+    ];
+    const glossary = [
+      { w: 'Repository (repo):', d: 'the project folder on GitHub.' },
+      { w: 'Commit:', d: 'a saved set of changes, with a note.' },
+      { w: 'Push:', d: 'sending commits up to GitHub.' },
+      { w: 'Branch:', d: 'a draft copy of the site to work on safely.' },
+      { w: 'Pull request (PR):', d: 'a request to add a branch\u2019s changes to the live site. Where you review.' },
+      { w: 'Merge:', d: 'approving a pull request. The changes go live.' },
+      { w: 'Deploy:', d: 'Netlify building and publishing the site.' },
+      { w: 'Deploy Preview:', d: 'a private link to a branch\u2019s version of the site.' },
+      { w: 'Handoff pack:', d: 'the folder of brand docs and plans exported from Claude Design.' },
+      { w: '301 redirect:', d: 'a permanent forward from an old URL to a new one, which keeps its Google ranking.' },
+    ];
+    return { tools, setup, loop, where, brandFlow, checks, launch, trouble, glossary };
+  }
+}
+</script>
+</body>
+</html>

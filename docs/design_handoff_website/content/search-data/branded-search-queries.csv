@@ -1,0 +1,11 @@
+query,type,clicks,impressions,ctr,branded
+"maggie o'neill centre",Exact name,30,163,18.4%,yes
+"maggie o'neill centre huyton",Name + place,17,91,18.7%,yes
+"maggie oneil centre",Misspelling,17,146,11.6%,yes
+"maggie oneill centre",No apostrophe,12,75,16.0%,yes
+"maggie o neill centre",Spaced,9,55,16.4%,yes
+"maggie o'neill huyton",Name + place,4,14,28.6%,yes
+"maggie oneill","No apostrophe, no "centre"",1,15,6.7%,yes
+"maggie oneil","Misspelling, no "centre"",1,11,9.1%,yes
+"l36 8ht",Postcode (local, related),2,85,2.4%,no
+"hot desking liverpool",Non-branded,1,13,7.7%,no

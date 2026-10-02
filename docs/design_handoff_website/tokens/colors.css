@@ -1,0 +1,51 @@
+:root {
+  /* Purple — headings, footer, stat bands */
+  --moc-purple-900: #2A0752;
+  --moc-purple-800: #38086F;
+  --moc-purple-700: #4A0D8F;   /* primary purple */
+  --moc-purple-600: #5B21A8;
+  --moc-purple-tint: #F1EBFA;  /* lilac tile tint */
+  --moc-purple-tint-2: #E7DCF6;
+
+  /* Coral — CTAs, accents, highlighted words */
+  --moc-coral-700: #D64A26;
+  --moc-coral-600: #E05633;    /* hover */
+  --moc-coral-500: #F0603A;    /* primary coral */
+  --moc-coral-400: #F5825F;
+  --moc-coral-tint: #FDEDE7;   /* peach tile tint */
+
+  /* Neutrals — warm-tinted */
+  --moc-ink: #211A2E;          /* headline/near-black */
+  --moc-slate: #6B7280;        /* body secondary */
+  --moc-slate-2: #94A0AE;      /* captions */
+  --moc-bg: #FCFAF7;           /* page off-white, warm-tinted */
+  --moc-bg-warm: #FAF3EB;      /* cream band — warms up harsh white */
+  --moc-cream: #FAF3EB;        /* alias */
+  --moc-beige: #F1E6D6;        /* badge tile, deeper than cream so it holds on white */
+  --moc-white: #FFFFFF;
+  --moc-border: #ECE8F1;
+
+  /* Functional */
+  --moc-gold: #F0A81C;         /* review stars only */
+  --moc-success: #1F8A5B;
+  --moc-error: #C93A3A;
+
+  /* Semantic aliases */
+  --text-heading: var(--moc-purple-700);
+  --text-body: var(--moc-ink);
+  --text-secondary: var(--moc-slate);
+  --text-inverse: var(--moc-white);
+  --surface-page: var(--moc-bg);
+  --surface-card: var(--moc-white);
+  --surface-band: var(--moc-purple-700);
+  --accent: var(--moc-coral-500);
+  --accent-hover: var(--moc-coral-600);
+  --border-default: var(--moc-border);
+
+  /* Hero wash */
+  --moc-hero-wash: radial-gradient(120% 90% at 15% 0%, #F6EFF9 0%, transparent 55%),
+                   radial-gradient(110% 80% at 90% 100%, #FBEEE7 0%, transparent 55%),
+                   linear-gradient(180deg, #FCFAFC 0%, #FBF6F4 100%);
+  /* Purple band gradient */
+  --moc-band-gradient: linear-gradient(135deg, #5310A0 0%, #44087F 100%);
+}
