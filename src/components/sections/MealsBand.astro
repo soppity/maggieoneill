@@ -1,7 +1,7 @@
 ---
 // The closer: just before the final call to action, never the headline.
 import Photo from '../Photo.astro';
-import { lastYear, site } from '../../data/facts';
+import { lastYear, maggiesMeals, site } from '../../data/facts';
 
 const stats = [
   { value: lastYear.roomsHired, label: 'rooms hired' },
@@ -13,7 +13,7 @@ const stats = [
   <div class="container meals__inner">
     <div class="meals__copy">
       <h2 id="meals-heading">{site.closer}</h2>
-      <p>The Maggie O'Neill Centre is a registered charity (no. {site.charityNumber}). What you pay for your room funds Maggie's Meals and community support in Knowsley.</p>
+      <p>The Maggie O'Neill Centre is a registered charity (no. {site.charityNumber}). What you pay for your room funds Maggie's Meals and community support in Knowsley. Maggie's Meals runs here {maggiesMeals.schedule.charAt(0).toLowerCase() + maggiesMeals.schedule.slice(1)}.</p>
       <p class="meals__label">In the last year</p>
       <dl class="meals__stats">
         {stats.map((s) => (

@@ -1,10 +1,13 @@
 // /llms.txt, generated from facts.ts on every build so it never drifts from the site (SEO spec 5.1).
 // Based on docs/seo-files/llms.txt.
 import type { APIRoute } from 'astro';
-import { address, booking, contact, hours, lastYear, parking, reviews, site, virtualOffice } from '../data/facts';
+import { address, booking, contact, formatPrice, hours, lastYear, listNames, maggiesMeals, parking, rateGroups, reviews, site, virtualOffice } from '../data/facts';
 
 const u = (path: string) => `${site.url}${path}`;
 const plans = virtualOffice.plans.map((p) => `£${p.price}`);
+const rates = rateGroups()
+  .map((g) => `${listNames(g.rooms.map((r) => `the ${r.name}`))} ${formatPrice(g.hour)} an hour or ${formatPrice(g.day)} a day`)
+  .join('; ');
 const planList = `${plans.slice(0, -1).join(', ')} and ${plans.at(-1)}`;
 
 export const GET: APIRoute = () => {
@@ -13,11 +16,13 @@ export const GET: APIRoute = () => {
 > The ${site.name} is a charity-run training, meeting and event venue in Huyton, near Liverpool (${address.street}, ${address.postcode}), and a virtual office provider. A host meets every group at the door, rooms are set before you arrive, tea and coffee are served in the room, every room has a screen with AirPlay and HDMI, and parking is free. Profits fund Maggie's Meals and community support in Knowsley. Registered charity ${site.charityNumber}.
 
 Key facts:
-- Phone ${contact.phone}. Text or WhatsApp ${contact.text}.
+- Phone ${contact.phone}. Text or WhatsApp ${contact.text}. Email ${contact.email}.
 - Open ${hours.summary}. ${hours.extra}
 - ${parking.summary}.
 - ${reviews.count} Google reviews (${reviews.asOf.split(' ').slice(1).join(' ')}). In the last year: ${lastYear.roomsHired} rooms hired, ${lastYear.businessesServed} businesses served, ${lastYear.mealsAccessed} people accessed Maggie's Meals.
 - Used by care providers, the NHS and primary care networks, Knowsley Council, schools, and fostering and adoption teams (Adoption in Merseyside, Knowsley Fostering, Foster4).
+- Room hire, everything included: ${rates}. The Grove and the Auditorium: price on request.
+- Maggie's Meals: ${maggiesMeals.schedule}.
 - Virtual office plans: ${planList} a month. Call answering add-on £${virtualOffice.callAnswering.price} a month.
 - Book or check availability: ${booking.url}
 

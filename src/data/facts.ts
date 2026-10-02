@@ -50,8 +50,7 @@ export const contact = {
   textIntl: '+447426935661',
   smsHref: 'sms:+447426935661',
   whatsappHref: 'https://wa.me/447426935661',
-  // TODO(owner): public email address for the footer and contact page.
-  email: null as null | string,
+  email: 'info@mobtc.co.uk' as null | string,
 };
 
 export const hours = {
@@ -73,6 +72,10 @@ export const reviews = {
   count: 230,
   asOf: '28 September 2026',
   source: 'Google',
+};
+
+export const maggiesMeals = {
+  schedule: 'Every Friday, 9am to 10am',
 };
 
 export const lastYear = {
@@ -105,7 +108,8 @@ export const volunteers = [{ name: 'Liam', role: 'Volunteer' }];
 
 // Rooms in the order customers see them. Genesis is never listed.
 // Capacities: null means not yet confirmed for the site. Don't fill these in by guesswork.
-// TODO(owner): capacities by layout for each room, and day/half-day rates (Blueprint "Needed" #2).
+// Rates confirmed by the owner, Oct 2026. The Grove and the Auditorium are priced on request.
+// TODO(owner): capacities by layout for each room.
 export type Layout = 'uShape' | 'boardroom' | 'classroom' | 'cabaret' | 'banquet' | 'theatre';
 export interface Room {
   slug: string;
@@ -125,12 +129,12 @@ export const rooms: Room[] = [
     capacity: { cabaret: 60 },
     image: 117,
   },
-  { slug: 'summit', name: 'Summit', kind: 'Training and meeting room', goodFor: 'Training days and meetings', capacity: {}, image: 44 },
-  { slug: 'forum', name: 'Forum', kind: 'Training and meeting room', goodFor: 'Training, meetings and open networking', capacity: {}, image: 35 },
+  { slug: 'summit', name: 'Summit', kind: 'Training and meeting room', goodFor: 'Training days and meetings', capacity: {}, prices: { hour: 30, day: 180 }, image: 44 },
+  { slug: 'forum', name: 'Forum', kind: 'Training and meeting room', goodFor: 'Training, meetings and open networking', capacity: {}, prices: { hour: 30, day: 180 }, image: 35 },
   { slug: 'grove', name: 'Grove', kind: 'Event and meeting room', goodFor: 'Events, networking and training', capacity: {}, image: 62 },
-  { slug: 'foundry', name: 'Foundry', kind: 'Training and meeting room', goodFor: 'Classroom training and team meetings', capacity: {}, image: 92 },
-  { slug: 'hub', name: 'Hub', kind: 'Meeting room', goodFor: 'Small meetings and interviews', capacity: {}, image: 88 },
-  { slug: 'community-room', name: 'Community Room', kind: 'Training room', goodFor: 'Training sessions and group work', capacity: {}, image: 105 },
+  { slug: 'foundry', name: 'Foundry', kind: 'Training and meeting room', goodFor: 'Classroom training and team meetings', capacity: {}, prices: { hour: 25, day: 165 }, image: 92 },
+  { slug: 'hub', name: 'Hub', kind: 'Meeting room', goodFor: 'Small meetings and interviews', capacity: {}, prices: { hour: 25, day: 165 }, image: 88 },
+  { slug: 'community-room', name: 'Community Room', kind: 'Training room', goodFor: 'Training sessions and group work', capacity: {}, prices: { hour: 30, day: 180 }, image: 105 },
   {
     slug: 'pod',
     name: 'Pod',
@@ -192,9 +196,33 @@ export const virtualOffice = {
 export const sectors = ['care providers', 'the NHS and primary care networks', 'Knowsley Council', 'schools', 'fostering and adoption teams'];
 
 // sameAs profiles for schema. Add each one as it's confirmed (SEO spec 1.2).
-// TODO(owner): Google Business Profile, Facebook, LinkedIn, Instagram URLs.
+// Facebook and LinkedIn found by web search, Oct 2026: owner to confirm they are the official pages.
+// TODO(owner): Google Business Profile URL, Instagram URL.
 export const sameAs: string[] = [
+  'https://www.facebook.com/maggieoneillbusinessandtraining/',
+  'https://uk.linkedin.com/company/maggie-oneill-btc',
   'https://register-of-charities.charitycommission.gov.uk/charity-search/-/charity-details/1102507',
 ];
 
 export const formatPrice = (n: number) => `£${n}`;
+
+// Lowest published day rate across the bookable training rooms (excludes the Pod, which is a small meeting room).
+export const trainingDayFrom = Math.min(
+  ...rooms.filter((r) => r.slug !== 'pod' && r.prices?.day).map((r) => r.prices!.day!),
+);
+
+// Rooms grouped by identical rates, for sentences like "the Hub and the Foundry: £25 an hour or £165 a day".
+export function rateGroups(exclude: string[] = []) {
+  const groups = new Map<string, Room[]>();
+  for (const r of rooms) {
+    if (!r.prices?.hour || !r.prices?.day || exclude.includes(r.slug)) continue;
+    const key = `${r.prices.hour}-${r.prices.day}`;
+    groups.set(key, [...(groups.get(key) ?? []), r]);
+  }
+  return [...groups.values()]
+    .map((rs) => ({ rooms: rs, hour: rs[0].prices!.hour!, day: rs[0].prices!.day! }))
+    .sort((a, b) => a.day - b.day);
+}
+
+export const listNames = (names: string[]) =>
+  names.length < 2 ? names.join('') : `${names.slice(0, -1).join(', ')} and ${names.at(-1)}`;

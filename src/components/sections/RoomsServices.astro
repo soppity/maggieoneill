@@ -1,7 +1,7 @@
 ---
 // Rooms and services, training first. Prices never appear alone: each sits beside a link to what's included.
 import Photo from '../Photo.astro';
-import { formatPrice, rooms } from '../../data/facts';
+import { formatPrice, rooms, trainingDayFrom } from '../../data/facts';
 
 const pod = rooms.find((r) => r.slug === 'pod')!;
 const auditorium = rooms.find((r) => r.slug === 'auditorium')!;
@@ -9,7 +9,7 @@ const auditorium = rooms.find((r) => r.slug === 'auditorium')!;
 const services = [
   {
     title: 'Training rooms',
-    text: 'Hosted training days for care, NHS, council and corporate teams. The room is set to your layout before anyone arrives.',
+    text: `Hosted training days for care, NHS, council and corporate teams, from ${formatPrice(trainingDayFrom)} a day. The room is set to your layout before anyone arrives.`,
     href: '/services/training-rooms/',
     linkText: 'Training room hire near Liverpool',
     image: 44,
