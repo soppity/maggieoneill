@@ -1,0 +1,42 @@
+---
+// Sector cards on the training rooms hub: each sector's first sentence and a link to its page.
+import Photo from '../Photo.astro';
+import { sectorPages } from '../../data/facts';
+---
+<section class="section" aria-labelledby="sectors-heading">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Training for your sector</span>
+      <h2 id="sectors-heading">Who trains at the Maggie O'Neill Centre?</h2>
+      <p>Care providers, the NHS, Knowsley Council, schools and fostering and adoption teams. Each has a page that answers their questions.</p>
+    </div>
+    <ul class="grid sector-cards">
+      {sectorPages.map((s) => (
+        <li>
+          <a class="card sector-card" href={s.href}>
+            <Photo n={s.image} width={480} height={300} sizes="(max-width: 640px) 100vw, (max-width: 1100px) 33vw, 230px" />
+            <div class="sector-card__body">
+              <span class="sector-card__name">{s.name}</span>
+              <h3>{s.line}</h3>
+              <span class="sector-card__link">{s.linkText} <span aria-hidden="true">→</span></span>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .sector-cards { list-style: none; margin: 0; padding: 0; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .sector-cards li { display: flex; }
+  .sector-card { display: flex; flex-direction: column; overflow: hidden; width: 100%; }
+  .sector-card :global(img) { aspect-ratio: 8 / 5; height: auto; }
+  .sector-card__body { padding: 18px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .sector-card__name { font-size: var(--text-caption-size); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--moc-coral-text); }
+  .sector-card h3 { font-size: 18px; }
+  .sector-card__link { margin-top: auto; padding-top: 6px; font-weight: 700; font-size: var(--text-small-size); color: var(--moc-purple-700); }
+  @media (max-width: 1100px) { .sector-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 760px) { .sector-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 480px) { .sector-cards { grid-template-columns: 1fr; } }
+</style>

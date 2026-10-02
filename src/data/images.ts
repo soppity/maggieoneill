@@ -43,6 +43,7 @@ export const images: Record<number, LibraryImage> = {
   117: img(117, '6ab6833453ee44f56b33c8e6.webp', "The Auditorium at the Maggie O'Neill Centre from the back, with rows of seats facing the stage"),
   133: img(133, '6ab6834e9b248207685a6a66.webp', "Tania, a host at the Maggie O'Neill Centre, smiling in reception", 'P'),
   137: img(137, '6ab6834f6407f2cbe4d41d1f.webp', "Tania, a host at the Maggie O'Neill Centre, chatting in reception", 'P'),
+  158: img(158, '6abfcbcc02569bee7cb0c764.webp', "The accessible toilet at the Maggie O'Neill Centre, with grab rails, a fold-down rail and an emergency pull cord"),
   139: img(139, '6ab68346974a9da6eebefb38.webp', "Patrick, a host at the Maggie O'Neill Centre", 'P'),
 };
 

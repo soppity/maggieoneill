@@ -1,0 +1,170 @@
+---
+// What's included: the Hosted Day in full, plus hall vs Maggie's vs hotel. Every price links here.
+// Spec: Website Blueprint page 11 (Template: Trust).
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Hero from '../../components/sections/Hero.astro';
+import KeyFacts from '../../components/sections/KeyFacts.astro';
+import HostedDay from '../../components/sections/HostedDay.astro';
+import Steps from '../../components/sections/Steps.astro';
+import Comparison from '../../components/sections/Comparison.astro';
+import Reviews from '../../components/sections/Reviews.astro';
+import Faqs from '../../components/sections/Faqs.astro';
+import CtaBand from '../../components/sections/CtaBand.astro';
+import Photo from '../../components/Photo.astro';
+import { accessibility, formatPrice, hours, listNames, parking, rateGroups, rooms, site, trainingDayFrom } from '../../data/facts';
+import { images } from '../../data/images';
+import { breadcrumbNode, faqNode } from '../../lib/schema';
+
+const path = '/whats-included/';
+const url = `${site.url}${path}`;
+const title = "What's Included in Room Hire | Maggie O'Neill Centre";
+const description =
+  "Every room at the Maggie O'Neill Centre comes hosted: layout set, screen tested, tea in the room, free parking. Nothing to bring. See the full list.";
+
+const intro = `Every room booking at the Maggie O'Neill Centre is hosted. A named host meets your group at the door, the room is set to your layout, the screen is tested, tea and coffee are in the room all day, and parking is free. There's nothing to bring, not even an HDMI cable.`;
+
+const auditorium = rooms.find((r) => r.slug === 'auditorium')!;
+const the = (names: string[]) => listNames(names.map((n) => `the ${n}`));
+
+const keyFacts = [
+  { term: 'Your host', detail: 'Meets your group at the door and stays on site all day.' },
+  { term: 'Room set-up', detail: 'Set to your layout before you arrive.' },
+  { term: 'Tech', detail: 'Screen with AirPlay and HDMI, cables provided, WiFi, flipchart and pens.' },
+  { term: 'Refreshments', detail: 'Tea and coffee in the room, all day.' },
+  { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
+  { term: 'Access', detail: 'Step-free, accessible parking, accessible toilet, quiet room.' },
+];
+
+const day = [
+  { title: 'You arrive', text: "Your host meets your group at the door. Your group's name is on the welcome screen." },
+  { title: 'The room is ready', text: 'Set to your layout, the screen tested, and tea and coffee waiting.' },
+  { title: 'During the day', text: 'A mid-morning check-in with your trainer, plus the kitchen and fridge if you need them.' },
+  { title: 'Next time', text: 'Room notes are kept, so your next booking is set up the same way.' },
+];
+
+const reviews = [
+  { quote: 'Someone waiting at the front door to greet you and point you in the right direction.', name: 'Chloe' },
+  { quote: 'Just off the motorway, on a main bus route.', name: 'Bec Bowden' },
+  { quote: 'From booking to the event as easy as possible.', name: 'Anita Johnson' },
+];
+
+const faqs = [
+  {
+    q: "What's included when you hire a room at the Maggie O'Neill Centre?",
+    a: 'Every room booking includes a host at the door, the room set to your layout, a screen with AirPlay and HDMI, WiFi, a flipchart and pens, tea and coffee in the room all day, kitchen and fridge access, and free parking.',
+  },
+  {
+    q: 'Are tea and coffee included in the room hire price?',
+    a: "Yes. Tea and coffee are served in the room all day and included in every booking at the Maggie O'Neill Centre.",
+  },
+  {
+    q: 'Do I need to bring an HDMI cable or projector?',
+    a: "No. Every room at the Maggie O'Neill Centre has a screen with AirPlay and HDMI, and the cables are provided and tested before you arrive.",
+  },
+  {
+    q: 'Is parking included?',
+    a: `Yes. Parking is free for every delegate in the Maggie O'Neill Centre's ${parking.spaces}-space car park, ${parking.motorway}.`,
+  },
+  {
+    q: "Does the Maggie O'Neill Centre have an accessible toilet?",
+    a: accessibility.toilet,
+  },
+  {
+    q: 'Is there a quiet room?',
+    a: `Yes. ${accessibility.quietRoom}`,
+  },
+  {
+    q: 'How much does room hire cost?',
+    a: `Training rooms at the Maggie O'Neill Centre start at ${formatPrice(trainingDayFrom)} a day, with everything on this page included. ${rateGroups()
+      .map((g) => `${the(g.rooms.map((r) => r.name))} ${g.rooms.length > 1 ? 'cost' : 'costs'} ${formatPrice(g.hour)} an hour or ${formatPrice(g.day)} a day`)
+      .map((t) => t.charAt(0).toUpperCase() + t.slice(1))
+      .join('. ')}. The ${auditorium.name} costs from ${formatPrice(auditorium.prices!.hourFrom!)} an hour.`,
+  },
+  {
+    q: 'Can I hire a room in the evening or at the weekend?',
+    a: `Yes. The Maggie O'Neill Centre is open ${hours.summary}, and evening and weekend room hire is available on request.`,
+  },
+];
+
+const schema = [
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: "What's included", url },
+  ]),
+  faqNode(url, faqs),
+];
+---
+<Base title={title} description={description} ogImage={images[43].src} ogImageAlt={images[43].alt} preloadImage={images[43].src} schema={schema}>
+  <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: "What's included", path }]} />
+
+  <Hero
+    kicker="What's included at the Maggie O'Neill Centre"
+    display="Nothing to bring. Not even an HDMI cable."
+    lede="Every booking is hosted. Here's everything that comes with it."
+    image={43}
+    secondary={{ label: 'See room prices', href: '/services/training-rooms/#rooms' }}
+  />
+
+  <KeyFacts heading="Every booking, in a few lines" intro={intro} facts={keyFacts} />
+
+  <HostedDay showMore={false} />
+
+  <Steps
+    id="day-heading"
+    eyebrow="A day at Maggie's"
+    heading="What happens on the day?"
+    intro="From the moment your group arrives to your next booking, your host looks after the details."
+    steps={day}
+    tone="cream"
+  />
+
+  <section class="section section--white" aria-labelledby="access-heading">
+    <div class="container access">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">Accessibility</span>
+          <h2 id="access-heading">Is the building accessible?</h2>
+          <p>Yes. Everyone in your group can get in, get around and take a break when they need one.</p>
+        </div>
+        <ul class="tick-list">
+          <li>{accessibility.stepFree}</li>
+          <li>{accessibility.toilet}</li>
+          <li>{accessibility.quietRoom}</li>
+          <li>{accessibility.lighting}</li>
+        </ul>
+      </div>
+      <figure class="access__photo">
+        <Photo n={158} width={640} height={480} sizes="(max-width: 900px) 100vw, 480px" />
+        <figcaption>The accessible toilet, on the same floor as the Auditorium, next to the kitchen.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <Comparison />
+
+  <Reviews reviews={reviews} heading="What do people notice on the day?" />
+
+  <Faqs faqs={faqs} heading="What's included: questions" />
+
+  <section class="section section--white more-links" aria-label="Rooms and services">
+    <div class="container">
+      <p>
+        Everything on this page comes with <a href="/services/training-rooms/">training room hire near Liverpool</a>,
+        {' '}<a href="/services/meeting-rooms/">meeting room hire in Huyton</a> and
+        {' '}<a href="/services/event-space-business-and-community/">events and conferences</a>. Read <a href="/reviews/">all our Google reviews</a>.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .access { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+  .access__photo { margin: 0; }
+  .access__photo :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
+  .access__photo figcaption { margin-top: 10px; font-size: var(--text-caption-size); color: var(--moc-slate-text); }
+  .more-links { padding: 40px 0; }
+  @media (max-width: 900px) { .access { grid-template-columns: 1fr; } }
+</style>
