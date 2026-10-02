@@ -31,7 +31,9 @@ const the = (names: string[]) => listNames(names.map((n) => `the ${n}`));
 const rateLines = rateGroups(['pod']).map(
   (g) => `${the(g.rooms.map((r) => r.name))} cost ${formatPrice(g.hour)} an hour or ${formatPrice(g.day)} a day`,
 );
-const onRequest = the(rooms.filter((r) => !r.prices?.day).map((r) => r.name));
+const hourFromLines = rooms
+  .filter((r) => r.prices?.hourFrom)
+  .map((r) => `the ${r.name} from ${formatPrice(r.prices!.hourFrom!)} an hour`);
 const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
 const intro = `The Maggie O'Neill Centre is a charity-run hosted venue at ${address.street}, Huyton, near Liverpool. Care providers, NHS teams, Knowsley Council, schools and fostering and adoption teams hire our training and meeting rooms. A host meets every group, tea and coffee are included and parking is free. Virtual offices start at ${formatPrice(virtualOffice.from)} a month.`;
@@ -40,7 +42,7 @@ const keyFacts = [
   { term: 'Where', detail: `${address.street}, Huyton, ${address.postcode}. Near Liverpool, ${parking.motorway}.` },
   { term: 'Rooms', detail: `Training, meeting and event rooms, from the ${pod.name}, a boardroom for ${pod.capacity.boardroom}, to the ${auditorium.name} for up to ${auditorium.capacity.cabaret} cabaret.` },
   { term: 'Included', detail: 'Your host at the door, the room set to your layout, a screen with AirPlay and HDMI, WiFi, and tea and coffee all day.' },
-  { term: 'Prices', detail: `Training rooms from ${formatPrice(trainingDayFrom)} a day, everything included. The ${pod.name}: ${formatPrice(pod.prices!.hour!)} an hour or ${formatPrice(pod.prices!.day!)} a day. ${cap(onRequest)}: price on request.`, href: '/whats-included/', linkText: "See what's included" },
+  { term: 'Prices', detail: `Training rooms from ${formatPrice(trainingDayFrom)} a day, everything included. The ${pod.name}: ${formatPrice(pod.prices!.hour!)} an hour or ${formatPrice(pod.prices!.day!)} a day. ${hourFromLines.map(cap).join('. ')}.`, href: '/whats-included/', linkText: "See what's included" },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park on site, on a main bus route.` },
   { term: 'Access', detail: 'Step-free access, accessible parking, an accessible toilet and a quiet room.' },
   { term: 'Hours', detail: `${hours.summary}. ${hours.extra}` },
@@ -63,7 +65,7 @@ const faqs = [
   },
   {
     q: 'How much does it cost to hire a room?',
-    a: `Training rooms at the Maggie O'Neill Centre start at ${formatPrice(trainingDayFrom)} a day, with your host, tea and coffee, the screen and parking included. ${rateLines.map(cap).join('. ')}. The ${pod.name}, a boardroom for ${pod.capacity.boardroom}, costs ${formatPrice(pod.prices!.hour!)} an hour or ${formatPrice(pod.prices!.day!)} a day. For ${onRequest}, call ${contact.phone}.`,
+    a: `Training rooms at the Maggie O'Neill Centre start at ${formatPrice(trainingDayFrom)} a day, with your host, tea and coffee, the screen and parking included. ${rateLines.map(cap).join('. ')}. The ${pod.name}, a boardroom for ${pod.capacity.boardroom}, costs ${formatPrice(pod.prices!.hour!)} an hour or ${formatPrice(pod.prices!.day!)} a day. ${hourFromLines.map((l) => cap(l.replace(' from ', ' costs from '))).join('. ')}. Call ${contact.phone} for an event quote.`,
   },
   {
     q: "Is the Maggie O'Neill Centre accessible?",

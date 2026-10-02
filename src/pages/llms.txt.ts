@@ -1,7 +1,7 @@
 // /llms.txt, generated from facts.ts on every build so it never drifts from the site (SEO spec 5.1).
 // Based on docs/seo-files/llms.txt.
 import type { APIRoute } from 'astro';
-import { address, booking, contact, formatPrice, hours, lastYear, listNames, maggiesMeals, parking, rateGroups, reviews, site, virtualOffice } from '../data/facts';
+import { address, booking, contact, formatPrice, rooms, hours, lastYear, listNames, maggiesMeals, parking, rateGroups, reviews, site, virtualOffice } from '../data/facts';
 
 const u = (path: string) => `${site.url}${path}`;
 const plans = virtualOffice.plans.map((p) => `£${p.price}`);
@@ -21,7 +21,7 @@ Key facts:
 - ${parking.summary}.
 - ${reviews.count} Google reviews (${reviews.asOf.split(' ').slice(1).join(' ')}). In the last year: ${lastYear.roomsHired} rooms hired, ${lastYear.businessesServed} businesses served, ${lastYear.mealsAccessed} people accessed Maggie's Meals.
 - Used by care providers, the NHS and primary care networks, Knowsley Council, schools, and fostering and adoption teams (Adoption in Merseyside, Knowsley Fostering, Foster4).
-- Room hire, everything included: ${rates}. The Grove and the Auditorium: price on request.
+- Room hire, everything included: ${rates}. ${rooms.filter((r) => r.prices?.hourFrom).map((r) => `The ${r.name} from ${formatPrice(r.prices!.hourFrom!)} an hour.`).join(' ')}
 - Maggie's Meals: ${maggiesMeals.schedule}.
 - Virtual office plans: ${planList} a month. Call answering add-on £${virtualOffice.callAnswering.price} a month.
 - Book or check availability: ${booking.url}

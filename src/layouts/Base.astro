@@ -4,6 +4,9 @@ import Seo from '../components/Seo.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MobileBar from '../components/MobileBar.astro';
+import Analytics from '../components/Analytics.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import { gtmId } from '../data/analytics';
 import { imageHost } from '../data/images';
 import type { Node } from '../lib/schema';
 
@@ -26,6 +29,7 @@ const { mobileBar = 'rooms', preloadImage, ...seo } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <Analytics />
     <link rel="preload" href="/fonts/outfit-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/figtree-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preconnect" href={imageHost} crossorigin />
@@ -38,6 +42,9 @@ const { mobileBar = 'rooms', preloadImage, ...seo } = Astro.props;
     <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
   <body>
+    {!import.meta.env.DEV && (
+      <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`} height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+    )}
     <a class="skip-link" href="#main">Skip to content</a>
     <Header />
     <main id="main">
@@ -45,6 +52,7 @@ const { mobileBar = 'rooms', preloadImage, ...seo } = Astro.props;
     </main>
     <Footer />
     <MobileBar variant={mobileBar} />
+    <CookieBanner />
     <script>
       // Key events for GA4 via the dataLayer (SEO spec 8.1). GTM reads these once the container is added.
       type DL = Record<string, unknown>[];

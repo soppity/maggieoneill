@@ -60,9 +60,9 @@ export function sitewideNodes(): Node[] {
       },
     ],
   };
+  venue.hasMap = address.mapsUrl;
   if (address.geo) {
     venue.geo = { '@type': 'GeoCoordinates', latitude: address.geo.lat, longitude: address.geo.lng };
-    venue.hasMap = address.mapsUrl;
   }
 
   return [

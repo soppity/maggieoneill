@@ -37,8 +37,9 @@ export const address = {
   countryName: 'United Kingdom',
   area: 'Huyton, Knowsley, Merseyside (near Liverpool)',
   oneLine: '433 Liverpool Road, Huyton, Liverpool, L36 8HT',
-  mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Maggie+O%27Neill+Centre+433+Liverpool+Road+Huyton+L36+8HT',
-  // TODO(owner): take from the Google Business Profile pin. Don't guess (SEO spec 4).
+  // The Google Business Profile listing, shared from Google Maps by the owner.
+  mapsUrl: 'https://maps.app.goo.gl/sj3hrdSBmnbBMt3g7',
+  // TODO(owner): coordinates from the Google Business Profile pin (right-click the pin in Maps). Don't guess (SEO spec 4).
   geo: null as null | { lat: number; lng: number },
 };
 
@@ -108,7 +109,7 @@ export const volunteers = [{ name: 'Liam', role: 'Volunteer' }];
 
 // Rooms in the order customers see them. Genesis is never listed.
 // Capacities: null means not yet confirmed for the site. Don't fill these in by guesswork.
-// Rates confirmed by the owner, Oct 2026. The Grove and the Auditorium are priced on request.
+// Rates confirmed by the owner, Oct 2026. The Auditorium is from £100 an hour, quoted per event.
 // TODO(owner): capacities by layout for each room.
 export type Layout = 'uShape' | 'boardroom' | 'classroom' | 'cabaret' | 'banquet' | 'theatre';
 export interface Room {
@@ -117,7 +118,8 @@ export interface Room {
   kind: string;
   goodFor: string;
   capacity: Partial<Record<Layout, number>>;
-  prices?: { hour?: number; day?: number };
+  // hourFrom: a starting hourly rate, quoted per event (the Auditorium).
+  prices?: { hour?: number; day?: number; hourFrom?: number };
   image: number;
 }
 export const rooms: Room[] = [
@@ -127,11 +129,12 @@ export const rooms: Room[] = [
     kind: 'Main hall',
     goodFor: 'Conferences, Oliver McGowan Tier 2 days and large training sessions',
     capacity: { cabaret: 60 },
+    prices: { hourFrom: 100 },
     image: 117,
   },
   { slug: 'summit', name: 'Summit', kind: 'Training and meeting room', goodFor: 'Training days and meetings', capacity: {}, prices: { hour: 30, day: 180 }, image: 44 },
   { slug: 'forum', name: 'Forum', kind: 'Training and meeting room', goodFor: 'Training, meetings and open networking', capacity: {}, prices: { hour: 30, day: 180 }, image: 35 },
-  { slug: 'grove', name: 'Grove', kind: 'Event and meeting room', goodFor: 'Events, networking and training', capacity: {}, image: 62 },
+  { slug: 'grove', name: 'Grove', kind: 'Event and meeting room', goodFor: 'Events, networking and training', capacity: {}, prices: { hour: 30, day: 180 }, image: 62 },
   { slug: 'foundry', name: 'Foundry', kind: 'Training and meeting room', goodFor: 'Classroom training and team meetings', capacity: {}, prices: { hour: 25, day: 165 }, image: 92 },
   { slug: 'hub', name: 'Hub', kind: 'Meeting room', goodFor: 'Small meetings and interviews', capacity: {}, prices: { hour: 25, day: 165 }, image: 88 },
   { slug: 'community-room', name: 'Community Room', kind: 'Training room', goodFor: 'Training sessions and group work', capacity: {}, prices: { hour: 30, day: 180 }, image: 105 },
