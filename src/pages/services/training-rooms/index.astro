@@ -14,7 +14,7 @@ import Reviews from '../../../components/sections/Reviews.astro';
 import VirtualOfficeBand from '../../../components/sections/VirtualOfficeBand.astro';
 import Faqs from '../../../components/sections/Faqs.astro';
 import FindUs from '../../../components/sections/FindUs.astro';
-import { accessibility, contact, formatPrice, hours, idealFor, layoutTriage, listNames, parking, rateGroups, rooms, site, trainingDayFrom } from '../../../data/facts';
+import { accessibility, catering, contact, halfDay, formatPrice, hours, idealFor, layoutTriage, listNames, parking, rateGroups, rooms, site, trainingDayFrom } from '../../../data/facts';
 import { clientLogos, images } from '../../../data/images';
 import { breadcrumbNode, faqNode, roomPlaceNode, serviceNode } from '../../../lib/schema';
 
@@ -83,6 +83,14 @@ const faqs = [
   {
     q: 'Is the training venue accessible?',
     a: `Yes. ${accessibility.stepFree} ${accessibility.toilet}`,
+  },
+  {
+    q: 'Can I book a half day?',
+    a: `${halfDay.replace('There are no half-day rates.', "The Maggie O'Neill Centre doesn't have half-day rates.")}`,
+  },
+  {
+    q: 'Can you provide lunch or catering?',
+    a: `Yes. ${catering.summary.replace('our partner', "the Maggie O'Neill Centre's partner")}`,
   },
   {
     q: 'Can I hire a training room in the evening or at the weekend?',

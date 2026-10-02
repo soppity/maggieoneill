@@ -270,6 +270,16 @@ export const sectorPages = [
   { name: 'Oliver McGowan training', line: 'A calm, accessible room for Oliver\u2019s Training.', href: '/services/training-rooms/oliver-mcgowan-training-venue/', linkText: 'Oliver McGowan training venue', image: 117 },
 ];
 
+// Room hire is by the hour or the day. There are no half-day rates (owner, Oct 2026).
+export const halfDay = 'There are no half-day rates. Rooms are hired by the hour or by the day, so a shorter session is charged at the hourly rate.';
+
+// Catering is outsourced: the booker deals with Superior Catering directly (owner, Oct 2026).
+export const catering = {
+  partner: 'Superior Catering',
+  summary:
+    "Catering is provided by our partner, Superior Catering. You order and pay for it with them directly, and we'll put you in touch when you book.",
+};
+
 // Who the training rooms suit (PROJECT_NOTES.md).
 export const idealFor = ['Care companies', 'NHS teams', 'Council training', 'CPD', 'First aid', 'Corporate training', 'Colleges', 'Apprenticeships'];
 

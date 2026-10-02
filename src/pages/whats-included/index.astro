@@ -12,7 +12,7 @@ import Reviews from '../../components/sections/Reviews.astro';
 import Faqs from '../../components/sections/Faqs.astro';
 import CtaBand from '../../components/sections/CtaBand.astro';
 import Photo from '../../components/Photo.astro';
-import { accessibility, formatPrice, hours, listNames, parking, rateGroups, rooms, site, trainingDayFrom } from '../../data/facts';
+import { accessibility, catering, formatPrice, halfDay, hours, listNames, parking, rateGroups, rooms, site, trainingDayFrom } from '../../data/facts';
 import { images } from '../../data/images';
 import { breadcrumbNode, faqNode } from '../../lib/schema';
 
@@ -82,6 +82,14 @@ const faqs = [
       .join('. ')}. The ${auditorium.name} costs from ${formatPrice(auditorium.prices!.hourFrom!)} an hour.`,
   },
   {
+    q: 'Can I book a half day?',
+    a: `${halfDay.replace('There are no half-day rates.', "The Maggie O'Neill Centre doesn't have half-day rates.")}`,
+  },
+  {
+    q: 'Can you provide lunch or catering?',
+    a: `Yes. ${catering.summary.replace('our partner', "the Maggie O'Neill Centre's partner")}`,
+  },
+  {
     q: 'Can I hire a room in the evening or at the weekend?',
     a: `Yes. The Maggie O'Neill Centre is open ${hours.summary}, and evening and weekend room hire is available on request.`,
   },
@@ -141,6 +149,17 @@ const schema = [
     </div>
   </section>
 
+  <section class="section section--white" aria-labelledby="catering-heading">
+    <div class="container catering">
+      <div class="section-head">
+        <span class="eyebrow">Catering</span>
+        <h2 id="catering-heading">Can you provide lunch?</h2>
+        <p>Yes, through our catering partner. Tea and coffee in the room are always included.</p>
+      </div>
+      <p class="catering__text">{catering.summary}</p>
+    </div>
+  </section>
+
   <Comparison />
 
   <Reviews reviews={reviews} heading="What do people notice on the day?" />
@@ -165,6 +184,9 @@ const schema = [
   .access__photo { margin: 0; }
   .access__photo :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
   .access__photo figcaption { margin-top: 10px; font-size: var(--text-caption-size); color: var(--moc-slate-text); }
+  .catering { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 64px); align-items: center; }
+  .catering .section-head { margin-bottom: 0; }
+  .catering__text { font-size: var(--text-lead-size); }
   .more-links { padding: 40px 0; }
-  @media (max-width: 900px) { .access { grid-template-columns: 1fr; } }
+  @media (max-width: 900px) { .access, .catering { grid-template-columns: 1fr; } }
 </style>
