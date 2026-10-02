@@ -110,7 +110,8 @@ export const volunteers = [{ name: 'Liam', role: 'Volunteer' }];
 // Rooms in the order customers see them. Genesis is never listed.
 // Capacities: null means not yet confirmed for the site. Don't fill these in by guesswork.
 // Rates confirmed by the owner, Oct 2026. The Auditorium is from £100 an hour, quoted per event.
-// TODO(owner): capacities by layout for each room.
+// We don't publish a capacity grid. Bookers tell us their headcount and what the day involves,
+// and the host recommends the room and layout (owner decision, Oct 2026). Only headline capacities live here.
 export type Layout = 'uShape' | 'boardroom' | 'classroom' | 'cabaret' | 'banquet' | 'theatre';
 export interface Room {
   slug: string;
@@ -150,6 +151,18 @@ export const rooms: Room[] = [
 ];
 
 // The Hosted Day: what every room booking includes (Brand Strategy, The Hosted Day).
+export const layoutTriage =
+  "Tell us how many people are coming and what the day involves, and we'll recommend the room and layout that works, then set it up before you arrive.";
+
+export const layouts: { key: Layout; name: string; bestFor: string }[] = [
+  { key: 'uShape', name: 'U-shape', bestFor: 'Discussion-led training, where everyone can see each other and the trainer can step inside the U.' },
+  { key: 'boardroom', name: 'Boardroom', bestFor: 'Meetings, interviews and small groups working around one table.' },
+  { key: 'classroom', name: 'Classroom', bestFor: 'Courses with note-taking or laptops, with everyone facing the front.' },
+  { key: 'cabaret', name: 'Cabaret', bestFor: 'Group work at round tables, with every seat facing the screen.' },
+  { key: 'banquet', name: 'Banquet', bestFor: 'Lunches, celebrations and networking around full round tables.' },
+  { key: 'theatre', name: 'Theatre', bestFor: 'Talks and briefings, with rows of chairs facing the front and no tables.' },
+];
+
 export const hostedDay = [
   'Room set to your layout before you arrive',
   'A named host at the door',

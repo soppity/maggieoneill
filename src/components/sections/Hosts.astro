@@ -13,6 +13,7 @@ const hosts = [
       <span class="eyebrow">Meet your hosts</span>
       <h2 id="hosts-heading">Who will look after you on the day?</h2>
       <p>A named host meets every group at the Maggie O'Neill Centre and stays on site all day.</p>
+      <p class="hosts__story">The centre is named after Maggie O'Neill, who bought this derelict 1930s hall with her family in the 1980s. <a href="/about/">Read Maggie's story</a></p>
     </div>
     <div class="grid hosts">
       {hosts.map((h) => (
@@ -36,6 +37,7 @@ const hosts = [
 </section>
 
 <style>
+  .section-head .hosts__story { font-size: var(--text-body-size); }
   .hosts { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; }
   .hosts__person { display: flex; flex-direction: column; gap: 16px; }
   .hosts__person :global(img) { aspect-ratio: 4 / 5; border-radius: var(--radius-card); object-position: top; }

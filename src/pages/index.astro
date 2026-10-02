@@ -8,6 +8,7 @@ import ClientLogos from '../components/sections/ClientLogos.astro';
 import WhoBooks from '../components/sections/WhoBooks.astro';
 import VirtualOfficeBand from '../components/sections/VirtualOfficeBand.astro';
 import RoomsServices from '../components/sections/RoomsServices.astro';
+import Layouts from '../components/sections/Layouts.astro';
 import HostedDay from '../components/sections/HostedDay.astro';
 import Comparison from '../components/sections/Comparison.astro';
 import Reviews from '../components/sections/Reviews.astro';
@@ -15,9 +16,10 @@ import Hosts from '../components/sections/Hosts.astro';
 import Faqs from '../components/sections/Faqs.astro';
 import MealsBand from '../components/sections/MealsBand.astro';
 import FindUs from '../components/sections/FindUs.astro';
-import { accessibility, address, contact, formatPrice, hours, listNames, parking, rateGroups, rooms, site, trainingDayFrom, virtualOffice } from '../data/facts';
+import { accessibility, address, contact, formatPrice, hours, layoutTriage, listNames, parking, rateGroups, rooms, site, trainingDayFrom, virtualOffice } from '../data/facts';
 import { images } from '../data/images';
 import { faqNode } from '../lib/schema';
+import { storySummary } from '../data/story';
 
 const title = "Training & Meeting Rooms, Huyton | Maggie O'Neill Centre";
 const description =
@@ -68,6 +70,10 @@ const faqs = [
     a: `Training rooms at the Maggie O'Neill Centre start at ${formatPrice(trainingDayFrom)} a day, with your host, tea and coffee, the screen and parking included. ${rateLines.map(cap).join('. ')}. The ${pod.name}, a boardroom for ${pod.capacity.boardroom}, costs ${formatPrice(pod.prices!.hour!)} an hour or ${formatPrice(pod.prices!.day!)} a day. ${hourFromLines.map((l) => cap(l.replace(' from ', ' costs from '))).join('. ')}. Call ${contact.phone} for an event quote.`,
   },
   {
+    q: 'Which room layout should I choose?',
+    a: `You don't need to choose a layout yourself. ${layoutTriage.replace("we'll", "your host at the Maggie O'Neill Centre will")}`,
+  },
+  {
     q: "Is the Maggie O'Neill Centre accessible?",
     a: `Yes. ${accessibility.stepFree} ${accessibility.toilet}`,
   },
@@ -82,6 +88,10 @@ const faqs = [
   {
     q: 'How much is a virtual office in Liverpool?',
     a: `Virtual office plans at the Maggie O'Neill Centre start at ${formatPrice(voLow.price)} a month for a registered office address. The ${formatPrice(vo40.price)} and ${formatPrice(vo50.price)} plans add post opened and scanned and 2 free meeting room hours a month.`,
+  },
+  {
+    q: 'Who was Maggie O\'Neill?',
+    a: storySummary,
   },
   {
     q: "Is the Maggie O'Neill Centre the same as MOBTC?",
@@ -123,6 +133,8 @@ const reviews = [
   <VirtualOfficeBand />
 
   <RoomsServices />
+
+  <Layouts />
 
   <HostedDay />
 
