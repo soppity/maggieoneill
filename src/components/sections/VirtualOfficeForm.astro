@@ -1,0 +1,82 @@
+---
+// The GoHighLevel virtual office form (never on the same page as the general form).
+// Every "Get your address" button and the mobile bar on virtual office pages scroll here.
+import { contact, forms, virtualOffice } from '../../data/facts';
+
+interface Props {
+  heading?: string;
+  intro?: string;
+}
+const {
+  heading = 'Get your address',
+  intro = "Pick a plan and tell us the basics. We'll reply the same working day with the next steps, including the ID check.",
+} = Astro.props;
+const form = forms.virtualOffice;
+---
+<section class="section vo-form" id="get-your-address" aria-labelledby="vo-form-heading">
+  <div class="container vo-form__inner">
+    <div class="vo-form__copy">
+      <span class="eyebrow">Sign up</span>
+      <h2 id="vo-form-heading">{heading}</h2>
+      <p>{intro}</p>
+      <ul class="tick-list">
+        <li>{virtualOffice.terms}</li>
+        <li>Want call answering too? It's £{virtualOffice.callAnswering.price} a month plus {virtualOffice.callAnswering.perResponse} per AI response, and we'll set it up with you after you sign up.</li>
+        <li>Not sure which plan? Tell us what you need and we'll help you pick.</li>
+      </ul>
+      <p class="vo-form__talk">
+        Prefer to talk? Call <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a> or WhatsApp
+        <a href={contact.whatsappHref} rel="noopener" data-track="whatsapp_click">{contact.text}</a>.
+      </p>
+    </div>
+    <div class="vo-form__box" style={`min-height:${form.height}px;height:${form.height}px`}>
+      <iframe
+        src={`https://api.leadconnectorhq.com/widget/form/${form.id}`}
+        style="width:100%;height:100%;border:none;border-radius:8px"
+        id={`inline-${form.id}`}
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-trigger-value=""
+        data-activation-type="alwaysActivated"
+        data-activation-value=""
+        data-deactivation-type="neverDeactivate"
+        data-deactivation-value=""
+        data-form-name={form.name}
+        data-height={form.height}
+        data-layout-iframe-id={`inline-${form.id}`}
+        data-form-id={form.id}
+        data-cookie-consent="true"
+        data-cookie-consent-provider="auto"
+        title={form.name}
+        loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<script is:inline src="https://link.msgsndr.com/js/form_embed.js" defer></script>
+
+<script>
+  // GA4 virtual_office_signup (not generate_lead) when the virtual office form is submitted.
+  // TODO: confirm the exact GHL message with a real test submission, then tighten this match.
+  const w = window as unknown as { dataLayer: Record<string, unknown>[] };
+  let sent = false;
+  window.addEventListener('message', (e) => {
+    if (sent || !/leadconnectorhq\.com|msgsndr\.com/.test(e.origin)) return;
+    const data = typeof e.data === 'string' ? e.data : JSON.stringify(e.data ?? '');
+    if (/submit/i.test(data)) {
+      sent = true;
+      (w.dataLayer = w.dataLayer || []).push({ event: 'virtual_office_signup', form_name: 'Virtual Office Page - Form' });
+    }
+  });
+</script>
+
+<style>
+  .vo-form { background: var(--moc-purple-tint); }
+  .vo-form__inner { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(32px, 5vw, 64px); align-items: start; }
+  .vo-form__copy { display: flex; flex-direction: column; gap: 16px; position: sticky; top: 104px; }
+  .vo-form__copy > p { font-size: var(--text-lead-size); }
+  .vo-form__copy .tick-list { font-size: var(--text-small-size); }
+  .vo-form__talk { font-size: var(--text-body-size) !important; }
+  .vo-form__box { background: var(--moc-white); border-radius: var(--radius-card); box-shadow: var(--moc-shadow-card); padding: 12px; overflow: hidden; }
+  @media (max-width: 900px) { .vo-form__inner { grid-template-columns: 1fr; } .vo-form__copy { position: static; } }
+</style>

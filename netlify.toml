@@ -26,6 +26,10 @@
   to = "/services/meeting-rooms/"
   status = 301
 [[redirects]]
+  from = "/vo/*"
+  to = "/services/virtual-office/"
+  status = 301
+[[redirects]]
   from = "/virtual-office-new/*"
   to = "/services/virtual-office/"
   status = 301

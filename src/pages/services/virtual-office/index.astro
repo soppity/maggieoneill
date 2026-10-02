@@ -1,0 +1,326 @@
+---
+// Virtual office hub. Spec: docs/reference/Website Blueprint.dc.html, page 8 (Template: Service).
+// Copy kept close to virtual.mobtc.co.uk (docs/content/virtual-office-source.md).
+import Base from '../../../layouts/Base.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import Hero from '../../../components/sections/Hero.astro';
+import KeyFacts from '../../../components/sections/KeyFacts.astro';
+import PlansCompare from '../../../components/sections/PlansCompare.astro';
+import CallAnsweringBand from '../../../components/sections/CallAnsweringBand.astro';
+import Steps from '../../../components/sections/Steps.astro';
+import Faqs from '../../../components/sections/Faqs.astro';
+import VirtualOfficeForm from '../../../components/sections/VirtualOfficeForm.astro';
+import Photo from '../../../components/Photo.astro';
+import { address, formatPrice, hours, listNames, reviews, rooms, site, virtualOffice } from '../../../data/facts';
+import { images } from '../../../data/images';
+import { breadcrumbNode, faqNode, serviceNode } from '../../../lib/schema';
+
+const path = '/services/virtual-office/';
+const url = `${site.url}${path}`;
+const title = "Virtual Office Liverpool from £20 | Maggie O'Neill Centre";
+const description =
+  "A real business address near Liverpool from £20 a month, with real people behind it. Keep your home address off Companies House. Maggie O'Neill Centre.";
+
+const [p20, p30, p40, p50] = virtualOffice.plans;
+const dc = virtualOffice.directorsCover;
+const ca = virtualOffice.callAnswering;
+const pod = rooms.find((r) => r.slug === 'pod')!;
+const tania = virtualOffice.postHandler;
+
+const intro = `A virtual office at the Maggie O'Neill Centre gives you a real business and registered office address at ${address.street}, Huyton, near Liverpool, from ${formatPrice(p20.price)} a month. ${tania} handles your post in-house, meeting rooms are in the same building, and Director's Cover keeps your home address off Companies House.`;
+
+const keyFacts = [
+  { term: 'Address', detail: `${address.street}, Huyton, Liverpool, ${address.postcode}. A real building with people in it.` },
+  { term: 'Prices', detail: `${formatPrice(p20.price)}, ${formatPrice(p30.price)}, ${formatPrice(p40.price)} or ${formatPrice(p50.price)} a month.`, href: '#plans', linkText: 'Compare plans' },
+  { term: 'Post', detail: `Handled in-house by ${tania}. Opened and scanned on the ${formatPrice(p40.price)} and ${formatPrice(p50.price)} plans.` },
+  { term: "Director's Cover", detail: `+${formatPrice(dc.price)} a month. Takes your home address off the public register.` },
+  { term: 'Meeting rooms', detail: `In the same building. ${formatPrice(p40.price)} and ${formatPrice(p50.price)} plans include 2 free hours a month.` },
+  { term: 'Contract', detail: virtualOffice.terms },
+  { term: 'Collect post', detail: `${hours.summary}. Free parking outside.` },
+  { term: 'Call answering', detail: `Add it for ${formatPrice(ca.price)} a month.`, href: '/services/virtual-office/call-answering/', linkText: 'How it works' },
+];
+
+const whoFor = [
+  "New limited company directors who don't want their home on the public register",
+  'Sole traders and freelancers working from home',
+  'Online sellers who need a business address',
+  'Property companies, contractors, charities and CICs',
+  'Firms outside the region wanting a Liverpool presence',
+];
+
+// Why people switch, from the current virtual office page.
+const reasons = [
+  'Anyone can find your home address online.',
+  'A home address can make your business look like a hobby.',
+  'Public addresses get spammed with junk and scams.',
+  'Work mail gets mixed up with your personal post.',
+  'Keep unhappy customers away from your front door.',
+  'Coffee shops are loud. Get a real address with real meeting rooms.',
+  "Some lenders and insurers don't like businesses run from home.",
+  'If you move house, a business address stays the same.',
+];
+
+const faqs = [
+  {
+    q: 'How much is a virtual office in Liverpool?',
+    a: `A virtual office at the Maggie O'Neill Centre costs from ${formatPrice(p20.price)} a month for a registered office and business address. The ${formatPrice(p40.price)} plan adds post opened and scanned and 2 free meeting room hours a month. Director's Cover adds ${formatPrice(dc.price)} a month to either plan.`,
+  },
+  {
+    q: 'Can I use the address as my registered office with Companies House?',
+    a: `Yes. Every virtual office plan at the Maggie O'Neill Centre includes a registered office address at ${address.oneLine}. You can also use it as your business address on your website, invoices and letters.`,
+  },
+  {
+    q: 'How do I keep my home address off Companies House?',
+    a: `Use the Maggie O'Neill Centre as your registered office and add Director's Cover, which gives you a director's service address too. New filings then show our address instead of your home. Older documents on the register may still show your home address, and Companies House explains how to apply to have it removed.`,
+  },
+  {
+    q: "What is Director's Cover?",
+    a: `Director's Cover is a ${formatPrice(dc.price)} a month add-on that gives you a director's service address at the Maggie O'Neill Centre. It means your home address no longer needs to appear on the public register as your correspondence address.`,
+  },
+  {
+    q: 'Who handles my post?',
+    a: `The Maggie O'Neill Centre handles your post in-house. It isn't outsourced to another company: ${tania} looks after virtual office post at reception.`,
+  },
+  {
+    q: 'Can I collect my post?',
+    a: `Yes. You can collect post from reception at the Maggie O'Neill Centre, ${hours.summary}, and parking is free while you do.`,
+  },
+  {
+    q: 'Can I meet clients at my virtual office address?',
+    a: `Yes. Meeting rooms are in the same building, from the ${pod.name} at ${formatPrice(pod.prices!.hour!)} an hour. The ${formatPrice(p40.price)} and ${formatPrice(p50.price)} virtual office plans include 2 free meeting room hours a month.`,
+  },
+  {
+    q: 'Is there a contract?',
+    a: `There's no lock-in. You can cancel a virtual office at the Maggie O'Neill Centre any time with one month's notice.`,
+  },
+  {
+    q: 'How quickly can I start?',
+    a: `You can be live as soon as your ID checks are done. Fill in the form, complete the secure ID form we send you, and you get your address and mailbox app.`,
+  },
+  {
+    q: 'Why do you need to check my ID?',
+    a: `Anyone providing a registered office service has to check the identity of their clients by law. The Maggie O'Neill Centre sends you a secure form for this after you sign up.`,
+  },
+  {
+    q: 'Is it a real address or a PO box?',
+    a: `It's a real building with people in it: the Maggie O'Neill Centre, ${address.street}, Huyton. Companies House doesn't accept a PO box as a registered office address.`,
+  },
+];
+
+const schema = [
+  serviceNode({
+    url,
+    name: 'Virtual office',
+    serviceType: 'Virtual office and registered office address',
+    description: intro,
+    areaServed: virtualOffice.areasServed,
+    catalogName: 'Virtual office plans',
+    offers: [
+      ...virtualOffice.plans.map((p) => ({ name: p.name, price: p.price, description: p.summary })),
+      { name: `${ca.name} (add-on)`, price: ca.price, description: ca.summary },
+    ],
+  }),
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Virtual office', url },
+  ]),
+  faqNode(url, faqs),
+];
+
+const voReviewCount = reviews.count;
+---
+<Base
+  title={title}
+  description={description}
+  ogImage={images[29].src}
+  ogImageAlt={images[29].alt}
+  preloadImage={images[29].src}
+  schema={schema}
+  mobileBar="virtual-office"
+>
+  <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Virtual office', path }]} />
+
+  <Hero
+    kicker={`Virtual office near Liverpool, from ${formatPrice(virtualOffice.from)} a month`}
+    display="A real address, with real people behind it."
+    lede={`${tania} handles your post at the Maggie O'Neill Centre and lets you know when it arrives. Keep your home address off Companies House, and meet clients in the same building.`}
+    image={29}
+    primary={{ label: 'Get your address', href: '#get-your-address' }}
+    secondary={{ label: 'See plans and prices', href: '#plans' }}
+  >
+    <ul class="price-chips" aria-label="Virtual office plans">
+      {virtualOffice.plans.map((p) => (
+        <li class:list={{ 'is-lead': p.lead }}><strong>{formatPrice(p.price)}</strong> {p.name}</li>
+      ))}
+    </ul>
+    <ul class="vo-proof">
+      <li><a href="/reviews/">{voReviewCount} Google reviews</a></li>
+      <li>Post handled in-house</li>
+      <li>Free parking when you collect</li>
+    </ul>
+  </Hero>
+
+  <KeyFacts heading="Your virtual office, in a few lines" intro={intro} facts={keyFacts} />
+  <p class="container updated">Last updated: October 2026</p>
+
+  <section class="section" aria-labelledby="who-heading">
+    <div class="container two-col">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">Who it's for</span>
+          <h2 id="who-heading">Who uses a virtual office at Maggie's?</h2>
+          <p>Directors, sole traders and small firms who want a proper business address without renting an office.</p>
+        </div>
+        <ul class="tick-list">
+          {whoFor.map((w) => <li>{w}</li>)}
+        </ul>
+      </div>
+      <div class="card reasons">
+        <h3>Why people switch</h3>
+        <p>Some switch for privacy. Others want a better business image: meeting rooms, organised post and a proper postcode.</p>
+        <ul>
+          {reasons.map((r) => <li>{r}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <PlansCompare />
+
+  <CallAnsweringBand />
+
+  <section class="section section--white" aria-labelledby="ro-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">Registered office and Director's Cover</span>
+        <h2 id="ro-heading">What's the difference between a registered office and a director's service address?</h2>
+      </div>
+      <div class="prose">
+        <p>
+          <strong>A registered office</strong> is your company's official address on the public register. Every plan includes one at the Maggie
+          O'Neill Centre, and you can use it as your business address everywhere else too.
+        </p>
+        <p>
+          <strong>A director's service address</strong> is where Companies House and others send letters for you as a director. If you used your
+          home, it's on the public register. {dc.summary}
+        </p>
+        <p>
+          Director's Cover costs {formatPrice(dc.price)} a month on top of any plan: {formatPrice(p20.price)} becomes {formatPrice(p30.price)}, and
+          {' '}{formatPrice(p40.price)} becomes {formatPrice(p50.price)}.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="post-heading">
+    <div class="container two-col two-col--media">
+      <div class="post-media">
+        <Photo n={137} width={560} height={700} sizes="(max-width: 900px) 100vw, 440px" />
+      </div>
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">Your post</span>
+          <h2 id="post-heading">What happens to my post?</h2>
+          <p>Your post comes to real people at the Maggie O'Neill Centre, not a sorting office. It isn't outsourced to another company.</p>
+        </div>
+        <ul class="tick-list">
+          <li>{tania} looks after virtual office post at reception.</li>
+          <li>On the {formatPrice(p40.price)} and {formatPrice(p50.price)} plans, your post is opened and scanned, so you can read it in your mailbox app wherever you are.</li>
+          <li>On every plan, you can collect post from reception, {hours.summary}, with free parking outside.</li>
+        </ul>
+        <p class="post-review">
+          Salome, who runs Salowal Ltd, says in her Google review that {tania} lets her know about her post and greets her clients at reception.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream" aria-labelledby="meet-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">Meeting rooms</span>
+        <h2 id="meet-heading">Can I meet clients at my virtual office address?</h2>
+        <p>Yes. Meeting rooms are in the same building, so clients come to the address on your letterhead.</p>
+      </div>
+      <div class="prose">
+        <p>
+          The {pod.name}, a boardroom for {pod.capacity.boardroom}, costs {formatPrice(pod.prices!.hour!)} an hour. Larger rooms are there for team days
+          and training. The {formatPrice(p40.price)} and {formatPrice(p50.price)} plans include 2 free meeting room hours a month.
+        </p>
+        <p>Your host meets your client at the door, the tea is on, and parking is free.</p>
+        <p><a href="/services/meeting-rooms/">Meet clients here: meeting room hire in Huyton</a></p>
+        <p><a href="/services/private-offices/">Need a desk of your own? See private offices</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="areas-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Areas we serve</span>
+        <h2 id="areas-heading">Which areas does the virtual office cover?</h2>
+        <p>
+          Businesses across Merseyside and beyond use our address in Huyton, near Liverpool: {listNames(virtualOffice.areasServed)}. Your post
+          can be scanned, so you don't need to be local.
+        </p>
+      </div>
+      <ul class="areas">
+        {virtualOffice.areasServed.map((a) => <li>{a}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <Steps
+    id="signup-heading"
+    eyebrow="How sign-up works"
+    heading="How do I get a virtual office address?"
+    intro="Pick a plan and give us the basics. The ID check follows, and then your address is live."
+    steps={virtualOffice.signUp}
+  >
+    <p class="steps-cta"><a class="btn btn--primary" href="#get-your-address">Get your address</a></p>
+  </Steps>
+
+  <section class="section section--white impact" aria-labelledby="impact-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">Where your money goes</span>
+        <h2 id="impact-heading">{site.closer}</h2>
+      </div>
+      <p class="prose">
+        The Maggie O'Neill Centre is a registered charity (no. {site.charityNumber}). Profits from your virtual office fund Maggie's Meals, our social
+        supermarket, and community support in Knowsley. Want to see it? Come for a tour any weekday.
+      </p>
+    </div>
+  </section>
+
+  <Faqs faqs={faqs} heading="Virtual office questions" />
+
+  <VirtualOfficeForm />
+</Base>
+
+<style>
+  .price-chips { list-style: none; margin: 26px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .price-chips li {
+    font-size: 14px; padding: 6px 12px; border-radius: var(--radius-pill); background: var(--moc-white);
+    border: 1px solid var(--moc-border); color: var(--moc-ink);
+  }
+  .price-chips li strong { font-family: var(--font-display); color: var(--moc-purple-900); }
+  .price-chips li.is-lead { border-color: var(--moc-coral-500); background: var(--moc-coral-tint); }
+  .vo-proof { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: var(--text-small-size); font-weight: 600; color: var(--moc-purple-900); }
+  .vo-proof li::before { content: '✓ '; color: var(--moc-coral-text); }
+  .vo-proof a { color: inherit; }
+  .updated { margin-top: -40px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
+  .two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .two-col--media { align-items: center; }
+  .two-col .section-head { margin-bottom: 24px; }
+  .reasons { padding: 32px; display: flex; flex-direction: column; gap: 12px; background: var(--moc-white); }
+  .reasons p { color: var(--moc-slate-text); font-size: var(--text-small-size); }
+  .reasons ul { margin: 6px 0 0; padding-left: 20px; display: grid; gap: 8px; }
+  .prose { display: flex; flex-direction: column; gap: 16px; font-size: var(--text-body-size); }
+  .post-media :global(img) { aspect-ratio: 4 / 5; border-radius: var(--radius-card); object-position: top; max-height: 620px; }
+  .post-review { margin-top: 20px; padding: 18px 22px; border-left: 4px solid var(--moc-coral-500); background: var(--moc-white); border-radius: 0 var(--radius-tile) var(--radius-tile) 0; font-size: var(--text-small-size); }
+  .areas { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+  .areas li { padding: 10px 18px; border-radius: var(--radius-pill); background: var(--moc-purple-tint); color: var(--moc-purple-900); font-weight: 600; }
+  .steps-cta { margin-top: 32px; }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } .updated { margin-top: -24px; } }
+</style>

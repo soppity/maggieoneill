@@ -23,7 +23,7 @@ Key facts:
 - Used by care providers, the NHS and primary care networks, Knowsley Council, schools, and fostering and adoption teams (Adoption in Merseyside, Knowsley Fostering, Foster4).
 - Room hire, everything included: ${rates}. ${rooms.filter((r) => r.prices?.hourFrom).map((r) => `The ${r.name} from ${formatPrice(r.prices!.hourFrom!)} an hour.`).join(' ')}
 - Maggie's Meals: ${maggiesMeals.schedule}.
-- Virtual office plans: ${planList} a month. Call answering add-on £${virtualOffice.callAnswering.price} a month.
+- Virtual office plans: ${planList} a month. Call answering add-on £${virtualOffice.callAnswering.price} a month plus ${virtualOffice.callAnswering.perResponse} per AI response.
 - Book or check availability: ${booking.url}
 
 ## Rooms and venue hire
@@ -39,7 +39,7 @@ Key facts:
 
 ## Virtual office
 - [Virtual office near Liverpool](${u('/services/virtual-office/')}): registered office, director's service address, business address and mail handling, from £${virtualOffice.from} a month
-- [Call answering](${u('/services/virtual-office/call-answering/')}): £${virtualOffice.callAnswering.price} a month. Calls answered, messages taken, put through or summarised and sent to you
+- [Call answering](${u('/services/virtual-office/call-answering/')}): ${virtualOffice.callAnswering.summary}
 - [For accountants](${u('/services/virtual-office/accountants/')}): 15% off for referred clients and one login for all client post
 
 ## About
