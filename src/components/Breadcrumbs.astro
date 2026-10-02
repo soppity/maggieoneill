@@ -1,0 +1,26 @@
+---
+// Visible breadcrumb trail for every page below the homepage (SEO spec 3.5).
+// The matching BreadcrumbList schema comes from breadcrumbNode() with the same trail.
+interface Props {
+  trail: { name: string; path: string }[];
+}
+const { trail } = Astro.props;
+---
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol class="container">
+    {trail.map((t, i) => (
+      <li>
+        {i < trail.length - 1 ? <a href={t.path}>{t.name}</a> : <span aria-current="page">{t.name}</span>}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  .breadcrumbs { background: var(--moc-bg); border-bottom: 1px solid var(--moc-border); }
+  .breadcrumbs ol { list-style: none; margin: 0 auto; padding-top: 12px; padding-bottom: 12px; display: flex; flex-wrap: wrap; gap: 4px 0; font-size: var(--text-caption-size); }
+  .breadcrumbs li { display: inline-flex; align-items: center; color: var(--moc-slate-text); }
+  .breadcrumbs li + li::before { content: '/'; margin: 0 10px; color: var(--moc-slate-2); }
+  .breadcrumbs a { color: var(--moc-purple-700); text-decoration: none; font-weight: 600; }
+  .breadcrumbs a:hover { text-decoration: underline; }
+</style>

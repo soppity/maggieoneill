@@ -1,0 +1,77 @@
+---
+// The four virtual office plans side by side, £50 recommended (Blueprint growth plan: lead with £50).
+import { formatPrice, planFeatures, virtualOffice } from '../../data/facts';
+
+interface Props {
+  heading?: string;
+}
+const { heading = 'How much is a virtual office near Liverpool?' } = Astro.props;
+const [, mid, full] = virtualOffice.plans;
+const step = full.price - mid.price;
+const plans = [...virtualOffice.plans].sort((a, b) => Number(!!b.lead) - Number(!!a.lead) || b.price - a.price);
+---
+<section class="section section--cream" id="plans" aria-labelledby="plans-heading">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Plans and prices</span>
+      <h2 id="plans-heading">{heading}</h2>
+      <p>
+        A virtual office at the Maggie O'Neill Centre costs from {formatPrice(virtualOffice.from)} a month. Same address, same building, whichever
+        plan you pick. {virtualOffice.terms}
+      </p>
+    </div>
+    <div class="grid plans">
+      {plans.map((p) => (
+        <article class:list={['card', 'plan', { 'plan--lead': p.lead }]}>
+          {p.lead && <span class="plan__tag">Recommended</span>}
+          <h3>{p.name}</h3>
+          <p class="plan__price"><strong>{formatPrice(p.price)}</strong> a month</p>
+          <p class="plan__summary">{p.summary}</p>
+          <ul class="plan__features">
+            {planFeatures.map((f) => (
+              <li class:list={{ 'is-off': !p.features.includes(f.key) }}>
+                <span class="visually-hidden">{p.features.includes(f.key) ? 'Included: ' : 'Not included: '}</span>
+                {f.label}
+              </li>
+            ))}
+          </ul>
+          <a class:list={['btn', p.lead ? 'btn--primary' : 'btn--secondary', 'plan__cta']} href="#get-your-address" data-plan={p.name}>
+            Choose {formatPrice(p.price)}
+          </a>
+        </article>
+      ))}
+    </div>
+    <p class="plans__note">
+      Two free meeting room hours are worth more than the {formatPrice(step)} a month between the {formatPrice(mid.price)} and {formatPrice(full.price)} plans.
+      Add <a href="/services/virtual-office/call-answering/">call answering for {formatPrice(virtualOffice.callAnswering.price)} a month</a> to any plan.
+    </p>
+  </div>
+</section>
+
+<style>
+  .plans { grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: stretch; }
+  .plan { position: relative; padding: 28px 24px; display: flex; flex-direction: column; gap: 10px; }
+  .plan--lead { outline: 3px solid var(--moc-coral-500); }
+  .plan__tag {
+    position: absolute; top: -14px; left: 24px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    background: var(--moc-coral-500); color: var(--moc-purple-900); padding: 5px 12px; border-radius: var(--radius-pill);
+  }
+  .plan h3 { font-size: 19px; min-height: 2.3em; }
+  .plan__price strong { font: 800 44px/1 var(--font-display); color: var(--moc-purple-900); letter-spacing: -0.02em; }
+  .plan__price { color: var(--moc-slate-text); }
+  .plan__summary { font-size: var(--text-small-size); min-height: 4.8em; }
+  .plan__features { list-style: none; margin: 6px 0 12px; padding: 0; display: grid; gap: 8px; font-size: 14px; }
+  .plan__features li { display: grid; grid-template-columns: 18px 1fr; gap: 8px; align-items: start; }
+  .plan__features li::before {
+    content: ''; width: 18px; height: 18px; margin-top: 2px; border-radius: 50%;
+    background: var(--moc-coral-tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-7' fill='none' stroke='%23D64A26' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat;
+  }
+  .plan__features li.is-off { color: var(--moc-slate-2); text-decoration: line-through; text-decoration-color: rgba(148, 160, 174, 0.6); }
+  .plan__features li.is-off::before {
+    background: var(--moc-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6 10h8' stroke='%2394A0AE' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") center/14px no-repeat;
+  }
+  .plan__cta { margin-top: auto; }
+  .plans__note { margin-top: 28px; }
+  @media (max-width: 1100px) { .plans { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 36px; } .plan h3, .plan__summary { min-height: 0; } }
+  @media (max-width: 600px) { .plans { grid-template-columns: 1fr; } }
+</style>

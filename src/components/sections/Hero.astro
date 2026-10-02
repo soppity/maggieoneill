@@ -9,9 +9,11 @@ interface Props {
   lede: string;
   image: number;
   imageAlt?: string;
+  // Defaults to "Check availability" (the OfficeRnD calendar).
+  primary?: { label: string; href: string; track?: string };
   secondary?: { label: string; href: string };
 }
-const { kicker, display, lede, image, imageAlt, secondary } = Astro.props;
+const { kicker, display, lede, image, imageAlt, primary, secondary } = Astro.props;
 ---
 <section class="hero">
   <div class="container hero__inner">
@@ -22,7 +24,11 @@ const { kicker, display, lede, image, imageAlt, secondary } = Astro.props;
       </h1>
       <p class="hero__lede">{lede}</p>
       <div class="hero__ctas">
-        <a class="btn btn--primary" href={booking.url} target="_blank" rel="noopener" data-track="booking_click">Check availability</a>
+        {primary ? (
+          <a class="btn btn--primary" href={primary.href} data-track={primary.track}>{primary.label}</a>
+        ) : (
+          <a class="btn btn--primary" href={booking.url} target="_blank" rel="noopener" data-track="booking_click">Check availability</a>
+        )}
         {secondary && <a class="btn btn--secondary" href={secondary.href}>{secondary.label}</a>}
       </div>
       <slot />

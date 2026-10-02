@@ -153,3 +153,59 @@ export function faqNode(url: string, faqs: { q: string; a: string }[]): Node {
 export function graph(nodes: Node[]) {
   return { '@context': 'https://schema.org', '@graph': nodes };
 }
+
+export interface OfferInput {
+  name: string;
+  price: number;
+  description: string;
+  unit?: 'MONTH' | 'HOUR' | 'DAY';
+}
+
+const offerNode = (o: OfferInput, url: string): Node => ({
+  '@type': 'Offer',
+  name: o.name,
+  description: o.description,
+  url,
+  price: o.price,
+  priceCurrency: 'GBP',
+  priceSpecification: {
+    '@type': 'UnitPriceSpecification',
+    price: o.price,
+    priceCurrency: 'GBP',
+    unitText: o.unit ?? 'MONTH',
+  },
+});
+
+// A Service for a page (SEO spec 4, page-specific nodes). Offers only where a price is published.
+export function serviceNode(opts: {
+  url: string;
+  name: string;
+  serviceType: string;
+  description: string;
+  provider?: 'org' | 'venue';
+  areaServed?: string[];
+  audience?: string;
+  offers?: OfferInput[];
+  catalogName?: string;
+}): Node {
+  const node: Node = {
+    '@type': 'Service',
+    '@id': `${opts.url}#service`,
+    name: opts.name,
+    serviceType: opts.serviceType,
+    description: opts.description,
+    url: opts.url,
+    provider: { '@id': id(opts.provider ?? 'org') },
+    areaServed: (opts.areaServed ?? ['Liverpool', 'Merseyside']).map((name) => ({ '@type': 'Place', name })),
+  };
+  if (opts.audience) node.audience = { '@type': 'Audience', audienceType: opts.audience };
+  if (opts.offers?.length === 1 && !opts.catalogName) node.offers = offerNode(opts.offers[0], opts.url);
+  else if (opts.offers?.length) {
+    node.hasOfferCatalog = {
+      '@type': 'OfferCatalog',
+      name: opts.catalogName ?? opts.name,
+      itemListElement: opts.offers.map((o) => offerNode(o, opts.url)),
+    };
+  }
+  return node;
+}

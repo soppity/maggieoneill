@@ -176,35 +176,83 @@ export const hostedDay = [
   'Room notes kept for next time',
 ];
 
+// Virtual office. Source: docs/content/virtual-office-source.md and PROJECT_NOTES.md.
+// TODO(owner): confirm whether the 2 free meeting room hours are per month.
+export type PlanFeature = 'registeredOffice' | 'businessAddress' | 'collectPost' | 'directorsCover' | 'postScanned' | 'roomHours' | 'coffee';
+
+export const planFeatures: { key: PlanFeature; label: string }[] = [
+  { key: 'registeredOffice', label: 'Registered office address for Companies House' },
+  { key: 'businessAddress', label: 'Use it as your business address everywhere' },
+  { key: 'collectPost', label: 'Collect your post from reception' },
+  { key: 'directorsCover', label: "Director's service address (Director's Cover)" },
+  { key: 'postScanned', label: 'Post opened and scanned, so you can read it anywhere' },
+  { key: 'roomHours', label: '2 free meeting room hours' },
+  { key: 'coffee', label: 'Free coffee when you call in' },
+];
+
+export interface VirtualOfficePlan {
+  name: string;
+  price: number;
+  summary: string;
+  features: PlanFeature[];
+  lead?: boolean;
+}
+
+const addressOnly: PlanFeature[] = ['registeredOffice', 'businessAddress', 'collectPost'];
+const fullVirtualOffice: PlanFeature[] = [...addressOnly, 'postScanned', 'roomHours', 'coffee'];
+
 export const virtualOffice = {
   from: 20,
   plans: [
     {
       name: 'Address Only',
       price: 20,
-      summary: 'A registered office address for your company.',
+      summary: 'A registered office and business address. Collect your post from reception.',
+      features: addressOnly,
     },
     {
       name: "Address Only + Director's Cover",
       price: 30,
-      summary: "Registered office plus a director's service address.",
+      summary: "Address Only, plus a director's service address, so your home comes off Companies House.",
+      features: [...addressOnly, 'directorsCover'],
     },
     {
       name: 'Virtual Office',
       price: 40,
-      summary: 'Post opened and scanned, plus 2 free meeting room hours a month.',
+      summary: 'Post opened and scanned, plus 2 free meeting room hours.',
+      features: fullVirtualOffice,
     },
     {
       name: "Virtual Office + Director's Cover",
       price: 50,
-      summary: "Post opened and scanned, 2 free meeting room hours, and your home address off Companies House.",
+      summary: 'Post opened and scanned, 2 free meeting room hours, and your home address off Companies House.',
+      features: [...fullVirtualOffice, 'directorsCover'],
       lead: true,
     },
+  ] as VirtualOfficePlan[],
+  directorsCover: {
+    price: 10,
+    summary:
+      "Right now, your home is probably listed as your business address and your director correspondence address. Director's Cover replaces it with ours in both places.",
+  },
+  terms: 'No lock-in. Cancel any time with one month\'s notice.',
+  postHandler: 'Tania',
+  signUp: [
+    { title: 'Tell us the basics', text: 'Your name, email, phone and the plan you want. It takes about a minute.' },
+    { title: 'Confirm your ID', text: 'We send a secure form for the ID checks the law requires for registered office services.' },
+    { title: 'Get your address', text: "You get your new address and access to your mailbox app. You're live as soon as the checks are done." },
   ],
   callAnswering: {
     name: 'Call answering',
     price: 39,
     summary: 'Calls answered, messages taken, put through to you or summarised and sent to you.',
+    steps: [
+      { title: 'Your call is answered', text: 'Every call to your business number is picked up, so nobody hits voicemail.' },
+      { title: 'The message is taken', text: 'Who called, why, and how to get back to them.' },
+      { title: 'Put through or summarised', text: 'Choose whether calls are put through to a person, or summarised and transcribed instead.' },
+      { title: 'Sent straight to you', text: 'The summary comes to you, so you can call back when you are free.' },
+      { title: 'Kept in your CRM', text: 'Every call is logged, so you have a record of who rang and what they needed.' },
+    ],
   },
   areasServed: ['Liverpool', 'Knowsley', 'St Helens', 'Sefton', 'Wirral', 'Halton', 'Warrington', 'West Lancashire'],
 };

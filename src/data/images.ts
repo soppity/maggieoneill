@@ -21,6 +21,9 @@ const img = (n: number, file: string, alt: string, orientation: 'L' | 'P' | 'S' 
 export const images: Record<number, LibraryImage> = {
   1: img(1, '6ab68335352b2c340195dbf0.webp', "The front of the Maggie O'Neill Centre in Huyton, with the free car park outside"),
   4: img(4, '6ab683353ae3da26fb60a175.webp', "The front door of the Maggie O'Neill Centre at 433 Liverpool Road, with a ramp and handrails", 'P'),
+  6: img(6, '6ab68339352b2c340195dc59.webp', "Reception at the Maggie O'Neill Centre, with living-wall panels, armchairs and a slatted oak ceiling"),
+  18: img(18, '6ab683479b248207685a6949.webp', "The purple neon logo on the oak slat wall in reception at the Maggie O'Neill Centre"),
+  26: img(26, '6ab683516407f2cbe4d41d7f.webp', "A stack of client post on the shelf under the neon logo at the Maggie O'Neill Centre"),
   29: img(29, '6ab683505d1647127867f5b2.webp', "Post for a virtual office client on the shelf under the neon logo at the Maggie O'Neill Centre"),
   35: img(35, '6ab6833a5d1647127867f336.webp', "The Forum meeting and training room at the Maggie O'Neill Centre, bright with a long white table"),
   43: img(43, '6ab6833b5d1647127867f362.webp', "A trainer setting up a session in the Forum at the Maggie O'Neill Centre"),
@@ -39,6 +42,7 @@ export const images: Record<number, LibraryImage> = {
   114: img(114, '6ab683339b248207685a66a8.webp', "An audience listening to a talk in the Auditorium at the Maggie O'Neill Centre"),
   117: img(117, '6ab6833453ee44f56b33c8e6.webp', "The Auditorium at the Maggie O'Neill Centre from the back, with rows of seats facing the stage"),
   133: img(133, '6ab6834e9b248207685a6a66.webp', "Tania, a host at the Maggie O'Neill Centre, smiling in reception", 'P'),
+  137: img(137, '6ab6834f6407f2cbe4d41d1f.webp', "Tania, a host at the Maggie O'Neill Centre, chatting in reception", 'P'),
   139: img(139, '6ab68346974a9da6eebefb38.webp', "Patrick, a host at the Maggie O'Neill Centre", 'P'),
 };
 

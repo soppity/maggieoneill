@@ -1,0 +1,205 @@
+---
+// Call answering, child of the virtual office. Spec: Website Blueprint page 9 (Template: Service).
+// Always "call answering". Never "AI receptionist" (PROJECT_NOTES.md).
+import Base from '../../../../layouts/Base.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import Hero from '../../../../components/sections/Hero.astro';
+import KeyFacts from '../../../../components/sections/KeyFacts.astro';
+import Steps from '../../../../components/sections/Steps.astro';
+import Faqs from '../../../../components/sections/Faqs.astro';
+import VirtualOfficeForm from '../../../../components/sections/VirtualOfficeForm.astro';
+import { formatPrice, rooms, site, virtualOffice } from '../../../../data/facts';
+import { images } from '../../../../data/images';
+import { breadcrumbNode, faqNode, serviceNode } from '../../../../lib/schema';
+
+const path = '/services/virtual-office/call-answering/';
+const url = `${site.url}${path}`;
+const ca = virtualOffice.callAnswering;
+const price = formatPrice(ca.price);
+const pod = rooms.find((r) => r.slug === 'pod')!;
+
+const title = "Call Answering Service, £39 a Month | Maggie O'Neill Centre";
+const description = `Never miss a call. Calls answered, messages taken, and a summary sent to you, or put through to a person. ${price} a month from Maggie O'Neill Centre.`;
+
+const intro = `Call answering from the Maggie O'Neill Centre costs ${price} a month. Every call to your business is answered and the message taken. Calls are put through to a person, or summarised, transcribed and sent to you, and every call is kept in your CRM. It works on its own or with any virtual office plan.`;
+
+const keyFacts = [
+  { term: 'Price', detail: `${price} a month.` },
+  { term: 'Every call', detail: 'Answered, with the message taken.' },
+  { term: 'Your choice', detail: 'Put through to a person, or summarised and transcribed.' },
+  { term: 'Messages', detail: 'Sent straight to you.' },
+  { term: 'Record', detail: 'Every call is stored in your CRM.' },
+  { term: 'With a virtual office', detail: `Add it to any plan, from ${formatPrice(virtualOffice.from)} a month.`, href: '/services/virtual-office/', linkText: 'See virtual office plans' },
+];
+
+const whoFor = [
+  { title: 'Trades', text: "You can't answer the phone up a ladder or under a sink. The customer still gets through." },
+  { title: 'Sole traders', text: 'No receptionist, no missed work. Callers reach a real answer instead of voicemail.' },
+  { title: 'Clinics and therapists', text: "You're with a client. New enquiries are taken and sent to you for after the session." },
+  { title: 'Small offices', text: 'Cover lunch, busy mornings and days out, without hiring anyone.' },
+];
+
+const faqs = [
+  {
+    q: 'How much does call answering cost?',
+    a: `Call answering from the Maggie O'Neill Centre costs ${price} a month. You can have it on its own or add it to any virtual office plan.`,
+  },
+  {
+    q: 'What happens when someone calls my business?',
+    a: 'The call is answered and the message taken. Depending on what you choose, the call is put through to a person, or summarised, transcribed and sent to you.',
+  },
+  {
+    q: 'Where are my calls kept?',
+    a: 'Every call is stored in your CRM, so you have a record of who rang, when, and what they needed.',
+  },
+  {
+    q: 'Do I need a virtual office to use call answering?',
+    a: `No. Call answering works on its own for ${price} a month, or alongside a virtual office plan from ${formatPrice(virtualOffice.from)} a month.`,
+  },
+  {
+    q: 'How do I sign up for call answering?',
+    a: "Fill in the virtual office form on this page and say you'd like call answering. The Maggie O'Neill Centre will talk through how you want your calls handled and set it up with you.",
+  },
+];
+
+const schema = [
+  serviceNode({
+    url,
+    name: 'Call answering service',
+    serviceType: 'Telephone answering service',
+    description: intro,
+    areaServed: ['United Kingdom', ...virtualOffice.areasServed],
+    offers: [{ name: 'Call answering', price: ca.price, description: ca.summary }],
+  }),
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Virtual office', url: `${site.url}/services/virtual-office/` },
+    { name: 'Call answering', url },
+  ]),
+  faqNode(url, faqs),
+];
+---
+<Base
+  title={title}
+  description={description}
+  ogImage={images[6].src}
+  ogImageAlt={images[6].alt}
+  preloadImage={images[6].src}
+  schema={schema}
+  mobileBar="virtual-office"
+>
+  <Breadcrumbs
+    trail={[
+      { name: 'Home', path: '/' },
+      { name: 'Virtual office', path: '/services/virtual-office/' },
+      { name: 'Call answering', path },
+    ]}
+  />
+
+  <Hero
+    kicker={`Call answering service near Liverpool, ${price} a month`}
+    display="Every call answered, even when you're busy."
+    lede="The Maggie O'Neill Centre answers your business calls, takes the message and sends it straight to you."
+    image={6}
+    primary={{ label: 'Add call answering', href: '#get-your-address' }}
+    secondary={{ label: 'How it works', href: '#how-heading' }}
+  >
+    <p class="ca-price"><strong>{price}</strong> a month · on its own or with any virtual office plan</p>
+  </Hero>
+
+  <KeyFacts heading="Call answering, in a few lines" intro={intro} facts={keyFacts} />
+  <p class="container updated">Last updated: October 2026</p>
+
+  <Steps
+    id="how-heading"
+    eyebrow="How it works"
+    heading="What happens when someone calls my business?"
+    intro="Every call is answered, so no customer hits voicemail and rings the next name on the list."
+    steps={ca.steps}
+    tone="cream"
+  />
+
+  <section class="section section--white" aria-labelledby="choose-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">You choose</span>
+        <h2 id="choose-heading">How do you want your calls handled?</h2>
+        <p>Pick what suits your day. You can change it as your business changes.</p>
+      </div>
+      <div class="grid choices">
+        <div class="card choice">
+          <h3>Put through to you</h3>
+          <p>The call is answered and passed to the right person, so urgent calls still reach you.</p>
+        </div>
+        <div class="card choice">
+          <h3>Summarised and sent</h3>
+          <p>The message is taken, the call transcribed, and a summary sent straight to you to pick up when you're free.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="who-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Who it's for</span>
+        <h2 id="who-heading">Who uses a call answering service?</h2>
+        <p>Anyone who loses work because they can't pick up while they're working.</p>
+      </div>
+      <div class="grid who">
+        {whoFor.map((w) => (
+          <div class="who__item">
+            <h3>{w.title}</h3>
+            <p>{w.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream" aria-labelledby="vo-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">Virtual office</span>
+        <h2 id="vo-heading">Can I add call answering to a virtual office?</h2>
+        <p>
+          Yes. Add call answering to any virtual office plan for {price} a month. Your address, your post and your calls are all handled at the
+          Maggie O'Neill Centre.
+        </p>
+      </div>
+      <div class="prose">
+        <p>
+          Virtual office plans start at {formatPrice(virtualOffice.from)} a month for a registered office address. The
+          {' '}{formatPrice(virtualOffice.plans[3].price)} plan adds post opened and scanned, 2 free meeting room hours and Director's Cover.
+        </p>
+        <p><a href="/services/virtual-office/">See virtual office plans and prices</a></p>
+        <p>
+          Need to meet a caller face to face? The {pod.name} costs {formatPrice(pod.prices!.hour!)} an hour.
+          {' '}<a href="/services/meeting-rooms/">Meeting room hire in Huyton</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Faqs faqs={faqs} heading="Call answering questions" />
+
+  <VirtualOfficeForm
+    heading="Add call answering"
+    intro="Fill in the form and say you'd like call answering. We'll reply the same working day and set it up with you."
+  />
+</Base>
+
+<style>
+  .ca-price { margin-top: 24px; font-size: var(--text-small-size); color: var(--moc-purple-900); font-weight: 600; }
+  .ca-price strong { font: 800 32px/1 var(--font-display); margin-right: 4px; }
+  .updated { margin-top: -40px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
+  .choices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .choice { padding: 32px; display: flex; flex-direction: column; gap: 10px; background: var(--moc-bg); box-shadow: none; border: 1px solid var(--moc-border); }
+  .choice p, .who__item p { color: var(--moc-slate-text); }
+  .who { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .who__item { display: flex; flex-direction: column; gap: 8px; padding-top: 18px; border-top: 3px solid var(--moc-coral-500); }
+  .two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .prose { display: flex; flex-direction: column; gap: 16px; }
+  @media (max-width: 900px) { .who { grid-template-columns: 1fr 1fr; } .two-col { grid-template-columns: 1fr; } .updated { margin-top: -24px; } }
+  @media (max-width: 560px) { .choices, .who { grid-template-columns: 1fr; } }
+</style>

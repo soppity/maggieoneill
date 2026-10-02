@@ -1,0 +1,28 @@
+---
+// Call answering as a £39 add-on, shown beside the virtual office plans.
+import { formatPrice, virtualOffice } from '../../data/facts';
+
+const ca = virtualOffice.callAnswering;
+---
+<section class="ca-band" aria-labelledby="ca-band-heading">
+  <div class="container ca-band__inner">
+    <div>
+      <span class="ca-band__eyebrow">Add-on · {formatPrice(ca.price)} a month</span>
+      <h2 id="ca-band-heading">Can you answer my business calls too?</h2>
+      <p>
+        Yes. Call answering costs {formatPrice(ca.price)} a month, on its own or added to any virtual office plan. Every call is answered and the
+        message taken, then put through to you or summarised and sent to you.
+      </p>
+    </div>
+    <a class="btn btn--light" href="/services/virtual-office/call-answering/">Call answering for {formatPrice(ca.price)} a month</a>
+  </div>
+</section>
+
+<style>
+  .ca-band { background: var(--moc-band-gradient); color: var(--moc-white); padding: clamp(40px, 6vw, 64px) 0; }
+  .ca-band__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 48px; }
+  .ca-band__inner > div { max-width: 720px; display: flex; flex-direction: column; gap: 12px; }
+  .ca-band__eyebrow { font-size: var(--text-eyebrow-size); font-weight: 600; letter-spacing: var(--text-eyebrow-tracking); text-transform: uppercase; color: var(--moc-purple-tint-2); }
+  .ca-band h2 { color: var(--moc-white); font-size: clamp(26px, 3.4vw, 34px); }
+  .ca-band p { color: rgba(255, 255, 255, 0.9); }
+</style>
