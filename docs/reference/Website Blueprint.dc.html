@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FCFAF7;color:#211A2E;font-family:Figtree,sans-serif;-webkit-font-smoothing:antialiased}a{color:#D64A26}a:hover{color:#4A0D8F}*{box-sizing:border-box}code{font-family:ui-monospace,Menlo,monospace}</style>
+</helmet>
+<div style="max-width:1160px;margin:0 auto;padding:56px 28px 120px;display:flex;flex-direction:column;gap:88px">
+
+<header style="display:flex;flex-direction:column;gap:26px">
+  <img src="../../brand/logo/mobtc-logo-horizontal.svg" alt="Maggie O'Neill Centre logo" style="height:52px;width:auto;align-self:flex-start">
+  <div style="display:flex;flex-direction:column;gap:14px;max-width:840px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">Website blueprint · v3 · 29 Sept 2026</div>
+    <h1 style="font-family:Outfit,sans-serif;font-weight:800;font-size:clamp(38px,5.6vw,60px);line-height:1.03;letter-spacing:-0.02em;margin:0;color:#2A0752">The brand strategy, built into the website</h1>
+    <p style="margin:0;font-size:19px;line-height:1.6;color:#4b4658;text-wrap:pretty">Every page, section and title tag follows from the agreed strategy: "Looked after" as the word, the booker as the reader, "a hosted venue" as the category, and training and virtual office as the two lead services. This replaces the page plans in <a href="SEO Site Plan v2.dc.html">SEO Site Plan v2</a> and the navigation in <a href="Site Map.dc.html">Site Map</a>. Keyword research from those files carries over.</p>
+  </div>
+  <nav style="display:flex;flex-wrap:wrap;gap:8px">
+    <sc-for list="{{ toc }}" as="t" hint-placeholder-count="10">
+      <a href="{{ t.href }}" style="text-decoration:none;font-size:14px;font-weight:600;color:#4A0D8F;background:#EFE7FA;border-radius:999px;padding:7px 14px">{{ t.label }}</a>
+    </sc-for>
+  </nav>
+</header>
+
+<section id="rules" style="display:flex;flex-direction:column;gap:26px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">01 · Principles</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:36px;margin:0;line-height:1.08;color:#2A0752">Ten rules every page follows</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px">
+    <sc-for list="{{ rules }}" as="r" hint-placeholder-count="10">
+      <div style="background:#fff;border:1px solid #ECE8F1;border-radius:20px;padding:20px 22px;display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px">
+        <span style="font-family:Outfit,sans-serif;font-weight:800;font-size:20px;color:#F0603A">{{ r.n }}</span>
+        <div style="display:flex;flex-direction:column;gap:4px"><strong style="font-size:16px">{{ r.h }}</strong><span style="font-size:14px;line-height:1.55;color:#4b4658">{{ r.b }}</span></div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="map" style="display:flex;flex-direction:column;gap:26px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">02 · Site map and navigation</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:36px;margin:0;line-height:1.08;color:#2A0752">Two lead services, audiences under them, proof in one place</h2>
+    <p style="margin:0;font-size:17px;line-height:1.6;color:#4b4658">28 pages, plus five virtual office guides. The menu follows how customers think: what they need (rooms), who they are (their sector), then why they can trust us.</p>
+  </div>
+  <div style="background:#2A0752;border-radius:24px;padding:18px 22px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px">
+    <img src="../../brand/logo/mobtc-logo-horizontal-reversed.svg" alt="Maggie O'Neill Centre logo" style="height:34px;width:auto">
+    <div style="display:flex;flex-wrap:wrap;gap:6px 20px;flex:1;justify-content:center">
+      <sc-for list="{{ navTop }}" as="n" hint-placeholder-count="6">
+        <span style="color:#fff;font-weight:600;font-size:15px">{{ n }}</span>
+      </sc-for>
+    </div>
+    <span style="background:#F0603A;color:#fff;font-weight:700;font-size:14px;border-radius:999px;padding:9px 16px">Check availability</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px">
+    <sc-for list="{{ tree }}" as="g" hint-placeholder-count="6">
+      <div style="background:#fff;border:1px solid #ECE8F1;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6B7280">{{ g.group }}</div>
+        <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="3">
+          <div style="display:flex;flex-direction:column;gap:2px;padding-left:{{ i.pad }};border-left:{{ i.bl }}">
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><strong style="font-size:15px">{{ i.name }}</strong><span style="font-size:11px;font-weight:700;color:{{ i.tc }};background:{{ i.tb }};border-radius:999px;padding:2px 8px">{{ i.status }}</span></div>
+            <code style="font-size:12px;color:#6B7280;word-break:break-all">{{ i.url }}</code>
+          </div>
+        </sc-for>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+    <div style="background:#FAF3EB;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:8px">
+      <div style="font-family:Outfit,sans-serif;font-weight:700;font-size:18px;color:#2A0752">Header</div>
+      <div style="font-size:14px;line-height:1.6;color:#4b4658">Horizontal logo (links home) · Training rooms ▾ (All training rooms, Oliver McGowan training venue, Care and social care, Fostering and adoption, NHS and primary care, Councils, schools and public sector) · Virtual office ▾ (Plans and prices, Call answering, Guides) · Meeting rooms · Events · Private offices · Why Maggie's ▾ (What's included, Case studies, Reviews, Social value, Meet your hosts, Maggie's Meals) · phone number · "Check availability" button. On mobile: icon logo, phone icon, menu, and a sticky "Check availability" bar (on virtual office pages it switches to "Get your address").</div>
+    </div>
+    <div style="background:#FAF3EB;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:8px">
+      <div style="font-family:Outfit,sans-serif;font-weight:700;font-size:18px;color:#2A0752">Footer</div>
+      <div style="font-size:14px;line-height:1.6;color:#4b4658">Reversed logo · sign-off "Looked after at Maggie's." · address, 433 Liverpool Road, Huyton, L36 8HT · phone and email · opening hours · Rooms, Sectors, Why Maggie's and Company columns · Google reviews badge (230) · "Registered charity no. 1102507. Every booking funds Maggie's Meals." · privacy, cookies, terms.</div>
+    </div>
+  </div>
+</section>
+
+<section id="messaging" style="display:flex;flex-direction:column;gap:26px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">03 · Messaging system</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:36px;margin:0;line-height:1.08;color:#2A0752">One promise, said five ways</h2>
+    <p style="margin:0;font-size:17px;line-height:1.6;color:#4b4658">Every page uses the same message ladder. Only the sector words change.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px">
+    <sc-for list="{{ ladder }}" as="l" hint-placeholder-count="4">
+      <div style="background:{{ l.bg }};color:{{ l.fg }};border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.85">{{ l.k }}</div>
+        <div style="font-family:Outfit,sans-serif;font-weight:800;font-size:22px;line-height:1.2">{{ l.v }}</div>
+        <div style="font-size:14px;line-height:1.55;opacity:.9">{{ l.n }}</div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="background:#fff;border:1px solid #ECE8F1;border-radius:24px;padding:26px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-family:Outfit,sans-serif;font-weight:700;font-size:19px;color:#2A0752;margin-bottom:8px">Words we use, and words we don't</div>
+    <sc-for list="{{ words }}" as="w" hint-placeholder-count="7">
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;padding:12px 0;border-top:1px solid #F3EEF8;font-size:14px;line-height:1.5">
+        <span><strong style="color:#1F8A5B">Say</strong> {{ w.say }}</span>
+        <span style="color:#6B7280"><strong style="color:#C93A3A">Not</strong> {{ w.not }}</span>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="vo" style="display:flex;flex-direction:column;gap:26px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:800px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">04 · Virtual office growth plan</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:36px;margin:0;line-height:1.08;color:#2A0752">The service with no ceiling</h2>
+    <p style="margin:0;font-size:17px;line-height:1.6;color:#4b4658">Room hire tops out when the rooms are full, the car park is full or the offices are let. A virtual office client needs a folder in a filing cabinet. Every new client adds revenue without taking space from anyone, so this is a lead service with its own goal: to be the virtual office Merseyside businesses choose. We start from 38 clients, and the process can handle 150.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
+    <sc-for list="{{ voStats }}" as="k" hint-placeholder-count="4">
+      <div style="background:#2A0752;color:#fff;border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:6px">
+        <div style="font-family:Outfit,sans-serif;font-weight:800;font-size:32px;line-height:1;color:#fff">{{ k.n }}</div>
+        <div style="font-size:14px;font-weight:700;color:#FFB59E">{{ k.k }}</div>
+        <div style="font-size:13px;line-height:1.5;color:#DCD0EE">{{ k.b }}</div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px">
+    <sc-for list="{{ voTargets }}" as="t" hint-placeholder-count="4">
+      <div style="background:#FAF3EB;border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:6px">
+        <strong style="font-family:Outfit,sans-serif;font-size:17px;color:#2A0752">{{ t.h }}</strong>
+        <span style="font-size:14px;line-height:1.5;color:#4b4658">{{ t.b }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <p style="margin:-10px 0 0;font-size:13px;line-height:1.5;color:#6B7280">Source: PilotoMail mailbox list, 44 mailboxes excluding test and internal boxes, Sept 2026. Dates are when mailboxes were created, which may differ slightly from when payment started.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
+    <sc-for list="{{ voKw }}" as="k" hint-placeholder-count="4">
+      <div style="background:#fff;border:1px solid #ECE8F1;border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:6px">
+        <div style="font-family:Outfit,sans-serif;font-weight:800;font-size:30px;color:#4A0D8F;line-height:1">{{ k.i }}</div>
+        <div style="font-size:14px;font-weight:600">{{ k.k }}</div>
+        <div style="font-size:13px;color:#6B7280">Average position {{ k.p }}</div>
+      </div>
+    </sc-for>
+  </div>
+  <p style="margin:-10px 0 0;font-size:14px;line-height:1.55;color:#6B7280;max-width:820px">Search Console impressions over 16 months for the four biggest virtual office searches: about 24,800 in total, all from page 2 or 3 of Google. Moving these to page 1 is the largest single search opportunity on the site.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+    <sc-for list="{{ voBlocks }}" as="b" hint-placeholder-count="6">
+      <div style="background:{{ b.bg }};border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:Outfit,sans-serif;font-weight:800;font-size:19px;color:#2A0752">{{ b.h }}</div>
+        <sc-for list="{{ b.items }}" as="i" hint-placeholder-count="4">
+          <div style="display:flex;gap:10px;font-size:14px;line-height:1.5;color:#4b4658"><span style="flex-shrink:0;width:6px;height:6px;border-radius:50%;background:#F0603A;margin-top:8px"></span><span>{{ i }}</span></div>
+        </sc-for>
+      </div>
+    </sc-for>
+  </div>
+  <div style="background:#4A0D8F;color:#fff;border-radius:24px;padding:26px clamp(20px,4vw,34px);display:flex;flex-direction:column;gap:14px">
+    <div style="font-family:Outfit,sans-serif;font-weight:800;font-size:20px">The client ladder</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px">
+      <sc-for list="{{ voLadder }}" as="l" hint-placeholder-count="4">
+        <div style="background:rgba(255,255,255,.1);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:4px">
+          <strong style="font-size:15px">{{ l.h }}</strong><span style="font-size:13px;line-height:1.45;color:#DCD0EE">{{ l.b }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="pages" style="display:flex;flex-direction:column;gap:26px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:800px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">05 · Page by page</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:36px;margin:0;line-height:1.08;color:#2A0752">Job, keywords, title, H1 and sections for every page</h2>
+    <p style="margin:0;font-size:17px;line-height:1.6;color:#4b4658">H1s use the two-part pattern: a small line with the keyword and place, then the message in display type, both inside one &lt;h1&gt;. The small line carries the SEO, and the display line carries the brand. The figure after each title is its length (aim for 60 characters or fewer).</p>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:18px">
+    <sc-for list="{{ pages }}" as="p" hint-placeholder-count="8">
+      <div id="{{ p.id }}" style="background:#fff;border:1px solid #ECE8F1;border-radius:24px;padding:26px;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;gap:12px;align-items:baseline;flex-wrap:wrap">
+          <span style="font-family:Outfit,sans-serif;font-weight:800;font-size:15px;color:#fff;background:#4A0D8F;border-radius:999px;padding:3px 11px">{{ p.n }}</span>
+          <strong style="font-family:Outfit,sans-serif;font-weight:800;font-size:23px;color:#2A0752">{{ p.name }}</strong>
+          <code style="font-size:13px;color:#6B7280;word-break:break-all">{{ p.url }}</code>
+          <span style="font-size:11px;font-weight:700;color:{{ p.tc }};background:{{ p.tb }};border-radius:999px;padding:3px 9px">{{ p.status }}</span>
+          <span style="font-size:12px;font-weight:600;color:#6B7280">Template: {{ p.tpl }}</span>
+        </div>
+        <div style="font-size:15px;line-height:1.55;color:#4b4658;max-width:900px"><strong style="color:#211A2E">Job:</strong> {{ p.job }}</div>
+        <div style="background:#FAF3EB;border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:12px;font-weight:700;color:#6B7280">{{ p.h1a }}</span>
+          <span style="font-family:Outfit,sans-serif;font-weight:800;font-size:24px;line-height:1.15;color:#2A0752">{{ p.h1b }}</span>
+          <span style="font-size:14px;line-height:1.5;color:#4b4658">{{ p.lede }}</span>
+        </div>
+        <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:8px 16px;font-size:14px;line-height:1.5">
+          <sc-for list="{{ p.rows }}" as="r" hint-placeholder-count="7">
+            <strong style="color:#6B7280;font-size:13px">{{ r.k }}</strong><span style="color:#211A2E">{{ r.v }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="templates" style="display:flex;flex-direction:column;gap:26px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">06 · Layout templates</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:36px;margin:0;line-height:1.08;color:#2A0752">Five page templates, built from one set of sections</h2>
+    <p style="margin:0;font-size:17px;line-height:1.6;color:#4b4658">This keeps the site sustainable. When it moves into the AI builder, each section is built once and reused, so new pages (another sector, another case study) take minutes and stay on-brand. Coral blocks carry proof.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;align-items:start">
+    <sc-for list="{{ templates }}" as="t" hint-placeholder-count="5">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;flex-direction:column;gap:2px"><strong style="font-family:Outfit,sans-serif;font-size:18px;color:#2A0752">{{ t.name }}</strong><span style="font-size:13px;color:#6B7280">{{ t.used }}</span></div>
+        <div style="background:#fff;border:1px solid #ECE8F1;border-radius:18px;padding:10px;display:flex;flex-direction:column;gap:6px">
+          <sc-for list="{{ t.blocks }}" as="b" hint-placeholder-count="10">
+            <div style="height:{{ b.h }};background:{{ b.bg }};color:{{ b.fg }};border-radius:8px;display:flex;align-items:center;padding:0 10px;font-size:12px;font-weight:600;line-height:1.2">{{ b.l }}</div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="sections" style="display:flex;flex-direction:column;gap:26px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">07 · Section library</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:36px;margin:0;line-height:1.08;color:#2A0752">What goes in each section</h2>
+  </div>
+  <div style="background:#fff;border:1px solid #ECE8F1;border-radius:24px;overflow:hidden">
+    <sc-for list="{{ lib }}" as="s" hint-placeholder-count="16">
+      <div style="display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,2fr) minmax(0,0.9fr);gap:16px;padding:16px 22px;border-top:1px solid #F3EEF8;align-items:start">
+        <strong style="font-size:15px;color:#2A0752">{{ s.name }}</strong>
+        <span style="font-size:14px;line-height:1.55;color:#4b4658">{{ s.what }}</span>
+        <span style="font-size:13px;line-height:1.45;color:#6B7280">{{ s.img }}</span>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="links" style="display:flex;flex-direction:column;gap:26px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">08 · Internal linking</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:36px;margin:0;line-height:1.08;color:#2A0752">Hubs, sectors and proof, all linked both ways</h2>
+    <p style="margin:0;font-size:17px;line-height:1.6;color:#4b4658">Training rooms is the hub. Sector pages sit under it and link up. Proof pages (What's included, Case studies, Reviews) are linked from every service page, so they collect authority and pass it back.</p>
+  </div>
+  <div style="background:#fff;border:1px solid #ECE8F1;border-radius:24px;overflow:hidden">
+    <sc-for list="{{ linkRules }}" as="l" hint-placeholder-count="8">
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) minmax(0,1.1fr);gap:16px;padding:15px 22px;border-top:1px solid #F3EEF8;align-items:start;font-size:14px;line-height:1.5">
+        <strong>{{ l.from }}</strong><span style="color:#4b4658">{{ l.to }}</span><span style="color:#6B7280">Anchor: {{ l.anchor }}</span>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="tech" style="display:flex;flex-direction:column;gap:26px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">09 · Technical SEO</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:36px;margin:0;line-height:1.08;color:#2A0752">Redirects, schema, the brand name and tracking</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px">
+    <div style="background:#fff;border:1px solid #ECE8F1;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:8px">
+      <div style="font-family:Outfit,sans-serif;font-weight:700;font-size:18px;color:#2A0752">301 redirects</div>
+      <sc-for list="{{ redirects }}" as="r" hint-placeholder-count="8">
+        <div style="display:flex;flex-direction:column;gap:1px;padding-top:8px;border-top:1px solid #F3EEF8;font-size:13px;line-height:1.45"><code style="color:#C93A3A;word-break:break-all">{{ r.from }}</code><code style="color:#1F8A5B;word-break:break-all">→ {{ r.to }}</code></div>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <sc-for list="{{ tech }}" as="t" hint-placeholder-count="5">
+        <div style="background:#FAF3EB;border-radius:22px;padding:20px 22px;display:flex;flex-direction:column;gap:6px">
+          <div style="font-family:Outfit,sans-serif;font-weight:700;font-size:17px;color:#2A0752">{{ t.h }}</div>
+          <div style="font-size:14px;line-height:1.55;color:#4b4658">{{ t.b }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="build" style="display:flex;flex-direction:column;gap:26px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">10 · Build order</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:36px;margin:0;line-height:1.08;color:#2A0752">One page at a time, with a review between each</h2>
+    <p style="margin:0;font-size:17px;line-height:1.6;color:#4b4658">The homepage comes first because it sets the section library every other page reuses. Virtual office comes straight after, because it has no ceiling and the biggest search demand. Then training and the sector pages, where the new positioning earns money on rooms.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px">
+    <sc-for list="{{ phases }}" as="ph" hint-placeholder-count="5">
+      <div style="background:#fff;border:1px solid #ECE8F1;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:10px;align-items:baseline"><span style="font-family:Outfit,sans-serif;font-weight:800;font-size:22px;color:#F0603A">{{ ph.n }}</span><strong style="font-family:Outfit,sans-serif;font-size:18px;color:#2A0752">{{ ph.h }}</strong></div>
+        <sc-for list="{{ ph.items }}" as="it" hint-placeholder-count="3">
+          <div style="display:flex;gap:10px;font-size:14px;line-height:1.45;color:#4b4658"><span style="flex-shrink:0;width:6px;height:6px;border-radius:50%;background:#4A0D8F;margin-top:7px"></span><span>{{ it }}</span></div>
+        </sc-for>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="needed" style="background:#2A0752;color:#fff;border-radius:28px;padding:40px clamp(22px,4vw,44px);display:flex;flex-direction:column;gap:20px">
+  <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:30px;margin:0">What I need from you before or during the build</h2>
+  <sc-for list="{{ needed }}" as="d" hint-placeholder-count="8">
+    <div style="display:grid;grid-template-columns:36px minmax(0,1fr);gap:14px;padding-top:14px;border-top:1px solid #4A2A78">
+      <span style="font-family:Outfit,sans-serif;font-weight:800;font-size:20px;color:#F0603A">{{ d.n }}</span>
+      <div style="display:flex;flex-direction:column;gap:3px"><strong style="font-size:16px">{{ d.h }}</strong><span style="font-size:14px;line-height:1.55;color:#DCD0EE">{{ d.b }}</span></div>
+    </div>
+  </sc-for>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const SUF = " | Maggie O\u2019Neill Centre";
+    const toc = [['Principles','rules'],['Site map','map'],['Messaging','messaging'],['Virtual office','vo'],['Pages','pages'],['Templates','templates'],['Sections','sections'],['Linking','links'],['Technical','tech'],['Build order','build'],['Needed','needed']].map(([label, id]) => ({ label, href: '#' + id }));
+    const rules = [
+      { h: 'Lead with being looked after', b: 'The hero says what the day feels like for the booker. The charity comes later on the page and in the footer.' },
+      { h: 'Write for the booker', b: '"Your delegates", "your trainer", "your team". Delegates\u2019 own words appear only as quoted proof.' },
+      { h: 'Name the category', b: '"Hosted training rooms", "your host for the day". Staff are hosts: Patrick and Tania, with Liam as a volunteer.' },
+      { h: 'Answer everything before they ask', b: 'Every page sells the venue and handles every question and objection up front: prices or how to get one, capacity, layouts, tech, parking, access, refreshments, terms. Photo journeys and video walkthroughs show the spaces people ask about. The enquiry becomes a quick confirmation, not a back-and-forth.' },
+      { h: 'Two leads: training and virtual office', b: 'Training earns the most per booking. Virtual office has no ceiling: it needs no room, no car park space and no free office, only a folder in a filing cabinet. Both get top billing in the menu, the homepage and the build order.' },
+      { h: 'Show organisations like theirs', b: 'Every service and sector page shows sector logos, a case study and reviews from that sector.' },
+      { h: 'Never show a price alone', b: 'Prices always sit beside the "what\u2019s included" list and link to the comparison with halls and hotels.' },
+      { h: 'Answer the 10 questions', b: 'Price, availability, screen, tea, parking, layout, half or full day, cancellation, a real person, what to bring. On every room page, as an FAQ.' },
+      { h: 'The name everywhere', b: 'Every title ends "| Maggie O\u2019Neill Centre", and the name appears in metas, H1s (home, about, contact), first paragraphs, alt text and schema.' },
+      { h: 'Place in every service line', b: 'Huyton, Knowsley or "near Liverpool". Never claim city centre. Mention the M57 and free parking.' },
+      { h: 'Sign off the same way', b: '"Looked after at Maggie\u2019s." ends every page, email and footer.' },
+    ].map((r, i) => ({ ...r, n: String(i + 1) }));
+    const navTop = ['Training rooms \u25BE', 'Virtual office \u25BE', 'Meeting rooms', 'Events', 'Private offices', 'Why Maggie\u2019s \u25BE'];
+    const ST = { New: ['#fff', '#F0603A'], Rebuild: ['#4A0D8F', '#EFE7FA'], Keep: ['#1F8A5B', '#E6F4EC'], Move: ['#9A6400', '#FDF1D8'] };
+    const it = (name, url, status, child) => ({ name, url, status, tc: ST[status][0], tb: ST[status][1], pad: child ? '12px' : '0', bl: child ? '2px solid #EFE7FA' : '0' });
+    const tree = [
+      { group: 'Home', items: [it('Homepage', '/', 'Rebuild')] },
+      { group: 'Rooms and services', items: [it('Training rooms', '/services/training-rooms/', 'Rebuild'), it('Oliver McGowan training venue', '/services/training-rooms/oliver-mcgowan-training-venue/', 'New', 1), it('Care and social care', '/services/training-rooms/care-training-venue/', 'New', 1), it('Fostering and adoption', '/services/training-rooms/fostering-adoption-training-venue/', 'New', 1), it('NHS and primary care', '/services/training-rooms/nhs-training-venue/', 'New', 1), it('Councils, schools and public sector', '/services/training-rooms/council-training-venue/', 'New', 1), it('Meeting rooms', '/services/meeting-rooms/', 'Rebuild'), it('Events and conferences', '/services/event-space-business-and-community/', 'Rebuild'), it('Private offices', '/services/private-offices/', 'Rebuild')] },
+      { group: 'Virtual office (growth engine)', items: [it('Virtual office', '/services/virtual-office/', 'Move'), it('Call answering', '/services/virtual-office/call-answering/', 'Move', 1), it('For accountants', '/services/virtual-office/accountants/', 'New', 1), it('Home address off Companies House', '/blog/home-address-companies-house/', 'New', 1), it('Registered office vs business address', '/blog/registered-office-vs-business-address/', 'New', 1), it('Can a limited company use a virtual office?', '/blog/virtual-office-limited-company/', 'New', 1), it('Changing your registered office', '/blog/change-registered-office-address/', 'New', 1), it('Virtual office vs home vs coworking', '/blog/virtual-office-vs-home-address/', 'New', 1)] },
+      { group: 'Why Maggie\u2019s (proof)', items: [it('What\u2019s included', '/whats-included/', 'New'), it('Case studies', '/case-studies/', 'New'), it('Alder Hey', '/case-studies/alder-hey/', 'New', 1), it('Amore', '/case-studies/amore/', 'New', 1), it('AFG', '/case-studies/afg/', 'New', 1), it('Central and South PCN', '/case-studies/central-and-south-pcn/', 'New', 1), it('Reviews', '/reviews/', 'New'), it('Social value', '/social-value/', 'New')] },
+      { group: 'About us', items: [it('About and your hosts', '/about/', 'Rebuild'), it('Maggie\u2019s Meals and community', '/community/', 'Rebuild'), it('Come and see it', '/visit/', 'New'), it('Contact', '/contact/', 'Rebuild')] },
+      { group: 'Guides (training)', items: [it('Guides (blog)', '/blog/', 'Rebuild'), it('Planning a training day', '/blog/planning-a-training-day/', 'New', 1), it('Choosing a room layout', '/blog/training-room-layouts/', 'New', 1), it('Social value in venue booking', '/blog/social-value-venue-hire/', 'New', 1)] },
+    ];
+    const ladder = [
+      { k: 'Brand line', v: 'Looked after at Maggie\u2019s.', n: 'Sign-off, footer, social bios, email signatures.', bg: '#2A0752', fg: '#fff' },
+      { k: 'Hero line', v: 'Someone meets you at the door. The room is ready and the kettle is on.', n: 'Homepage and training hub, under the H1.', bg: '#F0603A', fg: '#fff' },
+      { k: 'Sector first sentence', v: 'Care: "Mandatory training, in rooms built for it." Fostering and adoption: "Hard conversations need a calm room." NHS: "Your clinical and admin teams, trained close to home." Council: "Train in the borough, and the spend stays local."', n: 'Opens each sector page and its ads.', bg: '#fff', fg: '#211A2E' },
+      { k: 'Virtual office line', v: 'A real address, with real people behind it.', n: 'Virtual office pages, the homepage band, ads and Google Business Profile.', bg: '#4A0D8F', fg: '#fff' },
+      { k: 'The closer', v: 'Every booking funds Maggie\u2019s Meals.', n: 'Just before the final call to action. Never the headline.', bg: '#FAF3EB', fg: '#211A2E' },
+    ];
+    const words = [
+      { say: 'hosted, your host, looked after', not: 'staffed, reception, caretaker' },
+      { say: 'ready before you arrive, nothing to bring', not: 'fully equipped, state-of-the-art' },
+      { say: 'calm, homely, spotless', not: 'premium, luxury, world-class' },
+      { say: 'everything included, honest day rates', not: 'cheap, affordable, fair prices, full stop' },
+      { say: 'Maggie\u2019s (in copy), Maggie O\u2019Neill Centre (in SEO spots)', not: 'MOBTC in visible copy, "The Maggie O\u2019Neill Centre" as the name' },
+      { say: 'training rooms, meeting rooms, a hosted venue', not: 'coworking, hot desking, workspaces with heart' },
+      { say: 'your delegates, your trainer, your team', not: 'users, members, clients (in headlines)' },
+    ];
+    const P = (o) => {
+      const t = o.title + SUF;
+      const rows = [['Audience', o.aud], ['Primary keyword', o.kw], ['Secondary', o.kw2], ['Title', t + '  (' + t.length + ')'], ['Meta', o.meta + '  (' + o.meta.length + ')'], ['Sections', o.sec], ['Proof', o.proof], ['Main CTA', o.cta], ['Schema', o.schema], ['Links out', o.out]].filter(r => r[1]).map(([k, v]) => ({ k, v }));
+      const s = ST[o.status];
+      return { ...o, rows, tc: s[0], tb: s[1] };
+    };
+    const pages = [
+      P({ n: '1', id: 'p-home', name: 'Homepage', url: '/', status: 'Rebuild', tpl: 'Home', aud: 'Every booker, landing from a brand search', job: 'Answer "who are you and why you" in the first few seconds, send each sector to its page, and prove it with logos and reviews.', kw: 'Maggie O\u2019Neill Centre', kw2: 'training rooms Huyton · virtual office Liverpool · meeting rooms Knowsley · venue hire near Liverpool · Maggie\u2019s Huyton · MOBTC', title: 'Training & Meeting Rooms, Huyton', meta: 'Maggie O\u2019Neill Centre: hosted training and meeting rooms in Huyton, L36 8HT. Your host meets you at the door and the room is ready. Free parking.', h1a: 'Maggie O\u2019Neill Centre · Huyton, Knowsley', h1b: 'Looked after at Maggie\u2019s.', lede: 'Hosted training and meeting rooms near Liverpool, and virtual offices from \u00a320 a month. Someone meets you at the door, the room is ready and the kettle is on.', sec: 'Hero with proof strip · client logos · "Who books with us" (Care, NHS, Council, everyone else) · Virtual office band, high on the page, with both plans and prices · Rooms and services, training first · The Hosted Day · Hall vs Maggie\u2019s vs hotel · Reviews · Meet your hosts · Maggie\u2019s Meals and the year in numbers (900+ rooms hired, 150+ businesses served, 750+ accessed Maggie\u2019s Meals) · Find us · Enquiry', proof: '230 Google reviews · 15 client logos · case study teasers', cta: 'Check availability (secondary: Book a visit)', schema: 'Organization + LocalBusiness with alternateName (Maggie\u2019s, MOBTC, Maggie O\u2019Neill Business and Training Centre) · WebSite', out: 'Virtual office (band and hero link), all three sector pages, Training rooms, Meeting rooms, What\u2019s included, Case studies, Reviews, Visit' }),
+      P({ n: '2', id: 'p-training', name: 'Training rooms (hub)', url: '/services/training-rooms/', status: 'Rebuild', tpl: 'Service', aud: 'Training coordinators, freelance trainers, colleges and apprenticeship providers', job: 'The lead service and the main SEO hub. Sells hosted training days and sends each sector to its page.', kw: 'training room hire Liverpool', kw2: 'training room hire Knowsley · training venue Merseyside · training rooms near me · CPD venue Merseyside · first aid training venue', title: 'Training Room Hire near Liverpool', meta: 'Hosted training rooms in Huyton for 6 to 24. Set to your layout, screen and AirPlay tested, tea in the room, free parking. Maggie O\u2019Neill Centre.', h1a: 'Training room hire in Huyton, near Liverpool', h1b: 'Book it once. Your delegates will ask to come back.', lede: 'At the Maggie O\u2019Neill Centre your host meets every delegate at the door, and the room is set to your layout before anyone arrives.', sec: 'Hero · proof strip · sector cards (Care, NHS, Council) · rooms and layouts, with the capacity diagrams and the Pod · The Hosted Day · Ideal for (care companies, NHS, council training, CPD, first aid, corporate training, colleges, apprenticeships) · tech (#54 AirPlay) · case study · reviews · comparison · 10 FAQs · CTA', proof: 'Training reviews (Jo Whitfield, Fozzer Foz, Elo Ajise) · Amore and AFG', cta: 'Check availability', schema: 'Service + FAQPage + BreadcrumbList', out: 'Sector pages, What\u2019s included, Case studies, Meeting rooms, Events, Visit' }),
+      P({ n: '2b', id: 'p-ommt', name: 'Oliver McGowan training venue', url: '/services/training-rooms/oliver-mcgowan-training-venue/', status: 'New', tpl: 'Sector', aud: 'Anyone organising Oliver McGowan Tier 2 days: NHS, ICB and care learning teams, lead trainers and co-trainers with lived experience', job: 'High-value, NHS-funded work that already runs here. Push Oliver McGowan training itself; no training providers named. Show providers the room works for the whole team: co-trainers, autistic delegates, delegates with a learning disability and wheelchair users. Use the programme\u2019s own words: reasonable adjustments, sensory environment, co-delivered, lived experience. Never claim to deliver or approve the training ourselves: we are the venue.', kw: 'Oliver McGowan training venue', kw2: 'Oliver McGowan Tier 2 venue Liverpool · Oliver McGowan training Merseyside · accessible training venue Liverpool · autism friendly training venue · quiet room training venue', title: 'Oliver McGowan Training Venue near Liverpool', meta: 'An accessible Tier 2 venue near Liverpool: 60 cabaret with space for wheelchairs, adjustable lighting, a quiet room and parking by the door. Maggie O\u2019Neill Centre.', h1a: 'Oliver McGowan training venue near Liverpool', h1b: 'A calm, accessible room for Oliver\u2019s Training.', lede: 'The Maggie O\u2019Neill Centre hosts Tier 2 days in the Auditorium, with a quiet room next door for anyone who needs a break.', sec: 'Hero (Auditorium photo) · "Built around your co-trainers" (the room, the quiet room, the host) · accessibility (wheelchair space between tables, accessible parking right outside the Auditorium, side door opened on request, accessible toilet a short walk away on the same floor, by the kitchen, with photo #158 and an FAQ: grab rails, fold-down rail, pull cord) · sensory environment (adjustable lighting, quiet room off the foyer with acoustic insulation, dim lights and door signage) · layout diagram: 60 cabaret with wheelchair routes · photo journey and video walkthrough, car park to quiet room · full-day hire, set to your layout, tech tested, tea in the room · FAQs that answer every question before they ask · get in touch', proof: 'NHS, Mersey Care and Primary Care logos · care reviews', cta: 'Get in touch about your dates', schema: 'Service + Place (accessibility features) + FAQPage + BreadcrumbList', out: 'NHS and primary care, Care and social care, Events (Auditorium), Social value, What\u2019s included' }),
+      P({ n: '3', id: 'p-care', name: 'Care and social care training', url: '/services/training-rooms/care-training-venue/', status: 'New', tpl: 'Sector', aud: 'L&D and training leads at care providers booking mandatory training for support workers ("Care Training Day")', job: 'Our biggest customer group. For care providers the pitch is functional: a purpose-built space for mandatory staff training (TMVA, safety intervention, hoist training, medication, first aid, moving and handling), ready and reliable, with repeat dates held. Fostering and adoption has its own page.', kw: 'care training venue Liverpool', kw2: 'mandatory training venue Merseyside · social care training room hire · fostering training venue · safeguarding training venue Knowsley', title: 'Care Training Venue, Merseyside', meta: 'Training rooms built for care staff training in Huyton: TMVA, safety intervention, hoist training, medication, first aid. Set up before you arrive, tea in the room, free parking. Maggie O\u2019Neill Centre.', h1a: 'Care training venue in Knowsley, near Liverpool', h1b: 'Mandatory training, in rooms built for it.', lede: 'Care providers run mandatory training for their support workers at the Maggie O\u2019Neill Centre: TMVA, safety intervention, hoist training, medication, first aid, moving and handling. The room is set before your trainer arrives.', sec: 'Hero · care logos (Amore, AFG) · "Built for care staff training" (layouts for practical sessions and classroom work, tech tested, repeat dates held, room for a full cohort) · courses we host (TMVA, safety intervention, hoist training, medication, first aid, moving and handling, safeguarding, induction) · space for practical kit (floor space for safety intervention and room for a hoist) · recommended rooms · Care Training Day inclusions · Amore and AFG case studies · care reviews · practical (block bookings, invoicing) · FAQs · CTA', proof: 'Amore, AFG · care training reviews', cta: 'Plan your training dates', schema: 'Service (audience: care providers) + FAQPage + BreadcrumbList', out: 'Training rooms, Fostering and adoption, Amore and AFG case studies, What\u2019s included, Reviews' }),
+      P({ n: '3b', id: 'p-fostering', name: 'Fostering and adoption training venue', url: '/services/training-rooms/fostering-adoption-training-venue/', status: 'New', tpl: 'Sector', aud: 'Fostering and adoption teams at Knowsley Council, regional adoption agencies and independent fostering agencies across Knowsley, Liverpool, St Helens, Sefton, Halton and Wirral. The people in the room: prospective adopters and foster carers', job: 'A big push in Knowsley and the boroughs around it. Present the centre as where Knowsley\u2019s fostering and adoption training happens, and welcome bookings from every neighbouring borough. The pitch is calm: prospective parents are in the room and emotions can run high.', kw: 'fostering training venue Liverpool', kw2: 'adoption training venue Merseyside · foster carer training room Knowsley · adoption preparation course venue · fostering panel room hire · Skills to Foster venue', title: 'Fostering and Adoption Training Venue, Knowsley', meta: 'Calm, homely rooms for fostering and adoption training in Knowsley, near Liverpool. Welcoming every borough. Free parking, tea in the room. Maggie O\u2019Neill Centre.', h1a: 'Fostering and adoption training venue in Knowsley', h1b: 'Hard conversations need a calm room.', lede: 'Adoption in Merseyside, Knowsley Fostering and Foster4 choose the Maggie O\u2019Neill Centre to train prospective parents, and we welcome teams from every borough around us.', sec: 'Hero · "The venue of choice for Adoption in Merseyside, Knowsley Fostering and Foster4" · why calm matters (prospective parents, heavy subjects, somewhere quiet to step out, a host who notices) · what the sessions need (preparation courses, Skills to Foster, support groups, panels, evening and weekend dates) · rooms: homely and private, set for small groups · "Coming from another borough?" (Liverpool, St Helens, Sefton, Halton, Wirral: travel times, M57, free parking) · adoption and fostering reviews · see it before you come · FAQs · CTA', proof: 'Adoption in Merseyside (#159) and Foster4 Knowsley Council (#160) logos · adoption and fostering reviews ("a great and calming atmosphere for the adoption course")', cta: 'Plan your preparation dates', schema: 'Service (audience: fostering and adoption services) + FAQPage + BreadcrumbList', out: 'Care and social care, Councils, schools and public sector, Meeting rooms (panels), Reviews' }),
+      P({ n: '4', id: 'p-nhs', name: 'NHS and primary care training', url: '/services/training-rooms/nhs-training-venue/', status: 'New', tpl: 'Sector', aud: 'Workforce development and practice managers in NHS trusts and PCNs ("NHS Training Day")', job: 'Give NHS bookers a safe, local choice they can justify.', kw: 'NHS training venue Liverpool', kw2: 'clinical training room hire Knowsley · PCN training venue · protected learning time venue Merseyside · healthcare training rooms Liverpool', title: 'NHS Training Venue near Liverpool', meta: 'Hosted training rooms for NHS trusts and PCNs in Huyton. Clinical and admin training days, monthly team meetings, free parking. Maggie O\u2019Neill Centre.', h1a: 'NHS training venue in Knowsley, near Liverpool', h1b: 'Your clinical and admin teams, trained close to home.', lede: 'NHS teams from Alder Hey and Central and South PCN train and meet at the Maggie O\u2019Neill Centre, a few minutes from the M57.', sec: 'Hero · NHS logos (NHS, Mersey Care, Primary Care, Central and South PCN) · "What NHS teams need" (invoices and POs, accessibility, parking for staff travelling in, protected learning time) · recommended rooms · NHS Training Day inclusions · Alder Hey and Central and South PCN case studies · social value · FAQs · CTA', proof: 'Alder Hey, Central and South PCN', cta: 'Check availability', schema: 'Service (audience: healthcare) + FAQPage + BreadcrumbList', out: 'Training rooms, both NHS case studies, Social value, Meeting rooms' }),
+      P({ n: '5', id: 'p-council', name: 'Councils, schools and public sector', url: '/services/training-rooms/council-training-venue/', status: 'New', tpl: 'Sector', aud: 'Knowsley Council teams, schools (Meadow Park Primary, Alt Bridge, Knowsley Central) and housing associations ("Knowsley Council Day")', job: 'Win local public-sector training with social value and the borough link.', kw: 'council training venue Knowsley', kw2: 'public sector training venue Merseyside · CPD venue Knowsley · school INSET venue Liverpool · community venue Knowsley', title: 'Council & CPD Training, Knowsley', meta: 'Training and team days for Knowsley Council, housing and schools, in the borough. Hosted rooms, free parking, social value built in. Maggie O\u2019Neill Centre.', h1a: 'Council and public sector training in Knowsley', h1b: 'Train in the borough, and the spend stays local.', lede: 'The Maggie O\u2019Neill Centre is a Knowsley charity. Every booking funds Maggie\u2019s Meals, a few streets from where your teams work.', sec: 'Hero · logos (Knowsley Council, Livv Housing, Knowsley Chamber, plus Meadow Park Primary #161, Knowsley Central #162, Alt Bridge #163) · social value up front · schools block (INSET days, staff CPD, SEND training, governor meetings) · recommended rooms · Knowsley Council Day inclusions · reviews · procurement FAQs · CTA', proof: 'Knowsley Council, Livv · Meadow Park Primary, Alt Bridge School, Knowsley Central School · Maggie\u2019s Meals figures', cta: 'Request the social value statement', schema: 'Service (audience: government) + FAQPage + BreadcrumbList', out: 'Social value, Community, Training rooms, Events' }),
+      P({ n: '6', id: 'p-meeting', name: 'Meeting rooms', url: '/services/meeting-rooms/', status: 'Rebuild', tpl: 'Service', aud: 'Team leads, managers and small businesses booking meetings, interviews and away days', job: 'Group meetings and away days by the half or full day. Hourly only for the Pod and small rooms. Also catches old hot-desking and coworking traffic.', kw: 'meeting room hire Knowsley', kw2: 'meeting room hire Liverpool · meeting rooms Huyton · boardroom hire Merseyside · interview room hire', title: 'Meeting Room Hire, Knowsley', meta: 'Hosted meeting rooms and boardrooms in Huyton, from the Pod at \u00a320 an hour to rooms for 20. Screen, tea and free parking included. Maggie O\u2019Neill Centre.', h1a: 'Meeting room hire in Huyton, Knowsley', h1b: 'Walk in, sit down, get on with it.', lede: 'Your host has the room ready, the screen on and the tea made at the Maggie O\u2019Neill Centre.', sec: 'Hero · proof · rooms (Pod, Foundry, Hub, Forum, Summit) with layouts · the Pod (\u00a320/hr, \u00a3120/day) · The Hosted Day · monthly team meetings (Central and South PCN) · reviews · comparison · FAQs · CTA', proof: 'Meeting reviews (Anita Johnson) · Central and South PCN', cta: 'Check availability', schema: 'Service + FAQPage + BreadcrumbList', out: 'Training rooms, Events, What\u2019s included, Central and South PCN case study' }),
+      P({ n: '7', id: 'p-events', name: 'Events and conferences', url: '/services/event-space-business-and-community/', status: 'Rebuild', tpl: 'Service', aud: 'Event organisers, charities, networking groups', job: 'Sell the Auditorium (100 seats) and The Grove for networking as a hosted alternative to a hotel. Keep the URL, it has search history.', kw: 'conference venue near Liverpool with parking', kw2: 'event space Knowsley · auditorium hire Liverpool · networking venue Merseyside · alternative to hotel conference venue', title: 'Conference Venue near Liverpool', meta: 'A hosted 100-seat auditorium and networking space in Huyton. Stage, AV, catering and free parking. The hotel alternative. Maggie O\u2019Neill Centre.', h1a: 'Conference and event venue near Liverpool', h1b: 'Better than a hotel. Built only for this.', lede: 'The Maggie O\u2019Neill Centre Auditorium seats 100, with a stage, lectern and lighting, and your host looking after the day.', sec: 'Hero · Auditorium · The Grove for open networking · AV · catering (Superior Catering) · "Why not a hotel?" · reviews · FAQs · CTA', proof: 'Event reviews · client logos', cta: 'Plan your event', schema: 'EventVenue + FAQPage + BreadcrumbList', out: 'What\u2019s included, Meeting rooms, Council page, Visit' }),
+      P({ n: '8', id: 'p-vo', name: 'Virtual office (co-lead)', url: '/services/virtual-office/', status: 'Move', tpl: 'Service', aud: 'Company directors, sole traders, startups, online sellers, property companies and firms wanting a Liverpool presence, across Merseyside and beyond', job: 'The growth engine: no ceiling on capacity. One strong hub page (registered office, business and service address, mail handling, plans) rather than several thin ones, so all the ranking signals point at one URL. Move from virtual.mobtc.co.uk with every redirect live. Copy stays close to the current site.', kw: 'virtual office Liverpool', kw2: 'virtual office in Liverpool · virtual office address Liverpool · registered office address Liverpool · business address Merseyside · virtual office Knowsley · virtual office St Helens', title: 'Virtual Office Liverpool from \u00a320', meta: 'A real business address near Liverpool from \u00a320 a month, with real people behind it. Keep your home address off Companies House. Maggie O\u2019Neill Centre.', h1a: 'Virtual office near Liverpool, from \u00a320 a month', h1b: 'A real address, with real people behind it.', lede: 'Tania handles your post at the Maggie O\u2019Neill Centre and lets you know the moment it arrives.', sec: 'Hero with both plans and prices · proof strip (reviews, real people, free parking to collect post) · who it\u2019s for · plans compared (\u00a320, \u00a330, \u00a340, \u00a350, with the \u00a350 plan recommended) · call answering as a \u00a339 add-on beside the plans (discussed after the form is submitted) · registered office and director\u2019s service address explained · mail handling · meeting rooms in the same building for client meetings · areas we serve (Liverpool, Knowsley, St Helens, Sefton, Wirral, Halton, Warrington, West Lancashire) · reviews · how sign-up works · FAQs · guides · CTA', proof: 'Salome (Salowal Ltd) review · virtual office reviews · Knowsley Chamber logo', cta: 'Get your address (sticky on mobile)', schema: 'Service + Offer (both plans) + FAQPage + BreadcrumbList', out: 'Call answering, all five guides, Meeting rooms, Private offices' }),
+      P({ n: '8b', id: 'p-accountants', name: 'For accountants (referral partners)', url: '/services/virtual-office/accountants/', status: 'New', tpl: 'Service', aud: 'Accountants, bookkeepers and company formation agents in Merseyside who set up and look after limited companies', job: 'Turn accountants into a steady source of virtual office clients. Accountants must disclose any commission to their clients, so we don\u2019t pay one: the saving goes to the client instead, which keeps the referral clean. One PilotoMail login (the accountant\u2019s email on each client mailbox) to view any client\u2019s post, 15% off for their clients for as long as they stay, no more registered-address admin, and every referral supports a local charity.', kw: 'registered office address for accountants', kw2: 'registered office partner Liverpool · accountant referral registered address · virtual office for accountancy clients Merseyside', title: 'Registered Office Partner for Accountants, Liverpool', meta: 'Give your clients a registered office near Liverpool at 15% off, and see all their post under one login. Maggie O\u2019Neill Centre.', h1a: 'A registered office partner for accountants near Liverpool', h1b: 'Your clients\u2019 post, handled. Your admin, gone.', lede: 'Refer your clients to the Maggie O\u2019Neill Centre for their registered office. They get 15% off for as long as they stay, you see all their post under one login, and every address supports a local charity.', sec: 'Hero · the four benefits (one PilotoMail login with a mailbox per client, 15% off for clients, no registered-address admin, a local charity) · "No commission to declare" (accountants have to disclose commissions to clients, so instead of paying a referral fee we pass the saving straight to the client as 15% off) · how referral works · what your clients get (plans and prices) · post handling and notifications · AML and ID checks · FAQs · CTA', proof: 'Virtual office reviews · client count', cta: 'Become a partner', schema: 'Service + FAQPage + BreadcrumbList', out: 'Virtual office, Call answering, the virtual office guides' }),
+      P({ n: '9', id: 'p-calls', name: 'Call answering', url: '/services/virtual-office/call-answering/', status: 'Move', tpl: 'Service', aud: 'Virtual office clients, sole traders and small businesses who miss calls while they work', job: 'Child of the virtual office. Sell it by its UK name, call answering, at \u00a339 a month. It works on its own or added to any virtual office plan.', kw: 'call answering service Liverpool', kw2: 'telephone answering service Merseyside · call answering service for small business · virtual receptionist Liverpool · answering service UK', title: 'Call Answering Service, \u00a339 a Month', meta: 'Never miss a call. Calls answered, messages taken, and a summary sent to you, or put through to a person. \u00a339 a month from Maggie O\u2019Neill Centre.', h1a: 'Call answering service near Liverpool, \u00a339 a month', h1b: 'Every call answered, even when you\u2019re busy.', lede: 'The Maggie O\u2019Neill Centre answers your business calls, takes the message and sends it straight to you.', sec: 'Hero with price · what happens to a call (answered, message taken, put through to a person or summarised and transcribed, sent to you, logged in your CRM) · choose how calls are handled · who it\u2019s for (trades, sole traders, clinics, small offices) · add it to a virtual office plan · FAQs (what callers hear, your number or ours, hours, how messages arrive, what the CRM stores) · CTA', proof: 'Virtual office reviews', cta: 'Add call answering (goes to the virtual office form)', schema: 'Service + Offer (\u00a339/month) + FAQPage + BreadcrumbList', out: 'Virtual office, Meeting rooms' }),
+      P({ n: '10', id: 'p-offices', name: 'Private offices', url: '/services/private-offices/', status: 'Rebuild', tpl: 'Service', aud: 'Small teams of 1 to 4 needing a base', job: 'Small, high-value. Sell the hosted building and the community around it.', kw: 'office space to rent Huyton', kw2: 'serviced offices Knowsley · small office to rent near Liverpool · managed offices Merseyside', title: 'Private Offices to Rent, Huyton', meta: 'Private offices for small teams in Huyton, with hosts on site, meeting rooms downstairs, free parking and tea on tap. Maggie O\u2019Neill Centre.', h1a: 'Private offices to rent in Huyton', h1b: 'Your own door, and hosts down the corridor.', lede: 'Small teams base themselves at the Maggie O\u2019Neill Centre for the rooms, the parking and the people.', sec: 'Hero · what\u2019s included · office sizes · meeting room access · reviews · FAQs · CTA', proof: 'Office tenant reviews (to gather)', cta: 'Book a viewing', schema: 'Service + FAQPage + BreadcrumbList', out: 'Meeting rooms, Virtual office, Visit' }),
+      P({ n: '11', id: 'p-inc', name: 'What\u2019s included', url: '/whats-included/', status: 'New', tpl: 'Trust', aud: 'Bookers comparing venues and prices', job: 'The Hosted Day in full, plus the hall vs Maggie\u2019s vs hotel comparison. Every price on the site links here.', kw: 'what\u2019s included in room hire', kw2: 'training room hire with refreshments · room hire with free parking Liverpool', title: 'What\u2019s Included in Room Hire', meta: 'Every room at the Maggie O\u2019Neill Centre comes hosted: layout set, screen tested, tea in the room, free parking. Nothing to bring. See the full list.', h1a: 'What\u2019s included at the Maggie O\u2019Neill Centre', h1b: 'Nothing to bring. Not even an HDMI cable.', lede: 'Every booking is hosted. Here\u2019s everything that comes with it.', sec: 'The Hosted Day list, illustrated · a day at Maggie\u2019s, from arrival to rebooking · hall vs Maggie\u2019s vs hotel · catering add-on · FAQs · CTA', proof: 'Reviews on tea, parking and tech', cta: 'Check availability', schema: 'WebPage + FAQPage', out: 'All service pages, Reviews' }),
+      P({ n: '12', id: 'p-cases', name: 'Case studies hub and four stories', url: '/case-studies/ · /case-studies/[org]/', status: 'New', tpl: 'Case study', aud: 'Bookers looking for organisations like theirs', job: 'Remove the doubt. Logos only for now, with no contacts or photos. Stories: Alder Hey (Sunflower House staff training), Amore (all mandatory training for agency staff), AFG (TMVA, epilepsy training, learning team meetings), Central and South PCN (clinical and admin training days, monthly offsite meetings).', kw: '[organisation] training venue', kw2: 'Brand and organisation-name searches', title: 'Case Studies: Who Trains Here', meta: 'Care providers, NHS trusts and PCNs that train and meet at the Maggie O\u2019Neill Centre in Huyton, and why they keep coming back.', h1a: 'Case studies · Maggie O\u2019Neill Centre', h1b: 'Organisations like yours, looked after here.', lede: 'Hub: logo grid filtered by sector. Each story: "Amore: every mandatory training day, in one place".', sec: 'Hub: sector filter, logo cards. Story: logo + sector · at a glance (what, which rooms, how often) · what they needed · how we host it · related sector page · CTA', proof: 'The logos themselves', cta: 'Plan your dates', schema: 'Article + BreadcrumbList', out: 'Each story links to its sector page and the rooms used' }),
+      P({ n: '13', id: 'p-reviews', name: 'Reviews', url: '/reviews/', status: 'New', tpl: 'Trust', aud: 'Bookers doing final checks', job: '230 Google reviews, grouped by what people praise and by sector. For conversion, not star snippets (Google doesn\u2019t show stars for reviews a business shows about itself).', kw: 'Maggie O\u2019Neill Centre reviews', kw2: 'Maggie\u2019s Huyton reviews', title: '230 Google Reviews', meta: 'What 230 Google reviewers say about the Maggie O\u2019Neill Centre in Huyton: the welcome, the rooms, the tea and the parking.', h1a: 'Maggie O\u2019Neill Centre reviews', h1b: 'Your delegates will tell you it was good.', lede: 'Grouped by what people mention most.', sec: 'Score and count · themes (welcome, ready, calm, parking, clean, tea) · by sector (care, NHS, meetings, virtual office) · link to leave a review · CTA', proof: 'Everything', cta: 'Check availability', schema: 'WebPage (no Review markup)', out: 'Sector pages, Case studies' }),
+      P({ n: '14', id: 'p-sv', name: 'Social value', url: '/social-value/', status: 'New', tpl: 'Trust', aud: 'Public-sector buyers and procurement', job: 'Give public-sector buyers a reason to pick us that they can write in a report.', kw: 'social value venue hire', kw2: 'charity venue hire Knowsley · social enterprise training venue', title: 'Social Value for Public Sector', meta: 'Every booking at the Maggie O\u2019Neill Centre funds Maggie\u2019s Meals in Knowsley. Download our social value statement for your procurement report.', h1a: 'Social value at the Maggie O\u2019Neill Centre', h1b: 'Your booking does good a few streets away.', lede: 'Registered charity no. 1102507.', sec: 'What your booking funds · the year in numbers · downloadable statement · procurement details (invoices, POs, insurance, accessibility) · CTA', proof: '750+ accessed Maggie\u2019s Meals', cta: 'Download the statement', schema: 'WebPage + NGO (Organization)', out: 'Council and NHS pages, Community' }),
+      P({ n: '15', id: 'p-about', name: 'About and your hosts', url: '/about/', status: 'Rebuild', tpl: 'Trust', aud: 'Bookers checking who they\u2019re dealing with', job: 'Meet the hosts first, then Maggie\u2019s story and the charity.', kw: 'about Maggie O\u2019Neill Centre', kw2: 'who was Maggie O\u2019Neill', title: 'About Us & Meet Your Hosts', meta: 'Meet Patrick and Tania, your hosts at the Maggie O\u2019Neill Centre in Huyton, and the story of Maggie, the woman behind the name.', h1a: 'About the Maggie O\u2019Neill Centre', h1b: 'Meet your hosts.', lede: 'Patrick and Tania, with Liam who volunteers with us.', sec: 'Hosts with photos · Maggie\u2019s story · the charity · values · CTA', proof: 'Reviews that name the hosts', cta: 'Book a visit', schema: 'AboutPage + Organization + Person', out: 'Community, Social value, Visit' }),
+      P({ n: '16', id: 'p-comm', name: 'Maggie\u2019s Meals and community', url: '/community/', status: 'Rebuild', tpl: 'Trust', aud: 'Supporters, local residents and bookers who care', job: 'Show the good that bookings fund.', kw: 'Maggie\u2019s Meals Huyton', kw2: 'community centre Huyton · Knowsley community support', title: 'Maggie\u2019s Meals & Community', meta: 'How the Maggie O\u2019Neill Centre supports Knowsley: Maggie\u2019s Meals, community groups and volunteering, funded by room hire.', h1a: 'Maggie\u2019s Meals and community', h1b: 'Where your booking goes.', lede: 'Room hire at the Maggie O\u2019Neill Centre funds Maggie\u2019s Meals.', sec: 'Maggie\u2019s Meals · community groups · volunteering · CTA', proof: '750+ accessed Maggie\u2019s Meals', cta: 'Book a room', schema: 'WebPage + NGO', out: 'Social value, About, Training rooms' }),
+      P({ n: '17', id: 'p-visit', name: 'Come and see it', url: '/visit/', status: 'New', tpl: 'Trust', aud: 'First-time bookers', job: 'Turn a nervous first booking into a show-round.', kw: 'venue viewing Huyton', kw2: 'Maggie O\u2019Neill Centre directions · L36 8HT', title: 'Book a Visit, Huyton L36 8HT', meta: 'See the rooms before you book. Pop in for a tea and a look round the Maggie O\u2019Neill Centre, 433 Liverpool Road, Huyton L36 8HT. Free parking.', h1a: 'Visit the Maggie O\u2019Neill Centre', h1b: 'Plain from the car park. Worth it once you\u2019re in.', lede: 'Come for a tea and a look round.', sec: 'Book a visit form · getting here (M57, bus, parking) · map · what you\u2019ll see', proof: 'John Burnage review', cta: 'Book a visit', schema: 'LocalBusiness + BreadcrumbList', out: 'Contact, Training rooms' }),
+      P({ n: '18', id: 'p-contact', name: 'Contact', url: '/contact/', status: 'Rebuild', tpl: 'Trust', aud: 'Ready to enquire', job: 'A real person, a phone number and a short form.', kw: 'Maggie O\u2019Neill Centre contact', kw2: 'L36 8HT · 433 Liverpool Road Huyton', title: 'Contact Us, Huyton L36 8HT', meta: 'Call or message the Maggie O\u2019Neill Centre, 433 Liverpool Road, Huyton L36 8HT. A real person replies the same working day.', h1a: 'Contact the Maggie O\u2019Neill Centre', h1b: 'Talk to a person.', lede: 'Patrick or Tania will reply the same working day.', sec: 'Phone, email, WhatsApp · enquiry form · address and map · opening hours', proof: '', cta: 'Send enquiry', schema: 'ContactPage + LocalBusiness', out: 'Visit' }),
+      P({ n: '19', id: 'p-blog', name: 'Guides for bookers', url: '/blog/', status: 'Rebuild', tpl: 'Trust', aud: 'Training coordinators researching', job: 'Replace the old coworking posts with booker guides that link to the service pages.', kw: 'how to plan a training day', kw2: 'home address Companies House · registered office vs business address · training room layouts · social value in procurement', title: 'Guides for Training Bookers', meta: 'Practical guides for people who book training and meetings: planning the day, choosing a layout, and adding social value. From Maggie O\u2019Neill Centre.', h1a: 'Guides · Maggie O\u2019Neill Centre', h1b: 'For the people who book the room.', lede: 'Virtual office guides first, since that\u2019s where the search volume is.', sec: 'Two streams: five virtual office guides (see the growth plan) and three training guides. Each guide ends with a link to the matching service or sector page', proof: '', cta: 'Check availability', schema: 'Blog + Article', out: 'Training rooms, sector pages' }),
+    ];
+    const W = '#fff', C = '#FAF3EB', D = '#2A0752', O = '#F0603A', L = '#EFE7FA';
+    const B = (l, h, bg, fg) => ({ l, h: h + 'px', bg, fg: fg || (bg === D || bg === O ? '#fff' : '#2A0752') });
+    const templates = [
+      { name: 'Home', used: 'Homepage', blocks: [B('Header', 22, L), B('Hero: two-part H1 + photo', 90, D), B('Proof strip', 22, O), B('Client logos', 28, W), B('Who books with us', 60, C), B('Virtual office band', 46, '#4A0D8F'), B('Rooms and services', 70, W), B('The Hosted Day', 50, C), B('Hall vs Maggie\u2019s vs hotel', 50, W), B('Reviews', 44, O), B('Meet your hosts', 44, C), B('Maggie\u2019s Meals + numbers', 44, D), B('Find us + enquiry', 50, W), B('Footer', 30, D)] },
+      { name: 'Service', used: 'Training, Meeting, Events, Offices, Virtual office', blocks: [B('Header', 22, L), B('Hero: H1 + price from + CTA', 80, D), B('Proof strip', 22, O), B('Sector cards (training only)', 40, C), B('Rooms + layout diagrams', 80, W), B('The Hosted Day', 46, C), B('Ideal for / tech', 40, W), B('Virtual office band', 30, '#4A0D8F'), B('Case study', 40, O), B('Reviews', 40, O), B('Comparison', 40, W), B('10 FAQs', 56, C), B('CTA band', 30, D), B('Footer', 30, D)] },
+      { name: 'Sector', used: 'Care, NHS, Council', blocks: [B('Header', 22, L), B('Hero: sector H1 + photo', 80, D), B('Sector logos', 28, W), B('What your sector needs \u2192 how we host it', 70, C), B('Recommended rooms', 50, W), B('Sector day inclusions', 44, C), B('Sector case studies', 50, O), B('Sector reviews', 40, O), B('Practical: invoicing, access', 40, W), B('FAQs', 44, C), B('CTA band', 30, D), B('Footer', 30, D)] },
+      { name: 'Case study', used: 'Four stories', blocks: [B('Header', 22, L), B('Logo + sector + H1', 60, C), B('At a glance', 40, W), B('What they needed', 50, W), B('How we host it', 60, C), B('Quote (when available)', 34, O), B('Rooms they use', 40, W), B('Related sector page', 30, L), B('CTA band', 30, D), B('Footer', 30, D)] },
+      { name: 'Trust', used: 'What\u2019s included, Reviews, Social value, About, Visit, Contact', blocks: [B('Header', 22, L), B('Hero: H1 + lede', 60, C), B('Main content blocks', 120, W), B('Proof', 40, O), B('FAQs (if any)', 40, C), B('CTA band', 30, D), B('Footer', 30, D)] },
+    ];
+    const lib = [
+      { name: 'Header', what: 'Horizontal logo, the menu, phone number, "Check availability". Sticky, with a coral button.', img: 'Logo: mobtc-logo-horizontal' },
+      { name: 'Hero', what: 'Two-part H1, a one-sentence lede containing "Maggie O\u2019Neill Centre", two CTAs (Check availability, Book a visit). People in the photo, not empty rooms.', img: '#105 training session (training, care) · host greeting (to shoot)' },
+      { name: 'Proof strip', what: '\u2605 230 Google reviews · Free parking · Tea in the room · 5 minutes from the M57. One line, directly under the hero.', img: 'None' },
+      { name: 'Client logos', what: '15 logos, filtered to the page\u2019s sector where possible. Greyscale on white, full colour on hover.', img: '#143\u2013157' },
+      { name: 'Who books with us', what: 'Four cards: Care, NHS, Council, Everyone else. Each has a sector first sentence and a link.', img: 'One photo per sector from the library' },
+      { name: 'Virtual office band', what: 'Purple band on the homepage and near the end of every room page: "Need a business address? A real one, from \u00a320 a month." Both plans side by side, Tania\u2019s post line, "Get your address".', img: 'Reception or post photo from the library' },
+      { name: 'See it before you come', what: 'A photo journey in walking order plus a short, continuous video walkthrough with no music: car park, entrance, the room, the accessible toilet (#158), kitchen. On every room and sector page, above the FAQs.', img: 'New photos and video' },
+      { name: 'Rooms and layouts', what: 'Room cards with capacity by layout (U-shape, boardroom, classroom, cabaret, banquet, theatre) drawn as diagrams. Pod shown as a boardroom for 4. Genesis not listed.', img: 'Room photos from the library' },
+      { name: 'The Hosted Day', what: 'The inclusions list: host at the door, layout set, welcome screen with your group\u2019s name, tea in the room, AirPlay, HDMI cables and WiFi, flipchart, free parking, kitchen, room notes.', img: '#54 AirPlay on the Summit TV' },
+      { name: 'Comparison', what: 'Community hall vs Maggie\u2019s vs hotel, 9 rows. Competitors never named.', img: 'None' },
+      { name: 'Case study card', what: 'Logo, sector tag, one line on what they use us for, link to the story.', img: 'Client logo' },
+      { name: 'Reviews', what: 'Three Google reviews chosen for the page\u2019s sector, with first name and organisation where given. Link to /reviews/.', img: 'Google G icon' },
+      { name: 'Meet your hosts', what: 'Patrick and Tania with photos, one line each. Liam named as a volunteer.', img: 'Host photos (needed)' },
+      { name: 'Maggie\u2019s Meals band', what: '"Every booking funds Maggie\u2019s Meals." and the year in numbers: 900+ rooms hired, 150+ businesses served, 750+ accessed Maggie\u2019s Meals.', img: 'Maggie\u2019s Meals photo' },
+      { name: 'FAQs', what: 'The 10 booking questions in the page\u2019s words, as an accordion with FAQPage schema.', img: 'None' },
+      { name: 'Find us', what: 'Address, M57 and bus route, 50-space free car park, map, "Book a visit".', img: 'Exterior + entrance photo' },
+      { name: 'CTA band', what: 'Plum band: "Check availability" and the phone number, with "Looked after at Maggie\u2019s." as the sign-off.', img: 'Badge icon' },
+      { name: 'Footer', what: 'As in the site map section.', img: 'Logo: mobtc-logo-horizontal-reversed' },
+    ];
+    const linkRules = [
+      { from: 'Homepage', to: 'All three sector pages, Training rooms, Meeting rooms, What\u2019s included, Case studies, Reviews, Visit', anchor: 'sector names, "training room hire", "what\u2019s included"' },
+      { from: 'Training rooms (hub)', to: 'Each sector page (cards and in-copy), What\u2019s included, relevant case studies, Meeting rooms, Events', anchor: '"care training venue", "NHS training venue", "council training in Knowsley"' },
+      { from: 'Sector pages', to: 'Up to Training rooms, across to the other two sectors, down to their case studies, out to Social value (NHS, Council)', anchor: '"training room hire near Liverpool", "social value"' },
+      { from: 'Case studies', to: 'Their sector page and the room pages they use; the hub links to every story', anchor: '"[sector] training venue", room names' },
+      { from: 'Every price', to: 'What\u2019s included', anchor: '"see everything that\u2019s included"' },
+      { from: 'Every review block', to: 'Reviews', anchor: '"read all 230 Google reviews"' },
+      { from: 'Meeting rooms, Events, Offices', to: 'Training rooms, What\u2019s included, each other', anchor: 'service names' },
+      { from: 'Virtual office', to: 'Call answering, all five guides, Meeting rooms (for client meetings), Private offices', anchor: '"call answering for \u00a339 a month", "meet clients here", guide titles' },
+      { from: 'Every page (band or footer)', to: 'Virtual office', anchor: '"virtual office in Liverpool from \u00a320"' },
+      { from: 'Virtual office guides', to: 'Virtual office hub, twice (in the body and at the end), and each other', anchor: '"virtual office Liverpool", "registered office address Liverpool"' },
+      { from: 'Guides', to: 'The matching service or sector page, once in the body and once at the end', anchor: 'the page\u2019s primary keyword' },
+      { from: 'Footer (every page)', to: 'All services, sectors, What\u2019s included, Case studies, Reviews, Social value, Contact', anchor: 'page names' },
+    ];
+    const redirects = [
+      { from: '/services/meeting-training-rooms/', to: '/services/training-rooms/' },
+      { from: '/services/hotdesking/', to: '/services/meeting-rooms/' },
+      { from: '/services/coworking/', to: '/services/meeting-rooms/' },
+      { from: 'virtual.mobtc.co.uk/*', to: '/services/virtual-office/ (/ai-receptionist \u2192 /services/virtual-office/call-answering/)' },
+      { from: '/virtual-office-new/', to: '/services/virtual-office/' },
+      { from: '/faq-items/*', to: 'the page each FAQ belongs to' },
+      { from: 'Hot-desking and coworking blog posts', to: '/blog/ (or the closest guide)' },
+      { from: '/author/*, /tag/*, /category/*', to: 'noindex (not redirected)' },
+    ];
+    const tech = [
+      { h: 'The brand name', b: 'People search "maggie oneil centre", "maggie oneill" and "mobtc" as often as the correct spelling. Add them to the schema alternateName, use "Maggie\u2019s" and "MOBTC" once each in the homepage and about copy, and keep the Google Business Profile name exactly "Maggie O\u2019Neill Centre". Google handles the misspellings once the entity is clear.' },
+      { h: 'Schema', b: 'One Organization + LocalBusiness block (name, alternateName, address, geo, phone, opening hours, sameAs for Google, Facebook, LinkedIn, Charity Commission) on every page. Service, FAQPage and BreadcrumbList per page type as listed. No self-serving Review markup.' },
+      { h: 'Tracking before launch', b: 'Cookie banner with Consent Mode, so UK visits are counted. One GTM container. Key events: virtual office sign-up (with plan value), form submit, booking, phone click, WhatsApp click, chat start. Send GoHighLevel submissions to GA4. Spam protection on forms. Filter out known bot traffic.' },
+      { h: 'Local', b: 'Google Business Profile categories: Conference centre (primary), Virtual office rental, Meeting room, Training centre. Add Virtual office as a service with both plans and prices. Post monthly. Ask every booker for a review in the thank-you email. Consistent name, address and phone everywhere.' },
+      { h: 'Pages and speed', b: 'Real HTML, one H1, self-referencing canonical, trailing slash, no www. WebP images with alt text that names the room and "Maggie O\u2019Neill Centre". Keep /llms.txt updated: ChatGPT already sends visitors.' },
+    ];
+    const phases = [
+      { n: '1', h: 'Foundations', items: ['Homepage (sets the section library)', 'Virtual office + call answering, with every subdomain redirect', 'Training rooms hub'] },
+      { n: '2', h: 'Growth content', items: ['Five virtual office guides', 'What\u2019s included', 'Tracking live, so virtual office sign-ups are counted from day one'] },
+      { n: '3', h: 'Sectors', items: ['Oliver McGowan training venue (first: highest value per day)', 'Care and social care', 'Fostering and adoption', 'NHS and primary care', 'Councils and public sector'] },
+      { n: '4', h: 'Proof', items: ['Case study template + four stories', 'Reviews', 'Social value'] },
+      { n: '5', h: 'Other services', items: ['Meeting rooms', 'Events and conferences', 'Private offices'] },
+      { n: '6', h: 'Trust and launch', items: ['About and hosts, Community, Visit, Contact', 'Three training guides', 'Schema, final checks, then launch'] },
+    ];
+    const needed = [
+      { h: 'Phone number, email and opening hours', b: 'For the header, footer, contact page and schema.' },
+      { h: 'Day and half-day rates per room', b: 'So each room card can show "from" prices beside the inclusions. The Pod (\u00a320/hr, \u00a3120/day) is the only room I have.' },
+      { h: 'Host photos', b: 'Patrick and Tania, plus Liam if he\u2019s happy to be shown.' },
+      
+      { h: 'Hosted logo links', b: 'To swap in for the local files in brand/logo/.' },
+      { h: 'The booking link and form', b: 'The GoHighLevel form or calendar embed that "Check availability" should open.' },
+      { h: 'Maggie\u2019s story', b: 'A few lines on who Maggie O\u2019Neill was, for the About page.' },
+      { h: 'Virtual office sign-up links', b: 'The sign-up and payment link for each of the four plans.' },
+      { h: 'Maggie\u2019s Meals details', b: 'What it provides and how often, for the Social value and Community pages.' },
+    ].map((d, i) => ({ ...d, n: String(i + 1) }));
+    const voKw = [['virtual office in liverpool', 10685, 22], ['virtual office liverpool', 8878, 22], ['liverpool virtual office', 2686, 22], ['virtual office address liverpool', 2571, 19]].map(([k, i, p]) => ({ k, i: i.toLocaleString('en-GB'), p }));
+    const voBlocks = [
+      { h: 'Who buys', bg: '#fff', items: ['New limited company directors who don\u2019t want their home on the public register', 'Sole traders and freelancers working from home', 'Online sellers who need a business address', 'Property companies, contractors, charities and CICs', 'Firms outside the region wanting a Liverpool presence'] },
+      { h: 'Why they choose Maggie\u2019s', bg: '#FAF3EB', items: ['Real people: Tania handles the post and lets you know when it arrives', 'Meeting rooms in the same building for client meetings', 'Free parking when you collect your post', 'From \u00a320 a month, and the money stays local through the charity', '230 Google reviews behind the address'] },
+      { h: 'How we win search', bg: '#fff', items: ['One strong hub page, not several thin ones', 'Five guides that answer the questions people search before buying, each linking to the hub', 'Areas we serve listed on the hub. Separate town pages only if Search Console shows demand and each can say something unique', 'Google Business Profile service listing with both plans'] },
+      { h: 'How we win beyond search', bg: '#FAF3EB', items: ['Partner with local accountants and company formation agents, who set up new companies every week', 'Knowsley Chamber and local start-up programmes', 'Offer it to the 150+ businesses that already hire rooms', 'A referral thank-you for existing clients'] },
+      { h: 'Keep them longer', bg: '#fff', items: ['A named contact (Tania) from day one', 'Post notification every time, as promised', 'Annual plan option', 'A room-hire discount for virtual office clients, so they meet here'] },
+      { h: 'Check before the push', bg: '#FFF0EA', items: ['Registration with HMRC for anti-money laundering supervision, required for anyone offering registered office services', 'Sign-up flow includes the ID checks that requires', 'Wording on Companies House rules (appropriate address, ID verification) checked against gov.uk before publishing', 'Capacity: 150 clients before post handling needs a new process. 38 today'] },
+    ];
+    const voLadder = [
+      { h: 'Address Only \u00a320', b: 'Registered office address. 3 clients' },
+      { h: '+ Director\u2019s Cover \u00a330', b: 'Adds director\u2019s service address. 7 clients' },
+      { h: 'Virtual Office \u00a340', b: 'Post opened and scanned, plus 2 free meeting room hours. 16 clients' },
+      { h: '+ Director\u2019s Cover \u00a350', b: 'Everything above, with your home off Companies House too. The plan to lead with. 10 clients' },
+      { h: '+ Call answering \u00a339', b: 'Calls answered, messages taken, summaries sent to you. Plus meeting rooms in the building' },
+    ];
+    const voStats = [
+      { n: '38', k: 'Active clients', b: '26 on the \u00a340 or \u00a350 plans, 10 on \u00a320 or \u00a330, 2 on old plans.' },
+      { n: '~\u00a31,550', k: 'A month in fees', b: 'About \u00a341 per client on average, or roughly \u00a318.6k a year.' },
+      { n: '1.75', k: 'New clients a month', b: '21 in the last 12 months. 2023: 4 · 2024: 11 · 2025: 13 · 2026 so far: 16. September 2026 was the best month, with 6.' },
+      { n: '~1%', k: 'Leave each month', b: '6 cancellations ever, 3 in the last year. Clients who left stayed a median of about 12 months.' },
+    ];
+    const voTargets = [
+      { h: 'At today\u2019s pace', b: 'About 1.4 net new clients a month. 150 clients takes around 6 to 7 years.' },
+      { h: 'Target: 150 in 3 years', b: 'Needs about 3 net new clients a month, which means around 4 sign-ups a month once churn is allowed for. Roughly double today\u2019s pace.' },
+      { h: 'What 150 is worth', b: 'At \u00a341 average, about \u00a36,100 a month, or \u00a373k a year, with no extra rooms, parking or offices.' },
+      { h: 'Lift the average', b: 'All 6 of September\u2019s sign-ups chose \u00a320 or \u00a330. Lead the page with the \u00a350 plan: post opened and scanned, 2 free meeting room hours and Director\u2019s Cover. The free room hours alone are worth more than the \u00a310 difference. Offer the upgrade to Address Only clients at month 3.' },
+    ];
+    return { voStats, voTargets, voKw, voBlocks, voLadder, toc, rules, navTop, tree, ladder, words, pages, templates, lib, linkRules, redirects, tech, phases, needed };
+  }
+}
+</script>
+</body>
+</html>

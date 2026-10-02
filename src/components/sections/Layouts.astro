@@ -1,0 +1,51 @@
+---
+// The layouts we can set, drawn top-down. No capacity grid: we triage headcount and recommend.
+import LayoutDiagram from '../LayoutDiagram.astro';
+import { contact, layoutTriage, layouts } from '../../data/facts';
+---
+<section class="section section--white" aria-labelledby="layouts-heading">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Room layouts</span>
+      <h2 id="layouts-heading">Which room layout should you book?</h2>
+      <p>You don't need to work it out. {layoutTriage}</p>
+    </div>
+    <ul class="grid layouts">
+      {layouts.map((l) => (
+        <li class="layouts__item">
+          <div class="layouts__art">
+            <LayoutDiagram layout={l.key} title={`${l.name} layout: a top-down drawing of tables and chairs facing the screen`} />
+          </div>
+          <h3>{l.name}</h3>
+          <p>{l.bestFor}</p>
+        </li>
+      ))}
+    </ul>
+    <div class="layouts__cta">
+      <p><strong>Tell us your numbers.</strong> We'll come back with the room and layout that suits your day.</p>
+      <div class="layouts__actions">
+        <a class="btn btn--primary" href="#enquire">Ask for a recommendation</a>
+        <a class="btn btn--secondary" href={contact.phoneHref} data-track="phone_click">Call {contact.phone}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .layouts { list-style: none; margin: 0; padding: 0; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .layouts__item { display: flex; flex-direction: column; gap: 8px; }
+  .layouts__art {
+    background: var(--moc-bg-warm); border-radius: var(--radius-tile); padding: 18px 22px; margin-bottom: 8px;
+    transition: background var(--duration-base) var(--ease-out);
+  }
+  .layouts__item:hover .layouts__art { background: var(--moc-purple-tint); }
+  .layouts__item p { font-size: var(--text-small-size); color: var(--moc-slate-text); }
+  .layouts__cta {
+    margin-top: clamp(32px, 4vw, 48px); padding: 24px 28px; border-radius: var(--radius-card); background: var(--moc-purple-tint);
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px;
+  }
+  .layouts__cta p { color: var(--moc-purple-900); }
+  .layouts__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  @media (max-width: 900px) { .layouts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 520px) { .layouts { grid-template-columns: 1fr 1fr; gap: 16px; } .layouts__art { padding: 10px 12px; } }
+</style>

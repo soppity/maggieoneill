@@ -1,0 +1,36 @@
+---
+import { clientLogos, type ClientLogo } from '../../data/images';
+
+interface Props {
+  heading?: string;
+  logos?: ClientLogo[];
+}
+const { heading = 'Organisations that book with us', logos = clientLogos } = Astro.props;
+---
+<section class="client-logos" aria-label={heading}>
+  <div class="container">
+    <p class="client-logos__heading">{heading}</p>
+    <ul class="client-logos__list">
+      {logos.map((l) => (
+        <li>
+          <img src={l.src} alt={`${l.name} logo`} width="160" height="64" loading="lazy" decoding="async" />
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .client-logos { background: var(--moc-white); padding: 40px 0; border-top: 1px solid var(--moc-border); border-bottom: 1px solid var(--moc-border); }
+  .client-logos__heading { text-align: center; font-size: var(--text-small-size); font-weight: 600; color: var(--moc-slate-text); margin-bottom: 24px; }
+  .client-logos__list {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 20px 40px; align-items: center;
+  }
+  .client-logos__list li { display: flex; align-items: center; justify-content: center; height: 64px; width: 120px; }
+  .client-logos__list img {
+    max-height: 56px; width: auto; max-width: 100%; object-fit: contain;
+    filter: grayscale(1); opacity: 0.75; transition: filter var(--duration-base) var(--ease-out), opacity var(--duration-base) var(--ease-out);
+  }
+  .client-logos__list li:hover img { filter: none; opacity: 1; }
+</style>

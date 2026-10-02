@@ -1,0 +1,48 @@
+# robots.txt: mobtc.co.uk
+# Owner decision (Oct 2026): allow all search and AI crawlers, including training crawlers.
+# Check current user-agent names on each vendor's docs before launch.
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /*?*utm_
+
+# Search engines
+User-agent: Googlebot
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: Applebot
+Allow: /
+User-agent: DuckDuckBot
+Allow: /
+
+# AI search and user-requested fetches (keep these allowed whatever else changes)
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+
+# AI model training (allowed by owner decision; remove these lines and add Disallow to opt out)
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: CCBot
+Allow: /
+User-agent: meta-externalagent
+Allow: /
+
+Sitemap: https://mobtc.co.uk/sitemap-index.xml

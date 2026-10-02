@@ -1,0 +1,28 @@
+:root {
+  --font-display: 'Outfit', 'Bricolage Grotesque', 'Helvetica Neue', sans-serif;
+  --font-body: 'Figtree', 'Helvetica Neue', sans-serif;
+
+  /* Display (Bricolage Grotesque) */
+  --text-hero-size: 72px;        /* homepage hero */
+  --text-hero-weight: 800;
+  --text-hero-leading: 1.05;
+  --text-h1-size: 56px;
+  --text-h2-size: 40px;          /* section headers */
+  --text-h3-size: 24px;          /* card titles */
+  --text-h3-weight: 700;
+  --display-tracking: -0.02em;
+
+  /* Body (Figtree) */
+  --text-lead-size: 20px;        /* hero standfirst */
+  --text-body-size: 17px;
+  --text-body-leading: 1.6;
+  --text-small-size: 15px;
+  --text-caption-size: 13px;
+
+  /* Labels / eyebrows */
+  --text-eyebrow-size: 14px;
+  --text-eyebrow-tracking: 0.08em; /* uppercase eyebrow, 600 */
+
+  /* Stats */
+  --text-stat-size: 64px;        /* coral numerals on purple band */
+}

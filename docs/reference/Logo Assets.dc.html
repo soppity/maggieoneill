@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>body{margin:0;background:#FCFAF7;color:#211A2E;font-family:Figtree,sans-serif}a{color:#4A0D8F}a:hover{color:#F0603A}</style>
+</helmet>
+<div style="max-width:1120px;margin:0 auto;padding:56px 24px 96px;display:flex;flex-direction:column;gap:40px">
+  <header style="display:flex;flex-direction:column;gap:12px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">Logo files · Outfit, outlined</div>
+    <h1 style="font-family:Outfit,sans-serif;font-weight:800;font-size:clamp(32px,4.5vw,50px);line-height:1.05;margin:0;color:#4A0D8F">Maggie O’Neill Centre logo set</h1>
+    <p style="margin:0;font-size:17px;line-height:1.6;max-width:760px;color:#4b4658">The original three people with "Maggie" in bold and a coral apostrophe, for most uses. "The" is dropped from the name. The badge is the mark in a tile, with no text, for icons, social avatars and small spaces. The text is already converted to outlines, so these files look the same everywhere without the font installed. Every logo comes as an SVG, plus a transparent PNG 2048px wide (icons are 1024px). Use the reversed versions on purple or photos.</p>
+  </header>
+  <sc-for list="{{ groups }}" as="g" hint-placeholder-count="2">
+    <section style="display:flex;flex-direction:column;gap:16px">
+      <h2 style="font-family:Outfit,sans-serif;font-weight:700;font-size:26px;margin:0;color:#4A0D8F">{{ g.name }}</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px">
+        <sc-for list="{{ g.files }}" as="f" hint-placeholder-count="0">
+          <div style="background:#fff;border:1px solid #ECE8F1;border-radius:20px;overflow:hidden;display:flex;flex-direction:column">
+            <div style="background:{{ f.bg }};aspect-ratio:16/9;min-height:0;position:relative;overflow:hidden">
+              <img src="{{ f.svg }}" alt="{{ f.alt }}" style="position:absolute;inset:28px;width:calc(100% - 56px);height:calc(100% - 56px);object-fit:contain;display:block">
+            </div>
+            <div style="padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+              <div style="display:flex;flex-direction:column;gap:2px"><strong style="font-size:15px">{{ f.label }}</strong><code style="font-size:12px;color:#6B7280">{{ f.file }}</code></div>
+              <div style="display:flex;gap:8px">
+                <a href="{{ f.svg }}" download="" style="font-size:13px;font-weight:700;text-decoration:none;background:#F1EBFA;border-radius:999px;padding:6px 12px">SVG</a>
+                <a href="{{ f.png }}" download="" style="font-size:13px;font-weight:700;text-decoration:none;background:#FDEDE7;color:#D64A26;border-radius:999px;padding:6px 12px">PNG</a>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </sc-for>
+  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;line-height:1.55">
+    <div style="background:#FAF3EB;border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:6px"><strong style="font-family:Outfit,sans-serif;font-size:17px;color:#4A0D8F">Colours</strong><span>Mark purple #38086F · text plum #2A0752 · coral apostrophe #F0603A · tile purple #4A0D8F</span></div>
+    <div style="background:#FAF3EB;border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:6px"><strong style="font-family:Outfit,sans-serif;font-size:17px;color:#4A0D8F">Clear space</strong><span>Keep a gap of at least one head's width around the logo. Don't stretch it, recolour it or add effects.</span></div>
+    <div style="background:#FAF3EB;border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:6px"><strong style="font-family:Outfit,sans-serif;font-size:17px;color:#4A0D8F">Smallest size</strong><span>Horizontal logo 140px wide on screen or 35mm in print. Below that, use the icon or the badge.</span></div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const f = (k, label, bg) => ({ label, bg, file: 'mobtc-' + k, svg: './logo/mobtc-' + k + '.svg', png: './logo/mobtc-' + k + '.png', alt: "Maggie O'Neill Centre logo, " + label });
+    const PUR = '#4A0D8F', WH = '#FFFFFF', CR = '#FAF3EB';
+    return { groups: [
+      { name: 'Main logo', files: [
+        f('logo-horizontal', 'Horizontal', WH), f('logo-horizontal-reversed', 'Horizontal · reversed', PUR),
+        f('logo-stacked', 'Stacked', WH), f('logo-stacked-reversed', 'Stacked · reversed', PUR),
+        f('logo-icon', 'Icon', CR), f('logo-icon-reversed', 'Icon · reversed', PUR),
+      ] },
+      { name: 'Badge', files: [
+        f('badge-icon', 'Icon · purple', CR), f('badge-icon-coral', 'Icon · coral', WH), f('badge-icon-beige', 'Icon · beige', WH),
+      ] },
+    ] };
+  }
+}
+</script>
+</body>
+</html>

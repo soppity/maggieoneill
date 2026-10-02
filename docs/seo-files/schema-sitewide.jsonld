@@ -1,0 +1,77 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "NGO",
+      "@id": "https://mobtc.co.uk/#org",
+      "name": "Maggie O'Neill Centre",
+      "alternateName": ["Maggie's", "Maggie O'Neill Centre Huyton", "Maggie ONeill Centre", "Maggie O Neill Centre", "MOBTC"],
+      "url": "https://mobtc.co.uk/",
+      "logo": { "@type": "ImageObject", "url": "https://mobtc.co.uk/logo/mobtc-badge-icon.png", "width": 1024, "height": 1024 },
+      "description": "A charity-run training, meeting and event venue and virtual office provider in Huyton, near Liverpool. Profits fund Maggie's Meals and community support in Knowsley.",
+      "identifier": { "@type": "PropertyValue", "propertyID": "Charity Commission for England and Wales", "value": "1102507" },
+      "telephone": "+441514820408",
+      "address": { "@id": "https://mobtc.co.uk/#address" },
+      "sameAs": [
+        "TODO: Google Business Profile URL",
+        "TODO: Facebook URL",
+        "TODO: LinkedIn URL",
+        "TODO: Instagram URL",
+        "https://register-of-charities.charitycommission.gov.uk/charity-search/-/charity-details/1102507",
+        "TODO: Wikidata URL (if created)"
+      ]
+    },
+    {
+      "@type": "PostalAddress",
+      "@id": "https://mobtc.co.uk/#address",
+      "streetAddress": "433 Liverpool Road",
+      "addressLocality": "Huyton",
+      "addressRegion": "Merseyside",
+      "postalCode": "L36 8HT",
+      "addressCountry": "GB"
+    },
+    {
+      "@type": ["LocalBusiness", "EventVenue"],
+      "@id": "https://mobtc.co.uk/#venue",
+      "name": "Maggie O'Neill Centre",
+      "alternateName": ["Maggie's", "Maggie O'Neill Centre Huyton", "MOBTC"],
+      "url": "https://mobtc.co.uk/",
+      "image": ["TODO: 3 hosted library image URLs (exterior, a room, reception)"],
+      "logo": "https://mobtc.co.uk/logo/mobtc-badge-icon.png",
+      "description": "Hosted training, meeting and event rooms in Huyton, near Liverpool. A host meets every group, rooms are set before you arrive, tea and coffee are included and parking is free.",
+      "telephone": "+441514820408",
+      "address": { "@id": "https://mobtc.co.uk/#address" },
+      "geo": { "@type": "GeoCoordinates", "latitude": "TODO: from Google Business Profile pin", "longitude": "TODO" },
+      "hasMap": "TODO: Google Maps place URL",
+      "parentOrganization": { "@id": "https://mobtc.co.uk/#org" },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:30", "closes": "17:00" }
+      ],
+      "publicAccess": true,
+      "areaServed": ["Huyton", "Knowsley", "Liverpool", "Merseyside"],
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Free on-site parking", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Free WiFi", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Screens with AirPlay and HDMI in every room", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Tea and coffee included", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Step-free access", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Accessible parking", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Accessible toilet", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Quiet room", "value": true }
+      ],
+      "contactPoint": [
+        { "@type": "ContactPoint", "telephone": "+441514820408", "contactType": "customer service", "areaServed": "GB", "availableLanguage": "en" },
+        { "@type": "ContactPoint", "telephone": "+447426935661", "contactType": "customer service", "description": "Text or WhatsApp", "areaServed": "GB", "availableLanguage": "en" }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://mobtc.co.uk/#website",
+      "name": "Maggie O'Neill Centre",
+      "alternateName": "Maggie's",
+      "url": "https://mobtc.co.uk/",
+      "inLanguage": "en-GB",
+      "publisher": { "@id": "https://mobtc.co.uk/#org" }
+    }
+  ]
+}

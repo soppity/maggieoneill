@@ -1,0 +1,29 @@
+---
+// A library photo. width/height reserve the box; object-fit: cover crops to it.
+import { images } from '../data/images';
+
+interface Props {
+  n: number;
+  width: number;
+  height: number;
+  priority?: boolean;
+  alt?: string;
+  class?: string;
+  sizes?: string;
+}
+const { n, width, height, priority = false, alt, class: className, sizes } = Astro.props;
+const image = images[n];
+if (!image) throw new Error(`Image #${n} is not in src/data/images.ts`);
+if (n === 142) throw new Error('Image #142 is internal only and must never be shown');
+---
+<img
+  class:list={['photo', className]}
+  src={image.src}
+  alt={alt ?? image.alt}
+  width={width}
+  height={height}
+  sizes={sizes}
+  loading={priority ? 'eager' : 'lazy'}
+  decoding={priority ? 'sync' : 'async'}
+  fetchpriority={priority ? 'high' : undefined}
+/>

@@ -1,0 +1,67 @@
+---
+import '../styles/global.css';
+import Seo from '../components/Seo.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobileBar from '../components/MobileBar.astro';
+import Analytics from '../components/Analytics.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import { gtmId } from '../data/analytics';
+import { imageHost } from '../data/images';
+import type { Node } from '../lib/schema';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage: string;
+  ogImageAlt: string;
+  schema?: Node[];
+  pageType?: string;
+  dateModified?: string;
+  mobileBar?: 'rooms' | 'virtual-office';
+  preloadImage?: string;
+}
+
+const { mobileBar = 'rooms', preloadImage, ...seo } = Astro.props;
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <Analytics />
+    <link rel="preload" href="/fonts/outfit-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/figtree-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preconnect" href={imageHost} crossorigin />
+    {preloadImage && <link rel="preload" href={preloadImage} as="image" fetchpriority="high" />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#2A0752" />
+    <Seo path={Astro.url.pathname} {...seo} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+  </head>
+  <body>
+    {!import.meta.env.DEV && (
+      <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`} height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+    )}
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <MobileBar variant={mobileBar} />
+    <CookieBanner />
+    <script>
+      // Key events for GA4 via the dataLayer (SEO spec 8.1). GTM reads these once the container is added.
+      type DL = Record<string, unknown>[];
+      const w = window as unknown as { dataLayer: DL };
+      w.dataLayer = w.dataLayer || [];
+      document.addEventListener('click', (e) => {
+        const el = (e.target as Element).closest<HTMLElement>('[data-track]');
+        if (el) w.dataLayer.push({ event: el.dataset.track, link_url: (el as HTMLAnchorElement).href || undefined });
+      });
+    </script>
+  </body>
+</html>

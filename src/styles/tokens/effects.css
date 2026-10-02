@@ -1,0 +1,14 @@
+:root {
+  --radius-input: 12px;
+  --radius-tile: 16px;
+  --radius-card: 24px;
+  --radius-pill: 999px;
+
+  --moc-shadow-card: 0 2px 6px rgba(42, 7, 82, 0.04), 0 12px 32px rgba(42, 7, 82, 0.07);
+  --moc-shadow-card-hover: 0 4px 10px rgba(42, 7, 82, 0.06), 0 20px 44px rgba(42, 7, 82, 0.11);
+  --moc-shadow-button: 0 4px 14px rgba(240, 96, 58, 0.28);
+
+  --ease-out: cubic-bezier(0.2, 0.8, 0.4, 1);
+  --duration-fast: 150ms;
+  --duration-base: 220ms;
+}

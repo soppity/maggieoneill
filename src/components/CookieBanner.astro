@@ -1,0 +1,73 @@
+---
+// Cookie banner for UK consent. Shows until the visitor accepts or rejects, and again from the
+// "Cookie settings" link in the footer. Works with the Consent Mode defaults in Analytics.astro.
+import { consentStorageKey } from '../data/analytics';
+---
+<div class="cookie-banner" id="cookie-banner" role="region" aria-label="Cookie choice" hidden>
+  <div class="cookie-banner__inner">
+    <p>
+      We'd like to use cookies to see how people find and use our website, so we can make it better.
+      Nothing is set until you choose. <a href="/cookies/">How we use cookies</a>
+    </p>
+    <div class="cookie-banner__actions">
+      <button type="button" class="btn btn--secondary" data-consent="denied">Reject</button>
+      <button type="button" class="btn btn--primary" data-consent="granted">Accept</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cookie-banner {
+    position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 60;
+    max-width: 760px; margin: 0 auto;
+    background: var(--moc-white); border-radius: var(--radius-card); box-shadow: 0 8px 40px rgba(42, 7, 82, 0.22);
+    border: 1px solid var(--moc-border);
+  }
+  .cookie-banner[hidden] { display: none; }
+  .cookie-banner__inner { display: flex; align-items: center; gap: 20px; padding: 20px 24px; }
+  .cookie-banner p { font-size: var(--text-small-size); line-height: 1.5; }
+  .cookie-banner__actions { display: flex; gap: 10px; flex: none; }
+  .cookie-banner .btn { min-height: 44px; padding: 10px 20px; font-size: 15px; }
+  @media (max-width: 640px) {
+    .cookie-banner { left: 8px; right: 8px; bottom: 8px; }
+    .cookie-banner__inner { flex-direction: column; align-items: stretch; gap: 14px; padding: 18px; }
+    .cookie-banner__actions .btn { flex: 1; }
+  }
+</style>
+
+<script is:inline define:vars={{ consentStorageKey }}>
+  (function () {
+    var banner = document.getElementById('cookie-banner');
+    if (!banner) return;
+    var saved = null;
+    try { saved = localStorage.getItem(consentStorageKey); } catch (e) {}
+    if (saved !== 'granted' && saved !== 'denied') banner.hidden = false;
+
+    function choose(value) {
+      try { localStorage.setItem(consentStorageKey, value); } catch (e) {}
+      var state = value === 'granted' ? 'granted' : 'denied';
+      if (typeof window.gtag === 'function') {
+        window.gtag('consent', 'update', {
+          ad_storage: state,
+          ad_user_data: state,
+          ad_personalization: state,
+          analytics_storage: state,
+        });
+      }
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'cookie_consent_update', consent: state });
+      banner.hidden = true;
+    }
+
+    banner.querySelectorAll('[data-consent]').forEach(function (btn) {
+      btn.addEventListener('click', function () { choose(btn.getAttribute('data-consent')); });
+    });
+    document.querySelectorAll('[data-cookie-settings]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        banner.hidden = false;
+        banner.querySelector('[data-consent="granted"]').focus();
+      });
+    });
+  })();
+</script>

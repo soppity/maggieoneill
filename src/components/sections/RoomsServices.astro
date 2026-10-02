@@ -1,0 +1,74 @@
+---
+// Rooms and services, training first. Prices never appear alone: each sits beside a link to what's included.
+import Photo from '../Photo.astro';
+import { formatPrice, rooms, trainingDayFrom } from '../../data/facts';
+
+const pod = rooms.find((r) => r.slug === 'pod')!;
+const auditorium = rooms.find((r) => r.slug === 'auditorium')!;
+
+const services = [
+  {
+    title: 'Training rooms',
+    text: `Hosted training days for care, NHS, council and corporate teams, from ${formatPrice(trainingDayFrom)} a day. The room is set to your layout before anyone arrives.`,
+    href: '/services/training-rooms/',
+    linkText: 'Training room hire near Liverpool',
+    image: 44,
+  },
+  {
+    title: 'Meeting rooms',
+    text: `From the ${pod.name}, a boardroom for ${pod.capacity.boardroom}, at ${formatPrice(pod.prices!.hour!)} an hour or ${formatPrice(pod.prices!.day!)} a day, to rooms for your whole team.`,
+    href: '/services/meeting-rooms/',
+    linkText: 'Meeting room hire in Huyton',
+    image: 95,
+  },
+  {
+    title: 'Events and conferences',
+    text: `The ${auditorium.name} seats up to ${auditorium.capacity.cabaret} cabaret style, with a stage, screen and lighting.`,
+    href: '/services/event-space-business-and-community/',
+    linkText: 'Events and conferences',
+    image: 113,
+  },
+  {
+    title: 'Private offices',
+    text: 'Offices to rent in the building, with meeting rooms, a kitchen and free parking on the doorstep.',
+    href: '/services/private-offices/',
+    linkText: 'Private offices',
+    image: 100,
+  },
+];
+---
+<section class="section section--cream" aria-labelledby="rooms-heading">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Rooms and services</span>
+      <h2 id="rooms-heading">What can you book at the Maggie O'Neill Centre?</h2>
+      <p>Training rooms, meeting rooms, an auditorium for events and private offices, all in one hosted building in Huyton.</p>
+    </div>
+    <div class="grid rooms-services">
+      {services.map((s, i) => (
+        <a class:list={['card', 'rooms-services__card', { 'rooms-services__card--lead': i === 0 }]} href={s.href}>
+          <Photo n={s.image} width={800} height={500} sizes="(max-width: 760px) 100vw, 50vw" />
+          <div class="rooms-services__body">
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+            <span class="rooms-services__link">{s.linkText} <span aria-hidden="true">→</span></span>
+          </div>
+        </a>
+      ))}
+    </div>
+    <p class="rooms-services__note">
+      Every booking includes your host, tea and coffee, the screen and free parking. <a href="/whats-included/">See everything that's included</a>.
+    </p>
+  </div>
+</section>
+
+<style>
+  .rooms-services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rooms-services__card { display: flex; flex-direction: column; overflow: hidden; }
+  .rooms-services__card :global(img) { aspect-ratio: 16 / 9; height: auto; }
+  .rooms-services__body { padding: 24px 28px 28px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .rooms-services__body p { color: var(--moc-slate-text); }
+  .rooms-services__link { margin-top: auto; padding-top: 6px; font-weight: 700; color: var(--moc-purple-700); }
+  .rooms-services__note { margin-top: 28px; }
+  @media (max-width: 760px) { .rooms-services { grid-template-columns: 1fr; } }
+</style>

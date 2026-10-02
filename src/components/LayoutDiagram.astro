@@ -1,0 +1,74 @@
+---
+// Top-down drawing of a room layout. Screen at the top, tables in lilac, chairs in coral.
+import type { Layout } from '../data/facts';
+
+interface Props {
+  layout: Layout;
+  title: string;
+}
+const { layout, title } = Astro.props;
+
+type Shape =
+  | { kind: 'rect'; x: number; y: number; w: number; h: number; r?: number }
+  | { kind: 'table'; cx: number; cy: number; r: number }
+  | { kind: 'chair'; cx: number; cy: number };
+
+const shapes: Shape[] = [];
+const rect = (x: number, y: number, w: number, h: number, r = 4) => shapes.push({ kind: 'rect', x, y, w, h, r });
+const chair = (cx: number, cy: number) => shapes.push({ kind: 'chair', cx, cy });
+const round = (cx: number, cy: number, seats: number[]) => {
+  shapes.push({ kind: 'table', cx, cy, r: 15 });
+  for (const deg of seats) {
+    const a = (deg * Math.PI) / 180;
+    chair(cx + Math.cos(a) * 24, cy + Math.sin(a) * 24);
+  }
+};
+
+switch (layout) {
+  case 'theatre':
+    for (let row = 0; row < 5; row++) for (let col = 0; col < 8; col++) chair(30 + col * 20 + (col > 3 ? 10 : 0), 42 + row * 21);
+    break;
+  case 'classroom':
+    for (let row = 0; row < 3; row++)
+      for (const x of [28, 112]) {
+        rect(x, 36 + row * 36, 60, 13);
+        for (let i = 0; i < 3; i++) chair(x + 10 + i * 20, 36 + row * 36 + 22);
+      }
+    break;
+  case 'boardroom':
+    rect(48, 52, 104, 48, 8);
+    for (let i = 0; i < 4; i++) { chair(62 + i * 25, 42); chair(62 + i * 25, 110); }
+    chair(38, 76); chair(162, 76);
+    break;
+  case 'uShape':
+    rect(36, 36, 14, 86); rect(150, 36, 14, 86); rect(36, 108, 128, 14);
+    for (let i = 0; i < 4; i++) { chair(26, 46 + i * 20); chair(174, 46 + i * 20); }
+    for (let i = 0; i < 5; i++) chair(52 + i * 24, 132);
+    break;
+  case 'cabaret':
+    for (const [cx, cy] of [[58, 58], [142, 58], [58, 112], [142, 112]]) round(cx, cy, [0, 45, 90, 135, 180]);
+    break;
+  case 'banquet':
+    for (const [cx, cy] of [[58, 50], [142, 50], [58, 116], [142, 116]]) round(cx, cy, [0, 45, 90, 135, 180, 225, 270, 315]);
+    break;
+}
+---
+<svg class="layout-diagram" viewBox="0 0 200 150" role="img" aria-label={title}>
+  <rect x="55" y="8" width="90" height="6" rx="3" class="ld-screen" />
+  {shapes.map((s) =>
+    s.kind === 'rect' ? (
+      <rect x={s.x} y={s.y} width={s.w} height={s.h} rx={s.r} class="ld-table" />
+    ) : s.kind === 'table' ? (
+      <circle cx={s.cx} cy={s.cy} r={s.r} class="ld-table" />
+    ) : (
+      <circle cx={s.cx.toFixed(1)} cy={s.cy.toFixed(1)} r="5" class="ld-chair" />
+    ),
+  )}
+</svg>
+
+<style>
+  .layout-diagram { width: 100%; height: auto; display: block; }
+  .ld-screen { fill: var(--moc-purple-900); }
+  .ld-table { fill: var(--moc-purple-tint-2); stroke: var(--moc-purple-700); stroke-width: 1.5; }
+  .ld-chair { fill: var(--moc-coral-500); }
+</style>

@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FCFAF7;color:#211A2E;font-family:Figtree,sans-serif;-webkit-font-smoothing:antialiased}a{color:#D64A26}a:hover{color:#4A0D8F}*{box-sizing:border-box}</style>
+</helmet>
+<div style="max-width:1120px;margin:0 auto;padding:56px 28px 120px;display:flex;flex-direction:column;gap:88px">
+
+<header style="display:flex;flex-direction:column;gap:28px">
+  <img src="logo/mobtc-logo-horizontal.svg" alt="The Maggie O'Neill Centre logo" style="height:52px;width:auto;align-self:flex-start">
+  <div style="display:flex;flex-direction:column;gap:16px;max-width:820px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">Brand strategy · agreed direction · 28 Sept 2026</div>
+    <h1 style="font-family:Outfit,sans-serif;font-weight:800;font-size:clamp(40px,6vw,64px);line-height:1.02;letter-spacing:-0.02em;margin:0;color:#2A0752">Be the venue that <span style="color:#F0603A">looks after</span> people.</h1>
+    <p style="margin:0;font-size:19px;line-height:1.6;color:#4b4658;text-wrap:pretty">How the Maggie O'Neill Centre becomes the obvious choice for training and meetings in Merseyside, and earns the right to charge for it. Built from 76 written Google reviews, a year of CRM conversations, GA4 and Site Kit data, and the andcards brand positioning method.</p>
+  </div>
+  <nav style="display:flex;flex-wrap:wrap;gap:8px">
+    <sc-for list="{{ toc }}" as="t" hint-placeholder-count="12">
+      <a href="{{ t.href }}" style="text-decoration:none;font-size:14px;font-weight:600;color:#4A0D8F;background:#EFE7FA;border-radius:999px;padding:7px 14px">{{ t.label }}</a>
+    </sc-for>
+  </nav>
+</header>
+
+<section id="summary" style="background:#2A0752;color:#fff;border-radius:28px;padding:44px clamp(24px,4vw,48px);display:flex;flex-direction:column;gap:28px">
+  <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:34px;margin:0;line-height:1.1">The whole strategy on one page</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px">
+    <sc-for list="{{ summary }}" as="s" hint-placeholder-count="6">
+      <div style="display:flex;flex-direction:column;gap:8px;border-top:2px solid #F0603A;padding-top:14px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#FFB59E">{{ s.k }}</div>
+        <div style="font-family:Outfit,sans-serif;font-weight:700;font-size:21px;line-height:1.25">{{ s.v }}</div>
+        <div style="font-size:15px;line-height:1.55;color:#DCD0EE">{{ s.n }}</div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="evidence" style="display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">01 · The evidence</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:38px;margin:0;line-height:1.08;color:#2A0752">Customers already told us the positioning</h2>
+    <p style="margin:0;font-size:17px;line-height:1.6;color:#4b4658">The guide says to find why clients fell in love with you, then check whether that matches the message you've been sending. It doesn't. The site leads with the charity and "workspaces with heart". Reviews lead with being looked after.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px">
+    <div style="background:#fff;border:1px solid #ECE8F1;border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:Outfit,sans-serif;font-weight:700;font-size:19px">What people praise, share of written reviews</div>
+      <sc-for list="{{ themes }}" as="t" hint-placeholder-count="9">
+        <div style="display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr) 44px;gap:12px;align-items:center">
+          <span style="font-size:14px;font-weight:600;line-height:1.3">{{ t.name }}</span>
+          <span style="height:12px;background:#F3EEF8;border-radius:999px;overflow:hidden;display:flex"><span style="height:100%;width:{{ t.w }};background:{{ t.c }};border-radius:999px"></span></span>
+          <span style="font-family:Outfit,sans-serif;font-weight:700;font-size:15px;text-align:right">{{ t.p }}</span>
+        </div>
+      </sc-for>
+      <p style="margin:6px 0 0;font-size:13px;color:#6B7280">Coral: what we should lead with. Purple: supporting proof. Grey: what we lead with today.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <sc-for list="{{ insights }}" as="i" hint-placeholder-count="5">
+        <div style="background:#FAF3EB;border-radius:20px;padding:20px 22px;display:flex;flex-direction:column;gap:6px">
+          <div style="font-family:Outfit,sans-serif;font-weight:700;font-size:17px;color:#2A0752">{{ i.h }}</div>
+          <div style="font-size:15px;line-height:1.55;color:#4b4658">{{ i.b }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="positioning" style="display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">02 · Positioning</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:38px;margin:0;line-height:1.08;color:#2A0752">One word, one line, one statement</h2>
+    <p style="margin:0;font-size:17px;line-height:1.6;color:#4b4658">The guide asks for a single unifying word that is true, thrills the customer and that competitors want but can't claim. Then a phrase of five to seven words. Then repetition, every day, on every channel.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+    <div style="background:#fff;border:1px solid #ECE8F1;border-radius:24px;padding:30px;display:flex;flex-direction:column;gap:12px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6B7280">The word</div>
+      <div style="font-family:Outfit,sans-serif;font-weight:800;font-size:46px;line-height:1;color:#F0603A">Looked after</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.5;color:#4b4658">
+        <div><strong style="color:#211A2E">True.</strong> 66% of written reviews say it in their own words.</div>
+        <div><strong style="color:#211A2E">Thrills the booker.</strong> Their fear is the day going wrong on their watch. This removes it.</div>
+        <div><strong style="color:#211A2E">Rejects competitors.</strong> A community hall has nobody on site. A hotel's first job is its bedroom guests.</div>
+      </div>
+    </div>
+    <div style="background:#fff;border:1px solid #ECE8F1;border-radius:24px;padding:30px;display:flex;flex-direction:column;gap:12px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6B7280">The line (tagline)</div>
+      <div style="font-family:Outfit,sans-serif;font-weight:800;font-size:40px;line-height:1.05;color:#2A0752">Looked after at <span style="color:#F0603A">Maggie's.</span></div>
+      <div style="font-size:15px;line-height:1.55;color:#4b4658">Four words. It uses the name people actually say, so the nickname becomes an asset rather than a gap between "Maggie's" and "O'Neill". It replaces "Space Made Simple" as the lead line. See <a href="#taglines">taglines</a> for the alternatives.</div>
+    </div>
+  </div>
+  <div style="background:#FAF3EB;border-radius:24px;padding:32px clamp(22px,4vw,40px);display:flex;flex-direction:column;gap:14px">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6B7280">Positioning statement (internal)</div>
+    <p style="margin:0;font-family:Outfit,sans-serif;font-weight:600;font-size:23px;line-height:1.4;color:#2A0752;text-wrap:pretty">For the people who organise training and meetings for care providers, the NHS, councils and charities across Merseyside, the Maggie O'Neill Centre is the hosted venue where someone meets your group at the door and everything is ready before they arrive. Unlike a community hall, you don't set anything up yourself. Unlike a hotel, rooms are the whole job, not a sideline to the bedrooms. And every booking funds Maggie's Meals.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+    <div style="border:1px dashed #C9B8E6;border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:8px">
+      <div style="font-family:Outfit,sans-serif;font-weight:700;font-size:16px">The business-card test</div>
+      <div style="font-size:15px;line-height:1.55;color:#4b4658">"Maggie's is a charity-run training venue in Huyton. Someone meets your group at the door, the room's ready and the tea's on. Free parking outside."</div>
+    </div>
+    <div style="border:1px dashed #C9B8E6;border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:8px">
+      <div style="font-family:Outfit,sans-serif;font-weight:700;font-size:16px">The category we name</div>
+      <div style="font-size:15px;line-height:1.55;color:#4b4658"><strong style="color:#211A2E">A hosted venue.</strong> Customers don't have a word for the gap between a hall and a hotel. We give them one and own it: "hosted training rooms", "hosted meeting rooms", "your host for the day".</div>
+    </div>
+  </div>
+</section>
+
+<section id="middle" style="display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">03 · Where we sit</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:38px;margin:0;line-height:1.08;color:#2A0752">Hotel standards, community heart, built only for this</h2>
+    <p style="margin:0;font-size:17px;line-height:1.6;color:#4b4658">This comparison becomes a page (<a href="#website">/whats-included/</a>) and a block on every room page. Competitors are never named.</p>
+  </div>
+  <div style="overflow-x:auto;background:#fff;border:1px solid #ECE8F1;border-radius:24px">
+    <div style="min-width:760px;display:grid;grid-template-columns:1.1fr 1fr 1.15fr 1fr">
+      <div style="padding:18px 20px;font-size:13px;font-weight:700;color:#6B7280;border-bottom:1px solid #ECE8F1"></div>
+      <div style="padding:18px 20px;font-family:Outfit,sans-serif;font-weight:700;font-size:17px;border-bottom:1px solid #ECE8F1">Community hall</div>
+      <div style="padding:18px 20px;font-family:Outfit,sans-serif;font-weight:800;font-size:17px;border-bottom:1px solid #ECE8F1;background:#2A0752;color:#fff">Maggie's</div>
+      <div style="padding:18px 20px;font-family:Outfit,sans-serif;font-weight:700;font-size:17px;border-bottom:1px solid #ECE8F1">Hotel</div>
+      <sc-for list="{{ compare }}" as="r" hint-placeholder-count="9">
+        <div style="padding:14px 20px;font-size:14px;font-weight:700;border-bottom:1px solid #F3EEF8">{{ r.k }}</div>
+        <div style="padding:14px 20px;font-size:14px;line-height:1.45;color:#6B7280;border-bottom:1px solid #F3EEF8">{{ r.hall }}</div>
+        <div style="padding:14px 20px;font-size:14px;line-height:1.45;font-weight:600;color:#2A0752;background:#F6F1FB;border-bottom:1px solid #ECE3F6">{{ r.us }}</div>
+        <div style="padding:14px 20px;font-size:14px;line-height:1.45;color:#6B7280;border-bottom:1px solid #F3EEF8">{{ r.hotel }}</div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="people" style="display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">04 · Who we're for</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:38px;margin:0;line-height:1.08;color:#2A0752">Sell to the booker, in the delegate's voice</h2>
+    <p style="margin:0;font-size:17px;line-height:1.6;color:#4b4658">The guide says to picture one real person, not a demographic. Our reviewers are mostly delegates. The buyer is the person who booked them. Every page should be written for her.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px">
+    <sc-for list="{{ personas }}" as="p" hint-placeholder-count="4">
+      <div style="background:#fff;border:1px solid #ECE8F1;border-radius:24px;padding:26px;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap">
+          <div style="font-family:Outfit,sans-serif;font-weight:800;font-size:22px;color:#2A0752">{{ p.name }}</div>
+          <span style="font-size:12px;font-weight:700;color:{{ p.tc }};background:{{ p.tb }};border-radius:999px;padding:4px 10px">{{ p.tag }}</span>
+        </div>
+        <div style="font-size:14px;font-weight:600;color:#6B7280">{{ p.role }}</div>
+        <div style="font-size:15px;line-height:1.55;color:#4b4658">{{ p.story }}</div>
+        <div style="display:grid;grid-template-columns:72px minmax(0,1fr);gap:6px 12px;font-size:14px;line-height:1.45">
+          <strong>Fears</strong><span style="color:#4b4658">{{ p.fear }}</span>
+          <strong>Buys</strong><span style="color:#4b4658">{{ p.buys }}</span>
+          <strong>Say</strong><span style="color:#2A0752;font-weight:600">{{ p.say }}</span>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="background:#FAF3EB;border-radius:20px;padding:22px 26px;display:flex;flex-direction:column;gap:8px">
+    <div style="font-family:Outfit,sans-serif;font-weight:700;font-size:18px;color:#2A0752">Who we're happy to lose</div>
+    <div style="font-size:15px;line-height:1.6;color:#4b4658">The guide's first step to good positioning is knowing which customers you'll turn away. For us: individual hot-deskers, one-hour bookings from people shopping on price, and coworking-app traffic (the July Werksy enquiry is an example). They take the most staff time for the least revenue, and they pull the brand towards "cheap". We don't market to them, and we stop listing on coworking apps.</div>
+  </div>
+</section>
+
+<section id="why" style="display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">05 · Why they buy</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:38px;margin:0;line-height:1.08;color:#2A0752">Seven facts, one feeling, one mission</h2>
+    <p style="margin:0;font-size:17px;line-height:1.6;color:#4b4658">The guide builds positioning from three blocks: 5 to 7 hard facts, the emotion, and the social mission. Every fact below traces to a review.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:22px">
+    <div style="background:#fff;border:1px solid #ECE8F1;border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:4px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6B7280;margin-bottom:8px">Rational: the proof</div>
+      <sc-for list="{{ facts }}" as="f" hint-placeholder-count="7">
+        <div style="display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;padding:12px 0;border-top:1px solid #F3EEF8">
+          <span style="font-family:Outfit,sans-serif;font-weight:800;font-size:20px;color:#F0603A">{{ f.n }}</span>
+          <div style="display:flex;flex-direction:column;gap:3px"><strong style="font-size:16px">{{ f.h }}</strong><span style="font-size:14px;line-height:1.5;color:#4b4658">{{ f.b }}</span></div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <div style="background:#F0603A;color:#fff;border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Emotional: the feeling</div>
+        <div style="font-family:Outfit,sans-serif;font-weight:800;font-size:26px;line-height:1.15">Relief, then pride.</div>
+        <div style="font-size:15px;line-height:1.55">Relief for the booker that nothing will go wrong. Pride when her people come back saying it was lovely. For delegates at heavy courses (adoption, fostering, safeguarding), calm. "Nervous to attend… soon became at ease."</div>
+      </div>
+      <div style="background:#2A0752;color:#fff;border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#FFB59E">Mission: the reason to feel good</div>
+        <div style="font-family:Outfit,sans-serif;font-weight:800;font-size:26px;line-height:1.15">Every booking funds Maggie's Meals.</div>
+        <div style="font-size:15px;line-height:1.55;color:#DCD0EE">Only 4% of reviews mention it, so it's never the headline. It closes the deal: social value for public-sector procurement, and a reason for a private booker to choose us over a hotel at a similar price.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="messaging" style="display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">06 · Messaging by audience</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:38px;margin:0;line-height:1.08;color:#2A0752">Same promise, different first sentence</h2>
+  </div>
+  <div style="overflow-x:auto;background:#fff;border:1px solid #ECE8F1;border-radius:24px">
+    <div style="min-width:880px;display:grid;grid-template-columns:150px 1.3fr 1fr 1fr 1fr">
+      <sc-for list="{{ msgHead }}" as="h" hint-placeholder-count="5">
+        <div style="padding:16px 18px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6B7280;border-bottom:1px solid #ECE8F1">{{ h }}</div>
+      </sc-for>
+      <sc-for list="{{ msgCells }}" as="c" hint-placeholder-count="25">
+        <div style="padding:16px 18px;font-size:14px;line-height:1.5;border-bottom:1px solid #F3EEF8;font-weight:{{ c.fw }};color:{{ c.col }}">{{ c.t }}</div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="taglines" style="display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">07 · Lines and headlines</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:38px;margin:0;line-height:1.08;color:#2A0752">What we say, and what we retire</h2>
+    <p style="margin:0;font-size:17px;line-height:1.6;color:#4b4658">The guide lists "made with love", "quality" and "best workplace" as dead positioning: words people have heard thousands of times and no longer believe. Two of our current lines fall into that trap.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px">
+    <sc-for list="{{ lines }}" as="l" hint-placeholder-count="4">
+      <div style="background:#fff;border:1px solid #ECE8F1;border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:10px">
+        <span style="align-self:flex-start;font-size:12px;font-weight:700;color:{{ l.tc }};background:{{ l.tb }};border-radius:999px;padding:4px 10px">{{ l.tag }}</span>
+        <div style="font-family:Outfit,sans-serif;font-weight:800;font-size:24px;line-height:1.15;color:#2A0752">{{ l.line }}</div>
+        <div style="font-size:14px;line-height:1.55;color:#4b4658">{{ l.why }}</div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="background:#fff;border:1px solid #ECE8F1;border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:4px">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6B7280;margin-bottom:8px">Headline bank (all traceable to reviews)</div>
+    <sc-for list="{{ heads }}" as="h" hint-placeholder-count="7">
+      <div style="display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:18px;padding:14px 0;border-top:1px solid #F3EEF8">
+        <div style="font-family:Outfit,sans-serif;font-weight:700;font-size:19px;line-height:1.3;color:#2A0752">{{ h.t }}</div>
+        <div style="font-size:14px;line-height:1.5;color:#6B7280">{{ h.u }}</div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="price" style="display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">08 · Charging more</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:38px;margin:0;line-height:1.08;color:#2A0752">Stop competing with halls. Price against hotels.</h2>
+    <p style="margin:0;font-size:17px;line-height:1.6;color:#4b4658">"Don't make yourself cheap" is the guide's first rule. Price comes up in 9% of reviews and nobody says they chose us because we were cheapest. What people pay for is a day that runs without them.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+    <sc-for list="{{ pricing }}" as="p" hint-placeholder-count="6">
+      <div style="background:#fff;border:1px solid #ECE8F1;border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:8px">
+        <div style="font-family:Outfit,sans-serif;font-weight:700;font-size:18px;color:#2A0752">{{ p.h }}</div>
+        <div style="font-size:15px;line-height:1.55;color:#4b4658">{{ p.b }}</div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="background:#2A0752;color:#fff;border-radius:28px;padding:34px clamp(22px,4vw,40px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:32px">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#FFB59E">Proposed product</div>
+      <div style="font-family:Outfit,sans-serif;font-weight:800;font-size:34px;line-height:1.05">The Hosted Day</div>
+      <div style="font-size:15px;line-height:1.6;color:#DCD0EE">One price per room per day. Everything listed is included, so the price reads as value, not as a room rate. Catering from Superior Catering sits alongside as an add-on. It's the base for the packages below.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px 18px">
+      <sc-for list="{{ hosted }}" as="h" hint-placeholder-count="10">
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:1.4"><span style="flex-shrink:0;width:8px;height:8px;border-radius:50%;background:#F0603A;margin-top:7px"></span><span>{{ h }}</span></div>
+      </sc-for>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div style="font-family:Outfit,sans-serif;font-weight:700;font-size:22px;color:#2A0752">Named for who books</div>
+    <p style="margin:0;font-size:15px;line-height:1.6;color:#4b4658;max-width:780px">Packages are on hold. These names are the existing hosted room hire, at existing prices, framed for our three biggest audiences so each one sees an offer made for them. Use them as page headings, ad headlines and email subject lines.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+      <sc-for list="{{ packages }}" as="k" hint-placeholder-count="5">
+        <div style="background:#fff;border:1px solid #ECE8F1;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:8px">
+          <div style="font-family:Outfit,sans-serif;font-weight:800;font-size:19px;color:#2A0752">{{ k.h }}</div>
+          <div style="font-size:12px;font-weight:700;color:#D64A26">{{ k.who }}</div>
+          <div style="font-size:14px;line-height:1.5;color:#4b4658">{{ k.b }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="system" style="display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">09 · The brand system</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:38px;margin:0;line-height:1.08;color:#2A0752">"Looked after" through all eight blocks</h2>
+    <p style="margin:0;font-size:17px;line-height:1.6;color:#4b4658">The guide says a good word should suggest obvious decisions everywhere you apply it. These are the eight blocks it names.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px">
+    <sc-for list="{{ blocks }}" as="b" hint-placeholder-count="8">
+      <div style="background:{{ b.bg }};border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:Outfit,sans-serif;font-weight:800;font-size:20px;color:#2A0752">{{ b.h }}</div>
+        <sc-for list="{{ b.items }}" as="it" hint-placeholder-count="3">
+          <div style="display:flex;gap:10px;font-size:14px;line-height:1.5;color:#4b4658"><span style="flex-shrink:0;width:6px;height:6px;border-radius:50%;background:#F0603A;margin-top:8px"></span><span>{{ it }}</span></div>
+        </sc-for>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="journey" style="display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">10 · The experience</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:38px;margin:0;line-height:1.08;color:#2A0752">Musts and wows, from enquiry to rebooking</h2>
+    <p style="margin:0;font-size:17px;line-height:1.6;color:#4b4658">The guide splits the experience into not OK, OK and wow. A must is what stops the booker worrying. A wow is what makes a delegate tell someone about it.</p>
+  </div>
+  <div style="overflow-x:auto">
+    <div style="min-width:900px;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px">
+      <sc-for list="{{ journey }}" as="j" hint-placeholder-count="6">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font-family:Outfit,sans-serif;font-weight:800;font-size:17px;color:#fff;background:#4A0D8F;border-radius:14px;padding:12px 14px">{{ j.stage }}</div>
+          <div style="background:#fff;border:1px solid #ECE8F1;border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:6px;flex:1">
+            <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6B7280">Must</div>
+            <div style="font-size:14px;line-height:1.45">{{ j.must }}</div>
+          </div>
+          <div style="background:#FFF0EA;border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:6px;flex:1">
+            <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">Wow</div>
+            <div style="font-size:14px;line-height:1.45">{{ j.wow }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="identity" style="display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">11 · Identity and voice</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:38px;margin:0;line-height:1.08;color:#2A0752">Brand constants and what changes in the guidelines</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px">
+    <div style="background:#fff;border:1px solid #ECE8F1;border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:12px">
+      <div style="font-family:Outfit,sans-serif;font-weight:700;font-size:19px;color:#2A0752">Keep: our constants</div>
+      <sc-for list="{{ constants }}" as="c" hint-placeholder-count="5">
+        <div style="display:flex;flex-direction:column;gap:2px;padding-top:10px;border-top:1px solid #F3EEF8"><strong style="font-size:15px">{{ c.h }}</strong><span style="font-size:14px;line-height:1.5;color:#4b4658">{{ c.b }}</span></div>
+      </sc-for>
+    </div>
+    <div style="background:#fff;border:1px solid #ECE8F1;border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:12px">
+      <div style="font-family:Outfit,sans-serif;font-weight:700;font-size:19px;color:#2A0752">Change: guideline updates</div>
+      <sc-for list="{{ changes }}" as="c" hint-placeholder-count="6">
+        <div style="display:flex;flex-direction:column;gap:2px;padding-top:10px;border-top:1px solid #F3EEF8"><strong style="font-size:15px">{{ c.h }}</strong><span style="font-size:14px;line-height:1.5;color:#4b4658">{{ c.b }}</span></div>
+      </sc-for>
+    </div>
+  </div>
+  <div style="background:#FAF3EB;border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:12px">
+    <div style="font-family:Outfit,sans-serif;font-weight:700;font-size:19px;color:#2A0752">Photography brief</div>
+    <div style="font-size:15px;line-height:1.6;color:#4b4658;max-width:860px">Show being looked after, not empty rooms. Priority shots from the existing library first, new shoots only for gaps: a host greeting a group at the door; a room set before anyone arrives (tea tray, name cards, screen on); a delegate at ease mid-session (#105 is the model); detail shots of the flowers, the diffuser and the kitchen; the welcome screen with a group's name on it (#54 shows the screen and AirPlay). One new shot worth commissioning: the plain exterior next to the interior, for the "Come and see it" story.</div>
+  </div>
+</section>
+
+<section id="website" style="display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">12 · Website and SEO</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:38px;margin:0;line-height:1.08;color:#2A0752">What changes in the site map</h2>
+    <p style="margin:0;font-size:17px;line-height:1.6;color:#4b4658">The guide's final test: can a visitor understand who you are and what makes you different in the first seconds on the homepage? Right now the answer is "a charity with rooms". It should be "the venue that looks after your people".</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px">
+    <sc-for list="{{ seoFacts }}" as="s" hint-placeholder-count="4">
+      <div style="background:#fff;border:1px solid #ECE8F1;border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:6px">
+        <div style="font-family:Outfit,sans-serif;font-weight:800;font-size:30px;color:#4A0D8F;line-height:1">{{ s.n }}</div>
+        <div style="font-size:14px;line-height:1.5;color:#4b4658">{{ s.b }}</div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="background:#fff;border:1px solid #ECE8F1;border-radius:24px;overflow:hidden">
+    <sc-for list="{{ sitemap }}" as="p" hint-placeholder-count="14">
+      <div style="display:grid;grid-template-columns:96px minmax(0,1fr) minmax(0,1.6fr);gap:16px;padding:16px 22px;border-top:1px solid #F3EEF8;align-items:start">
+        <span style="justify-self:start;font-size:12px;font-weight:700;color:{{ p.tc }};background:{{ p.tb }};border-radius:999px;padding:4px 10px">{{ p.tag }}</span>
+        <div style="display:flex;flex-direction:column;gap:2px"><strong style="font-size:15px">{{ p.name }}</strong><code style="font-size:12px;color:#6B7280;word-break:break-all">{{ p.url }}</code></div>
+        <div style="font-size:14px;line-height:1.5;color:#4b4658">{{ p.what }}</div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+    <div style="background:#FAF3EB;border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:10px">
+      <div style="font-family:Outfit,sans-serif;font-weight:700;font-size:18px;color:#2A0752">Every room page answers the 10 pre-booking questions</div>
+      <div style="font-size:14px;line-height:1.6;color:#4b4658">Price per day and half day · live availability · screen and AirPlay, HDMI cables provided · tea and coffee in the room · free parking · layouts · cancellation and deposits for multi-day bookings · a real phone number and a named person · what to bring (nothing). As an FAQ block with FAQPage schema.</div>
+    </div>
+    <div style="background:#FAF3EB;border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:10px">
+      <div style="font-family:Outfit,sans-serif;font-weight:700;font-size:18px;color:#2A0752">Technical fixes from GA4 and Site Kit</div>
+      <div style="font-size:14px;line-height:1.6;color:#4b4658">301 <code>/services/meeting-training-rooms/</code> to <code>/services/training-rooms/</code>, and <code>/services/hotdesking/</code> and <code>/services/coworking/</code> to <code>/services/meeting-rooms/</code>. Noindex author, tag and category archives. Put "Huyton L36 8HT" in the homepage and contact meta (85 impressions for the postcode, 2 clicks). Keep <code>/llms.txt</code> up to date: ChatGPT is already sending visitors.</div>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div style="font-family:Outfit,sans-serif;font-weight:700;font-size:22px;color:#2A0752">Lead case studies: organisations just like theirs</div>
+    <div style="background:#fff;border:1px solid #ECE8F1;border-radius:24px;overflow:hidden">
+      <sc-for list="{{ cases }}" as="c" hint-placeholder-count="5">
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr) minmax(0,0.8fr) minmax(0,0.9fr);gap:16px;padding:16px 22px;border-top:1px solid #F3EEF8;align-items:start">
+          <strong style="font-size:15px">{{ c.org }}</strong>
+          <span style="font-size:14px;line-height:1.5;color:#4b4658">{{ c.use }}</span>
+          <span style="justify-self:start;font-size:12px;font-weight:700;color:#4A0D8F;background:#EFE7FA;border-radius:999px;padding:4px 10px">{{ c.aud }}</span>
+          <span style="font-size:13px;color:#6B7280">{{ c.logo }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="fix" style="display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">13 · Before a marketing push</div>
+    <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:38px;margin:0;line-height:1.08;color:#2A0752">Keep the promise first</h2>
+    <p style="margin:0;font-size:17px;line-height:1.6;color:#4b4658">"Put your money where your mouth is" is the guide's rule for any brand promise. A brand built on being looked after breaks on the first day someone isn't.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px">
+    <sc-for list="{{ fixes }}" as="f" hint-placeholder-count="7">
+      <div style="background:#fff;border:1px solid #ECE8F1;border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;gap:10px;align-items:center"><span style="width:10px;height:10px;border-radius:50%;background:{{ f.c }};flex-shrink:0"></span><strong style="font-size:16px">{{ f.h }}</strong></div>
+        <div style="font-size:14px;line-height:1.55;color:#4b4658">{{ f.b }}</div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="decide" style="background:#2A0752;color:#fff;border-radius:28px;padding:40px clamp(22px,4vw,44px);display:flex;flex-direction:column;gap:22px">
+  <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:32px;margin:0">Agreed on 28 September</h2>
+  <sc-for list="{{ decisions }}" as="d" hint-placeholder-count="7">
+    <div style="display:grid;grid-template-columns:36px minmax(0,1fr);gap:14px;padding-top:16px;border-top:1px solid #4A2A78">
+      <span style="font-family:Outfit,sans-serif;font-weight:800;font-size:22px;color:#F0603A">{{ d.n }}</span>
+      <div style="display:flex;flex-direction:column;gap:4px"><strong style="font-size:17px">{{ d.h }}</strong><span style="font-size:15px;line-height:1.55;color:#DCD0EE">{{ d.b }}</span></div>
+    </div>
+  </sc-for>
+  <div style="font-family:Outfit,sans-serif;font-weight:800;font-size:22px;margin-top:14px;color:#FFB59E">Still needed from you</div>
+  <sc-for list="{{ open }}" as="d" hint-placeholder-count="3">
+    <div style="display:grid;grid-template-columns:36px minmax(0,1fr);gap:14px;padding-top:16px;border-top:1px solid #4A2A78">
+      <span style="font-family:Outfit,sans-serif;font-weight:800;font-size:22px;color:#F0603A">{{ d.n }}</span>
+      <div style="display:flex;flex-direction:column;gap:4px"><strong style="font-size:17px">{{ d.h }}</strong><span style="font-size:15px;line-height:1.55;color:#DCD0EE">{{ d.b }}</span></div>
+    </div>
+  </sc-for>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const toc = [['Summary','summary'],['Evidence','evidence'],['Positioning','positioning'],['Where we sit','middle'],['Who for','people'],['Why they buy','why'],['Messaging','messaging'],['Taglines','taglines'],['Charging more','price'],['Brand system','system'],['Experience','journey'],['Identity','identity'],['Website','website'],['Fix first','fix'],['Agreed','decide']].map(([label, id]) => ({ label, href: '#' + id }));
+    const summary = [
+      { k: 'The word', v: 'Looked after', n: 'What 66% of written reviews describe. Nobody else in our market can claim it.' },
+      { k: 'The line', v: "Looked after at Maggie's.", n: "Uses the name people already say. Replaces 'Space Made Simple' as the lead line." },
+      { k: 'The category', v: 'A hosted venue', n: 'The gap between a DIY community hall and a hotel that fits room hire around its bedrooms.' },
+      { k: 'The buyer', v: 'The person who books', n: 'A training coordinator at a care provider, NHS trust or council. Sell her a day that reflects well on her.' },
+      { k: 'The product', v: 'The Hosted Day', n: 'Sell days, not hours. One price, everything listed as included. Price against hotels, not halls.' },
+      { k: 'The mission', v: 'The closer, not the opener', n: "Maggie's Meals and social value win procurement and tip close calls. They don't lead the homepage." },
+    ];
+    const themeRaw = [['Welcomed and looked after',66,'#F0603A'],['Everything works and is ready',35,'#F0603A'],['How it feels inside (calm)',32,'#F0603A'],['Easy to reach and park',23,'#4A0D8F'],['Clean',23,'#4A0D8F'],['Refreshments included',20,'#4A0D8F'],['Easy from booking to the day',12,'#4A0D8F'],['Price',9,'#B8B3C2'],['Community and charity',4,'#B8B3C2']];
+    const themes = themeRaw.map(([name, p, c]) => ({ name, p: p + '%', w: Math.round(p / 66 * 100) + '%', c }));
+    const insights = [
+      { h: 'Training is the main job', b: '37% of written reviews mention a course, 16% a meeting, 8% coworking. Top clients are care and fostering providers (Amore, AFG, Adoption in Merseyside, TACT) and Livv.' },
+      { h: 'Calm matters for some audiences', b: 'Adoption and fostering sessions bring prospective parents into the room, and emotions run high. Oliver McGowan days need a calm sensory environment. A calm, homely room helps the course work. No hotel sells that.' },
+      { h: 'The gap is the story', b: '"Looks very bland once you hit the car park but inside, very open and lovely." People expect a community centre and find something better.' },
+      { h: 'Reviews are working', b: '230 Google reviews as of 28 September 2026, and more arriving in 2026 than in 2022 to 2025 combined.' },
+      { h: 'The search is for us, by name', b: "All top Google queries are 'Maggie O'Neill Centre' variants, often misspelled. Almost nobody finds us through a service search yet." },
+    ];
+    const compare = [
+      { k: 'Who greets you', hall: 'A key in a lockbox, or a caretaker', us: 'Your host, at the front door, by name', hotel: 'Reception, busy with check-ins' },
+      { k: 'Room set-up', hall: 'You move the tables', us: 'Set to your layout before you arrive', hotel: 'Set up, often by agency staff' },
+      { k: 'Tech', hall: 'Bring your own projector', us: 'Screen with AirPlay, HDMI cables, WiFi, all tested', hotel: 'Available, often charged extra' },
+      { k: 'Tea and coffee', hall: 'Bring your own', us: 'In the room, all day, included', hotel: 'Timed breaks, charged per delegate' },
+      { k: 'Parking', hall: 'Street parking, if you are lucky', us: 'Free 50-space car park outside, M57 30 seconds away', hotel: 'Paid, or limited' },
+      { k: 'Feel', hall: 'Tired, sometimes damp', us: 'Calm, spotless, flowers, it smells lovely', hotel: 'Corporate and anonymous' },
+      { k: 'Built for', hall: 'Everything at once', us: 'Training and meetings. It is the whole job.', hotel: 'Bedrooms. Room hire is a sideline.' },
+      { k: 'Price', hall: 'Cheap, you do the work', us: 'Honest day rates, everything included', hotel: 'Premium, to cover the hotel' },
+      { k: 'Where the money goes', hall: 'Building upkeep', us: "Maggie's Meals and Knowsley community support", hotel: 'Shareholders' },
+    ];
+    const personas = [
+      { name: 'Sarah', tag: 'Primary buyer', tc: '#fff', tb: '#F0603A', role: 'L&D coordinator, a care provider in Merseyside', story: 'Books 20 or more training days a year for groups of 8 to 20. Trainers come in from outside; delegates travel from across the region. She is not in the room on the day.', fear: 'A no-show caretaker, broken tech, delegates complaining to her manager.', buys: 'A day that runs without her and reflects well on her.', say: 'Book it once. Your delegates will ask to come back.' },
+      { name: 'Mark', tag: 'Public sector', tc: '#4A0D8F', tb: '#EFE7FA', role: 'Workforce development, NHS trust or Knowsley Council', story: 'Books through procurement. Needs invoices, POs, accessibility and a social value line for his report.', fear: 'Picking a venue he has to justify.', buys: 'A safe, local choice with social value built in.', say: "Every booking funds Maggie's Meals. We'll send the social value statement." },
+      { name: 'Jo', tag: 'Trainer', tc: '#4A0D8F', tb: '#EFE7FA', role: 'Freelance first aid, CPD or safeguarding trainer', story: 'Chooses the venue for her own courses, or is sent to ours. Arrives early with kit.', fear: 'Four flights of stairs, a dead projector, no HDMI cable.', buys: 'Parking by the door and tech that just works.', say: 'Plug in and teach. We sorted the rest last night.' },
+      { name: 'Aisha', tag: 'Virtual office', tc: '#4A0D8F', tb: '#EFE7FA', role: 'Director of a small local company', story: 'Wants her home address off Companies House and a real place to meet clients.', fear: 'Post lost in a faceless mail centre.', buys: 'A real address with real people handling her post.', say: 'Tania will let you know when your post arrives.' },
+    ];
+    const facts = [
+      { n: '1', h: 'Someone at the door', b: 'A named host greets every group and stays on site all day.' },
+      { n: '2', h: 'Ready before you arrive', b: 'Room set to your layout, screen on, AirPlay and HDMI tested.' },
+      { n: '3', h: 'Tea and coffee in the room', b: 'All day, included in every booking.' },
+      { n: '4', h: 'Free parking outside', b: 'A 50-space car park, 30 seconds from the M57, on a main bus route.' },
+      { n: '5', h: 'Spotless', b: 'Cleanliness comes up in almost a quarter of reviews, unprompted.' },
+      { n: '6', h: 'Calm rooms', b: 'Homely and quiet enough for difficult subjects. Flowers, soft light, a scent people remember.' },
+      { n: '7', h: '230 Google reviews', b: 'As of 28 September 2026. Most mention the welcome.' },
+    ];
+    const msgHead = ['Audience', 'First sentence', 'Lead proof', 'Support', 'Close'];
+    const msgRows = [
+      ['Care providers', 'Mandatory training, in rooms built for it.', 'Set up for TMVA, safety intervention and hoist training, tech tested, repeat dates held', 'Tea in the room, free parking for every delegate', 'Case study: Amore or AFG'],
+      ['Fostering and adoption', 'Hard conversations need a calm room.', 'Where Knowsley trains its foster carers and adopters. Every borough welcome', 'Calm, homely rooms, somewhere quiet to step out, free parking', 'Adoption and fostering reviews'],
+      ['Oliver McGowan training providers', 'A calm, accessible room for Oliver\u2019s Training.', 'Quiet room next door, wheelchair space between tables', 'Auditorium for 60 cabaret, a host on the day, free parking', 'Check Auditorium dates'],
+      ['NHS and council', 'Local, accessible, and every booking funds Maggie\u2019s Meals.', 'Social value, invoicing and POs', 'Ready rooms, parking for travelling staff', 'Case study: Alder Hey or Central and South PCN'],
+      ['Corporate and training companies', 'Your trainer teaches. We handle the rest.', 'Ready rooms, tested tech', 'M57, free parking', 'What\u2019s included page'],
+      ['Community and charity groups', 'A welcoming room with someone to help.', 'Welcome, calm', 'Honest prices, everything included', 'Book a visit'],
+      ['Virtual office', 'A real address, with real people behind it.', 'Post handled in-house by Tania', 'Meeting rooms included', 'Plans from \u00a320'],
+    ];
+    const msgCells = [];
+    msgRows.forEach(r => r.forEach((t, i) => msgCells.push({ t, fw: i === 0 ? '700' : i === 1 ? '600' : '400', col: i === 1 ? '#2A0752' : '#4b4658' })));
+    const lines = [
+      { tag: 'Recommended', tc: '#fff', tb: '#F0603A', line: "Looked after at Maggie's.", why: "The brand word plus the name people use. Works as a sign-off on every page, email and post." },
+      { tag: 'Hero line', tc: '#4A0D8F', tb: '#EFE7FA', line: 'Someone meets you at the door. The room is ready and the kettle is on.', why: 'Two beats rather than three, to keep to house voice. Your draft "Someone at the door. Tea in the room. Parking outside." works, but it is the rule-of-three cadence the guidelines avoid.' },
+      { tag: 'Retire as lead', tc: '#6B7280', tb: '#F1EFF4', line: 'Space Made Simple.', why: 'True, but generic, and ease is only 12% of what people praise. Keep it as a line on the booking page, where ease is the point.' },
+      { tag: 'Retire', tc: '#6B7280', tb: '#F1EFF4', line: 'Workspaces with heart.', why: 'This is the guide\u2019s "made with love" example of dead positioning. Show the heart through facts instead.' },
+    ];
+    const heads = [
+      { t: 'Mandatory training, in rooms built for it.', u: 'Care training page and ads' },
+      { t: 'Hard conversations need a calm room.', u: 'Fostering and adoption section and ads' },
+      { t: 'Book it once. Your delegates will ask to come back.', u: 'Training rooms hero, booker emails' },
+      { t: 'Your trainer teaches. We handle the rest.', u: 'Corporate training, trainer-facing' },
+      { t: 'Plain from the car park. Worth it once you\u2019re in.', u: '"Come and see it" visit page and social' },
+      { t: 'Nothing to bring. Not even an HDMI cable.', u: 'What\u2019s included page, FAQs' },
+      { t: 'Your delegates will tell you it was good.', u: 'Proof strip above reviews' },
+      { t: 'Better than a hotel. Built only for this.', u: 'Comparison block on every room page' },
+    ];
+    const pricing = [
+      { h: 'Anchor against hotels', b: 'Put the hall vs Maggie\u2019s vs hotel comparison next to every price. Beside a hotel day-delegate rate, our price looks like good value. Beside a community hall, it looks expensive.' },
+      { h: 'Sell the day, not the hour', b: 'Lead with day and half-day rates for groups. Keep hourly for the Pod and small rooms only. That matches your preference for a group of 12 at \u00a3180 over hot-deskers.' },
+      { h: 'List what\u2019s included, every time', b: 'Price never appears on its own. It always sits with the Hosted Day list, so customers see what they are paying for.' },
+      { h: 'Reframe "Fair prices, full stop"', b: 'The value reads as "we\u2019re cheap". Change it to "Everything included" (honest prices, no extras). Diane\u2019s review makes the same point: "no extra prices for anything".' },
+      { h: 'Make social value a procurement lever', b: 'Public bodies have to weigh social value when they buy. A one-page social value statement (charity number, Maggie\u2019s Meals figures) gives Mark a reason to pick us over a cheaper hall.' },
+      { h: 'Clear terms signal confidence', b: 'Publish the deposit and cancellation policy for multi-day bookings. One booker challenged it in September. Clear terms up front read as professional, not rigid.' },
+    ];
+    const hosted = ['Room set to your layout before you arrive', 'A named host at the door', 'Your group\u2019s name on the welcome screen', 'Tea and coffee in the room, all day', 'Screen with AirPlay, HDMI cables, WiFi', 'Flipchart and pens', 'Free parking for every delegate', 'A mid-morning check-in with the trainer', 'Kitchen and fridge access', 'Room notes kept for next time'];
+    const blocks = [
+      { h: 'Company', bg: '#fff', items: ['Charity-run, charity no. 1102507, stated plainly on every page footer.', 'Profits into Maggie\u2019s Meals: reported once a year with real numbers.'] },
+      { h: 'Team', bg: '#FAF3EB', items: ['Staff are "hosts", not reception or caretakers. Use it on name badges and in emails.', 'Hire for warmth first. Patrick and Tania are the brand; put their faces on the site.', 'One named host per booking, introduced in the confirmation email.'] },
+      { h: 'Technology', bg: '#fff', items: ['Every screen tested before the group arrives.', 'Booking confirmation, directions and host intro sent automatically.', 'The centre\u2019s own phone is answered by a person during opening hours. "Can I speak to a person" is a real enquiry we get.'] },
+      { h: 'Design', bg: '#FAF3EB', items: ['Constants: plum, the three-people mark, the coral line, the badge.', 'Photography of people being looked after, not empty rooms.', 'A signature scent (the diffuser) treated as part of the brand.'] },
+      { h: 'Experience', bg: '#fff', items: ['The welcome at the door is non-negotiable.', 'The welcome screen with the group\u2019s name is the "wow" moment people photograph.', 'Room notes: remember the layout, the dietary needs, the trainer\u2019s name.'] },
+      { h: 'Content', bg: '#FAF3EB', items: ['Pillars: behind the set-up, meet the hosts, customer case studies, guides for bookers (planning a training day), Maggie\u2019s Meals impact.', 'Heroes are our customers and hosts, not the building.'] },
+      { h: 'Community', bg: '#fff', items: ['A yearly "thank you" event for regular bookers and trainers.', 'Case studies for the 14 logo organisations.', 'Invite regulars to Maggie\u2019s Meals volunteering days.'] },
+      { h: 'Communication', bg: '#FAF3EB', items: ['One message, repeated: looked after.', 'Channels ranked: Google Business Profile, email to past bookers, LinkedIn for care and public sector, the website.', 'Sign-off on everything: "Looked after at Maggie\u2019s."'] },
+    ];
+    const journey = [
+      { stage: 'Enquiry', must: 'Reply the same working day, by a named person, with a price.', wow: 'A short video of the room in their layout.' },
+      { stage: 'Booking', must: 'One form, clear terms, instant confirmation.', wow: 'Their host introduces themselves by name.' },
+      { stage: 'Before', must: 'Directions, parking and a what-to-expect email two days out.', wow: '"Nothing to bring. We\u2019ve got the HDMI cable."' },
+      { stage: 'Arrival', must: 'Host at the door. Room ready 15 minutes early.', wow: 'Group name on the welcome screen. The scent, the flowers.' },
+      { stage: 'The day', must: 'Tea in the room, tech works, it\u2019s spotless.', wow: 'Mid-morning check-in. An email to the booker: "All is well".' },
+      { stage: 'After', must: 'Thank-you email with the review link.', wow: 'Rebook link with their layout remembered.' },
+    ];
+    const constants = [
+      { h: 'Plum and coral', b: 'Plum #2A0752 for the name, purple #38086F for the mark, coral #F0603A as the accent. No amber on purple.' },
+      { h: 'The three people', b: 'Unchanged for 14 years. It already says community. Keep it.' },
+      { h: 'The coral line', b: 'The curve under the mark. Use it as a graphic device: underlining a key word, framing a photo.' },
+      { h: 'The badge', b: 'For favicon, social avatar and Google Business Profile. Purple, coral and beige versions.' },
+      { h: 'Outfit and Figtree', b: 'Outfit for headlines, Figtree for body. No other fonts.' },
+    ];
+    const changes = [
+      { h: 'Lead with capability', b: 'Heroes lead with being looked after and ready rooms. Charity moves to the middle of the page and the footer.' },
+      { h: '"Maggie\u2019s" is official', b: 'Use it in headlines and sign-offs. Keep the full name in titles, H1s and the first paragraph for SEO.' },
+      { h: 'Say "host"', b: '"Your host, Patrick" rather than "our staff". It names the category we\u2019re claiming.' },
+      { h: 'Write for the booker', b: 'Use "your delegates", "your trainer" and "your team". Delegates\u2019 words go in quotes as proof.' },
+      { h: 'Retire two lines', b: '"Workspaces with heart" and "Fair prices, full stop" as headlines. See taglines and pricing.' },
+      { h: 'Calm is a word we own', b: 'Use it for care and wellbeing audiences. The two-tone headline highlights it in coral.' },
+    ];
+    const seoFacts = [
+      { n: '4', b: 'UK visitors tracked in a year, out of 942. Consent mode runs with no cookie banner, so real UK visits are mostly invisible.' },
+      { n: '0', b: 'real leads tracked. All 20 generate_lead events came from outside the UK. GoHighLevel forms, booking and chat send nothing to GA4.' },
+      { n: '173', b: 'views of /services/hotdesking/, our 4th most-viewed page, for a service we don\u2019t offer.' },
+      { n: '49s', b: 'average engagement from Google organic, more than double direct traffic. The one channel worth growing.' },
+      { n: '146', b: "impressions for 'maggie oneil centre', misspelled. Brand search is how people find us." },
+    ];
+    const T = (tag) => tag === 'New' ? { tc: '#fff', tb: '#F0603A' } : tag === 'Change' ? { tc: '#4A0D8F', tb: '#EFE7FA' } : tag === 'Retire' ? { tc: '#fff', tb: '#6B7280' } : { tc: '#6B7280', tb: '#F1EFF4' };
+    const sm = [
+      ['Change', 'Homepage', '/', 'Hero: "Looked after at Maggie\u2019s", hero line, proof strip. Training first in the service cards. Charity story lower. Title keeps "| Maggie O\u2019Neill Centre".'],
+      ['Change', 'Training rooms (lead service)', '/services/training-rooms/', 'Moves to first in the nav. Hosted Day pricing, layouts, the 10 FAQs, "Book it once" headline.'],
+      ['New', 'Care and social care training', '/services/training-rooms/care-training-venue/', '"Mandatory training, in rooms built for it." Functional pitch for care staff training, with a calm section for fostering and adoption. Amore and AFG case studies. Targets "care training venue Liverpool".'],
+      ['New', 'NHS and public sector', '/services/training-rooms/nhs-council-training-venue/', 'Social value, POs and invoicing, accessibility. NHS, Mersey Care and Knowsley Council logos.'],
+      ['Change', 'Meeting rooms', '/services/meeting-rooms/', 'Group meetings and away days. Hourly only for the Pod and small rooms.'],
+      ['Change', 'Events and conferences', '/services/event-space-business-and-community/', 'The Auditorium, hosted. Keep the "Why not a hotel?" section; it\u2019s the comparison in miniature.'],
+      ['New', 'What\u2019s included', '/whats-included/', 'The Hosted Day list and the hall vs Maggie\u2019s vs hotel comparison. Linked from every room page and price.'],
+      ['New', 'Social value', '/social-value/', 'For procurement. Charity number, Maggie\u2019s Meals numbers, downloadable statement.'],
+      ['New', 'Come and see it', '/visit/', 'Book a show-round. "Plain from the car park. Worth it once you\u2019re in."'],
+      ['New', 'Reviews', '/reviews/', 'Google reviews grouped by theme and sector. Note: Google won\u2019t show star snippets for reviews a business shows about itself, so this is for conversion, not rich results.'],
+      ['Keep', 'Virtual office and call answering', '/services/virtual-office/ · /call-answering/', 'As planned. Add "real people behind it" and Salome\u2019s review.'],
+      ['Keep', 'Private offices', '/services/private-offices/', 'As planned.'],
+      ['Change', 'About', '/about/', 'Meet your hosts first, then the charity story and values.'],
+      ['Change', 'Case studies', '/case-studies/[organisation]/', 'Lead with four stories (logos only for now), one per core audience, so every visitor finds an organisation just like theirs. Listed below.'],
+      ['Change', 'Blog', '/blog/', 'Old posts are about hot desking, coworking and productivity. Retire them and write for bookers: planning a training day, room layouts, social value.'],
+      ['Retire', 'Hot desking and coworking pages', '/services/hotdesking/ · /services/coworking/', '301 both to /services/meeting-rooms/. Retire the hot-desking and coworking blog posts and categories.'],
+      ['Keep', 'Community, Contact', '/community/ · /contact/', 'As planned. Contact adds "Huyton L36 8HT" to the title and a named person.'],
+    ];
+    const sitemap = sm.map(([tag, name, url, what]) => ({ tag, name, url, what, ...T(tag) }));
+    const fixes = [
+      { c: '#D64A26', h: 'Fix tracking first', b: 'Add a cookie banner so UK visits are counted. Remove the second GTM container. Unmark page_view and click as key events. Send GoHighLevel form, booking and chat submissions to GA4 as the real conversions, and add spam protection to forms.' },
+      { c: '#D64A26', h: 'Noise between rooms', b: 'Acoustic foam on adjoining walls. Until then, put loud sessions (first aid, CPR) in rooms with nothing underneath.' },
+      { c: '#F0A81C', h: 'A person on the phone', b: 'A voicemail asked, "can I speak to a person please". For a brand built on being looked after, the centre\u2019s own line should reach a human in opening hours.' },
+      { c: '#F0A81C', h: 'The entrance', b: 'People describe the outside as plain. Cheap wins: signage, planters and a clear welcome at the door. Or lean into it with "Come and see it".' },
+      { c: '#F0A81C', h: 'Clean up old pages', b: 'Noindex author, tag and category archives (/author/pixeldynamic/, /author/bretth/, /author/phemus/). Fold the 10 separate /faq-items/ pages into on-page FAQs. Remove /virtual-office-new/.' },
+      { c: '#4A0D8F', h: 'Delist from coworking apps', b: 'They bring the individual hot-desk enquiries you don\u2019t want.' },
+      { c: '#4A0D8F', h: 'Alder Hey logo', b: 'The only case study logo not yet in the image library.' },
+    ];
+    const packages = [
+      { h: 'Care Training Day', who: 'Care companies', b: 'A ready room for mandatory staff training. Your host at the door, tea in the room, free parking for every delegate.' },
+      { h: 'NHS Training Day', who: 'NHS trusts and primary care', b: 'Clinical and admin training days close to Knowsley and Liverpool. Ready rooms, tested tech, invoicing that suits NHS finance.' },
+      { h: 'Knowsley Council Day', who: 'Knowsley Council teams', b: 'Training, CPD and team meetings in the borough, a few minutes from Huyton. Every booking funds Maggie\u2019s Meals, so the spend stays local.' },
+      { h: 'The Hosted Day', who: 'Everyone else', b: 'The same hosted room hire, named for the category we\u2019re claiming.' },
+    ];
+    const cases = [
+      { org: 'Alder Hey', use: 'Staff training for Sunflower House', aud: 'NHS', logo: 'Logo needed' },
+      { org: 'Amore', use: 'All mandatory training for agency staff', aud: 'Care', logo: '#156' },
+      { org: 'AFG (Alternative Futures)', use: 'TMVA and epilepsy training, learning team meetings', aud: 'Care', logo: '#153' },
+      { org: 'Central and South PCN', use: 'Clinical and admin staff training days, monthly offsite meetings', aud: 'NHS primary care', logo: '#157' },
+    ];
+    const decisions = [
+      { n: '1', h: 'Brand word: "Looked after"', b: 'Line: "Looked after at Maggie\u2019s."' },
+      { n: '2', h: 'Packages sidelined for now', b: 'Audience-named versions of what we already offer instead. No new pricing.' },
+      { n: '3', h: 'Training rooms first in the nav', b: 'Ahead of meeting rooms and virtual office.' },
+      { n: '4', h: 'New sector pages and four lead case studies', b: 'Care, NHS and public sector, What\u2019s included, Social value, Come and see it, Reviews. Case studies: Alder Hey, Amore, AFG, Central and South PCN.' },
+      { n: '5', h: 'Retire "Workspaces with heart" and "Fair prices, full stop" as headlines', b: 'Guidelines and voice card to be updated.' },
+      { n: '6', h: 'Staff are "hosts"', b: 'Patrick and Tania, with Liam (volunteer). On the site, in emails and on name badges.' },
+      { n: '7', h: '230 Google reviews', b: 'As of 28 September 2026.' },
+    ];
+    const open = [
+      { n: 'A', h: 'Alder Hey logo', b: 'The one case study logo still missing.' },
+    ];
+    return { toc, summary, themes, insights, compare, personas, facts, msgHead, msgCells, lines, heads, pricing, hosted, blocks, journey, constants, changes, seoFacts, sitemap, fixes, decisions, open, packages, cases };
+  }
+}
+</script>
+</body>
+</html>

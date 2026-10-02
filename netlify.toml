@@ -1,0 +1,46 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Pings IndexNow (Bing and partners) with changed URLs after each production deploy (SEO spec 2.2).
+[[plugins]]
+  package = "/netlify/plugins/indexnow"
+
+# Deploy previews and branch deploys get noindex from the build (CONTEXT != production, see src/components/Seo.astro).
+# Netlify also sends X-Robots-Tag: noindex on deploy-preview URLs by default.
+
+# --- 301 redirects (docs/README.md "Redirects") ---
+[[redirects]]
+  from = "/services/meeting-training-rooms/*"
+  to = "/services/training-rooms/"
+  status = 301
+[[redirects]]
+  from = "/services/hotdesking/*"
+  to = "/services/meeting-rooms/"
+  status = 301
+[[redirects]]
+  from = "/services/coworking/*"
+  to = "/services/meeting-rooms/"
+  status = 301
+[[redirects]]
+  from = "/virtual-office-new/*"
+  to = "/services/virtual-office/"
+  status = 301
+
+# Old virtual office subdomain. Takes effect once virtual.mobtc.co.uk is added to this Netlify site as a domain alias.
+[[redirects]]
+  from = "https://virtual.mobtc.co.uk/ai-receptionist/*"
+  to = "https://mobtc.co.uk/services/virtual-office/call-answering/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://virtual.mobtc.co.uk/*"
+  to = "https://mobtc.co.uk/services/virtual-office/"
+  status = 301
+  force = true
+
+# TODO before launch: crawl the live site and map every old URL (SEO spec 2.3, SOP section 8).
+# Still to map: each /faq-items/* URL to the page its FAQ belongs to, and the hot-desking and coworking blog posts.

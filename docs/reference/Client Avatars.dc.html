@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FCFAF7;color:#211A2E;font-family:Figtree,sans-serif;-webkit-font-smoothing:antialiased}a{color:#D64A26}a:hover{color:#4A0D8F}*{box-sizing:border-box}</style>
+</helmet>
+<div style="max-width:1160px;margin:0 auto;padding:56px 28px 120px;display:flex;flex-direction:column;gap:56px">
+
+<header style="display:flex;flex-direction:column;gap:24px">
+  <img src="logo/mobtc-logo-horizontal.svg" alt="Maggie O'Neill Centre logo" style="height:48px;width:auto;align-self:flex-start">
+  <div style="display:flex;flex-direction:column;gap:14px;max-width:820px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D64A26">Client avatars · messaging guide · Sept 2026</div>
+    <h1 style="font-family:Outfit,sans-serif;font-weight:800;font-size:clamp(38px,5.5vw,58px);line-height:1.03;letter-spacing:-0.02em;margin:0;color:#2A0752">Speak to each client in their own words</h1>
+    <p style="margin:0;font-size:18px;line-height:1.6;color:#4b4658;text-wrap:pretty">Ten people who book with us, what they're trying to get done, and what to say to them. Every avatar keeps the same promise, "Looked after at Maggie's", and changes the first sentence. Use these for page copy, ads, emails and sales conversations.</p>
+  </div>
+  <nav style="display:flex;flex-wrap:wrap;gap:8px">
+    <sc-for list="{{ avatars }}" as="a" hint-placeholder-count="10">
+      <a href="{{ a.href }}" style="text-decoration:none;font-size:14px;font-weight:600;color:{{ a.navC }};background:{{ a.navB }};border-radius:999px;padding:7px 14px">{{ a.n }} · {{ a.short }}</a>
+    </sc-for>
+  </nav>
+</header>
+
+<sc-for list="{{ avatars }}" as="a" hint-placeholder-count="3">
+  <section id="{{ a.id }}" style="background:#fff;border:1px solid #ECE8F1;border-radius:28px;overflow:hidden;display:flex;flex-direction:column">
+    <div style="background:{{ a.bg }};color:#fff;padding:30px clamp(22px,4vw,40px);display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <span style="font-family:Outfit,sans-serif;font-weight:800;font-size:15px;background:rgba(255,255,255,.16);border-radius:999px;padding:4px 12px">{{ a.n }}</span>
+        <span style="font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#FFD9CC">{{ a.service }}</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <div style="font-family:Outfit,sans-serif;font-weight:800;font-size:32px;line-height:1.08">{{ a.name }}</div>
+        <div style="font-size:16px;color:#E8DEF6">{{ a.role }}</div>
+      </div>
+      <div style="font-family:Outfit,sans-serif;font-weight:700;font-size:24px;line-height:1.25;margin-top:6px;max-width:820px">"{{ a.headline }}"</div>
+    </div>
+    <div style="padding:28px clamp(22px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6B7280">Who they are</div>
+          <div style="font-size:15px;line-height:1.6;color:#4b4658">{{ a.who }}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6B7280">The job they're booking for</div>
+          <div style="font-size:15px;line-height:1.6;color:#4b4658">{{ a.job }}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6B7280">What worries them</div>
+          <sc-for list="{{ a.fears }}" as="f" hint-placeholder-count="3">
+            <div style="display:flex;gap:10px;font-size:15px;line-height:1.5;color:#4b4658"><span style="flex-shrink:0;width:6px;height:6px;border-radius:50%;background:#F0603A;margin-top:9px"></span><span>{{ f }}</span></div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6B7280">What they search</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <sc-for list="{{ a.searches }}" as="q" hint-placeholder-count="4">
+              <span style="font-size:13px;font-weight:600;color:#4A0D8F;background:#F3EEF8;border-radius:8px;padding:5px 10px">{{ q }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6B7280">Questions to answer before they ask</div>
+          <sc-for list="{{ a.questions }}" as="q" hint-placeholder-count="4">
+            <div style="display:grid;grid-template-columns:minmax(0,1fr);gap:2px;padding:10px 0;border-top:1px solid #F3EEF8">
+              <strong style="font-size:14px">{{ q.q }}</strong>
+              <span style="font-size:14px;line-height:1.5;color:#4b4658">{{ q.a }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="background:#FAF3EB;border-radius:18px;padding:18px 20px;display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6B7280">Say this</div>
+          <div style="font-size:15px;line-height:1.6;color:#2A0752;font-weight:600">{{ a.say }}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6B7280">Proof they need</div>
+          <sc-for list="{{ a.proof }}" as="p" hint-placeholder-count="3">
+            <div style="display:flex;gap:10px;font-size:14px;line-height:1.5;color:#4b4658"><span style="flex-shrink:0;width:6px;height:6px;border-radius:50%;background:#4A0D8F;margin-top:8px"></span><span>{{ p }}</span></div>
+          </sc-for>
+        </div>
+        <div style="border:1px solid #ECE8F1;border-radius:18px;padding:16px 18px;display:flex;flex-direction:column;gap:4px">
+          <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6B7280">Google ad</div>
+          <div style="font-size:16px;font-weight:700;color:#1a0dab;line-height:1.35">{{ a.adH }}</div>
+          <div style="font-size:14px;line-height:1.5;color:#4b4658">{{ a.adD }}</div>
+        </div>
+        <div style="border:1px solid #ECE8F1;border-radius:18px;padding:16px 18px;display:flex;flex-direction:column;gap:6px">
+          <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6B7280">Outreach email</div>
+          <div style="font-size:14px;font-weight:700">Subject: {{ a.emS }}</div>
+          <div style="font-size:14px;line-height:1.6;color:#4b4658;white-space:pre-line">{{ a.emB }}</div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+          <span style="font-size:14px;font-weight:700;color:#fff;background:#F0603A;border-radius:999px;padding:8px 16px">{{ a.cta }}</span>
+          <code style="font-size:12px;color:#6B7280;word-break:break-all">{{ a.page }}</code>
+        </div>
+      </div>
+    </div>
+  </section>
+</sc-for>
+
+<section style="background:#2A0752;color:#fff;border-radius:28px;padding:36px clamp(22px,4vw,44px);display:flex;flex-direction:column;gap:16px">
+  <h2 style="font-family:Outfit,sans-serif;font-weight:800;font-size:28px;margin:0">Still needed</h2>
+  <sc-for list="{{ needed }}" as="d" hint-placeholder-count="4">
+    <div style="display:flex;gap:12px;font-size:15px;line-height:1.55;color:#DCD0EE;padding-top:12px;border-top:1px solid #4A2A78"><span style="flex-shrink:0;width:8px;height:8px;border-radius:50%;background:#F0603A;margin-top:8px"></span><span>{{ d }}</span></div>
+  </sc-for>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const PL = '#2A0752', PU = '#4A0D8F', CO = '#D64A26';
+    const raw = [
+      { id: 'care', short: 'Care L&D lead', service: 'Training rooms', bg: PL, name: 'Sarah, care provider L&D lead', role: 'Training coordinator at a domiciliary or supported living provider, Merseyside',
+        who: 'Books 20 or more training days a year for support workers. Trainers come in from outside or from her own team. She is rarely in the room on the day, and her name is on the booking if anything goes wrong.',
+        job: 'Get every support worker through mandatory training on time, so the provider stays compliant with CQC: TMVA, safety intervention, hoist training, medication, first aid, moving and handling.',
+        fears: ['A room that doesn\u2019t fit practical sessions, with no floor space for safety intervention', 'Delegates arriving late because they couldn\u2019t park', 'Chasing dates every month and losing them to other bookers'],
+        searches: ['care training venue Liverpool', 'training room hire Knowsley', 'mandatory training venue Merseyside', 'TMVA training room hire'],
+        questions: [{ q: 'Is there space for practical training?', a: 'Yes. Rooms clear for safety intervention and TMVA, with room for a hoist.' }, { q: 'Can I hold dates for the year?', a: 'Yes. Book a block and we hold the same room each time.' }, { q: 'Is parking free for delegates?', a: 'Yes, a free car park outside, 30 seconds from the M57.' }, { q: 'Is tea and coffee included?', a: 'Yes, in the room all day.' }],
+        headline: 'Mandatory training, in rooms built for it.',
+        say: 'Your trainer walks into a room set for the session, with the screen tested and the tea on. Your support workers park outside for free. Book a block of dates and they\u2019re held for you.',
+        proof: ['Amore and AFG case studies', 'Care training reviews', 'Photo of a room set for practical training'],
+        adH: 'Care Training Venue near Liverpool | Rooms Set Before You Arrive', adD: 'TMVA, hoist, medication and first aid training. Free parking, tea in the room. Maggie O\u2019Neill Centre.',
+        emS: 'Your support worker training dates for next year',
+        emB: 'Hi Sarah,\nAmore and AFG run their mandatory training for support workers with us in Huyton. The room is set before the trainer arrives, there\u2019s floor space for safety intervention and hoist training, and delegates park outside for free.\nIf you send me your dates for the year, I\u2019ll hold the same room for each one.\nPatrick, your host at the Maggie O\u2019Neill Centre',
+        cta: 'Plan your training dates', page: '/services/training-rooms/care-training-venue/' },
+      { id: 'fostering', short: 'Fostering and adoption', service: 'Training rooms', bg: CO, name: 'Claire, fostering and adoption team', role: 'Recruitment and training officer, a fostering service or regional adoption agency',
+        who: 'Runs preparation courses, Skills to Foster sessions and support groups for prospective adopters and foster carers. Works for Knowsley or a neighbouring borough, or an independent fostering agency.',
+        job: 'Give prospective parents a welcoming first experience, so they stay on the journey. Many are nervous and some of the subjects are painful.',
+        fears: ['A cold, clinical room that puts people off', 'Nowhere private for someone who gets upset', 'Evening or weekend sessions with nobody on site'],
+        searches: ['fostering training venue Liverpool', 'adoption training venue Merseyside', 'foster carer training room Knowsley', 'room hire for fostering panel'],
+        questions: [{ q: 'Is there somewhere quiet to step out?', a: 'Yes. Ask and we\u2019ll keep a room free.' }, { q: 'Do other fostering teams use you?', a: 'Adoption in Merseyside, Knowsley Fostering and Foster4 use us as their venue of choice.' }, { q: 'We\u2019re not in Knowsley. Can we book?', a: 'Yes, every borough is welcome. We\u2019re 30 seconds from the M57.' }, { q: 'Can we book a room for panels?', a: 'Yes, private rooms for panels and 1:1s.' }],
+        headline: 'Hard conversations need a calm room.',
+        say: 'Adoption in Merseyside, Knowsley Fostering and Foster4 bring their prospective parents here. The rooms are calm and homely, someone meets every group at the door, and there\u2019s a quiet room when someone needs a moment.',
+        proof: ['Adoption in Merseyside (#159) and Foster4 Knowsley Council (#160) logos', '"A great and calming atmosphere for the adoption course we have done." (Fozzer Foz)', '"Nervous to attend… soon became at ease" (Hayley Hesketh)'],
+        adH: 'Fostering and Adoption Training Venue | Knowsley, Near Liverpool', adD: 'Calm, homely rooms trusted by Adoption in Merseyside, Knowsley Fostering and Foster4. Every borough welcome.',
+        emS: 'A calm room for your preparation courses',
+        emB: 'Hi Claire,\nAdoption in Merseyside, Knowsley Fostering and Foster4 run their preparation courses with us in Huyton. The rooms are calm and homely, there\u2019s a quiet room for anyone who needs a moment, and parking is free.\nWe welcome teams from every borough. Would a look round help?\nTania, your host at the Maggie O\u2019Neill Centre',
+        cta: 'Plan your preparation dates', page: '/services/training-rooms/fostering-adoption-training-venue/' },
+      { id: 'ommt', short: 'Oliver McGowan', service: 'Training rooms · Auditorium', bg: PU, name: 'Jo, Oliver McGowan organiser', role: 'Lead trainer or learning team booking Tier 2 face-to-face days',
+        who: 'Organises Oliver McGowan Tier 2 days, co-delivered with an autistic co-trainer and a co-trainer with a learning disability. Some delegates are autistic, have a learning disability or use a wheelchair.',
+        job: 'Run a full day that works for the whole team, including co-trainers with lived experience, so the training lands and people want to come back.',
+        fears: ['A noisy, bright room that overwhelms co-trainers or delegates', 'Nowhere to decompress', 'A long walk from the car park for wheelchair users'],
+        searches: ['Oliver McGowan training venue', 'Oliver McGowan Tier 2 venue Liverpool', 'accessible training venue Liverpool', 'autism friendly venue hire'],
+        questions: [{ q: 'How many fit?', a: 'Up to 60 cabaret, with space between tables for a wheelchair.' }, { q: 'Is there a quiet room?', a: 'Yes, off the Auditorium foyer, signed on the door, with acoustic insulation and dim lights.' }, { q: 'Can the lighting be adjusted?', a: 'Yes, to suit the group.' }, { q: 'How close is parking?', a: 'Accessible spaces right outside the Auditorium, and we can open the side door.' }, { q: 'Is there an accessible toilet?', a: 'Yes, on the same floor as the Auditorium, a short walk away next to the kitchen, with grab rails and an emergency pull cord.' }],
+        headline: 'A calm, accessible room for Oliver\u2019s Training.',
+        say: 'The Auditorium seats 60 cabaret with room for a wheelchair between the tables. The lighting adjusts, the quiet room is just off the foyer, and accessible parking is right outside the side door.',
+        proof: ['Photo journey and video walkthrough, including the accessible toilet (#158)', 'NHS and Mersey Care logos', 'Layout diagram: 60 cabaret with wheelchair routes'],
+        adH: 'Oliver McGowan Training Venue | Accessible, With a Quiet Room', adD: 'Tier 2 days near Liverpool. 60 cabaret, adjustable lighting, parking by the door. Get in touch about your dates.',
+        emS: 'An accessible room for your Tier 2 days',
+        emB: 'Hi Jo,\nWe host Oliver McGowan Tier 2 days in our Auditorium in Huyton. It seats 60 cabaret with space for wheelchairs, the lighting adjusts, and there\u2019s a quiet room off the foyer for anyone who needs to step out.\nHere\u2019s a short video walkthrough you can share with your co-trainers. Let me know your dates.\nPatrick, your host at the Maggie O\u2019Neill Centre',
+        cta: 'Get in touch about your dates', page: '/services/training-rooms/oliver-mcgowan-training-venue/' },
+      { id: 'nhs', short: 'NHS and PCN', service: 'Training and meeting rooms', bg: PL, name: 'Dave, PCN business manager', role: 'Primary care network or NHS trust, organising training and offsite meetings',
+        who: 'Plans clinical and admin training days and monthly offsite meetings for practices across the network. Budget is public money, so the venue has to be easy to justify.',
+        job: 'Get clinical and admin staff trained without closing surgeries for long, and hold regular meetings somewhere neutral, close by and reliable.',
+        fears: ['Staff losing time travelling into the city', 'A venue finance won\u2019t pay without a purchase order', 'Tech failing in front of 40 clinicians'],
+        searches: ['NHS training venue Liverpool', 'meeting room hire Knowsley', 'PCN training day venue', 'conference room Huyton'],
+        questions: [{ q: 'Do you take purchase orders?', a: 'Yes, POs and invoicing that suit NHS finance.' }, { q: 'Can we book the same day every month?', a: 'Yes, same room and layout, held for you.' }, { q: 'Is the tech reliable?', a: 'Screens with AirPlay and HDMI, tested before you arrive.' }, { q: 'How far is it?', a: 'Huyton, 30 seconds from the M57, with free parking.' }],
+        headline: 'Your clinical and admin teams, trained close to home.',
+        say: 'Central and South PCN trains its clinical and admin staff here and holds its monthly offsite meetings with us. POs welcome, tech tested, free parking outside.',
+        proof: ['Central and South PCN and Alder Hey case studies', 'NHS, Mersey Care and Primary Care logos'],
+        adH: 'NHS Training Venue near Liverpool | Free Parking, POs Welcome', adD: 'Clinical and admin training days and monthly meetings in Huyton. Rooms ready, tech tested. Maggie O\u2019Neill Centre.',
+        emS: 'A venue for your training days and monthly meetings',
+        emB: 'Hi Dave,\nCentral and South PCN runs its clinical and admin training days with us and holds its monthly offsite meetings here. We take POs, the tech is tested before you arrive, and parking is free.\nI can hold the same room for you each month if that helps.\nPatrick, your host at the Maggie O\u2019Neill Centre',
+        cta: 'Check dates', page: '/services/training-rooms/nhs-training-venue/' },
+      { id: 'council', short: 'Council officer', service: 'Training and meeting rooms', bg: PU, name: 'Lisa, council officer', role: 'Workforce development or team manager, Knowsley Council or a housing association',
+        who: 'Books training, CPD and team days for council staff. Has to show value for money and, increasingly, social value.',
+        job: 'Train staff in the borough, keep spend local and have something to put in the social value report.',
+        fears: ['Being questioned on why she didn\u2019t use a council building', 'Procurement hoops', 'An unprofessional venue in front of senior staff'],
+        searches: ['council training venue Knowsley', 'room hire Huyton', 'training room hire near Liverpool', 'social value venue hire'],
+        questions: [{ q: 'Is there social value?', a: 'Yes. Every booking funds Maggie\u2019s Meals, and we\u2019ll send a statement for your report.' }, { q: 'Do you invoice?', a: 'Yes, POs and invoicing.' }, { q: 'Who else in the council uses you?', a: 'Knowsley Council, Livv Housing and Knowsley Chamber.' }],
+        headline: 'Train in the borough, and the spend stays local.',
+        say: 'Knowsley Council and Livv Housing train their teams here. It\u2019s in the borough, invoicing is simple, and every booking funds Maggie\u2019s Meals, so the spend comes back to Knowsley.',
+        proof: ['Knowsley Council, Livv Housing and Knowsley Chamber logos', 'Social value statement', 'Maggie\u2019s Meals figures (750+ accessed last year)'],
+        adH: 'Training Venue in Knowsley | Social Value Built In', adD: 'Hosted training rooms in Huyton. Every booking funds Maggie\u2019s Meals. POs welcome.',
+        emS: 'Training in the borough, with social value built in',
+        emB: 'Hi Lisa,\nKnowsley Council and Livv Housing train their teams with us in Huyton. We take POs, and every booking funds Maggie\u2019s Meals. I can send a social value statement for your report.\nWould a look round help?\nTania, your host at the Maggie O\u2019Neill Centre',
+        cta: 'Check dates', page: '/services/training-rooms/council-training-venue/' },
+      { id: 'schools', short: 'School business manager', service: 'Training and meeting rooms', bg: CO, name: 'Karen, school business manager', role: 'Primary, special or secondary school in Knowsley',
+        who: 'Arranges INSET days, staff CPD, SEND training and governor meetings, usually on a tight budget and around term dates.',
+        job: 'Get staff out of the building for a proper training day without a long drive, and keep it within budget.',
+        fears: ['A venue that doesn\u2019t know schools\u2019 calendars', 'Not enough room for the whole staff', 'Paying extra for tea and parking'],
+        searches: ['INSET day venue Knowsley', 'school training venue Liverpool', 'staff training day venue', 'governor meeting room hire'],
+        questions: [{ q: 'Can the whole staff fit?', a: 'The Auditorium seats up to 100, and training rooms suit smaller groups.' }, { q: 'Is tea included?', a: 'Yes, in the room all day.' }, { q: 'Do other schools use you?', a: 'Meadow Park Primary, Alt Bridge and Knowsley Central.' }],
+        headline: 'An INSET day away from school, five minutes up the road.',
+        say: 'Meadow Park Primary, Alt Bridge and Knowsley Central bring their staff here. Your whole team fits, the tea is on all day, and parking is free.',
+        proof: ['Meadow Park Primary (#161), Knowsley Central (#162) and Alt Bridge (#163) logos', 'Council and schools reviews'],
+        adH: 'INSET Day Venue in Knowsley | Room for the Whole Staff', adD: 'Hosted training rooms in Huyton used by local schools. Tea all day, free parking. Maggie O\u2019Neill Centre.',
+        emS: 'Your next INSET day',
+        emB: 'Hi Karen,\nMeadow Park Primary, Alt Bridge and Knowsley Central hold their staff training with us in Huyton. The whole staff fits, tea and coffee are on all day, and parking is free.\nSend me your INSET dates and I\u2019ll check what\u2019s free.\nTania, your host at the Maggie O\u2019Neill Centre',
+        cta: 'Check INSET dates', page: '/services/training-rooms/council-training-venue/' },
+      { id: 'trainer', short: 'Freelance trainer', service: 'Training rooms', bg: PL, name: 'Mike, freelance trainer', role: 'First aid, CPD, health and safety or safeguarding trainer',
+        who: 'Runs open courses and in-house sessions. Chooses the venue himself for open courses and pays for it out of his margin.',
+        job: 'Turn up, plug in and teach, with delegates who find the place easily and leave happy enough to recommend him.',
+        fears: ['Carrying kit up stairs or across a car park', 'No HDMI cable, a dead projector', 'A venue that makes his course look cheap'],
+        searches: ['training room hire Liverpool', 'first aid training venue', 'cheap training room hire Merseyside', 'classroom hire Knowsley'],
+        questions: [{ q: 'Can I park by the door?', a: 'Yes, free parking outside.' }, { q: 'Do I need to bring cables?', a: 'No. HDMI cables and AirPlay are ready.' }, { q: 'Can I set up early?', a: 'Tell us and we\u2019ll open up for you.' }],
+        headline: 'Your trainer teaches. We handle the rest.',
+        say: 'Park outside, plug in and teach. The screen is tested, the cables are there, and your delegates get tea in the room all day.',
+        proof: ['"IT resources worked effortlessly." (Elo Ajise)', 'Photo of a room set classroom style', 'Tech photo #54 (AirPlay on the screen)'],
+        adH: 'Training Room Hire near Liverpool | Plug In and Teach', adD: 'Screens with AirPlay, HDMI ready, tea all day, free parking. Maggie O\u2019Neill Centre, Huyton.',
+        emS: 'A room that\u2019s ready when you arrive',
+        emB: 'Hi Mike,\nIf you run open courses around Liverpool, our rooms in Huyton are set up before you arrive. The screen is tested, HDMI cables are there, parking is free and tea\u2019s in the room all day.\nHappy to show you round.\nPatrick, your host at the Maggie O\u2019Neill Centre',
+        cta: 'Check availability', page: '/services/training-rooms/' },
+      { id: 'director', short: 'New company director', service: 'Virtual office', bg: PU, name: 'Aisha, new company director', role: 'Just set up a limited company, working from home',
+        who: 'Registered her company and found her home address on Companies House for anyone to see. Wants a proper business address without renting an office.',
+        job: 'Get her home address off the public register, look established to clients, and never miss important post.',
+        fears: ['Post lost in a faceless mail centre', 'An address that looks like a PO box', 'Getting it wrong with Companies House'],
+        searches: ['virtual office Liverpool', 'registered office address Liverpool', 'remove home address Companies House', 'business address Merseyside'],
+        questions: [{ q: 'How much?', a: 'From \u00a320 a month. \u00a350 with post opened and scanned, 2 free meeting room hours and Director\u2019s Cover.' }, { q: 'What happens to my post?', a: 'Tania logs it and lets you know when it arrives.' }, { q: 'Can I meet clients there?', a: 'Yes, meeting rooms in the same building.' }],
+        headline: 'A real address, with real people behind it.',
+        say: 'Your home comes off Companies House and your post comes to real people. Tania lets you know the moment it arrives, and you can meet clients in the building.',
+        proof: ['Salome (Salowal Ltd) review', '38 businesses already use us', '230 Google reviews'],
+        adH: 'Virtual Office Liverpool from \u00a320 | Real People Handle Your Post', adD: 'Keep your home address off Companies House. Post handled in person, meeting rooms on site.',
+        emS: 'Your home address, off Companies House',
+        emB: 'Hi Aisha,\nCongratulations on the new company. If you\u2019d rather your home address wasn\u2019t on the public register, we can be your registered office in Huyton from \u00a320 a month. Tania handles the post in person and lets you know when it arrives.\nTania, Maggie O\u2019Neill Centre',
+        cta: 'Get your address', page: '/services/virtual-office/' },
+      { id: 'calls', short: 'Sole trader (calls)', service: 'Call answering', bg: CO, name: 'Gary, sole trader', role: 'Tradesperson, therapist or consultant who can\u2019t pick up while working',
+        who: 'Loses work every week because he can\u2019t answer the phone on a job or in a session. Callers who hit voicemail ring the next name on the list.',
+        job: 'Never miss a new customer, without hiring anyone or being glued to his phone.',
+        fears: ['Paying for something that sounds robotic', 'Messages getting lost', 'Another app to learn'],
+        searches: ['call answering service Liverpool', 'telephone answering service Merseyside', 'call answering for small business', 'missed calls service'],
+        questions: [{ q: 'How much?', a: '\u00a339 a month.' }, { q: 'What happens to a call?', a: 'It\u2019s answered and the message taken. Put through to you, or summarised and transcribed and sent to you.' }, { q: 'Where are calls kept?', a: 'Every call is stored in your CRM.' }],
+        headline: 'Every call answered, even when you\u2019re busy.',
+        say: 'Every call is answered and the message taken. It\u2019s put through to you or summarised and sent straight to your phone, and every call is kept in your CRM. \u00a339 a month.',
+        proof: ['A sample call summary', 'Virtual office reviews'],
+        adH: 'Call Answering Service | \u00a339 a Month', adD: 'Calls answered, messages taken, summaries sent to you. Never lose a customer to voicemail.',
+        emS: 'Stop losing customers to voicemail',
+        emB: 'Hi Gary,\nFor \u00a339 a month we\u2019ll answer your business calls, take the message and send you a summary, or put the call through to you. Every call is kept in your CRM.\nMaggie O\u2019Neill Centre',
+        cta: 'Start call answering', page: '/services/virtual-office/call-answering/' },
+      { id: 'accountants', short: 'Accountants', service: 'Virtual office · referral partners', bg: PL, name: 'Rachel, accountant', role: 'Partner at a small accountancy or company formation practice, Merseyside',
+        who: 'Sets up limited companies for clients and often acts as their registered office. That means sorting and forwarding their post, which nobody in the practice has time for.',
+        job: 'Offer clients a registered address without the admin, and add value to the relationship.',
+        fears: ['Handing clients to a provider that lets them down', 'A referral fee they\u2019d have to declare to clients', 'Losing sight of client post, such as HMRC letters', 'Setting up another supplier relationship'],
+        searches: ['registered office service for accountants', 'registered address partner Liverpool', 'virtual office referral scheme'],
+        questions: [{ q: 'Can I see my clients\u2019 post?', a: 'Yes. Each client\u2019s mailbox is set up on PilotoMail with your email, so you log in once and pick whichever client you want to view.' }, { q: 'What do my clients get?', a: '15% off every plan, for as long as they stay.' }, { q: 'Do I have to declare a commission?', a: 'No. We don\u2019t pay one. We know you\u2019d have to disclose it to your clients, so the saving goes to them instead as 15% off.' }, { q: 'How are my referrals counted?', a: 'By the client mailboxes your email is on.' }, { q: 'What admin is left for us?', a: 'None. We handle the registered address and the post.' }, { q: 'Who are you?', a: 'A local charity. Every client address supports Maggie\u2019s Meals.' }],
+        headline: 'Your clients\u2019 post, handled. Your admin, gone.',
+        say: 'Refer your clients to us for their registered office. They get 15% off for as long as they stay, and you see all their post in PilotoMail under one login, picking whichever client\u2019s mailbox you need, and nobody in your practice has to sort post again. There\u2019s no commission to declare: the saving goes to your clients. Every address supports a local charity.',
+        proof: ['38 businesses already use us', 'PilotoMail login and mailbox picker (assets/pilotomail/, client names anonymised)', 'Knowsley Chamber logo'],
+        adH: 'Registered Office Partner for Accountants | Liverpool', adD: '15% off for your clients, every client\u2019s post under one login, no admin. Supports a local charity.',
+        emS: 'Take the registered office admin off your desk',
+        emB: 'Hi Rachel,\nIf your practice acts as a registered office for clients, we can take that on. Your clients get 15% off for as long as they stay, you see every client\u2019s post in one PilotoMail login, and nobody in the office has to sort mail. We don\u2019t pay commission, so there\u2019s nothing to declare: the saving goes to your clients instead. Every address supports Maggie\u2019s Meals.\nCould we have a quick chat?\nTania, Maggie O\u2019Neill Centre',
+        cta: 'Become a partner', page: '/services/virtual-office/accountants/' },
+    ];
+    const avatars = raw.map((a, i) => ({ ...a, n: String(i + 1).padStart(2, '0'), href: '#' + a.id, navC: '#4A0D8F', navB: '#EFE7FA' }));
+    const needed = [
+      'Permission to name clients in outreach emails (Amore, AFG, Central and South PCN, the fostering teams).',
+    ];
+    return { avatars, needed };
+  }
+}
+</script>
+</body>
+</html>
