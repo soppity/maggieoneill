@@ -34,7 +34,7 @@ const keyFacts = [
   { term: 'Prices', detail: `${formatPrice(p20.price)}, ${formatPrice(p30.price)}, ${formatPrice(p40.price)} or ${formatPrice(p50.price)} a month.`, href: '#plans', linkText: 'Compare plans' },
   { term: 'Post', detail: `Handled in-house by ${tania}. Opened and scanned on the ${formatPrice(p40.price)} and ${formatPrice(p50.price)} plans.` },
   { term: "Director's Cover", detail: `+${formatPrice(dc.price)} a month. Takes your home address off the public register.` },
-  { term: 'Meeting rooms', detail: `In the same building. ${formatPrice(p40.price)} and ${formatPrice(p50.price)} plans include 2 free hours.` },
+  { term: 'Meeting rooms', detail: `In the same building. ${formatPrice(p40.price)} and ${formatPrice(p50.price)} plans include 2 free hours a month.` },
   { term: 'Contract', detail: virtualOffice.terms },
   { term: 'Collect post', detail: `${hours.summary}. Free parking outside.` },
   { term: 'Call answering', detail: `Add it for ${formatPrice(ca.price)} a month.`, href: '/services/virtual-office/call-answering/', linkText: 'How it works' },
@@ -63,7 +63,7 @@ const reasons = [
 const faqs = [
   {
     q: 'How much is a virtual office in Liverpool?',
-    a: `A virtual office at the Maggie O'Neill Centre costs from ${formatPrice(p20.price)} a month for a registered office and business address. The ${formatPrice(p40.price)} plan adds post opened and scanned and 2 free meeting room hours. Director's Cover adds ${formatPrice(dc.price)} a month to either plan.`,
+    a: `A virtual office at the Maggie O'Neill Centre costs from ${formatPrice(p20.price)} a month for a registered office and business address. The ${formatPrice(p40.price)} plan adds post opened and scanned and 2 free meeting room hours a month. Director's Cover adds ${formatPrice(dc.price)} a month to either plan.`,
   },
   {
     q: 'Can I use the address as my registered office with Companies House?',
@@ -87,7 +87,7 @@ const faqs = [
   },
   {
     q: 'Can I meet clients at my virtual office address?',
-    a: `Yes. Meeting rooms are in the same building, from the ${pod.name} at ${formatPrice(pod.prices!.hour!)} an hour. The ${formatPrice(p40.price)} and ${formatPrice(p50.price)} virtual office plans include 2 free meeting room hours.`,
+    a: `Yes. Meeting rooms are in the same building, from the ${pod.name} at ${formatPrice(pod.prices!.hour!)} an hour. The ${formatPrice(p40.price)} and ${formatPrice(p50.price)} virtual office plans include 2 free meeting room hours a month.`,
   },
   {
     q: 'Is there a contract?',
@@ -245,7 +245,7 @@ const voReviewCount = reviews.count;
       <div class="prose">
         <p>
           The {pod.name}, a boardroom for {pod.capacity.boardroom}, costs {formatPrice(pod.prices!.hour!)} an hour. Larger rooms are there for team days
-          and training. The {formatPrice(p40.price)} and {formatPrice(p50.price)} plans include 2 free meeting room hours.
+          and training. The {formatPrice(p40.price)} and {formatPrice(p50.price)} plans include 2 free meeting room hours a month.
         </p>
         <p>Your host meets your client at the door, the tea is on, and parking is free.</p>
         <p><a href="/services/meeting-rooms/">Meet clients here: meeting room hire in Huyton</a></p>

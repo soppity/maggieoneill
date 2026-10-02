@@ -177,7 +177,7 @@ export const hostedDay = [
 ];
 
 // Virtual office. Source: docs/content/virtual-office-source.md and PROJECT_NOTES.md.
-// TODO(owner): confirm whether the 2 free meeting room hours are per month.
+// TODO(owner): confirm whether the 2 free meeting room hours a month are per month.
 export type PlanFeature = 'registeredOffice' | 'businessAddress' | 'collectPost' | 'directorsCover' | 'postScanned' | 'roomHours' | 'coffee';
 
 export const planFeatures: { key: PlanFeature; label: string }[] = [
@@ -186,7 +186,7 @@ export const planFeatures: { key: PlanFeature; label: string }[] = [
   { key: 'collectPost', label: 'Collect your post from reception' },
   { key: 'directorsCover', label: "Director's service address (Director's Cover)" },
   { key: 'postScanned', label: 'Post opened and scanned, so you can read it anywhere' },
-  { key: 'roomHours', label: '2 free meeting room hours' },
+  { key: 'roomHours', label: "2 free meeting room hours a month (they don't roll over)" },
   { key: 'coffee', label: 'Free coffee when you call in' },
 ];
 
@@ -219,13 +219,13 @@ export const virtualOffice = {
     {
       name: 'Virtual Office',
       price: 40,
-      summary: 'Post opened and scanned, plus 2 free meeting room hours.',
+      summary: 'Post opened and scanned, plus 2 free meeting room hours a month.',
       features: fullVirtualOffice,
     },
     {
       name: "Virtual Office + Director's Cover",
       price: 50,
-      summary: 'Post opened and scanned, 2 free meeting room hours, and your home address off Companies House.',
+      summary: 'Post opened and scanned, 2 free meeting room hours a month, and your home address off Companies House.',
       features: [...fullVirtualOffice, 'directorsCover'],
       lead: true,
     },
@@ -242,18 +242,22 @@ export const virtualOffice = {
     { title: 'Confirm your ID', text: 'We send a secure form for the ID checks the law requires for registered office services.' },
     { title: 'Get your address', text: "You get your new address and access to your mailbox app. You're live as soon as the checks are done." },
   ],
+  // An AI voice agent answers, 24/7. Always call it "call answering", never "AI receptionist".
   callAnswering: {
     name: 'Call answering',
     price: 39,
-    summary: 'Calls answered, messages taken, put through to you or summarised and sent to you.',
+    perResponse: '2p',
+    summary:
+      'A human-like AI voice agent answers your calls 24/7, takes the message, and emails you a summary, transcript and recording. £39 a month plus 2p per AI response, with no charge per call.',
     steps: [
-      { title: 'Your call is answered', text: 'Every call to your business number is picked up, so nobody hits voicemail.' },
+      { title: 'Your call is answered', text: 'A human-like AI voice agent picks up every call, day or night, so nobody hits voicemail.' },
       { title: 'The message is taken', text: 'Who called, why, and how to get back to them.' },
-      { title: 'Put through or summarised', text: 'Choose whether calls are put through to a person, or summarised and transcribed instead.' },
-      { title: 'Sent straight to you', text: 'The summary comes to you, so you can call back when you are free.' },
-      { title: 'Kept in your CRM', text: 'Every call is logged, so you have a record of who rang and what they needed.' },
+      { title: 'Put through when you want', text: 'Set the hours you want calls put through to you. Outside them, the agent takes the message.' },
+      { title: 'Emailed to you', text: 'A summary, a full transcript and a recording of the call arrive by email.' },
+      { title: 'Kept in your CRM', text: 'Every call is stored in your CRM account, so you have a record of who rang and what they needed.' },
     ],
   },
+
   areasServed: ['Liverpool', 'Knowsley', 'St Helens', 'Sefton', 'Wirral', 'Halton', 'Warrington', 'West Lancashire'],
 };
 
