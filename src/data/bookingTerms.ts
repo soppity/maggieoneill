@@ -35,7 +35,7 @@ export const weekly = [
   'If your dates make up one course or programme, the whole course counts as one larger booking.',
 ];
 
-export const extras = 'Catering, AV and other extras follow the same rules as the room they’re booked with.';
+export const extras = 'AV and other extras follow the same rules as the room they’re booked with.';
 
 export const exceptional =
   "We understand plans change. If something genuinely unexpected happens, talk to us. We'll look at exceptional circumstances case by case.";
