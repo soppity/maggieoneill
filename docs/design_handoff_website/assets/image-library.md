@@ -264,9 +264,16 @@ Organisations that use or partner with the centre. Use for 'who books with us' a
 | 151 | https://assets.cdn.filesafe.space/4cpmA1xPfhyLI1A2OPDr/media/6ab914325597aeb9d7dd5ee3.webp | L | ADDvanced Solutions | mobtc-logo-addvanced-solutions.webp |
 | 152 | https://assets.cdn.filesafe.space/4cpmA1xPfhyLI1A2OPDr/media/6ab91432be703c7b3020ea60.webp | L | Knowsley Chamber | mobtc-logo-knowsley-chamber.webp |
 | 153 | https://assets.cdn.filesafe.space/4cpmA1xPfhyLI1A2OPDr/media/6ab91432b4d207ff9df90ccd.webp | L | Alternative Futures | mobtc-logo-alternative-futures.webp |
-| 154 | https://assets.cdn.filesafe.space/4cpmA1xPfhyLI1A2OPDr/media/6ab91432c13d4373c2bf0b91.webp | S | AIM | mobtc-logo-aim.webp |
+| 154 | https://assets.cdn.filesafe.space/4cpmA1xPfhyLI1A2OPDr/media/6ab91432c13d4373c2bf0b91.webp | S | AIM (Adoption in Merseyside). Lower resolution: use #159 instead. | mobtc-logo-aim.webp |
 | 155 | https://assets.cdn.filesafe.space/4cpmA1xPfhyLI1A2OPDr/media/6ab91432be703c7b3020ea48.webp | L | HSM | mobtc-logo-hsm.webp |
 | 156 | https://assets.cdn.filesafe.space/4cpmA1xPfhyLI1A2OPDr/media/6ab91432b4d207ff9df90cc1.webp | L | Amore | mobtc-logo-amore.webp |
 | 157 | https://assets.cdn.filesafe.space/4cpmA1xPfhyLI1A2OPDr/media/6aba5d4c4100b77e522c1168.webp | L | Central and South PCN (Knowsley). Not the same as Knowsley PCN. | mobtc-logo-central-south-pcn.webp |
+| 158 | https://assets.cdn.filesafe.space/4cpmA1xPfhyLI1A2OPDr/media/6abfcbcc02569bee7cb0c764.webp | L | Accessible toilet: grab rails (fold-down rail beside the toilet), emergency pull cord, low basin. Same floor as the Auditorium, a short distance away, next to the kitchen. Use on the Oliver McGowan, care, Visit and What's included pages, in accessibility FAQs and in the photo journey. | mobtc-accessible-toilet.webp |
+| 159 | https://assets.cdn.filesafe.space/4cpmA1xPfhyLI1A2OPDr/media/6abfcc3b7bca8cd20c342541.webp | S | Adoption in Merseyside (AiM) logo, high resolution. Use this rather than #154. | mobtc-logo-adoption-in-merseyside.webp |
+| 160 | https://assets.cdn.filesafe.space/4cpmA1xPfhyLI1A2OPDr/media/6abfcc3b150d6ea53db14b5e.webp | L | Foster4, Knowsley Council (Knowsley's fostering service, which covers "Knowsley Fostering" and "Foster4"). | mobtc-logo-foster4-knowsley.webp |
+| 161 | https://assets.cdn.filesafe.space/4cpmA1xPfhyLI1A2OPDr/media/6abbef1e7f8e19690f51e5e8.webp | L | Meadow Park Primary School logo (transparent) | mobtc-logo-meadow-park.webp |
+| 162 | https://assets.cdn.filesafe.space/4cpmA1xPfhyLI1A2OPDr/media/6abbef1e7f8e19690f51e5e3.webp | L | Knowsley Central School logo (transparent) | mobtc-logo-knowsley-central.webp |
+| 163 | https://assets.cdn.filesafe.space/4cpmA1xPfhyLI1A2OPDr/media/6abbef1e12c0bdec2cb4fd3f.webp | P | Alt Bridge School crest (transparent) | mobtc-logo-alt-bridge.webp |
+| 164 | https://assets.cdn.filesafe.space/4cpmA1xPfhyLI1A2OPDr/media/6abfd23c84932298741ae973.webp | L | Alder Hey Children's Hospital logo (transparent). Don't use 6abfcd8c…88ac.webp or 6abfd10a…7ff9.webp: both have a grey background. | mobtc-logo-alder-hey.webp |
 
 Also: purple logo PNG https://assets.cdn.filesafe.space/4cpmA1xPfhyLI1A2OPDr/media/6ab3f2b3b2c147832f670f7a.png

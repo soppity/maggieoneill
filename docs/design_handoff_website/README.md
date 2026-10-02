@@ -23,6 +23,7 @@ The `.dc.html` files in `reference/` are **planning and strategy documents made 
 - Contact: phone 0151 482 0408, text/WhatsApp 07426 935661, open 8:30am to 5pm Monday to Friday (evening and weekend room hire on request).
 
 ## Read first, in this order
+1. `SEO-AND-AI-SEARCH.md`: the full SEO and AI search spec. It applies to every page, and `seo-files/` holds the robots.txt, llms.txt, base schema and prompt tracker. Build the facts data file (section 5.2) before any page.
 1. `PROJECT_NOTES.md`: the standing rules for every page (names, facts, prices, what never to say). **These override anything else.**
 2. `reference/Website Blueprint.dc.html`: site map, nav, every page's spec (URL, keyword, title, meta, H1, sections, proof, CTA, schema, internal links), templates, section library, linking rules, technical SEO, redirects and build order.
 3. `reference/Brand Strategy.dc.html`: positioning, messaging and voice.
@@ -79,7 +80,9 @@ Use only the hosted URLs in `assets/image-library.md`. Rules:
 - **#142** (capacities sheet) is internal only. Never show it.
 - **#54** shows AirPlay on the Summit TV. Use it for tech features.
 - **#105** is the Community Room photo.
-- Client logos are **#143 to #157** (Central and South PCN is #157).
+- **#158** shows the accessible toilet. Use it on the Oliver McGowan, care, Visit and What's included pages, in the accessibility FAQs and in photo journeys.
+- **#159** (Adoption in Merseyside) and **#160** (Foster4, Knowsley Council) are the fostering and adoption logos.
+- Client logos are **#143 to #157** (Central and South PCN is #157), plus #159 and #160, schools #161 to #163, and Alder Hey #164.
 - Every image needs descriptive alt text that includes "Maggie O'Neill Centre" where it reads naturally, plus `width` and `height`, `loading="lazy"` below the fold, and `fetchpriority="high"` on the hero image.
 
 ## Site map and build order
@@ -108,6 +111,7 @@ The full page specs are in the Website Blueprint. Build in this order, with a re
 Before launch, crawl the live site and map **every** old URL to a new one, so no indexed page returns a 404.
 
 ## Technical SEO for every page
+See `SEO-AND-AI-SEARCH.md` for the full spec. The essentials:
 - One H1 per page. Unique title (under about 60 characters, ending "| Maggie O'Neill Centre") and meta description (under about 155 characters).
 - A self-referencing canonical, plus Open Graph and Twitter tags with a library image.
 - JSON-LD on every page: `Organization`/`LocalBusiness` (name, address, phone, geo, logo, sameAs) and `BreadcrumbList`. Add `Service` + `Offer`, `FAQPage`, `Place` and `Article` where the blueprint says so.
@@ -130,7 +134,6 @@ Kept simple, with no heavy animation:
 
 ## Still to come from the owner
 - Hosted logo URLs (local SVGs work until then).
-- Logos: Alder Hey, Adoption in Merseyside, Knowsley Fostering, Foster4, Meadow Park Primary, Alt Bridge School, Knowsley Central School.
 - Video walkthroughs.
 
 ## Files in this pack
@@ -144,4 +147,8 @@ Kept simple, with no heavy animation:
 - `content/`: virtual office source copy, Oliver McGowan brief, reviews, voice of customer, branded search data
 
 ## Suggested first prompt in Claude Code
-> Read README.md and PROJECT_NOTES.md, then the Website Blueprint. Set up an Astro project for Netlify with the tokens, fonts, logos, base layout, header, footer, SEO component (title, meta, canonical, OG, JSON-LD) and redirects. Then build the homepage only, to the blueprint spec, using images from assets/image-library.md. Stop for my review before building any other page.
+> Read README.md, PROJECT_NOTES.md and SEO-AND-AI-SEARCH.md, then the Website Blueprint. Set up an Astro project for Netlify with the tokens, self-hosted fonts, logos, a single facts data file (SEO spec 5.2), base layout, header, footer, SEO component (title, meta, canonical, OG, JSON-LD @graph from seo-files/schema-sitewide.jsonld), robots.txt and llms.txt from seo-files/, sitemap with real lastmod, IndexNow, noindex on deploy previews, and redirects. Then build the homepage only, to the blueprint spec, using images from assets/image-library.md. Stop for my review before building any other page.
+
+## Updating an existing build with the SEO and AI search spec
+If the site has already been started, paste this into Claude Code:
+> Pull the latest docs. Read docs/SEO-AND-AI-SEARCH.md in full. On a new branch called seo/ai-search: create the facts data file (5.2) and move every hard-coded fact into it; add the sitewide JSON-LD @graph and page-specific schema; add robots.txt and llms.txt from docs/seo-files/; make sure the sitemap has real lastmod dates, deploy previews are noindex, and IndexNow pings on production deploys; then audit every built page against the section 9 checklist and fix what fails. Report the checklist results, then open a pull request.

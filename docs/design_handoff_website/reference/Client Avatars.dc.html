@@ -142,7 +142,7 @@ class Component extends DCLogic {
         questions: [{ q: 'Is there somewhere quiet to step out?', a: 'Yes. Ask and we\u2019ll keep a room free.' }, { q: 'Do other fostering teams use you?', a: 'Adoption in Merseyside, Knowsley Fostering and Foster4 use us as their venue of choice.' }, { q: 'We\u2019re not in Knowsley. Can we book?', a: 'Yes, every borough is welcome. We\u2019re 30 seconds from the M57.' }, { q: 'Can we book a room for panels?', a: 'Yes, private rooms for panels and 1:1s.' }],
         headline: 'Hard conversations need a calm room.',
         say: 'Adoption in Merseyside, Knowsley Fostering and Foster4 bring their prospective parents here. The rooms are calm and homely, someone meets every group at the door, and there\u2019s a quiet room when someone needs a moment.',
-        proof: ['Adoption in Merseyside, Knowsley Fostering and Foster4 logos', '"A great and calming atmosphere for the adoption course we have done." (Fozzer Foz)', '"Nervous to attend… soon became at ease" (Hayley Hesketh)'],
+        proof: ['Adoption in Merseyside (#159) and Foster4 Knowsley Council (#160) logos', '"A great and calming atmosphere for the adoption course we have done." (Fozzer Foz)', '"Nervous to attend… soon became at ease" (Hayley Hesketh)'],
         adH: 'Fostering and Adoption Training Venue | Knowsley, Near Liverpool', adD: 'Calm, homely rooms trusted by Adoption in Merseyside, Knowsley Fostering and Foster4. Every borough welcome.',
         emS: 'A calm room for your preparation courses',
         emB: 'Hi Claire,\nAdoption in Merseyside, Knowsley Fostering and Foster4 run their preparation courses with us in Huyton. The rooms are calm and homely, there\u2019s a quiet room for anyone who needs a moment, and parking is free.\nWe welcome teams from every borough. Would a look round help?\nTania, your host at the Maggie O\u2019Neill Centre',
@@ -152,10 +152,10 @@ class Component extends DCLogic {
         job: 'Run a full day that works for the whole team, including co-trainers with lived experience, so the training lands and people want to come back.',
         fears: ['A noisy, bright room that overwhelms co-trainers or delegates', 'Nowhere to decompress', 'A long walk from the car park for wheelchair users'],
         searches: ['Oliver McGowan training venue', 'Oliver McGowan Tier 2 venue Liverpool', 'accessible training venue Liverpool', 'autism friendly venue hire'],
-        questions: [{ q: 'How many fit?', a: 'Up to 60 cabaret, with space between tables for a wheelchair.' }, { q: 'Is there a quiet room?', a: 'Yes, off the Auditorium foyer, signed on the door, with acoustic insulation and dim lights.' }, { q: 'Can the lighting be adjusted?', a: 'Yes, to suit the group.' }, { q: 'How close is parking?', a: 'Accessible spaces right outside the Auditorium, and we can open the side door.' }],
+        questions: [{ q: 'How many fit?', a: 'Up to 60 cabaret, with space between tables for a wheelchair.' }, { q: 'Is there a quiet room?', a: 'Yes, off the Auditorium foyer, signed on the door, with acoustic insulation and dim lights.' }, { q: 'Can the lighting be adjusted?', a: 'Yes, to suit the group.' }, { q: 'How close is parking?', a: 'Accessible spaces right outside the Auditorium, and we can open the side door.' }, { q: 'Is there an accessible toilet?', a: 'Yes, on the same floor as the Auditorium, a short walk away next to the kitchen, with grab rails and an emergency pull cord.' }],
         headline: 'A calm, accessible room for Oliver\u2019s Training.',
         say: 'The Auditorium seats 60 cabaret with room for a wheelchair between the tables. The lighting adjusts, the quiet room is just off the foyer, and accessible parking is right outside the side door.',
-        proof: ['Photo journey and video walkthrough', 'NHS and Mersey Care logos', 'Layout diagram: 60 cabaret with wheelchair routes'],
+        proof: ['Photo journey and video walkthrough, including the accessible toilet (#158)', 'NHS and Mersey Care logos', 'Layout diagram: 60 cabaret with wheelchair routes'],
         adH: 'Oliver McGowan Training Venue | Accessible, With a Quiet Room', adD: 'Tier 2 days near Liverpool. 60 cabaret, adjustable lighting, parking by the door. Get in touch about your dates.',
         emS: 'An accessible room for your Tier 2 days',
         emB: 'Hi Jo,\nWe host Oliver McGowan Tier 2 days in our Auditorium in Huyton. It seats 60 cabaret with space for wheelchairs, the lighting adjusts, and there\u2019s a quiet room off the foyer for anyone who needs to step out.\nHere\u2019s a short video walkthrough you can share with your co-trainers. Let me know your dates.\nPatrick, your host at the Maggie O\u2019Neill Centre',
@@ -194,7 +194,7 @@ class Component extends DCLogic {
         questions: [{ q: 'Can the whole staff fit?', a: 'The Auditorium seats up to 100, and training rooms suit smaller groups.' }, { q: 'Is tea included?', a: 'Yes, in the room all day.' }, { q: 'Do other schools use you?', a: 'Meadow Park Primary, Alt Bridge and Knowsley Central.' }],
         headline: 'An INSET day away from school, five minutes up the road.',
         say: 'Meadow Park Primary, Alt Bridge and Knowsley Central bring their staff here. Your whole team fits, the tea is on all day, and parking is free.',
-        proof: ['Meadow Park Primary, Alt Bridge and Knowsley Central logos (needed)', 'Council and schools reviews'],
+        proof: ['Meadow Park Primary (#161), Knowsley Central (#162) and Alt Bridge (#163) logos', 'Council and schools reviews'],
         adH: 'INSET Day Venue in Knowsley | Room for the Whole Staff', adD: 'Hosted training rooms in Huyton used by local schools. Tea all day, free parking. Maggie O\u2019Neill Centre.',
         emS: 'Your next INSET day',
         emB: 'Hi Karen,\nMeadow Park Primary, Alt Bridge and Knowsley Central hold their staff training with us in Huyton. The whole staff fits, tea and coffee are on all day, and parking is free.\nSend me your INSET dates and I\u2019ll check what\u2019s free.\nTania, your host at the Maggie O\u2019Neill Centre',
@@ -254,7 +254,6 @@ class Component extends DCLogic {
     ];
     const avatars = raw.map((a, i) => ({ ...a, n: String(i + 1).padStart(2, '0'), href: '#' + a.id, navC: '#4A0D8F', navB: '#EFE7FA' }));
     const needed = [
-      'Logos: Adoption in Merseyside, Knowsley Fostering, Foster4, and the three schools.',
       'Permission to name clients in outreach emails (Amore, AFG, Central and South PCN, the fostering teams).',
     ];
     return { avatars, needed };

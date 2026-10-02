@@ -77,3 +77,14 @@ There is no hearing loop. Don't mention it on the page. If someone asks, answer 
 
 ## Sources
 NHS England (HEE) Oliver's Training pages, Skills for Care, Care England, National Autistic Society.
+
+
+## Accessible toilet (added 2 Oct 2026)
+- Photo: image library #158 (https://assets.cdn.filesafe.space/4cpmA1xPfhyLI1A2OPDr/media/6abfcbcc02569bee7cb0c764.webp). Grab rails, a fold-down rail, an emergency pull cord and a low basin.
+- Location: on the same floor as the Auditorium, a short distance away, next to the kitchen.
+- Where to use it:
+  - The photo journey: a stop between the Auditorium and the kitchen.
+  - The "Room for everyone" accessibility block: add it to the photo and the facts.
+  - The FAQs, with this answer:
+    > "Is there an accessible toilet? Yes. The accessible toilet is on the same floor as the Auditorium, a short walk away next to the kitchen. It has grab rails, a fold-down rail and an emergency pull cord."
+- Schema: the "Accessible toilet" amenityFeature is already in the sitewide schema.

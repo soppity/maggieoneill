@@ -10,6 +10,12 @@ Use these on every page. They replace any placeholders.
 
 Schema `openingHoursSpecification`: Mo–Fr 08:30–17:00. Mention evening and weekend hire in the copy, not in the schema hours.
 
+## Accessibility facts (use word for word)
+- Step-free access. Accessible parking spaces right outside the Auditorium. The Auditorium side door can be opened to shorten the route.
+- Accessible toilet on the same floor as the Auditorium, a short walk away next to the kitchen. It has grab rails, a fold-down rail and an emergency pull cord. Photo: image library #158.
+- Quiet room off the Auditorium foyer, with acoustic insulation and dim lights, signed on the door.
+- Adjustable lighting in the Auditorium.
+
 ## General enquiry form (GoHighLevel)
 Use it on Contact, in the CTA band and on any page that asks people to "get in touch". Paste it exactly as below. Load `form_embed.js` once per page.
 
