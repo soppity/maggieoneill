@@ -39,8 +39,8 @@ export const address = {
   oneLine: '433 Liverpool Road, Huyton, Liverpool, L36 8HT',
   // The Google Business Profile listing, shared from Google Maps by the owner.
   mapsUrl: 'https://maps.app.goo.gl/sj3hrdSBmnbBMt3g7',
-  // TODO(owner): coordinates from the Google Business Profile pin (right-click the pin in Maps). Don't guess (SEO spec 4).
-  geo: null as null | { lat: number; lng: number },
+  // From the Google Business Profile pin, supplied by the owner, Oct 2026.
+  geo: { lat: 53.4235039, lng: -2.8346538 } as null | { lat: number; lng: number },
 };
 
 export const contact = {
