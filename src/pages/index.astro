@@ -43,10 +43,10 @@ const intro = `The Maggie O'Neill Centre is a charity-run hosted venue at ${addr
 const keyFacts = [
   { term: 'Where', detail: `${address.street}, Huyton, ${address.postcode}. Near Liverpool, ${parking.motorway}.` },
   { term: 'Rooms', detail: `Training, meeting and event rooms, from the ${pod.name}, a boardroom for ${pod.capacity.boardroom}, to the ${auditorium.name} for up to ${auditorium.capacity.cabaret} cabaret.` },
-  { term: 'Included', detail: 'Your host at the door, the room set to your layout, a screen with AirPlay and HDMI, WiFi, and tea and coffee all day.' },
+  { term: 'Included', detail: 'Your host at the door, the room set to your layout, a screen with Mac and PC wireless casting and HDMI, WiFi, and tea and coffee all day.' },
   { term: 'Prices', detail: `Training rooms from ${formatPrice(trainingDayFrom)} a day, everything included. ${hourFromLines.map(cap).join('. ')}.`, href: '/whats-included/', linkText: "See what's included" },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park on site, on a main bus route.` },
-  { term: 'Access', detail: 'Step-free access, accessible parking, an accessible toilet and a quiet room.' },
+  { term: 'Access', detail: 'Fully accessible on the ground floor, with accessible parking and an accessible toilet.' },
   { term: 'Hours', detail: `${hours.summary}. ${hours.extra}` },
   { term: 'Virtual office', detail: `From ${formatPrice(virtualOffice.from)} a month for a registered office address.`, href: '/services/virtual-office/', linkText: 'Plans and prices' },
 ];
@@ -63,7 +63,7 @@ const faqs = [
   },
   {
     q: "What's included when you hire a room at the Maggie O'Neill Centre?",
-    a: 'Every room booking includes a host at the door, the room set to your layout, a screen with AirPlay and HDMI, WiFi, a flipchart, free parking, and tea and coffee in the room all day.',
+    a: 'Every room booking includes a host at the door, the room set to your layout, a screen with Mac and PC wireless casting and HDMI, WiFi, a flipchart, free parking, and tea and coffee in the room all day.',
   },
   {
     q: 'How much does it cost to hire a room?',
@@ -75,7 +75,7 @@ const faqs = [
   },
   {
     q: "Is the Maggie O'Neill Centre accessible?",
-    a: `Yes. ${accessibility.stepFree} ${accessibility.toilet}`,
+    a: `Yes. The Maggie O'Neill Centre is fully accessible on the ground floor, with step-free access, accessible parking and ${accessibility.toiletGeneral.charAt(0).toLowerCase()}${accessibility.toiletGeneral.slice(1)}`,
   },
   {
     q: "What are the Maggie O'Neill Centre's opening hours?",

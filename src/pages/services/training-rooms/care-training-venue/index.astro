@@ -1,0 +1,278 @@
+---
+// Care training venue. Spec: Website Blueprint page 3 (Template: Sector) and PROJECT_NOTES.md.
+// The pitch for care providers is functional: purpose-built space for mandatory support-worker training.
+// "Calm" belongs to the fostering and adoption and Oliver McGowan pages, not here. We host the training; the provider delivers it.
+// Hoist training: floor space for a hoist, but no bed is provided.
+import Base from '../../../../layouts/Base.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import Hero from '../../../../components/sections/Hero.astro';
+import KeyFacts from '../../../../components/sections/KeyFacts.astro';
+import ClientLogos from '../../../../components/sections/ClientLogos.astro';
+import RoomCards from '../../../../components/sections/RoomCards.astro';
+import HostedDay from '../../../../components/sections/HostedDay.astro';
+import Reviews from '../../../../components/sections/Reviews.astro';
+import Faqs from '../../../../components/sections/Faqs.astro';
+import FindUs from '../../../../components/sections/FindUs.astro';
+import Photo from '../../../../components/Photo.astro';
+import { accessibility, contact, formatPrice, layoutTriage, parking, site, trainingDayFrom } from '../../../../data/facts';
+import { clientLogos, images } from '../../../../data/images';
+import { bookingTermsPath, larger, standard, weekly } from '../../../../data/bookingTerms';
+import { breadcrumbNode, faqNode, serviceNode } from '../../../../lib/schema';
+
+const path = '/services/training-rooms/care-training-venue/';
+const url = `${site.url}${path}`;
+
+const title = "Care Training Venue, Merseyside | Maggie O'Neill Centre";
+const description =
+  "Training rooms for care staff training in Huyton: TMVA, safety intervention, hoist, medication and first aid. Set up before you arrive, with free parking.";
+
+const courses = [
+  'TMVA and safety intervention',
+  'Hoist training, and moving and handling',
+  'Medication training',
+  'First aid',
+  'Safeguarding',
+  'Epilepsy awareness',
+  'Induction for new support workers',
+];
+
+const intro = `Care providers run mandatory training for their support workers at the Maggie O'Neill Centre in Huyton, near Liverpool: ${courses
+  .slice(0, 4)
+  .map((c) => c.charAt(0).toLowerCase() + c.slice(1))
+  .join(', ')} and more. The room is set before your trainer arrives, tea and coffee are served in the room, and parking is free for every delegate.`;
+
+const keyFacts = [
+  { term: 'Courses', detail: 'TMVA, safety intervention, hoist, medication, first aid, safeguarding and induction.' },
+  { term: 'Practical space', detail: 'Rooms cleared for safety intervention, with floor space for a hoist.' },
+  { term: 'Set-up', detail: 'Room set to your layout and the screen tested before your trainer arrives.' },
+  { term: 'Repeat dates', detail: 'Regular dates held for your training calendar, if you ask.' },
+  { term: 'Prices', detail: `Training rooms from ${formatPrice(trainingDayFrom)} a day, everything included.`, href: '/whats-included/', linkText: "See what's included" },
+  { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
+  { term: 'Invoicing', detail: 'Invoices to your organisation, with PO numbers welcome.' },
+  { term: 'Access', detail: 'Step-free access, accessible parking and an accessible toilet.' },
+];
+
+const faqs = [
+  {
+    q: "What care training can we run at the Maggie O'Neill Centre?",
+    a: "Care providers run TMVA, safety intervention, hoist training, moving and handling, medication, first aid, safeguarding, epilepsy awareness and induction training at the Maggie O'Neill Centre. Your trainer delivers the course, and we host it.",
+  },
+  {
+    q: 'Is there space for safety intervention and TMVA training?',
+    a: "Yes. Tell us it's a practical session, and the room is cleared before you arrive so there's open floor space for safety intervention and TMVA training.",
+  },
+  {
+    q: 'Can we run hoist training?',
+    a: "Yes. There's floor space for a hoist. The Maggie O'Neill Centre doesn't provide a bed, so bring the equipment your session needs.",
+  },
+  {
+    q: 'Can we book the same dates every month?',
+    a: 'Yes. Ask us to hold regular dates for your training calendar, and your host will keep the same room set the same way each time.',
+  },
+  {
+    q: 'How many support workers can we train at once?',
+    a: `It depends on the room and how practical the session is. ${layoutTriage}`,
+  },
+  {
+    q: 'How much does a care training room cost?',
+    a: `Training rooms at the Maggie O'Neill Centre start at ${formatPrice(trainingDayFrom)} a day, with your host, the screen, tea and coffee, and free parking included.`,
+  },
+  {
+    q: 'Do you invoice, and do you take purchase orders?',
+    a: `Yes. The Maggie O'Neill Centre invoices your organisation, and PO numbers are welcome. ${larger.paymentMethods.split('. ')[0]}.`,
+  },
+  {
+    q: 'What happens if we need to cancel a training day?',
+    a: `${standard.definition} ${standard.points[0].split(' Business days')[0]} Block bookings and courses have their own terms, set out in the booking terms.`,
+  },
+  {
+    q: 'Is there parking for all our delegates?',
+    a: `Yes. The Maggie O'Neill Centre has a free ${parking.spaces}-space car park on site, ${parking.motorway}.`,
+  },
+  {
+    q: 'Is the venue accessible?',
+    a: `Yes. The Maggie O'Neill Centre is fully accessible on the ground floor, with step-free access, accessible parking and ${accessibility.toiletGeneral.charAt(0).toLowerCase()}${accessibility.toiletGeneral.slice(1)}`,
+  },
+];
+
+const reviews = [
+  { quote: 'From booking to the event as easy as possible.', name: 'Anita Johnson' },
+  { quote: 'Patrick went above and beyond to make sure everything was perfect.', name: 'Jane Turner' },
+  { quote: 'Just off the motorway, on a main bus route.', name: 'Bec Bowden' },
+];
+
+const careLogos = clientLogos.filter((l) => [156, 153].includes(l.n));
+
+const schema = [
+  serviceNode({
+    url,
+    name: 'Care training venue hire',
+    serviceType: 'Training room hire for care staff and support worker training',
+    description: intro,
+    provider: 'venue',
+    audience: 'Care providers and their learning and development teams',
+    areaServed: ['Huyton', 'Knowsley', 'Liverpool', 'Merseyside'],
+  }),
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Training rooms', url: `${site.url}/services/training-rooms/` },
+    { name: 'Care training venue', url },
+  ]),
+  faqNode(url, faqs),
+];
+---
+<Base title={title} description={description} ogImage={images[43].src} ogImageAlt={images[43].alt} preloadImage={images[43].src} schema={schema}>
+  <Breadcrumbs
+    trail={[
+      { name: 'Home', path: '/' },
+      { name: 'Training rooms', path: '/services/training-rooms/' },
+      { name: 'Care training venue', path },
+    ]}
+  />
+
+  <Hero
+    title="Care training venue in Knowsley, near Liverpool"
+    tagline="Mandatory training, in rooms built for it."
+    lede="Care providers run mandatory training for their support workers at the Maggie O'Neill Centre. The room is set before your trainer arrives."
+    image={43}
+    primary={{ label: 'Plan your training dates', href: '#enquire' }}
+    secondary={{ label: 'See the rooms', href: '#rooms' }}
+  />
+
+  <ClientLogos heading="Care providers that train at the Maggie O'Neill Centre" logos={careLogos} />
+
+  <KeyFacts heading="Your care training venue, in a few lines" intro={intro} facts={keyFacts} />
+  <p class="container updated">Last updated: October 2026</p>
+
+  <section class="section" aria-labelledby="built-heading">
+    <div class="container two-col two-col--media">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">Built for care staff training</span>
+          <h2 id="built-heading">What does a care training day need from a venue?</h2>
+          <p>A room that's ready, tech that works and space for the practical parts. That's what we set up every time.</p>
+        </div>
+        <ul class="tick-list">
+          <li>Layouts for both halves of the day: tables for classroom work, then open floor for practical sessions.</li>
+          <li>The screen tested before your trainer walks in, with HDMI cables and Mac and PC wireless casting ready.</li>
+          <li>Room for a full cohort, with a host on site all day if anything's needed.</li>
+          <li>Regular dates held for your training calendar, in the same room, set the same way.</li>
+        </ul>
+      </div>
+      <div class="media">
+        <Photo n={105} width={720} height={540} sizes="(max-width: 900px) 100vw, 520px" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream" aria-labelledby="courses-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">Courses we host</span>
+        <h2 id="courses-heading">Which care courses run at the Maggie O'Neill Centre?</h2>
+        <p>Care providers bring their own trainers and run all of these here. Your trainer delivers the course, and we host it.</p>
+      </div>
+      <ul class="courses">
+        {courses.map((c) => <li>{c}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="practical-heading">
+    <div class="container two-col two-col--media">
+      <div class="media">
+        <Photo n={44} width={720} height={540} sizes="(max-width: 900px) 100vw, 520px" />
+      </div>
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">Space for practical kit</span>
+          <h2 id="practical-heading">Is there room for safety intervention and hoist training?</h2>
+          <p>Yes. Tell us what the session involves when you book, and the room is set for it before you arrive.</p>
+        </div>
+        <ul class="tick-list">
+          <li>Tables moved back for open floor space during safety intervention and TMVA training.</li>
+          <li>Floor space for a hoist. We don't provide a bed, so bring the kit your session needs.</li>
+          <li>Free parking right outside, so trainers can unload equipment easily.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div id="rooms">
+    <RoomCards
+      heading="Which rooms work for care training?"
+      intro="These rooms suit care training days. Tell us your numbers and what the day involves, and we'll recommend the right one."
+      order={['summit', 'forum', 'community-room', 'foundry', 'grove']}
+    />
+  </div>
+
+  <HostedDay />
+
+  <section class="section section--cream" aria-labelledby="who-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">Who trains here</span>
+        <h2 id="who-heading">Which care providers use the Maggie O'Neill Centre?</h2>
+        <p>Care providers are our biggest group of customers. Two of the regulars:</p>
+      </div>
+      <div class="stories">
+        <div class="card story">
+          <h3>Amore</h3>
+          <p>Runs all of its mandatory training for agency staff at the Maggie O'Neill Centre.</p>
+        </div>
+        <div class="card story">
+          <h3>Alternative Futures Group</h3>
+          <p>Runs TMVA and epilepsy training here, and holds its learning team meetings in the building.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Reviews reviews={reviews} heading="What do trainers and delegates say?" />
+
+  <section class="section section--white" aria-labelledby="booking-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">The practical bits</span>
+        <h2 id="booking-heading">How do block bookings and invoicing work?</h2>
+      </div>
+      <ul class="tick-list">
+        <li>{standard.definition} {standard.points[0].split(' Business days')[0]}</li>
+        <li>{weekly[0]}</li>
+        <li>{weekly[1]} {larger.payment[0].split('. ')[0]}.</li>
+        <li>{larger.paymentMethods}</li>
+        <li>Full details are in our <a href={bookingTermsPath}>booking and cancellation terms</a>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <Faqs faqs={faqs} heading="Care training venue questions" />
+
+  <section class="section section--white more-links" aria-label="Related pages">
+    <div class="container">
+      <p>
+        See also our <a href="/services/training-rooms/fostering-adoption-training-venue/">fostering and adoption training venue</a>,
+        {' '}<a href="/services/training-rooms/oliver-mcgowan-training-venue/">Oliver McGowan training venue</a> and
+        {' '}<a href="/whats-included/">everything that's included</a>. Back to
+        {' '}<a href="/services/training-rooms/">training room hire near Liverpool</a>, or call {' '}<a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>.
+      </p>
+    </div>
+  </section>
+
+  <FindUs />
+</Base>
+
+<style>
+  .two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .two-col--media { align-items: center; }
+  .two-col .section-head { margin-bottom: 24px; }
+  .media { margin: 0; }
+  .media :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
+  .updated { margin-top: -40px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
+  .courses { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; align-content: start; }
+  .courses li { padding: 12px 18px; border-radius: var(--radius-pill); background: var(--moc-white); color: var(--moc-purple-900); font-weight: 600; }
+  .stories { display: grid; gap: 16px; }
+  .story { padding: 24px 28px; display: flex; flex-direction: column; gap: 8px; }
+  .more-links { padding: 40px 0; }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } .updated { margin-top: -24px; } }
+</style>

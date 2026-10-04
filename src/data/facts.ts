@@ -97,6 +97,9 @@ export const accessibility = {
     'Step-free access. Accessible parking spaces right outside the Auditorium. The Auditorium side door can be opened to shorten the route.',
   toilet:
     'Accessible toilet on the same floor as the Auditorium, a short walk away next to the kitchen. It has grab rails, a fold-down rail and an emergency pull cord.',
+  // General wording for pages other than Oliver McGowan (owner, Oct 2026). The Auditorium detail above is for OM pages.
+  groundFloor: 'Fully accessible on the ground floor, with step-free access and accessible parking.',
+  toiletGeneral: 'An accessible toilet with grab rails, a fold-down rail and an emergency pull cord.',
   quietRoom: 'Quiet room off the Auditorium foyer, with acoustic insulation and dim lights, signed on the door.',
   lighting: 'Adjustable lighting in the Auditorium.',
 };
@@ -166,9 +169,8 @@ export const layouts: { key: Layout; name: string; bestFor: string }[] = [
 export const hostedDay = [
   'Room set to your layout before you arrive',
   'A named host at the door',
-  "Your group's name on the welcome screen",
   'Tea and coffee in the room, all day',
-  'Screen with AirPlay, HDMI cables and WiFi',
+  'Screen with Mac and PC wireless casting, HDMI cables and WiFi',
   'Flipchart and pens',
   'Free parking for every delegate',
   'A mid-morning check-in with your trainer',
