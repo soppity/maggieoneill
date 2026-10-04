@@ -1,0 +1,230 @@
+---
+// NHS training venue. Spec: Website Blueprint page 4 (Template: Sector) and PROJECT_NOTES.md.
+// Job: give NHS bookers a safe, local choice they can justify. Alder Hey (Sunflower House staff training) and
+// Central and South PCN (clinical and admin training days, monthly offsite meetings) are the lead examples.
+// Never Knowsley PCN. We host the training; the NHS team delivers it.
+import Base from '../../../../layouts/Base.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import Hero from '../../../../components/sections/Hero.astro';
+import KeyFacts from '../../../../components/sections/KeyFacts.astro';
+import ClientLogos from '../../../../components/sections/ClientLogos.astro';
+import RoomCards from '../../../../components/sections/RoomCards.astro';
+import HostedDay from '../../../../components/sections/HostedDay.astro';
+import Reviews from '../../../../components/sections/Reviews.astro';
+import Faqs from '../../../../components/sections/Faqs.astro';
+import FindUs from '../../../../components/sections/FindUs.astro';
+import Photo from '../../../../components/Photo.astro';
+import { accessibility, contact, formatPrice, layoutTriage, parking, rooms, site, trainingDayFrom } from '../../../../data/facts';
+import { clientLogos, images } from '../../../../data/images';
+import { bookingTermsPath, larger, standard } from '../../../../data/bookingTerms';
+import { breadcrumbNode, faqNode, serviceNode } from '../../../../lib/schema';
+
+const path = '/services/training-rooms/nhs-training-venue/';
+const url = `${site.url}${path}`;
+const hourFrom = Math.min(...rooms.filter((r) => r.slug !== 'pod' && r.prices?.hour).map((r) => r.prices!.hour!));
+
+const title = "NHS Training Venue near Liverpool | Maggie O'Neill Centre";
+const description =
+  "Hosted training rooms for NHS trusts and PCNs in Huyton. Clinical and admin training days, monthly team meetings and free parking. Maggie O'Neill Centre.";
+
+const intro = `NHS teams from Alder Hey and Central and South PCN train and meet at the Maggie O'Neill Centre in Huyton, near Liverpool, ${parking.motorway}. Rooms are set before you arrive, hosts are on site all day, tea and coffee are served in the room, and parking is free for staff travelling in. Invoices and purchase orders work the way NHS finance teams need them to.`;
+
+const keyFacts = [
+  { term: 'Who uses it', detail: 'Alder Hey and Central and South PCN, among other NHS teams.' },
+  { term: 'Sessions', detail: 'Clinical and admin training days, protected learning time and team meetings.' },
+  { term: 'Prices', detail: `From ${formatPrice(hourFrom)} an hour or ${formatPrice(trainingDayFrom)} a day, everything included.`, href: '/whats-included/', linkText: "See what's included" },
+  { term: 'Invoicing', detail: 'Invoices to your trust or PCN, with PO numbers welcome.' },
+  { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
+  { term: 'Tech', detail: 'Screen with Mac and PC wireless casting and HDMI, WiFi, flipchart.' },
+  { term: 'Your hosts', detail: 'On site all day, looking after your team.' },
+  { term: 'Access', detail: 'Fully accessible on the ground floor, with an accessible toilet.' },
+];
+
+const faqs = [
+  {
+    q: "Which NHS teams use the Maggie O'Neill Centre?",
+    a: "NHS teams from Alder Hey Children's Hospital and Central and South PCN train and meet at the Maggie O'Neill Centre in Huyton, near Liverpool.",
+  },
+  {
+    q: 'Can we run clinical training here?',
+    a: "Yes. NHS teams run clinical and admin training days at the Maggie O'Neill Centre. Your team delivers the training, and we host it.",
+  },
+  {
+    q: 'Can we book a room for protected learning time?',
+    a: `Yes. Rooms can be booked by the hour, from ${formatPrice(hourFrom)} an hour, so a protected learning time session doesn't mean paying for a full day.`,
+  },
+  {
+    q: 'Can we hold our monthly team meetings here?',
+    a: 'Yes. Ask us to hold regular dates, and we’ll set the room the same way each time.',
+  },
+  {
+    q: 'Do you invoice, and do you take purchase orders?',
+    a: `Yes. The Maggie O'Neill Centre invoices your trust or PCN, and PO numbers are welcome. ${larger.paymentMethods.split('. ')[0]}.`,
+  },
+  {
+    q: 'How much does an NHS training room cost?',
+    a: `Training rooms at the Maggie O'Neill Centre cost from ${formatPrice(hourFrom)} an hour or ${formatPrice(trainingDayFrom)} a day, with on-site hosts, the screen, tea and coffee, and free parking included.`,
+  },
+  {
+    q: 'How many people can we train at once?',
+    a: `It depends on the room and the layout. ${layoutTriage}`,
+  },
+  {
+    q: 'Is there parking for staff travelling in?',
+    a: `Yes. The Maggie O'Neill Centre has a free ${parking.spaces}-space car park on site, ${parking.motorway}.`,
+  },
+  {
+    q: 'What happens if we need to cancel?',
+    a: `${standard.definition} ${standard.points[0].split(' Business days')[0]} Larger bookings and courses have their own terms, set out in the booking terms.`,
+  },
+  {
+    q: 'Is the venue accessible?',
+    a: `Yes. The Maggie O'Neill Centre is fully accessible on the ground floor, with step-free access, accessible parking and ${accessibility.toiletGeneral.charAt(0).toLowerCase()}${accessibility.toiletGeneral.slice(1)}`,
+  },
+];
+
+const reviews = [
+  { quote: 'From booking to the event as easy as possible.', name: 'Anita Johnson' },
+  { quote: 'Someone waiting at the front door to greet you and point you in the right direction.', name: 'Chloe' },
+  { quote: 'Just off the motorway, on a main bus route.', name: 'Bec Bowden' },
+];
+
+const nhsLogos = clientLogos.filter((l) => [146, 164, 148, 157, 145].includes(l.n));
+
+const schema = [
+  serviceNode({
+    url,
+    name: 'NHS training venue hire',
+    serviceType: 'Training room hire for NHS trusts and primary care networks',
+    description: intro,
+    provider: 'venue',
+    audience: 'NHS trusts, primary care networks and healthcare teams',
+    areaServed: ['Huyton', 'Knowsley', 'Liverpool', 'Merseyside'],
+  }),
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Training rooms', url: `${site.url}/services/training-rooms/` },
+    { name: 'NHS training venue', url },
+  ]),
+  faqNode(url, faqs),
+];
+---
+<Base title={title} description={description} ogImage={images[67].src} ogImageAlt={images[67].alt} preloadImage={images[67].src} schema={schema}>
+  <Breadcrumbs
+    trail={[
+      { name: 'Home', path: '/' },
+      { name: 'Training rooms', path: '/services/training-rooms/' },
+      { name: 'NHS training venue', path },
+    ]}
+  />
+
+  <Hero
+    title="NHS training venue in Knowsley, near Liverpool"
+    tagline="Your clinical and admin teams, trained close to home."
+    lede={`NHS teams from Alder Hey and Central and South PCN train and meet at the Maggie O'Neill Centre, ${parking.motorway}.`}
+    image={67}
+    secondary={{ label: 'See the rooms', href: '#rooms' }}
+  />
+
+  <ClientLogos heading="NHS and primary care organisations that use the Maggie O'Neill Centre" logos={nhsLogos} />
+
+  <KeyFacts heading="Your NHS training venue, in a few lines" intro={intro} facts={keyFacts} />
+  <p class="container updated">Last updated: October 2026</p>
+
+  <section class="section" aria-labelledby="needs-heading">
+    <div class="container two-col two-col--media">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">What NHS teams need</span>
+          <h2 id="needs-heading">What does an NHS team need from a training venue?</h2>
+          <p>A venue that's easy to justify: local, ready on time, accessible and simple to pay.</p>
+        </div>
+        <ul class="tick-list">
+          <li>Invoices to your trust or PCN, with PO numbers welcome.</li>
+          <li>Hourly booking for protected learning time, or a full day for training.</li>
+          <li>Free parking for staff travelling in from across the area.</li>
+          <li>Fully accessible on the ground floor, with an accessible toilet.</li>
+          <li>The room set and the screen tested before your trainer arrives.</li>
+        </ul>
+      </div>
+      <div class="media">
+        <Photo n={44} width={720} height={540} sizes="(max-width: 900px) 100vw, 520px" />
+      </div>
+    </div>
+  </section>
+
+  <RoomCards
+    heading="Which rooms can NHS teams hire?"
+    intro="Every room is hosted, set to your layout and has a screen with Mac and PC wireless casting and HDMI. Prices include everything on the Hosted Day list."
+    order={['summit', 'forum', 'community-room', 'foundry', 'grove', 'hub']}
+  />
+
+  <HostedDay />
+
+  <section class="section section--cream" aria-labelledby="who-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">Who trains here</span>
+        <h2 id="who-heading">Which NHS teams use the Maggie O'Neill Centre?</h2>
+      </div>
+      <div class="stories">
+        <div class="card story">
+          <h3>Alder Hey Children's Hospital</h3>
+          <p>Runs staff training for Sunflower House at the Maggie O'Neill Centre.</p>
+        </div>
+        <div class="card story">
+          <h3>Central and South PCN</h3>
+          <p>Holds clinical and admin training days and its monthly offsite meetings here.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="value-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">Social value</span>
+        <h2 id="value-heading">Does booking here add social value?</h2>
+      </div>
+      <div class="prose">
+        <p>
+          Yes. The Maggie O'Neill Centre is a registered charity (no. {site.charityNumber}). What you pay for the room funds Maggie's Meals and
+          community support in Knowsley, so your training budget does some good locally too.
+        </p>
+        <p><a href="/social-value/">Social value at the Maggie O'Neill Centre</a></p>
+      </div>
+    </div>
+  </section>
+
+  <Reviews reviews={reviews} heading="What do people say about the Maggie O'Neill Centre?" />
+
+  <Faqs faqs={faqs} heading="NHS training venue questions" />
+
+  <section class="section section--white more-links" aria-label="Related pages">
+    <div class="container">
+      <p>
+        See also our <a href="/services/training-rooms/oliver-mcgowan-training-venue/">Oliver McGowan training venue</a>,
+        {' '}<a href="/services/training-rooms/care-training-venue/">care training venue</a>,
+        {' '}<a href="/services/meeting-rooms/">meeting rooms</a>, our <a href={bookingTermsPath}>booking terms</a> and
+        {' '}<a href="/whats-included/">everything that's included</a>. Back to
+        {' '}<a href="/services/training-rooms/">training room hire near Liverpool</a>, or call {' '}<a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>.
+      </p>
+    </div>
+  </section>
+
+  <FindUs />
+</Base>
+
+<style>
+  .two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .two-col--media { align-items: center; }
+  .two-col .section-head { margin-bottom: 24px; }
+  .media { margin: 0; }
+  .media :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
+  .updated { margin-top: -40px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
+  .stories { display: grid; gap: 16px; }
+  .story { padding: 24px 28px; display: flex; flex-direction: column; gap: 8px; }
+  .prose { display: flex; flex-direction: column; gap: 16px; }
+  .more-links { padding: 40px 0; }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } .updated { margin-top: -24px; } }
+</style>
