@@ -1,0 +1,282 @@
+---
+// Oliver McGowan training venue. Spec: Website Blueprint page 2b (Template: Sector) and
+// docs/content/oliver-mcgowan.md. We are the venue: never claim to deliver, approve or accredit the training.
+// No prices on this page. No training providers named. No hearing loop.
+import Base from '../../../../layouts/Base.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import Hero from '../../../../components/sections/Hero.astro';
+import KeyFacts from '../../../../components/sections/KeyFacts.astro';
+import ClientLogos from '../../../../components/sections/ClientLogos.astro';
+import HostedDay from '../../../../components/sections/HostedDay.astro';
+import PhotoJourney from '../../../../components/sections/PhotoJourney.astro';
+import Reviews from '../../../../components/sections/Reviews.astro';
+import Faqs from '../../../../components/sections/Faqs.astro';
+import FindUs from '../../../../components/sections/FindUs.astro';
+import LayoutDiagram from '../../../../components/LayoutDiagram.astro';
+import Photo from '../../../../components/Photo.astro';
+import { accessibility, contact, parking, rooms, site } from '../../../../data/facts';
+import { clientLogos, images } from '../../../../data/images';
+import { larger } from '../../../../data/bookingTerms';
+import { breadcrumbNode, faqNode, serviceNode, type Node } from '../../../../lib/schema';
+
+const path = '/services/training-rooms/oliver-mcgowan-training-venue/';
+const url = `${site.url}${path}`;
+const auditorium = rooms.find((r) => r.slug === 'auditorium')!;
+const seats = auditorium.capacity.cabaret!;
+
+const title = "Oliver McGowan Training Venue | Maggie O'Neill Centre";
+const description = `An accessible Tier 2 venue near Liverpool. The Auditorium seats ${seats} cabaret with space for wheelchairs, plus a quiet room. Maggie O'Neill Centre.`;
+
+const intro = `The Maggie O'Neill Centre in Huyton, near Liverpool, hosts Oliver McGowan Tier 2 face-to-face days in the Auditorium. It seats up to ${seats} cabaret style with space for wheelchairs between the tables. There's a quiet room off the Auditorium foyer, adjustable lighting, accessible parking right outside and an accessible toilet on the same floor.`;
+
+const keyFacts = [
+  { term: 'Capacity', detail: `Up to ${seats} cabaret style, with wheelchair space between the tables.` },
+  { term: 'Quiet room', detail: 'Off the Auditorium foyer, with acoustic insulation and dim lights, signed on the door.' },
+  { term: 'Lighting', detail: 'Adjustable in the Auditorium, to suit the group.' },
+  { term: 'Arrival', detail: 'Accessible parking right outside the Auditorium, and the side door opened on request.' },
+  { term: 'Accessible toilet', detail: 'Same floor as the Auditorium, a short walk away next to the kitchen.' },
+  { term: 'The day', detail: 'Full-day hire, set to your layout, tech tested, tea and coffee in the room.' },
+  { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
+  { term: 'Funding', detail: 'Invoicing that works for NHS and ICB funding. PO numbers welcome.' },
+];
+
+const faqs = [
+  {
+    q: 'How many delegates fit in the Auditorium for Tier 2?',
+    a: `The Auditorium at the Maggie O'Neill Centre seats up to ${seats} delegates cabaret style for an Oliver McGowan Tier 2 day.`,
+  },
+  {
+    q: 'Can a wheelchair move between the tables?',
+    a: 'Yes. The cabaret layout in the Auditorium leaves space between the tables for a wheelchair to move around.',
+  },
+  {
+    q: 'Where is the quiet room?',
+    a: `${accessibility.quietRoom} Anyone can use it whenever they need a break.`,
+  },
+  {
+    q: 'Can the lighting be adjusted?',
+    a: 'Yes. The lighting in the Auditorium at the Maggie O’Neill Centre can be adjusted to suit the group.',
+  },
+  {
+    q: 'Is there accessible parking?',
+    a: 'Yes. Accessible parking spaces are right outside the Auditorium, and the Auditorium side door can be opened so people don’t have to walk through the building.',
+  },
+  {
+    q: 'Is there an accessible toilet?',
+    a: 'Yes. The accessible toilet is on the same floor as the Auditorium, a short walk away next to the kitchen. It has grab rails, a fold-down rail and an emergency pull cord.',
+  },
+  {
+    q: 'Is there tea and coffee?',
+    a: 'Yes. Tea and coffee are served in the room all day and included in the hire.',
+  },
+  {
+    q: 'Can we see the space first?',
+    a: `Yes. Look through the photo journey on this page, or book a visit and your host will show you round. Call ${contact.phone} to arrange it.`,
+  },
+  {
+    q: 'Can we book the same dates every month?',
+    a: 'Yes. Ask us about holding regular dates for your Oliver McGowan Tier 2 programme.',
+  },
+  {
+    q: 'How do booking and payment work?',
+    a: `Auditorium bookings are larger bookings. A 25% deposit secures your dates and the balance is invoiced 2 weeks before. ${larger.paymentMethods}`,
+  },
+];
+
+const journey = [
+  { image: 1, caption: 'The free car park. Accessible spaces are right outside the Auditorium, and the side door can be opened on request.' },
+  { image: 117, caption: `The Auditorium, ready before anyone arrives. For Tier 2 it's set cabaret style for up to ${seats}, with room for wheelchairs.` },
+  { image: 114, caption: 'The Auditorium in use. The lighting can be lowered to suit the group.' },
+  { image: 158, caption: 'The accessible toilet, a short walk from the Auditorium on the same floor, with grab rails, a fold-down rail and a pull cord.' },
+  { image: 132, caption: 'The kitchen, next to the accessible toilet.' },
+  { image: 4, caption: 'The main entrance, with a ramp and handrails, for anyone coming the usual way.' },
+  { image: 6, caption: 'Reception, where your host meets the team.' },
+];
+
+const reviews = [
+  { quote: 'I soon became at ease.', name: 'Hayley Hesketh' },
+  { quote: 'Someone waiting at the front door to greet you and point you in the right direction.', name: 'Chloe' },
+  { quote: 'A great and calming atmosphere for the adoption course we have done.', name: 'Fozzer Foz' },
+];
+
+const healthLogos = clientLogos.filter((l) => [146, 148, 145, 157, 164].includes(l.n));
+
+const auditoriumPlace: Node = {
+  '@type': 'Place',
+  '@id': `${site.url}/#room-auditorium`,
+  name: `The Auditorium at the ${site.name}`,
+  containedInPlace: { '@id': `${site.url}/#venue` },
+  maximumAttendeeCapacity: seats,
+  image: images[117].src,
+  amenityFeature: [
+    `Cabaret seating for up to ${seats} with wheelchair space between tables`,
+    'Quiet room off the foyer with acoustic insulation and dim lights',
+    'Adjustable lighting',
+    'Accessible parking outside the Auditorium',
+    'Side door opened on request',
+    'Accessible toilet on the same floor',
+    'Step-free access',
+  ].map((name) => ({ '@type': 'LocationFeatureSpecification', name, value: true })),
+};
+
+const schema = [
+  serviceNode({
+    url,
+    name: 'Oliver McGowan training venue hire',
+    serviceType: 'Training venue hire for Oliver McGowan Tier 2 face-to-face training',
+    description: intro,
+    provider: 'venue',
+    audience: 'Oliver McGowan Tier 2 training providers, and NHS, ICB and care learning teams',
+    areaServed: ['Liverpool', 'Knowsley', 'Merseyside', 'North West England'],
+  }),
+  auditoriumPlace,
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Training rooms', url: `${site.url}/services/training-rooms/` },
+    { name: 'Oliver McGowan training venue', url },
+  ]),
+  faqNode(url, faqs),
+];
+---
+<Base title={title} description={description} ogImage={images[114].src} ogImageAlt={images[114].alt} preloadImage={images[114].src} schema={schema}>
+  <Breadcrumbs
+    trail={[
+      { name: 'Home', path: '/' },
+      { name: 'Training rooms', path: '/services/training-rooms/' },
+      { name: 'Oliver McGowan training venue', path },
+    ]}
+  />
+
+  <Hero
+    kicker="Oliver McGowan training venue near Liverpool"
+    display="A calm, accessible room for Oliver's Training."
+    lede="The Maggie O'Neill Centre hosts Tier 2 days in the Auditorium, with a quiet room next door for anyone who needs a break."
+    image={114}
+    primary={{ label: 'Get in touch about your dates', href: '#enquire' }}
+    secondary={{ label: 'See the space', href: '#journey-heading' }}
+  />
+
+  <ClientLogos heading="NHS and primary care organisations that use the Maggie O'Neill Centre" logos={healthLogos} />
+
+  <KeyFacts heading="Your Tier 2 venue, in a few lines" intro={intro} facts={keyFacts} />
+
+  <section class="section" aria-labelledby="cotrainers-heading">
+    <div class="container two-col two-col--media">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">Built around your co-trainers</span>
+          <h2 id="cotrainers-heading">Does the venue work for co-trainers with lived experience?</h2>
+          <p>Yes. Oliver's Training is co-delivered by experts by experience, so the venue should work for them first.</p>
+        </div>
+        <ul class="tick-list">
+          <li>Your host meets the whole team at the door.</li>
+          <li>The room is set before anyone arrives, so there are no surprises.</li>
+          <li>The quiet room is there whenever anyone needs it, all day.</li>
+          <li>Reasonable adjustments are agreed in advance, based on what each person needs. Tell us beforehand and we'll have them ready.</li>
+        </ul>
+      </div>
+      <div class="media">
+        <Photo n={117} width={720} height={540} sizes="(max-width: 900px) 100vw, 520px" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream" aria-labelledby="access-heading">
+    <div class="container two-col">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">Room for everyone</span>
+          <h2 id="access-heading">Can a wheelchair user get around the Auditorium?</h2>
+          <p>Yes. The Auditorium seats up to {seats} cabaret style, with space between the tables for a wheelchair to move around.</p>
+        </div>
+        <ul class="tick-list">
+          <li>{accessibility.stepFree}</li>
+          <li>{accessibility.toilet}</li>
+        </ul>
+        <figure class="layout-figure">
+          <div class="layout-figure__art">
+            <LayoutDiagram layout="cabaret" title="Cabaret layout: round tables facing the screen, with space between them for a wheelchair" />
+          </div>
+          <figcaption>Cabaret layout: round tables facing the screen, with space between them for wheelchairs.</figcaption>
+        </figure>
+      </div>
+      <figure class="media">
+        <Photo n={158} width={640} height={480} sizes="(max-width: 900px) 100vw, 480px" />
+        <figcaption>The accessible toilet, on the same floor as the Auditorium, next to the kitchen.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="sensory-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">A calmer sensory environment</span>
+        <h2 id="sensory-heading">Is there a quiet room?</h2>
+        <p>Yes. The quiet room is off the Auditorium foyer, so anyone can step out and reset whenever they need to.</p>
+      </div>
+      <ul class="tick-list sensory">
+        <li>Acoustic insulation and dim lighting in the quiet room.</li>
+        <li>A sign on the door, so it's easy to find.</li>
+        <li>Lighting in the Auditorium that can be adjusted to suit the group.</li>
+        <li>A host on site all day, who notices if someone needs something.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="providers-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">For providers</span>
+        <h2 id="providers-heading">What do Tier 2 providers get on the day?</h2>
+        <p>Full-day hire for Tier 2, set to your layout, with nothing for your trainers to sort out.</p>
+      </div>
+      <ul class="tick-list">
+        <li>The Auditorium set cabaret style before you arrive.</li>
+        <li>Screen and sound tested before your trainers walk in.</li>
+        <li>Tea and coffee in the room, all day.</li>
+        <li>Invoicing that works for NHS and ICB funding, with PO numbers welcome.</li>
+        <li>Regular dates held for your programme, if you ask.</li>
+        <li>We are the venue. Your organisation delivers the training.</li>
+      </ul>
+    </div>
+  </section>
+
+  <HostedDay />
+
+  <PhotoJourney
+    intro="Share these with your trainers and delegates before the day, so nobody walks in not knowing what to expect. A video walkthrough is on its way."
+    stops={journey}
+  />
+
+  <Reviews reviews={reviews} heading="How does the Maggie O'Neill Centre feel on the day?" />
+
+  <Faqs faqs={faqs} heading="Oliver McGowan venue questions" />
+
+  <section class="section section--white more-links" aria-label="Related pages">
+    <div class="container">
+      <p>
+        See also our <a href="/services/training-rooms/nhs-training-venue/">NHS training venue</a> and
+        {' '}<a href="/services/training-rooms/care-training-venue/">care training venue</a> pages,
+        {' '}<a href="/services/event-space-business-and-community/">events in the Auditorium</a>,
+        {' '}<a href="/social-value/">social value</a>, and <a href="/whats-included/">everything that's included</a>. Back to
+        {' '}<a href="/services/training-rooms/">training room hire near Liverpool</a>.
+      </p>
+    </div>
+  </section>
+
+  <FindUs />
+</Base>
+
+<style>
+  .two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .two-col--media { align-items: center; }
+  .two-col .section-head { margin-bottom: 24px; }
+  .media { margin: 0; }
+  .media :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
+  .media figcaption, .layout-figure figcaption { margin-top: 10px; font-size: var(--text-caption-size); color: var(--moc-slate-text); }
+  .layout-figure { margin: 28px 0 0; max-width: 360px; }
+  .layout-figure__art { background: var(--moc-white); border-radius: var(--radius-tile); padding: 16px 20px; }
+  .sensory { align-self: center; }
+  .more-links { padding: 40px 0; }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+</style>
