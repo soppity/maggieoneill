@@ -132,7 +132,7 @@ export const rooms: Room[] = [
     name: 'Auditorium',
     kind: 'Main hall',
     goodFor: 'Conferences, Oliver McGowan Tier 2 days and large training sessions',
-    capacity: { cabaret: 60 },
+    capacity: { cabaret: 60, theatre: 100 }, // theatre 100 confirmed by the owner, Oct 2026
     prices: { hourFrom: 100 },
     image: 117,
   },

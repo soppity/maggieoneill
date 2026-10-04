@@ -34,7 +34,7 @@ const intro = `NHS teams from Alder Hey Children's Hospital and Primary Care Net
 const keyFacts = [
   { term: 'Who uses it', detail: "Alder Hey Children's Hospital and Primary Care Networks." },
   { term: 'Sessions', detail: 'Clinical and admin training days, protected learning time and team meetings.' },
-  { term: 'The Auditorium', detail: `Up to ${auditorium.capacity.cabaret} cabaret, popular with PCNs for whole-network sessions.` },
+  { term: 'The Auditorium', detail: `Up to ${auditorium.capacity.cabaret} cabaret or ${auditorium.capacity.theatre} theatre, popular with PCNs.` },
   { term: 'Prices', detail: `From ${formatPrice(hourFrom)} an hour or ${formatPrice(trainingDayFrom)} a day, everything included.`, href: '/whats-included/', linkText: "See what's included" },
   { term: 'Invoicing', detail: 'Invoices to your trust or PCN, with PO numbers welcome.' },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
@@ -167,7 +167,7 @@ const schema = [
           <p>Yes. Primary Care Networks often book the Auditorium for training days and whole-network meetings.</p>
         </div>
         <ul class="tick-list">
-          <li>Seats up to {auditorium.capacity.cabaret} cabaret style, so practices can sit together at tables.</li>
+          <li>Seats up to {auditorium.capacity.cabaret} cabaret style, so practices can sit together at tables, or up to {auditorium.capacity.theatre} theatre style.</li>
           <li>A stage, screen and lighting for talks, training and presentations.</li>
           <li>From {formatPrice(auditorium.prices!.hourFrom!)} an hour, quoted for your session.</li>
           <li>Tea and coffee in the room, and free parking for everyone attending.</li>
