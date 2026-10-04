@@ -229,3 +229,20 @@ export function roomPlaceNode(room: { slug: string; name: string; capacity: Reco
   if (image) node.image = image;
   return node;
 }
+
+// An Article for a guide (SEO spec 4: Guides and blog). Author and publisher are the charity until hosts agree to be named.
+export function articleNode(opts: { url: string; headline: string; description: string; image: string; datePublished: string; dateModified?: string }): Node {
+  return {
+    '@type': 'Article',
+    '@id': `${opts.url}#article`,
+    headline: opts.headline,
+    description: opts.description,
+    image: opts.image,
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified ?? opts.datePublished,
+    inLanguage: 'en-GB',
+    author: { '@id': id('org') },
+    publisher: { '@id': id('org') },
+    mainEntityOfPage: { '@id': `${opts.url}#webpage` },
+  };
+}

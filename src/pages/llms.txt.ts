@@ -1,6 +1,7 @@
 // /llms.txt, generated from facts.ts on every build so it never drifts from the site (SEO spec 5.1).
 // Based on docs/seo-files/llms.txt.
 import type { APIRoute } from 'astro';
+import { guidePath, publishedGuides } from '../data/guides';
 import { address, booking, contact, formatPrice, rooms, hours, lastYear, listNames, maggiesMeals, parking, rateGroups, reviews, site, virtualOffice } from '../data/facts';
 
 const u = (path: string) => `${site.url}${path}`;
@@ -41,7 +42,7 @@ Key facts:
 - [Virtual office near Liverpool](${u('/services/virtual-office/')}): registered office, director's service address, business address and mail handling, from £${virtualOffice.from} a month
 - [Call answering](${u('/services/virtual-office/call-answering/')}): ${virtualOffice.callAnswering.summary}
 - [For accountants](${u('/services/virtual-office/accountants/')}): 15% off for referred clients and one login for all client post
-
+${publishedGuides('virtual-office').map((g) => `- [${g.title}](${u(guidePath(g))}): ${g.summary}\n`).join('')}
 ## About
 - [About the ${site.name}](${u('/about/')})
 - [Case studies](${u('/case-studies/')})

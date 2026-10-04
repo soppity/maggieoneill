@@ -1,0 +1,130 @@
+---
+// Guide template (Blueprint 05 · page 19, SEO spec 3.2): two-part H1, short answer first, "Last updated" date,
+// prose body, FAQs, related guides, and one link back to the matching service page at the end.
+import Base from './Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Photo from '../components/Photo.astro';
+import Faqs from '../components/sections/Faqs.astro';
+import { contact, site } from '../data/facts';
+import { images } from '../data/images';
+import { guidePath, publishedGuides, type Guide } from '../data/guides';
+import { articleNode, breadcrumbNode, faqNode } from '../lib/schema';
+
+interface Props {
+  guide: Guide;
+  title: string;
+  description: string;
+  h1a: string;
+  h1b: string;
+  answer: string;
+  faqs: { q: string; a: string }[];
+  cta: { heading: string; text: string; href: string; label: string };
+}
+const { guide, title, description, h1a, h1b, answer, faqs, cta } = Astro.props;
+
+const path = guidePath(guide);
+const url = `${site.url}${path}`;
+const image = images[guide.image];
+const modified = guide.updated ?? guide.published!;
+const updatedLabel = new Date(modified).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+const related = publishedGuides(guide.stream).filter((g) => g.slug !== guide.slug);
+const isVirtualOffice = guide.stream === 'virtual-office';
+
+const schema = [
+  articleNode({ url, headline: guide.title, description, image: image.src, datePublished: guide.published!, dateModified: modified }),
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Guides', url: `${site.url}/blog/` },
+    { name: guide.title, url },
+  ]),
+  faqNode(url, faqs),
+];
+---
+<Base
+  title={title}
+  description={description}
+  ogImage={image.src}
+  ogImageAlt={image.alt}
+  schema={schema}
+  dateModified={modified}
+  mobileBar={isVirtualOffice ? 'virtual-office' : 'rooms'}
+  mobileBarHref={isVirtualOffice ? '/services/virtual-office/#get-your-address' : undefined}
+>
+  <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Guides', path: '/blog/' }, { name: guide.title, path }]} />
+
+  <article class="guide">
+    <header class="section guide__head">
+      <div class="container guide__head-inner">
+        <div>
+          <h1>
+            <span class="guide__kicker">{h1a}</span>
+            <span class="guide__display">{h1b}</span>
+          </h1>
+          <p class="guide__answer">{answer}</p>
+          <p class="guide__meta">Last updated: {updatedLabel} · From the team at the {site.name}</p>
+        </div>
+        <Photo n={guide.image} width={640} height={480} priority sizes="(max-width: 900px) 100vw, 480px" />
+      </div>
+    </header>
+
+    <div class="section section--white guide__body">
+      <div class="container guide__prose">
+        <slot />
+      </div>
+    </div>
+  </article>
+
+  <Faqs faqs={faqs} heading="Quick answers" />
+
+  <section class="section section--white guide-next" aria-labelledby="guide-next-heading">
+    <div class:list={['container guide-next__inner', { 'guide-next__inner--solo': related.length === 0 }]}>
+      <div class="guide-next__cta">
+        <h2 id="guide-next-heading">{cta.heading}</h2>
+        <p>{cta.text}</p>
+        <p class="guide-next__actions">
+          <a class="btn btn--primary" href={cta.href}>{cta.label}</a>
+          <a class="btn btn--secondary" href={contact.phoneHref} data-track="phone_click">Call {contact.phone}</a>
+        </p>
+      </div>
+      {related.length > 0 && (
+        <nav class="guide-next__related" aria-label="More guides">
+          <h3>More guides</h3>
+          <ul>
+            {related.map((g) => <li><a href={guidePath(g)}>{g.title}</a></li>)}
+          </ul>
+        </nav>
+      )}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .guide__head { background: var(--moc-bg-warm); padding-bottom: clamp(40px, 6vw, 64px); }
+  .guide__head-inner { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+  .guide__head-inner :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
+  .guide h1 { display: flex; flex-direction: column; gap: 12px; }
+  .guide__kicker { font: 600 var(--text-eyebrow-size)/1.3 var(--font-body); letter-spacing: var(--text-eyebrow-tracking); text-transform: uppercase; color: var(--moc-coral-text); }
+  .guide__display { font-size: clamp(34px, 5vw, 56px); font-weight: 800; }
+  .guide__answer { margin-top: 20px; font-size: var(--text-lead-size); max-width: 640px; }
+  .guide__meta { margin-top: 16px; font-size: var(--text-caption-size); color: var(--moc-slate-text); }
+
+  .guide__prose { max-width: 760px; display: flex; flex-direction: column; gap: 18px; }
+  .guide__prose :global(h2) { font-size: clamp(26px, 3vw, 34px); margin-top: 28px; }
+  .guide__prose :global(h3) { font-size: 21px; margin-top: 12px; }
+  .guide__prose :global(ul), .guide__prose :global(ol) { margin: 0; padding-left: 22px; display: grid; gap: 8px; }
+  .guide__prose :global(table) { width: 100%; border-collapse: collapse; font-size: var(--text-small-size); }
+  .guide__prose :global(th), .guide__prose :global(td) { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--moc-border); }
+  .guide__prose :global(th) { color: var(--moc-purple-900); background: var(--moc-purple-tint); }
+  .guide__prose :global(.table-wrap) { overflow-x: auto; }
+  .guide__prose :global(.note) { padding: 18px 22px; border-left: 4px solid var(--moc-purple-700); background: var(--moc-purple-tint); border-radius: 0 var(--radius-tile) var(--radius-tile) 0; font-size: var(--text-small-size); }
+  .guide__prose :global(.callout) { padding: 24px 28px; background: var(--moc-bg-warm); border-radius: var(--radius-card); }
+
+  .guide-next__inner { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.6fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .guide-next__inner--solo { grid-template-columns: minmax(0, 1fr); }
+  .guide-next__cta { display: flex; flex-direction: column; gap: 14px; }
+  .guide-next__cta > p:first-of-type { font-size: var(--text-lead-size); color: var(--moc-slate-text); max-width: 620px; }
+  .guide-next__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .guide-next__related { padding: 24px 28px; background: var(--moc-bg-warm); border-radius: var(--radius-card); }
+  .guide-next__related ul { margin: 12px 0 0; padding-left: 20px; display: grid; gap: 10px; }
+  @media (max-width: 900px) { .guide__head-inner, .guide-next__inner { grid-template-columns: 1fr; } }
+</style>
