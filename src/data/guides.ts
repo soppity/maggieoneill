@@ -51,6 +51,7 @@ export const guides: Guide[] = [
     stream: 'virtual-office',
     summary: 'Comparing the three ways to give a small business an address, on cost, privacy and what each one includes.',
     image: 1,
+    published: '2026-10-04',
   },
   {
     slug: 'planning-a-training-day',

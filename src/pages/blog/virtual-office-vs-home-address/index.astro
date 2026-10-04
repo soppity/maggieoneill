@@ -1,0 +1,119 @@
+---
+// Virtual office guide 5. Legal points must be checked against gov.uk before publishing (Blueprint 04 · Check before the push).
+import Guide from '../../../layouts/Guide.astro';
+import { address, formatPrice, rooms, virtualOffice, withCover } from '../../../data/facts';
+import { guideBySlug } from '../../../data/guides';
+
+const guide = guideBySlug('virtual-office-vs-home-address');
+const [p20, p40] = virtualOffice.plans;
+const dc = virtualOffice.directorsCover;
+const pod = rooms.find((r) => r.slug === 'pod')!;
+
+const title = "Virtual Office vs Home Address vs Coworking | Maggie O'Neill Centre";
+const description =
+  "Should your business use your home address, a virtual office or a coworking space? Cost, privacy and what each includes, compared. From Maggie O'Neill Centre.";
+
+const answer =
+  "Your home address is free but public. A virtual office gives you a business address and keeps your home private for a small monthly fee, without a desk. A coworking space gives you a desk and often an address too, but costs more because you're paying for the space. Pick the one that matches how you actually work.";
+
+const faqs = [
+  {
+    q: 'Should I use my home address for my business?',
+    a: "You can, and it's free. But if you run a limited company, your home address appears on the public Companies House register, and it goes on your website and invoices. A virtual office keeps your home private for a monthly fee.",
+  },
+  {
+    q: 'What is the difference between a virtual office and coworking?',
+    a: 'A virtual office gives you a business address and post handling, without a desk. A coworking space gives you somewhere to work, and many also offer an address. Coworking usually costs more because you’re paying for the desk.',
+  },
+  {
+    q: 'Is a virtual office cheaper than coworking?',
+    a: `Usually, yes, because there's no desk to pay for. A virtual office at the Maggie O'Neill Centre starts at ${formatPrice(p20.price)} a month for a registered office and business address.`,
+  },
+  {
+    q: 'Can I use a virtual office and work from home?',
+    a: 'Yes. That’s how most virtual office clients work. The virtual office is your public address, and you carry on working from home.',
+  },
+  {
+    q: 'Do I need to tell anyone if I run a business from home?',
+    a: 'Check your mortgage, tenancy or lease, and tell your home insurer. Some have conditions about running a business from home, even if you only work at a desk.',
+  },
+  {
+    q: "Does the Maggie O'Neill Centre offer coworking?",
+    a: `No. The Maggie O'Neill Centre offers virtual offices from ${formatPrice(p20.price)} a month, meeting rooms by the hour and private offices to rent, all in one building in Huyton.`,
+  },
+];
+---
+<Guide
+  guide={guide}
+  title={title}
+  description={description}
+  tagline="Three ways to give your business an address."
+  answer={answer}
+  faqs={faqs}
+  cta={{
+    heading: 'A business address without the desk',
+    text: `A virtual office at ${address.street}, Huyton, from ${formatPrice(p20.price)} a month. Keep working from home, and keep your home private.`,
+    href: '/services/virtual-office/',
+    label: 'Virtual office Liverpool',
+  }}
+>
+  <h2>Home address, virtual office or coworking: compared</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col"><span class="visually-hidden">Question</span></th><th scope="col">Home address</th><th scope="col">Virtual office</th><th scope="col">Coworking space</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Cost</th><td>Free</td><td>A small monthly fee</td><td>Usually the most, because you pay for a desk</td></tr>
+        <tr><th scope="row">Keeps your home private</th><td>No</td><td>Yes</td><td>Yes, if it includes an address</td></tr>
+        <tr><th scope="row">Registered office for Companies House</th><td>Yes</td><td>Yes</td><td>Sometimes, as an extra</td></tr>
+        <tr><th scope="row">Somewhere to work</th><td>Yes</td><td>No</td><td>Yes</td></tr>
+        <tr><th scope="row">Post handled for you</th><td>No</td><td>Yes</td><td>Often</td></tr>
+        <tr><th scope="row">Meeting rooms</th><td>No</td><td>Often in the same building</td><td>Usually</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Using your home address</h2>
+  <p>
+    It's free and it's simple. But if you run a limited company and use your home as the registered office or your director's service address,
+    it's on the public Companies House register for anyone to find. It also goes on your website, invoices and online listings.
+  </p>
+  <p>
+    Some people also find a home address makes a business look smaller than it is, and it means customers, couriers and junk mail all come to
+    your front door. If you move house, you have to update your address everywhere.
+  </p>
+
+  <h2>Using a virtual office</h2>
+  <p>
+    A virtual office gives you a real business address, without renting a desk. You can use it as your registered office, your business address
+    and, with the right plan, your director's service address. You carry on working from home or wherever suits you.
+  </p>
+  <p>
+    At the Maggie O'Neill Centre, a <a href="/services/virtual-office/">virtual office in Liverpool</a> costs {formatPrice(p20.price)} a month
+    for {p20.name}, or {formatPrice(p40.price)} for {p40.name} with post opened and scanned and 2 free meeting room hours a month. {dc.name}
+    adds your director's service address for {formatPrice(dc.price)} a month ({formatPrice(withCover(p20))} or {formatPrice(withCover(p40))}).
+  </p>
+
+  <h2>Using a coworking space</h2>
+  <p>
+    A coworking space gives you somewhere to work outside the house, with other people around. Many offer a business address as an extra.
+    You pay for the desk whether you use it every day or once a week, so it usually costs more than a virtual office.
+  </p>
+  <p>
+    It makes sense if you need to get out of the house to work. If you mainly want an address and somewhere to meet clients now and then, a
+    virtual office and a meeting room by the hour usually cost less.
+  </p>
+
+  <h2>Which one is right for you?</h2>
+  <ul>
+    <li><strong>Choose your home address</strong> if you're a sole trader who doesn't mind your address being on your website and invoices.</li>
+    <li><strong>Choose a virtual office</strong> if you work from home but want your home kept private, a proper business address, and your post looked after.</li>
+    <li><strong>Choose a coworking space</strong> if you need a desk away from home most days.</li>
+  </ul>
+  <p class="callout">
+    Need to meet clients? At the Maggie O'Neill Centre, meeting rooms are in the same building as your virtual office address, from the
+    {' '}{pod.name}, a boardroom for {pod.capacity.boardroom}. Need a desk of your own? See <a href="/services/private-offices/">private offices</a>.
+    Or start with <a href="/services/virtual-office/">registered office address plans in Liverpool</a>.
+  </p>
+</Guide>
