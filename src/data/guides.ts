@@ -43,6 +43,7 @@ export const guides: Guide[] = [
     stream: 'virtual-office',
     summary: 'Moving your registered office to a new address, step by step, and who else to tell.',
     image: 18,
+    published: '2026-10-04',
   },
   {
     slug: 'virtual-office-vs-home-address',
