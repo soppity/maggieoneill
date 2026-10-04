@@ -14,7 +14,8 @@ import Reviews from '../../../../components/sections/Reviews.astro';
 import Faqs from '../../../../components/sections/Faqs.astro';
 import FindUs from '../../../../components/sections/FindUs.astro';
 import Photo from '../../../../components/Photo.astro';
-import { accessibility, contact, formatPrice, layoutTriage, parking, site, trainingDayFrom } from '../../../../data/facts';
+import NameMarquee from '../../../../components/sections/NameMarquee.astro';
+import { accessibility, careClients, contact, formatPrice, layoutTriage, parking, site, trainingDayFrom } from '../../../../data/facts';
 import { clientLogos, images } from '../../../../data/images';
 import { bookingTermsPath, larger, standard, weekly } from '../../../../data/bookingTerms';
 import { breadcrumbNode, faqNode, serviceNode } from '../../../../lib/schema';
@@ -139,7 +140,9 @@ const schema = [
     secondary={{ label: 'See the rooms', href: '#rooms' }}
   />
 
-  <ClientLogos heading="Care providers that train at the Maggie O'Neill Centre" logos={careLogos} />
+  <ClientLogos heading="Care providers that train at the Maggie O'Neill Centre" logos={careLogos}>
+    <NameMarquee names={careClients} label="More care providers that train at the Maggie O'Neill Centre:" />
+  </ClientLogos>
 
   <KeyFacts heading="Your care training venue, in a few lines" intro={intro} facts={keyFacts} />
   <p class="container updated">Last updated: October 2026</p>

@@ -1,0 +1,45 @@
+---
+// A slowly scrolling row of client names, used under a logo strip. The list is real text, so search engines and
+// screen readers get every name once; the second copy that makes the loop seamless is hidden from assistive tech.
+// Pauses on hover and focus, and sits still as a wrapped list for anyone who prefers reduced motion.
+interface Props {
+  names: string[];
+  label: string;
+  seconds?: number;
+}
+const { names, label, seconds = 60 } = Astro.props;
+---
+<div class="marquee" style={`--marquee-duration:${seconds}s`}>
+  <p class="visually-hidden">{label}</p>
+  <div class="marquee__track">
+    <ul class="marquee__list">
+      {names.map((n) => <li>{n}</li>)}
+    </ul>
+    <ul class="marquee__list" aria-hidden="true">
+      {names.map((n) => <li>{n}</li>)}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .marquee {
+    overflow: hidden; margin-top: 28px; padding: 2px 0;
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+  .marquee__track { display: flex; width: max-content; animation: marquee var(--marquee-duration) linear infinite; }
+  .marquee:hover .marquee__track, .marquee:focus-within .marquee__track { animation-play-state: paused; }
+  .marquee__list { list-style: none; margin: 0; padding: 0; display: flex; gap: 12px; padding-right: 12px; }
+  .marquee__list li {
+    white-space: nowrap; padding: 10px 18px; border-radius: var(--radius-pill);
+    background: var(--moc-bg); border: 1px solid var(--moc-border);
+    font-size: var(--text-small-size); font-weight: 600; color: var(--moc-purple-900);
+  }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee { mask-image: none; -webkit-mask-image: none; }
+    .marquee__track { animation: none; width: auto; justify-content: center; padding: 0 16px; }
+    .marquee__list { flex-wrap: wrap; justify-content: center; }
+    .marquee__list[aria-hidden='true'] { display: none; }
+  }
+</style>
