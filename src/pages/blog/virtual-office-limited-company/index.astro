@@ -1,0 +1,123 @@
+---
+// Virtual office guide 3. Legal points must be checked against gov.uk before publishing (Blueprint 04 · Check before the push).
+import Guide from '../../../layouts/Guide.astro';
+import { address, formatPrice, virtualOffice, withCover } from '../../../data/facts';
+import { guideBySlug } from '../../../data/guides';
+
+const guide = guideBySlug('virtual-office-limited-company');
+const [p20, p40] = virtualOffice.plans;
+const dc = virtualOffice.directorsCover;
+
+const title = "Virtual Office for a Limited Company | Maggie O'Neill Centre";
+const description =
+  "Yes, a limited company can use a virtual office as its registered office and business address. What Companies House accepts, and what to check first.";
+
+const answer =
+  "Yes. A limited company can use a virtual office as its registered office, as long as it's an appropriate address where post reaches someone acting for the company. It can also be your business address and your directors' service address. It won't usually count as your principal place of business for HMRC if you work somewhere else.";
+
+const faqs = [
+  {
+    q: 'Can a limited company use a virtual office address?',
+    a: "Yes. A limited company can use a virtual office as its registered office, its business address and its directors' service address. The registered office has to be an appropriate address, where post reaches someone acting for the company and can be acknowledged.",
+  },
+  {
+    q: 'Is a virtual office address legal for Companies House?',
+    a: 'Yes, if it’s a real address in a staffed building in the same part of the UK the company is registered in. Companies House doesn’t accept a PO box as a registered office.',
+  },
+  {
+    q: 'Can I register a new company with a virtual office address?',
+    a: 'Yes. You can give a virtual office as the registered office when you set up the company, as long as you have the provider’s permission and your ID checks with them are done.',
+  },
+  {
+    q: 'Why does a virtual office provider need to check my ID?',
+    a: 'Businesses that provide registered office services have to check the identity of their clients by law, under the anti-money laundering rules. It’s separate from the identity verification Companies House asks directors to complete.',
+  },
+  {
+    q: 'Can I use a virtual office for VAT registration?',
+    a: 'HMRC asks for your principal place of business, which is where the business is run day to day. If you run the company from home or elsewhere, that is usually your principal place of business, even if your registered office is a virtual office.',
+  },
+  {
+    q: "How much is a virtual office for a limited company at the Maggie O'Neill Centre?",
+    a: `A registered office and business address at the Maggie O'Neill Centre costs ${formatPrice(p20.price)} a month. Director's Cover adds a director's service address for ${formatPrice(dc.price)} a month, taking it to ${formatPrice(withCover(p20))}.`,
+  },
+];
+---
+<Guide
+  guide={guide}
+  title={title}
+  description={description}
+  h1a="Can a limited company use a virtual office?"
+  h1b="Yes. Here's what to check first."
+  answer={answer}
+  faqs={faqs}
+  cta={{
+    heading: 'A registered office for your limited company',
+    text: `A real address at ${address.street}, Huyton, near Liverpool, from ${formatPrice(p20.price)} a month. Post handled in-house, and meeting rooms in the same building.`,
+    href: '/services/virtual-office/',
+    label: 'Virtual office Liverpool',
+  }}
+>
+  <h2>What Companies House needs from a registered office</h2>
+  <p>Your company's registered office can be a virtual office, as long as it meets the same rules as any other registered office:</p>
+  <ul>
+    <li><strong>It's an appropriate address.</strong> Post sent to the company would come to someone acting on its behalf, and it could be acknowledged.</li>
+    <li><strong>It isn't a PO box.</strong> It has to be a physical address.</li>
+    <li><strong>It's in the right part of the UK.</strong> A company registered in England and Wales needs a registered office in England or Wales.</li>
+    <li><strong>You have permission to use it.</strong> With a virtual office, that's your agreement with the provider.</li>
+  </ul>
+  <p>
+    A <a href="/services/virtual-office/">virtual office in Liverpool</a> at a staffed building meets all four. At the Maggie O'Neill Centre,
+    {' '}{virtualOffice.postHandler} handles virtual office post in-house at reception, {address.oneLine}.
+  </p>
+
+  <h2>What a virtual office can be used for</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Use</th><th scope="col">Can it be a virtual office?</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Registered office on Companies House</td><td>Yes, if it's an appropriate address</td></tr>
+        <tr><td>Director's service address</td><td>Yes</td></tr>
+        <tr><td>Business address on your website, invoices and letters</td><td>Yes</td></tr>
+        <tr><td>Google Business Profile</td><td>Only if you meet customers there during your listed hours. Google's own guidelines decide this.</td></tr>
+        <tr><td>Principal place of business for HMRC</td><td>Usually not, if you run the business from somewhere else</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>What to check before you sign up</h2>
+  <h3>Your ID checks with the provider</h3>
+  <p>
+    Anyone providing a registered office service has to check who their clients are, under the anti-money laundering rules. Expect to
+    confirm your identity before the address goes live. At the Maggie O'Neill Centre, we send a secure form for this after you sign up.
+  </p>
+  <h3>Identity verification with Companies House</h3>
+  <p>
+    Separately, Companies House now asks company directors and people with significant control to verify their identity. That's done with
+    Companies House or an authorised agent, not with your virtual office provider.
+  </p>
+  <h3>What happens to your post</h3>
+  <p>
+    Official letters from Companies House, HMRC and the courts go to your registered office, so check how the provider handles post. Is it
+    scanned? Can you collect it? Who tells you when it arrives? At the Maggie O'Neill Centre, every plan includes collecting your post from
+    reception, and the {p40.name} plan at {formatPrice(p40.price)} a month adds post opened and scanned.
+  </p>
+  <h3>Whether you need premises</h3>
+  <p>
+    A few kinds of business need their own premises for a licence or registration, such as some food, health and regulated financial
+    businesses. If that's you, check with the regulator before relying on a virtual office.
+  </p>
+
+  <h2>Keeping your home address private</h2>
+  <p>
+    If you set the company up from home, your home may be on the public register as the registered office and as your service address. A
+    virtual office can replace it in both places. Every plan covers the registered office, and {dc.name} adds the director's service address
+    for {formatPrice(dc.price)} a month.
+  </p>
+  <p class="callout">
+    More detail: <a href="/blog/home-address-companies-house/">how to keep your home address off Companies House</a> and
+    {' '}<a href="/blog/registered-office-vs-business-address/">registered office vs business address</a>. Or see
+    {' '}<a href="/services/virtual-office/">registered office address plans in Liverpool</a>.
+  </p>
+</Guide>

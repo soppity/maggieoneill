@@ -35,6 +35,7 @@ export const guides: Guide[] = [
     stream: 'virtual-office',
     summary: 'What Companies House accepts as a registered office, and when a virtual office address works for a limited company.',
     image: 6,
+    published: '2026-10-04',
   },
   {
     slug: 'change-registered-office-address',
