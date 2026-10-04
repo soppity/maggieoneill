@@ -38,7 +38,7 @@ Key facts:
 - [What's included](${u('/whats-included/')})
 
 ## Virtual office
-- [Virtual office near Liverpool](${u('/services/virtual-office/')}): registered office, director's service address, business address and mail handling, from £${virtualOffice.from} a month
+- [Virtual office near Liverpool](${u('/services/virtual-office/')}): registered office, director's service address, business address and mail handling, from £${virtualOffice.from} a month, for businesses in Merseyside and across the UK
 - [Call answering](${u('/services/virtual-office/call-answering/')}): ${virtualOffice.callAnswering.summary}
 - [For accountants](${u('/services/virtual-office/accountants/')}): 15% off for referred clients and one login for all client post
 ${publishedGuides('virtual-office').map((g) => `- [${g.title}](${u(guidePath(g))}): ${g.summary}\n`).join('')}

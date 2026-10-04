@@ -247,6 +247,9 @@ export const virtualOffice = {
   },
 
   areasServed: ['Liverpool', 'Knowsley', 'St Helens', 'Sefton', 'Wirral', 'Halton', 'Warrington', 'West Lancashire'],
+  // Owner, Oct 2026: there are clients across the UK who chose a charity for their registered address.
+  national:
+    "We also have clients across the UK who chose a charity for their registered address, instead of an online service or a profit-making company. On the Virtual Office plan your post is scanned, so you don't need to be local, and every month's fee helps fund Maggie's Meals.",
 };
 
 // Sector pages under the training rooms hub, with their first sentence (Blueprint 03 · Messaging).

@@ -47,6 +47,7 @@ const whoFor = [
   'Online sellers who need a business address',
   'Property companies, contractors, charities and CICs',
   'Firms outside the region wanting a Liverpool presence',
+  'Businesses anywhere in the UK who would rather their registered address supported a charity',
 ];
 
 // Why people switch, from the current virtual office page.
@@ -95,6 +96,10 @@ const faqs = [
     a: `Yes. Meeting rooms are in the same building, from the ${pod.name} at ${formatPrice(pod.prices!.hour!)} an hour. The ${formatPrice(p40.price)} ${p40.name} plan includes 2 free meeting room hours a month.`,
   },
   {
+    q: 'Do I need to be near Liverpool to use the virtual office?',
+    a: `No. The Maggie O'Neill Centre has virtual office clients across the UK who chose a charity for their registered address, instead of an online service or a profit-making company. On the Virtual Office plan your post is opened and scanned, so you can read it wherever you are.`,
+  },
+  {
     q: 'Is there a contract?',
     a: `There's no lock-in. You can cancel a virtual office at the Maggie O'Neill Centre any time with one month's notice.`,
   },
@@ -118,7 +123,7 @@ const schema = [
     name: 'Virtual office',
     serviceType: 'Virtual office and registered office address',
     description: intro,
-    areaServed: virtualOffice.areasServed,
+    areaServed: ['United Kingdom', ...virtualOffice.areasServed],
     catalogName: 'Virtual office plans',
     offers: [
       ...virtualOffice.plans.map((p) => ({ name: p.name, price: p.price, description: p.summary })),
@@ -267,13 +272,14 @@ const voReviewCount = reviews.count;
         <span class="eyebrow">Areas we serve</span>
         <h2 id="areas-heading">Which areas does the virtual office cover?</h2>
         <p>
-          Businesses across Merseyside and beyond use our address in Huyton, near Liverpool: {listNames(virtualOffice.areasServed)}. Your post
-          can be scanned, so you don't need to be local.
+          Businesses across Merseyside use our address in Huyton, near Liverpool: {listNames(virtualOffice.areasServed)}.
         </p>
       </div>
       <ul class="areas">
         {virtualOffice.areasServed.map((a) => <li>{a}</li>)}
+        <li class="areas__uk">Across the UK</li>
       </ul>
+      <p class="areas__national">{virtualOffice.national}</p>
     </div>
   </section>
 
@@ -346,6 +352,8 @@ const voReviewCount = reviews.count;
   .post-review { margin-top: 20px; padding: 18px 22px; border-left: 4px solid var(--moc-coral-500); background: var(--moc-white); border-radius: 0 var(--radius-tile) var(--radius-tile) 0; font-size: var(--text-small-size); }
   .areas { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
   .areas li { padding: 10px 18px; border-radius: var(--radius-pill); background: var(--moc-purple-tint); color: var(--moc-purple-900); font-weight: 600; }
+  .areas li.areas__uk { background: var(--moc-purple-700); color: var(--moc-white); }
+  .areas__national { margin-top: 24px; max-width: 760px; font-size: var(--text-lead-size); }
   .steps-cta { margin-top: 32px; }
   .vo-guides { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--grid-gap); }
   .vo-guides li { display: flex; flex-direction: column; gap: 8px; padding: 22px 24px; border-radius: var(--radius-card); background: var(--moc-white); }
