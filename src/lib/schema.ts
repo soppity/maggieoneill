@@ -18,7 +18,7 @@ export function sitewideNodes(): Node[] {
     image: [images[1].src, images[44].src, images[105].src],
     logo: logoUrl,
     description:
-      'Hosted training, meeting and event rooms in Huyton, near Liverpool. A host meets every group, rooms are set before you arrive, tea and coffee are included and parking is free.',
+      'Hosted training, meeting and event rooms in Huyton, near Liverpool. Hosts are on site all day, rooms are set before you arrive, tea and coffee are included and parking is free.',
     telephone: contact.phoneIntl,
     address: { '@id': id('address') },
     parentOrganization: { '@id': id('org') },

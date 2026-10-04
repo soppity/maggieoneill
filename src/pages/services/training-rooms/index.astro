@@ -31,7 +31,7 @@ const groups = rateGroups(['pod']);
 const rateSentences = groups.map((g) => `${the(g.rooms.map((r) => r.name))} cost ${formatPrice(g.hour)} an hour or ${formatPrice(g.day)} a day`);
 const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
-const intro = `The Maggie O'Neill Centre is a hosted training venue in Huyton, near Liverpool. Training rooms cost from ${formatPrice(trainingDayFrom)} a day and seat groups from ${pod.capacity.boardroom} up to ${auditorium.capacity.cabaret}. Every room has a screen with Mac and PC wireless casting and HDMI, tea and coffee are served in the room, parking is free, and a host meets every group at the door.`;
+const intro = `The Maggie O'Neill Centre is a hosted training venue in Huyton, near Liverpool. Training rooms cost from ${formatPrice(trainingDayFrom)} a day and seat groups from ${pod.capacity.boardroom} up to ${auditorium.capacity.cabaret}. Every room has a screen with Mac and PC wireless casting and HDMI, tea and coffee are served in the room, parking is free, and hosts are on site all day.`;
 
 const keyFacts = [
   { term: 'Prices', detail: `From ${formatPrice(trainingDayFrom)} a day, everything included.`, href: '#rooms', linkText: 'All room rates' },
@@ -76,7 +76,7 @@ const faqs = [
   },
   {
     q: 'Will someone be there on the day?',
-    a: `Yes. A named host meets your group at the door of the Maggie O'Neill Centre and stays on site all day. You can also call ${contact.phone} and speak to a real person.`,
+    a: `Yes. Hosts are on site at the Maggie O'Neill Centre all day, looking after your group. You can also call ${contact.phone} and speak to a real person.`,
   },
   {
     q: 'What do I need to bring?',
@@ -146,7 +146,7 @@ const schema = [
   <Hero
     title="Training room hire in Huyton, near Liverpool"
     tagline="Book it once. Your delegates will ask to come back."
-    lede={`At the Maggie O'Neill Centre your host meets every delegate at the door, and the room is set to your layout before anyone arrives. From ${formatPrice(trainingDayFrom)} a day.`}
+    lede={`At the Maggie O'Neill Centre your hosts are on site all day, and the room is set to your layout before anyone arrives. From ${formatPrice(trainingDayFrom)} a day.`}
     image={105}
     secondary={{ label: 'See rooms and prices', href: '#rooms' }}
   >

@@ -1,0 +1,244 @@
+---
+// Fostering and adoption training venue. Spec: Website Blueprint page 3b (Template: Sector) and PROJECT_NOTES.md.
+// The pitch is calm: prospective adopters and foster carers are in the room and emotions can run high.
+// Adoption in Merseyside, Knowsley Fostering and Foster4 use us as their venue of choice; every borough is welcome.
+// We host the sessions; the agency delivers them.
+import Base from '../../../../layouts/Base.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import Hero from '../../../../components/sections/Hero.astro';
+import KeyFacts from '../../../../components/sections/KeyFacts.astro';
+import ClientLogos from '../../../../components/sections/ClientLogos.astro';
+import RoomCards from '../../../../components/sections/RoomCards.astro';
+import HostedDay from '../../../../components/sections/HostedDay.astro';
+import PhotoJourney from '../../../../components/sections/PhotoJourney.astro';
+import Reviews from '../../../../components/sections/Reviews.astro';
+import Faqs from '../../../../components/sections/Faqs.astro';
+import FindUs from '../../../../components/sections/FindUs.astro';
+import Photo from '../../../../components/Photo.astro';
+import { accessibility, contact, hours, listNames, parking, site } from '../../../../data/facts';
+import { clientLogos, images } from '../../../../data/images';
+import { larger } from '../../../../data/bookingTerms';
+import { breadcrumbNode, faqNode, serviceNode } from '../../../../lib/schema';
+
+const path = '/services/training-rooms/fostering-adoption-training-venue/';
+const url = `${site.url}${path}`;
+const boroughs = ['Liverpool', 'St Helens', 'Sefton', 'Halton', 'Wirral'];
+
+const title = "Fostering & Adoption Training Venue | Maggie O'Neill Centre";
+const description =
+  "Calm, clean rooms for fostering and adoption training in Knowsley, near Liverpool. Every borough welcome. Free parking and tea in the room.";
+
+const sessions = ['Adoption preparation courses', 'Skills to Foster', 'Foster carer training', 'Support groups', 'Panel meetings', 'Evening and weekend sessions'];
+
+const intro = `Adoption in Merseyside, Knowsley Fostering and Foster4 choose the Maggie O'Neill Centre in Huyton, Knowsley, to train prospective adopters and foster carers. The rooms are calm and clean, your host is on site all day, tea and coffee are served in the room, and parking is free. Fostering and adoption teams from ${listNames(boroughs)} are welcome too.`;
+
+const keyFacts = [
+  { term: 'Who uses it', detail: 'Adoption in Merseyside, Knowsley Fostering and Foster4.' },
+  { term: 'Sessions', detail: 'Preparation courses, Skills to Foster, support groups and panels.' },
+  { term: 'The rooms', detail: 'Calm and clean, set for your course before anyone arrives.' },
+  { term: 'Your hosts', detail: 'On site all day, looking after your team.' },
+  { term: 'Evenings and weekends', detail: hours.extra },
+  { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
+  { term: 'Boroughs', detail: `Knowsley, plus ${listNames(boroughs)}.` },
+  { term: 'Access', detail: 'Fully accessible on the ground floor, with an accessible toilet.' },
+];
+
+const faqs = [
+  {
+    q: "Who uses the Maggie O'Neill Centre for fostering and adoption training?",
+    a: "Adoption in Merseyside, Knowsley Fostering and Foster4 use the Maggie O'Neill Centre as their venue for fostering and adoption training. Teams from other boroughs book here too.",
+  },
+  {
+    q: 'We are not in Knowsley. Can we still book?',
+    a: `Yes. Fostering and adoption teams from ${listNames(boroughs)} are welcome. The Maggie O'Neill Centre is in Huyton, ${parking.motorway}, with free parking for everyone.`,
+  },
+  {
+    q: 'Can we run adoption preparation courses and Skills to Foster here?',
+    a: "Yes. Adoption preparation courses, Skills to Foster, foster carer training and support groups all run at the Maggie O'Neill Centre. Your agency delivers the session, and we host it.",
+  },
+  {
+    q: 'Can we hold fostering or adoption panels here?',
+    a: 'Yes. A private meeting room can be booked for your panel at the usual room rate, with tea and coffee in the room and your host on hand.',
+  },
+  {
+    q: 'Do you offer evening and weekend sessions?',
+    a: `Yes. ${hours.extra} Tell us the dates and times your families can make.`,
+  },
+  {
+    q: 'What if someone needs a moment away from the group?',
+    a: 'There is space in reception to step out for a breather, and your host is on site all day to help if anyone needs something.',
+  },
+  {
+    q: 'How big are the groups you can host?',
+    a: 'Fostering and adoption courses often have up to 25 people. Tell us how many are coming and we’ll recommend the right room and set it before you arrive.',
+  },
+  {
+    q: 'Is parking free?',
+    a: `Yes. The Maggie O'Neill Centre has a free ${parking.spaces}-space car park on site, ${parking.motorway}.`,
+  },
+  {
+    q: 'Is the venue accessible?',
+    a: `Yes. The Maggie O'Neill Centre is fully accessible on the ground floor, with step-free access, accessible parking and ${accessibility.toiletGeneral.charAt(0).toLowerCase()}${accessibility.toiletGeneral.slice(1)}`,
+  },
+  {
+    q: 'How do booking and payment work for a course?',
+    a: `If your dates make up one course, the whole course counts as one larger booking, secured with a 25% deposit. ${larger.paymentMethods}`,
+  },
+];
+
+const journey = [
+  { image: 1, caption: `The free car park, ${parking.motorway}.` },
+  { image: 4, caption: 'The front door, with a ramp and handrails.' },
+  { image: 6, caption: 'Reception, with chairs if anyone needs to step out for a moment.' },
+  { image: 35, caption: 'Arrive at your room, ready to go.' },
+  { image: 62, caption: 'The Grove, with its greenery canopy.' },
+  { image: 158, caption: 'The accessible toilet, with grab rails and an emergency pull cord.' },
+];
+
+const reviews = [
+  { quote: 'A great and calming atmosphere for the adoption course we have done.', name: 'Fozzer Foz' },
+  { quote: 'I soon became at ease.', name: 'Hayley Hesketh' },
+  { quote: 'Someone waiting at the front door to greet you and point you in the right direction.', name: 'Chloe' },
+];
+
+const fosteringLogos = clientLogos.filter((l) => [159, 160].includes(l.n));
+
+const schema = [
+  serviceNode({
+    url,
+    name: 'Fostering and adoption training venue hire',
+    serviceType: 'Training venue hire for fostering and adoption preparation courses and panels',
+    description: intro,
+    provider: 'venue',
+    audience: 'Fostering and adoption services, regional adoption agencies and independent fostering agencies',
+    areaServed: ['Knowsley', ...boroughs, 'Merseyside'],
+  }),
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Training rooms', url: `${site.url}/services/training-rooms/` },
+    { name: 'Fostering and adoption training venue', url },
+  ]),
+  faqNode(url, faqs),
+];
+---
+<Base title={title} description={description} ogImage={images[105].src} ogImageAlt={images[105].alt} preloadImage={images[105].src} schema={schema}>
+  <Breadcrumbs
+    trail={[
+      { name: 'Home', path: '/' },
+      { name: 'Training rooms', path: '/services/training-rooms/' },
+      { name: 'Fostering and adoption training venue', path },
+    ]}
+  />
+
+  <Hero
+    title="Fostering and adoption training venue in Knowsley"
+    tagline="Hard conversations need a calm room."
+    lede="Adoption in Merseyside, Knowsley Fostering and Foster4 choose the Maggie O'Neill Centre to train prospective parents, and we welcome teams from every borough around us."
+    image={105}
+    primary={{ label: 'Plan your preparation dates', href: '#enquire' }}
+    secondary={{ label: 'See the space', href: '#journey-heading' }}
+  />
+
+  <ClientLogos heading="The venue of choice for Adoption in Merseyside, Knowsley Fostering and Foster4" logos={fosteringLogos} />
+
+  <KeyFacts heading="Your fostering and adoption venue, in a few lines" intro={intro} facts={keyFacts} />
+  <p class="container updated">Last updated: October 2026</p>
+
+  <section class="section" aria-labelledby="calm-heading">
+    <div class="container two-col two-col--media">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">Why calm matters</span>
+          <h2 id="calm-heading">Why does the room matter for prospective adopters and foster carers?</h2>
+          <p>The people in the room are thinking about becoming parents. The subjects are heavy, and emotions can run high. The venue should feel safe.</p>
+        </div>
+        <ul class="tick-list">
+          <li>Calm, clean rooms, set before anyone arrives.</li>
+          <li>Space in reception to step out for a breather.</li>
+          <li>A host on site all day, who notices if someone needs something.</li>
+          <li>Tea and coffee in the room, so nobody has to leave to find a drink.</li>
+        </ul>
+      </div>
+      <div class="media">
+        <Photo n={6} width={720} height={540} sizes="(max-width: 900px) 100vw, 520px" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream" aria-labelledby="sessions-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">What the sessions need</span>
+        <h2 id="sessions-heading">Which fostering and adoption sessions run here?</h2>
+        <p>Your agency delivers the session, and we host it. Daytime, evening and weekend dates are all possible.</p>
+      </div>
+      <ul class="chips">
+        {sessions.map((s) => <li>{s}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <div id="rooms">
+    <RoomCards
+      heading="Which rooms suit fostering and adoption training?"
+      intro="Calm, clean, private rooms. Tell us how many are coming and we'll recommend the right one."
+      order={['community-room', 'grove', 'forum', 'summit']}
+      simple
+    />
+  </div>
+
+  <section class="section section--white" aria-labelledby="borough-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">Every borough welcome</span>
+        <h2 id="borough-heading">Coming from another borough?</h2>
+        <p>
+          The Maggie O'Neill Centre is in Huyton, Knowsley, {parking.motorway}. It's easy to reach from {listNames(boroughs)}, and parking is free
+          for everyone.
+        </p>
+      </div>
+      <ul class="chips">
+        {['Knowsley', ...boroughs].map((b) => <li>{b}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <HostedDay />
+
+  <PhotoJourney
+    intro="Share these with your families before the course, so nobody walks in not knowing what to expect."
+    stops={journey}
+  />
+
+  <Reviews reviews={reviews} heading="How does the Maggie O'Neill Centre feel on the day?" />
+
+  <Faqs faqs={faqs} heading="Fostering and adoption venue questions" />
+
+  <section class="section section--white more-links" aria-label="Related pages">
+    <div class="container">
+      <p>
+        See also our <a href="/services/training-rooms/care-training-venue/">care training venue</a>,
+        {' '}<a href="/services/training-rooms/council-training-venue/">council and public sector training</a>,
+        {' '}<a href="/services/meeting-rooms/">meeting rooms for panels</a> and
+        {' '}<a href="/whats-included/">everything that's included</a>. Back to
+        {' '}<a href="/services/training-rooms/">training room hire near Liverpool</a>, or call {' '}<a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>.
+      </p>
+    </div>
+  </section>
+
+  <FindUs />
+</Base>
+
+<style>
+  .two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .two-col--media { align-items: center; }
+  .two-col .section-head { margin-bottom: 24px; }
+  .media { margin: 0; }
+  .media :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
+  .updated { margin-top: -40px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
+  .chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; align-content: start; }
+  .chips li { padding: 12px 18px; border-radius: var(--radius-pill); background: var(--moc-purple-tint); color: var(--moc-purple-900); font-weight: 600; }
+  .section--cream .chips li { background: var(--moc-white); }
+  .more-links { padding: 40px 0; }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } .updated { margin-top: -24px; } }
+</style>

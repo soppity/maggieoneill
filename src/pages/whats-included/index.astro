@@ -23,13 +23,13 @@ const title = "What's Included in Room Hire | Maggie O'Neill Centre";
 const description =
   "Every room at the Maggie O'Neill Centre comes hosted: layout set, screen tested, tea in the room, free parking. Nothing to bring. See the full list.";
 
-const intro = `Every room booking at the Maggie O'Neill Centre is hosted. A named host meets your group at the door, the room is set to your layout, the screen is tested, tea and coffee are in the room all day, and parking is free. There's nothing to bring, not even an HDMI cable.`;
+const intro = `Every room booking at the Maggie O'Neill Centre is hosted. On-site hosts look after your group, the room is set to your layout, the screen is tested, tea and coffee are in the room all day, and parking is free. There's nothing to bring, not even an HDMI cable.`;
 
 const auditorium = rooms.find((r) => r.slug === 'auditorium')!;
 const the = (names: string[]) => listNames(names.map((n) => `the ${n}`));
 
 const keyFacts = [
-  { term: 'Your host', detail: 'Meets your group at the door and stays on site all day.' },
+  { term: 'Your hosts', detail: 'On site all day, looking after your group.' },
   { term: 'Room set-up', detail: 'Set to your layout before you arrive.' },
   { term: 'Tech', detail: 'Screen with Mac and PC wireless casting and HDMI, cables provided, WiFi, flipchart and pens.' },
   { term: 'Refreshments', detail: 'Tea and coffee in the room, all day.' },
@@ -38,7 +38,7 @@ const keyFacts = [
 ];
 
 const day = [
-  { title: 'You arrive', text: "Your host meets your group at the door." },
+  { title: 'You arrive', text: 'Your hosts are on site to point your group to the room.' },
   { title: 'The room is ready', text: 'Set to your layout, the screen tested, and tea and coffee waiting.' },
   { title: 'During the day', text: 'A mid-morning check-in with your trainer, plus the kitchen and fridge if you need them.' },
   { title: 'Next time', text: 'Room notes are kept, so your next booking is set up the same way.' },
@@ -53,7 +53,7 @@ const reviews = [
 const faqs = [
   {
     q: "What's included when you hire a room at the Maggie O'Neill Centre?",
-    a: 'Every room booking includes a host at the door, the room set to your layout, a screen with Mac and PC wireless casting and HDMI, WiFi, a flipchart and pens, tea and coffee in the room all day, kitchen and fridge access, and free parking.',
+    a: 'Every room booking includes on-site hosts, the room set to your layout, a screen with Mac and PC wireless casting and HDMI, WiFi, a flipchart and pens, tea and coffee in the room all day, kitchen and fridge access, and free parking.',
   },
   {
     q: 'Are tea and coffee included in the room hire price?',
