@@ -1,0 +1,128 @@
+---
+// Virtual office guide 4. Legal points must be checked against gov.uk before publishing (Blueprint 04 · Check before the push).
+import Guide from '../../../layouts/Guide.astro';
+import { address, formatPrice, virtualOffice, withCover } from '../../../data/facts';
+import { guideBySlug } from '../../../data/guides';
+
+const guide = guideBySlug('change-registered-office-address');
+const [p20] = virtualOffice.plans;
+const dc = virtualOffice.directorsCover;
+
+const title = "Change Your Registered Office Address | Maggie O'Neill Centre";
+const description =
+  "How to change your company's registered office address with Companies House, step by step, and who else to tell. A guide from Maggie O'Neill Centre.";
+
+const answer =
+  "Choose a new address you're allowed to use, then tell Companies House, online or on form AD01. The new address becomes your registered office once Companies House registers it. After that, update your website, letters and invoices, and tell the organisations that write to you.";
+
+const faqs = [
+  {
+    q: 'How do I change my registered office address?',
+    a: "Tell Companies House about the new address, online or by post on form AD01. The new address takes effect once Companies House registers the change. You'll need permission to use the new address, and it has to be an appropriate address in the same part of the UK your company is registered in.",
+  },
+  {
+    q: 'How long does it take to change a registered office address?',
+    a: 'The new address becomes your registered office when Companies House registers the change. For 14 days after that, documents can still be delivered to the old address, so keep checking post there.',
+  },
+  {
+    q: 'Does changing my registered office change my director’s address?',
+    a: 'No. Your registered office and your director’s service address are separate. If your home is also your service address, change that separately so it comes off the public register too.',
+  },
+  {
+    q: 'Do I need to tell HMRC if I change my registered office?',
+    a: "Check each organisation you deal with, including HMRC, your bank and your insurer. Don't assume a change at Companies House reaches all of them. Update your website, letters and invoices too, because they have to show your registered office.",
+  },
+  {
+    q: 'Can I move my registered office to a virtual office?',
+    a: "Yes, as long as it's an appropriate address where post reaches someone acting for the company. Complete the provider's ID checks first, then file the change with Companies House.",
+  },
+  {
+    q: "How do I move my registered office to the Maggie O'Neill Centre?",
+    a: `Sign up and complete the ID check, and we'll give you your new address at ${address.oneLine}. Then file the change with Companies House. A registered office costs ${formatPrice(p20.price)} a month, or ${formatPrice(withCover(p20))} with Director's Cover.`,
+  },
+];
+---
+<Guide
+  guide={guide}
+  title={title}
+  description={description}
+  tagline="Moving your company's official address, step by step."
+  answer={answer}
+  faqs={faqs}
+  cta={{
+    heading: 'Moving your registered office near Liverpool?',
+    text: `Get a registered office at ${address.street}, Huyton, from ${formatPrice(p20.price)} a month. Sign up, complete the ID check, and file the change once your address is live.`,
+    href: '/services/virtual-office/',
+    label: 'Registered office address Liverpool',
+  }}
+>
+  <h2>Before you start: choose an address you can use</h2>
+  <p>Your new registered office has to meet the same rules as the old one:</p>
+  <ul>
+    <li><strong>An appropriate address.</strong> Post sent to the company would come to someone acting on its behalf, and it could be acknowledged.</li>
+    <li><strong>Not a PO box.</strong> It has to be a physical address.</li>
+    <li><strong>In the same part of the UK.</strong> A company registered in England and Wales can move anywhere in England or Wales, but not to Scotland or Northern Ireland.</li>
+    <li><strong>You have permission to use it.</strong> If it's a <a href="/services/virtual-office/">virtual office in Liverpool</a> or anywhere else, that means your agreement with the provider, and their ID checks done first.</li>
+  </ul>
+
+  <h2>How to change your registered office, step by step</h2>
+  <ol>
+    <li>
+      <strong>Get the new address confirmed.</strong> Agree it with the owner or provider. If you're moving to a virtual office, finish their ID
+      checks and wait until they confirm your address is live.
+    </li>
+    <li>
+      <strong>Tell Companies House.</strong> File the change online, or send form AD01 by post. To file online you'll need to sign in and use
+      your company's authentication code.
+    </li>
+    <li>
+      <strong>Wait for it to be registered.</strong> The new address becomes your registered office when Companies House registers the change.
+      For 14 days after that, documents can still be validly delivered to the old address, so keep an eye on post there.
+    </li>
+    <li>
+      <strong>Update your own details.</strong> Your registered office has to appear on your website, business letters and order forms, so
+      change them as soon as the new address is registered.
+    </li>
+    <li>
+      <strong>Tell everyone who writes to you.</strong> HMRC, your bank, insurers, suppliers, customers, and any regulator or licensing body.
+      Don't assume a change at Companies House reaches all of them.
+    </li>
+  </ol>
+  <p class="note">
+    Gov.uk has the current online service and form AD01. Search for "change a company's registered office address" on gov.uk.
+  </p>
+
+  <h2>Changing your director's service address at the same time</h2>
+  <p>
+    Your registered office belongs to the company. Your director's service address belongs to you, and it's changed separately. If you set
+    the company up from home, your home is probably in both places on the public register.
+  </p>
+  <p>
+    Moving both at once keeps your home off new filings completely. At the Maggie O'Neill Centre, {dc.name} gives you a director's service
+    address for {formatPrice(dc.price)} a month, on top of your registered office. Our guide on
+    {' '}<a href="/blog/home-address-companies-house/">keeping your home address off Companies House</a> explains both changes.
+  </p>
+
+  <h2>Changing registered office: a quick checklist</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Task</th><th scope="col">When</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Confirm the new address and finish any ID checks</td><td>Before you file</td></tr>
+        <tr><td>File the change with Companies House</td><td>Once the address is confirmed</td></tr>
+        <tr><td>Keep checking post at the old address</td><td>For 14 days after the change is registered</td></tr>
+        <tr><td>Update your website, letters, invoices and order forms</td><td>As soon as it's registered</td></tr>
+        <tr><td>Tell HMRC, your bank, insurers and suppliers</td><td>As soon as it's registered</td></tr>
+        <tr><td>Change your director's service address if it was your home</td><td>At the same time, if you can</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="callout">
+    Moving to the Maggie O'Neill Centre? Sign up, complete the ID check, and we'll confirm your new address. Then file the change. See
+    {' '}<a href="/services/virtual-office/">registered office address plans in Liverpool</a>, or read
+    {' '}<a href="/blog/registered-office-vs-business-address/">registered office vs business address</a>.
+  </p>
+</Guide>
