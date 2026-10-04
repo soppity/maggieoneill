@@ -46,7 +46,7 @@ const keyFacts = [
   { term: 'Included', detail: 'Your host at the door, the room set to your layout, a screen with AirPlay and HDMI, WiFi, and tea and coffee all day.' },
   { term: 'Prices', detail: `Training rooms from ${formatPrice(trainingDayFrom)} a day, everything included. ${hourFromLines.map(cap).join('. ')}.`, href: '/whats-included/', linkText: "See what's included" },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park on site, on a main bus route.` },
-  { term: 'Access', detail: 'Step-free access, accessible parking, an accessible toilet and a quiet room.' },
+  { term: 'Access', detail: 'Fully accessible on the ground floor, with accessible parking and an accessible toilet.' },
   { term: 'Hours', detail: `${hours.summary}. ${hours.extra}` },
   { term: 'Virtual office', detail: `From ${formatPrice(virtualOffice.from)} a month for a registered office address.`, href: '/services/virtual-office/', linkText: 'Plans and prices' },
 ];
@@ -75,7 +75,7 @@ const faqs = [
   },
   {
     q: "Is the Maggie O'Neill Centre accessible?",
-    a: `Yes. ${accessibility.stepFree} ${accessibility.toilet}`,
+    a: `Yes. The Maggie O'Neill Centre is fully accessible on the ground floor, with step-free access, accessible parking and ${accessibility.toiletGeneral.charAt(0).toLowerCase()}${accessibility.toiletGeneral.slice(1)}`,
   },
   {
     q: "What are the Maggie O'Neill Centre's opening hours?",

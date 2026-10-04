@@ -34,7 +34,7 @@ const keyFacts = [
   { term: 'Tech', detail: 'Screen with AirPlay and HDMI, cables provided, WiFi, flipchart and pens.' },
   { term: 'Refreshments', detail: 'Tea and coffee in the room, all day.' },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
-  { term: 'Access', detail: 'Step-free, accessible parking, accessible toilet, quiet room.' },
+  { term: 'Access', detail: 'Fully accessible on the ground floor, with accessible parking and an accessible toilet.' },
 ];
 
 const day = [
@@ -68,12 +68,8 @@ const faqs = [
     a: `Yes. Parking is free for every delegate in the Maggie O'Neill Centre's ${parking.spaces}-space car park, ${parking.motorway}.`,
   },
   {
-    q: "Does the Maggie O'Neill Centre have an accessible toilet?",
-    a: accessibility.toilet,
-  },
-  {
-    q: 'Is there a quiet room?',
-    a: `Yes. ${accessibility.quietRoom}`,
+    q: "Is the Maggie O'Neill Centre accessible?",
+    a: `Yes. The Maggie O'Neill Centre is fully accessible on the ground floor, with step-free access, accessible parking and ${accessibility.toiletGeneral.charAt(0).toLowerCase()}${accessibility.toiletGeneral.slice(1)}`,
   },
   {
     q: 'How much does room hire cost?',
@@ -108,20 +104,20 @@ const schema = [
   faqNode(url, faqs),
 ];
 ---
-<Base title={title} description={description} ogImage={images[43].src} ogImageAlt={images[43].alt} preloadImage={images[43].src} schema={schema}>
+<Base title={title} description={description} ogImage={images[48].src} ogImageAlt={images[48].alt} preloadImage={images[48].src} schema={schema}>
   <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: "What's included", path }]} />
 
   <Hero
     title="What's included in room hire at the Maggie O'Neill Centre"
     tagline="Nothing to bring. Not even an HDMI cable."
     lede="Every booking is hosted. Here's everything that comes with it."
-    image={43}
+    image={48}
     secondary={{ label: 'See room prices', href: '/services/training-rooms/#rooms' }}
   />
 
   <KeyFacts heading="Every booking, in a few lines" intro={intro} facts={keyFacts} />
 
-  <HostedDay showMore={false} image={48} caption="The Summit, set in a U-shape and ready before your group arrives." />
+  <HostedDay showMore={false} />
 
   <Steps
     id="day-heading"
@@ -138,18 +134,16 @@ const schema = [
         <div class="section-head">
           <span class="eyebrow">Accessibility</span>
           <h2 id="access-heading">Is the building accessible?</h2>
-          <p>Yes. Everyone in your group can get in, get around and take a break when they need one.</p>
+          <p>Yes. The Maggie O'Neill Centre is fully accessible on the ground floor, so everyone in your group can get in and get around.</p>
         </div>
         <ul class="tick-list">
-          <li>{accessibility.stepFree}</li>
-          <li>{accessibility.toilet}</li>
-          <li>{accessibility.quietRoom}</li>
-          <li>{accessibility.lighting}</li>
+          <li>{accessibility.groundFloor}</li>
+          <li>{accessibility.toiletGeneral}</li>
         </ul>
       </div>
       <figure class="access__photo">
         <Photo n={158} width={640} height={480} sizes="(max-width: 900px) 100vw, 480px" />
-        <figcaption>The accessible toilet, on the same floor as the Auditorium, next to the kitchen.</figcaption>
+        <figcaption>The accessible toilet, with grab rails, a fold-down rail and an emergency pull cord.</figcaption>
       </figure>
     </div>
   </section>
