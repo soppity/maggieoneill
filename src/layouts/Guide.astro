@@ -1,5 +1,5 @@
 ---
-// Guide template (Blueprint 05 · page 19, SEO spec 3.2): two-part H1, short answer first, "Last updated" date,
+// Guide template (Blueprint 05 · page 19, SEO spec 3.2): the H1 is the guide's title (its SEO title), short answer first, "Last updated" date,
 // prose body, FAQs, related guides, and one link back to the matching service page at the end.
 import Base from './Base.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
@@ -14,13 +14,12 @@ interface Props {
   guide: Guide;
   title: string;
   description: string;
-  h1a: string;
-  h1b: string;
+  tagline?: string;
   answer: string;
   faqs: { q: string; a: string }[];
   cta: { heading: string; text: string; href: string; label: string };
 }
-const { guide, title, description, h1a, h1b, answer, faqs, cta } = Astro.props;
+const { guide, title, description, tagline, answer, faqs, cta } = Astro.props;
 
 const path = guidePath(guide);
 const url = `${site.url}${path}`;
@@ -56,10 +55,9 @@ const schema = [
     <header class="section guide__head">
       <div class="container guide__head-inner">
         <div>
-          <h1>
-            <span class="guide__kicker">{h1a}</span>
-            <span class="guide__display">{h1b}</span>
-          </h1>
+          <p class="guide__eyebrow">{isVirtualOffice ? 'Virtual office guide' : 'Training guide'}</p>
+          <h1>{guide.title}</h1>
+          {tagline && <p class="guide__tagline">{tagline}</p>}
           <p class="guide__answer">{answer}</p>
           <p class="guide__meta">Last updated: {updatedLabel} · From the team at the {site.name}</p>
         </div>
@@ -102,9 +100,9 @@ const schema = [
   .guide__head { background: var(--moc-bg-warm); padding-bottom: clamp(40px, 6vw, 64px); }
   .guide__head-inner { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
   .guide__head-inner :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
-  .guide h1 { display: flex; flex-direction: column; gap: 12px; }
-  .guide__kicker { font: 600 var(--text-eyebrow-size)/1.3 var(--font-body); letter-spacing: var(--text-eyebrow-tracking); text-transform: uppercase; color: var(--moc-coral-text); }
-  .guide__display { font-size: clamp(34px, 5vw, 56px); font-weight: 800; }
+  .guide__eyebrow { margin-bottom: 12px; font: 600 var(--text-eyebrow-size)/1.3 var(--font-body); letter-spacing: var(--text-eyebrow-tracking); text-transform: uppercase; color: var(--moc-coral-text); }
+  .guide h1 { font-size: clamp(34px, 5vw, 56px); font-weight: 800; }
+  .guide__tagline { margin-top: 14px; font: 700 clamp(20px, 2.2vw, 26px)/1.25 var(--font-display); color: var(--moc-coral-text); }
   .guide__answer { margin-top: 20px; font-size: var(--text-lead-size); max-width: 640px; }
   .guide__meta { margin-top: 16px; font-size: var(--text-caption-size); color: var(--moc-slate-text); }
 
