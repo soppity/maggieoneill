@@ -1,0 +1,122 @@
+---
+// Virtual office guide 2. Legal points must be checked against gov.uk before publishing (Blueprint 04 · Check before the push).
+import Guide from '../../../layouts/Guide.astro';
+import { address, formatPrice, virtualOffice, withCover } from '../../../data/facts';
+import { guideBySlug } from '../../../data/guides';
+
+const guide = guideBySlug('registered-office-vs-business-address');
+const [p20, p40] = virtualOffice.plans;
+const dc = virtualOffice.directorsCover;
+
+const title = "Registered Office vs Business Address | Maggie O'Neill Centre";
+const description =
+  "Registered office, business address or director's service address? What each is, which are public, and how one address does all three. Maggie O'Neill Centre.";
+
+const answer =
+  "A registered office is your company's official address on the Companies House register, where legal post must be able to reach you. A business address is any address you trade from or put on your website and invoices. A director's service address is where you, as a director, can be written to. One address can do all three jobs.";
+
+const faqs = [
+  {
+    q: 'What is the difference between a registered office and a business address?',
+    a: "A registered office is your company's official address, shown on the public Companies House register and used for legal post. A business address is the address you trade from or use with customers, such as on your website and invoices. A business address doesn't have to be registered anywhere.",
+  },
+  {
+    q: 'Can my registered office and business address be the same?',
+    a: 'Yes. Many small companies use one address for both. It can also be your director’s service address, so one address covers all three.',
+  },
+  {
+    q: 'Does a sole trader need a registered office?',
+    a: "No. Only companies and LLPs registered with Companies House need a registered office. A sole trader can still use a business address on their website, invoices and listings so their home address stays private.",
+  },
+  {
+    q: 'Is a director’s service address the same as a registered office?',
+    a: "No. The registered office belongs to the company. A director's service address belongs to you as a director, and Companies House shows it on the public register instead of your home address.",
+  },
+  {
+    q: 'Can I use a virtual office as my registered office?',
+    a: "Yes, as long as it's an appropriate address, where post sent to the company would come to someone acting on its behalf and could be acknowledged. A virtual office in a staffed building meets that test. A PO box doesn't.",
+  },
+  {
+    q: "How much is a registered office address at the Maggie O'Neill Centre?",
+    a: `A registered office and business address at the Maggie O'Neill Centre costs ${formatPrice(p20.price)} a month. Director's Cover adds a director's service address for ${formatPrice(dc.price)} a month, so one address covers all three for ${formatPrice(withCover(p20))} a month.`,
+  },
+];
+---
+<Guide
+  guide={guide}
+  title={title}
+  description={description}
+  h1a="Registered office vs business address"
+  h1b="Three addresses, one simple answer."
+  answer={answer}
+  faqs={faqs}
+  cta={{
+    heading: 'One address for all three, near Liverpool',
+    text: `A registered office and business address at ${address.street}, Huyton, from ${formatPrice(p20.price)} a month. Add Director's Cover for ${formatPrice(dc.price)} and it's your director's service address too.`,
+    href: '/services/virtual-office/',
+    label: 'Virtual office Liverpool',
+  }}
+>
+  <h2>What is a registered office?</h2>
+  <p>
+    Every limited company and LLP in the UK has to have a registered office. It's the company's official address on the Companies House
+    register, and anyone can see it.
+  </p>
+  <ul>
+    <li>Companies House, HMRC and the courts send official letters there.</li>
+    <li>It has to be an appropriate address: post sent to the company would come to someone acting on its behalf, and it could be acknowledged. A PO box doesn't count.</li>
+    <li>It has to be in the same part of the UK the company is registered in. A company registered in England and Wales needs a registered office in England or Wales.</li>
+    <li>It goes on your company's website, business letters and order forms, alongside your company number.</li>
+  </ul>
+
+  <h2>What is a business address?</h2>
+  <p>
+    A business address is the address you use with customers and suppliers: on your website, invoices, letterheads, Google Business Profile
+    and online listings. It doesn't have to be registered with anyone.
+  </p>
+  <p>
+    It can be your registered office, your shop or office, or a <a href="/services/virtual-office/">virtual office in Liverpool</a>. Sole
+    traders don't have a registered office, so for them a business address is the main way to keep a home address private.
+  </p>
+
+  <h2>What is a director's service address?</h2>
+  <p>
+    A director's service address is where Companies House and others can write to you as a director. It appears on the public register, so
+    if you used your home, your home is on the register.
+  </p>
+  <p>
+    Companies House also holds your usual residential address, but that isn't shown publicly as long as you give a separate service address.
+    People with significant control (PSCs) give a service address in the same way.
+  </p>
+
+  <h2>Registered office, business address and service address compared</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col"><span class="visually-hidden">Question</span></th><th scope="col">Registered office</th><th scope="col">Business address</th><th scope="col">Director's service address</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Who has one</th><td>Every limited company and LLP</td><td>Any business, including sole traders</td><td>Every company director</td></tr>
+        <tr><th scope="row">On the public register</th><td>Yes</td><td>No</td><td>Yes</td></tr>
+        <tr><th scope="row">Used for</th><td>Official and legal post</td><td>Customers, suppliers, your website and invoices</td><td>Post for you as a director</td></tr>
+        <tr><th scope="row">At Maggie's</th><td>Every plan, from {formatPrice(p20.price)}</td><td>Every plan, from {formatPrice(p20.price)}</td><td>{dc.name}, <span style="white-space:nowrap">+{formatPrice(dc.price)}</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Can one address do all three jobs?</h2>
+  <p>
+    Yes. Most small companies use one address as their registered office, their business address and their directors' service address. It
+    keeps things simple, and if that address isn't your home, your home stays off the public register.
+  </p>
+  <p>
+    At the Maggie O'Neill Centre, every plan gives you a registered office and business address at {address.oneLine}. {dc.name} adds the
+    director's service address for {formatPrice(dc.price)} a month: {formatPrice(p20.price)} becomes {formatPrice(withCover(p20))}, and the
+    {' '}{p40.name} plan at {formatPrice(p40.price)} becomes {formatPrice(withCover(p40))}.
+  </p>
+  <p class="callout">
+    Want to take your home address off Companies House as well? Our guide on
+    {' '}<a href="/blog/home-address-companies-house/">how to keep your home address off Companies House</a> explains the two changes to make, or see
+    {' '}<a href="/services/virtual-office/">registered office address plans in Liverpool</a>.
+  </p>
+</Guide>
