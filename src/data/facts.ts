@@ -169,9 +169,8 @@ export const layouts: { key: Layout; name: string; bestFor: string }[] = [
 export const hostedDay = [
   'Room set to your layout before you arrive',
   'A named host at the door',
-  "Your group's name on the welcome screen",
   'Tea and coffee in the room, all day',
-  'Screen with AirPlay, HDMI cables and WiFi',
+  'Screen with Mac and PC wireless casting, HDMI cables and WiFi',
   'Flipchart and pens',
   'Free parking for every delegate',
   'A mid-morning check-in with your trainer',

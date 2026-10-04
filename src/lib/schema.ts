@@ -35,7 +35,7 @@ export function sitewideNodes(): Node[] {
     amenityFeature: [
       'Free on-site parking',
       'Free WiFi',
-      'Screens with AirPlay and HDMI in every room',
+      'Screens with Mac and PC wireless casting and HDMI in every room',
       'Tea and coffee included',
       'Step-free access',
       'Accessible parking',
@@ -218,7 +218,7 @@ export function roomPlaceNode(room: { slug: string; name: string; capacity: Reco
     '@id': `${site.url}/#room-${room.slug}`,
     name: `The ${room.name} at the ${site.name}`,
     containedInPlace: { '@id': id('venue') },
-    amenityFeature: ['Screen with AirPlay and HDMI', 'Free WiFi', 'Tea and coffee included'].map((name) => ({
+    amenityFeature: ['Screen with Mac and PC wireless casting and HDMI', 'Free WiFi', 'Tea and coffee included'].map((name) => ({
       '@type': 'LocationFeatureSpecification',
       name,
       value: true,
