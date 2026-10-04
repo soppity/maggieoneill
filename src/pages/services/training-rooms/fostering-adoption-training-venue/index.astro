@@ -35,8 +35,8 @@ const intro = `Adoption in Merseyside, Knowsley Fostering and Foster4 choose the
 const keyFacts = [
   { term: 'Who uses it', detail: 'Adoption in Merseyside, Knowsley Fostering and Foster4.' },
   { term: 'Sessions', detail: 'Preparation courses, Skills to Foster, support groups and panels.' },
-  { term: 'The rooms', detail: 'Calm and clean, set for small groups before anyone arrives.' },
-  { term: 'Your host', detail: 'Meets your team, sets the room and stays on site all day.' },
+  { term: 'The rooms', detail: 'Calm and clean, set for your course before anyone arrives.' },
+  { term: 'Your hosts', detail: 'On site all day, looking after your team.' },
   { term: 'Evenings and weekends', detail: hours.extra },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
   { term: 'Boroughs', detail: `Knowsley, plus ${listNames(boroughs)}.` },
@@ -70,7 +70,7 @@ const faqs = [
   },
   {
     q: 'How big are the groups you can host?',
-    a: 'Preparation groups are usually small, and the rooms are set to suit them. Tell us how many are coming and we’ll recommend the right room.',
+    a: 'Fostering and adoption courses often have up to 25 people. Tell us how many are coming and we’ll recommend the right room and set it before you arrive.',
   },
   {
     q: 'Is parking free?',
@@ -90,7 +90,7 @@ const journey = [
   { image: 1, caption: `The free car park, ${parking.motorway}.` },
   { image: 4, caption: 'The front door, with a ramp and handrails.' },
   { image: 6, caption: 'Reception, with armchairs if anyone needs to step out for a moment.' },
-  { image: 105, caption: 'The Community Room, set for a small group under the festoon lights.' },
+  { image: 105, caption: 'The Community Room, set in a circle under the festoon lights.' },
   { image: 62, caption: 'The Grove, with its greenery canopy.' },
   { image: 158, caption: 'The accessible toilet, with grab rails and an emergency pull cord.' },
 ];
@@ -181,8 +181,9 @@ const schema = [
   <div id="rooms">
     <RoomCards
       heading="Which rooms suit fostering and adoption training?"
-      intro="Calm, clean, private rooms set for small groups. Tell us how many are coming and we'll recommend the right one."
-      order={['community-room', 'grove', 'forum', 'summit', 'hub']}
+      intro="Calm, clean, private rooms. Tell us how many are coming and we'll recommend the right one."
+      order={['community-room', 'grove', 'forum', 'summit']}
+      simple
     />
   </div>
 

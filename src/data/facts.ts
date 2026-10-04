@@ -19,7 +19,7 @@ export const site = {
   whatWeAre: 'A charity-run training, meeting and event venue and virtual office provider',
   category: 'a hosted venue',
   brandLine: "Looked after at Maggie's.",
-  heroLine: 'Someone meets you at the door. The room is ready and the kettle is on.',
+  heroLine: 'Your hosts are on site, the room is ready and the kettle is on.',
   closer: "Every booking funds Maggie's Meals.",
   socialDescription:
     "Maggie O'Neill Centre is a charity-run training, meeting and event venue in Huyton, near Liverpool, with free parking and hosts on site. Virtual offices from £20 a month.",
@@ -168,7 +168,7 @@ export const layouts: { key: Layout; name: string; bestFor: string }[] = [
 
 export const hostedDay = [
   'Room set to your layout before you arrive',
-  'A named host at the door',
+  'On-site hosts, all day',
   'Tea and coffee in the room, all day',
   'Screen with Mac and PC wireless casting, HDMI cables and WiFi',
   'Flipchart and pens',

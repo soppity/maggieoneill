@@ -8,11 +8,14 @@ interface Props {
   heading?: string;
   intro?: string;
   order?: string[];
+  // Names and photos only, no descriptions or prices, so bookers aren't anchored to one room.
+  simple?: boolean;
 }
 const {
   heading = 'Which training rooms can you hire?',
   intro = 'Every room is hosted, set to your layout and has a screen with Mac and PC wireless casting and HDMI. Prices include everything on the Hosted Day list.',
   order = ['summit', 'forum', 'community-room', 'foundry', 'hub', 'grove', 'auditorium', 'pod'],
+  simple = false,
 } = Astro.props;
 
 const list = order.map((slug) => rooms.find((r) => r.slug === slug)).filter(Boolean) as Room[];
@@ -28,7 +31,7 @@ const capacityLine = (r: Room) =>
 <section class="section section--cream" id="rooms" aria-labelledby="rooms-heading">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Rooms and prices</span>
+      <span class="eyebrow">{simple ? 'Rooms' : 'Rooms and prices'}</span>
       <h2 id="rooms-heading">{heading}</h2>
       <p>{intro}</p>
     </div>
@@ -37,11 +40,15 @@ const capacityLine = (r: Room) =>
         <li class="card room-card">
           <Photo n={r.image} width={640} height={400} sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 380px" />
           <div class="room-card__body">
-            <span class="room-card__kind">{r.kind}</span>
+            {!simple && <span class="room-card__kind">{r.kind}</span>}
             <h3>The {r.name}</h3>
-            <p class="room-card__good">{r.goodFor}</p>
-            <p class="room-card__price">{priceLine(r)}</p>
-            {capacityLine(r) && <p class="room-card__cap">{capacityLine(r)}</p>}
+            {!simple && (
+              <>
+                <p class="room-card__good">{r.goodFor}</p>
+                <p class="room-card__price">{priceLine(r)}</p>
+                {capacityLine(r) && <p class="room-card__cap">{capacityLine(r)}</p>}
+              </>
+            )}
           </div>
         </li>
       ))}
