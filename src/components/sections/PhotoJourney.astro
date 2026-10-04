@@ -1,0 +1,49 @@
+---
+// "See it before you come": library photos in walking order, each with a real caption (SEO spec 3.4).
+// On every room and sector page, above the FAQs. Video walkthroughs slot in here when they're filmed.
+import Photo from '../Photo.astro';
+
+interface Props {
+  heading?: string;
+  intro: string;
+  stops: { image: number; caption: string; alt?: string }[];
+}
+const { heading = 'What will it be like when you arrive?', intro, stops } = Astro.props;
+---
+<section class="section section--white" aria-labelledby="journey-heading">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">See it before you come</span>
+      <h2 id="journey-heading">{heading}</h2>
+      <p>{intro}</p>
+    </div>
+    <ol class="journey">
+      {stops.map((s, i) => (
+        <li>
+          <figure>
+            <Photo n={s.image} alt={s.alt} width={560} height={420} sizes="(max-width: 640px) 85vw, 320px" />
+            <figcaption><span class="journey__n">{i + 1}</span>{s.caption}</figcaption>
+          </figure>
+        </li>
+      ))}
+    </ol>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .journey {
+    list-style: none; margin: 0; padding: 0 0 12px;
+    display: grid; grid-auto-flow: column; grid-auto-columns: minmax(260px, 1fr); gap: var(--grid-gap);
+    overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+  }
+  .journey li { scroll-snap-align: start; }
+  .journey figure { margin: 0; display: flex; flex-direction: column; gap: 12px; }
+  .journey :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-tile); }
+  .journey figcaption { display: grid; grid-template-columns: 28px 1fr; gap: 10px; font-size: var(--text-small-size); align-items: start; }
+  .journey__n {
+    width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+    background: var(--moc-purple-700); color: var(--moc-white); font: 700 14px/1 var(--font-display);
+  }
+  @media (max-width: 640px) { .journey { grid-auto-columns: 82%; } }
+</style>
