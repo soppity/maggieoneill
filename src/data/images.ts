@@ -76,4 +76,11 @@ export const clientLogos: ClientLogo[] = [
   logo(151, '6ab914325597aeb9d7dd5ee3.webp', 'ADDvanced Solutions'),
 ];
 
+// School logos, for the councils, schools and public sector page only (PROJECT_NOTES).
+export const schoolLogos: ClientLogo[] = [
+  logo(161, '6abbef1e7f8e19690f51e5e8.webp', 'Meadow Park Primary School'),
+  logo(162, '6abbef1e7f8e19690f51e5e3.webp', 'Knowsley Central School'),
+  logo(163, '6abbef1e12c0bdec2cb4fd3f.webp', 'Alt Bridge School'),
+];
+
 export const imageHost = 'https://assets.cdn.filesafe.space';
