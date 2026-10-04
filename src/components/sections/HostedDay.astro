@@ -4,14 +4,20 @@ import { hostedDay } from '../../data/facts';
 
 interface Props {
   showMore?: boolean;
+  image?: number;
+  caption?: string;
 }
-const { showMore = true } = Astro.props;
+const {
+  showMore = true,
+  image = 54,
+  caption = 'The screen in the Summit, ready for AirPlay before your trainer arrives.',
+} = Astro.props;
 ---
 <section class="section" aria-labelledby="hosted-day-heading">
   <div class="container hosted-day">
     <div class="hosted-day__media">
-      <Photo n={54} width={800} height={600} sizes="(max-width: 900px) 100vw, 520px" />
-      <p class="hosted-day__caption">The screen in the Summit, ready for AirPlay before your trainer arrives.</p>
+      <Photo n={image} width={800} height={600} sizes="(max-width: 900px) 100vw, 520px" />
+      <p class="hosted-day__caption">{caption}</p>
     </div>
     <div>
       <div class="section-head">
