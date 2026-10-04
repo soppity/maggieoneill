@@ -1,14 +1,11 @@
 ---
 // Virtual office guide 1. Legal points must be checked against gov.uk before publishing (Blueprint 04 · Check before the push).
 import Guide from '../../../layouts/Guide.astro';
-import { address, formatPrice, virtualOffice } from '../../../data/facts';
+import { address, formatPrice, virtualOffice, withCover } from '../../../data/facts';
 import { guideBySlug } from '../../../data/guides';
 
 const guide = guideBySlug('home-address-companies-house');
-const plan = (price: number) => virtualOffice.plans.find((p) => p.price === price)!;
-const p20 = plan(20);
-const p30 = plan(30);
-const p50 = plan(50);
+const [p20, p40] = virtualOffice.plans;
 const dc = virtualOffice.directorsCover;
 
 const title = "Home Address Off Companies House | Maggie O'Neill Centre";
@@ -41,7 +38,7 @@ const faqs = [
   },
   {
     q: "How much does it cost to keep my home address off Companies House with the Maggie O'Neill Centre?",
-    a: `At the Maggie O'Neill Centre, a registered office address costs ${formatPrice(p20.price)} a month. Director's Cover adds a director's service address for ${formatPrice(dc.price)} a month, so both together cost ${formatPrice(p30.price)} a month.`,
+    a: `At the Maggie O'Neill Centre, a registered office address costs ${formatPrice(p20.price)} a month. Director's Cover adds a director's service address for ${formatPrice(dc.price)} a month, so both together cost ${formatPrice(withCover(p20))} a month.`,
   },
 ];
 ---
@@ -130,12 +127,12 @@ const faqs = [
         <tr>
           <td>Your home is the registered office and your director's service address</td>
           <td>Both</td>
-          <td>{p30.name}, {formatPrice(p30.price)} a month</td>
+          <td>{p20.name} + {dc.name}, {formatPrice(withCover(p20))} a month</td>
         </tr>
         <tr>
           <td>Both, and you want your post scanned and meeting rooms for clients</td>
           <td>Both</td>
-          <td>{p50.name}, {formatPrice(p50.price)} a month</td>
+          <td>{p40.name} + {dc.name}, {formatPrice(withCover(p40))} a month</td>
         </tr>
       </tbody>
     </table>

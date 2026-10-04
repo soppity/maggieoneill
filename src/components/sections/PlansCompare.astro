@@ -1,31 +1,47 @@
 ---
-// The four virtual office plans side by side, £50 recommended (Blueprint growth plan: lead with £50).
-import { formatPrice, planFeatures, virtualOffice } from '../../data/facts';
+// Virtual office prices as a ladder (owner, Oct 2026): two plans from £20, then Director's Cover as a £10 add-on.
+// The toggle swaps every price to its "with Director's Cover" figure. Works without JavaScript (CSS :has).
+import { formatPrice, planFeatures, virtualOffice, withCover } from '../../data/facts';
 
 interface Props {
   heading?: string;
 }
 const { heading = 'How much is a virtual office near Liverpool?' } = Astro.props;
-const [, mid, full] = virtualOffice.plans;
-const step = full.price - mid.price;
-const plans = [...virtualOffice.plans].sort((a, b) => Number(!!b.lead) - Number(!!a.lead) || b.price - a.price);
+const [addressOnly, full] = virtualOffice.plans;
+const dc = virtualOffice.directorsCover;
+const step = full.price - addressOnly.price;
 ---
-<section class="section section--cream" id="plans" aria-labelledby="plans-heading">
+<section class="section section--cream plans-section" id="plans" aria-labelledby="plans-heading">
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Plans and prices</span>
       <h2 id="plans-heading">{heading}</h2>
       <p>
-        A virtual office at the Maggie O'Neill Centre costs from {formatPrice(virtualOffice.from)} a month. Same address, same building, whichever
+        A virtual office at the Maggie O'Neill Centre starts at {formatPrice(virtualOffice.from)} a month. Same address, same building, whichever
         plan you pick. {virtualOffice.terms}
       </p>
     </div>
+
+    <label class="dc-toggle">
+      <input type="checkbox" class="dc-toggle__input" />
+      <span class="dc-toggle__switch" aria-hidden="true"></span>
+      <span class="dc-toggle__text">
+        <strong>Add {dc.name} for <span class="nowrap">+{formatPrice(dc.price)} a month</span></strong>
+        <span>{dc.short}: your registered office and your director's service address.</span>
+      </span>
+    </label>
+
     <div class="grid plans">
-      {plans.map((p) => (
-        <article class:list={['card', 'plan', { 'plan--lead': p.lead }]}>
-          {p.lead && <span class="plan__tag">Recommended</span>}
-          <h3>{p.name}</h3>
-          <p class="plan__price"><strong>{formatPrice(p.price)}</strong> a month</p>
+      {virtualOffice.plans.map((p, i) => (
+        <article class:list={['card', 'plan', { 'plan--lead': i === 0 }]}>
+          {i === 0 ? <span class="plan__tag">Start here</span> : <span class="plan__tag plan__tag--alt">Best value</span>}
+          <h3>
+            {p.name}<span class="with-dc"> + {dc.name}</span>
+          </h3>
+          <p class="plan__price">
+            <span class="without-dc"><strong>{formatPrice(p.price)}</strong> a month</span>
+            <span class="with-dc"><strong>{formatPrice(withCover(p))}</strong> a month</span>
+          </p>
           <p class="plan__summary">{p.summary}</p>
           <ul class="plan__features">
             {planFeatures.map((f) => (
@@ -34,33 +50,65 @@ const plans = [...virtualOffice.plans].sort((a, b) => Number(!!b.lead) - Number(
                 {f.label}
               </li>
             ))}
+            <li class="plan__dc">
+              <span class="without-dc">Add {dc.name} for +{formatPrice(dc.price)}: your home off both places on Companies House</span>
+              <span class="with-dc">{dc.name}: a director's service address, so your home is off both places</span>
+            </li>
           </ul>
-          <a class:list={['btn', p.lead ? 'btn--primary' : 'btn--secondary', 'plan__cta']} href="#get-your-address" data-plan={p.name}>
-            Choose {formatPrice(p.price)}
+          <a class:list={['btn', i === 0 ? 'btn--primary' : 'btn--secondary', 'plan__cta']} href="#get-your-address">
+            <span class="without-dc">Choose {formatPrice(p.price)}</span>
+            <span class="with-dc">Choose {formatPrice(withCover(p))}</span>
           </a>
         </article>
       ))}
     </div>
+
     <p class="plans__note">
-      Two free meeting room hours a month are worth more than the {formatPrice(step)} a month between the {formatPrice(mid.price)} and {formatPrice(full.price)} plans.
-      Add <a href="/services/virtual-office/call-answering/">call answering for {formatPrice(virtualOffice.callAnswering.price)} a month</a> to any plan.
+      {dc.name} adds {formatPrice(dc.price)} a month to either plan: {formatPrice(addressOnly.price)} becomes {formatPrice(withCover(addressOnly))}, and
+      {' '}{formatPrice(full.price)} becomes {formatPrice(withCover(full))}. If you move up to {full.name} later, your cover moves with you. Two free
+      meeting room hours a month are worth more than the {formatPrice(step)} between the plans. Add
+      {' '}<a href="/services/virtual-office/call-answering/">call answering for {formatPrice(virtualOffice.callAnswering.price)} a month</a> to either plan.
     </p>
   </div>
 </section>
 
 <style>
-  .plans { grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: stretch; }
-  .plan { position: relative; padding: 28px 24px; display: flex; flex-direction: column; gap: 10px; }
+  .nowrap { white-space: nowrap; }
+  .with-dc { display: none; }
+  .plans-section:has(.dc-toggle__input:checked) .with-dc { display: inline; }
+  .plans-section:has(.dc-toggle__input:checked) .without-dc { display: none; }
+
+  .dc-toggle {
+    display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center; max-width: 760px; margin-bottom: 40px;
+    padding: 18px 22px; background: var(--moc-white); border: 2px dashed var(--moc-coral-500); border-radius: var(--radius-card); cursor: pointer;
+  }
+  .dc-toggle:has(.dc-toggle__input:checked) { border-style: solid; background: var(--moc-coral-tint); }
+  .dc-toggle__input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .dc-toggle__switch { position: relative; width: 52px; height: 30px; border-radius: 15px; background: var(--moc-slate-2); transition: background 0.15s; }
+  .dc-toggle__switch::after {
+    content: ''; position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: var(--moc-white);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25); transition: transform 0.15s;
+  }
+  .dc-toggle__input:checked + .dc-toggle__switch { background: var(--moc-purple-700); }
+  .dc-toggle__input:checked + .dc-toggle__switch::after { transform: translateX(22px); }
+  .dc-toggle__input:focus-visible + .dc-toggle__switch { outline: 3px solid var(--moc-coral-500); outline-offset: 3px; }
+  .dc-toggle__text { display: flex; flex-direction: column; gap: 2px; }
+  .dc-toggle__text strong { font-family: var(--font-display); font-size: 19px; color: var(--moc-purple-900); }
+  .dc-toggle__text span { font-size: var(--text-small-size); color: var(--moc-slate-text); }
+
+  .plans { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; max-width: 900px; }
+  .plan { position: relative; padding: 32px 28px; display: flex; flex-direction: column; gap: 10px; }
   .plan--lead { outline: 3px solid var(--moc-coral-500); }
   .plan__tag {
-    position: absolute; top: -14px; left: 24px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    position: absolute; top: -14px; left: 28px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
     background: var(--moc-coral-500); color: var(--moc-purple-900); padding: 5px 12px; border-radius: var(--radius-pill);
   }
-  .plan h3 { font-size: 19px; min-height: 2.3em; }
-  .plan__price strong { font: 800 44px/1 var(--font-display); color: var(--moc-purple-900); letter-spacing: -0.02em; }
+  .plan__tag--alt { background: var(--moc-purple-700); color: var(--moc-white); }
+  .plan h3 { font-size: 22px; }
+  .plan__price strong { font: 800 52px/1 var(--font-display); color: var(--moc-purple-900); letter-spacing: -0.02em; }
   .plan__price { color: var(--moc-slate-text); }
-  .plan__summary { font-size: var(--text-small-size); min-height: 4.8em; }
-  .plan__features { list-style: none; margin: 6px 0 12px; padding: 0; display: grid; gap: 8px; font-size: 14px; }
+  .plan__summary { font-size: var(--text-small-size); }
+  .plan__features { list-style: none; margin: 6px 0 16px; padding: 0; display: grid; gap: 8px; font-size: 15px; }
   .plan__features li { display: grid; grid-template-columns: 18px 1fr; gap: 8px; align-items: start; }
   .plan__features li::before {
     content: ''; width: 18px; height: 18px; margin-top: 2px; border-radius: 50%;
@@ -70,8 +118,14 @@ const plans = [...virtualOffice.plans].sort((a, b) => Number(!!b.lead) - Number(
   .plan__features li.is-off::before {
     background: var(--moc-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6 10h8' stroke='%2394A0AE' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") center/14px no-repeat;
   }
+  .plan__features li.plan__dc { margin-top: 6px; padding-top: 12px; border-top: 1px dashed var(--moc-border); font-weight: 600; color: var(--moc-purple-900); }
+  .plan__features li.plan__dc::before {
+    background: var(--moc-purple-tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 5v10M5 10h10' stroke='%234A0D8F' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") center/14px no-repeat;
+  }
+  .plans-section:has(.dc-toggle__input:checked) .plan__features li.plan__dc::before {
+    background: var(--moc-coral-tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-7' fill='none' stroke='%23D64A26' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat;
+  }
   .plan__cta { margin-top: auto; }
-  .plans__note { margin-top: 28px; }
-  @media (max-width: 1100px) { .plans { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 36px; } .plan h3, .plan__summary { min-height: 0; } }
-  @media (max-width: 600px) { .plans { grid-template-columns: 1fr; } }
+  .plans__note { margin-top: 28px; max-width: 900px; }
+  @media (max-width: 700px) { .plans { grid-template-columns: 1fr; row-gap: 36px; } }
 </style>

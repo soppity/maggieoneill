@@ -27,7 +27,7 @@ const description =
 
 const pod = rooms.find((r) => r.slug === 'pod')!;
 const auditorium = rooms.find((r) => r.slug === 'auditorium')!;
-const [voLow, , vo40, vo50] = virtualOffice.plans;
+const [voLow, vo40] = virtualOffice.plans;
 
 const the = (names: string[]) => listNames(names.map((n) => `the ${n}`));
 const rateLines = rateGroups(['pod']).map(
@@ -87,7 +87,7 @@ const faqs = [
   },
   {
     q: 'How much is a virtual office in Liverpool?',
-    a: `Virtual office plans at the Maggie O'Neill Centre start at ${formatPrice(voLow.price)} a month for a registered office address. The ${formatPrice(vo40.price)} and ${formatPrice(vo50.price)} plans add post opened and scanned and 2 free meeting room hours a month.`,
+    a: `Virtual office plans at the Maggie O'Neill Centre start at ${formatPrice(voLow.price)} a month for a registered office address. The ${formatPrice(vo40.price)} ${vo40.name} plan adds post opened and scanned and 2 free meeting room hours a month. Director's Cover adds ${formatPrice(virtualOffice.directorsCover.price)} a month to either plan and keeps your home off Companies House.`,
   },
   {
     q: 'Who was Maggie O\'Neill?',

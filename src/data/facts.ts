@@ -177,14 +177,15 @@ export const hostedDay = [
 ];
 
 // Virtual office. Source: docs/content/virtual-office-source.md and PROJECT_NOTES.md.
-// TODO(owner): confirm whether the 2 free meeting room hours a month are per month.
-export type PlanFeature = 'registeredOffice' | 'businessAddress' | 'collectPost' | 'directorsCover' | 'postScanned' | 'roomHours' | 'coffee';
+// Pricing is shown as a ladder (owner, Oct 2026): lead with "from £20", then offer Director's Cover as a £10 add-on,
+// so the home address comes off both places it appears on Companies House. Two plans plus one add-on, never four plans.
+// Moving from Address Only + Director's Cover (£30) to Virtual Office keeps the cover, so it becomes £50.
+export type PlanFeature = 'registeredOffice' | 'businessAddress' | 'collectPost' | 'postScanned' | 'roomHours' | 'coffee';
 
 export const planFeatures: { key: PlanFeature; label: string }[] = [
   { key: 'registeredOffice', label: 'Registered office address for Companies House' },
   { key: 'businessAddress', label: 'Use it as your business address everywhere' },
   { key: 'collectPost', label: 'Collect your post from reception' },
-  { key: 'directorsCover', label: "Director's service address (Director's Cover)" },
   { key: 'postScanned', label: 'Post opened and scanned, so you can read it anywhere' },
   { key: 'roomHours', label: "2 free meeting room hours a month (they don't roll over)" },
   { key: 'coffee', label: 'Free coffee when you call in' },
@@ -195,11 +196,9 @@ export interface VirtualOfficePlan {
   price: number;
   summary: string;
   features: PlanFeature[];
-  lead?: boolean;
 }
 
 const addressOnly: PlanFeature[] = ['registeredOffice', 'businessAddress', 'collectPost'];
-const fullVirtualOffice: PlanFeature[] = [...addressOnly, 'postScanned', 'roomHours', 'coffee'];
 
 export const virtualOffice = {
   from: 20,
@@ -211,29 +210,18 @@ export const virtualOffice = {
       features: addressOnly,
     },
     {
-      name: "Address Only + Director's Cover",
-      price: 30,
-      summary: "Address Only, plus a director's service address, so your home comes off Companies House.",
-      features: [...addressOnly, 'directorsCover'],
-    },
-    {
       name: 'Virtual Office',
       price: 40,
-      summary: 'Post opened and scanned, plus 2 free meeting room hours a month.',
-      features: fullVirtualOffice,
-    },
-    {
-      name: "Virtual Office + Director's Cover",
-      price: 50,
-      summary: 'Post opened and scanned, 2 free meeting room hours a month, and your home address off Companies House.',
-      features: [...fullVirtualOffice, 'directorsCover'],
-      lead: true,
+      summary: 'Your address, plus post opened and scanned and 2 free meeting room hours a month.',
+      features: [...addressOnly, 'postScanned', 'roomHours', 'coffee'],
     },
   ] as VirtualOfficePlan[],
   directorsCover: {
+    name: "Director's Cover",
     price: 10,
     summary:
-      "Right now, your home is probably listed as your business address and your director correspondence address. Director's Cover replaces it with ours in both places.",
+      "Your plan replaces your home as your company's registered office. Director's Cover replaces it as your director's service address too, so new filings show our address in both places your home used to appear.",
+    short: 'Keep your home off Companies House in both places',
   },
   terms: 'No lock-in. Cancel any time with one month\'s notice.',
   postHandler: 'Tania',
@@ -316,3 +304,6 @@ export function rateGroups(exclude: string[] = []) {
 
 export const listNames = (names: string[]) =>
   names.length < 2 ? names.join('') : `${names.slice(0, -1).join(', ')} and ${names.at(-1)}`;
+
+// A virtual office plan's price with Director's Cover added (£20 → £30, £40 → £50).
+export const withCover = (plan: VirtualOfficePlan) => plan.price + virtualOffice.directorsCover.price;

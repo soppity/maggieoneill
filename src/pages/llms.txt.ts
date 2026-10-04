@@ -5,11 +5,10 @@ import { guidePath, publishedGuides } from '../data/guides';
 import { address, booking, contact, formatPrice, rooms, hours, lastYear, listNames, maggiesMeals, parking, rateGroups, reviews, site, virtualOffice } from '../data/facts';
 
 const u = (path: string) => `${site.url}${path}`;
-const plans = virtualOffice.plans.map((p) => `£${p.price}`);
 const rates = rateGroups()
   .map((g) => `${listNames(g.rooms.map((r) => `the ${r.name}`))} ${formatPrice(g.hour)} an hour or ${formatPrice(g.day)} a day`)
   .join('; ');
-const planList = `${plans.slice(0, -1).join(', ')} and ${plans.at(-1)}`;
+const planList = virtualOffice.plans.map((p) => `${p.name} £${p.price}`).join(' or ');
 
 export const GET: APIRoute = () => {
   const body = `# ${site.name}
@@ -24,7 +23,7 @@ Key facts:
 - Used by care providers, the NHS and primary care networks, Knowsley Council, schools, and fostering and adoption teams (Adoption in Merseyside, Knowsley Fostering, Foster4).
 - Room hire, everything included: ${rates}. ${rooms.filter((r) => r.prices?.hourFrom).map((r) => `The ${r.name} from ${formatPrice(r.prices!.hourFrom!)} an hour.`).join(' ')}
 - Maggie's Meals: ${maggiesMeals.schedule}.
-- Virtual office plans: ${planList} a month. Call answering add-on £${virtualOffice.callAnswering.price} a month plus ${virtualOffice.callAnswering.perResponse} per AI response.
+- Virtual office plans: ${planList} a month, plus Director's Cover (director's service address) for £${virtualOffice.directorsCover.price} a month on either plan. Call answering add-on £${virtualOffice.callAnswering.price} a month plus ${virtualOffice.callAnswering.perResponse} per AI response.
 - Book or check availability: ${booking.url}
 
 ## Rooms and venue hire
