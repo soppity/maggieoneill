@@ -1,6 +1,6 @@
 ---
 // Every bookable room with its published rates. Genesis is never listed. No capacity grid:
-// only headline capacities that are confirmed in facts.ts are shown.
+// room names and prices only.
 import Photo from '../Photo.astro';
 import { booking, formatPrice, rooms, type Room } from '../../data/facts';
 
@@ -25,8 +25,6 @@ const priceLine = (r: Room) =>
     : r.prices?.hourFrom
       ? `From ${formatPrice(r.prices.hourFrom)} an hour`
       : 'Price on request';
-const capacityLine = (r: Room) =>
-  r.capacity.cabaret ? `Up to ${r.capacity.cabaret} cabaret` : r.capacity.boardroom ? `Boardroom for ${r.capacity.boardroom}` : null;
 ---
 <section class="section section--cream" id="rooms" aria-labelledby="rooms-heading">
   <div class="container">
@@ -44,7 +42,6 @@ const capacityLine = (r: Room) =>
             {!simple && (
               <>
                 <p class="room-card__price">{priceLine(r)}</p>
-                {capacityLine(r) && <p class="room-card__cap">{capacityLine(r)}</p>}
               </>
             )}
           </div>
@@ -65,7 +62,6 @@ const capacityLine = (r: Room) =>
   .room-card__body { padding: 18px 20px 22px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
   .room-card h3 { font-size: 20px; }
   .room-card__price { font-weight: 700; color: var(--moc-purple-900); }
-  .room-card__cap { font-size: var(--text-small-size); color: var(--moc-purple-700); font-weight: 600; }
   .room-cards__foot { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
   @media (max-width: 1100px) { .room-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 560px) { .room-cards { grid-template-columns: 1fr; } }
