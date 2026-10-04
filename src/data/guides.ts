@@ -27,6 +27,7 @@ export const guides: Guide[] = [
     stream: 'virtual-office',
     summary: 'The difference between a registered office, a business address and a director’s service address.',
     image: 26,
+    published: '2026-10-04',
   },
   {
     slug: 'virtual-office-limited-company',
