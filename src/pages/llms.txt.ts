@@ -1,14 +1,14 @@
 // /llms.txt, generated from facts.ts on every build so it never drifts from the site (SEO spec 5.1).
 // Based on docs/seo-files/llms.txt.
 import type { APIRoute } from 'astro';
+import { guidePath, publishedGuides } from '../data/guides';
 import { address, booking, contact, formatPrice, rooms, hours, lastYear, listNames, maggiesMeals, parking, rateGroups, reviews, site, virtualOffice } from '../data/facts';
 
 const u = (path: string) => `${site.url}${path}`;
-const plans = virtualOffice.plans.map((p) => `£${p.price}`);
 const rates = rateGroups()
   .map((g) => `${listNames(g.rooms.map((r) => `the ${r.name}`))} ${formatPrice(g.hour)} an hour or ${formatPrice(g.day)} a day`)
   .join('; ');
-const planList = `${plans.slice(0, -1).join(', ')} and ${plans.at(-1)}`;
+const planList = virtualOffice.plans.map((p) => `${p.name} £${p.price}`).join(' or ');
 
 export const GET: APIRoute = () => {
   const body = `# ${site.name}
@@ -23,7 +23,7 @@ Key facts:
 - Used by care providers, the NHS and primary care networks, Knowsley Council, schools, and fostering and adoption teams (Adoption in Merseyside, Knowsley Fostering, Foster4).
 - Room hire, everything included: ${rates}. ${rooms.filter((r) => r.prices?.hourFrom).map((r) => `The ${r.name} from ${formatPrice(r.prices!.hourFrom!)} an hour.`).join(' ')}
 - Maggie's Meals: ${maggiesMeals.schedule}.
-- Virtual office plans: ${planList} a month. Call answering add-on £${virtualOffice.callAnswering.price} a month plus ${virtualOffice.callAnswering.perResponse} per AI response.
+- Virtual office plans: ${planList} a month, plus Director's Cover (director's service address) for £${virtualOffice.directorsCover.price} a month on either plan. Call answering add-on £${virtualOffice.callAnswering.price} a month plus ${virtualOffice.callAnswering.perResponse} per AI response.
 - Book or check availability: ${booking.url}
 
 ## Rooms and venue hire
@@ -38,10 +38,10 @@ Key facts:
 - [What's included](${u('/whats-included/')})
 
 ## Virtual office
-- [Virtual office near Liverpool](${u('/services/virtual-office/')}): registered office, director's service address, business address and mail handling, from £${virtualOffice.from} a month
+- [Virtual office near Liverpool](${u('/services/virtual-office/')}): registered office, director's service address, business address and mail handling, from £${virtualOffice.from} a month, for businesses in Merseyside and across the UK
 - [Call answering](${u('/services/virtual-office/call-answering/')}): ${virtualOffice.callAnswering.summary}
 - [For accountants](${u('/services/virtual-office/accountants/')}): 15% off for referred clients and one login for all client post
-
+${publishedGuides('virtual-office').map((g) => `- [${g.title}](${u(guidePath(g))}): ${g.summary}\n`).join('')}
 ## About
 - [About the ${site.name}](${u('/about/')})
 - [Case studies](${u('/case-studies/')})

@@ -1,11 +1,10 @@
 ---
 // Purple band on the homepage and near the end of every room page (Blueprint section library).
-// Leads with the £50 plan, as the growth plan asks, with the £40 plan beside it.
+// Price ladder (owner, Oct 2026): lead with "from £20", show the two plans, then the £10 Director's Cover upsell.
 import Photo from '../Photo.astro';
 import { formatPrice, virtualOffice } from '../../data/facts';
 
-const featured = virtualOffice.plans.filter((p) => p.price >= 40).sort((a, b) => b.price - a.price);
-const addressPlans = virtualOffice.plans.filter((p) => p.price < 40);
+const dc = virtualOffice.directorsCover;
 ---
 <section class="vo-band" aria-labelledby="vo-band-heading">
   <div class="container vo-band__inner">
@@ -14,9 +13,9 @@ const addressPlans = virtualOffice.plans.filter((p) => p.price < 40);
       <h2 id="vo-band-heading">Need a business address? A real one, from {formatPrice(virtualOffice.from)} a month.</h2>
       <p class="vo-band__lede">A real address, with real people behind it. Tania handles your post and lets you know when it arrives.</p>
       <div class="vo-band__plans">
-        {featured.map((p) => (
-          <div class:list={['vo-plan', { 'vo-plan--lead': p.lead }]}>
-            {p.lead && <span class="vo-plan__tag">Everything included</span>}
+        {virtualOffice.plans.map((p, i) => (
+          <div class:list={['vo-plan', { 'vo-plan--lead': i === 0 }]}>
+            {i === 0 && <span class="vo-plan__tag">Start here</span>}
             <h3>{p.name}</h3>
             <p class="vo-plan__price"><strong>{formatPrice(p.price)}</strong> a month</p>
             <p>{p.summary}</p>
@@ -24,8 +23,8 @@ const addressPlans = virtualOffice.plans.filter((p) => p.price < 40);
         ))}
       </div>
       <p class="vo-band__more">
-        Just need an address? {addressPlans.map((p, i) => <>{i > 0 && ', or '}<strong>{p.name}</strong> at {formatPrice(p.price)} a month</>)}.
-        Add <a href="/services/virtual-office/call-answering/">call answering for {formatPrice(virtualOffice.callAnswering.price)} a month</a>.
+        <strong>Add {dc.name} for +{formatPrice(dc.price)} a month</strong> to either plan, and your home is off Companies House as your
+        registered office and your director's service address. Add <a href="/services/virtual-office/call-answering/">call answering for {formatPrice(virtualOffice.callAnswering.price)} a month</a>.
       </p>
       <div class="vo-band__ctas">
         <a class="btn btn--primary" href="/services/virtual-office/#get-your-address">Get your address</a>

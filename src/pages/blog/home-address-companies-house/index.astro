@@ -1,0 +1,151 @@
+---
+// Virtual office guide 1. Legal points must be checked against gov.uk before publishing (Blueprint 04 · Check before the push).
+import Guide from '../../../layouts/Guide.astro';
+import { address, formatPrice, virtualOffice, withCover } from '../../../data/facts';
+import { guideBySlug } from '../../../data/guides';
+
+const guide = guideBySlug('home-address-companies-house');
+const [p20, p40] = virtualOffice.plans;
+const dc = virtualOffice.directorsCover;
+
+const title = "Home Address Off Companies House | Maggie O'Neill Centre";
+const description =
+  "Which addresses Companies House shows, how to swap your home for a business address, and what to do about older filings. A guide from Maggie O'Neill Centre.";
+
+const answer =
+  "Give Companies House a business address for both your company's registered office and your director's service address. New filings then show the business address instead of your home. Older documents keep the address they were filed with, but you can apply to have your home address removed from some of them.";
+
+const faqs = [
+  {
+    q: 'Is my home address on Companies House?',
+    a: "Your home address is on the public Companies House register if you used it as your company's registered office or as your correspondence (service) address as a director or person with significant control. Anyone can search the register online for free.",
+  },
+  {
+    q: 'Can I stop my home address showing on Companies House?',
+    a: "Yes, for new filings. Change your company's registered office and your director's service address to a business address, and Companies House shows that address from then on. Your residential address is still collected, but it isn't shown on the public register when you give a separate service address.",
+  },
+  {
+    q: 'Will my old address disappear from Companies House?',
+    a: 'Not automatically. Documents filed before the change still show the address they were filed with. Companies House lets you apply to remove your home address from some older documents, and gov.uk lists the current form and fee.',
+  },
+  {
+    q: 'Can I use a PO box as my registered office?',
+    a: "No. Companies House doesn't accept a PO box as a registered office. The registered office has to be an appropriate address, where post sent to the company would come to someone acting on its behalf and could be acknowledged.",
+  },
+  {
+    q: 'Does a sole trader appear on Companies House?',
+    a: "No. Sole traders don't register with Companies House, so a sole trader's home address isn't on the Companies House register. It may still appear on your website, invoices and listings, and a business address keeps it off those too.",
+  },
+  {
+    q: "How much does it cost to keep my home address off Companies House with the Maggie O'Neill Centre?",
+    a: `At the Maggie O'Neill Centre, a registered office address costs ${formatPrice(p20.price)} a month. Director's Cover adds a director's service address for ${formatPrice(dc.price)} a month, so both together cost ${formatPrice(withCover(p20))} a month.`,
+  },
+];
+---
+<Guide
+  guide={guide}
+  title={title}
+  description={description}
+  h1a="Home address off Companies House"
+  h1b="Keep your front door off the register."
+  answer={answer}
+  faqs={faqs}
+  cta={{
+    heading: 'Get a registered office address near Liverpool',
+    text: `A real address at ${address.street}, Huyton, from ${formatPrice(p20.price)} a month. Add Director's Cover for ${formatPrice(dc.price)} a month and your home comes off new filings in both places.`,
+    href: '/services/virtual-office/',
+    label: 'Registered office address Liverpool',
+  }}
+>
+  <h2>Why is my home address on Companies House?</h2>
+  <p>
+    The Companies House register is public. Anyone can search it online, for free, and see the addresses your company has filed. Many
+    directors set up their company from home and used their home address because it was the easiest thing to put on the form.
+  </p>
+  <p>Your home address can appear on the register in three places:</p>
+  <ul>
+    <li><strong>The registered office.</strong> Your company's official address. It's shown on the register and on your company's documents.</li>
+    <li><strong>Your service address as a director.</strong> The address Companies House and others use to write to you as a director.</li>
+    <li><strong>Your service address as a person with significant control (PSC).</strong> If you own or control the company, you'll also be listed as a PSC.</li>
+  </ul>
+  <p>
+    Companies House also collects your usual residential address. That address isn't shown on the public register as long as you've given a
+    separate service address. Only the month and year of your date of birth are shown publicly.
+  </p>
+
+  <h2>How do I take my home address off Companies House?</h2>
+  <p>It takes two changes, and you can make both online with Companies House.</p>
+  <ol>
+    <li>
+      <strong>Change your registered office address.</strong> Move it to a business address you're allowed to use, such as a
+      {' '}<a href="/services/virtual-office/">virtual office in Liverpool</a>. The new address becomes your registered office once Companies
+      House registers the change. For 14 days after that, documents can still be validly delivered to the old address.
+    </li>
+    <li>
+      <strong>Change your service address as a director and as a PSC.</strong> Replace your home with a director's service address. Your
+      residential address stays private on the register from then on.
+    </li>
+  </ol>
+  <p class="note">
+    Changing only the registered office isn't enough. If your home is still your service address, it stays on the public register. The
+    two have to be changed separately.
+  </p>
+
+  <h2>What happens to my old filings?</h2>
+  <p>
+    Documents filed before the change, such as your incorporation documents and earlier confirmation statements, keep the address they were
+    filed with. Changing your address doesn't rewrite them.
+  </p>
+  <p>
+    Companies House lets you apply to remove your home address from some older documents on the register. There's a fee for each document,
+    and you'll need to give a service address to use instead. The form, the current fee and which documents qualify are set out in
+    {' '}<a href="https://www.gov.uk/government/organisations/companies-house" rel="noopener">Companies House guidance on gov.uk</a>: look for removing your home address from the register.
+  </p>
+
+  <h2>What counts as a business address for Companies House?</h2>
+  <p>
+    Your registered office has to be an appropriate address. That means post sent to your company would come to someone acting on its behalf,
+    and it could be acknowledged. A PO box doesn't count.
+  </p>
+  <p>
+    A virtual office is a real address in a staffed building, so it meets that test. At the Maggie O'Neill Centre, {virtualOffice.postHandler}
+    {' '}handles virtual office post in-house at reception, {address.oneLine}.
+  </p>
+
+  <h2>Which option do I need?</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Your situation</th><th scope="col">What to change</th><th scope="col">At Maggie's</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Only your registered office is your home (your service address is already elsewhere)</td>
+          <td>The registered office</td>
+          <td>{p20.name}, {formatPrice(p20.price)} a month</td>
+        </tr>
+        <tr>
+          <td>Your home is the registered office and your director's service address</td>
+          <td>Both</td>
+          <td>{p20.name} + {dc.name}, {formatPrice(withCover(p20))} a month</td>
+        </tr>
+        <tr>
+          <td>Both, and you want your post scanned and meeting rooms for clients</td>
+          <td>Both</td>
+          <td>{p40.name} + {dc.name}, {formatPrice(withCover(p40))} a month</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>{virtualOffice.terms}</p>
+
+  <h2>Do I need to tell anyone else?</h2>
+  <p>
+    Companies House doesn't pass your new address on to other organisations. Once the change is registered, update the address on your
+    website, invoices, letterheads, Google Business Profile and anywhere else your home address was published for the business.
+  </p>
+  <p class="callout">
+    Not sure which addresses to change? Call us and we'll talk it through. If you'd like a business address on your invoices as well as your
+    registered office, every <a href="/services/virtual-office/">virtual office plan at the Maggie O'Neill Centre</a> covers both.
+  </p>
+</Guide>

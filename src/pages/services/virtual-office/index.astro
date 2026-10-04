@@ -1,6 +1,7 @@
 ---
 // Virtual office hub. Spec: docs/reference/Website Blueprint.dc.html, page 8 (Template: Service).
 // Copy kept close to virtual.mobtc.co.uk (docs/content/virtual-office-source.md).
+import { guidePath, publishedGuides } from '../../../data/guides';
 import Base from '../../../layouts/Base.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import Hero from '../../../components/sections/Hero.astro';
@@ -11,7 +12,7 @@ import Steps from '../../../components/sections/Steps.astro';
 import Faqs from '../../../components/sections/Faqs.astro';
 import VirtualOfficeForm from '../../../components/sections/VirtualOfficeForm.astro';
 import Photo from '../../../components/Photo.astro';
-import { address, formatPrice, hours, listNames, reviews, rooms, site, virtualOffice } from '../../../data/facts';
+import { address, formatPrice, hours, listNames, reviews, rooms, site, virtualOffice, withCover } from '../../../data/facts';
 import { images } from '../../../data/images';
 import { breadcrumbNode, faqNode, serviceNode } from '../../../lib/schema';
 
@@ -21,7 +22,7 @@ const title = "Virtual Office Liverpool from £20 | Maggie O'Neill Centre";
 const description =
   "A real business address near Liverpool from £20 a month, with real people behind it. Keep your home address off Companies House. Maggie O'Neill Centre.";
 
-const [p20, p30, p40, p50] = virtualOffice.plans;
+const [p20, p40] = virtualOffice.plans;
 const dc = virtualOffice.directorsCover;
 const ca = virtualOffice.callAnswering;
 const pod = rooms.find((r) => r.slug === 'pod')!;
@@ -31,10 +32,10 @@ const intro = `A virtual office at the Maggie O'Neill Centre gives you a real bu
 
 const keyFacts = [
   { term: 'Address', detail: `${address.street}, Huyton, Liverpool, ${address.postcode}. A real building with people in it.` },
-  { term: 'Prices', detail: `${formatPrice(p20.price)}, ${formatPrice(p30.price)}, ${formatPrice(p40.price)} or ${formatPrice(p50.price)} a month.`, href: '#plans', linkText: 'Compare plans' },
-  { term: 'Post', detail: `Handled in-house by ${tania}. Opened and scanned on the ${formatPrice(p40.price)} and ${formatPrice(p50.price)} plans.` },
-  { term: "Director's Cover", detail: `+${formatPrice(dc.price)} a month. Takes your home address off the public register.` },
-  { term: 'Meeting rooms', detail: `In the same building. ${formatPrice(p40.price)} and ${formatPrice(p50.price)} plans include 2 free hours a month.` },
+  { term: 'Prices', detail: `From ${formatPrice(p20.price)} a month for ${p20.name}, or ${formatPrice(p40.price)} for ${p40.name}.`, href: '#plans', linkText: 'Compare plans' },
+  { term: "Director's Cover", detail: `+${formatPrice(dc.price)} a month on either plan. Your home off Companies House in both places.` },
+  { term: 'Post', detail: `Handled in-house by ${tania}. Opened and scanned on the ${p40.name} plan.` },
+  { term: 'Meeting rooms', detail: `In the same building. The ${p40.name} plan includes 2 free hours a month.` },
   { term: 'Contract', detail: virtualOffice.terms },
   { term: 'Collect post', detail: `${hours.summary}. Free parking outside.` },
   { term: 'Call answering', detail: `Add it for ${formatPrice(ca.price)} a month.`, href: '/services/virtual-office/call-answering/', linkText: 'How it works' },
@@ -46,6 +47,7 @@ const whoFor = [
   'Online sellers who need a business address',
   'Property companies, contractors, charities and CICs',
   'Firms outside the region wanting a Liverpool presence',
+  'Businesses anywhere in the UK who would rather their registered address supported a charity',
 ];
 
 // Why people switch, from the current virtual office page.
@@ -63,7 +65,7 @@ const reasons = [
 const faqs = [
   {
     q: 'How much is a virtual office in Liverpool?',
-    a: `A virtual office at the Maggie O'Neill Centre costs from ${formatPrice(p20.price)} a month for a registered office and business address. The ${formatPrice(p40.price)} plan adds post opened and scanned and 2 free meeting room hours a month. Director's Cover adds ${formatPrice(dc.price)} a month to either plan.`,
+    a: `A virtual office at the Maggie O'Neill Centre costs from ${formatPrice(p20.price)} a month for a registered office and business address. The ${formatPrice(p40.price)} ${p40.name} plan adds post opened and scanned and 2 free meeting room hours a month. Director's Cover adds ${formatPrice(dc.price)} a month to either plan, taking it to ${formatPrice(withCover(p20))} or ${formatPrice(withCover(p40))}.`,
   },
   {
     q: 'Can I use the address as my registered office with Companies House?',
@@ -75,7 +77,11 @@ const faqs = [
   },
   {
     q: "What is Director's Cover?",
-    a: `Director's Cover is a ${formatPrice(dc.price)} a month add-on that gives you a director's service address at the Maggie O'Neill Centre. It means your home address no longer needs to appear on the public register as your correspondence address.`,
+    a: `Director's Cover is a ${formatPrice(dc.price)} a month add-on that gives you a director's service address at the Maggie O'Neill Centre. Your plan already replaces your home as your registered office, so with Director's Cover your home no longer needs to appear in either place on the public register.`,
+  },
+  {
+    q: "If I upgrade my plan, do I keep Director's Cover?",
+    a: `Yes. If you have ${p20.name} with Director's Cover at ${formatPrice(withCover(p20))} a month and move up to ${p40.name}, your cover moves with you and the price becomes ${formatPrice(withCover(p40))} a month.`,
   },
   {
     q: 'Who handles my post?',
@@ -87,7 +93,11 @@ const faqs = [
   },
   {
     q: 'Can I meet clients at my virtual office address?',
-    a: `Yes. Meeting rooms are in the same building, from the ${pod.name} at ${formatPrice(pod.prices!.hour!)} an hour. The ${formatPrice(p40.price)} and ${formatPrice(p50.price)} virtual office plans include 2 free meeting room hours a month.`,
+    a: `Yes. Meeting rooms are in the same building, from the ${pod.name} at ${formatPrice(pod.prices!.hour!)} an hour. The ${formatPrice(p40.price)} ${p40.name} plan includes 2 free meeting room hours a month.`,
+  },
+  {
+    q: 'Do I need to be near Liverpool to use the virtual office?',
+    a: `No. The Maggie O'Neill Centre has virtual office clients across the UK who chose a charity for their registered address, instead of an online service or a profit-making company. On the Virtual Office plan your post is opened and scanned, so you can read it wherever you are.`,
   },
   {
     q: 'Is there a contract?',
@@ -113,10 +123,11 @@ const schema = [
     name: 'Virtual office',
     serviceType: 'Virtual office and registered office address',
     description: intro,
-    areaServed: virtualOffice.areasServed,
+    areaServed: ['United Kingdom', ...virtualOffice.areasServed],
     catalogName: 'Virtual office plans',
     offers: [
       ...virtualOffice.plans.map((p) => ({ name: p.name, price: p.price, description: p.summary })),
+      { name: `${dc.name} (add-on)`, price: dc.price, description: dc.summary },
       { name: `${ca.name} (add-on)`, price: ca.price, description: ca.summary },
     ],
   }),
@@ -149,9 +160,10 @@ const voReviewCount = reviews.count;
     secondary={{ label: 'See plans and prices', href: '#plans' }}
   >
     <ul class="price-chips" aria-label="Virtual office plans">
-      {virtualOffice.plans.map((p) => (
-        <li class:list={{ 'is-lead': p.lead }}><strong>{formatPrice(p.price)}</strong> {p.name}</li>
+      {virtualOffice.plans.map((p, i) => (
+        <li class:list={{ 'is-lead': i === 0 }}><strong>{formatPrice(p.price)}</strong> {p.name}</li>
       ))}
+      <li class="is-addon"><strong>+{formatPrice(dc.price)}</strong> {dc.name}</li>
     </ul>
     <ul class="vo-proof">
       <li><a href="/reviews/">{voReviewCount} Google reviews</a></li>
@@ -205,8 +217,8 @@ const voReviewCount = reviews.count;
           home, it's on the public register. {dc.summary}
         </p>
         <p>
-          Director's Cover costs {formatPrice(dc.price)} a month on top of any plan: {formatPrice(p20.price)} becomes {formatPrice(p30.price)}, and
-          {' '}{formatPrice(p40.price)} becomes {formatPrice(p50.price)}.
+          Director's Cover costs {formatPrice(dc.price)} a month on top of either plan: {formatPrice(p20.price)} becomes {formatPrice(withCover(p20))}, and
+          {' '}{formatPrice(p40.price)} becomes {formatPrice(withCover(p40))}. Move up from {p20.name} later and your cover comes with you.
         </p>
       </div>
     </div>
@@ -225,7 +237,7 @@ const voReviewCount = reviews.count;
         </div>
         <ul class="tick-list">
           <li>{tania} looks after virtual office post at reception.</li>
-          <li>On the {formatPrice(p40.price)} and {formatPrice(p50.price)} plans, your post is opened and scanned, so you can read it in your mailbox app wherever you are.</li>
+          <li>On the {formatPrice(p40.price)} {p40.name} plan, your post is opened and scanned, so you can read it in your mailbox app wherever you are.</li>
           <li>On every plan, you can collect post from reception, {hours.summary}, with free parking outside.</li>
         </ul>
         <p class="post-review">
@@ -245,7 +257,7 @@ const voReviewCount = reviews.count;
       <div class="prose">
         <p>
           The {pod.name}, a boardroom for {pod.capacity.boardroom}, costs {formatPrice(pod.prices!.hour!)} an hour. Larger rooms are there for team days
-          and training. The {formatPrice(p40.price)} and {formatPrice(p50.price)} plans include 2 free meeting room hours a month.
+          and training. The {formatPrice(p40.price)} {p40.name} plan includes 2 free meeting room hours a month.
         </p>
         <p>Your host meets your client at the door, the tea is on, and parking is free.</p>
         <p><a href="/services/meeting-rooms/">Meet clients here: meeting room hire in Huyton</a></p>
@@ -260,13 +272,14 @@ const voReviewCount = reviews.count;
         <span class="eyebrow">Areas we serve</span>
         <h2 id="areas-heading">Which areas does the virtual office cover?</h2>
         <p>
-          Businesses across Merseyside and beyond use our address in Huyton, near Liverpool: {listNames(virtualOffice.areasServed)}. Your post
-          can be scanned, so you don't need to be local.
+          Businesses across Merseyside use our address in Huyton, near Liverpool: {listNames(virtualOffice.areasServed)}.
         </p>
       </div>
       <ul class="areas">
         {virtualOffice.areasServed.map((a) => <li>{a}</li>)}
+        <li class="areas__uk">Across the UK</li>
       </ul>
+      <p class="areas__national">{virtualOffice.national}</p>
     </div>
   </section>
 
@@ -293,6 +306,23 @@ const voReviewCount = reviews.count;
     </div>
   </section>
 
+  {publishedGuides('virtual-office').length > 0 && (
+    <section class="section" aria-labelledby="vo-guides-heading">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Guides</span>
+          <h2 id="vo-guides-heading">Want the detail first?</h2>
+          <p>Plain-English guides to business addresses and Companies House.</p>
+        </div>
+        <ul class="vo-guides">
+          {publishedGuides('virtual-office').map((g) => (
+            <li><a href={guidePath(g)}>{g.title}</a><span>{g.summary}</span></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
   <Faqs faqs={faqs} heading="Virtual office questions" />
 
   <VirtualOfficeForm />
@@ -306,6 +336,7 @@ const voReviewCount = reviews.count;
   }
   .price-chips li strong { font-family: var(--font-display); color: var(--moc-purple-900); }
   .price-chips li.is-lead { border-color: var(--moc-coral-500); background: var(--moc-coral-tint); }
+  .price-chips li.is-addon { border-style: dashed; border-color: var(--moc-purple-700); }
   .vo-proof { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: var(--text-small-size); font-weight: 600; color: var(--moc-purple-900); }
   .vo-proof li::before { content: '✓ '; color: var(--moc-coral-text); }
   .vo-proof a { color: inherit; }
@@ -321,6 +352,12 @@ const voReviewCount = reviews.count;
   .post-review { margin-top: 20px; padding: 18px 22px; border-left: 4px solid var(--moc-coral-500); background: var(--moc-white); border-radius: 0 var(--radius-tile) var(--radius-tile) 0; font-size: var(--text-small-size); }
   .areas { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
   .areas li { padding: 10px 18px; border-radius: var(--radius-pill); background: var(--moc-purple-tint); color: var(--moc-purple-900); font-weight: 600; }
+  .areas li.areas__uk { background: var(--moc-purple-700); color: var(--moc-white); }
+  .areas__national { margin-top: 24px; max-width: 760px; font-size: var(--text-lead-size); }
   .steps-cta { margin-top: 32px; }
+  .vo-guides { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--grid-gap); }
+  .vo-guides li { display: flex; flex-direction: column; gap: 8px; padding: 22px 24px; border-radius: var(--radius-card); background: var(--moc-white); }
+  .vo-guides a { font: 700 19px/1.25 var(--font-display); }
+  .vo-guides span { font-size: var(--text-small-size); color: var(--moc-slate-text); }
   @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } .updated { margin-top: -24px; } }
 </style>

@@ -3,7 +3,6 @@
 import Photo from '../Photo.astro';
 import { formatPrice, rooms, trainingDayFrom } from '../../data/facts';
 
-const pod = rooms.find((r) => r.slug === 'pod')!;
 const auditorium = rooms.find((r) => r.slug === 'auditorium')!;
 
 const services = [
@@ -16,7 +15,7 @@ const services = [
   },
   {
     title: 'Meeting rooms',
-    text: `From the ${pod.name}, a boardroom for ${pod.capacity.boardroom}, at ${formatPrice(pod.prices!.hour!)} an hour or ${formatPrice(pod.prices!.day!)} a day, to rooms for your whole team.`,
+    text: 'Rooms for client meetings, interviews and team days, with your host, the screen and tea and coffee included.',
     href: '/services/meeting-rooms/',
     linkText: 'Meeting room hire in Huyton',
     image: 95,
