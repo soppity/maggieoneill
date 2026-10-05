@@ -85,6 +85,20 @@ export const lastYear = {
   mealsAccessed: '750+',
 };
 
+// Charity track record (owner, Oct 2026).
+export const trackRecord = {
+  yearsServing: '25',
+  openedBy: 'Andy Burnham',
+  openedYear: 2015,
+  covidParcels: '2,000',
+};
+
+// All Nations, the charity's culture celebration (owner, Oct 2026). No frequency or date confirmed yet.
+export const allNations = {
+  name: 'All Nations',
+  nationalities: '20 to 30',
+};
+
 export const parking = {
   summary: 'Free car park on site, 30 seconds from the M57, on a main bus route',
   spaces: 50,
