@@ -20,16 +20,20 @@ const title = "Social Value for the Public Sector | Maggie O'Neill Centre";
 const description =
   "Every booking at the Maggie O'Neill Centre funds Maggie's Meals and community support in Knowsley. A social value statement ready for your procurement report.";
 
-const funds = [
+const community = [
   { title: "Maggie's Meals", text: `Our social supermarket, open ${maggiesMeals.schedule.charAt(0).toLowerCase()}${maggiesMeals.schedule.slice(1)}. ${lastYear.mealsAccessed} people used it in the last year.` },
-  { title: 'Meals when life is hard', text: 'Home-cooked meals for people who are unwell, going through a hard time mentally, emotionally or financially, or who have just had a baby.' },
-  { title: 'Hospital visits', text: 'We visit people in hospital, so nobody goes through it alone.' },
-  { title: "Men's and women's groups", text: 'Regular groups where people can meet, talk and support each other.' },
-  { title: 'Community coffee mornings', text: 'An open door and a hot drink for anyone who wants company.' },
   { title: 'Community clean-ups', text: 'Clean-ups around Huyton, looking after the area we share.' },
 ];
 
-const statement = `The Maggie O'Neill Centre is a registered charity (no. ${site.charityNumber}) in Huyton, Knowsley. Income from room hire and virtual offices funds the charity's community work in the borough, including Maggie's Meals, a weekly social supermarket used by ${lastYear.mealsAccessed} people in the last year; home-cooked meals for people who are unwell, struggling or have just had a baby; hospital visits; men's and women's groups; community coffee mornings; and community clean-ups. Booking the Maggie O'Neill Centre keeps spend in Knowsley and supports health, wellbeing and food security in the local community.`;
+// Owner, Oct 2026: these are for people connected to the church. Described as care for the church family, without "only" or "members".
+const churchFamily = [
+  { title: 'Meals when life is hard', text: 'Home-cooked meals for people who are unwell, going through a hard time mentally, emotionally or financially, or who have just had a baby.' },
+  { title: 'Hospital visits', text: 'We visit people in hospital, so nobody goes through it alone.' },
+  { title: "Men's and women's groups", text: 'Regular groups where people can meet, talk and support each other.' },
+  { title: 'Coffee mornings', text: 'A hot drink and good company, every week.' },
+];
+
+const statement = `The Maggie O'Neill Centre is a registered charity (no. ${site.charityNumber}) in Huyton, Knowsley. Income from room hire and virtual offices funds the charity's community work in the borough, including Maggie's Meals, a weekly social supermarket used by ${lastYear.mealsAccessed} people in the last year, and community clean-ups around Huyton. It also funds the charity's care for its church family: home-cooked meals for people who are unwell, struggling or have just had a baby; hospital visits; men's and women's groups; and coffee mornings. Booking the Maggie O'Neill Centre keeps spend in Knowsley and supports health, wellbeing and food security in the local community.`;
 
 const faqs = [
   {
@@ -79,12 +83,23 @@ const schema = [
       <div class="section-head">
         <span class="eyebrow">What your booking funds</span>
         <h2 id="funds-heading">What does your booking pay for?</h2>
-        <p>Room hire and virtual office income keeps the charity's community work going, week in, week out.</p>
+        <p>Room hire and virtual office income keeps the charity's work going, week in, week out.</p>
       </div>
+      <h3 class="funds__group">In the community</h3>
       <ul class="grid funds">
-        {funds.map((f) => (
+        {community.map((f) => (
           <li class="card fund">
-            <h3>{f.title}</h3>
+            <h4>{f.title}</h4>
+            <p>{f.text}</p>
+          </li>
+        ))}
+      </ul>
+      <h3 class="funds__group">Caring for our church family</h3>
+      <p class="funds__intro">The Maggie O'Neill Centre began as a church, and it is still home to one. Part of the charity's work is looking after the people in it, through the good times and the hard ones.</p>
+      <ul class="grid funds">
+        {churchFamily.map((f) => (
+          <li class="card fund">
+            <h4>{f.title}</h4>
             <p>{f.text}</p>
           </li>
         ))}
@@ -188,6 +203,10 @@ const schema = [
 
 <style>
   .funds { list-style: none; margin: 0; padding: 0; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .funds + .funds__group { margin-top: 40px; }
+  .funds__group { margin-bottom: 16px; }
+  .funds__intro { max-width: 62ch; margin: -4px 0 20px; color: var(--moc-slate-text); }
+  .fund h4 { font-size: 20px; font-weight: var(--text-h3-weight); }
   .fund { padding: 26px 28px; display: flex; flex-direction: column; gap: 8px; }
   .fund p { font-size: var(--text-small-size); color: var(--moc-slate-text); }
   .numbers { background: var(--moc-purple-700); color: var(--moc-white); }
