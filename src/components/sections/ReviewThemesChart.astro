@@ -1,6 +1,8 @@
 ---
-// Review themes as a single-series bar chart (dataviz method): one hue, sorted, value at the bar tip, track = all
-// written reviews. A hero figure leads; a hidden table carries the same numbers for screen readers.
+// Review themes as a single-series bar chart (dataviz method): one hue, sorted, value at the bar tip.
+// Owner, Oct 2026: never frame these as a share of all reviews (19% "clean" reads as 81% not clean). Each count is
+// the number of people who chose to mention it unprompted, and bars are scaled to the top theme, with no empty track.
+// A hidden table carries the same numbers for screen readers.
 // Counts come from src/data/google-reviews.tsv at build time, so they update with the monthly reviews routine.
 import { themes, writtenReviews } from '../../data/reviewQuotes';
 
@@ -10,8 +12,25 @@ interface Props {
 const { heading = 'What do people mention most?' } = Astro.props;
 
 const top = themes[0];
-const pct = (n: number) => Math.round((n / writtenReviews) * 100);
-const inTen = Math.round((top.count / writtenReviews) * 10);
+const max = top.count;
+
+// Short bar labels.
+const label: Record<string, string> = {
+  welcome: 'Praised the staff and the welcome',
+  ready: 'Said everything was ready',
+  reach: 'Mentioned easy access and free parking',
+  feel: 'Loved how it looks and feels',
+  clean: 'Said how clean it is',
+};
+
+// What reviewers did, phrased as praise they chose to give (used in the headline).
+const said: Record<string, string> = {
+  welcome: 'praised the staff and the welcome',
+  ready: 'said everything they needed was ready',
+  reach: 'mentioned how easy it is to reach, and the free parking',
+  feel: 'loved how it looks and feels inside',
+  clean: 'went out of their way to say how clean it is',
+};
 
 const icons: Record<string, string> = {
   welcome: '<circle cx="12" cy="12" r="9"/><path d="M8.5 14.5a4.5 4.5 0 0 0 7 0"/><path d="M9 9.5h.01M15 9.5h.01"/>',
@@ -24,24 +43,24 @@ const icons: Record<string, string> = {
 <section class="rtc" aria-labelledby="rtc-heading">
   <div class="container">
     <div class="rtc__intro">
-      <span class="rtc__eyebrow">From {writtenReviews} written Google reviews</span>
+      <span class="rtc__eyebrow">In their own words</span>
       <h2 id="rtc-heading">{heading}</h2>
       <p class="rtc__hero">
-        <span class="rtc__hero-num">{inTen} in 10</span>
-        <span class="rtc__hero-text">written reviews mention {top.title.charAt(0).toLowerCase() + top.title.slice(1)}.</span>
+        <span class="rtc__hero-num">{top.count}</span>
+        <span class="rtc__hero-text">people who reviewed us on Google {said[top.key]}, without being asked.</span>
       </p>
     </div>
 
     <ol class="rtc__bars" aria-hidden="true">
       {themes.map((t, i) => (
-        <li class="rtc__row" tabindex="0" style={`--w:${(t.count / writtenReviews) * 100}%; --d:${i * 120}ms`}>
+        <li class="rtc__row" tabindex="0" style={`--w:${(t.count / max) * 82}%; --d:${i * 120}ms`}>
           <div class="rtc__label">
             <svg class="rtc__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={icons[t.key]} />
-            <span>{t.title}</span>
+            <span>{label[t.key]}</span>
           </div>
           <div class="rtc__track">
             <div class="rtc__bar"></div>
-            <span class="rtc__value"><strong>{t.count}</strong> <span>{pct(t.count)}%</span></span>
+            <span class="rtc__value"><strong>{t.count}</strong> <span>people</span></span>
           </div>
           {t.quotes[0] && (
             <div class="rtc__tip" role="presentation">
@@ -55,15 +74,15 @@ const icons: Record<string, string> = {
 
     <div class="visually-hidden">
     <table>
-      <caption>How many of the {writtenReviews} written Google reviews mention each theme</caption>
-      <thead><tr><th scope="col">Theme</th><th scope="col">Reviews</th><th scope="col">Share</th></tr></thead>
+      <caption>How many people mention each theme in their Google review</caption>
+      <thead><tr><th scope="col">Theme</th><th scope="col">People</th></tr></thead>
       <tbody>
-        {themes.map((t) => <tr><th scope="row">{t.title}</th><td>{t.count}</td><td>{pct(t.count)}%</td></tr>)}
+        {themes.map((t) => <tr><th scope="row">{t.title}</th><td>{t.count}</td></tr>)}
       </tbody>
     </table>
     </div>
 
-    <p class="rtc__note">Each bar is out of all {writtenReviews} written reviews. One review can mention more than one thing. Hover or tap a bar to read one.</p>
+    <p class="rtc__note">Counted from the {writtenReviews} Google reviews with written comments. Nobody is asked what to write about: these are the things people chose to bring up. Hover or tap a bar to read one.</p>
   </div>
 </section>
 
@@ -91,22 +110,22 @@ const icons: Record<string, string> = {
   .rtc h2 { margin-top: 10px; color: var(--moc-white); }
   .rtc__hero { margin: 28px 0 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; }
   .rtc__hero-num { font: 800 clamp(64px, 11vw, 128px)/0.95 var(--font-display); letter-spacing: -0.03em; color: var(--moc-white); }
-  .rtc__hero-text { font: 600 clamp(20px, 2.4vw, 28px)/1.3 var(--font-display); color: rgba(255, 255, 255, 0.88); max-width: 22ch; }
+  .rtc__hero-text { font: 600 clamp(20px, 2.4vw, 28px)/1.3 var(--font-display); color: rgba(255, 255, 255, 0.88); max-width: 30ch; }
 
   .rtc__bars { list-style: none; margin: clamp(40px, 6vw, 64px) 0 0; padding: 0; display: grid; gap: 10px; }
-  .rtc__row { position: relative; display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 20px; align-items: center; padding: 12px 14px; border-radius: 12px; outline: none; cursor: default; transition: background var(--duration-base, 200ms) ease; }
+  .rtc__row { position: relative; display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 20px; align-items: center; padding: 12px 14px; border-radius: 12px; outline: none; cursor: default; transition: background var(--duration-base, 200ms) ease; }
   .rtc__row:hover, .rtc__row:focus-visible { background: rgba(255, 255, 255, 0.06); }
   .rtc__row:focus-visible { box-shadow: 0 0 0 3px var(--moc-coral-500); }
   .rtc__label { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 17px; color: var(--moc-white); }
   .rtc__icon { flex: none; color: rgba(255, 255, 255, 0.75); }
-  .rtc__track { position: relative; height: 24px; border-radius: 0 4px 4px 0; background: rgba(255, 255, 255, 0.08); }
+  .rtc__track { position: relative; height: 24px; }
   .rtc__bar { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--moc-coral-500); border-radius: 0 4px 4px 0; transition: width 1100ms cubic-bezier(0.2, 0.8, 0.2, 1) var(--d); }
   .rtc__bars.is-in .rtc__bar { width: var(--w); }
   .rtc__value { position: absolute; top: 50%; left: calc(var(--w) + 12px); transform: translateY(-50%); white-space: nowrap; font-size: var(--text-small-size); color: rgba(255, 255, 255, 0.75); opacity: 0; transition: opacity 400ms ease calc(var(--d) + 700ms); }
   .rtc__value strong { font: 800 22px/1 var(--font-display); color: var(--moc-white); margin-right: 4px; }
   .rtc__bars.is-in .rtc__value { opacity: 1; }
 
-  .rtc__tip { position: absolute; z-index: 2; left: calc(300px + 34px); top: calc(100% + 4px); max-width: 420px; padding: 14px 16px; border-radius: 12px; background: var(--moc-white); color: var(--moc-purple-900); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25); opacity: 0; transform: translateY(-4px); pointer-events: none; transition: opacity 150ms ease, transform 150ms ease; }
+  .rtc__tip { position: absolute; z-index: 2; left: calc(360px + 34px); top: calc(100% + 4px); max-width: 420px; padding: 14px 16px; border-radius: 12px; background: var(--moc-white); color: var(--moc-purple-900); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25); opacity: 0; transform: translateY(-4px); pointer-events: none; transition: opacity 150ms ease, transform 150ms ease; }
   .rtc__tip p { margin: 0; font: 600 16px/1.4 var(--font-display); }
   .rtc__tip span { display: block; margin-top: 6px; font-size: var(--text-caption-size); font-weight: 700; color: var(--moc-slate-text); }
   .rtc__row:hover .rtc__tip, .rtc__row:focus-visible .rtc__tip { opacity: 1; transform: none; }
@@ -115,7 +134,7 @@ const icons: Record<string, string> = {
 
   @media (max-width: 760px) {
     .rtc__row { grid-template-columns: 1fr; gap: 10px; }
-    .rtc__track { margin-right: 64px; }
+    .rtc__track { margin-right: 90px; }
     .rtc__tip { left: 14px; right: 14px; max-width: none; }
   }
   @media (prefers-reduced-motion: reduce) {
