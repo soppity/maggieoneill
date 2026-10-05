@@ -28,13 +28,13 @@ const community = [
 ];
 
 // Owner, Oct 2026: meals and hospital visits are for people connected to the church. Described as care for the
-// church family, without "only" or "members". Gatherings, groups, coffee mornings and clean-ups are open to all.
+// church family, without "only" or "members". Extended to others as volunteer capacity allows. Gatherings, groups, coffee mornings and clean-ups are open to all.
 const churchFamily = [
   { title: 'Meals when life is hard', text: 'Home-cooked meals for people who are unwell, going through a hard time mentally, emotionally or financially, or who have just had a baby.' },
   { title: 'Hospital visits', text: 'We visit people in hospital, so nobody goes through it alone.' },
 ];
 
-const statement = `The Maggie O'Neill Centre is a registered charity (no. ${site.charityNumber}) in Huyton, Knowsley. Income from room hire and virtual offices funds the charity's community work in the borough, including Maggie's Meals, a weekly social supermarket used by ${lastYear.mealsAccessed} people in the last year; community coffee mornings; community clean-ups around Huyton; and church gatherings, small groups and men's and women's groups that are open to everyone. It also funds the charity's care for its church family, including home-cooked meals for people who are unwell, struggling or have just had a baby, and hospital visits. Booking the Maggie O'Neill Centre keeps spend in Knowsley and supports health, wellbeing and food security in the local community.`;
+const statement = `The Maggie O'Neill Centre is a registered charity (no. ${site.charityNumber}) in Huyton, Knowsley. Income from room hire and virtual offices funds the charity's community work in the borough, including Maggie's Meals, a weekly social supermarket used by ${lastYear.mealsAccessed} people in the last year; community coffee mornings; community clean-ups around Huyton; and church gatherings, small groups and men's and women's groups that are open to everyone. It also funds the charity's care for its church family, including home-cooked meals for people who are unwell, struggling or have just had a baby, and hospital visits, extended to others in the community as volunteer capacity allows. Booking the Maggie O'Neill Centre keeps spend in Knowsley and supports health, wellbeing and food security in the local community.`;
 
 const faqs = [
   {
@@ -96,7 +96,7 @@ const schema = [
         ))}
       </ul>
       <h3 class="funds__group">Caring for our church family</h3>
-      <p class="funds__intro">The Maggie O'Neill Centre began as a church, and it is still home to one. When someone in our church family is unwell, going through a hard time or has a new baby, we're there for them.</p>
+      <p class="funds__intro">The Maggie O'Neill Centre began as a church, and it is still home to one. When someone in our church family is unwell, going through a hard time or has a new baby, we're there for them. We extend meals and hospital visits to others in the community when our volunteers have the capacity. Everyone who helps is a volunteer, so we look after their time carefully.</p>
       <ul class="grid funds">
         {churchFamily.map((f) => (
           <li class="card fund">
