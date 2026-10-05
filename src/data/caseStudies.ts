@@ -1,7 +1,6 @@
 // Case studies (Blueprint page 12, PROJECT_NOTES). Source: the owner's rundown of how each client uses us (Oct 2026).
 // Logos only for now: no client contacts or photos, and no quotes until supplied. Every client fact below comes from
 // the owner; the rest describes how the Maggie O'Neill Centre hosts that kind of booking, using facts.ts.
-// Alder Hey has no rundown yet, so its story stays short.
 
 import { formatPrice, parking, rooms, virtualOffice } from './facts';
 
@@ -369,33 +368,50 @@ export const caseStudies: CaseStudy[] = [
     kind: 'venue',
     title: "Alder Hey Case Study: NHS Staff Training | Maggie O'Neill Centre",
     description:
-      "Alder Hey Children's Hospital runs staff training for Sunflower House at the Maggie O'Neill Centre in Huyton, 30 seconds from the M57. How we host it.",
-    h1: 'Alder Hey: staff training for Sunflower House',
-    tagline: 'NHS training, close to home.',
-    line: 'Staff training for Sunflower House.',
-    lede: "Alder Hey Children's Hospital runs staff training for Sunflower House at the Maggie O'Neill Centre in Huyton.",
+      "Alder Hey's Sunflower House has trained its staff at the Maggie O'Neill Centre for over a year, and other Alder Hey teams have followed.",
+    h1: 'Alder Hey: training Sunflower House staff, and the teams that followed',
+    tagline: 'When a venue does a good job, word gets around.',
+    line: 'Over a year of staff training for Sunflower House, and other Alder Hey teams too.',
+    lede: "Sunflower House at Alder Hey Children's Hospital has been coming to the Maggie O'Neill Centre for over a year to train all of its staff. Other Alder Hey departments and teams now come here too, for the very same reasons.",
     glance: [
-      { term: 'Who', detail: "Alder Hey Children's Hospital, an NHS children's hospital in Liverpool." },
-      { term: 'What they run here', detail: 'Staff training for Sunflower House.' },
-      { term: 'Sector', detail: 'NHS' },
-      { term: 'Where', detail: "The Maggie O'Neill Centre, Huyton, 30 seconds from the M57." },
+      { term: 'Who', detail: "Alder Hey Children's Hospital: Sunflower House, and other departments and teams." },
+      { term: 'With us', detail: 'Over a year.' },
+      { term: 'What they run here', detail: 'Training for all Sunflower House staff.' },
+      { term: 'Why they stay', detail: 'Rooms set up the same way every time, the right amenities, and a team that flexes to what they need.' },
     ],
     sections: [
       {
-        eyebrow: 'What the day needs',
-        heading: 'What does NHS staff training need from a venue?',
+        eyebrow: 'What they needed',
+        heading: 'What did Sunflower House need from a training venue?',
         paragraphs: [
-          'NHS teams need a venue they can justify. It has to be easy to reach, with parking for staff travelling in, and invoices that work the way NHS finance teams need them to.',
-          'On the day, the room has to be ready when the trainer arrives, so the session starts on time and nobody loses learning time to setting up.',
+          'Sunflower House needed a venue where it could train all of its staff. NHS training days are planned around busy rotas, so the venue has to be ready when people arrive, with nothing to sort out before the session can start.',
+        ],
+      },
+      {
+        eyebrow: 'How we host it',
+        heading: 'Why does Sunflower House keep coming back?',
+        points: [
+          'The room is set up the same way every time, so trainers and staff know exactly what to expect.',
+          'The right amenities are in place: the screen ready, tea and coffee in the room, WiFi, and free parking for staff travelling in.',
+          'We work to be flexible and accommodating, whatever the day needs.',
+          'Hosts are on site all day, so anything that comes up is sorted quickly.',
+        ],
+      },
+      {
+        eyebrow: 'Word gets around',
+        heading: 'Why do other Alder Hey teams book here too?',
+        paragraphs: [
+          'Other Alder Hey departments and teams now come to the Maggie O\u2019Neill Centre for the very same reasons. When a venue does a good job, word gets around.',
+          "We love having Alder Hey with us. It's a good feeling to know we're providing a space in Knowsley for staff doing such important work.",
         ],
       },
     ],
     takeaways: {
       heading: 'What could this look like for your NHS team?',
       points: [
+        'A room set up the same way every time, so your training days are predictable.',
         'Invoices to your trust, with PO numbers welcome.',
         'Free parking for staff travelling in.',
-        'The room set and the screen tested before your trainer arrives.',
         'Fully accessible on the ground floor, with an accessible toilet.',
       ],
     },
