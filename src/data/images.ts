@@ -46,6 +46,13 @@ export const images: Record<number, LibraryImage> = {
   133: img(133, '6ab6834e9b248207685a6a66.webp', "Tania, a host at the Maggie O'Neill Centre, smiling in reception", 'P'),
   137: img(137, '6ab6834f6407f2cbe4d41d1f.webp', "Tania, a host at the Maggie O'Neill Centre, chatting in reception", 'P'),
   158: img(158, '6abfcbcc02569bee7cb0c764.webp', "The accessible toilet at the Maggie O'Neill Centre, with grab rails, a fold-down rail and an emergency pull cord"),
+  // All Nations, supplied by the owner (Oct 2026), not from the image library. Not viewable from the build container,
+  // so the alt text is general until the owner describes each photo.
+  170: img(170, '6ac3927e7d735ea2a1378388.webp', "People sharing food and traditional dress at All Nations at the Maggie O'Neill Centre"),
+  171: img(171, '6ac3927e2c1c51a2ac6489b0.webp', "Guests celebrating at the All Nations event at the Maggie O'Neill Centre"),
+  172: img(172, '6ac3927e2c1c51a2ac6489a6.webp', "Food from around the world at All Nations at the Maggie O'Neill Centre"),
+  173: img(173, '6ac3927e22bc27f58f70416d.webp', "People in traditional dress at All Nations at the Maggie O'Neill Centre"),
+  174: img(174, '6ac3927e7d735ea2a1378392.webp', "The building full of people at All Nations at the Maggie O'Neill Centre"),
   139: img(139, '6ab68346974a9da6eebefb38.webp', "Patrick, a host at the Maggie O'Neill Centre", 'P'),
 };
 

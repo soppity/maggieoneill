@@ -12,10 +12,12 @@ import HostedDay from '../../../components/sections/HostedDay.astro';
 import Comparison from '../../../components/sections/Comparison.astro';
 import Reviews from '../../../components/sections/Reviews.astro';
 import VirtualOfficeBand from '../../../components/sections/VirtualOfficeBand.astro';
+import CaseCard from '../../../components/CaseCard.astro';
+import { caseStudies } from '../../../data/caseStudies';
 import Faqs from '../../../components/sections/Faqs.astro';
 import FindUs from '../../../components/sections/FindUs.astro';
 import { accessibility, catering, contact, halfDay, formatPrice, hours, idealFor, layoutTriage, listNames, parking, rateGroups, rooms, site, trainingDayFrom } from '../../../data/facts';
-import { clientLogos, images } from '../../../data/images';
+import { images } from '../../../data/images';
 import { bookingTermsPath, cancellationSummary } from '../../../data/bookingTerms';
 import { breadcrumbNode, faqNode, roomPlaceNode, serviceNode } from '../../../lib/schema';
 
@@ -110,11 +112,7 @@ const reviews = [
   { quote: 'Just off the motorway, on a main bus route.', name: 'Bec Bowden' },
 ];
 
-const careLogos = clientLogos.filter((l) => [156, 153].includes(l.n));
-const caseStudies = [
-  { logo: careLogos.find((l) => l.n === 156)!, name: 'Amore', line: 'All their mandatory training for agency staff.', href: '/case-studies/amore/' },
-  { logo: careLogos.find((l) => l.n === 153)!, name: 'AFG', line: 'TMVA, epilepsy training and learning team meetings.', href: '/case-studies/afg/' },
-];
+const featuredCases = caseStudies.filter((c) => ['amore', 'afg'].includes(c.slug));
 
 const schema = [
   serviceNode({
@@ -185,16 +183,7 @@ const schema = [
         <p>Two of the care providers who run their staff training at the Maggie O'Neill Centre.</p>
       </div>
       <div class="grid cases">
-        {caseStudies.map((c) => (
-          <a class="card case" href={c.href}>
-            <img src={c.logo.src} alt={`${c.logo.name} logo`} width="160" height="64" loading="lazy" />
-            <div>
-              <h3>{c.name}</h3>
-              <p>{c.line}</p>
-            </div>
-            <span class="case__link">Read the story <span aria-hidden="true">→</span></span>
-          </a>
-        ))}
+        {featuredCases.map((c) => <CaseCard study={c} />)}
       </div>
       <p class="cases__more"><a href="/case-studies/">See all case studies</a></p>
     </div>
@@ -228,12 +217,7 @@ const schema = [
   .ideal__list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
   .ideal__list li { padding: 12px 20px; border-radius: var(--radius-pill); background: var(--moc-purple-tint); color: var(--moc-purple-900); font-weight: 600; }
   .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .case { display: grid; grid-template-columns: 140px 1fr auto; gap: 20px; align-items: center; padding: 24px 28px; }
-  .case img { max-height: 56px; width: auto; object-fit: contain; }
-  .case p { color: var(--moc-slate-text); font-size: var(--text-small-size); margin-top: 4px; }
-  .case__link { font-weight: 700; color: var(--moc-purple-700); white-space: nowrap; font-size: var(--text-small-size); }
   .cases__more { margin-top: 24px; font-weight: 700; }
   .more-links { padding: 40px 0; }
   @media (max-width: 900px) { .ideal, .cases { grid-template-columns: 1fr; } .updated { margin-top: -24px; } }
-  @media (max-width: 560px) { .case { grid-template-columns: 1fr; } }
 </style>

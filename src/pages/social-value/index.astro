@@ -8,7 +8,7 @@ import Hero from '../../components/sections/Hero.astro';
 import Photo from '../../components/Photo.astro';
 import Faqs from '../../components/sections/Faqs.astro';
 import CtaBand from '../../components/sections/CtaBand.astro';
-import { contact, lastYear, maggiesMeals, site } from '../../data/facts';
+import { allNations, contact, lastYear, maggiesMeals, site, trackRecord } from '../../data/facts';
 import { images } from '../../data/images';
 import { storySummary } from '../../data/story';
 import { bookingTermsPath, larger } from '../../data/bookingTerms';
@@ -34,7 +34,7 @@ const churchFamily = [
   { title: 'Hospital visits', text: 'We visit people in hospital, so nobody goes through it alone.' },
 ];
 
-const statement = `The Maggie O'Neill Centre is a registered charity (no. ${site.charityNumber}) in Huyton, Knowsley. Income from room hire and virtual offices funds the charity's community work in the borough, including Maggie's Meals, a weekly social supermarket used by ${lastYear.mealsAccessed} people in the last year; community coffee mornings; community clean-ups around Huyton; and church gatherings, small groups and men's and women's groups that are open to everyone. It also funds the charity's care for its church family, including home-cooked meals for people who are unwell, struggling or have just had a baby, and hospital visits, extended to others in the community as volunteer capacity allows. Booking the Maggie O'Neill Centre keeps spend in Knowsley and supports health, wellbeing and food security in the local community.`;
+const statement = `The Maggie O'Neill Centre is a registered charity (no. ${site.charityNumber}) that has served Huyton and Knowsley for over ${trackRecord.yearsServing} years. During the Covid lockdowns, its staff and volunteers delivered over ${trackRecord.covidParcels} food parcels. Income from room hire and virtual offices funds the charity's community work in the borough, including Maggie's Meals, a weekly social supermarket used by ${lastYear.mealsAccessed} people in the last year; community coffee mornings; community clean-ups around Huyton; church gatherings, small groups and men's and women's groups that are open to everyone; and ${allNations.name}, an annual summer celebration where ${allNations.nationalities} nationalities share food and traditional dress from home. It also funds the charity's care for its church family, including home-cooked meals for people who are unwell, struggling or have just had a baby, and hospital visits, extended to others in the community as volunteer capacity allows. Booking the Maggie O'Neill Centre keeps spend in Knowsley and supports health, wellbeing and food security in the local community.`;
 
 const faqs = [
   {
@@ -48,6 +48,10 @@ const faqs = [
   {
     q: "Is the Maggie O'Neill Centre a registered charity?",
     a: `Yes. The Maggie O'Neill Centre is a registered charity in England and Wales, number ${site.charityNumber}.`,
+  },
+  {
+    q: "How long has the Maggie O'Neill Centre been serving Knowsley?",
+    a: `The charity has served Huyton and Knowsley for over ${trackRecord.yearsServing} years. ${trackRecord.openedBy} officially opened the Maggie O'Neill Centre building in ${trackRecord.openedYear}, and during the Covid lockdowns its staff and volunteers delivered over ${trackRecord.covidParcels} food parcels.`,
   },
   {
     q: "What is Maggie's Meals?",
@@ -73,7 +77,7 @@ const schema = [
   <Hero
     title="Social value at the Maggie O'Neill Centre"
     tagline="Your booking does good a few streets away."
-    lede={`The Maggie O'Neill Centre is a registered charity (no. ${site.charityNumber}) in Huyton, Knowsley. Every room booking and virtual office funds our community work in the borough.`}
+    lede={`The Maggie O'Neill Centre is a registered charity (no. ${site.charityNumber}) that has served Huyton and Knowsley for over ${trackRecord.yearsServing} years. Every room booking and virtual office funds our community work in the borough.`}
     image={110}
     primary={{ label: 'Get the statement', href: '#statement' }}
     secondary={{ label: `Call ${contact.phone}`, href: contact.phoneHref }}
@@ -102,6 +106,31 @@ const schema = [
           <li class="card fund">
             <h4>{f.title}</h4>
             <p>{f.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="nations-heading">
+    <div class="container">
+      <div class="two-col">
+        <div class="section-head">
+          <span class="eyebrow">Every culture welcome</span>
+          <h2 id="nations-heading">What is {allNations.name}?</h2>
+        </div>
+        <div class="prose">
+          <p>
+            {allNations.name} is an event held {allNations.when}. People from {allNations.nationalities} different nationalities take over the whole building,
+            cooking food from their country and wearing traditional dress.
+          </p>
+          <p>It's a wonderful time celebrating every culture and nation on earth, and discovering just how much unites us as people around the globe.</p>
+        </div>
+      </div>
+      <ul class="nations">
+        {allNations.images.map((n, i) => (
+          <li class={i === 0 ? 'nations__lead' : undefined}>
+            <Photo n={n} width={i === 0 ? 900 : 480} height={i === 0 ? 680 : 360} sizes={i === 0 ? '(max-width: 900px) 100vw, 600px' : '(max-width: 900px) 50vw, 300px'} />
           </li>
         ))}
       </ul>
@@ -148,7 +177,7 @@ const schema = [
           <li>Registered charity in England and Wales, no. {site.charityNumber}.</li>
           <li>Invoices to your organisation, with PO numbers welcome.</li>
           <li>{larger.paymentMethods.split('. ')[0]}.</li>
-          <li>Clear <a href={bookingTermsPath}>booking and cancellation terms</a>.</li>
+          <li><span>Clear <a href={bookingTermsPath}>booking and cancellation terms</a>.</span></li>
           <li>Fully accessible on the ground floor, with an accessible toilet.</li>
           <li>Free parking on site, in Huyton, Knowsley.</li>
         </ul>
@@ -162,12 +191,21 @@ const schema = [
   <section class="section section--cream" aria-labelledby="story-heading">
     <div class="container two-col">
       <div class="section-head">
-        <span class="eyebrow">Where it started</span>
-        <h2 id="story-heading">Who was Maggie O'Neill?</h2>
+        <span class="eyebrow">Our track record</span>
+        <h2 id="story-heading">How long has the charity been serving Knowsley?</h2>
+        <p>For over {trackRecord.yearsServing} years, in Huyton and across Knowsley.</p>
       </div>
-      <div class="prose">
-        <p>{storySummary}</p>
-        <p><a href="/about/">Read Maggie's story</a></p>
+      <div>
+        <ul class="record">
+          <li><strong>Over {trackRecord.yearsServing} years</strong><span>serving Huyton and Knowsley as a charity.</span></li>
+          <li><strong>{trackRecord.openedYear}</strong><span>{trackRecord.openedBy} officially opened the Maggie O'Neill Centre building.</span></li>
+          <li><strong>Over {trackRecord.covidParcels}</strong><span>food parcels delivered by our staff and volunteers during the Covid lockdowns.</span></li>
+        </ul>
+        <div class="prose story">
+          <h3>Who was Maggie O'Neill?</h3>
+          <p>{storySummary}</p>
+          <p><a href="/about/">Read Maggie's story</a></p>
+        </div>
       </div>
     </div>
   </section>
@@ -225,6 +263,17 @@ const schema = [
   .statement__done { margin-top: 8px; font-size: var(--text-small-size); color: var(--moc-purple-700); font-weight: 600; }
   .media { margin: 0; }
   .media :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
+  .nations { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .nations li { margin: 0; }
+  .nations :global(img) { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-card); aspect-ratio: 4 / 3; }
+  .nations__lead { grid-row: span 2; }
+  .nations__lead :global(img) { aspect-ratio: auto; }
+  @media (max-width: 700px) { .nations { grid-template-columns: 1fr 1fr; grid-template-rows: none; } .nations__lead { grid-column: span 2; grid-row: auto; } .nations__lead :global(img) { aspect-ratio: 4 / 3; } }
+  .record { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .record li { display: grid; grid-template-columns: 170px 1fr; gap: 16px; align-items: baseline; padding: 18px 22px; background: var(--moc-white); border-radius: var(--radius-card); }
+  .record strong { font: 800 26px/1.1 var(--font-display); color: var(--moc-purple-900); }
+  .story { margin-top: 32px; }
+  @media (max-width: 560px) { .record li { grid-template-columns: 1fr; gap: 4px; } }
   .prose { display: flex; flex-direction: column; gap: 16px; }
   .more-links { padding: 40px 0; }
   @media (max-width: 900px) { .two-col, .two-col--media { grid-template-columns: 1fr; } }

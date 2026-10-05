@@ -1,0 +1,180 @@
+---
+// Case study template (Blueprint page 12, Template: Case study). Logo + sector + H1 · at a glance · what they needed ·
+// how we host it · what it means for you · rooms (venue) or plans (virtual office) · related stories · CTA.
+// Logos only for now: no contacts, photos or quotes.
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import KeyFacts from '../../components/sections/KeyFacts.astro';
+import HostedDay from '../../components/sections/HostedDay.astro';
+import RoomCards from '../../components/sections/RoomCards.astro';
+import CtaBand from '../../components/sections/CtaBand.astro';
+import CaseCard from '../../components/CaseCard.astro';
+import VirtualOfficeBand from '../../components/sections/VirtualOfficeBand.astro';
+import { contact, parking, site } from '../../data/facts';
+import { clientLogos, images } from '../../data/images';
+import { caseSectors, caseStudies, caseStudyPath, type CaseStudy } from '../../data/caseStudies';
+import { articleNode, breadcrumbNode } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return caseStudies.map((study) => ({ params: { slug: study.slug }, props: { study } }));
+}
+
+interface Props {
+  study: CaseStudy;
+}
+const { study } = Astro.props;
+const path = caseStudyPath(study);
+const url = `${site.url}${path}`;
+const logo = study.logo ? clientLogos.find((l) => l.n === study.logo) : undefined;
+const sector = caseSectors.find((s) => s.key === study.sector)!.label;
+const ogImage = study.kind === 'virtual-office' ? images[26] : study.sector === 'nhs' ? images[67] : images[43];
+const others = caseStudies.filter((c) => c.slug !== study.slug);
+const updatedLabel = new Date(study.published).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+
+const intro =
+  study.kind === 'virtual-office'
+    ? `${study.lede} We're a registered charity in Huyton, near Liverpool, and our hosts handle every letter and parcel.`
+    : `${study.lede} Rooms are set before anyone arrives, hosts are on site all day, tea and coffee are served in the room, and parking is free, ${parking.motorway}.`;
+const isVo = study.kind === 'virtual-office';
+
+const schema = [
+  articleNode({
+    url,
+    headline: study.h1,
+    description: study.description,
+    image: ogImage.src,
+    datePublished: study.published,
+    about: { name: study.name, logo: logo?.src },
+    mentionsVenue: true,
+  }),
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Case studies', url: `${site.url}/case-studies/` },
+    { name: study.shortName, url },
+  ]),
+];
+---
+<Base title={study.title} description={study.description} ogImage={ogImage.src} ogImageAlt={ogImage.alt} schema={schema} dateModified={study.published}>
+  <Breadcrumbs
+    trail={[
+      { name: 'Home', path: '/' },
+      { name: 'Case studies', path: '/case-studies/' },
+      { name: study.shortName, path },
+    ]}
+  />
+
+  <section class="case-hero">
+    <div class="container case-hero__inner">
+      <div class="case-hero__logo">
+        {logo ? (
+          <img src={logo.src} alt={`${logo.name} logo`} width="240" height="96" fetchpriority="high" />
+        ) : (
+          <span class="case-hero__wordmark">{study.name}</span>
+        )}
+      </div>
+      <div>
+        <span class="eyebrow">Case study · {sector}</span>
+        <h1>{study.h1}</h1>
+        <p class="case-hero__tagline">{study.tagline}</p>
+        <p class="case-hero__lede">{study.lede}</p>
+        <div class="case-hero__ctas">
+          {isVo ? (
+            <a class="btn btn--primary" href={study.sectorHref}>Get your address</a>
+          ) : (
+            <a class="btn btn--primary" href="#cta-heading">Plan your dates</a>
+          )}
+          <a class="btn btn--secondary" href={study.sectorHref}>See the {study.sectorLinkText}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <KeyFacts heading="At a glance" intro={intro} facts={study.glance} />
+  <p class="container updated">Last updated: {updatedLabel}</p>
+
+  {study.sections.map((sec, i) => (
+    <section class:list={['section', i % 2 === 0 ? 'section--cream' : 'section--white']} aria-labelledby={`story-${i}`}>
+      <div class="container two-col">
+        <div class="section-head">
+          <span class="eyebrow">{sec.eyebrow}</span>
+          <h2 id={`story-${i}`}>{sec.heading}</h2>
+        </div>
+        <div class="prose">
+          {sec.paragraphs?.map((p) => <p>{p}</p>)}
+          {sec.points && (
+            <ul class="tick-list">
+              {sec.points.map((p) => <li><span>{p}</span></li>)}
+            </ul>
+          )}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="section takeaways" aria-labelledby="takeaways-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">For your team</span>
+        <h2 id="takeaways-heading">{study.takeaways.heading}</h2>
+        <p>See the <a href={study.sectorHref}>{study.sectorLinkText}</a> page for prices and everything that's included.</p>
+      </div>
+      <ul class="takeaways__list">
+        {study.takeaways.points.map((p) => <li>{p}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  {isVo ? <VirtualOfficeBand /> : <HostedDay />}
+
+  {study.rooms && (
+    <RoomCards heading={study.roomsHeading} intro="Tell us your numbers and what the day involves, and we'll recommend the right room." order={study.rooms} simple />
+  )}
+
+  <section class="section section--white" aria-labelledby="related-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">More like this</span>
+        <h2 id="related-heading">Who else trains at the Maggie O'Neill Centre?</h2>
+        <p>
+          See the <a href={study.sectorHref}>{study.sectorLinkText}</a> page for everything that's included, or read another story.
+        </p>
+      </div>
+      <div class="grid cases">
+        {others.map((c) => <CaseCard study={c} showSector />)}
+      </div>
+      <p class="cases__more"><a href="/case-studies/">All case studies</a> · <a href="/reviews/">Reviews</a> · <a href={contact.phoneHref} data-track="phone_click">Call {contact.phone}</a></p>
+    </div>
+  </section>
+
+  {isVo ? (
+    <CtaBand heading="Want an address that's handled properly?" text="Sign up online in about a minute, or call and talk it through with Tania, who looks after the post." primary={{ label: 'Get your address', href: '/services/virtual-office/' }} />
+  ) : (
+    <CtaBand heading="Planning training dates of your own?" />
+  )}
+</Base>
+
+<style>
+  .case-hero { background: var(--moc-hero-wash); padding: clamp(40px, 7vw, 80px) 0; }
+  .case-hero__inner { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+  .case-hero__logo { background: var(--moc-white); border-radius: var(--radius-card); box-shadow: var(--moc-shadow-card-hover); aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center; padding: 32px; }
+  .case-hero__logo img { max-width: 100%; max-height: 120px; width: auto; height: auto; object-fit: contain; }
+  .case-hero__wordmark { font: 800 clamp(26px, 3vw, 36px)/1.1 var(--font-display); color: var(--moc-purple-900); text-align: center; }
+  .takeaways { background: var(--moc-purple-tint); }
+  .takeaways__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .takeaways__list li { padding: 18px 22px 18px 52px; background: var(--moc-white); border-radius: var(--radius-card); position: relative; font-weight: 600; color: var(--moc-purple-900); }
+  .takeaways__list li::before { content: ''; position: absolute; left: 22px; top: 22px; width: 16px; height: 16px; border-radius: 50%; background: var(--moc-coral-500); }
+  .case-hero h1 { margin-top: 10px; font-size: clamp(34px, 4.6vw, 56px); font-weight: var(--text-hero-weight); line-height: 1.08; color: var(--moc-purple-900); }
+  .case-hero__tagline { margin-top: 14px; font: 700 clamp(20px, 2.1vw, 26px)/1.25 var(--font-display); color: var(--moc-coral-text); }
+  .case-hero__lede { margin-top: 18px; font-size: clamp(18px, 1.8vw, var(--text-lead-size)); line-height: 1.55; max-width: 600px; }
+  .case-hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .updated { margin-top: -40px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
+  .two-col { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .prose { display: flex; flex-direction: column; gap: 16px; }
+  .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cases__more { margin-top: 24px; font-weight: 700; }
+  @media (max-width: 900px) {
+    .case-hero__inner, .two-col, .cases { grid-template-columns: 1fr; }
+    .case-hero__logo { aspect-ratio: auto; max-width: 320px; }
+    .updated { margin-top: -24px; }
+  }
+</style>

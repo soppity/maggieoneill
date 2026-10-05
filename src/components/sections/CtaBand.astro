@@ -5,10 +5,13 @@ import { booking, contact, site } from '../../data/facts';
 interface Props {
   heading?: string;
   text?: string;
+  // Defaults to "Check availability" (the OfficeRnD calendar).
+  primary?: { label: string; href: string };
 }
 const {
   heading = 'Ready to book your day?',
   text = "Check availability online, or call and talk it through with your host. We'll recommend the room and layout that suits you.",
+  primary,
 } = Astro.props;
 ---
 <section class="cta-band" aria-labelledby="cta-heading">
@@ -20,7 +23,11 @@ const {
       <p class="cta-band__closer">{site.closer} {site.brandLine}</p>
     </div>
     <div class="cta-band__actions">
-      <a class="btn btn--primary" href={booking.url} target="_blank" rel="noopener" data-track="booking_click">Check availability</a>
+      {primary ? (
+        <a class="btn btn--primary" href={primary.href}>{primary.label}</a>
+      ) : (
+        <a class="btn btn--primary" href={booking.url} target="_blank" rel="noopener" data-track="booking_click">Check availability</a>
+      )}
       <a class="btn btn--light" href={contact.phoneHref} data-track="phone_click">Call {contact.phone}</a>
     </div>
   </div>

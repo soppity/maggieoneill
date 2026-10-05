@@ -9,6 +9,8 @@ import KeyFacts from '../../../components/sections/KeyFacts.astro';
 import PlansCompare from '../../../components/sections/PlansCompare.astro';
 import CallAnsweringBand from '../../../components/sections/CallAnsweringBand.astro';
 import Steps from '../../../components/sections/Steps.astro';
+import CaseCard from '../../../components/CaseCard.astro';
+import { caseStudies } from '../../../data/caseStudies';
 import Faqs from '../../../components/sections/Faqs.astro';
 import VirtualOfficeForm from '../../../components/sections/VirtualOfficeForm.astro';
 import Photo from '../../../components/Photo.astro';
@@ -280,6 +282,9 @@ const voReviewCount = reviews.count;
         <li class="areas__uk">Across the UK</li>
       </ul>
       <p class="areas__national">{virtualOffice.national}</p>
+      <div class="areas__case">
+        <CaseCard study={caseStudies.find((c) => c.slug === 'libraries-connected')!} />
+      </div>
     </div>
   </section>
 
@@ -360,4 +365,5 @@ const voReviewCount = reviews.count;
   .vo-guides a { font: 700 19px/1.25 var(--font-display); }
   .vo-guides span { font-size: var(--text-small-size); color: var(--moc-slate-text); }
   @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } .updated { margin-top: -24px; } }
+  .areas__case { margin-top: 28px; max-width: 760px; }
 </style>

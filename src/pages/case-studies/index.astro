@@ -1,0 +1,88 @@
+---
+// Case studies hub (Blueprint page 12, Template: Case study). Logo cards filtered by sector. Logos only for now.
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CaseCard from '../../components/CaseCard.astro';
+import CtaBand from '../../components/sections/CtaBand.astro';
+import { lastYear, reviews, site } from '../../data/facts';
+import { images } from '../../data/images';
+import { caseSectors, caseStudies } from '../../data/caseStudies';
+import { breadcrumbNode } from '../../lib/schema';
+
+const path = '/case-studies/';
+const url = `${site.url}${path}`;
+const title = "Case Studies: Who Trains Here | Maggie O'Neill Centre";
+const description =
+  "Care providers, NHS teams, housing and charities that train, meet and get their post at the Maggie O'Neill Centre in Huyton, and why they stay.";
+
+const schema = [
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Case studies', url },
+  ]),
+];
+---
+<Base title={title} description={description} ogImage={images[43].src} ogImageAlt={images[43].alt} schema={schema} pageType="CollectionPage">
+  <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Case studies', path }]} />
+
+  <section class="hub-hero">
+    <div class="container">
+      <span class="eyebrow">Case studies</span>
+      <h1>Case studies: who trains at the Maggie O'Neill Centre</h1>
+      <p class="hub-hero__tagline">Organisations like yours, looked after here.</p>
+      <p class="hub-hero__lede">
+        Care providers, NHS teams and housing associations book the Maggie O'Neill Centre in Huyton for their training days and meetings, and
+        charities as far away as London use our virtual office address. Here's what they do here, and how we look after them. In the last year, {lastYear.businessesServed} businesses booked {lastYear.roomsHired} rooms, and we have {reviews.count} {reviews.source} reviews.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="stories-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="stories-heading">Which organisations train here?</h2>
+      </div>
+      <fieldset class="filter">
+        <legend class="visually-hidden">Filter by sector</legend>
+        <label><input type="radio" name="sector" value="all" checked /> <span>All</span></label>
+        {caseSectors.map((s) => (
+          <label><input type="radio" name="sector" value={s.key} /> <span>{s.label}</span></label>
+        ))}
+      </fieldset>
+      <ul class="grid cases">
+        {caseStudies.map((c) => (
+          <li data-sector={c.sector}><CaseCard study={c} showSector /></li>
+        ))}
+      </ul>
+      <p class="more">
+        Looking for your sector? See <a href="/services/training-rooms/care-training-venue/">care training</a>,
+        {' '}<a href="/services/training-rooms/nhs-training-venue/">NHS training</a>,
+        {' '}<a href="/services/training-rooms/council-training-venue/">council and public sector training</a> and
+        {' '}<a href="/services/training-rooms/fostering-adoption-training-venue/">fostering and adoption training</a> and
+        {' '}<a href="/services/virtual-office/">virtual offices</a>, or read our <a href="/reviews/">reviews</a>.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand heading="Planning training dates of your own?" />
+</Base>
+
+<style>
+  .hub-hero { background: var(--moc-hero-wash); padding: clamp(40px, 7vw, 80px) 0 clamp(32px, 5vw, 56px); }
+  .hub-hero h1 { margin-top: 10px; max-width: 18ch; font-size: clamp(36px, 5vw, 60px); font-weight: var(--text-hero-weight); line-height: 1.06; color: var(--moc-purple-900); }
+  .hub-hero__tagline { margin-top: 14px; font: 700 clamp(20px, 2.2vw, 27px)/1.25 var(--font-display); color: var(--moc-coral-text); }
+  .hub-hero__lede { margin-top: 18px; max-width: 640px; font-size: clamp(18px, 1.8vw, var(--text-lead-size)); line-height: 1.55; }
+  .filter { border: 0; margin: 0 0 28px; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+  .filter label { cursor: pointer; }
+  .filter input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .filter span { display: inline-block; padding: 10px 20px; border-radius: var(--radius-pill); border: 1px solid var(--moc-border); background: var(--moc-white); font-weight: 600; color: var(--moc-purple-900); }
+  .filter input:checked + span { background: var(--moc-purple-700); border-color: var(--moc-purple-700); color: var(--moc-white); }
+  .filter input:focus-visible + span { outline: 3px solid var(--moc-coral-500); outline-offset: 2px; }
+  .cases { list-style: none; margin: 0; padding: 0; grid-template-columns: 1fr; max-width: 880px; }
+  .cases li { display: grid; }
+  .section:has(.filter input[value='care']:checked) .cases li:not([data-sector='care']),
+  .section:has(.filter input[value='nhs']:checked) .cases li:not([data-sector='nhs']),
+  .section:has(.filter input[value='housing']:checked) .cases li:not([data-sector='housing']),
+  .section:has(.filter input[value='virtual-office']:checked) .cases li:not([data-sector='virtual-office']) { display: none; }
+  .more { margin-top: 32px; max-width: 720px; color: var(--moc-slate-text); }
+</style>

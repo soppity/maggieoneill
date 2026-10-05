@@ -12,6 +12,8 @@ import ClientLogos from '../../../../components/sections/ClientLogos.astro';
 import RoomCards from '../../../../components/sections/RoomCards.astro';
 import HostedDay from '../../../../components/sections/HostedDay.astro';
 import Reviews from '../../../../components/sections/Reviews.astro';
+import CaseCard from '../../../../components/CaseCard.astro';
+import { caseStudies } from '../../../../data/caseStudies';
 import Faqs from '../../../../components/sections/Faqs.astro';
 import FindUs from '../../../../components/sections/FindUs.astro';
 import Photo from '../../../../components/Photo.astro';
@@ -92,6 +94,8 @@ const reviews = [
 ];
 
 const nhsLogos = clientLogos.filter((l) => [146, 164, 148, 157, 145].includes(l.n));
+
+const nhsCases = caseStudies.filter((c) => c.sector === 'nhs');
 
 const schema = [
   serviceNode({
@@ -191,14 +195,7 @@ const schema = [
         <h2 id="who-heading">Which NHS teams use the Maggie O'Neill Centre?</h2>
       </div>
       <div class="stories">
-        <div class="card story">
-          <h3>Alder Hey Children's Hospital</h3>
-          <p>Runs staff training for Sunflower House at the Maggie O'Neill Centre.</p>
-        </div>
-        <div class="card story">
-          <h3>Primary Care Networks</h3>
-          <p>Hold clinical and admin training days and monthly offsite meetings here, often in the Auditorium.</p>
-        </div>
+        {nhsCases.map((c) => <CaseCard study={c} />)}
       </div>
     </div>
   </section>
