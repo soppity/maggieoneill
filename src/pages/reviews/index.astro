@@ -6,7 +6,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CtaBand from '../../components/sections/CtaBand.astro';
 import { address, reviews, site } from '../../data/facts';
 import { images } from '../../data/images';
-import { bySector, themes, virtualOfficeReview, writtenReviewsAnalysed } from '../../data/reviewQuotes';
+import { bySector, themes, writtenReviews } from '../../data/reviewQuotes';
 import { breadcrumbNode } from '../../lib/schema';
 
 const path = '/reviews/';
@@ -51,20 +51,24 @@ const G = '<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24"><p
       <div class="section-head">
         <span class="eyebrow">What people mention most</span>
         <h2 id="themes-heading">What do people say about the Maggie O'Neill Centre?</h2>
-        <p>We read the {writtenReviewsAnalysed} reviews with written comments and counted what comes up. Here it is, most mentioned first.</p>
+        <p>We read all {writtenReviews} reviews with written comments and counted what comes up. Here it is, most mentioned first.</p>
       </div>
-      <ol class="grid themes">
+      <ol class="themes">
         {themes.map((t) => (
-          <li class="card theme">
-            <p class="theme__share">{t.share} written reviews</p>
-            <h3>{t.title}</h3>
-            <p>{t.text}</p>
-            {t.quote && (
-              <figure class="theme__quote">
-                <blockquote>“{t.quote.quote}”</blockquote>
-                <figcaption>{t.quote.name}{t.quote.org && <span>, {t.quote.org}</span>}</figcaption>
-              </figure>
-            )}
+          <li class="theme">
+            <div class="theme__head">
+              <p class="theme__share"><strong>{t.count}</strong> of {writtenReviews} written reviews</p>
+              <h3>{t.title}</h3>
+              <p>{t.text}</p>
+            </div>
+            <div class="theme__quotes">
+              {t.quotes.map((q) => (
+                <figure class="card quote">
+                  <blockquote>“{q.quote}”</blockquote>
+                  <figcaption>{q.name}{q.org && <span>, {q.org}</span>}</figcaption>
+                </figure>
+              ))}
+            </div>
           </li>
         ))}
       </ol>
@@ -84,9 +88,9 @@ const G = '<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24"><p
               <h3>{s.title}</h3>
               <p>{s.text} <a href={s.href}>{s.linkText}</a></p>
             </div>
-            <div class="sector__quotes">
+            <div class="sector__quotes masonry">
               {s.quotes.map((q) => (
-                <figure class="card sector__quote">
+                <figure class="card quote">
                   <blockquote>“{q.quote}”</blockquote>
                   <figcaption>{q.name}{q.org && <span>, {q.org}</span>}</figcaption>
                 </figure>
@@ -94,18 +98,6 @@ const G = '<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24"><p
             </div>
           </div>
         ))}
-        <div class="sector">
-          <div class="sector__head">
-            <h3>Virtual office</h3>
-            <p>Virtual office clients write about the post being looked after. <a href="/services/virtual-office/">Virtual office</a></p>
-          </div>
-          <div class="sector__quotes">
-            <div class="card sector__quote">
-              <p class="sector__summary">{virtualOfficeReview.summary}</p>
-              <p class="sector__who">{virtualOfficeReview.name}, {virtualOfficeReview.org} (summarised from their review)</p>
-            </div>
-          </div>
-        </div>
       </div>
       <p class="more">Read the full stories in our <a href="/case-studies/">case studies</a>.</p>
     </div>
@@ -139,25 +131,25 @@ const G = '<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24"><p
   .rv-score { background: var(--moc-white); border-radius: var(--radius-card); box-shadow: var(--moc-shadow-card-hover); padding: 32px; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
   .rv-score__count { margin-top: 8px; font: 800 clamp(56px, 7vw, 80px)/1 var(--font-display); color: var(--moc-purple-900); }
   .rv-score__label { color: var(--moc-slate-text); margin-bottom: 16px; }
-  .themes { list-style: none; margin: 0; padding: 0; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .theme { padding: 26px 28px; display: flex; flex-direction: column; gap: 10px; }
-  .theme__share { font-size: var(--text-eyebrow-size); font-weight: 700; letter-spacing: var(--text-eyebrow-tracking); text-transform: uppercase; color: var(--moc-coral-text); }
-  .theme p { color: var(--moc-slate-text); font-size: var(--text-small-size); }
-  .theme__quote { margin: auto 0 0; padding-top: 14px; border-top: 1px solid var(--moc-border); }
-  .theme__quote blockquote, .sector__quote blockquote { margin: 0; font: 600 17px/1.45 var(--font-display); color: var(--moc-purple-900); }
-  .theme__quote figcaption, .sector__quote figcaption, .sector__who { margin-top: 8px; font-weight: 700; font-size: var(--text-small-size); color: var(--moc-ink, inherit); }
-  .sectors { display: grid; gap: 32px; }
+  .themes { list-style: none; margin: 0; padding: 0; display: grid; gap: 40px; counter-reset: theme; }
+  .theme { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(20px, 4vw, 48px); align-items: start; padding-top: 32px; border-top: 1px solid var(--moc-border); }
+  .theme:first-child { border-top: 0; padding-top: 0; }
+  .theme__share { font-size: var(--text-small-size); color: var(--moc-coral-text); font-weight: 700; margin-bottom: 6px; }
+  .theme__share strong { font: 800 34px/1 var(--font-display); margin-right: 4px; }
+  .theme__head p:last-child { margin-top: 8px; color: var(--moc-slate-text); }
+  .theme__quotes, .sector__quotes { display: grid; gap: 12px; }
+  .quote { margin: 0; padding: 22px 26px; }
+  .quote blockquote { margin: 0; font: 600 17px/1.45 var(--font-display); color: var(--moc-purple-900); }
+  .quote figcaption { margin-top: 8px; font-weight: 700; font-size: var(--text-small-size); }
+  .sectors { display: grid; gap: 40px; }
   .sector { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(20px, 4vw, 48px); align-items: start; }
   .sector__head p { margin-top: 8px; color: var(--moc-slate-text); }
-  .sector__quotes { display: grid; gap: 12px; }
-  .sector__quote { margin: 0; padding: 22px 26px; }
-  .sector__summary { font: 600 17px/1.45 var(--font-display); color: var(--moc-purple-900); }
+  .masonry { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
   .more { margin-top: 32px; font-weight: 700; }
   .two-col { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
   .prose { display: flex; flex-direction: column; gap: 16px; }
   @media (max-width: 900px) {
-    .rv-hero__inner, .sector, .two-col { grid-template-columns: 1fr; }
-    .themes { grid-template-columns: 1fr 1fr; }
+    .rv-hero__inner, .sector, .theme, .two-col { grid-template-columns: 1fr; }
   }
-  @media (max-width: 560px) { .themes { grid-template-columns: 1fr; } }
+  @media (max-width: 640px) { .masonry { grid-template-columns: 1fr; } }
 </style>
