@@ -4,6 +4,7 @@
 import Base from '../../layouts/Base.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CtaBand from '../../components/sections/CtaBand.astro';
+import ReviewThemesChart from '../../components/sections/ReviewThemesChart.astro';
 import { address, reviews, site } from '../../data/facts';
 import { images } from '../../data/images';
 import { bySector, themes, writtenReviews } from '../../data/reviewQuotes';
@@ -46,10 +47,12 @@ const G = '<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24"><p
     </div>
   </section>
 
+  <ReviewThemesChart />
+
   <section class="section" aria-labelledby="themes-heading">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">What people mention most</span>
+        <span class="eyebrow">In their words</span>
         <h2 id="themes-heading">What do people say about the Maggie O'Neill Centre?</h2>
         <p>We read all {writtenReviews} reviews with written comments and counted what comes up. Here it is, most mentioned first.</p>
       </div>
