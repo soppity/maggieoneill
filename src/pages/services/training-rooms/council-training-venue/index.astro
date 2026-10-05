@@ -31,7 +31,7 @@ const intro = `The Maggie O'Neill Centre is a Knowsley charity in Huyton, ${park
 const keyFacts = [
   { term: 'Who uses it', detail: 'Knowsley Council, Livv Housing and local schools.' },
   { term: 'Social value', detail: "A registered charity. Every booking funds Maggie's Meals in Knowsley." },
-  { term: 'Sessions', detail: 'Training days, CPD, INSET days, team meetings and governor meetings.' },
+  { term: 'Sessions', detail: 'Training days, CPD, INSET days, Knowsley Education days and governor meetings.' },
   { term: 'Prices', detail: `From ${formatPrice(hourFrom)} an hour or ${formatPrice(trainingDayFrom)} a day, everything included.`, href: '/whats-included/', linkText: "See what's included" },
   { term: 'Invoicing', detail: 'Invoices to your council, school or organisation, with PO numbers welcome.' },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
@@ -50,11 +50,11 @@ const faqs = [
   },
   {
     q: 'Can you provide social value information for our procurement?',
-    a: `Yes. Ask us and we'll send you details of the Maggie O'Neill Centre's charity work and community impact for your procurement or social value reporting. Call ${contact.phone}.`,
+    a: `Yes. The Maggie O'Neill Centre's social value statement is on the social value page, written to copy straight into your procurement or social value report. Call ${contact.phone} if you need it on headed paper.`,
   },
   {
     q: 'Can schools book INSET days here?',
-    a: "Yes. Schools book the Maggie O'Neill Centre for INSET days, staff CPD, SEND training and governor meetings. Your school delivers the session, and we host it.",
+    a: "Yes. Schools book the Maggie O'Neill Centre for INSET days, staff CPD, SEND training and governor meetings, and Knowsley Education hosts days here too. Your school delivers the session, and we host it.",
   },
   {
     q: 'Do you invoice, and do you take purchase orders?',
@@ -122,7 +122,7 @@ const schema = [
     tagline="Train in the borough, and the spend stays local."
     lede="The Maggie O'Neill Centre is a Knowsley charity. Every booking funds Maggie's Meals, a few streets from where your teams work."
     image={114}
-    primary={{ label: 'Ask about social value', href: '#enquire' }}
+    primary={{ label: 'Get the social value statement', href: '/social-value/#statement' }}
     secondary={{ label: 'See the rooms', href: '#rooms' }}
   />
 
@@ -165,6 +165,7 @@ const schema = [
           <li>INSET days for the whole staff team.</li>
           <li>Staff CPD and SEND training.</li>
           <li>Governor meetings.</li>
+          <li>Days hosted by Knowsley Education.</li>
           <li>Free parking for every member of staff, and the room set before anyone arrives.</li>
         </ul>
       </div>
