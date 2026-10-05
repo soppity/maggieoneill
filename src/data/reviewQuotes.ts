@@ -1,5 +1,6 @@
 // Google review quotes and what written reviews mention most.
-// Source: docs/content/google-reviews.tsv, the owner's copy of the Google reviews (Oct 2026). 177 have written comments.
+// Source: src/data/google-reviews.tsv, every written Google review (name, text; no dates). Theme counts are worked out
+// from it at build time, so a monthly update only adds new rows there (docs/SOP/monthly-reviews.md).
 // Quotes are word for word, cut at the end of a sentence (or marked with an ellipsis). No review dates (owner). Names as shown on Google.
 // Left out on purpose: free hot desking and co-working (no longer offered), the chiropodist and nursery (other
 // businesses), Christian music (off-message for public sector), the AI workshop, a lukewarm review and a non-English one.
@@ -11,7 +12,26 @@ export interface ReviewQuote {
   org?: string;
 }
 
-export const writtenReviews = 177;
+import reviewsTsv from './google-reviews.tsv?raw';
+
+const rows = reviewsTsv
+  .trim()
+  .split('\n')
+  .slice(1)
+  .map((line) => line.split('\t')[1]?.toLowerCase() ?? '')
+  .filter(Boolean);
+
+export const writtenReviews = rows.length;
+
+// What counts as a mention of each theme. Keep in step with the theme cards below.
+const themePatterns: Record<string, RegExp> = {
+  welcome: /welcom|friend|helpful|kind|greet|hospitab|accommodat|above and beyond|staff|team|patrick|tania|tanya|liam|polite|lovely people|amazing people|great people/,
+  reach: /park|easy to (find|get)|access|motorway|m57|bus|location|main routes/,
+  ready: /facilit|equipped|everything ready|set up|well set|tech|wi-?fi|internet|it re|everything you need|amenit|prepared|resourced|organis|well run|\btea\b|coffee|beverage/,
+  feel: /calm|decor|atmosphere|diffuser|smell|flower|beautiful|relax|peaceful|cosy|comfortable|serene|aesthetic|stylish|warm environment|bright|ambience|vibes|homely|inviting/,
+  clean: /clean|tidy|spotless|immaculate|well maintained|well cared/,
+};
+const mentions = (key: string) => rows.filter((t) => themePatterns[key].test(t)).length;
 
 export const quotes = {
   anita: { quote: 'The perfect venue for meetings. Staff are so helpful and do all they can to make the whole experience from booking to the event as easy as possible.', name: 'Anita Johnson' },
@@ -49,44 +69,46 @@ export const quotes = {
   john: { quote: 'Looks very bland once you hit the car park but inside, very open and lovely decoration.', name: 'John Burnage' },
 } satisfies Record<string, ReviewQuote>;
 
-// How many of the written reviews mention each theme, most mentioned first.
-export const themes: { key: string; title: string; count: number; text: string; quotes: ReviewQuote[] }[] = [
+// How many written reviews mention each theme, sorted most mentioned first.
+const themeList: { key: string; title: string; count: number; text: string; quotes: ReviewQuote[] }[] = [
   {
     key: 'welcome',
     title: 'The staff and the welcome',
-    count: 109,
+    count: mentions('welcome'),
     text: 'More than anything, people write about being welcomed and looked after. Patrick, Tania and Liam are named again and again.',
     quotes: [quotes.jennifer, quotes.bozena, quotes.william],
   },
   {
     key: 'reach',
     title: 'Easy to reach, with free parking',
-    count: 44,
+    count: mentions('reach'),
     text: 'Just off the M57 and on a main bus route, with a free car park on site.',
     quotes: [quotes.martin, quotes.laura, quotes.anthony],
   },
   {
     key: 'ready',
     title: 'Everything you need, ready',
-    count: 43,
+    count: mentions('ready'),
     text: 'The room set, the tech working, tea and coffee in the room, and nothing to sort out before the day can start.',
     quotes: [quotes.cooper, quotes.donna],
   },
   {
     key: 'feel',
     title: 'How it feels inside',
-    count: 40,
+    count: mentions('feel'),
     text: 'Calm rooms, the diffuser in reception and fresh flowers. People notice it the moment they walk in.',
     quotes: [quotes.sophie, quotes.kirsty, quotes.john],
   },
   {
     key: 'clean',
     title: 'Clean',
-    count: 33,
+    count: mentions('clean'),
     text: 'People notice how clean and tidy the rooms and the building are.',
     quotes: [quotes.roli, quotes.graemeRoss],
   },
 ];
+
+export const themes = [...themeList].sort((a, b) => b.count - a.count);
 
 export const bySector: { title: string; text: string; href: string; linkText: string; quotes: ReviewQuote[] }[] = [
   {
