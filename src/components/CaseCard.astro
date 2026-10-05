@@ -1,0 +1,34 @@
+---
+// Case study card (Blueprint 04 · components): logo, sector tag, one line on what they use us for, link to the story.
+import { caseSectors, caseStudyPath, type CaseStudy } from '../data/caseStudies';
+import { clientLogos } from '../data/images';
+
+interface Props {
+  study: CaseStudy;
+  headingLevel?: 'h2' | 'h3';
+  showSector?: boolean;
+}
+const { study, headingLevel = 'h3', showSector = false } = Astro.props;
+const logo = clientLogos.find((l) => l.n === study.logo)!;
+const Heading = headingLevel;
+const sector = caseSectors.find((s) => s.key === study.sector)!.label;
+---
+<a class="card case" href={caseStudyPath(study)}>
+  <img src={logo.src} alt={`${logo.name} logo`} width="160" height="64" loading="lazy" decoding="async" />
+  <div>
+    {showSector && <span class="case__sector">{sector}</span>}
+    <Heading class="case__name">{study.name}</Heading>
+    <p>{study.line}</p>
+  </div>
+  <span class="case__link">Read the story <span aria-hidden="true">→</span></span>
+</a>
+
+<style>
+  .case { display: grid; grid-template-columns: 140px 1fr auto; gap: 20px; align-items: center; padding: 24px 28px; text-decoration: none; color: inherit; }
+  .case img { max-height: 56px; width: auto; max-width: 100%; object-fit: contain; }
+  .case__name { font-size: 20px; }
+  .case p { color: var(--moc-slate-text); font-size: var(--text-small-size); margin-top: 4px; }
+  .case__sector { display: inline-block; margin-bottom: 6px; padding: 3px 10px; border-radius: var(--radius-pill); background: var(--moc-purple-tint); color: var(--moc-purple-900); font-size: var(--text-caption-size); font-weight: 700; }
+  .case__link { font-weight: 700; color: var(--moc-purple-700); white-space: nowrap; font-size: var(--text-small-size); }
+  @media (max-width: 560px) { .case { grid-template-columns: 1fr; } }
+</style>
