@@ -239,7 +239,7 @@ export function articleNode(opts: {
   image: string;
   datePublished: string;
   dateModified?: string;
-  about?: { name: string; logo: string };
+  about?: { name: string; logo?: string };
   mentionsVenue?: boolean;
 }): Node {
   const node: Node = {
@@ -255,7 +255,7 @@ export function articleNode(opts: {
     publisher: { '@id': id('org') },
     mainEntityOfPage: { '@id': `${opts.url}#webpage` },
   };
-  if (opts.about) node.about = { '@type': 'Organization', name: opts.about.name, logo: opts.about.logo };
+  if (opts.about) node.about = { '@type': 'Organization', name: opts.about.name, ...(opts.about.logo && { logo: opts.about.logo }) };
   if (opts.mentionsVenue) node.mentions = { '@id': id('venue') };
   return node;
 }

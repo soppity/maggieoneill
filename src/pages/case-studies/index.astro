@@ -13,7 +13,7 @@ const path = '/case-studies/';
 const url = `${site.url}${path}`;
 const title = "Case Studies: Who Trains Here | Maggie O'Neill Centre";
 const description =
-  "Care providers and NHS teams that train and meet at the Maggie O'Neill Centre in Huyton, near Liverpool, and why they keep coming back.";
+  "Care providers, NHS teams, housing and charities that train, meet and get their post at the Maggie O'Neill Centre in Huyton, and why they stay.";
 
 const schema = [
   breadcrumbNode(url, [
@@ -31,8 +31,8 @@ const schema = [
       <h1>Case studies: who trains at the Maggie O'Neill Centre</h1>
       <p class="hub-hero__tagline">Organisations like yours, looked after here.</p>
       <p class="hub-hero__lede">
-        Care providers and NHS teams book the Maggie O'Neill Centre in Huyton for their training days and team meetings. Here's what they run
-        here, and how we host it. In the last year, {lastYear.businessesServed} businesses booked {lastYear.roomsHired} rooms, and we have {reviews.count} {reviews.source} reviews.
+        Care providers, NHS teams and housing associations book the Maggie O'Neill Centre in Huyton for their training days and meetings, and
+        charities as far away as London use our virtual office address. Here's what they do here, and how we look after them. In the last year, {lastYear.businessesServed} businesses booked {lastYear.roomsHired} rooms, and we have {reviews.count} {reviews.source} reviews.
       </p>
     </div>
   </section>
@@ -55,10 +55,11 @@ const schema = [
         ))}
       </ul>
       <p class="more">
-        More stories are on the way. Looking for your sector? See <a href="/services/training-rooms/care-training-venue/">care training</a>,
+        Looking for your sector? See <a href="/services/training-rooms/care-training-venue/">care training</a>,
         {' '}<a href="/services/training-rooms/nhs-training-venue/">NHS training</a>,
         {' '}<a href="/services/training-rooms/council-training-venue/">council and public sector training</a> and
-        {' '}<a href="/services/training-rooms/fostering-adoption-training-venue/">fostering and adoption training</a>, or read our <a href="/reviews/">reviews</a>.
+        {' '}<a href="/services/training-rooms/fostering-adoption-training-venue/">fostering and adoption training</a> and
+        {' '}<a href="/services/virtual-office/">virtual offices</a>, or read our <a href="/reviews/">reviews</a>.
       </p>
     </div>
   </section>
@@ -80,6 +81,8 @@ const schema = [
   .cases { list-style: none; margin: 0; padding: 0; grid-template-columns: 1fr; max-width: 880px; }
   .cases li { display: grid; }
   .section:has(.filter input[value='care']:checked) .cases li:not([data-sector='care']),
-  .section:has(.filter input[value='nhs']:checked) .cases li:not([data-sector='nhs']) { display: none; }
+  .section:has(.filter input[value='nhs']:checked) .cases li:not([data-sector='nhs']),
+  .section:has(.filter input[value='housing']:checked) .cases li:not([data-sector='housing']),
+  .section:has(.filter input[value='virtual-office']:checked) .cases li:not([data-sector='virtual-office']) { display: none; }
   .more { margin-top: 32px; max-width: 720px; color: var(--moc-slate-text); }
 </style>
