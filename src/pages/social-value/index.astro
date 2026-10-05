@@ -1,0 +1,232 @@
+---
+// Social value. Spec: Website Blueprint page 14 (Template: Trust). Audience: public-sector buyers and procurement.
+// Job: give buyers a reason to pick us that they can write in a report.
+// Owner, Oct 2026: the church and community work is all one charity, so it is described together, not separated.
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Hero from '../../components/sections/Hero.astro';
+import Photo from '../../components/Photo.astro';
+import Faqs from '../../components/sections/Faqs.astro';
+import CtaBand from '../../components/sections/CtaBand.astro';
+import { contact, lastYear, maggiesMeals, site } from '../../data/facts';
+import { images } from '../../data/images';
+import { storySummary } from '../../data/story';
+import { bookingTermsPath, larger } from '../../data/bookingTerms';
+import { breadcrumbNode, faqNode } from '../../lib/schema';
+
+const path = '/social-value/';
+const url = `${site.url}${path}`;
+const title = "Social Value for the Public Sector | Maggie O'Neill Centre";
+const description =
+  "Every booking at the Maggie O'Neill Centre funds Maggie's Meals and community support in Knowsley. A social value statement ready for your procurement report.";
+
+const community = [
+  { title: "Maggie's Meals", text: `Our social supermarket, open ${maggiesMeals.schedule.charAt(0).toLowerCase()}${maggiesMeals.schedule.slice(1)}. ${lastYear.mealsAccessed} people used it in the last year.` },
+  { title: 'Community coffee mornings', text: 'An open door and a hot drink for anyone who wants company.' },
+  { title: 'Community clean-ups', text: 'Clean-ups around Huyton, looking after the area we share.' },
+  { title: 'Church gatherings and groups', text: "Our church gatherings, small groups and men's and women's groups are open for everyone to come along and enjoy. Many people find a real sense of community and belonging here, even if they don't share our faith." },
+];
+
+// Owner, Oct 2026: meals and hospital visits are for people connected to the church. Described as care for the
+// church family, without "only" or "members". Extended to others as volunteer capacity allows. Gatherings, groups, coffee mornings and clean-ups are open to all.
+const churchFamily = [
+  { title: 'Meals when life is hard', text: 'Home-cooked meals for people who are unwell, going through a hard time mentally, emotionally or financially, or who have just had a baby.' },
+  { title: 'Hospital visits', text: 'We visit people in hospital, so nobody goes through it alone.' },
+];
+
+const statement = `The Maggie O'Neill Centre is a registered charity (no. ${site.charityNumber}) in Huyton, Knowsley. Income from room hire and virtual offices funds the charity's community work in the borough, including Maggie's Meals, a weekly social supermarket used by ${lastYear.mealsAccessed} people in the last year; community coffee mornings; community clean-ups around Huyton; and church gatherings, small groups and men's and women's groups that are open to everyone. It also funds the charity's care for its church family, including home-cooked meals for people who are unwell, struggling or have just had a baby, and hospital visits, extended to others in the community as volunteer capacity allows. Booking the Maggie O'Neill Centre keeps spend in Knowsley and supports health, wellbeing and food security in the local community.`;
+
+const faqs = [
+  {
+    q: "How does booking the Maggie O'Neill Centre add social value?",
+    a: "The Maggie O'Neill Centre is a registered charity in Knowsley. What you pay for room hire funds Maggie's Meals and the charity's community support in the borough, so your spend stays local and does good.",
+  },
+  {
+    q: 'Can we use your social value statement in our procurement report?',
+    a: `Yes. The social value statement on this page is written to be copied into a procurement or social value report. Call ${contact.phone} or email ${contact.email} with any questions.`,
+  },
+  {
+    q: "Is the Maggie O'Neill Centre a registered charity?",
+    a: `Yes. The Maggie O'Neill Centre is a registered charity in England and Wales, number ${site.charityNumber}.`,
+  },
+  {
+    q: "What is Maggie's Meals?",
+    a: `Maggie's Meals is the charity's social supermarket at the Maggie O'Neill Centre, open ${maggiesMeals.schedule.charAt(0).toLowerCase()}${maggiesMeals.schedule.slice(1)}. ${lastYear.mealsAccessed} people accessed it in the last year.`,
+  },
+  {
+    q: 'Do you invoice, and do you take purchase orders?',
+    a: `Yes. The Maggie O'Neill Centre invoices your organisation, and PO numbers are welcome. ${larger.paymentMethods.split('. ')[0]}.`,
+  },
+];
+
+const schema = [
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Social value', url },
+  ]),
+  faqNode(url, faqs),
+];
+---
+<Base title={title} description={description} ogImage={images[110].src} ogImageAlt={images[110].alt} preloadImage={images[110].src} schema={schema}>
+  <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Social value', path }]} />
+
+  <Hero
+    title="Social value at the Maggie O'Neill Centre"
+    tagline="Your booking does good a few streets away."
+    lede={`The Maggie O'Neill Centre is a registered charity (no. ${site.charityNumber}) in Huyton, Knowsley. Every room booking and virtual office funds our community work in the borough.`}
+    image={110}
+    primary={{ label: 'Get the statement', href: '#statement' }}
+    secondary={{ label: `Call ${contact.phone}`, href: contact.phoneHref }}
+  />
+
+  <section class="section" aria-labelledby="funds-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">What your booking funds</span>
+        <h2 id="funds-heading">What does your booking pay for?</h2>
+        <p>Room hire and virtual office income keeps the charity's work going, week in, week out.</p>
+      </div>
+      <h3 class="funds__group">Open to everyone</h3>
+      <ul class="grid funds">
+        {community.map((f) => (
+          <li class="card fund">
+            <h4>{f.title}</h4>
+            <p>{f.text}</p>
+          </li>
+        ))}
+      </ul>
+      <h3 class="funds__group">Caring for our church family</h3>
+      <p class="funds__intro">The Maggie O'Neill Centre began as a church, and it is still home to one. When someone in our church family is unwell, going through a hard time or has a new baby, we're there for them. We extend meals and hospital visits to others in the community when our volunteers have the capacity. Everyone who helps is a volunteer, so we look after their time carefully.</p>
+      <ul class="grid funds">
+        {churchFamily.map((f) => (
+          <li class="card fund">
+            <h4>{f.title}</h4>
+            <p>{f.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section numbers" aria-labelledby="numbers-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">The year in numbers</span>
+        <h2 id="numbers-heading">What happened in the last year?</h2>
+      </div>
+      <dl class="stats">
+        <div><dt>rooms hired</dt><dd>{lastYear.roomsHired}</dd></div>
+        <div><dt>businesses served</dt><dd>{lastYear.businessesServed}</dd></div>
+        <div><dt>people accessed Maggie's Meals</dt><dd>{lastYear.mealsAccessed}</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section section--white" id="statement" aria-labelledby="statement-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">For your report</span>
+        <h2 id="statement-heading">Our social value statement</h2>
+        <p>Copy this straight into your procurement or social value report. Questions? Call {contact.phone} or email {contact.email}.</p>
+      </div>
+      <div>
+        <blockquote class="statement"><p>{statement}</p></blockquote>
+        <button type="button" class="btn btn--secondary statement__copy" data-copy>Copy the statement</button>
+        <p class="statement__done" role="status" hidden>Copied.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="procure-heading">
+    <div class="container two-col two-col--media">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">Procurement details</span>
+          <h2 id="procure-heading">What do procurement teams need to know?</h2>
+        </div>
+        <ul class="tick-list">
+          <li>Registered charity in England and Wales, no. {site.charityNumber}.</li>
+          <li>Invoices to your organisation, with PO numbers welcome.</li>
+          <li>{larger.paymentMethods.split('. ')[0]}.</li>
+          <li>Clear <a href={bookingTermsPath}>booking and cancellation terms</a>.</li>
+          <li>Fully accessible on the ground floor, with an accessible toilet.</li>
+          <li>Free parking on site, in Huyton, Knowsley.</li>
+        </ul>
+      </div>
+      <div class="media">
+        <Photo n={1} width={720} height={540} sizes="(max-width: 900px) 100vw, 520px" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream" aria-labelledby="story-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">Where it started</span>
+        <h2 id="story-heading">Who was Maggie O'Neill?</h2>
+      </div>
+      <div class="prose">
+        <p>{storySummary}</p>
+        <p><a href="/about/">Read Maggie's story</a></p>
+      </div>
+    </div>
+  </section>
+
+  <Faqs faqs={faqs} heading="Social value questions" />
+
+  <section class="section section--white more-links" aria-label="Related pages">
+    <div class="container">
+      <p>
+        See our <a href="/services/training-rooms/council-training-venue/">council and public sector training</a>,
+        {' '}<a href="/services/training-rooms/nhs-training-venue/">NHS training venue</a> and
+        {' '}<a href="/community/">Maggie's Meals and community</a> pages, or go back to
+        {' '}<a href="/services/training-rooms/">training room hire near Liverpool</a>.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<script>
+  document.querySelector<HTMLButtonElement>('[data-copy]')?.addEventListener('click', async (e) => {
+    const btn = e.currentTarget as HTMLButtonElement;
+    const text = btn.parentElement?.querySelector('.statement')?.textContent?.trim() ?? '';
+    try {
+      await navigator.clipboard.writeText(text);
+      const done = btn.parentElement?.querySelector<HTMLElement>('.statement__done');
+      if (done) done.hidden = false;
+    } catch {
+      /* Clipboard blocked: the statement stays selectable on the page. */
+    }
+  });
+</script>
+
+<style>
+  .funds { list-style: none; margin: 0; padding: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .funds + .funds__group { margin-top: 40px; }
+  .funds__group { margin-bottom: 16px; }
+  .funds__intro { max-width: 62ch; margin: -4px 0 20px; color: var(--moc-slate-text); }
+  .fund h4 { font-size: 20px; font-weight: var(--text-h3-weight); }
+  .fund { padding: 26px 28px; display: flex; flex-direction: column; gap: 8px; }
+  .fund p { font-size: var(--text-small-size); color: var(--moc-slate-text); }
+  .numbers { background: var(--moc-purple-700); color: var(--moc-white); }
+  .numbers h2 { color: var(--moc-white); }
+  .numbers .eyebrow { color: var(--moc-purple-tint-2); }
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 0; }
+  .stats div { display: flex; flex-direction: column-reverse; gap: 6px; }
+  .stats dd { margin: 0; font: 800 clamp(44px, 6vw, 72px)/1 var(--font-display); color: var(--moc-white); }
+  .stats dt { color: rgba(255, 255, 255, 0.9); }
+  .two-col { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .two-col--media { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; }
+  .two-col .section-head { margin-bottom: 24px; }
+  .statement { margin: 0; padding: 28px 32px; background: var(--moc-bg-warm); border-left: 4px solid var(--moc-coral-500); border-radius: 0 var(--radius-card) var(--radius-card) 0; font-size: var(--text-body-size); }
+  .statement__copy { margin-top: 16px; }
+  .statement__done { margin-top: 8px; font-size: var(--text-small-size); color: var(--moc-purple-700); font-weight: 600; }
+  .media { margin: 0; }
+  .media :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
+  .prose { display: flex; flex-direction: column; gap: 16px; }
+  .more-links { padding: 40px 0; }
+  @media (max-width: 900px) { .two-col, .two-col--media { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .funds, .stats { grid-template-columns: 1fr; } }
+</style>
