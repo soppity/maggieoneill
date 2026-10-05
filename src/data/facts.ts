@@ -73,6 +73,8 @@ export const reviews = {
   count: 230,
   asOf: '28 September 2026',
   source: 'Google',
+  // Direct "write a review" link from the Google Business Profile (owner, Oct 2026).
+  writeUrl: 'https://g.page/r/CZ08-1Mg8NchEAE/review',
 };
 
 export const maggiesMeals = {

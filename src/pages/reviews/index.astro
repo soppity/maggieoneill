@@ -1,0 +1,158 @@
+---
+// Reviews (Blueprint page 13, Template: Trust). Audience: bookers doing final checks.
+// Score and count · themes · by sector · leave a review · CTA. WebPage only: no Review or aggregateRating markup.
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/sections/CtaBand.astro';
+import ReviewThemesChart from '../../components/sections/ReviewThemesChart.astro';
+import { address, reviews, site } from '../../data/facts';
+import { images } from '../../data/images';
+import { bySector, themes, writtenReviews } from '../../data/reviewQuotes';
+import { breadcrumbNode } from '../../lib/schema';
+
+const path = '/reviews/';
+const url = `${site.url}${path}`;
+const title = `Maggie O'Neill Centre Reviews: ${reviews.count} on Google`;
+const description = `What ${reviews.count} Google reviewers say about the Maggie O'Neill Centre in Huyton: the welcome, the rooms, the tea and the parking.`;
+
+const schema = [
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Reviews', url },
+  ]),
+];
+
+const G = '<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.4h6.5a5.5 5.5 0 0 1-2.4 3.6v3h3.8c2.3-2.1 3.6-5.2 3.6-8.7z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 7.9-2.9l-3.8-3c-1.1.7-2.4 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-5H1.4v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.3 14.3a7.2 7.2 0 0 1 0-4.6V6.6H1.4a12 12 0 0 0 0 10.8z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4A12 12 0 0 0 1.4 6.6l3.9 3.1c.9-2.9 3.6-4.9 6.7-4.9z"/></svg>';
+---
+<Base title={title} description={description} ogImage={images[133].src} ogImageAlt={images[133].alt} schema={schema}>
+  <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Reviews', path }]} />
+
+  <section class="rv-hero">
+    <div class="container rv-hero__inner">
+      <div>
+        <span class="eyebrow">Reviews</span>
+        <h1>Maggie O'Neill Centre reviews</h1>
+        <p class="rv-hero__tagline">Your delegates will tell you it was good.</p>
+        <p class="rv-hero__lede">
+          The Maggie O'Neill Centre in Huyton has {reviews.count} reviews on {reviews.source}. Here's what people mention most, grouped by theme and
+          by the kind of booking they made.
+        </p>
+      </div>
+      <div class="rv-score">
+        <Fragment set:html={G} />
+        <p class="rv-score__count">{reviews.count}</p>
+        <p class="rv-score__label">{reviews.source} reviews, as of {reviews.asOf}</p>
+        <a class="btn btn--secondary" href={address.mapsUrl} target="_blank" rel="noopener">Read them on Google</a>
+      </div>
+    </div>
+  </section>
+
+  <ReviewThemesChart />
+
+  <section class="section" aria-labelledby="themes-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">In their words</span>
+        <h2 id="themes-heading">What do people say about the Maggie O'Neill Centre?</h2>
+        <p>We read all {writtenReviews} Google reviews with written comments and counted what people chose to bring up. Here it is, most mentioned first.</p>
+      </div>
+      <ol class="themes">
+        {themes.map((t) => (
+          <li class="theme">
+            <div class="theme__head">
+              <p class="theme__share"><strong>{t.count}</strong> people mention it</p>
+              <h3>{t.title}</h3>
+              <p>{t.text}</p>
+            </div>
+            <div class="theme__quotes">
+              {t.quotes.map((q) => (
+                <figure class="card quote">
+                  <blockquote>“{q.quote}”</blockquote>
+                  <figcaption>{q.name}{q.org && <span>, {q.org}</span>}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--cream" aria-labelledby="sector-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">By booking</span>
+        <h2 id="sector-heading">What do people say about each kind of booking?</h2>
+      </div>
+      <div class="sectors">
+        {bySector.map((s) => (
+          <div class="sector">
+            <div class="sector__head">
+              <h3>{s.title}</h3>
+              <p>{s.text} <a href={s.href}>{s.linkText}</a></p>
+            </div>
+            <div class="sector__quotes masonry">
+              {s.quotes.map((q) => (
+                <figure class="card quote">
+                  <blockquote>“{q.quote}”</blockquote>
+                  <figcaption>{q.name}{q.org && <span>, {q.org}</span>}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="more">Read the full stories in our <a href="/case-studies/">case studies</a>.</p>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="leave-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">Been here?</span>
+        <h2 id="leave-heading">How do I leave a review?</h2>
+      </div>
+      <div class="prose">
+        <p>
+          It takes a minute on Google. It helps if you say what you booked, for example "our
+          fostering training day" or "a team meeting in the Forum". That helps other people find the right room.
+        </p>
+        <p><a class="btn btn--primary" href={reviews.writeUrl} target="_blank" rel="noopener" data-track="review_click">Review us on Google</a></p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand heading="See it for yourself" />
+</Base>
+
+<style>
+  .rv-hero { background: var(--moc-hero-wash); padding: clamp(40px, 7vw, 80px) 0; }
+  .rv-hero__inner { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+  .rv-hero h1 { margin-top: 10px; font-size: clamp(38px, 5.4vw, 64px); font-weight: var(--text-hero-weight); line-height: 1.05; color: var(--moc-purple-900); }
+  .rv-hero__tagline { margin-top: 16px; font: 700 clamp(21px, 2.3vw, 28px)/1.25 var(--font-display); color: var(--moc-coral-text); }
+  .rv-hero__lede { margin-top: 20px; max-width: 580px; font-size: clamp(18px, 1.8vw, var(--text-lead-size)); line-height: 1.55; }
+  .rv-score { background: var(--moc-white); border-radius: var(--radius-card); box-shadow: var(--moc-shadow-card-hover); padding: 32px; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+  .rv-score__count { margin-top: 8px; font: 800 clamp(56px, 7vw, 80px)/1 var(--font-display); color: var(--moc-purple-900); }
+  .rv-score__label { color: var(--moc-slate-text); margin-bottom: 16px; }
+  .themes { list-style: none; margin: 0; padding: 0; display: grid; gap: 40px; counter-reset: theme; }
+  .theme { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(20px, 4vw, 48px); align-items: start; padding-top: 32px; border-top: 1px solid var(--moc-border); }
+  .theme:first-child { border-top: 0; padding-top: 0; }
+  .theme__share { font-size: var(--text-small-size); color: var(--moc-coral-text); font-weight: 700; margin-bottom: 6px; }
+  .theme__share strong { font: 800 34px/1 var(--font-display); margin-right: 4px; }
+  .theme__head p:last-child { margin-top: 8px; color: var(--moc-slate-text); }
+  .theme__quotes, .sector__quotes { display: grid; gap: 12px; }
+  .quote { margin: 0; padding: 22px 26px; }
+  .quote blockquote { margin: 0; font: 600 17px/1.45 var(--font-display); color: var(--moc-purple-900); }
+  .quote figcaption { margin-top: 8px; font-weight: 700; font-size: var(--text-small-size); }
+  .sectors { display: grid; gap: 40px; }
+  .sector { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(20px, 4vw, 48px); align-items: start; }
+  .sector__head p { margin-top: 8px; color: var(--moc-slate-text); }
+  .masonry { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+  .more { margin-top: 32px; font-weight: 700; }
+  .two-col { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .prose { display: flex; flex-direction: column; gap: 16px; }
+  @media (max-width: 900px) {
+    .rv-hero__inner, .sector, .theme, .two-col { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) { .masonry { grid-template-columns: 1fr; } }
+</style>
