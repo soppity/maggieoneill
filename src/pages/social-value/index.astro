@@ -34,7 +34,7 @@ const churchFamily = [
   { title: 'Hospital visits', text: 'We visit people in hospital, so nobody goes through it alone.' },
 ];
 
-const statement = `The Maggie O'Neill Centre is a registered charity (no. ${site.charityNumber}) that has served Huyton and Knowsley for over ${trackRecord.yearsServing} years. During the Covid lockdowns, its staff and volunteers delivered over ${trackRecord.covidParcels} food parcels. Income from room hire and virtual offices funds the charity's community work in the borough, including Maggie's Meals, a weekly social supermarket used by ${lastYear.mealsAccessed} people in the last year; community coffee mornings; community clean-ups around Huyton; church gatherings, small groups and men's and women's groups that are open to everyone; and ${allNations.name}, a celebration where ${allNations.nationalities} nationalities share food and traditional dress from home. It also funds the charity's care for its church family, including home-cooked meals for people who are unwell, struggling or have just had a baby, and hospital visits, extended to others in the community as volunteer capacity allows. Booking the Maggie O'Neill Centre keeps spend in Knowsley and supports health, wellbeing and food security in the local community.`;
+const statement = `The Maggie O'Neill Centre is a registered charity (no. ${site.charityNumber}) that has served Huyton and Knowsley for over ${trackRecord.yearsServing} years. During the Covid lockdowns, its staff and volunteers delivered over ${trackRecord.covidParcels} food parcels. Income from room hire and virtual offices funds the charity's community work in the borough, including Maggie's Meals, a weekly social supermarket used by ${lastYear.mealsAccessed} people in the last year; community coffee mornings; community clean-ups around Huyton; church gatherings, small groups and men's and women's groups that are open to everyone; and ${allNations.name}, an annual summer celebration where ${allNations.nationalities} nationalities share food and traditional dress from home. It also funds the charity's care for its church family, including home-cooked meals for people who are unwell, struggling or have just had a baby, and hospital visits, extended to others in the community as volunteer capacity allows. Booking the Maggie O'Neill Centre keeps spend in Knowsley and supports health, wellbeing and food security in the local community.`;
 
 const faqs = [
   {
@@ -113,18 +113,27 @@ const schema = [
   </section>
 
   <section class="section section--white" aria-labelledby="nations-heading">
-    <div class="container two-col">
-      <div class="section-head">
-        <span class="eyebrow">Every culture welcome</span>
-        <h2 id="nations-heading">What is {allNations.name}?</h2>
+    <div class="container">
+      <div class="two-col">
+        <div class="section-head">
+          <span class="eyebrow">Every culture welcome</span>
+          <h2 id="nations-heading">What is {allNations.name}?</h2>
+        </div>
+        <div class="prose">
+          <p>
+            {allNations.name} is an event held {allNations.when}. People from {allNations.nationalities} different nationalities take over the whole building,
+            cooking food from their country and wearing traditional dress.
+          </p>
+          <p>It's a wonderful time celebrating every culture and nation on earth, and discovering just how much unites us as people around the globe.</p>
+        </div>
       </div>
-      <div class="prose">
-        <p>
-          {allNations.name} is an event where {allNations.nationalities} different nationalities take over the whole building. People cook food from
-          their country and wear traditional dress.
-        </p>
-        <p>It's a wonderful time celebrating every culture and nation on earth, and discovering just how much unites us as people around the globe.</p>
-      </div>
+      <ul class="nations">
+        {allNations.images.map((n, i) => (
+          <li class={i === 0 ? 'nations__lead' : undefined}>
+            <Photo n={n} width={i === 0 ? 900 : 480} height={i === 0 ? 680 : 360} sizes={i === 0 ? '(max-width: 900px) 100vw, 600px' : '(max-width: 900px) 50vw, 300px'} />
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 
@@ -254,6 +263,12 @@ const schema = [
   .statement__done { margin-top: 8px; font-size: var(--text-small-size); color: var(--moc-purple-700); font-weight: 600; }
   .media { margin: 0; }
   .media :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
+  .nations { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .nations li { margin: 0; }
+  .nations :global(img) { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-card); aspect-ratio: 4 / 3; }
+  .nations__lead { grid-row: span 2; }
+  .nations__lead :global(img) { aspect-ratio: auto; }
+  @media (max-width: 700px) { .nations { grid-template-columns: 1fr 1fr; grid-template-rows: none; } .nations__lead { grid-column: span 2; grid-row: auto; } .nations__lead :global(img) { aspect-ratio: 4 / 3; } }
   .record { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
   .record li { display: grid; grid-template-columns: 170px 1fr; gap: 16px; align-items: baseline; padding: 18px 22px; background: var(--moc-white); border-radius: var(--radius-card); }
   .record strong { font: 800 26px/1.1 var(--font-display); color: var(--moc-purple-900); }

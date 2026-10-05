@@ -93,10 +93,12 @@ export const trackRecord = {
   covidParcels: '2,000',
 };
 
-// All Nations, the charity's culture celebration (owner, Oct 2026). No frequency or date confirmed yet.
+// All Nations, the charity's culture celebration (owner, Oct 2026).
 export const allNations = {
   name: 'All Nations',
   nationalities: '20 to 30',
+  when: 'once a year, in the summer',
+  images: [170, 171, 172, 173, 174],
 };
 
 export const parking = {
