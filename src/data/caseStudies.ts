@@ -304,6 +304,7 @@ export const caseStudies: CaseStudy[] = [
     slug: 'libraries-connected',
     name: 'Libraries Connected',
     shortName: 'Libraries Connected',
+    logo: 165,
     sector: 'virtual-office',
     kind: 'virtual-office',
     title: "Libraries Connected Case Study | Maggie O'Neill Centre",

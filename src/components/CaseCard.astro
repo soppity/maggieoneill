@@ -1,7 +1,7 @@
 ---
 // Case study card (Blueprint 04 · components): logo, sector tag, one line on what they use us for, link to the story.
 import { caseSectors, caseStudyPath, type CaseStudy } from '../data/caseStudies';
-import { clientLogos } from '../data/images';
+import { logoByNumber } from '../data/images';
 
 interface Props {
   study: CaseStudy;
@@ -9,7 +9,7 @@ interface Props {
   showSector?: boolean;
 }
 const { study, headingLevel = 'h3', showSector = false } = Astro.props;
-const logo = study.logo ? clientLogos.find((l) => l.n === study.logo) : undefined;
+const logo = study.logo ? logoByNumber(study.logo) : undefined;
 const Heading = headingLevel;
 const sector = caseSectors.find((s) => s.key === study.sector)!.label;
 ---

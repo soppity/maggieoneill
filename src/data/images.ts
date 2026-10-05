@@ -83,6 +83,9 @@ export const clientLogos: ClientLogo[] = [
   logo(151, '6ab914325597aeb9d7dd5ee3.webp', 'ADDvanced Solutions'),
 ];
 
+// Logos used outside the homepage strip, such as on case studies. Supplied by the owner, Oct 2026.
+export const otherLogos: ClientLogo[] = [logo(165, '6ac3c5e3b12649a51224098f.webp', 'Libraries Connected')];
+
 // School logos, for the councils, schools and public sector page only (PROJECT_NOTES).
 export const schoolLogos: ClientLogo[] = [
   logo(161, '6abbef1e7f8e19690f51e5e8.webp', 'Meadow Park Primary School'),
@@ -91,3 +94,5 @@ export const schoolLogos: ClientLogo[] = [
 ];
 
 export const imageHost = 'https://assets.cdn.filesafe.space';
+
+export const logoByNumber = (n: number) => [...clientLogos, ...otherLogos, ...schoolLogos].find((l) => l.n === n);
