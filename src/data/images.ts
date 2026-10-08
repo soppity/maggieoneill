@@ -49,7 +49,7 @@ export const images: Record<number, LibraryImage> = {
   118: img(118, '6ab683333dbd5f2bbbcbd02d.webp', "The Auditorium at the Maggie O'Neill Centre from the stage, with the lectern and microphone facing rows of seats"),
   132: img(132, '6ab683449b248207685a68ab.webp', "The kitchen at the Maggie O'Neill Centre, next to the accessible toilet on the Auditorium floor"),
   133: img(133, '6ab6834e9b248207685a6a66.webp', "Tania, Community Manager at the Maggie O'Neill Centre, smiling in reception", 'P'),
-  // Owner, Oct 2026: #133 didn't show on the About page preview, so hosts use #134.
+  // Owner, Oct 2026: #133 and #134 don't load on the site, so the host card uses #137 (shown on the virtual office page).
   134: img(134, '6ab6834f53ee44f56b33cc5b.webp', "Tania, Community Manager at the Maggie O'Neill Centre, smiling in reception", 'P'),
   137: img(137, '6ab6834f6407f2cbe4d41d1f.webp', "Tania, Community Manager at the Maggie O'Neill Centre, chatting in reception", 'P'),
   158: img(158, '6abfcbcc02569bee7cb0c764.webp', "The accessible toilet at the Maggie O'Neill Centre, with grab rails, a fold-down rail and an emergency pull cord"),

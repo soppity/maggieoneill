@@ -129,7 +129,7 @@ export const accessibility = {
 export const hosts = [
   // Job titles from the owner, Oct 2026. Both are still "your hosts" in the copy.
   { name: 'Patrick', role: 'Director', image: 139 },
-  { name: 'Tania', role: 'Community Manager', image: 134 },
+  { name: 'Tania', role: 'Community Manager', image: 137 },
 ];
 export const volunteers = [{ name: 'Liam', role: 'Volunteer' }];
 
