@@ -23,7 +23,7 @@ export const site = {
   closer: "Every booking funds Maggie's Meals.",
   socialDescription:
     "Maggie O'Neill Centre is a charity-run training, meeting and event venue in Huyton, near Liverpool, with free parking and hosts on site. Virtual offices from £20 a month.",
-  charityNumber: '1102507',
+  charityNumber: '1215599',
   charityRegister: 'registered in England and Wales',
 };
 
@@ -379,7 +379,7 @@ export const sectors = ['care providers', 'the NHS and primary care networks', '
 export const sameAs: string[] = [
   'https://www.facebook.com/maggieoneillbusinessandtraining/',
   'https://uk.linkedin.com/company/maggie-oneill-btc',
-  'https://register-of-charities.charitycommission.gov.uk/charity-search/-/charity-details/1102507',
+  'https://register-of-charities.charitycommission.gov.uk/charity-search/-/charity-details/1215599',
 ];
 
 export const formatPrice = (n: number) => `£${n}`;

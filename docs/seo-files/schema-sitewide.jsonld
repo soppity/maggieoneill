@@ -9,7 +9,7 @@
       "url": "https://mobtc.co.uk/",
       "logo": { "@type": "ImageObject", "url": "https://mobtc.co.uk/logo/mobtc-badge-icon.png", "width": 1024, "height": 1024 },
       "description": "A charity-run training, meeting and event venue and virtual office provider in Huyton, near Liverpool. Profits fund Maggie's Meals and community support in Knowsley.",
-      "identifier": { "@type": "PropertyValue", "propertyID": "Charity Commission for England and Wales", "value": "1102507" },
+      "identifier": { "@type": "PropertyValue", "propertyID": "Charity Commission for England and Wales", "value": "1215599" },
       "telephone": "+441514820408",
       "address": { "@id": "https://mobtc.co.uk/#address" },
       "sameAs": [
@@ -17,7 +17,7 @@
         "TODO: Facebook URL",
         "TODO: LinkedIn URL",
         "TODO: Instagram URL",
-        "https://register-of-charities.charitycommission.gov.uk/charity-search/-/charity-details/1102507",
+        "https://register-of-charities.charitycommission.gov.uk/charity-search/-/charity-details/1215599",
         "TODO: Wikidata URL (if created)"
       ]
     },
