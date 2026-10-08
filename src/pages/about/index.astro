@@ -92,11 +92,11 @@ const schema = [
           <h2 id="story-heading">{storyHeading}</h2>
         </div>
         <div class="prose story">
-          {story.map((p) => <p>{p}</p>)}
+          {story.map((p) => <p set:html={p} />)}
         </div>
       </div>
       <div class="media">
-        <Photo n={1} width={720} height={540} sizes="(max-width: 900px) 100vw, 520px" />
+        <Photo n={175} width={560} height={700} sizes="(max-width: 900px) 100vw, 440px" class="maggie" />
       </div>
     </div>
   </section>
@@ -173,6 +173,8 @@ const schema = [
   .two-col .section-head { margin-bottom: 24px; }
   .media { margin: 0; position: sticky; top: 104px; }
   .media :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
+  .media :global(img.maggie) { aspect-ratio: 4 / 5; object-position: top; }
+  .story :global(strong) { color: var(--moc-purple-700); }
   .prose { display: flex; flex-direction: column; gap: 16px; }
   .story p:first-child { font-size: var(--text-lead-size); }
   .record { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 16px; }
