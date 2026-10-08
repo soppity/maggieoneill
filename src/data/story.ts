@@ -12,6 +12,6 @@ export const story: string[] = [
   'Maggie, her daughters and her daughters-in-law started meeting there and in each other’s homes. Through the 1980s and 1990s, a handful of pastors came and went.',
   'Over in the United States, John Hemus, then in his thirties, had begun to feel called home to the UK to start a church. On a visit, he met Maggie. She walked straight up to him and said, “I’ve been praying, and God said you’re going to be my pastor.”',
   'John laughed it off. He was running a thriving business in America, and his future looked settled.',
-  'Within a couple of years, he knew he had to come home. Everything fell into place: he closed the business, sold the family home, and moved his young family to Merseyside to start the adventure of a lifetime.',
+  'Within a couple of years, he knew he had to come home. Everything fell into place. John and his wife Sherri closed the business, sold their home, packed up their young family and moved to Huyton, off their own backs, to start the adventure of a lifetime.',
   'We named the building after Maggie to honour her, and so we always remember how it began: a woman with a <strong>vision</strong> in her mind, <strong>love</strong> in her heart and <strong>family</strong> by her side.',
 ];

@@ -96,7 +96,14 @@ const schema = [
         </div>
       </div>
       <div class="media">
-        <Photo n={175} width={560} height={700} sizes="280px" class="maggie" />
+        <figure class="story__fig">
+          <Photo n={175} width={560} height={700} sizes="280px" class="maggie" />
+          <figcaption>Maggie O'Neill</figcaption>
+        </figure>
+        <figure class="story__fig">
+          <Photo n={176} width={720} height={540} sizes="(max-width: 900px) 100vw, 440px" class="pastors" />
+          <figcaption>Pastor John and Sherri</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -171,10 +178,14 @@ const schema = [
   .two-col { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
   .two-col--media { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); }
   .two-col .section-head { margin-bottom: 24px; }
-  .media { margin: 0; position: sticky; top: 104px; }
+  .media { margin: 0; }
   .media :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
   /* Owner, Oct 2026: the original is already a crop, so show it small and uncropped. */
   .media :global(img.maggie) { aspect-ratio: auto; height: auto; width: 100%; max-width: 280px; display: block; margin-inline: auto; }
+  .media { display: flex; flex-direction: column; gap: 32px; }
+  .story__fig { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .story__fig figcaption { font-size: var(--text-small-size); font-weight: 700; color: var(--moc-purple-900); text-align: center; }
+  .media :global(img.pastors) { aspect-ratio: auto; height: auto; width: 100%; max-width: 440px; }
   .story :global(strong) { color: var(--moc-purple-700); }
   .prose { display: flex; flex-direction: column; gap: 16px; }
   .story p:first-child { font-size: var(--text-lead-size); }
