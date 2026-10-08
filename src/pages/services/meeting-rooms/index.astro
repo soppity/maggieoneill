@@ -39,13 +39,13 @@ const rateSentences = groups.map(
 
 const description = `Hosted meeting rooms and boardrooms in Huyton, from the ${pod.name} at ${formatPrice(pod.prices!.hour!)} an hour. Screen, tea and coffee and free parking included. Maggie O'Neill Centre.`;
 
-const intro = `The Maggie O'Neill Centre in Huyton, Knowsley, has meeting rooms for everything from a one-to-one in the ${pod.name} to a team away day. Rooms cost from ${formatPrice(pod.prices!.hour!)} an hour. Every room has a screen with Mac and PC wireless casting and HDMI, tea and coffee are served in the room, parking is free, and hosts are on site all day.`;
+const intro = `The Maggie O'Neill Centre in Huyton, Knowsley, has meeting rooms for everything from a one-to-one in the ${pod.name} to a team away day. Rooms cost from ${formatPrice(pod.prices!.hour!)} an hour. Every meeting and training room has a screen with Mac and PC wireless casting and HDMI, tea and coffee are served in the room, parking is free, and hosts are on site all day.`;
 
 const keyFacts = [
   { term: 'Prices', detail: `From ${formatPrice(pod.prices!.hour!)} an hour, by the hour or the day, everything included.`, href: '#rooms', linkText: 'All room rates' },
   { term: 'Rooms', detail: `${meetingRooms.length} rooms, from the ${pod.name} for ${pod.capacity.boardroom} to rooms for whole teams.` },
   { term: 'Good for', detail: 'Team meetings, board meetings, interviews, client meetings and away days.' },
-  { term: 'Tech', detail: 'Screen with Mac and PC wireless casting and HDMI, cables provided, WiFi, flipchart and pens.' },
+  { term: 'Tech', detail: 'Screen with Mac and PC wireless casting and HDMI, cables provided, 1Gb fibre WiFi, flipchart and pens.' },
   { term: 'Refreshments', detail: 'Tea and coffee in the room, all day, included.' },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
   { term: 'Your hosts', detail: 'On site all day, so you can walk in and get started.' },
@@ -79,7 +79,7 @@ const faqs = [
   },
   {
     q: 'Is there a screen in every meeting room?',
-    a: "Yes. Every room at the Maggie O'Neill Centre has a screen with wireless casting from Mac and PC, plus HDMI, and the cables are provided. There's WiFi, a flipchart and pens too.",
+    a: "Yes. Every meeting and training room at the Maggie O'Neill Centre has a screen with wireless casting from Mac and PC, plus HDMI, and the cables are provided. There's 1Gb fibre WiFi, a flipchart and pens too.",
   },
   {
     q: "Is parking free at the Maggie O'Neill Centre?",

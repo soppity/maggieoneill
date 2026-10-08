@@ -33,13 +33,13 @@ const groups = rateGroups(['pod']);
 const rateSentences = groups.map((g) => `${the(g.rooms.map((r) => r.name))} cost ${formatPrice(g.hour)} an hour or ${formatPrice(g.day)} a day`);
 const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
-const intro = `The Maggie O'Neill Centre is a hosted training venue in Huyton, near Liverpool. Training rooms cost from ${formatPrice(trainingDayFrom)} a day and seat groups from ${pod.capacity.boardroom} up to ${auditorium.capacity.cabaret}. Every room has a screen with Mac and PC wireless casting and HDMI, tea and coffee are served in the room, parking is free, and hosts are on site all day.`;
+const intro = `The Maggie O'Neill Centre is a hosted training venue in Huyton, near Liverpool. Training rooms cost from ${formatPrice(trainingDayFrom)} a day and seat groups from ${pod.capacity.boardroom} up to ${auditorium.capacity.cabaret}. Every meeting and training room has a screen with Mac and PC wireless casting and HDMI, tea and coffee are served in the room, parking is free, and hosts are on site all day.`;
 
 const keyFacts = [
   { term: 'Prices', detail: `From ${formatPrice(trainingDayFrom)} a day, everything included.`, href: '#rooms', linkText: 'All room rates' },
   { term: 'Group sizes', detail: `From ${pod.capacity.boardroom} in the ${pod.name} to ${auditorium.capacity.cabaret} cabaret in the ${auditorium.name}.` },
   { term: 'Layouts', detail: 'U-shape, boardroom, classroom, cabaret, banquet or theatre. We recommend the one that works.' },
-  { term: 'Tech', detail: 'Screen with Mac and PC wireless casting and HDMI in every room, cables provided, WiFi, flipchart and pens.' },
+  { term: 'Tech', detail: 'Screen with Mac and PC wireless casting and HDMI in every meeting and training room, cables provided, 1Gb fibre WiFi, flipchart and pens.' },
   { term: 'Refreshments', detail: 'Tea and coffee in the room, all day, included.' },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
   { term: 'Access', detail: 'Step-free access, accessible parking and an accessible toilet.' },
@@ -66,7 +66,7 @@ const faqs = [
   },
   {
     q: 'Is there a screen in every training room?',
-    a: "Yes. Every room at the Maggie O'Neill Centre has a screen with wireless casting from Mac and PC (AirPlay for MacBooks and iPads, and screen casting from Windows laptops), plus HDMI, and the HDMI cables are provided. There's WiFi, a flipchart and pens too.",
+    a: "Yes. Every meeting and training room at the Maggie O'Neill Centre has a screen with wireless casting from Mac and PC (AirPlay for MacBooks and iPads, and screen casting from Windows laptops), plus HDMI, and the HDMI cables are provided. There's 1Gb fibre WiFi, a flipchart and pens too.",
   },
   {
     q: 'Are tea and coffee included?',
@@ -82,7 +82,7 @@ const faqs = [
   },
   {
     q: 'What do I need to bring?',
-    a: "Nothing. The screen, HDMI cables, WiFi, flipchart, pens and refreshments are all ready before you arrive at the Maggie O'Neill Centre.",
+    a: "Nothing. The screen, HDMI cables, 1Gb fibre WiFi, flipchart, pens and refreshments are all ready before you arrive at the Maggie O'Neill Centre.",
   },
   {
     q: 'Is the training venue accessible?',

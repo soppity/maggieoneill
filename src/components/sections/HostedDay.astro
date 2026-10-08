@@ -6,11 +6,18 @@ interface Props {
   showMore?: boolean;
   image?: number;
   caption?: string;
+  // Events and the Auditorium pass their own list and heading (facts.hostedEvent).
+  items?: string[];
+  heading?: string;
+  intro?: string;
 }
 const {
   showMore = true,
   image = 54,
   caption = 'The screen in the Summit, ready for wireless casting from a Mac or PC before your trainer arrives.',
+  items = hostedDay,
+  heading = "What's included when you hire a room?",
+  intro = "Everything below comes with every room booking at the Maggie O'Neill Centre. Nothing to bring: we've got the HDMI cable.",
 } = Astro.props;
 ---
 <section class="section" aria-labelledby="hosted-day-heading">
@@ -22,11 +29,11 @@ const {
     <div>
       <div class="section-head">
         <span class="eyebrow">The Hosted Day</span>
-        <h2 id="hosted-day-heading">What's included when you hire a room?</h2>
-        <p>Everything below comes with every room booking at the Maggie O'Neill Centre. Nothing to bring: we've got the HDMI cable.</p>
+        <h2 id="hosted-day-heading">{heading}</h2>
+        <p>{intro}</p>
       </div>
       <ul class="tick-list hosted-day__list">
-        {hostedDay.map((item) => <li>{item}</li>)}
+        {items.map((item) => <li>{item}</li>)}
       </ul>
       {showMore && <p class="hosted-day__more"><a href="/whats-included/">See everything that's included</a></p>}
     </div>

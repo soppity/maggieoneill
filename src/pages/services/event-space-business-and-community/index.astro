@@ -2,6 +2,9 @@
 // Events and conferences. Spec: Website Blueprint page 7 (Template: Service). Keep this URL: it has search history.
 // Job: sell the Auditorium (60 cabaret, 100 theatre) and the Grove for networking as a hosted alternative to a hotel.
 // Auditorium pricing is "from £100 an hour", quoted per event (owner, Oct 2026).
+// Owner, Oct 2026: lectern, mics and sound system confirmed; AV run by a technician; no wireless casting in the Auditorium
+// itself (breakout spaces have it). Breakout: the Grove, the Auditorium foyer, as many extra spaces as needed, and open
+// space at the back of the Auditorium. Own catering welcome. The events Hosted Day is facts.hostedEvent.
 import Base from '../../../layouts/Base.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import Hero from '../../../components/sections/Hero.astro';
@@ -13,7 +16,7 @@ import Reviews from '../../../components/sections/Reviews.astro';
 import Faqs from '../../../components/sections/Faqs.astro';
 import FindUs from '../../../components/sections/FindUs.astro';
 import Photo from '../../../components/Photo.astro';
-import { accessibility, catering, contact, formatPrice, hours, parking, rooms, site } from '../../../data/facts';
+import { accessibility, catering, contact, formatPrice, hostedEvent, hours, parking, rooms, site } from '../../../data/facts';
 import { images } from '../../../data/images';
 import { quotes } from '../../../data/reviewQuotes';
 import { bookingTermsPath, larger } from '../../../data/bookingTerms';
@@ -28,18 +31,18 @@ const theatre = auditorium.capacity.theatre!;
 const from = formatPrice(auditorium.prices!.hourFrom!);
 
 const title = "Conference & Event Venue near Liverpool | Maggie O'Neill Centre";
-const description = `A hosted ${theatre}-seat auditorium and networking space in Huyton, near Liverpool. Stage, screen, lighting, catering and free parking. The hotel alternative.`;
+const description = `A hosted ${theatre}-seat auditorium with breakout space in Huyton, near Liverpool. Stage, sound system, AV technician and free parking. The hotel alternative.`;
 
-const intro = `The Maggie O'Neill Centre in Huyton, near Liverpool, hosts conferences, launches, community events and networking. The ${auditorium.name} seats up to ${theatre} theatre style or ${cab} cabaret, with a stage, screen and lighting, and costs from ${from} an hour, quoted for your event. The ${grove.name} suits open networking. Hosts are on site all day, catering can be arranged, and parking is free.`;
+const intro = `The Maggie O'Neill Centre in Huyton, near Liverpool, hosts conferences, launches, community events and networking. The ${auditorium.name} seats up to ${theatre} theatre style or ${cab} cabaret, with a stage, lectern, microphones, sound system and AV run by a technician, and costs from ${from} an hour, quoted for your event. Breakout and networking space can be added as you need it. Hosts check on your event all day, you can bring your own catering or use ours, and parking is free.`;
 
 const keyFacts = [
   { term: 'Capacity', detail: `Up to ${theatre} theatre style or ${cab} cabaret in the ${auditorium.name}.` },
   { term: 'Prices', detail: `From ${from} an hour, quoted for your event.` },
-  { term: 'On stage', detail: 'A stage, lectern, screen and lighting for speakers and presentations.' },
-  { term: 'Networking', detail: `The ${grove.name}, for open networking with drinks.` },
-  { term: 'Catering', detail: `Arranged with our partner, ${catering.partner}.` },
-  { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
-  { term: 'Your hosts', detail: 'On site all day, looking after you and your guests.' },
+  { term: 'On stage', detail: 'A stage, lectern, microphones, sound system and lighting, with AV run by a technician.' },
+  { term: 'Breakout', detail: `The ${grove.name}, the Auditorium foyer, and as many extra spaces as you need.` },
+  { term: 'Catering', detail: `Bring your own, or use our partner, ${catering.partner}.` },
+  { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}, and ${parking.overflow}.` },
+  { term: 'Your hosts', detail: 'Your event talked through beforehand, and hosts checking on it all day.' },
   { term: 'Access', detail: 'Fully accessible on the ground floor, with an accessible toilet.' },
 ];
 
@@ -54,15 +57,15 @@ const faqs = [
   },
   {
     q: 'What equipment is in the Auditorium?',
-    a: `The ${auditorium.name} has a stage, a lectern, a screen with Mac and PC wireless casting and HDMI, and lighting. Tell us what your speakers need and we'll have it ready before you arrive.`,
+    a: `The ${auditorium.name} at the Maggie O'Neill Centre has a stage, a lectern, microphones, a sound system and lighting, and the AV is set up and run by a technician on the day. Tell us what your speakers need and we'll have it ready before you arrive.`,
   },
   {
     q: 'Can you provide catering for an event?',
-    a: `Yes. ${catering.summary.replace('our partner', "the Maggie O'Neill Centre's partner")}`,
+    a: `Yes. You're welcome to bring your own catering, or use the Maggie O'Neill Centre's partner, ${catering.partner}, whom you order from and pay directly. There's a fridge for storing food, and tea and coffee are included.`,
   },
   {
-    q: 'Do you have space for networking?',
-    a: `Yes. The ${grove.name} at the Maggie O'Neill Centre suits open networking, with space to stand, mingle and talk over drinks.`,
+    q: 'Do you have space for breakouts and networking?',
+    a: `Yes. The ${grove.name} and the Auditorium foyer at the Maggie O'Neill Centre work well for breakouts and networking, and we can add as many extra breakout spaces as your event needs. If you don't need the whole ${auditorium.name}, we can also set up open networking space at the back of the room. Every breakout and networking space has a flatscreen with wireless casting.`,
   },
   {
     q: 'Why choose the Maggie O\'Neill Centre over a hotel?',
@@ -70,7 +73,7 @@ const faqs = [
   },
   {
     q: 'Is parking free for event guests?',
-    a: `Yes. The Maggie O'Neill Centre has a free ${parking.spaces}-space car park on site, ${parking.motorway}, and it is on a main bus route.`,
+    a: `Yes. The Maggie O'Neill Centre has a free ${parking.spaces}-space car park on site, ${parking.motorway}, and ${parking.overflow}. It is on a main bus route too.`,
   },
   {
     q: 'Is the venue accessible?',
@@ -120,7 +123,7 @@ const schema = [
   <Hero
     title="Conference and event venue near Liverpool"
     tagline="Better than a hotel. Built only for this."
-    lede={`The Maggie O'Neill Centre Auditorium seats ${theatre}, with a stage, lectern and lighting, and your hosts looking after the day.`}
+    lede={`The Maggie O'Neill Centre Auditorium seats ${theatre}, with a stage, lectern, microphones and sound system, AV run by a technician, and your hosts looking after the day.`}
     image={113}
     primary={{ label: 'Plan your event', href: '#enquire' }}
     secondary={{ label: `Call ${contact.phone}`, href: contact.phoneHref }}
@@ -144,7 +147,8 @@ const schema = [
         </div>
         <ul class="tick-list">
           <li>Up to {theatre} theatre style, or {cab} cabaret style at tables.</li>
-          <li>A stage, lectern, screen and lighting for speakers and presentations.</li>
+          <li>A stage, lectern, microphones, sound system and lighting.</li>
+          <li>AV set up and run by a technician on the day.</li>
           <li>From {from} an hour, quoted for your event.</li>
           <li>A kitchen and an accessible toilet on the same floor.</li>
         </ul>
@@ -156,13 +160,16 @@ const schema = [
     <div class="container two-col two-col--media">
       <div>
         <div class="section-head">
-          <span class="eyebrow">Networking</span>
-          <h2 id="grove-heading">Where can guests network?</h2>
-          <p>
-            The {grove.name}, under its greenery canopy, works for open networking: space to stand, mingle and talk over drinks, before or after the
-            main event. It's {formatPrice(grove.prices!.hour!)} an hour or {formatPrice(grove.prices!.day!)} a day on its own.
-          </p>
+          <span class="eyebrow">Breakout and networking</span>
+          <h2 id="grove-heading">Where can guests break out and network?</h2>
+          <p>Add as many breakout and networking spaces as your event needs. Every one has a flatscreen with wireless casting.</p>
         </div>
+        <ul class="tick-list">
+          <li><span>The {grove.name}, under its greenery canopy, for standing, mingling and talking over drinks.</span></li>
+          <li><span>The Auditorium foyer, right outside the hall.</span></li>
+          <li><span>Open networking space at the back of the {auditorium.name}, if you don't need the whole room.</span></li>
+          <li><span>More breakout rooms, added as you need them.</span></li>
+        </ul>
       </div>
       <div class="media">
         <Photo n={85} width={720} height={540} sizes="(max-width: 900px) 100vw, 520px" />
@@ -177,13 +184,19 @@ const schema = [
         <h2 id="food-heading">Can you cater for an event?</h2>
       </div>
       <div class="prose">
-        <p>{catering.summary}</p>
-        <p>Tea and coffee are included all day, whatever you book.</p>
+        <p>You're welcome to bring your own catering. If you'd rather we sorted it, our partner {catering.partner} can cater for you: you order from them and pay them directly, and we'll put you in touch when you book.</p>
+        <p>There's a fridge for storing food, and tea and coffee are included all day, in or near every space you book.</p>
       </div>
     </div>
   </section>
 
-  <HostedDay image={114} caption="A talk in the Auditorium, with the welcome screen up and the lighting set." />
+  <HostedDay
+    image={114}
+    caption="A talk in the Auditorium, with the welcome screen up and the lighting set."
+    items={hostedEvent}
+    heading="What's included when you book an event?"
+    intro="Everything below comes with every event and Auditorium booking at the Maggie O'Neill Centre."
+  />
 
   <Comparison />
 
