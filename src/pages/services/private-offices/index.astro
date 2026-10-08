@@ -113,14 +113,14 @@ const schema = [
   faqNode(url, faqs),
 ];
 ---
-<Base title={title} description={description} ogImage={images[101].src} ogImageAlt={images[101].alt} preloadImage={images[101].src} schema={schema}>
+<Base title={title} description={description} ogImage={images[102].src} ogImageAlt={images[102].alt} preloadImage={images[102].src} schema={schema}>
   <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Private offices', path }]} />
 
   <Hero
     title="Private offices to rent in Huyton"
     tagline="Your own door, and hosts down the corridor."
     lede={`Small teams base themselves at the Maggie O'Neill Centre for the rooms, the parking and the people. Offices from ${from} a month, all bills included.`}
-    image={101}
+    image={102}
     primary={{ label: full ? 'Join the waitlist' : 'Book a viewing', href: '#enquire' }}
     secondary={{ label: `Call ${contact.phone}`, href: contact.phoneHref }}
   >
@@ -150,7 +150,7 @@ const schema = [
         </li>
       </ul>
       <ul class="gallery">
-        {[100, 102, 104].map((n) => (
+        {[100, 101, 104].map((n) => (
           <li><Photo n={n} width={640} height={480} sizes="(max-width: 700px) 100vw, 380px" /></li>
         ))}
       </ul>
