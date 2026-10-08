@@ -3,15 +3,18 @@
 interface Props {
   heading: string;
   intro: string;
+  // Extra paragraphs under the answer-first intro (homepage: virtual offices get their own).
+  more?: string[];
   facts: { term: string; detail: string; href?: string; linkText?: string }[];
 }
-const { heading, intro, facts } = Astro.props;
+const { heading, intro, more = [], facts } = Astro.props;
 ---
 <section class="section section--white key-facts" aria-labelledby="key-facts-heading">
   <div class="container key-facts__inner">
     <div class="key-facts__intro">
       <h2 id="key-facts-heading">{heading}</h2>
       <p>{intro}</p>
+      {more.map((m) => <p>{m}</p>)}
     </div>
     <dl class="key-facts__list">
       {facts.map((f) => (
