@@ -1,6 +1,12 @@
 ---
 import Photo from '../Photo.astro';
 
+interface Props {
+  // On the About page itself: no "Read Maggie's story" or About links, and a different heading.
+  onAbout?: boolean;
+}
+const { onAbout = false } = Astro.props;
+
 // One line each. Owner to confirm the wording before launch.
 const hosts = [
   { name: 'Patrick', image: 139, line: 'Patrick looks after your booking and makes sure the day goes to plan.' },
@@ -11,9 +17,9 @@ const hosts = [
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Meet your hosts</span>
-      <h2 id="hosts-heading">Who will look after you on the day?</h2>
+      <h2 id="hosts-heading">{onAbout ? 'Who are your hosts at the Maggie O’Neill Centre?' : 'Who will look after you on the day?'}</h2>
       <p>Our hosts are on site at the Maggie O'Neill Centre all day, looking after every group.</p>
-      <p class="hosts__story">The centre is named after Maggie O'Neill, who bought this derelict 1930s hall with her family in the 1980s. <a href="/about/">Read Maggie's story</a></p>
+      {!onAbout && <p class="hosts__story">The centre is named after Maggie O'Neill, who bought this derelict 1930s hall with her family in the 1980s. <a href="/about/">Read Maggie's story</a></p>}
     </div>
     <div class="grid hosts">
       {hosts.map((h) => (
@@ -30,7 +36,7 @@ const hosts = [
         <h3>Liam</h3>
         <p class="hosts__role">Volunteer</p>
         <p>Liam volunteers at the centre, so you may see him helping out on your day.</p>
-        <a href="/about/">About Maggie's and your hosts</a>
+        {!onAbout && <a href="/about/">About Maggie's and your hosts</a>}
       </div>
     </div>
   </div>

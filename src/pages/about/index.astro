@@ -1,0 +1,187 @@
+---
+// About and your hosts. Spec: Website Blueprint page 15 (Template: Trust). Audience: bookers checking who they're dealing with.
+// Job: meet the hosts first, then Maggie's story and the charity. Schema: AboutPage + Organization (sitewide) + Person.
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Hero from '../../components/sections/Hero.astro';
+import Hosts from '../../components/sections/Hosts.astro';
+import Reviews from '../../components/sections/Reviews.astro';
+import Photo from '../../components/Photo.astro';
+import Faqs from '../../components/sections/Faqs.astro';
+import CtaBand from '../../components/sections/CtaBand.astro';
+import { contact, hosts, lastYear, maggiesMeals, site, trackRecord } from '../../data/facts';
+import { images } from '../../data/images';
+import { story, storyHeading, storySummary } from '../../data/story';
+import { quotes } from '../../data/reviewQuotes';
+import { breadcrumbNode, faqNode } from '../../lib/schema';
+
+const path = '/about/';
+const url = `${site.url}${path}`;
+const title = "About Us & Meet Your Hosts | Maggie O'Neill Centre";
+const description =
+  "Meet Patrick and Tania, your hosts at the Maggie O'Neill Centre in Huyton, and the story of Maggie, the woman behind the name.";
+
+// Draft wording, built from what the site already says. Owner to confirm.
+const values = [
+  { title: 'Looked after', text: 'A host is on site all day. Your room is set before you arrive, and someone checks in on you through the day.' },
+  { title: 'Everything included', text: 'Tea and coffee, the screen, WiFi and parking are in the price. No extras added on the day.' },
+  { title: 'Open to everyone', text: 'Businesses, public bodies, charities and local groups all use the building, and our community work is open to all.' },
+  { title: 'Every booking does good', text: "What you pay keeps Maggie's Meals and our community work in Knowsley going." },
+];
+
+const faqs = [
+  { q: "Who was Maggie O'Neill?", a: storySummary },
+  {
+    q: "Who are the hosts at the Maggie O'Neill Centre?",
+    a: "Patrick and Tania are the hosts at the Maggie O'Neill Centre, and Liam volunteers with us. A host is on site all day, looking after every group.",
+  },
+  {
+    q: "Is the Maggie O'Neill Centre a charity?",
+    a: `Yes. The Maggie O'Neill Centre is a registered charity in England and Wales, number ${site.charityNumber}. Income from room hire and virtual offices funds Maggie's Meals and our community work in Knowsley.`,
+  },
+  {
+    q: "Is the Maggie O'Neill Centre a church?",
+    a: "The Maggie O'Neill Centre began as a church, and the building is still home to one. Room hire, virtual offices and our community work are open to everyone.",
+  },
+  {
+    q: "Can I look round the Maggie O'Neill Centre before I book?",
+    a: `Yes. Call ${contact.phone} or email ${contact.email} and we'll arrange a time for you to come and see the rooms.`,
+  },
+];
+
+const schema = [
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'About', url },
+  ]),
+  ...hosts.map((h) => ({
+    '@type': 'Person',
+    '@id': `${url}#${h.name.toLowerCase()}`,
+    name: h.name,
+    jobTitle: h.role,
+    worksFor: { '@id': `${site.url}/#org` },
+    image: images[h.image].src,
+  })),
+  faqNode(url, faqs),
+];
+---
+<Base title={title} description={description} ogImage={images[137].src} ogImageAlt={images[137].alt} preloadImage={images[6].src} schema={schema} pageType="AboutPage">
+  <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'About', path }]} />
+
+  <Hero
+    title="About the Maggie O'Neill Centre"
+    tagline="Meet your hosts."
+    lede="Patrick and Tania are your hosts, with Liam who volunteers with us. The Maggie O'Neill Centre (MOBTC), known to most as Maggie's, is a charity-run training, meeting and event venue and virtual office provider in Huyton, near Liverpool."
+    image={6}
+    primary={{ label: 'Book a visit', href: '/visit/' }}
+    secondary={{ label: `Call ${contact.phone}`, href: contact.phoneHref }}
+  />
+
+  <Hosts onAbout />
+
+  <Reviews
+    heading="What do people say about your hosts?"
+    reviews={[quotes.william, quotes.neil, quotes.cooper, quotes.elo, quotes.charlotte, quotes.rebecca]}
+  />
+
+  <section class="section section--white" id="maggies-story" aria-labelledby="story-heading">
+    <div class="container two-col two-col--media">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">Maggie's story</span>
+          <h2 id="story-heading">{storyHeading}</h2>
+        </div>
+        <div class="prose story">
+          {story.map((p) => <p>{p}</p>)}
+        </div>
+      </div>
+      <div class="media">
+        <Photo n={1} width={720} height={540} sizes="(max-width: 900px) 100vw, 520px" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="charity-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">The charity</span>
+        <h2 id="charity-heading">Who runs the Maggie O'Neill Centre?</h2>
+        <p>
+          A registered charity in England and Wales, no. {site.charityNumber}. It has served Huyton and Knowsley for over {trackRecord.yearsServing} years.
+        </p>
+      </div>
+      <div>
+        <ul class="record">
+          <li><strong>Over {trackRecord.yearsServing} years</strong><span>serving Huyton and Knowsley as a charity.</span></li>
+          <li><strong>{trackRecord.openedYear}</strong><span>{trackRecord.openedBy} officially opened the Maggie O'Neill Centre building.</span></li>
+          <li><strong>Over {trackRecord.covidParcels}</strong><span>food parcels delivered by our staff and volunteers during the Covid lockdowns.</span></li>
+          <li><strong>{lastYear.mealsAccessed}</strong><span>people used Maggie's Meals, our social supermarket, in the last year.</span></li>
+        </ul>
+        <div class="prose">
+          <p>
+            Room hire and virtual office income keeps the charity's work going: Maggie's Meals ({maggiesMeals.schedule.charAt(0).toLowerCase()}{maggiesMeals.schedule.slice(1)}),
+            coffee mornings, clean-ups around Huyton and care for people going through a hard time.
+          </p>
+          <p>
+            The building began as a church, and it is still home to one. Our church gatherings and groups are open to everyone, and so is the rest of what we do.
+          </p>
+          <p><a href="/social-value/">Social value and our community work</a> · <a href="/community/">Maggie's Meals and community</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="values-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">How we work</span>
+        <h2 id="values-heading">What can you expect from Maggie's?</h2>
+      </div>
+      <ul class="grid values">
+        {values.map((v) => (
+          <li class="card value">
+            <h3>{v.title}</h3>
+            <p>{v.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <Faqs faqs={faqs} heading="Questions about Maggie's" />
+
+  <section class="section section--white more-links" aria-label="Related pages">
+    <div class="container">
+      <p>
+        See <a href="/services/training-rooms/">training room hire near Liverpool</a>, our
+        {' '}<a href="/services/virtual-office/">virtual office in Liverpool</a>, or
+        {' '}<a href="/visit/">come and see the building</a>.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Come and meet us"
+    text="See the rooms for yourself and meet your hosts. Book a visit, or call and we'll find a time that suits you."
+    primary={{ label: 'Book a visit', href: '/visit/' }}
+  />
+</Base>
+
+<style>
+  .two-col { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .two-col--media { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); }
+  .two-col .section-head { margin-bottom: 24px; }
+  .media { margin: 0; position: sticky; top: 104px; }
+  .media :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
+  .prose { display: flex; flex-direction: column; gap: 16px; }
+  .story p:first-child { font-size: var(--text-lead-size); }
+  .record { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 16px; }
+  .record li { display: grid; grid-template-columns: 9rem 1fr; gap: 16px; align-items: baseline; }
+  .record strong { font: 800 22px/1.2 var(--font-display); color: var(--moc-purple-700); }
+  .values { grid-template-columns: repeat(4, minmax(0, 1fr)); list-style: none; padding: 0; }
+  .value { padding: 28px; }
+  .value h3 { margin-bottom: 8px; }
+  @media (max-width: 900px) { .two-col, .two-col--media { grid-template-columns: 1fr; } .media { position: static; } }
+  @media (max-width: 960px) { .values { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .values { grid-template-columns: 1fr; } .record li { grid-template-columns: 1fr; gap: 4px; } }
+</style>
