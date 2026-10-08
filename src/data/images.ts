@@ -60,8 +60,10 @@ export const images: Record<number, LibraryImage> = {
   172: img(172, '6ac3927e2c1c51a2ac6489a6.webp', "Food from around the world at All Nations at the Maggie O'Neill Centre"),
   173: img(173, '6ac3927e22bc27f58f70416d.webp', "People in traditional dress at All Nations at the Maggie O'Neill Centre"),
   174: img(174, '6ac3927e7d735ea2a1378392.webp', "The building full of people at All Nations at the Maggie O'Neill Centre"),
-  // Maggie O'Neill, supplied by the owner, Oct 2026. For her story on the About page.
-  175: img(175, '6ac785a70762cee3015a7ef5.jpg', "Maggie O'Neill, the woman the Maggie O'Neill Centre is named after", 'P'),
+  // Patrick, higher resolution and less cropped (owner, Oct 2026). Replaces #139 on the team cards.
+  179: img(179, '6ac7959ad5f4a8af43a9bd8c.webp', "Patrick, Director of the Maggie O'Neill Centre", 'P'),
+  // Maggie O'Neill, supplied by the owner, Oct 2026 (white background cropped out). For her story on the About page.
+  175: img(175, '6ac794afd5f4a8af43a9a261.webp', "Maggie O'Neill, the woman the Maggie O'Neill Centre is named after", 'P'),
   // Pastor John and Sherri, supplied by the owner, Oct 2026. For the story on the About page.
   176: img(176, '6ac78753bbad531ac82db3f2.jpg', "Pastor John and Sherri, who moved their family to Huyton to start the church"),
   // Volunteers, supplied by the owner, Oct 2026.

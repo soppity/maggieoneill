@@ -128,6 +128,7 @@ export const accessibility = {
 
 // The team, from the owner, Oct 2026. Short lines for the homepage, bios for the About page.
 // Patrick is often on site but isn't always the main point of contact: Tania runs the day to day.
+// Patrick comes first: his story sets the stage for the rest of the team (owner, Oct 2026).
 export interface TeamMember {
   name: string;
   role: string;
@@ -137,6 +138,16 @@ export interface TeamMember {
 }
 export const hosts: TeamMember[] = [
   {
+    name: 'Patrick',
+    role: 'Director',
+    image: 179,
+    line: 'Patrick has run the centre for over 9 years, and is on site most days.',
+    bio: [
+      'Patrick has run the Maggie O’Neill Centre for over 9 years. When he started, the centre couldn’t afford to pay even minimum wage, so he lived in the building.',
+      'What began as a projector on a table is now 10 private offices, 7 meeting and training rooms, an Auditorium and over 40 virtual office clients.',
+    ],
+  },
+  {
     name: 'Tania',
     role: 'Community Manager',
     image: 137,
@@ -144,16 +155,6 @@ export const hosts: TeamMember[] = [
     bio: [
       'As Community Manager, Tania runs most of the day to day at the Maggie O’Neill Centre. She coordinates bookings and events, and makes sure everyone is looked after while they’re here.',
       'She lives in the middle of nowhere in Wales, and loves early mornings looking out over the Welsh hills to the sound of bleating sheep.',
-    ],
-  },
-  {
-    name: 'Patrick',
-    role: 'Director',
-    image: 139,
-    line: 'Patrick has run the centre for over 9 years, and is on site most days.',
-    bio: [
-      'Patrick has run the Maggie O’Neill Centre for over 9 years. When he started, the centre couldn’t afford to pay even minimum wage, so he lived in the building.',
-      'What began as a projector on a table is now 10 private offices, 7 meeting and training rooms, an Auditorium and over 40 virtual office clients.',
     ],
   },
 ];
