@@ -20,7 +20,7 @@ Each email gives the reviewer's name, the review text (long reviews are cut off 
 5. Theme counts update themselves at build time from the TSV. Nothing else needs changing for them.
 6. Read the new written reviews. If one is a clearly better quote than an existing one for a theme or booking type in `src/data/reviewQuotes.ts`, add it to `quotes` and use it. Quotes must be word for word and cut only at the end of a sentence. Never use reviews about:
    - free hot desking or co-working (no longer offered)
-   - the chiropodist or the nursery (other businesses)
+   - the chiropodist (another business) or the nursery (a separate service with its own site, unitychildcare.co.uk)
    - Christian music
    - the AI workshops
    - anything lukewarm or negative

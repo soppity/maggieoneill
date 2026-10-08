@@ -2,8 +2,8 @@
 // Source: src/data/google-reviews.tsv, every written Google review (name, text; no dates). Theme counts are worked out
 // from it at build time, so a monthly update only adds new rows there (docs/SOP/monthly-reviews.md).
 // Quotes are word for word, cut at the end of a sentence (or marked with an ellipsis). No review dates (owner). Names as shown on Google.
-// Left out on purpose: free hot desking and co-working (no longer offered), the chiropodist and nursery (other
-// businesses), Christian music (off-message for public sector), the AI workshop, a lukewarm review and a non-English one.
+// Left out on purpose: free hot desking and co-working (no longer offered), the chiropodist (another business) and the
+// nursery (a separate service with its own site), Christian music (off-message for public sector), the AI workshop, a lukewarm review and a non-English one.
 // No Review or aggregateRating markup anywhere: Google ignores self-serving review markup (SEO spec 4).
 
 export interface ReviewQuote {
