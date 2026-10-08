@@ -66,6 +66,8 @@ export const quotes = {
   transform: { quote: 'Great venue, accessible for local residents. Bright, welcoming space, great facilities and friendly staff who are always willing to accommodate our needs.', name: 'Transform Lives' },
   ray: { quote: "I needed a mailing address in the local area. I looked for months before I found the Maggie O'Neil Centre.", name: 'Ray McBurney' },
   simon: { quote: '\u2026cannot speak highly enough of the staff including Patrick who is always available to help.', name: 'Simon Bartlett' },
+  heather: { quote: "Amazing office and training space, spotless and very well decorated. The facilities were amazing and staff were brilliant. I can't fault anything.", name: 'Heather Lovatt' },
+  markK: { quote: 'Great community centre and office spaces. Good parking and friendly staff.', name: 'Mark Kewley' },
   john: { quote: 'Looks very bland once you hit the car park but inside, very open and lovely decoration.', name: 'John Burnage' },
 } satisfies Record<string, ReviewQuote>;
 

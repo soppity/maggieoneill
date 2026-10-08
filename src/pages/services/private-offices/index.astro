@@ -1,0 +1,162 @@
+---
+// Private offices. Spec: Website Blueprint page 8 (Template: Service). Audience: small teams of 1 to 4 needing a base.
+// Job: small, high-value. Sell the hosted building and the community around it. CTA: book a viewing.
+// No office prices, sizes, terms or out-of-hours access are confirmed yet, so none are published: enquiries only.
+import Base from '../../../layouts/Base.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import Hero from '../../../components/sections/Hero.astro';
+import KeyFacts from '../../../components/sections/KeyFacts.astro';
+import Reviews from '../../../components/sections/Reviews.astro';
+import VirtualOfficeBand from '../../../components/sections/VirtualOfficeBand.astro';
+import Faqs from '../../../components/sections/Faqs.astro';
+import FindUs from '../../../components/sections/FindUs.astro';
+import Photo from '../../../components/Photo.astro';
+import { contact, formatPrice, hours, parking, rooms, site } from '../../../data/facts';
+import { images } from '../../../data/images';
+import { quotes } from '../../../data/reviewQuotes';
+import { breadcrumbNode, faqNode, serviceNode } from '../../../lib/schema';
+
+const path = '/services/private-offices/';
+const url = `${site.url}${path}`;
+const pod = rooms.find((r) => r.slug === 'pod')!;
+const title = "Private Offices to Rent in Huyton | Maggie O'Neill Centre";
+const description =
+  "Private offices for small teams in Huyton, with hosts on site, meeting rooms in the building, 1Gb fibre WiFi and free parking. Maggie O'Neill Centre.";
+
+const intro = `The Maggie O'Neill Centre in Huyton, Knowsley, has private offices for small teams of 1 to 4. You get your own door, with hosts on site through the day, meeting rooms in the same building, 1Gb fibre WiFi, a kitchen and free parking, ${parking.motorway}. Book a viewing to see what's available.`;
+
+const keyFacts = [
+  { term: 'Who for', detail: 'Small teams of 1 to 4 who want a base of their own.' },
+  { term: 'The office', detail: 'Your own furnished office, with desks, chairs and storage.' },
+  { term: 'Your hosts', detail: `On site ${hours.summary}, looking after the building and your visitors.` },
+  { term: 'Meeting rooms', detail: `In the same building, from the ${pod.name} at ${formatPrice(pod.prices!.hour!)} an hour.` },
+  { term: 'WiFi', detail: '1Gb fibre throughout the building.' },
+  { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
+  { term: 'Kitchen', detail: 'A shared kitchen, with tea and coffee.' },
+  { term: 'Viewings', detail: 'Come and see the offices before you decide.', href: '#enquire', linkText: 'Book a viewing' },
+];
+
+const faqs = [
+  {
+    q: "Do you have private offices to rent in Huyton?",
+    a: `Yes. The Maggie O'Neill Centre in Huyton, Knowsley, has private offices for small teams of 1 to 4, with hosts on site, meeting rooms in the building, 1Gb fibre WiFi and free parking. Call ${contact.phone} or book a viewing to see what's available.`,
+  },
+  {
+    q: 'How much does a private office cost?',
+    a: `It depends on the office and how long you need it. Call ${contact.phone} or send us a message, and we'll tell you what's available and the price.`,
+  },
+  {
+    q: 'Can I see the office before I commit?',
+    a: "Yes. Book a viewing and a host will show you the offices, the meeting rooms and the rest of the Maggie O'Neill Centre.",
+  },
+  {
+    q: 'Are the offices furnished?',
+    a: "Yes. The private offices at the Maggie O'Neill Centre come with desks, chairs and storage.",
+  },
+  {
+    q: 'Can I book meeting rooms as well?',
+    a: `Yes. The meeting rooms are in the same building, from the ${pod.name} at ${formatPrice(pod.prices!.hour!)} an hour to rooms for whole teams, and the Auditorium for bigger events.`,
+  },
+  {
+    q: 'Is there parking?',
+    a: `Yes. The Maggie O'Neill Centre has a free ${parking.spaces}-space car park on site, ${parking.motorway}, and it is on a main bus route.`,
+  },
+  {
+    q: 'Do you offer hot desking?',
+    a: `No. The Maggie O'Neill Centre no longer offers hot desks or coworking. If you only need a room now and then, the ${pod.name} is ${formatPrice(pod.prices!.hour!)} an hour, and a virtual office gives you a business address without an office.`,
+  },
+];
+
+const reviews = [quotes.simon, quotes.heather, quotes.markK];
+
+const schema = [
+  serviceNode({
+    url,
+    name: 'Private office rental',
+    serviceType: 'Private office space for small teams',
+    description: intro,
+    provider: 'venue',
+    areaServed: ['Huyton', 'Knowsley', 'Liverpool', 'Merseyside'],
+  }),
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Private offices', url },
+  ]),
+  faqNode(url, faqs),
+];
+---
+<Base title={title} description={description} ogImage={images[101].src} ogImageAlt={images[101].alt} preloadImage={images[101].src} schema={schema}>
+  <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Private offices', path }]} />
+
+  <Hero
+    title="Private offices to rent in Huyton"
+    tagline="Your own door, and hosts down the corridor."
+    lede="Small teams base themselves at the Maggie O'Neill Centre for the rooms, the parking and the people."
+    image={101}
+    primary={{ label: 'Book a viewing', href: '#enquire' }}
+    secondary={{ label: `Call ${contact.phone}`, href: contact.phoneHref }}
+  />
+
+  <KeyFacts heading="Private offices, in a few lines" intro={intro} facts={keyFacts} />
+  <p class="container updated">Last updated: October 2026</p>
+
+  <section class="section section--cream" aria-labelledby="office-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">The offices</span>
+        <h2 id="office-heading">What are the offices like?</h2>
+        <p>Quiet, furnished rooms with a window, desks, chairs and storage. Bring your laptop and get on with it.</p>
+      </div>
+      <ul class="gallery">
+        {[100, 102, 104].map((n) => (
+          <li><Photo n={n} width={640} height={480} sizes="(max-width: 700px) 100vw, 380px" /></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="included-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">Around your office</span>
+        <h2 id="included-heading">What comes with an office here?</h2>
+        <p>The best bit is the building around you.</p>
+      </div>
+      <ul class="tick-list">
+        <li><span>Hosts on site {hours.summary}, so there's always someone around to welcome your visitors.</span></li>
+        <li><span>Meeting rooms in the same building, from the {pod.name} at {formatPrice(pod.prices!.hour!)} an hour, when you need more space.</span></li>
+        <li><span>1Gb fibre WiFi throughout the building.</span></li>
+        <li><span>A shared kitchen, with tea and coffee.</span></li>
+        <li><span>Free parking for you and your visitors, {parking.motorway}.</span></li>
+        <li><span>A calm, clean building, and a charity that puts what you pay back into Knowsley.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <Reviews reviews={reviews} heading="What do people say about working here?" />
+
+  <VirtualOfficeBand />
+
+  <Faqs faqs={faqs} heading="Private office questions" />
+
+  <section class="section section--white more-links" aria-label="Related pages">
+    <div class="container">
+      <p>
+        See also <a href="/services/meeting-rooms/">meeting room hire in Huyton</a>, <a href="/services/virtual-office/">virtual offices</a> and
+        {' '}<a href="/social-value/">where your money goes</a>, or call <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>.
+      </p>
+    </div>
+  </section>
+
+  <FindUs />
+</Base>
+
+<style>
+  .two-col { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .gallery { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .gallery :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); width: 100%; height: 100%; object-fit: cover; }
+  .updated { margin-top: -40px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
+  .more-links { padding: 40px 0; }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } .updated { margin-top: -24px; } }
+  @media (max-width: 700px) { .gallery { grid-template-columns: 1fr; } }
+</style>
