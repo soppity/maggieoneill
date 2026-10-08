@@ -28,15 +28,14 @@ const [p20, p40] = virtualOffice.plans;
 const dc = virtualOffice.directorsCover;
 const ca = virtualOffice.callAnswering;
 const pod = rooms.find((r) => r.slug === 'pod')!;
-const tania = virtualOffice.postHandler;
 
-const intro = `A virtual office at the Maggie O'Neill Centre gives you a real business and registered office address at ${address.street}, Huyton, near Liverpool, from ${formatPrice(p20.price)} a month. ${tania} handles your post in-house, meeting rooms are in the same building, and Director's Cover keeps your home address off Companies House.`;
+const intro = `A virtual office at the Maggie O'Neill Centre gives you a real business and registered office address at ${address.street}, Huyton, near Liverpool, from ${formatPrice(p20.price)} a month. our team handles your post in-house, meeting rooms are in the same building, and Director's Cover keeps your home address off Companies House.`;
 
 const keyFacts = [
   { term: 'Address', detail: `${address.street}, Huyton, Liverpool, ${address.postcode}. A real building with people in it.` },
   { term: 'Prices', detail: `From ${formatPrice(p20.price)} a month for ${p20.name}, or ${formatPrice(p40.price)} for ${p40.name}.`, href: '#plans', linkText: 'Compare plans' },
   { term: "Director's Cover", detail: `+${formatPrice(dc.price)} a month on either plan. Your home off Companies House in both places.` },
-  { term: 'Post', detail: `Handled in-house by ${tania}. Opened and scanned on the ${p40.name} plan.` },
+  { term: 'Post', detail: `Handled in-house by our team at reception. Opened and scanned on the ${p40.name} plan.` },
   { term: 'Meeting rooms', detail: `In the same building. The ${p40.name} plan includes 2 free hours a month.` },
   { term: 'Contract', detail: virtualOffice.terms },
   { term: 'Collect post', detail: `${hours.summary}. Free parking outside.` },
@@ -87,7 +86,7 @@ const faqs = [
   },
   {
     q: 'Who handles my post?',
-    a: `The Maggie O'Neill Centre handles your post in-house. It isn't outsourced to another company: ${tania} looks after virtual office post at reception.`,
+    a: `The Maggie O'Neill Centre handles your post in-house. It isn't outsourced to another company: our team looks after virtual office post at reception.`,
   },
   {
     q: 'Can I collect my post?',
@@ -156,7 +155,7 @@ const voReviewCount = reviews.count;
   <Hero
     title={`Virtual office near Liverpool, from ${formatPrice(virtualOffice.from)} a month`}
     tagline="A real address, with real people behind it."
-    lede={`${tania} handles your post at the Maggie O'Neill Centre and lets you know when it arrives. Keep your home address off Companies House, and meet clients in the same building.`}
+    lede={`Our team handles your post at the Maggie O'Neill Centre and lets you know when it arrives. Keep your home address off Companies House, and meet clients in the same building.`}
     image={29}
     primary={{ label: 'Get your address', href: '#get-your-address' }}
     secondary={{ label: 'See plans and prices', href: '#plans' }}
@@ -238,12 +237,12 @@ const voReviewCount = reviews.count;
           <p>Your post comes to real people at the Maggie O'Neill Centre, not a sorting office. It isn't outsourced to another company.</p>
         </div>
         <ul class="tick-list">
-          <li>{tania} looks after virtual office post at reception.</li>
+          <li>Our team looks after virtual office post at reception.</li>
           <li>On the {formatPrice(p40.price)} {p40.name} plan, your post is opened and scanned, so you can read it in your mailbox app wherever you are.</li>
           <li>On every plan, you can collect post from reception, {hours.summary}, with free parking outside.</li>
         </ul>
         <p class="post-review">
-          Salome, who runs Salowal Ltd, says in her Google review that {tania} lets her know about her post and greets her clients at reception.
+          Salome, who runs Salowal Ltd, says in her Google review that she's told when her post arrives, and her clients are greeted at reception.
         </p>
       </div>
     </div>

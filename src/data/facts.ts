@@ -126,7 +126,7 @@ export const accessibility = {
 
 export const hosts = [
   { name: 'Patrick', role: 'Host', image: 139 },
-  { name: 'Tania', role: 'Host', image: 133, note: 'Handles virtual office post' },
+  { name: 'Tania', role: 'Host', image: 133 },
 ];
 export const volunteers = [{ name: 'Liam', role: 'Volunteer' }];
 
@@ -213,6 +213,21 @@ export const hostedEvent = [
   'A fridge for storing food',
 ];
 
+// Private offices (owner, Oct 2026). 9 offices, all let: enquiries join the waitlist.
+export const privateOffices = {
+  from: 450,
+  lease: '1-year lease',
+  total: 9,
+  vacancies: 0,
+  sizes: [
+    { name: 'Single office', people: '1 to 2 people' },
+    { name: 'Double office', people: '4 to 6 people' },
+  ],
+  freeMeetingHours: 4,
+  meetingDiscount: 20,
+  lateStay: 'Thursdays until 8:30pm',
+};
+
 // Virtual office. Source: docs/content/virtual-office-source.md and PROJECT_NOTES.md.
 // Pricing is shown as a ladder (owner, Oct 2026): lead with "from £20", then offer Director's Cover as a £10 add-on,
 // so the home address comes off both places it appears on Companies House. Two plans plus one add-on, never four plans.
@@ -261,7 +276,7 @@ export const virtualOffice = {
     short: 'Keep your home off Companies House in both places',
   },
   terms: 'No lock-in. Cancel any time with one month\'s notice.',
-  postHandler: 'Tania',
+  // Owner, Oct 2026: never name one person as the post handler. Post is handled by the team at reception.
   signUp: [
     { title: 'Tell us the basics', text: 'Your name, email, phone and the plan you want. It takes about a minute.' },
     { title: 'Confirm your ID', text: 'We send a secure form for the ID checks the law requires for registered office services.' },
