@@ -67,6 +67,8 @@ export const booking = {
 export const forms = {
   general: { id: 'PTEyaGYXB96ztNMrZVGB', name: 'Website Enquiry', height: 789 },
   virtualOffice: { id: 'RWoOkRV2NaAKLVe4JSmF', name: 'Virtual Office Page - Form', height: 1006 },
+  // Owner, Oct 2026: the private offices waitlist (on /services/private-offices/ only).
+  officeWaitlist: { id: 'oEBrrucinDJHDzwwGmdO', name: 'Office Waitlist', height: 785 },
 };
 
 export const reviews = {

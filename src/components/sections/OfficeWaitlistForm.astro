@@ -1,0 +1,57 @@
+---
+// The GoHighLevel private office waitlist form. "Join the waitlist" buttons on the offices page scroll here (#waitlist).
+import { contact, forms, privateOffices as po } from '../../data/facts';
+
+const form = forms.officeWaitlist;
+---
+<section class="section wl-form" id="waitlist" aria-labelledby="wl-form-heading">
+  <div class="container wl-form__inner">
+    <div class="wl-form__copy">
+      <span class="eyebrow">Waitlist</span>
+      <h2 id="wl-form-heading">Join the waitlist</h2>
+      <p>All {po.total} offices are let right now. Leave your details and we'll be in touch as soon as one comes up.</p>
+      <ul class="tick-list">
+        <li>{po.sizes.map((s) => `${s.name}s for ${s.people}`).join(', ')}.</li>
+        <li>From £{po.from} a month on a {po.lease}, with all bills included.</li>
+        <li>No obligation: joining the waitlist doesn't commit you to anything.</li>
+      </ul>
+      <p class="wl-form__talk">
+        Prefer to talk? Call <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a> or WhatsApp{' '}
+        <a href={contact.whatsappHref} rel="noopener" data-track="whatsapp_click">{contact.text}</a>.
+      </p>
+    </div>
+    <div class="wl-form__box" style={`min-height:${form.height}px;height:${form.height}px`}>
+      <iframe
+        src={`https://api.leadconnectorhq.com/widget/form/${form.id}`}
+        style="width:100%;height:100%;border:none;border-radius:8px"
+        id={`inline-${form.id}`}
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-trigger-value=""
+        data-activation-type="alwaysActivated"
+        data-activation-value=""
+        data-deactivation-type="neverDeactivate"
+        data-deactivation-value=""
+        data-form-name={form.name}
+        data-height={form.height}
+        data-layout-iframe-id={`inline-${form.id}`}
+        data-form-id={form.id}
+        data-cookie-consent="true"
+        data-cookie-consent-provider="auto"
+        title={form.name}></iframe>
+    </div>
+  </div>
+</section>
+
+<script is:inline src="https://link.msgsndr.com/js/form_embed.js" defer></script>
+
+<style>
+  .wl-form { background: var(--moc-purple-tint); scroll-margin-top: 88px; }
+  .wl-form__inner { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(32px, 5vw, 64px); align-items: start; }
+  .wl-form__copy { display: flex; flex-direction: column; gap: 16px; position: sticky; top: 104px; }
+  .wl-form__copy > p { font-size: var(--text-lead-size); }
+  .wl-form__copy .tick-list { font-size: var(--text-small-size); }
+  .wl-form__talk { font-size: var(--text-body-size) !important; }
+  .wl-form__box { background: var(--moc-white); border-radius: var(--radius-card); box-shadow: var(--moc-shadow-card); padding: 12px; overflow: hidden; }
+  @media (max-width: 900px) { .wl-form__inner { grid-template-columns: 1fr; } .wl-form__copy { position: static; } }
+</style>
