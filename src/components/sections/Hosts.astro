@@ -1,5 +1,6 @@
 ---
 import Photo from '../Photo.astro';
+import { hosts as hostFacts } from '../../data/facts';
 
 interface Props {
   // On the About page itself: no "Read Maggie's story" or About links, and a different heading.
@@ -8,10 +9,11 @@ interface Props {
 const { onAbout = false } = Astro.props;
 
 // One line each. Owner to confirm the wording before launch.
-const hosts = [
-  { name: 'Patrick', image: 139, line: 'Patrick looks after your booking and makes sure the day goes to plan.' },
-  { name: 'Tania', image: 133, line: 'Tania looks after groups on the day.' },
-];
+const lines: Record<string, string> = {
+  Patrick: 'Patrick looks after your booking and makes sure the day goes to plan.',
+  Tania: 'Tania looks after groups on the day.',
+};
+const hosts = hostFacts.map((h) => ({ ...h, line: lines[h.name] }));
 ---
 <section class="section section--white" aria-labelledby="hosts-heading">
   <div class="container">
@@ -27,7 +29,7 @@ const hosts = [
           <Photo n={h.image} width={480} height={600} sizes="(max-width: 640px) 100vw, 260px" />
           <div>
             <h3>{h.name}</h3>
-            <p class="hosts__role">Host</p>
+            <p class="hosts__role">{h.role}</p>
             <p>{h.line}</p>
           </div>
         </div>
