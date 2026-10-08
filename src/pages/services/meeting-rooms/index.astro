@@ -1,0 +1,250 @@
+---
+// Meeting rooms. Spec: Website Blueprint page 6 (Template: Service). Audience: team leads, managers and small businesses
+// booking meetings, interviews and away days. Also catches old hot-desking and coworking traffic (301s in netlify.toml):
+// hot desking is no longer offered (PROJECT_NOTES), so the Pod is offered by the hour instead.
+// No half-day rates (owner, Oct 2026): rooms are hired by the hour or the day.
+import Base from '../../../layouts/Base.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import Hero from '../../../components/sections/Hero.astro';
+import KeyFacts from '../../../components/sections/KeyFacts.astro';
+import RoomCards from '../../../components/sections/RoomCards.astro';
+import HostedDay from '../../../components/sections/HostedDay.astro';
+import Comparison from '../../../components/sections/Comparison.astro';
+import VirtualOfficeBand from '../../../components/sections/VirtualOfficeBand.astro';
+import Faqs from '../../../components/sections/Faqs.astro';
+import FindUs from '../../../components/sections/FindUs.astro';
+import Photo from '../../../components/Photo.astro';
+import CaseCard from '../../../components/CaseCard.astro';
+import { accessibility, booking, catering, contact, formatPrice, hours, layoutTriage, listNames, parking, rateGroups, rooms, site, virtualOffice } from '../../../data/facts';
+import { images } from '../../../data/images';
+import { caseStudies } from '../../../data/caseStudies';
+import { quotes } from '../../../data/reviewQuotes';
+import { bookingTermsPath, cancellationSummary } from '../../../data/bookingTerms';
+import { breadcrumbNode, faqNode, roomPlaceNode, serviceNode } from '../../../lib/schema';
+import Reviews from '../../../components/sections/Reviews.astro';
+
+const path = '/services/meeting-rooms/';
+const url = `${site.url}${path}`;
+const title = "Meeting Room Hire in Knowsley | Maggie O'Neill Centre";
+
+const order = ['pod', 'hub', 'foundry', 'forum', 'summit', 'grove'];
+const meetingRooms = order.map((s) => rooms.find((r) => r.slug === s)!);
+const pod = rooms.find((r) => r.slug === 'pod')!;
+const groups = rateGroups().filter((g) => g.rooms.some((r) => order.includes(r.slug)));
+const the = (names: string[]) => listNames(names.map((n) => `the ${n}`));
+const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
+const rateSentences = groups.map(
+  (g) => `${the(g.rooms.filter((r) => order.includes(r.slug)).map((r) => r.name))} ${g.rooms.length > 1 ? 'cost' : 'costs'} ${formatPrice(g.hour)} an hour or ${formatPrice(g.day)} a day`,
+);
+
+const description = `Hosted meeting rooms and boardrooms in Huyton, from the ${pod.name} at ${formatPrice(pod.prices!.hour!)} an hour. Screen, tea and coffee and free parking included. Maggie O'Neill Centre.`;
+
+const intro = `The Maggie O'Neill Centre in Huyton, Knowsley, has meeting rooms for everything from a one-to-one in the ${pod.name} to a team away day. Rooms cost from ${formatPrice(pod.prices!.hour!)} an hour. Every room has a screen with Mac and PC wireless casting and HDMI, tea and coffee are served in the room, parking is free, and hosts are on site all day.`;
+
+const keyFacts = [
+  { term: 'Prices', detail: `From ${formatPrice(pod.prices!.hour!)} an hour, by the hour or the day, everything included.`, href: '#rooms', linkText: 'All room rates' },
+  { term: 'Rooms', detail: `${meetingRooms.length} rooms, from the ${pod.name} for ${pod.capacity.boardroom} to rooms for whole teams.` },
+  { term: 'Good for', detail: 'Team meetings, board meetings, interviews, client meetings and away days.' },
+  { term: 'Tech', detail: 'Screen with Mac and PC wireless casting and HDMI, cables provided, WiFi, flipchart and pens.' },
+  { term: 'Refreshments', detail: 'Tea and coffee in the room, all day, included.' },
+  { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
+  { term: 'Your hosts', detail: 'On site all day, so you can walk in and get started.' },
+  { term: 'Cancelling', detail: 'Free to change up to 1 business day before a standard booking.', href: bookingTermsPath, linkText: 'Booking terms' },
+];
+
+const faqs = [
+  {
+    q: 'How much does it cost to hire a meeting room in Knowsley?',
+    a: `Meeting rooms at the Maggie O'Neill Centre in Huyton cost from ${formatPrice(pod.prices!.hour!)} an hour. ${rateSentences.map(cap).join('. ')}. Your host, tea and coffee, the screen and free parking are included.`,
+  },
+  {
+    q: 'Can I book a meeting room by the hour?',
+    a: `Yes. Every meeting room at the Maggie O'Neill Centre can be booked by the hour or by the day. There are no half-day rates, so a shorter meeting is simply charged at the hourly rate.`,
+  },
+  {
+    q: 'Do you have a small room for interviews or one-to-ones?',
+    a: `Yes. The ${pod.name} at the Maggie O'Neill Centre seats up to ${pod.capacity.boardroom} around an oak table with a wall screen, and costs ${formatPrice(pod.prices!.hour!)} an hour or ${formatPrice(pod.prices!.day!)} a day.`,
+  },
+  {
+    q: 'Do you have a boardroom?',
+    a: "Yes. The Hub is set as a boardroom, and the larger rooms at the Maggie O'Neill Centre can be set boardroom style too. Tell us your numbers and we'll set the right room before you arrive.",
+  },
+  {
+    q: 'How many people can the meeting rooms hold?',
+    a: `It depends on the room and the layout, from ${pod.capacity.boardroom} in the ${pod.name} to whole teams in the larger rooms. ${layoutTriage}`,
+  },
+  {
+    q: 'Do you offer hot desking or coworking?',
+    a: `No. The Maggie O'Neill Centre no longer offers hot desks or coworking. For a quiet room to work or meet in, the ${pod.name} is ${formatPrice(pod.prices!.hour!)} an hour, and a virtual office gives you a business address from ${formatPrice(virtualOffice.from)} a month.`,
+  },
+  {
+    q: 'Is there a screen in every meeting room?',
+    a: "Yes. Every room at the Maggie O'Neill Centre has a screen with wireless casting from Mac and PC, plus HDMI, and the cables are provided. There's WiFi, a flipchart and pens too.",
+  },
+  {
+    q: "Is parking free at the Maggie O'Neill Centre?",
+    a: `Yes. The Maggie O'Neill Centre has a free ${parking.spaces}-space car park on site, ${parking.motorway}, and it is on a main bus route.`,
+  },
+  {
+    q: 'Can you provide lunch?',
+    a: `Yes. ${catering.summary.replace('our partner', "the Maggie O'Neill Centre's partner")}`,
+  },
+  {
+    q: 'Is the venue accessible?',
+    a: `Yes. The Maggie O'Neill Centre is fully accessible on the ground floor, with step-free access, accessible parking and ${accessibility.toiletGeneral.charAt(0).toLowerCase()}${accessibility.toiletGeneral.slice(1)}`,
+  },
+  {
+    q: 'What happens if I need to cancel?',
+    a: cancellationSummary,
+  },
+  {
+    q: 'Can I book a meeting room in the evening or at the weekend?',
+    a: `Yes. The Maggie O'Neill Centre is open ${hours.summary}, and evening and weekend room hire is available on request.`,
+  },
+];
+
+const reviews = [quotes.anita, quotes.kim, quotes.peter];
+const pcn = caseStudies.find((c) => c.slug === 'central-and-south-pcn')!;
+
+const schema = [
+  serviceNode({
+    url,
+    name: 'Meeting room hire',
+    serviceType: 'Meeting room and boardroom hire',
+    description: intro,
+    provider: 'venue',
+    areaServed: ['Huyton', 'Knowsley', 'Liverpool', 'Merseyside'],
+    catalogName: 'Meeting room hourly rates',
+    offers: groups.map((g) => {
+      const names = listNames(g.rooms.filter((r) => order.includes(r.slug)).map((r) => r.name));
+      return {
+        name: `${names}: hourly rate`,
+        price: g.hour,
+        unit: 'HOUR' as const,
+        description: `Hosted hire of the ${names} by the hour, with tea and coffee, the screen and free parking included.`,
+      };
+    }),
+  }),
+  ...meetingRooms.map((r) => roomPlaceNode(r, images[r.image]?.src)),
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Meeting rooms', url },
+  ]),
+  faqNode(url, faqs),
+];
+---
+<Base title={title} description={description} ogImage={images[66].src} ogImageAlt={images[66].alt} preloadImage={images[66].src} schema={schema}>
+  <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Meeting rooms', path }]} />
+
+  <Hero
+    title="Meeting room hire in Huyton, Knowsley"
+    tagline="Walk in, sit down, get on with it."
+    lede="Your host has the room ready, the screen on and the tea made at the Maggie O'Neill Centre."
+    image={66}
+    secondary={{ label: 'See the rooms', href: '#rooms' }}
+  />
+
+  <KeyFacts heading="Meeting room hire, in a few lines" intro={intro} facts={keyFacts} />
+  <p class="container updated">Last updated: October 2026</p>
+
+  <div id="rooms">
+    <RoomCards
+      heading="Which meeting rooms can you hire?"
+      intro="Every room is hosted, set to your layout and has a screen with Mac and PC wireless casting and HDMI. Book by the hour or the day."
+      order={order}
+    />
+  </div>
+
+  <section class="section section--white" aria-labelledby="pod-heading">
+    <div class="container two-col two-col--media">
+      <div class="media">
+        <Photo n={95} width={720} height={540} sizes="(max-width: 900px) 100vw, 520px" />
+      </div>
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">The {pod.name}</span>
+          <h2 id="pod-heading">Need a small room for an interview or a one-to-one?</h2>
+          <p>
+            The {pod.name} seats up to {pod.capacity.boardroom} around an oak table, with a wall screen. It's {formatPrice(pod.prices!.hour!)} an hour or
+            {' '}{formatPrice(pod.prices!.day!)} a day, with tea and coffee and free parking included.
+          </p>
+        </div>
+        <ul class="tick-list">
+          <li>Interviews and one-to-ones.</li>
+          <li>Client meetings away from the office.</li>
+          <li>A quiet room to work or take calls for a few hours.</li>
+        </ul>
+        <p class="pod__cta"><a class="btn btn--primary" href={booking.url} target="_blank" rel="noopener" data-track="booking_click">Book the {pod.name}</a></p>
+      </div>
+    </div>
+  </section>
+
+  <HostedDay />
+
+  <section class="section section--cream" aria-labelledby="monthly-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">Regular meetings</span>
+        <h2 id="monthly-heading">Need somewhere for your monthly meetings?</h2>
+        <p>
+          Boards, partnerships and teams that work across several sites book here every month. It's neutral ground, easy to reach, and the room
+          is set the same way every time.
+        </p>
+      </div>
+      <CaseCard study={pcn} />
+    </div>
+  </section>
+
+  <Reviews reviews={reviews} heading="What do people say about meeting here?" />
+
+  <section class="section section--white" aria-labelledby="desk-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">Hot desking</span>
+        <h2 id="desk-heading">Looking for a hot desk or coworking?</h2>
+      </div>
+      <div class="prose">
+        <p>
+          We no longer offer hot desks or coworking. If you need a quiet room to work, meet a client or take calls, the {pod.name} is
+          {' '}{formatPrice(pod.prices!.hour!)} an hour.
+        </p>
+        <p>
+          If you need a business address, a <a href="/services/virtual-office/">virtual office</a> gives you a real address in Huyton from
+          {' '}{formatPrice(virtualOffice.from)} a month.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Comparison />
+
+  <VirtualOfficeBand />
+
+  <Faqs faqs={faqs} heading="Meeting room questions" />
+
+  <section class="section section--white more-links" aria-label="More rooms and services">
+    <div class="container">
+      <p>
+        Running a course? See <a href="/services/training-rooms/">training room hire near Liverpool</a>. Planning something bigger? See
+        {' '}<a href="/services/event-space-business-and-community/">events and conferences</a>. Also see <a href="/whats-included/">everything that's included</a>,
+        {' '}<a href="/case-studies/">case studies</a> and our <a href={bookingTermsPath}>booking terms</a>, or call
+        {' '}<a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>.
+      </p>
+    </div>
+  </section>
+
+  <FindUs />
+</Base>
+
+<style>
+  .two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .two-col--media { align-items: center; }
+  .two-col .section-head { margin-bottom: 24px; }
+  .media { margin: 0; }
+  .media :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
+  .pod__cta { margin-top: 24px; }
+  .prose { display: flex; flex-direction: column; gap: 16px; }
+  .updated { margin-top: -40px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
+  .more-links { padding: 40px 0; }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } .updated { margin-top: -24px; } }
+</style>
