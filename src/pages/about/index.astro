@@ -122,7 +122,10 @@ const schema = [
           <li><strong>Over {trackRecord.yearsServing} years</strong><span>serving Huyton and Knowsley as a charity.</span></li>
           <li><strong>{trackRecord.openedYear}</strong><span>{trackRecord.openedBy} officially opened the Maggie O'Neill Centre building.</span></li>
           <li><strong>Over {trackRecord.covidParcels}</strong><span>food parcels delivered by our staff and volunteers during the Covid lockdowns.</span></li>
+          <li><strong>{lastYear.roomsHired}</strong><span>rooms hired in the last year.</span></li>
+          <li><strong>{lastYear.businessesServed}</strong><span>businesses served in the last year.</span></li>
           <li><strong>{lastYear.mealsAccessed}</strong><span>people used Maggie's Meals, our social supermarket, in the last year.</span></li>
+          <li><strong>{lastYear.freeSpaceHours} hours</strong><span>of free space given to charitable and community groups in the last year.</span></li>
         </ul>
         <div class="prose">
           <p>
@@ -192,6 +195,7 @@ const schema = [
   /* Track record as stat cards: big figure on top, what it means underneath (owner, Oct 2026: give each one room). */
   .record { list-style: none; padding: 0; margin: 0 0 32px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
   .record li { display: flex; flex-direction: column; gap: 10px; padding: 24px 24px 26px; background: var(--moc-white); border-radius: var(--radius-card); box-shadow: var(--moc-shadow-card); }
+  .record li:first-child { grid-column: 1 / -1; }
   .record li::before { content: ''; width: 32px; height: 4px; border-radius: 2px; background: var(--moc-coral-500); }
   .record strong { font: 800 clamp(26px, 3vw, 34px)/1.05 var(--font-display); color: var(--moc-purple-900); letter-spacing: -0.02em; }
   .record span { font-size: var(--text-small-size); line-height: 1.5; color: var(--moc-ink); }

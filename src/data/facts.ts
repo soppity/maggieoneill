@@ -87,6 +87,8 @@ export const lastYear = {
   roomsHired: '900+',
   businessesServed: '150+',
   mealsAccessed: '750+',
+  // Owner, Oct 2026: free room hours given to charitable and community groups in the last year.
+  freeSpaceHours: '550+',
 };
 
 // Charity track record (owner, Oct 2026).
