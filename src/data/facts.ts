@@ -213,11 +213,11 @@ export const hostedEvent = [
   'A fridge for storing food',
 ];
 
-// Private offices (owner, Oct 2026). 9 offices, all let: enquiries join the waitlist.
+// Private offices (owner, Oct 2026). 10 offices, all let: enquiries join the waitlist.
 export const privateOffices = {
   from: 450,
   lease: '1-year lease',
-  total: 9,
+  total: 10,
   vacancies: 0,
   sizes: [
     { name: 'Single office', people: '1 to 2 people' },
