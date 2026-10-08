@@ -20,10 +20,10 @@ const form = forms.officeWaitlist;
         <a href={contact.whatsappHref} rel="noopener" data-track="whatsapp_click">{contact.text}</a>.
       </p>
     </div>
-    <div class="wl-form__box" style={`min-height:${form.height}px;height:${form.height}px`}>
+    <div class="wl-form__box">
       <iframe
         src={`https://api.leadconnectorhq.com/widget/form/${form.id}`}
-        style="width:100%;height:100%;border:none;border-radius:8px"
+        style={`width:100%;height:${form.height}px;border:none;border-radius:8px;display:block`}
         id={`inline-${form.id}`}
         data-layout="{'id':'INLINE'}"
         data-trigger-type="alwaysShow"
