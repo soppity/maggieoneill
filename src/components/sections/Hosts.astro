@@ -15,10 +15,10 @@ const team = [...hosts, ...volunteers];
     <div class="section-head">
       <span class="eyebrow">Meet the team</span>
       <h2 id="hosts-heading">{onAbout ? 'Who will you meet at the Maggie O’Neill Centre?' : 'Who will look after you on the day?'}</h2>
-      <p>Our hosts are on site at the Maggie O'Neill Centre all day, looking after every group, with our volunteers alongside them.</p>
+      <p>{onAbout ? "Our team is on site at the Maggie O'Neill Centre all day, looking after every group." : "Our hosts are on site at the Maggie O'Neill Centre all day, looking after every group, with our volunteers alongside them."}</p>
       {!onAbout && <p class="hosts__story">The centre is named after Maggie O'Neill, who bought this derelict 1930s hall with her family in the 1980s. <a href="/about/">Meet the team and read Maggie's story</a></p>}
     </div>
-    <div class="grid hosts">
+    <div class:list={['grid hosts', { 'hosts--list': onAbout }]}>
       {team.map((h) => (
         <div class="hosts__person">
           <Photo n={h.image} width={440} height={550} sizes="220px" />
@@ -41,6 +41,10 @@ const team = [...hosts, ...volunteers];
   .hosts__person :global(img) { aspect-ratio: 4 / 5; width: 100%; max-width: 220px; border-radius: var(--radius-card); object-position: top; }
   .hosts__role { font-size: var(--text-caption-size); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--moc-coral-text); margin: 4px 0 8px; }
   .hosts__bio + .hosts__bio { margin-top: 10px; }
-  @media (max-width: 960px) { .hosts { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 520px) { .hosts { grid-template-columns: 1fr; } }
+  /* About page: the team one under another, photo beside the bio (owner, Oct 2026). */
+  .hosts--list { grid-template-columns: 1fr; gap: 40px; max-width: 860px; }
+  .hosts--list .hosts__person { flex-direction: row; align-items: flex-start; gap: 32px; }
+  .hosts--list .hosts__person :global(img) { flex: 0 0 200px; width: 200px; }
+  @media (max-width: 960px) { .hosts { grid-template-columns: 1fr 1fr; } .hosts--list { grid-template-columns: 1fr; } }
+  @media (max-width: 520px) { .hosts { grid-template-columns: 1fr; } .hosts--list .hosts__person { flex-direction: column; gap: 16px; } }
 </style>
