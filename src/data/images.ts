@@ -64,6 +64,9 @@ export const images: Record<number, LibraryImage> = {
   175: img(175, '6ac785a70762cee3015a7ef5.jpg', "Maggie O'Neill, the woman the Maggie O'Neill Centre is named after", 'P'),
   // Pastor John and Sherri, supplied by the owner, Oct 2026. For the story on the About page.
   176: img(176, '6ac78753bbad531ac82db3f2.jpg', "Pastor John and Sherri, who moved their family to Huyton to start the church"),
+  // Volunteers, supplied by the owner, Oct 2026.
+  177: img(177, '6ac78cde8c077584b4f684b4.webp', "Liam, a volunteer at the Maggie O'Neill Centre", 'P'),
+  178: img(178, '6ac78cde195f9172eded45be.webp', "Bill, a volunteer at the Maggie O'Neill Centre", 'P'),
   139: img(139, '6ab68346974a9da6eebefb38.webp', "Patrick, Director of the Maggie O'Neill Centre", 'P'),
 };
 

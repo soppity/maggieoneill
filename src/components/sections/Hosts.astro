@@ -1,58 +1,46 @@
 ---
+// The team: hosts first, then volunteers. Short lines on the homepage, full bios on the About page.
 import Photo from '../Photo.astro';
-import { hosts as hostFacts } from '../../data/facts';
+import { hosts, volunteers } from '../../data/facts';
 
 interface Props {
-  // On the About page itself: no "Read Maggie's story" or About links, and a different heading.
+  // On the About page itself: full bios, and no "Read Maggie's story" or About links.
   onAbout?: boolean;
 }
 const { onAbout = false } = Astro.props;
-
-// One line each. Owner to confirm the wording before launch.
-const lines: Record<string, string> = {
-  Patrick: 'Patrick looks after your booking and makes sure the day goes to plan.',
-  Tania: 'Tania looks after groups on the day.',
-};
-const hosts = hostFacts.map((h) => ({ ...h, line: lines[h.name] }));
+const team = [...hosts, ...volunteers];
 ---
 <section class="section section--white" aria-labelledby="hosts-heading">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Meet your hosts</span>
-      <h2 id="hosts-heading">{onAbout ? 'Who are your hosts at the Maggie O’Neill Centre?' : 'Who will look after you on the day?'}</h2>
-      <p>Our hosts are on site at the Maggie O'Neill Centre all day, looking after every group.</p>
-      {!onAbout && <p class="hosts__story">The centre is named after Maggie O'Neill, who bought this derelict 1930s hall with her family in the 1980s. <a href="/about/">Read Maggie's story</a></p>}
+      <span class="eyebrow">Meet the team</span>
+      <h2 id="hosts-heading">{onAbout ? 'Who will you meet at the Maggie O’Neill Centre?' : 'Who will look after you on the day?'}</h2>
+      <p>Our hosts are on site at the Maggie O'Neill Centre all day, looking after every group, with our volunteers alongside them.</p>
+      {!onAbout && <p class="hosts__story">The centre is named after Maggie O'Neill, who bought this derelict 1930s hall with her family in the 1980s. <a href="/about/">Meet the team and read Maggie's story</a></p>}
     </div>
     <div class="grid hosts">
-      {hosts.map((h) => (
+      {team.map((h) => (
         <div class="hosts__person">
-          <Photo n={h.image} width={480} height={600} sizes="220px" />
+          <Photo n={h.image} width={440} height={550} sizes="220px" />
           <div>
             <h3>{h.name}</h3>
             <p class="hosts__role">{h.role}</p>
-            <p>{h.line}</p>
+            {onAbout ? h.bio.map((p) => <p class="hosts__bio">{p}</p>) : <p>{h.line}</p>}
           </div>
         </div>
       ))}
-      <div class="hosts__volunteer card">
-        <h3>Liam</h3>
-        <p class="hosts__role">Volunteer</p>
-        <p>Liam volunteers at the centre, so you may see him helping out on your day.</p>
-        {!onAbout && <a href="/about/">About Maggie's and your hosts</a>}
-      </div>
     </div>
   </div>
 </section>
 
 <style>
   .section-head .hosts__story { font-size: var(--text-body-size); }
-  .hosts { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; }
+  .hosts { grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: start; }
   .hosts__person { display: flex; flex-direction: column; gap: 16px; }
   /* Kept small so the photos stay sharp (owner, Oct 2026). */
   .hosts__person :global(img) { aspect-ratio: 4 / 5; width: 100%; max-width: 220px; border-radius: var(--radius-card); object-position: top; }
   .hosts__role { font-size: var(--text-caption-size); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--moc-coral-text); margin: 4px 0 8px; }
-  .hosts__volunteer { padding: 28px; background: var(--moc-bg-warm); box-shadow: none; display: flex; flex-direction: column; gap: 0; align-self: stretch; justify-content: center; }
-  .hosts__volunteer a { margin-top: 16px; font-weight: 700; }
-  @media (max-width: 900px) { .hosts { grid-template-columns: 1fr 1fr; } .hosts__volunteer { grid-column: 1 / -1; } }
+  .hosts__bio + .hosts__bio { margin-top: 10px; }
+  @media (max-width: 960px) { .hosts { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 520px) { .hosts { grid-template-columns: 1fr; } }
 </style>

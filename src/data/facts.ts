@@ -126,12 +126,53 @@ export const accessibility = {
   lighting: 'Adjustable lighting in the Auditorium.',
 };
 
-export const hosts = [
-  // Job titles from the owner, Oct 2026. Both are still "your hosts" in the copy.
-  { name: 'Patrick', role: 'Director', image: 139 },
-  { name: 'Tania', role: 'Community Manager', image: 137 },
+// The team, from the owner, Oct 2026. Short lines for the homepage, bios for the About page.
+// Patrick is often on site but isn't always the main point of contact: Tania runs the day to day.
+export interface TeamMember {
+  name: string;
+  role: string;
+  image: number;
+  line: string;
+  bio: string[];
+}
+export const hosts: TeamMember[] = [
+  {
+    name: 'Tania',
+    role: 'Community Manager',
+    image: 137,
+    line: 'Tania runs the day to day: your booking, your event, and making sure you’re looked after.',
+    bio: [
+      'As Community Manager, Tania runs most of the day to day at the Maggie O’Neill Centre. She coordinates bookings and events, and makes sure everyone is looked after while they’re here.',
+      'She lives in the middle of nowhere in Wales, and loves early mornings looking out over the Welsh hills to the sound of bleating sheep.',
+    ],
+  },
+  {
+    name: 'Patrick',
+    role: 'Director',
+    image: 139,
+    line: 'Patrick has run the centre for over 9 years, and is on site most days.',
+    bio: [
+      'Patrick has run the Maggie O’Neill Centre for over 9 years. When he started, the centre couldn’t afford to pay even minimum wage, so he lived in the building.',
+      'What began as a projector on a table is now 10 private offices, 7 meeting and training rooms, an Auditorium and over 40 virtual office clients.',
+    ],
+  },
 ];
-export const volunteers = [{ name: 'Liam', role: 'Volunteer' }];
+export const volunteers: TeamMember[] = [
+  {
+    name: 'Liam',
+    role: 'Volunteer',
+    image: 177,
+    line: 'Liam helps run Maggie’s Meals and looks after the tech at bigger events.',
+    bio: ['Liam helps to run Maggie’s Meals and provides AV and tech support for our bigger events. He’s also an all-round biscuit fiend.'],
+  },
+  {
+    name: 'Bill',
+    role: 'Volunteer',
+    image: 178,
+    line: 'Bill helps run Maggie’s Meals and lends a hand in the car park on busy days.',
+    bio: ['Bill helps to run Maggie’s Meals and lends a hand in the car park on busier days. He always has a dad joke ready.'],
+  },
+];
 
 // Rooms in the order customers see them. Genesis is never listed.
 // Capacities: null means not yet confirmed for the site. Don't fill these in by guesswork.

@@ -9,7 +9,7 @@ import Reviews from '../../components/sections/Reviews.astro';
 import Photo from '../../components/Photo.astro';
 import Faqs from '../../components/sections/Faqs.astro';
 import CtaBand from '../../components/sections/CtaBand.astro';
-import { contact, hosts, lastYear, maggiesMeals, site, trackRecord } from '../../data/facts';
+import { contact, hosts, lastYear, volunteers, maggiesMeals, site, trackRecord } from '../../data/facts';
 import { images } from '../../data/images';
 import { story, storyHeading, storySummary } from '../../data/story';
 import { quotes } from '../../data/reviewQuotes';
@@ -19,7 +19,7 @@ const path = '/about/';
 const url = `${site.url}${path}`;
 const title = "About Us & Meet Your Hosts | Maggie O'Neill Centre";
 const description =
-  "Meet Patrick and Tania, your hosts at the Maggie O'Neill Centre in Huyton, and the story of Maggie, the woman behind the name.";
+  "Meet Tania, Patrick and the team at the Maggie O'Neill Centre in Huyton, and the story of Maggie, the woman behind the name.";
 
 // Draft wording, built from what the site already says. Owner to confirm.
 const values = [
@@ -33,7 +33,7 @@ const faqs = [
   { q: "Who was Maggie O'Neill?", a: storySummary },
   {
     q: "Who are the hosts at the Maggie O'Neill Centre?",
-    a: "Patrick, our Director, and Tania, our Community Manager, are the hosts at the Maggie O'Neill Centre, and Liam volunteers with us. A host is on site all day, looking after every group.",
+    a: "Tania, our Community Manager, runs the day to day at the Maggie O'Neill Centre, with Patrick, our Director, and our volunteers Liam and Bill. A host is on site all day, looking after every group.",
   },
   {
     q: "Is the Maggie O'Neill Centre a charity?",
@@ -54,7 +54,7 @@ const schema = [
     { name: 'Home', url: `${site.url}/` },
     { name: 'About', url },
   ]),
-  ...hosts.map((h) => ({
+  ...[...hosts, ...volunteers].map((h) => ({
     '@type': 'Person',
     '@id': `${url}#${h.name.toLowerCase()}`,
     name: h.name,
@@ -71,7 +71,7 @@ const schema = [
   <Hero
     title="About the Maggie O'Neill Centre"
     tagline="Meet your hosts."
-    lede="Patrick, our Director, and Tania, our Community Manager, are your hosts, with Liam who volunteers with us. The Maggie O'Neill Centre (MOBTC), known to most as Maggie's, is a charity-run training, meeting and event venue and virtual office provider in Huyton, near Liverpool."
+    lede="Tania, our Community Manager, runs the day to day, with Patrick, our Director, and our volunteers Liam and Bill. The Maggie O'Neill Centre (MOBTC), known to most as Maggie's, is a charity-run training, meeting and event venue and virtual office provider in Huyton, near Liverpool."
     image={6}
     primary={{ label: 'Book a visit', href: '/visit/' }}
     secondary={{ label: `Call ${contact.phone}`, href: contact.phoneHref }}
@@ -80,7 +80,7 @@ const schema = [
   <Hosts onAbout />
 
   <Reviews
-    heading="What do people say about your hosts?"
+    heading="What do people say about the team?"
     reviews={[quotes.william, quotes.neil, quotes.cooper, quotes.elo, quotes.charlotte, quotes.rebecca]}
   />
 

@@ -13,5 +13,6 @@ export const story: string[] = [
   'Over in the United States, John Hemus, then in his thirties, had begun to feel called home to the UK to start a church. On a visit, he met Maggie. She walked straight up to him and said, “I’ve been praying, and God said you’re going to be my pastor.”',
   'John laughed it off. He was running a thriving business in America, and his future looked settled.',
   'Within a couple of years, he knew he had to come home. Everything fell into place. John and his wife Sherri closed the business, sold their home, packed up their young family and moved to Huyton, off their own backs, to start the adventure of a lifetime.',
+  'John and Sherri had the vision to turn the old church hall into space for the community and for business. John wanted to build offices that would bring services into the heart of the community, and today counselling services, therapists and other charities are based at the centre. When John arrived, it was a mouldy old building. Now it’s a business and community hub for Knowsley and Liverpool.',
   'We named the building after Maggie to honour her, and so we always remember how it began: a woman with a <strong>vision</strong> in her mind, <strong>love</strong> in her heart and <strong>family</strong> by her side.',
 ];
