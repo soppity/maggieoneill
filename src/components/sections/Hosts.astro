@@ -26,7 +26,7 @@ const hosts = hostFacts.map((h) => ({ ...h, line: lines[h.name] }));
     <div class="grid hosts">
       {hosts.map((h) => (
         <div class="hosts__person">
-          <Photo n={h.image} width={480} height={600} sizes="(max-width: 640px) 100vw, 260px" />
+          <Photo n={h.image} width={480} height={600} sizes="220px" />
           <div>
             <h3>{h.name}</h3>
             <p class="hosts__role">{h.role}</p>
@@ -48,7 +48,8 @@ const hosts = hostFacts.map((h) => ({ ...h, line: lines[h.name] }));
   .section-head .hosts__story { font-size: var(--text-body-size); }
   .hosts { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; }
   .hosts__person { display: flex; flex-direction: column; gap: 16px; }
-  .hosts__person :global(img) { aspect-ratio: 4 / 5; border-radius: var(--radius-card); object-position: top; }
+  /* Kept small so the photos stay sharp (owner, Oct 2026). */
+  .hosts__person :global(img) { aspect-ratio: 4 / 5; width: 100%; max-width: 220px; border-radius: var(--radius-card); object-position: top; }
   .hosts__role { font-size: var(--text-caption-size); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--moc-coral-text); margin: 4px 0 8px; }
   .hosts__volunteer { padding: 28px; background: var(--moc-bg-warm); box-shadow: none; display: flex; flex-direction: column; gap: 0; align-self: stretch; justify-content: center; }
   .hosts__volunteer a { margin-top: 16px; font-weight: 700; }

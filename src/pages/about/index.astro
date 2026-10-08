@@ -96,7 +96,7 @@ const schema = [
         </div>
       </div>
       <div class="media">
-        <Photo n={175} width={560} height={700} sizes="(max-width: 900px) 100vw, 440px" class="maggie" />
+        <Photo n={175} width={560} height={700} sizes="280px" class="maggie" />
       </div>
     </div>
   </section>
@@ -173,7 +173,8 @@ const schema = [
   .two-col .section-head { margin-bottom: 24px; }
   .media { margin: 0; position: sticky; top: 104px; }
   .media :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
-  .media :global(img.maggie) { aspect-ratio: 4 / 5; object-position: top; }
+  /* Owner, Oct 2026: the original is already a crop, so show it small and uncropped. */
+  .media :global(img.maggie) { aspect-ratio: auto; height: auto; width: 100%; max-width: 280px; display: block; margin-inline: auto; }
   .story :global(strong) { color: var(--moc-purple-700); }
   .prose { display: flex; flex-direction: column; gap: 16px; }
   .story p:first-child { font-size: var(--text-lead-size); }
