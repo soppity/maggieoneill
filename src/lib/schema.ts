@@ -34,8 +34,9 @@ export function sitewideNodes(): Node[] {
     areaServed: ['Huyton', 'Knowsley', 'Liverpool', 'Merseyside'],
     amenityFeature: [
       'Free on-site parking',
-      'Free WiFi',
-      'Screens with Mac and PC wireless casting and HDMI in every room',
+      'Free 1Gb fibre WiFi',
+      'Screens with Mac and PC wireless casting and HDMI in every meeting and training room',
+      'Stage, lectern, microphones, sound system and technician-run AV in the Auditorium',
       'Tea and coffee included',
       'Step-free access',
       'Accessible parking',
@@ -218,7 +219,10 @@ export function roomPlaceNode(room: { slug: string; name: string; capacity: Reco
     '@id': `${site.url}/#room-${room.slug}`,
     name: `The ${room.name} at the ${site.name}`,
     containedInPlace: { '@id': id('venue') },
-    amenityFeature: ['Screen with Mac and PC wireless casting and HDMI', 'Free WiFi', 'Tea and coffee included'].map((name) => ({
+    amenityFeature: (room.slug === 'auditorium'
+      ? ['Stage and lectern', 'Microphones and sound system', 'AV set up and run by a technician', 'Free 1Gb fibre WiFi', 'Tea and coffee included']
+      : ['Screen with Mac and PC wireless casting and HDMI', 'Free 1Gb fibre WiFi', 'Tea and coffee included']
+    ).map((name) => ({
       '@type': 'LocationFeatureSpecification',
       name,
       value: true,

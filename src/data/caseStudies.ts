@@ -393,7 +393,7 @@ export const caseStudies: CaseStudy[] = [
         heading: 'Why does Sunflower House keep coming back?',
         points: [
           'The room is set up the same way every time, so trainers and staff know exactly what to expect.',
-          'The right amenities are in place: the screen ready, tea and coffee in the room, WiFi, and free parking for staff travelling in.',
+          'The right amenities are in place: the screen ready, tea and coffee in the room, 1Gb fibre WiFi, and free parking for staff travelling in.',
           'We work to be flexible and accommodating, whatever the day needs.',
           'Hosts are on site all day, so anything that comes up is sorted quickly.',
         ],

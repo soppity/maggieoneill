@@ -107,6 +107,8 @@ export const parking = {
   summary: 'Free car park on site, 30 seconds from the M57, on a main bus route',
   spaces: 50,
   motorway: '30 seconds from the M57',
+  // Owner, Oct 2026: an overflow car park is used if the main one fills up (events).
+  overflow: 'an overflow car park if it fills up',
 };
 
 export const accessibility = {
@@ -188,12 +190,27 @@ export const hostedDay = [
   'Room set to your layout before you arrive',
   'On-site hosts, all day',
   'Tea and coffee in the room, all day',
-  'Screen with Mac and PC wireless casting, HDMI cables and WiFi',
+  'Screen with Mac and PC wireless casting and HDMI cables',
+  '1Gb fibre WiFi throughout the building',
   'Flipchart and pens',
   'Free parking for every delegate',
   'A mid-morning check-in with your trainer',
   'Kitchen and fridge access',
   'Room notes kept for next time',
+];
+
+// The Hosted Day for events and Auditorium bookings (owner, Oct 2026). Only on the events page and when talking
+// about events or the Auditorium; every other page uses hostedDay above.
+export const hostedEvent = [
+  'Your event talked through and prepped for the day',
+  'Hosts checking on your event all day, so you have everything you need',
+  'Tea and coffee included, in or near every space you book',
+  'Flipcharts if you need them',
+  'AV in the Auditorium set up and run by a technician',
+  'Flatscreens with wireless casting in every breakout and networking space',
+  '1Gb fibre WiFi throughout the building',
+  'Free parking, with an overflow car park if it fills up',
+  'A fridge for storing food',
 ];
 
 // Virtual office. Source: docs/content/virtual-office-source.md and PROJECT_NOTES.md.
