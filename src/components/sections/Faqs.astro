@@ -5,6 +5,10 @@ interface Props {
   heading?: string;
 }
 const { faqs, heading = 'Questions people ask before they book' } = Astro.props;
+
+// Email addresses in an answer become mailto links on the page. The schema keeps the plain text.
+const emailPattern = /([\w.+-]+@[\w-]+(?:\.[\w-]+)+)/;
+const parts = (text: string) => text.split(emailPattern).map((part, i) => ({ text: part, email: i % 2 === 1 }));
 ---
 <section class="section section--cream" aria-labelledby="faq-heading">
   <div class="container faqs">
@@ -16,7 +20,7 @@ const { faqs, heading = 'Questions people ask before they book' } = Astro.props;
       {faqs.map((f) => (
         <details class="faqs__item">
           <summary><h3>{f.q}</h3></summary>
-          <p>{f.a}</p>
+          <p>{parts(f.a).map((part) => (part.email ? <a href={`mailto:${part.text}`}>{part.text}</a> : part.text))}</p>
         </details>
       ))}
     </div>

@@ -1,0 +1,260 @@
+---
+// Maggie's Meals and community. Spec: Website Blueprint page 16 (Template: Trust).
+// Audience: supporters, local residents and bookers who care. Job: show the good that bookings fund.
+// Facts only from facts.ts and the owner. Gaps (how Maggie's Meals works, volunteering) are flagged in the PR.
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Hero from '../../components/sections/Hero.astro';
+import Photo from '../../components/Photo.astro';
+import Faqs from '../../components/sections/Faqs.astro';
+import CtaBand from '../../components/sections/CtaBand.astro';
+import { allNations, church, lastYear, maggiesMeals, site, trackRecord, volunteers } from '../../data/facts';
+import { images } from '../../data/images';
+import { breadcrumbNode, faqNode } from '../../lib/schema';
+
+const path = '/community/';
+const url = `${site.url}${path}`;
+const title = "Maggie's Meals & Community in Huyton | Maggie O'Neill Centre";
+const description =
+  "How the Maggie O'Neill Centre supports Knowsley: Maggie's Meals, hyper-local community groups and volunteering, all funded by room hire.";
+
+const mealsWhen = `${maggiesMeals.schedule.charAt(0).toLowerCase()}${maggiesMeals.schedule.slice(1)}`;
+
+const openToAll = [
+  { title: 'Community coffee mornings', text: 'An open door and a hot drink for anyone who wants company.' },
+  { title: 'Community clean-ups', text: 'Clean-ups around Huyton, looking after the area we share.' },
+  {
+    title: 'Church gatherings and groups',
+    text: "Our church gatherings, small groups and men's and women's groups are open to everyone. Many people find a real sense of belonging here, even if they don't share our faith.",
+  },
+  {
+    title: allNations.name,
+    text: `Held ${allNations.when}. People from ${allNations.nationalities} nationalities take over the building with food from home and traditional dress.`,
+  },
+];
+
+const stats = [
+  { value: lastYear.mealsAccessed, label: "people used Maggie's Meals in the last year" },
+  { value: `${lastYear.freeSpaceHours}`, label: 'hours of free space given to hyper‑local community groups in the last year' },
+  { value: `${trackRecord.covidParcels}+`, label: 'food parcels delivered during the Covid lockdowns' },
+  { value: `${trackRecord.yearsServing}+`, label: 'years serving Huyton and Knowsley' },
+];
+
+const faqs = [
+  {
+    q: "What is Maggie's Meals?",
+    a: `Maggie's Meals is the social supermarket at the Maggie O'Neill Centre in Huyton, run by the charity and its volunteers. ${lastYear.mealsAccessed} people used it in the last year.`,
+  },
+  {
+    q: "When is Maggie's Meals open?",
+    a: `Maggie's Meals is open ${mealsWhen}, at the Maggie O'Neill Centre, 433 Liverpool Road, Huyton.`,
+  },
+  {
+    q: "How does booking a room help Maggie's Meals?",
+    a: "The Maggie O'Neill Centre is a registered charity. Income from room hire and virtual offices funds Maggie's Meals and the charity's community work in Knowsley, so every booking does some good a few streets away.",
+  },
+  {
+    q: 'Does the Maggie O’Neill Centre support local community groups?',
+    a: `Yes. In the last year the Maggie O'Neill Centre gave ${lastYear.freeSpaceHours} hours of free space to hyper-local community groups in Huyton. Room hire from businesses, public bodies and charities is what makes that possible.`,
+  },
+  {
+    q: 'Are the church groups open to everyone?',
+    a: "Yes. Our church gatherings, small groups and men's and women's groups are open to everyone, whether or not you share our faith.",
+  },
+  {
+    q: 'What time is church?',
+    a: `Church meets at ${church.times}, on the Maggie O'Neill Centre site. For more information, email ${church.email}.`,
+  },
+];
+
+const schema = [
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: "Maggie's Meals and community", url },
+  ]),
+  faqNode(url, faqs),
+];
+---
+<Base title={title} description={description} ogImage={images[110].src} ogImageAlt={images[110].alt} preloadImage={images[110].src} schema={schema}>
+  <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: "Maggie's Meals and community", path }]} />
+
+  <Hero
+    title="Maggie's Meals and community"
+    tagline="Where your booking goes."
+    lede={`Room hire at the Maggie O'Neill Centre funds Maggie's Meals, our social supermarket, and the charity's community work in Huyton and Knowsley. We're a registered charity (no. ${site.charityNumber}), and we've been here for over ${trackRecord.yearsServing} years.`}
+    image={110}
+    secondary={{ label: 'Social value for buyers', href: '/social-value/' }}
+  />
+
+  <section class="section section--white" aria-labelledby="meals-heading">
+    <div class="container two-col">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">Maggie's Meals</span>
+          <h2 id="meals-heading">What is Maggie's Meals?</h2>
+        </div>
+        <div class="prose">
+          <p class="lead">
+            Maggie's Meals is our social supermarket, open {mealsWhen} at the Maggie O'Neill Centre. {lastYear.mealsAccessed} people used it in the last year.
+          </p>
+          <p>
+            It's run by the charity and our volunteers, including Liam and Bill, and it's paid for by the rooms, offices and virtual offices our customers book.
+            When you hire a room here, part of what you pay keeps the shelves stocked.
+          </p>
+        </div>
+      </div>
+      <ul class="pantry">
+        <li class="pantry__lead"><Photo n={111} width={720} height={540} sizes="(max-width: 900px) 100vw, 560px" /></li>
+        <li><Photo n={112} width={480} height={360} sizes="(max-width: 900px) 50vw, 280px" /></li>
+        <li><Photo n={180} width={480} height={360} sizes="(max-width: 900px) 50vw, 280px" /></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section numbers" aria-labelledby="numbers-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">What your bookings add up to</span>
+        <h2 id="numbers-heading">What has the charity done?</h2>
+      </div>
+      <dl class="stats">
+        {stats.map((s) => (
+          <div>
+            <dt>{s.label}</dt>
+            <dd>{s.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="open-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Open to everyone</span>
+        <h2 id="open-heading">What else happens at the Maggie O'Neill Centre?</h2>
+        <p>Alongside Maggie's Meals, the building hosts plenty more for the local community.</p>
+      </div>
+      <ul class="grid groups">
+        {openToAll.map((g) => (
+          <li class="card group">
+            <h3>{g.title}</h3>
+            <p>{g.text}</p>
+          </li>
+        ))}
+      </ul>
+      <ul class="nations" aria-label={`Photos from ${allNations.name}`}>
+        {allNations.images.slice(0, 3).map((n) => (
+          <li><Photo n={n} width={560} height={420} sizes="(max-width: 700px) 100vw, 380px" /></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="free-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">Hyper-local groups</span>
+        <h2 id="free-heading">Do you support local community groups?</h2>
+      </div>
+      <div class="prose">
+        <p class="lead">Yes. In the last year we gave {lastYear.freeSpaceHours} hours of free space to hyper-local community groups.</p>
+        <p>
+          It's part of how we serve the streets around us. Room hire from businesses, public bodies and charities is what makes it possible.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="care-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">Our church family</span>
+        <h2 id="care-heading">How do you look after people in hard times?</h2>
+      </div>
+      <div class="prose">
+        <p>
+          The Maggie O'Neill Centre began as a church, and the new church is still on the property. When someone in our church family is unwell, going through a
+          hard time or has a new baby, we're there for them, with home-cooked meals, hospital visits and moral support.
+        </p>
+        <p>
+          We extend meals, hospital visits and moral support to others in the community when our volunteers have the capacity. Everyone who helps is a volunteer, so we look
+          after their time carefully.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="volunteers-heading">
+    <div class="container two-col two-col--media">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">Volunteers</span>
+          <h2 id="volunteers-heading">Who keeps it all going?</h2>
+        </div>
+        <div class="prose">
+          <p>
+            Volunteers. {volunteers.map((v) => v.name).join(' and ')} help to run Maggie's Meals every week, alongside the rest of the team at the Maggie O'Neill
+            Centre. <a href="/about/#team">Meet the team</a>.
+          </p>
+        </div>
+      </div>
+      <ul class="vols">
+        {volunteers.map((v) => (
+          <li>
+            <Photo n={v.image} width={360} height={450} sizes="180px" />
+            <span>{v.name}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <Faqs faqs={faqs} heading="Questions about Maggie's Meals and the community" />
+
+  <section class="section section--white more-links" aria-label="Related pages">
+    <div class="container">
+      <p>
+        See our <a href="/social-value/">social value statement</a> for procurement, read <a href="/about/">Maggie's story</a>, or book
+        {' '}<a href="/services/training-rooms/">training room hire near Liverpool</a>.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Book a room, and do some good"
+    text="Every room you hire at the Maggie O'Neill Centre helps fund Maggie's Meals. Check availability online, or call and talk it through."
+  />
+</Base>
+
+<style>
+  .two-col { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .two-col--media { align-items: center; }
+  .two-col .section-head { margin-bottom: 24px; }
+  .prose { display: flex; flex-direction: column; gap: 16px; }
+  .prose .lead { font-size: var(--text-lead-size); }
+  .pantry { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .pantry__lead { grid-column: 1 / -1; }
+  .pantry :global(img) { width: 100%; aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
+  .numbers { background: var(--moc-purple-700); color: var(--moc-white); }
+  .numbers h2 { color: var(--moc-white); }
+  .numbers .eyebrow { color: var(--moc-purple-tint-2); }
+  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin: 0; }
+  .stats div { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 8px; }
+  .stats dd { margin: 0; font: 800 clamp(40px, 5vw, 60px)/1 var(--font-display); color: var(--moc-white); }
+  .stats dt { color: rgba(255, 255, 255, 0.9); font-size: var(--text-small-size); }
+  .groups { list-style: none; padding: 0; margin: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .group { padding: 26px 28px; display: flex; flex-direction: column; gap: 8px; }
+  .group h3 { font-size: 20px; }
+  .group p { font-size: var(--text-small-size); color: var(--moc-slate-text); }
+  .nations { list-style: none; margin: 24px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .nations :global(img) { width: 100%; aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
+  .vols { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; justify-content: center; }
+  .vols li { display: flex; flex-direction: column; align-items: center; gap: 10px; font-weight: 700; color: var(--moc-purple-900); }
+  .vols :global(img) { width: 180px; aspect-ratio: 4 / 5; border-radius: var(--radius-card); object-position: top; }
+  .more-links { padding: 40px 0; }
+  @media (max-width: 960px) { .stats { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+  @media (max-width: 700px) { .groups { grid-template-columns: 1fr; } .nations { grid-template-columns: 1fr 1fr; } .nations li:first-child { grid-column: 1 / -1; } }
+  @media (max-width: 420px) { .stats { grid-template-columns: 1fr; } .vols :global(img) { width: 140px; } }
+</style>
