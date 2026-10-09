@@ -1,0 +1,226 @@
+---
+// Events FAQs: the full list from the owner (Oct 2026), kept off the main events page so it stays short.
+// Wording is the owner's, lightly edited for UK spelling and house style. Q8 and Q9 use the booking terms in
+// bookingTerms.ts (the owner asked for the updated policy there). Schema: FAQPage + BreadcrumbList.
+import Base from '../../../../layouts/Base.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import Faqs from '../../../../components/sections/Faqs.astro';
+import CtaBand from '../../../../components/sections/CtaBand.astro';
+import { accessibility, catering, contact, hours, parking, site } from '../../../../data/facts';
+import { exceptional, larger } from '../../../../data/bookingTerms';
+import { images } from '../../../../data/images';
+import { breadcrumbNode, faqNode } from '../../../../lib/schema';
+
+const parent = '/services/event-space-business-and-community/';
+const path = `${parent}faqs/`;
+const url = `${site.url}${path}`;
+const title = "Event Venue FAQs, Huyton | Maggie O'Neill Centre";
+const description =
+  "Everything event organisers ask about the Maggie O'Neill Centre: capacity, layouts, AV, catering, parking, access, deposits and cancellations.";
+
+const groups = [
+  {
+    title: 'Venue and room capacity',
+    faqs: [
+      {
+        q: 'What is the total capacity of your venue?',
+        a: 'We have a main Auditorium that seats up to 100 people, plus seven breakout rooms. Six of those rooms can take 20 to 30 guests each, theatre style, and one smaller room is ideal for up to 4 people.',
+      },
+      {
+        q: 'Can the Auditorium seating be arranged in different layouts (theatre, classroom, banquet and so on)?',
+        a: "Yes. The Auditorium has flexible seating to suit your event. It's set up theatre style by default, and layouts that need tables incur an extra charge.",
+      },
+      {
+        q: 'Can the breakout rooms be used at the same time?',
+        a: 'Absolutely. Several breakout sessions can run in parallel, as each room works independently with its own audio-visual setup.',
+      },
+    ],
+  },
+  {
+    title: 'Booking and availability',
+    faqs: [
+      {
+        q: 'How do I check availability or arrange a visit?',
+        a: `You can check availability by contacting our team on ${contact.phone} or ${contact.email}. If you'd like to see the space, call, email or fill in the enquiry form, and we'll gladly show you round.`,
+      },
+      {
+        q: 'How far in advance should I book?',
+        a: "We recommend booking as soon as you have a confirmed date, ideally several months ahead for larger events. As we're a meeting and training venue, the breakout spaces (our meeting rooms) may already be booked on your dates. We do our best to fit in last-minute enquiries when we can.",
+      },
+      {
+        q: 'Is there a minimum or maximum booking length?',
+        a: "We offer half-day, full-day and multi-day bookings. Most large events have a minimum of a half day, but we're flexible, so just tell us what you need.",
+      },
+    ],
+  },
+  {
+    title: 'Costs, deposits and cancellations',
+    faqs: [
+      {
+        q: 'What is included in the room hire fee?',
+        a: 'Room hire generally includes setting up the furniture (chairs and tables), WiFi and basic audio-visual equipment (projector, screens, microphones and so on). Tea and coffee are included throughout your event.',
+      },
+      {
+        q: 'Do you need a deposit, and what are the payment terms?',
+        a: `Yes. ${larger.payment[0]} ${larger.payment[1]} ${larger.payment[2]} ${larger.paymentMethods}`,
+      },
+      {
+        q: 'What is your cancellation policy?',
+        a: `Events are larger bookings. ${larger.definition} ${larger.chargeable} ${larger.reschedule} ${exceptional} You can read the full booking and cancellation terms at ${site.url}/booking-terms/.`,
+      },
+    ],
+  },
+  {
+    title: 'Room setup and technical support',
+    faqs: [
+      {
+        q: 'What audio-visual equipment is in the Auditorium?',
+        a: 'The Auditorium has microphones, a projector and speakers suited to presentations and panel discussions. Our team provides technical support at a cost, which is required for the Auditorium, so everything runs smoothly.',
+      },
+      {
+        q: 'Do the breakout rooms have audio-visual equipment?',
+        a: "Yes. Each breakout room has an LED flatscreen with wireless connectivity for presentations. If you need more equipment, let us know and we'll do our best to help.",
+      },
+      {
+        q: 'Do you offer technical support on the day?',
+        a: 'Yes. Our team helps with the initial setup, the AV and any troubleshooting.',
+      },
+    ],
+  },
+  {
+    title: 'Catering and refreshments',
+    faqs: [
+      {
+        q: 'Is catering available on site?',
+        a: `We provide tea and coffee throughout the day at no extra charge. For meals or snacks, we work with a trusted local caterer, ${catering.partner}, who can tailor a menu to your event.`,
+      },
+      {
+        q: 'Can we bring our own catering?',
+        a: 'We mainly work with our local catering partner to make sure the quality and service are consistent. If you have a special request, talk to us. Arrangements can sometimes be made with prior approval.',
+      },
+      {
+        q: 'Do you cater for dietary needs and allergies?',
+        a: "Absolutely. Our caterer offers a range of options, including vegetarian, vegan, gluten-free and other dietary-specific meals. We'll put you in touch with them.",
+      },
+    ],
+  },
+  {
+    title: 'Access and logistics',
+    faqs: [
+      {
+        q: 'What are your opening hours for events?',
+        a: `We're generally open ${hours.summary.replace('Monday to Friday, ', 'from ')}, but we're flexible about early set-up and late breakdown. Tell us your schedule and we'll do our best to fit it.`,
+      },
+      {
+        q: 'Is there enough parking on site?',
+        a: `Yes. We have ${parking.spaces} parking spaces on site, all free. If you're expecting a lot of guests, we also have an overflow car park across the main road, and a parking attendant will direct your delegates there.`,
+      },
+      {
+        q: 'Is there disabled access?',
+        a: `Yes, on the ground floor, with ramps to the Auditorium and the ground-floor breakout rooms. ${accessibility.noLift} If you have specific accessibility needs, please let us know in advance.`,
+      },
+      {
+        q: 'Can we decorate the rooms or bring our own branding?',
+        a: "In most cases, yes. You're welcome to bring banners, signage and branded materials. We just ask that any decorations are safe and don't cause damage.",
+      },
+    ],
+  },
+  {
+    title: 'On the day',
+    faqs: [
+      {
+        q: 'Do you provide an event coordinator or support staff on the day?',
+        a: "We have staff on site to help with basic logistics and any questions about the building. We're here to help.",
+      },
+      {
+        q: 'How early can we arrive to set up, and how late can we stay to clear away?',
+        a: 'Set-up and breakdown times are included in your booking. If you need extra time, tell us when you book. Extended hours are charged extra.',
+      },
+      {
+        q: 'What if we have last-minute changes or requests?',
+        a: "We know events can be unpredictable. We'll do our best to fit in last-minute changes, though some requests depend on availability or may cost extra.",
+      },
+    ],
+  },
+  {
+    title: 'Extra services and equipment',
+    faqs: [
+      {
+        q: 'Can we hire extra equipment, like microphones or flipcharts?',
+        a: "Yes. We have extra equipment such as flipcharts and microphones. Tell us what you need and we'll sort out the details.",
+      },
+    ],
+  },
+  {
+    title: 'Everything else',
+    faqs: [
+      {
+        q: 'Can we host hybrid or virtual events?',
+        a: "Our AV can support one-way livestreaming, but not a large meeting where everyone talks both in the room and online. Please let us know well in advance so we can make sure the right connection and technology are in place.",
+      },
+      {
+        q: 'Do you have WiFi?',
+        a: "Yes. Fast 1Gb fibre WiFi runs throughout the building. We'll share the details with you and your guests when you arrive.",
+      },
+      {
+        q: 'Can we look round before we decide?',
+        a: "We encourage it. Contact our team to arrange a walkthrough. It's a great way to see the space, test the AV if you need to and talk through your event in person.",
+      },
+      {
+        q: 'What safety and emergency procedures do you have?',
+        a: 'We comply with all local safety regulations. Emergency exits are clearly marked, our staff are trained in evacuation procedures, and we carry out regular safety inspections.',
+      },
+      {
+        q: 'Are there any noise restrictions or curfews?',
+        a: "We're fairly flexible with evening events, but we ask that sound levels stay respectful of our neighbours. We'll talk through any curfew or noise rules that might apply, especially if your event runs late. Please note we don't take function bookings, only business and community events.",
+      },
+    ],
+  },
+];
+
+const schema = [
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Events and conferences', url: `${site.url}${parent}` },
+    { name: 'Event FAQs', url },
+  ]),
+  faqNode(url, groups.flatMap((g) => g.faqs)),
+];
+---
+<Base title={title} description={description} ogImage={images[181].src} ogImageAlt={images[181].alt} schema={schema}>
+  <Breadcrumbs
+    trail={[
+      { name: 'Home', path: '/' },
+      { name: 'Events and conferences', path: parent },
+      { name: 'Event FAQs', path },
+    ]}
+  />
+
+  <section class="section faq-hero">
+    <div class="container">
+      <span class="eyebrow">Event FAQs</span>
+      <h1>Event venue FAQs</h1>
+      <p class="faq-hero__tagline">Everything organisers ask us, in one place.</p>
+      <p class="faq-hero__lede">
+        Every event is different. If your question isn't here, or you want to talk through a custom setup, catering or speaker needs, call
+        {' '}<a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a> or email <a href={`mailto:${contact.email}`}>{contact.email}</a>.
+      </p>
+      <p><a class="btn btn--secondary" href={parent}>Back to events and conferences</a></p>
+    </div>
+  </section>
+
+  <Faqs groups={groups} heading="Questions about hosting your event" />
+
+  <CtaBand
+    heading="Planning an event?"
+    text="Tell us your date, numbers and what the day involves, and we'll help make it a success from start to finish."
+  />
+</Base>
+
+<style>
+  .faq-hero { padding-bottom: 24px; }
+  .faq-hero .container { display: flex; flex-direction: column; gap: 14px; }
+  .faq-hero .container > * { max-width: 820px; }
+  .faq-hero__tagline { font: 700 var(--text-h3-size, 24px) / 1.3 var(--font-display); color: var(--moc-coral-text); }
+  .faq-hero__lede { font-size: var(--text-lead-size); }
+</style>

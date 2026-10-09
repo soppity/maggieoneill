@@ -1,10 +1,15 @@
 ---
 // Visible FAQs as <details>. The page passes the same list to faqNode() so the schema matches word for word.
+// Pass `faqs` for one list, or `groups` for titled sections (as on the events FAQ page).
+type Faq = { q: string; a: string };
 interface Props {
-  faqs: { q: string; a: string }[];
+  faqs?: Faq[];
+  groups?: { title: string; faqs: Faq[] }[];
   heading?: string;
+  intro?: string;
 }
-const { faqs, heading = 'Questions people ask before they book' } = Astro.props;
+const { faqs = [], groups, heading = 'Questions people ask before they book', intro } = Astro.props;
+const sections = groups ?? [{ title: '', faqs }];
 
 // Email addresses in an answer become mailto links on the page. The schema keeps the plain text.
 const emailPattern = /([\w.+-]+@[\w-]+(?:\.[\w-]+)+)/;
@@ -15,13 +20,19 @@ const parts = (text: string) => text.split(emailPattern).map((part, i) => ({ tex
     <div class="section-head">
       <span class="eyebrow">FAQs</span>
       <h2 id="faq-heading">{heading}</h2>
+      {intro && <p>{intro}</p>}
     </div>
-    <div class="faqs__list">
-      {faqs.map((f) => (
-        <details class="faqs__item">
-          <summary><h3>{f.q}</h3></summary>
-          <p>{parts(f.a).map((part) => (part.email ? <a href={`mailto:${part.text}`}>{part.text}</a> : part.text))}</p>
-        </details>
+    <div class="faqs__groups">
+      {sections.map((g) => (
+        <div class="faqs__list">
+          {g.title && <h3 class="faqs__group">{g.title}</h3>}
+          {g.faqs.map((f) => (
+            <details class="faqs__item">
+              <summary>{g.title ? <h4>{f.q}</h4> : <h3>{f.q}</h3>}</summary>
+              <p>{parts(f.a).map((part) => (part.email ? <a href={`mailto:${part.text}`}>{part.text}</a> : part.text))}</p>
+            </details>
+          ))}
+        </div>
       ))}
     </div>
   </div>
@@ -42,7 +53,9 @@ const parts = (text: string) => text.split(emailPattern).map((part, i) => ({ tex
     transition: transform var(--duration-base) var(--ease-out);
   }
   .faqs__item[open] summary::after { transform: rotate(180deg); }
-  .faqs__item h3 { font-size: 18px; font-weight: 700; }
+  .faqs__item h3, .faqs__item h4 { font-size: 18px; font-weight: 700; }
+  .faqs__groups { display: flex; flex-direction: column; gap: 36px; }
+  .faqs__group { font-size: 22px; margin-bottom: 4px; }
   .faqs__item p { padding: 0 24px 22px; }
   @media (max-width: 900px) { .faqs { grid-template-columns: 1fr; } }
 </style>

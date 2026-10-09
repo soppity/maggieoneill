@@ -204,6 +204,15 @@ const schema = [
 
   <Faqs faqs={faqs} heading="Event venue questions" />
 
+  <section class="section section--cream all-faqs" aria-label="All event FAQs">
+    <div class="container">
+      <div class="all-faqs__inner">
+        <p>Capacity, layouts, AV, catering, deposits, cancellations and more: every question organisers ask us.</p>
+        <a class="btn btn--primary" href="/services/event-space-business-and-community/faqs/">See all event FAQs</a>
+      </div>
+    </div>
+  </section>
+
   <section class="section section--white more-links" aria-label="Related pages">
     <div class="container">
       <p>
@@ -219,6 +228,9 @@ const schema = [
 </Base>
 
 <style>
+  .all-faqs { padding-top: 0; }
+  .all-faqs__inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 22px 28px; border-radius: var(--radius-card); background: var(--moc-white); box-shadow: var(--moc-shadow-card); }
+  .all-faqs__inner p { margin: 0; font-size: var(--text-lead-size); }
   .two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
   .two-col--media { align-items: center; }
   .two-col .section-head { margin-bottom: 24px; }
