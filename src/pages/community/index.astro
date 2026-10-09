@@ -35,7 +35,7 @@ const openToAll = [
 
 const stats = [
   { value: lastYear.mealsAccessed, label: "people used Maggie's Meals in the last year" },
-  { value: `${lastYear.freeSpaceHours}`, label: 'hours of free space given to hyper-local community groups in the last year' },
+  { value: `${lastYear.freeSpaceHours}`, label: 'hours of free space given to hyper‑local community groups in the last year' },
   { value: `${trackRecord.covidParcels}+`, label: 'food parcels delivered during the Covid lockdowns' },
   { value: `${trackRecord.yearsServing}+`, label: 'years serving Huyton and Knowsley' },
 ];
@@ -171,10 +171,10 @@ const schema = [
       <div class="prose">
         <p>
           The Maggie O'Neill Centre began as a church, and the new church is still on the property. When someone in our church family is unwell, going through a
-          hard time or has a new baby, we're there for them, with home-cooked meals and hospital visits.
+          hard time or has a new baby, we're there for them, with home-cooked meals, hospital visits and moral support.
         </p>
         <p>
-          We extend meals and hospital visits to others in the community when our volunteers have the capacity. Everyone who helps is a volunteer, so we look
+          We extend meals, hospital visits and moral support to others in the community when our volunteers have the capacity. Everyone who helps is a volunteer, so we look
           after their time carefully.
         </p>
       </div>
@@ -236,7 +236,7 @@ const schema = [
   .numbers h2 { color: var(--moc-white); }
   .numbers .eyebrow { color: var(--moc-purple-tint-2); }
   .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin: 0; }
-  .stats div { display: flex; flex-direction: column-reverse; gap: 8px; }
+  .stats div { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 8px; }
   .stats dd { margin: 0; font: 800 clamp(40px, 5vw, 60px)/1 var(--font-display); color: var(--moc-white); }
   .stats dt { color: rgba(255, 255, 255, 0.9); font-size: var(--text-small-size); }
   .groups { list-style: none; padding: 0; margin: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); }
