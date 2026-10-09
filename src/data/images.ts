@@ -42,6 +42,8 @@ export const images: Record<number, LibraryImage> = {
   104: img(104, '6ab683453dbd5f2bbbcbd2f2.webp', "A desk and chair in front of the window in Office 202 at the Maggie O'Neill Centre, with a plant on the sill"),
   100: img(100, '6ab683456407f2cbe4d41bb3.webp', "Office 202, a private office at the Maggie O'Neill Centre, with a desk by the window"),
   105: img(105, '6ab683367e654f1003c2a339.webp', "Nursery staff training in the Community Room at the Maggie O'Neill Centre, sitting in a circle under festoon lights"),
+  111: img(111, '6ab683446407f2cbe4d41b83.webp', "The Maggie's Meals pantry shelves at the Maggie O'Neill Centre, stocked with tins, packets and household goods"),
+  112: img(112, '6ab68344974a9da6eebefb00.webp', "Tins and packets on the Maggie's Meals shelves at the Maggie O'Neill Centre"),
   110: img(110, '6ab68344352b2c340195dd7c.webp', "Maggie's Meals volunteers in front of the stocked pantry shelves at the Maggie O'Neill Centre"),
   113: img(113, '6ab6833453ee44f56b33c8e0.webp', "A busy event in the Auditorium at the Maggie O'Neill Centre, with purple stage lighting"),
   114: img(114, '6ab683339b248207685a66a8.webp', "An audience listening to a talk in the Auditorium at the Maggie O'Neill Centre"),
