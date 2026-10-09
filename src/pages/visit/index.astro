@@ -8,7 +8,7 @@ import PhotoJourney from '../../components/sections/PhotoJourney.astro';
 import Reviews from '../../components/sections/Reviews.astro';
 import FindUs from '../../components/sections/FindUs.astro';
 import Faqs from '../../components/sections/Faqs.astro';
-import { accessibility, address, contact, hours, parking, site } from '../../data/facts';
+import { accessibility, accessibilityFaq, address, contact, hours, parking, site } from '../../data/facts';
 import { images } from '../../data/images';
 import { quotes } from '../../data/reviewQuotes';
 import { breadcrumbNode, faqNode } from '../../lib/schema';
@@ -107,7 +107,7 @@ const faqs = [
   },
   {
     q: "Is the Maggie O'Neill Centre accessible?",
-    a: `We have disabled access on the ground floor and ${accessibility.accessibleBays} accessible parking bays. ${accessibility.noLift} ${accessibility.toiletGeneral}`,
+    a: accessibilityFaq,
   },
 ];
 

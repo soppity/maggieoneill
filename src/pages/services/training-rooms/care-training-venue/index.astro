@@ -17,7 +17,7 @@ import Faqs from '../../../../components/sections/Faqs.astro';
 import FindUs from '../../../../components/sections/FindUs.astro';
 import Photo from '../../../../components/Photo.astro';
 import NameMarquee from '../../../../components/sections/NameMarquee.astro';
-import { accessibility, careClients, contact, formatPrice, layoutTriage, parking, site, trainingDayFrom } from '../../../../data/facts';
+import { accessibility, accessibilityFaq, careClients, contact, formatPrice, layoutTriage, parking, site, trainingDayFrom } from '../../../../data/facts';
 import { clientLogos, images } from '../../../../data/images';
 import { bookingTermsPath, larger, standard, weekly } from '../../../../data/bookingTerms';
 import { breadcrumbNode, faqNode, serviceNode } from '../../../../lib/schema';
@@ -52,7 +52,7 @@ const keyFacts = [
   { term: 'Prices', detail: `Training rooms from ${formatPrice(trainingDayFrom)} a day, everything included.`, href: '/whats-included/', linkText: "See what's included" },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
   { term: 'Invoicing', detail: 'Invoices to your organisation, with PO numbers welcome.' },
-  { term: 'Access', detail: 'Step-free access, accessible parking and an accessible toilet.' },
+  { term: 'Access', detail: accessibility.accessLine },
 ];
 
 const faqs = [
@@ -94,7 +94,7 @@ const faqs = [
   },
   {
     q: 'Is the venue accessible?',
-    a: `Yes. The Maggie O'Neill Centre is fully accessible on the ground floor, with step-free access, accessible parking and ${accessibility.toiletGeneral.charAt(0).toLowerCase()}${accessibility.toiletGeneral.slice(1)}`,
+    a: accessibilityFaq,
   },
 ];
 

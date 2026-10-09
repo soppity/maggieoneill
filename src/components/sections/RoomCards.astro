@@ -39,6 +39,7 @@ const priceLine = (r: Room) =>
           <Photo n={r.image} width={640} height={400} sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 380px" />
           <div class="room-card__body">
             <h3>The {r.name}</h3>
+            <p class="room-card__floor">{r.floor === 'ground' ? 'Ground floor' : 'First floor, stairs only'}</p>
             {!simple && (
               <>
                 <p class="room-card__price">{priceLine(r)}</p>
@@ -56,6 +57,7 @@ const priceLine = (r: Room) =>
 </section>
 
 <style>
+  .room-card__floor { font-size: var(--text-caption-size); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--moc-slate-text); margin: 2px 0 0; }
   .room-cards { list-style: none; margin: 0; padding: 0; grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .room-card { display: flex; flex-direction: column; overflow: hidden; }
   .room-card :global(img) { aspect-ratio: 8 / 5; height: auto; }

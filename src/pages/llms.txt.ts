@@ -2,7 +2,7 @@
 // Based on docs/seo-files/llms.txt.
 import type { APIRoute } from 'astro';
 import { guidePath, publishedGuides } from '../data/guides';
-import { address, booking, contact, formatPrice, rooms, hours, lastYear, listNames, maggiesMeals, parking, rateGroups, reviews, site, virtualOffice } from '../data/facts';
+import { accessibility, address, booking, contact, formatPrice, rooms, hours, lastYear, listNames, maggiesMeals, parking, rateGroups, reviews, site, virtualOffice } from '../data/facts';
 
 const u = (path: string) => `${site.url}${path}`;
 const rates = rateGroups()
@@ -19,6 +19,7 @@ Key facts:
 - Phone ${contact.phone}. Text or WhatsApp ${contact.text}. Email ${contact.email}.
 - Open ${hours.summary}. ${hours.extra}
 - ${parking.summary}.
+- ${accessibility.accessLine} Ground-floor rooms: Auditorium, Community Room, Forum, Grove and Pod.
 - ${reviews.count} Google reviews (${reviews.asOf.split(' ').slice(1).join(' ')}). In the last year: ${lastYear.roomsHired} rooms hired, ${lastYear.businessesServed} businesses served, ${lastYear.mealsAccessed} people accessed Maggie's Meals.
 - Used by care providers, the NHS and primary care networks, Knowsley Council, schools, and fostering and adoption teams (Adoption in Merseyside, Knowsley Fostering, Foster4).
 - Room hire, everything included: ${rates}. ${rooms.filter((r) => r.prices?.hourFrom).map((r) => `The ${r.name} from ${formatPrice(r.prices!.hourFrom!)} an hour.`).join(' ')}
