@@ -1,7 +1,7 @@
 # Handoff: Maggie O'Neill Centre website (mobtc.co.uk)
 
 ## Overview
-This is a full rebuild of mobtc.co.uk for the Maggie O'Neill Centre ("Maggie's"), a charity-run hosted venue at 433 Liverpool Road, Huyton, L36 8HT (charity no. 1102507). It's built in Claude Code and hosted on **Netlify**. Room hire averages about £89k a month. Virtual office is the second lead service because it has no capacity ceiling.
+This is a full rebuild of mobtc.co.uk for the Maggie O'Neill Centre ("Maggie's"), a charity-run hosted venue at 433 Liverpool Road, Huyton, L36 8HT (charity no. 1215599). It's built in Claude Code and hosted on **Netlify**. Room hire averages about £89k a month. Virtual office is the second lead service because it has no capacity ceiling.
 
 This pack has the agreed strategy, site map, SEO plan, brand tokens, logos, image library and page copy sources. **No page has been designed yet.** Build one page at a time, with the owner reviewing each one before the next is started. The homepage comes first.
 

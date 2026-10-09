@@ -37,7 +37,7 @@ People already find us through ChatGPT, Gemini, Copilot and Perplexity without a
 | Phone | 0151 482 0408 (+44 151 482 0408) |
 | Text / WhatsApp | 07426 935661 (+44 7426 935661) |
 | Hours | Monday to Friday, 8:30am to 5pm. Evening and weekend room hire on request. |
-| Charity number | 1102507 (registered in England and Wales) |
+| Charity number | 1215599 (registered in England and Wales) |
 | Website | https://mobtc.co.uk |
 | Booking | https://maggieoneill.officernd.com/public/calendar |
 | Reviews | 230 Google reviews (as of 28 September 2026) |

@@ -48,8 +48,10 @@ export const images: Record<number, LibraryImage> = {
   117: img(117, '6ab6833453ee44f56b33c8e6.webp', "The Auditorium at the Maggie O'Neill Centre from the back, with rows of seats facing the stage"),
   118: img(118, '6ab683333dbd5f2bbbcbd02d.webp', "The Auditorium at the Maggie O'Neill Centre from the stage, with the lectern and microphone facing rows of seats"),
   132: img(132, '6ab683449b248207685a68ab.webp', "The kitchen at the Maggie O'Neill Centre, next to the accessible toilet on the Auditorium floor"),
-  133: img(133, '6ab6834e9b248207685a6a66.webp', "Tania, a host at the Maggie O'Neill Centre, smiling in reception", 'P'),
-  137: img(137, '6ab6834f6407f2cbe4d41d1f.webp', "Tania, a host at the Maggie O'Neill Centre, chatting in reception", 'P'),
+  133: img(133, '6ab6834e9b248207685a6a66.webp', "Tania, Community Manager at the Maggie O'Neill Centre, smiling in reception", 'P'),
+  // Owner, Oct 2026: #133 and #134 don't load on the site, so the host card uses #137 (shown on the virtual office page).
+  134: img(134, '6ab6834f53ee44f56b33cc5b.webp', "Tania, Community Manager at the Maggie O'Neill Centre, smiling in reception", 'P'),
+  137: img(137, '6ab6834f6407f2cbe4d41d1f.webp', "Tania, Community Manager at the Maggie O'Neill Centre, chatting in reception", 'P'),
   158: img(158, '6abfcbcc02569bee7cb0c764.webp', "The accessible toilet at the Maggie O'Neill Centre, with grab rails, a fold-down rail and an emergency pull cord"),
   // All Nations, supplied by the owner (Oct 2026), not from the image library. Not viewable from the build container,
   // so the alt text is general until the owner describes each photo.
@@ -58,7 +60,16 @@ export const images: Record<number, LibraryImage> = {
   172: img(172, '6ac3927e2c1c51a2ac6489a6.webp', "Food from around the world at All Nations at the Maggie O'Neill Centre"),
   173: img(173, '6ac3927e22bc27f58f70416d.webp', "People in traditional dress at All Nations at the Maggie O'Neill Centre"),
   174: img(174, '6ac3927e7d735ea2a1378392.webp', "The building full of people at All Nations at the Maggie O'Neill Centre"),
-  139: img(139, '6ab68346974a9da6eebefb38.webp', "Patrick, a host at the Maggie O'Neill Centre", 'P'),
+  // Patrick, higher resolution and less cropped (owner, Oct 2026). Replaces #139 on the team cards.
+  179: img(179, '6ac7959ad5f4a8af43a9bd8c.webp', "Patrick, Director of the Maggie O'Neill Centre", 'P'),
+  // Maggie O'Neill, supplied by the owner, Oct 2026 (white background cropped out). For her story on the About page.
+  175: img(175, '6ac794afd5f4a8af43a9a261.webp', "Maggie O'Neill, the woman the Maggie O'Neill Centre is named after", 'P'),
+  // Pastor John and Sherri, supplied by the owner, Oct 2026. For the story on the About page.
+  176: img(176, '6ac78753bbad531ac82db3f2.jpg', "Pastor John and Sherri, who moved their family to Huyton to start the church"),
+  // Volunteers, supplied by the owner, Oct 2026.
+  177: img(177, '6ac78cde8c077584b4f684b4.webp', "Liam, a volunteer at the Maggie O'Neill Centre", 'P'),
+  178: img(178, '6ac78cde195f9172eded45be.webp', "Bill, a volunteer at the Maggie O'Neill Centre", 'P'),
+  139: img(139, '6ab68346974a9da6eebefb38.webp', "Patrick, Director of the Maggie O'Neill Centre", 'P'),
 };
 
 export interface ClientLogo {
