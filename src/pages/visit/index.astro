@@ -1,0 +1,133 @@
+---
+// Come and see it. Spec: Website Blueprint page 17 (Template: Trust). Audience: first-time bookers.
+// Job: turn a nervous first booking into a show-round. Schema: LocalBusiness (sitewide) + BreadcrumbList + FAQPage.
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Hero from '../../components/sections/Hero.astro';
+import PhotoJourney from '../../components/sections/PhotoJourney.astro';
+import Reviews from '../../components/sections/Reviews.astro';
+import FindUs from '../../components/sections/FindUs.astro';
+import Faqs from '../../components/sections/Faqs.astro';
+import { accessibility, address, contact, hours, parking, site } from '../../data/facts';
+import { images } from '../../data/images';
+import { quotes } from '../../data/reviewQuotes';
+import { breadcrumbNode, faqNode } from '../../lib/schema';
+
+const path = '/visit/';
+const url = `${site.url}${path}`;
+const title = "Book a Visit, Huyton L36 8HT | Maggie O'Neill Centre";
+const description =
+  "See the rooms before you book. Pop in for a tea and a look round the Maggie O'Neill Centre, 433 Liverpool Road, Huyton L36 8HT. Free parking.";
+
+const gettingHere = [
+  { title: 'By car', text: `We're ${parking.motorway}. The free car park is right outside, with ${parking.spaces} spaces and ${parking.overflow}.` },
+  { title: 'By bus', text: 'We’re on a main bus route along Liverpool Road.' },
+  { title: 'Step-free', text: `${accessibility.groundFloor} ${accessibility.toiletGeneral}` },
+  { title: 'When to come', text: `We're open ${hours.summary}. Book a visit or call ahead, and a host will be ready to show you round.` },
+];
+
+const journey = [
+  { image: 1, caption: 'The front of the building and the free car park. Plain from the outside, we know.' },
+  { image: 4, caption: 'The front door, with a ramp and handrails.' },
+  { image: 6, caption: 'Reception, where a host will meet you and put the kettle on.' },
+  { image: 66, caption: 'The Grove, one of our meeting and event rooms, under its greenery canopy.' },
+  { image: 44, caption: 'The Summit, set in a U-shape for a training day.' },
+  { image: 118, caption: 'The Auditorium, with its stage, lectern and sound system.' },
+];
+
+const faqs = [
+  {
+    q: "Can I look round the Maggie O'Neill Centre before I book?",
+    a: `We insist! We love to show people round and let you see the space for yourself. Use the form on this page, call ${contact.phone} or email ${contact.email}, and we'll find a time that suits you.`,
+  },
+  {
+    q: 'Do I need to book a visit, or can I just turn up?',
+    a: `It's best to book or call ahead, so a host is free to show you round and the rooms you want to see aren't in use. We're open ${hours.summary}.`,
+  },
+  {
+    q: "Where is the Maggie O'Neill Centre?",
+    a: `The Maggie O'Neill Centre is at ${address.oneLine}, in Knowsley, ${parking.motorway}.`,
+  },
+  {
+    q: 'Is there parking?',
+    a: `Yes. There's a free car park right outside with ${parking.spaces} spaces, and ${parking.overflow}. Accessible parking spaces are right outside the Auditorium.`,
+  },
+  {
+    q: 'Can I get there by bus?',
+    a: 'Yes. The Maggie O’Neill Centre is on a main bus route along Liverpool Road in Huyton.',
+  },
+  {
+    q: "Is the Maggie O'Neill Centre accessible?",
+    a: `${accessibility.groundFloor} ${accessibility.toiletGeneral}`,
+  },
+];
+
+const schema = [
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Visit', url },
+  ]),
+  faqNode(url, faqs),
+];
+---
+<Base title={title} description={description} ogImage={images[6].src} ogImageAlt={images[6].alt} preloadImage={images[6].src} schema={schema}>
+  <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Visit', path }]} />
+
+  <Hero
+    title="Visit the Maggie O'Neill Centre"
+    tagline="Plain from the car park. Worth it once you're in."
+    lede="Come for a tea and a look round before you book. A host will show you the rooms and answer any questions on the spot."
+    image={6}
+    primary={{ label: 'Book a visit', href: '#enquire' }}
+    secondary={{ label: `Call ${contact.phone}`, href: contact.phoneHref }}
+  />
+
+  <section class="section section--white" aria-labelledby="getting-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Getting here</span>
+        <h2 id="getting-heading">How do I get to the Maggie O'Neill Centre?</h2>
+        <p>We're at {address.oneLine}, in Knowsley, just outside Liverpool.</p>
+      </div>
+      <ul class="grid getting">
+        {gettingHere.map((g) => (
+          <li class="card getting__item">
+            <h3>{g.title}</h3>
+            <p>{g.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <PhotoJourney
+    heading="What will you see when you visit?"
+    intro="Here's the walk from the car park to the rooms. The real thing comes with a cup of tea."
+    stops={journey}
+  />
+
+  <Reviews heading="What do first-time visitors say?" reviews={[quotes.john, quotes.megan, quotes.laura]} />
+
+  <FindUs />
+
+  <Faqs faqs={faqs} heading="Questions about visiting" />
+
+  <section class="section section--white more-links" aria-label="Related pages">
+    <div class="container">
+      <p>
+        Ready to book? See <a href="/services/training-rooms/">training room hire near Liverpool</a> and
+        {' '}<a href="/services/meeting-rooms/">meeting rooms in Huyton</a>, or <a href="/contact/">contact us</a>.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .getting { list-style: none; padding: 0; margin: 0; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .getting__item { padding: 26px 28px; display: flex; flex-direction: column; gap: 8px; }
+  .getting__item h3 { font-size: 20px; }
+  .getting__item p { font-size: var(--text-small-size); color: var(--moc-slate-text); }
+  .more-links { padding: 40px 0; }
+  @media (max-width: 1000px) { .getting { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .getting { grid-template-columns: 1fr; } }
+</style>
