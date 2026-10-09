@@ -79,6 +79,12 @@ export const reviews = {
   writeUrl: 'https://g.page/r/CZ08-1Mg8NchEAE/review',
 };
 
+// The church on the property (owner, Oct 2026).
+export const church = {
+  times: '11am on Sundays and 7pm on Thursdays',
+  email: 'hello@theacol.uk',
+};
+
 export const maggiesMeals = {
   schedule: 'Every Friday, 9am to 10am',
 };

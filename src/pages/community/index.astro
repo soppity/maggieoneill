@@ -8,7 +8,7 @@ import Hero from '../../components/sections/Hero.astro';
 import Photo from '../../components/Photo.astro';
 import Faqs from '../../components/sections/Faqs.astro';
 import CtaBand from '../../components/sections/CtaBand.astro';
-import { allNations, lastYear, maggiesMeals, site, trackRecord, volunteers } from '../../data/facts';
+import { allNations, church, lastYear, maggiesMeals, site, trackRecord, volunteers } from '../../data/facts';
 import { images } from '../../data/images';
 import { breadcrumbNode, faqNode } from '../../lib/schema';
 
@@ -60,6 +60,10 @@ const faqs = [
   {
     q: 'Are the church groups open to everyone?',
     a: "Yes. Our church gatherings, small groups and men's and women's groups are open to everyone, whether or not you share our faith.",
+  },
+  {
+    q: 'What time is church?',
+    a: `Church meets at ${church.times}, on the Maggie O'Neill Centre site. For more information, email ${church.email}.`,
   },
 ];
 
