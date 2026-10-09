@@ -20,6 +20,7 @@ const img = (n: number, file: string, alt: string, orientation: 'L' | 'P' | 'S' 
 
 export const images: Record<number, LibraryImage> = {
   1: img(1, '6ab68335352b2c340195dbf0.webp', "The front of the Maggie O'Neill Centre in Huyton, with the free car park outside"),
+  3: img(3, '6ab683353ae3da26fb60a180.webp', "The front of the Maggie O'Neill Centre in Huyton, with the purple logo and lettering on the cladding under a blue sky"),
   4: img(4, '6ab683353ae3da26fb60a175.webp', "The front door of the Maggie O'Neill Centre at 433 Liverpool Road, with a ramp and handrails", 'P'),
   6: img(6, '6ab68339352b2c340195dc59.webp', "Reception at the Maggie O'Neill Centre, with living-wall panels, chairs and a slatted oak ceiling"),
   18: img(18, '6ab683479b248207685a6949.webp', "The purple neon logo on the oak slat wall in reception at the Maggie O'Neill Centre"),
