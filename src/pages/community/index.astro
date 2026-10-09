@@ -8,7 +8,7 @@ import Hero from '../../components/sections/Hero.astro';
 import Photo from '../../components/Photo.astro';
 import Faqs from '../../components/sections/Faqs.astro';
 import CtaBand from '../../components/sections/CtaBand.astro';
-import { allNations, contact, lastYear, maggiesMeals, site, trackRecord, volunteers } from '../../data/facts';
+import { allNations, lastYear, maggiesMeals, site, trackRecord, volunteers } from '../../data/facts';
 import { images } from '../../data/images';
 import { breadcrumbNode, faqNode } from '../../lib/schema';
 
@@ -16,7 +16,7 @@ const path = '/community/';
 const url = `${site.url}${path}`;
 const title = "Maggie's Meals & Community in Huyton | Maggie O'Neill Centre";
 const description =
-  "How the Maggie O'Neill Centre supports Knowsley: Maggie's Meals, community groups, free space for charities and volunteering, all funded by room hire.";
+  "How the Maggie O'Neill Centre supports Knowsley: Maggie's Meals, hyper-local community groups and volunteering, all funded by room hire.";
 
 const mealsWhen = `${maggiesMeals.schedule.charAt(0).toLowerCase()}${maggiesMeals.schedule.slice(1)}`;
 
@@ -35,7 +35,7 @@ const openToAll = [
 
 const stats = [
   { value: lastYear.mealsAccessed, label: "people used Maggie's Meals in the last year" },
-  { value: `${lastYear.freeSpaceHours}`, label: 'hours of free space given to charitable and community groups in the last year' },
+  { value: `${lastYear.freeSpaceHours}`, label: 'hours of free space given to hyper-local community groups in the last year' },
   { value: `${trackRecord.covidParcels}+`, label: 'food parcels delivered during the Covid lockdowns' },
   { value: `${trackRecord.yearsServing}+`, label: 'years serving Huyton and Knowsley' },
 ];
@@ -54,8 +54,8 @@ const faqs = [
     a: "The Maggie O'Neill Centre is a registered charity. Income from room hire and virtual offices funds Maggie's Meals and the charity's community work in Knowsley, so every booking does some good a few streets away.",
   },
   {
-    q: 'Does the Maggie O’Neill Centre give free space to community groups?',
-    a: `Yes. In the last year the Maggie O'Neill Centre gave ${lastYear.freeSpaceHours} hours of free space to charitable and community groups. Call ${contact.phone} or email ${contact.email} to talk to us about your group.`,
+    q: 'Does the Maggie O’Neill Centre support local community groups?',
+    a: `Yes. In the last year the Maggie O'Neill Centre gave ${lastYear.freeSpaceHours} hours of free space to hyper-local community groups in Huyton. Room hire from businesses, public bodies and charities is what makes that possible.`,
   },
   {
     q: 'Are the church groups open to everyone?',
@@ -150,14 +150,13 @@ const schema = [
   <section class="section section--white" aria-labelledby="free-heading">
     <div class="container two-col">
       <div class="section-head">
-        <span class="eyebrow">Free space</span>
-        <h2 id="free-heading">Do you give space to charities and community groups?</h2>
+        <span class="eyebrow">Hyper-local groups</span>
+        <h2 id="free-heading">Do you support local community groups?</h2>
       </div>
       <div class="prose">
-        <p class="lead">Yes. In the last year we gave {lastYear.freeSpaceHours} hours of free space to charitable and community groups.</p>
+        <p class="lead">Yes. In the last year we gave {lastYear.freeSpaceHours} hours of free space to hyper-local community groups.</p>
         <p>
-          The rooms that businesses and public bodies book during the week are the same rooms local groups use for free. If you run a charity or community group
-          in Knowsley, call <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a> or email <a href={`mailto:${contact.email}`}>{contact.email}</a> and tell us what you need.
+          It's part of how we serve the streets around us. Room hire from businesses, public bodies and charities is what makes it possible.
         </p>
       </div>
     </div>
@@ -192,7 +191,7 @@ const schema = [
         <div class="prose">
           <p>
             Volunteers. {volunteers.map((v) => v.name).join(' and ')} help to run Maggie's Meals every week, alongside the rest of the team at the Maggie O'Neill
-            Centre. <a href="/about/">Meet the team</a>.
+            Centre. <a href="/about/#team">Meet the team</a>.
           </p>
         </div>
       </div>

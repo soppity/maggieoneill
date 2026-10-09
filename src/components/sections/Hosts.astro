@@ -10,7 +10,7 @@ interface Props {
 const { onAbout = false } = Astro.props;
 const team = [...hosts, ...volunteers];
 ---
-<section class="section section--white" aria-labelledby="hosts-heading">
+<section class="section section--white hosts-section" id={onAbout ? 'team' : undefined} aria-labelledby="hosts-heading">
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Meet the team</span>
@@ -34,6 +34,7 @@ const team = [...hosts, ...volunteers];
 </section>
 
 <style>
+  .hosts-section { scroll-margin-top: 88px; }
   .section-head .hosts__story { font-size: var(--text-body-size); }
   .hosts { grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: start; }
   .hosts__person { display: flex; flex-direction: column; gap: 16px; }

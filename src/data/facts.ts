@@ -87,7 +87,8 @@ export const lastYear = {
   roomsHired: '900+',
   businessesServed: '150+',
   mealsAccessed: '750+',
-  // Owner, Oct 2026: free room hours given to charitable and community groups in the last year.
+  // Owner, Oct 2026: free room hours given to hyper-local community groups in the last year.
+  // Always say "hyper-local community groups", never charities: many charities pay for space here.
   freeSpaceHours: '550+',
 };
 
