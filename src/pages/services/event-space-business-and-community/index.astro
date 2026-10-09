@@ -4,7 +4,10 @@
 // Auditorium pricing is "from £100 an hour", quoted per event (owner, Oct 2026).
 // Owner, Oct 2026: lectern, mics and sound system confirmed; AV run by a technician; no wireless casting in the Auditorium
 // itself (breakout spaces have it). Breakout: the Grove, the Auditorium foyer, as many extra spaces as needed, and open
-// space at the back of the Auditorium. Own catering welcome. The events Hosted Day is facts.hostedEvent.
+// space at the back of the Auditorium. The events Hosted Day is facts.hostedEvent.
+// Owner, Oct 2026 (revamp): catering through our partner first, own catering only by prior approval; the technician is
+// charged, shown as (£); events are hourly with a 3-hour minimum, or a day rate (no half days). Features, testimonials
+// and the 10 FAQs below come from the old events page, rewritten in house voice. The full list lives at ./faqs/.
 import Base from '../../../layouts/Base.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import Hero from '../../../components/sections/Hero.astro';
@@ -12,14 +15,12 @@ import KeyFacts from '../../../components/sections/KeyFacts.astro';
 import ClientLogos from '../../../components/sections/ClientLogos.astro';
 import HostedDay from '../../../components/sections/HostedDay.astro';
 import Comparison from '../../../components/sections/Comparison.astro';
-import Reviews from '../../../components/sections/Reviews.astro';
 import Faqs from '../../../components/sections/Faqs.astro';
 import FindUs from '../../../components/sections/FindUs.astro';
 import Photo from '../../../components/Photo.astro';
 import { accessibility, accessibilityFaq, catering, contact, formatPrice, hostedEvent, hours, parking, rooms, site } from '../../../data/facts';
 import { images } from '../../../data/images';
-import { quotes } from '../../../data/reviewQuotes';
-import { bookingTermsPath, larger } from '../../../data/bookingTerms';
+import { bookingTermsPath, exceptional, larger } from '../../../data/bookingTerms';
 import { breadcrumbNode, faqNode, roomPlaceNode, serviceNode } from '../../../lib/schema';
 
 const path = '/services/event-space-business-and-community/';
@@ -31,16 +32,16 @@ const theatre = auditorium.capacity.theatre!;
 const from = formatPrice(auditorium.prices!.hourFrom!);
 
 const title = "Conference & Event Venue near Liverpool | Maggie O'Neill Centre";
-const description = `A hosted ${theatre}-seat auditorium with breakout space in Huyton, near Liverpool. Stage, sound system, AV technician and free parking. The hotel alternative.`;
+const description = `A hosted ${theatre}-seat auditorium with six breakout rooms in Huyton, near Liverpool. Stage, sound system, AV and 50 free parking spaces. The hotel alternative.`;
 
-const intro = `The Maggie O'Neill Centre in Huyton, near Liverpool, hosts conferences, launches, community events and networking. The ${auditorium.name} seats up to ${theatre} theatre style or ${cab} cabaret, with a stage, lectern, microphones, sound system and AV run by a technician, and costs from ${from} an hour, quoted for your event. Breakout and networking space can be added as you need it. Hosts check on your event all day, you can bring your own catering or use ours, and parking is free.`;
+const intro = `The Maggie O'Neill Centre in Huyton, near Liverpool, hosts conferences, launches, community events and networking. The ${auditorium.name} seats up to ${theatre} theatre style or ${cab} cabaret, with a stage, lectern, microphones, sound system and AV run by a technician (£). It costs from ${from} an hour, with a 3-hour minimum, or a day rate, quoted for your event. Six breakout rooms can run sessions alongside it. Hosts check on your event all day, our catering partner can feed everyone, and there are ${parking.spaces} free parking spaces outside.`;
 
 const keyFacts = [
   { term: 'Capacity', detail: `Up to ${theatre} theatre style or ${cab} cabaret in the ${auditorium.name}.` },
-  { term: 'Prices', detail: `From ${from} an hour, quoted for your event.` },
-  { term: 'On stage', detail: 'A stage, lectern, microphones, sound system and lighting, with AV run by a technician.' },
-  { term: 'Breakout', detail: `The ${grove.name}, the Auditorium foyer, and as many extra spaces as you need.` },
-  { term: 'Catering', detail: `Bring your own, or use our partner, ${catering.partner}.` },
+  { term: 'Prices', detail: `From ${from} an hour (3-hour minimum) or a day rate, quoted for your event.` },
+  { term: 'On stage', detail: 'A stage, lectern, microphones, sound system and lighting, with AV run by a technician (£).' },
+  { term: 'Breakout', detail: `Six breakout rooms, plus the ${grove.name}, the Auditorium foyer and open space at the back of the hall.` },
+  { term: 'Catering', detail: `Our partner, ${catering.partner}. Your own catering only by prior arrangement.` },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}, and ${parking.overflow}.` },
   { term: 'Your hosts', detail: 'Your event talked through beforehand, and hosts checking on it all day.' },
   { term: 'Access', detail: accessibility.accessLine },
@@ -48,48 +49,90 @@ const keyFacts = [
 
 const faqs = [
   {
-    q: "How many people does the Maggie O'Neill Centre Auditorium hold?",
-    a: `The ${auditorium.name} at the Maggie O'Neill Centre seats up to ${theatre} people theatre style, or ${cab} cabaret style at tables.`,
+    q: 'Is there enough parking on site?',
+    a: `Yes. There's a free ${parking.spaces}-space car park right outside, which is rare at our prices: usually only big city conference centres have their own. For larger events there's an overflow car park across the main road, and a parking attendant will point your guests to it.`,
   },
   {
-    q: 'How much does it cost to hire the Auditorium?',
-    a: `The ${auditorium.name} costs from ${from} an hour. Every event is different, so we quote for yours. Call ${contact.phone} or send us the details and we'll come back to you.`,
+    q: 'What are your opening hours for events?',
+    a: `We're open ${hours.summary}. We're flexible about early set-up and late clearing away, and evening and weekend events are available on request. Tell us your timings and we'll do our best to fit them.`,
   },
   {
-    q: 'What equipment is in the Auditorium?',
-    a: `The ${auditorium.name} at the Maggie O'Neill Centre has a stage, a lectern, microphones, a sound system and lighting, and the AV is set up and run by a technician on the day. Tell us what your speakers need and we'll have it ready before you arrive.`,
+    q: 'Can we bring our own catering?',
+    a: `We mainly work with our catering partner, ${catering.partner}, so the food and service are consistent. If you have a special request, talk to us first: other arrangements can sometimes be made with our approval.`,
   },
   {
-    q: 'Can you provide catering for an event?',
-    a: `Yes. You're welcome to bring your own catering, or use the Maggie O'Neill Centre's partner, ${catering.partner}, whom you order from and pay directly. There's a fridge for storing food, and tea and coffee are included.`,
+    q: 'Is catering available on site?',
+    a: `Yes. Tea and coffee are included all day, in or near every space you book. For food, ${catering.partner} can put together a menu for your event, including vegetarian, vegan and gluten-free options. You order from them and pay them directly, and we'll put you in touch when you book.`,
   },
   {
-    q: 'Do you have space for breakouts and networking?',
-    a: `Yes. The ${grove.name} and the Auditorium foyer at the Maggie O'Neill Centre work well for breakouts and networking, and we can add as many extra breakout spaces as your event needs. If you don't need the whole ${auditorium.name}, we can also set up open networking space at the back of the room. Every breakout and networking space has a flatscreen with wireless casting.`,
+    q: 'What AV equipment is in the Auditorium?',
+    a: `The ${auditorium.name} has a stage, a lectern, microphones, a projector, a sound system and lighting. A technician sets up and runs the AV on the day; this is charged, and needed for every Auditorium booking. Tell us what your speakers need and we'll have it ready before you arrive.`,
   },
   {
-    q: 'Why choose the Maggie O\'Neill Centre over a hotel?',
-    a: `Rooms are the whole job at the Maggie O'Neill Centre, not a sideline. Your hosts are on site all day, parking is free for every guest, and what you pay funds Maggie's Meals and community support in Knowsley.`,
+    q: 'What is your cancellation policy?',
+    a: `Events count as larger bookings. ${larger.chargeable} ${larger.reschedule} ${exceptional}`,
   },
   {
-    q: 'Is parking free for event guests?',
-    a: `Yes. The Maggie O'Neill Centre has a free ${parking.spaces}-space car park on site, ${parking.motorway}, and ${parking.overflow}. It is on a main bus route too.`,
+    q: 'Do you need a deposit, and what are the payment terms?',
+    a: `Yes. ${larger.payment[0]} ${larger.payment[1]} ${larger.payment[2]} ${larger.paymentMethods}`,
   },
   {
-    q: 'Is the venue accessible?',
-    a: accessibilityFaq,
+    q: 'What is included in the room hire?',
+    a: `Your event talked through beforehand, the rooms set to your layout, hosts checking on you all day, tea and coffee in or near every space, a screen or projector with cables and a flipchart in every breakout room, 1Gb fibre WiFi and free parking. The Auditorium technician and food are extra.`,
   },
   {
-    q: 'Can we hold an event in the evening or at the weekend?',
-    a: `Yes. The Maggie O'Neill Centre is open ${hours.summary}, and evening and weekend events are available on request.`,
+    q: 'How do I check availability or arrange a visit?',
+    a: `Call ${contact.phone}, email ${contact.email}, or use the form on this page. If you'd like to see the space first, we do tours every weekday. Just shout.`,
   },
   {
-    q: 'How do booking and payment work for an event?',
-    a: `Events are larger bookings, secured with a 25% deposit. ${larger.paymentMethods}`,
+    q: 'What is the total capacity of the venue?',
+    a: `The ${auditorium.name} seats up to ${theatre} theatre style, or ${cab} cabaret at tables (layouts with tables cost extra). On top of that there are six breakout rooms for 20 to 30 people each, theatre style, and the Pod for up to 4.`,
   },
 ];
 
-const reviews = [quotes.matt, quotes.liz, quotes.johnReynolds];
+// Old events page features (owner, Oct 2026), in house voice.
+const features = [
+  {
+    image: 118,
+    title: `A ${theatre}-seat Auditorium`,
+    text: 'The heart of the building: warm, comfortable and set up before anyone arrives. Toilets are just outside the doors, and tea and coffee are in the foyer all day, so nobody goes without.',
+  },
+  {
+    image: 66,
+    title: 'Six breakout rooms',
+    text: "Day to day we're a meeting and training venue, so every room is already equipped. Solicitors, care companies and charities use them every week, and your sessions can run side by side.",
+  },
+  {
+    image: 185,
+    title: `${parking.spaces} free parking spaces`,
+    text: "Free parking right outside, which you rarely find at our prices: usually only big city conference centres have their own. There's an overflow car park across the road for bigger events.",
+  },
+  {
+    image: 54,
+    title: 'AV in every space',
+    text: 'Every room has a screen or projector, cables, a flipchart and paper, with tea and coffee close by, so parallel sessions run without a hitch.',
+  },
+];
+
+// Testimonials from the old events page (owner, Oct 2026). Word for word, trimmed at sentence ends.
+const testimonials = [
+  {
+    quote: 'It’s a lovely place – people felt really relaxed, which naturally led to loads of chatting. The ambiance was great and really helped set the tone for what was always meant to be a relaxed gig.',
+    name: 'Craig Brougham',
+    org: 'Adoption in Merseyside',
+  },
+  {
+    quote: 'We have had the pleasure of using the Centre on numerous occasions, and couldn’t be happier with the experience. They are extremely dedicated, professional, and approachable, nothing is too much trouble!',
+    name: 'Suzanne Steele',
+    org: 'Primary Care Knowsley',
+  },
+  {
+    quote: 'Everyone you encounter is helpful, kind and generous with their advice and support. They communicate in a timely manner, and nothing is too much trouble.',
+    name: 'Penny France',
+    org: 'Knowsley Education',
+  },
+];
+
 
 const schema = [
   serviceNode({
@@ -123,7 +166,7 @@ const schema = [
   <Hero
     title="Conference and event venue near Liverpool"
     tagline="Better than a hotel. Built only for this."
-    lede={`The Maggie O'Neill Centre Auditorium seats ${theatre}, with a stage, lectern, microphones and sound system, AV run by a technician, and your hosts looking after the day.`}
+    lede={`The Maggie O'Neill Centre Auditorium seats ${theatre}, with six breakout rooms alongside, ${parking.spaces} free parking spaces outside, and your hosts looking after the day.`}
     image={181}
     primary={{ label: 'Plan your event', href: '#enquire' }}
     secondary={{ label: `Call ${contact.phone}`, href: contact.phoneHref }}
@@ -133,6 +176,27 @@ const schema = [
 
   <KeyFacts heading="Event venue hire, in a few lines" intro={intro} facts={keyFacts} />
   <p class="container updated">Last updated: October 2026</p>
+
+  <section class="section section--white" aria-labelledby="features-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Features</span>
+        <h2 id="features-heading">Does the venue have everything you need?</h2>
+        <p>Here's what comes with the building. Don't see something? Just ask.</p>
+      </div>
+      <ul class="grid features">
+        {features.map((f) => (
+          <li class="card feature">
+            <Photo n={f.image} width={560} height={420} sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 280px" />
+            <div class="feature__body">
+              <h3>{f.title}</h3>
+              <p>{f.text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
 
   <section class="section section--white" aria-labelledby="aud-heading">
     <div class="container two-col two-col--media">
@@ -148,9 +212,9 @@ const schema = [
         <ul class="tick-list">
           <li>Up to {theatre} theatre style, or {cab} cabaret style at tables.</li>
           <li>A stage, lectern, microphones, sound system and lighting.</li>
-          <li>AV set up and run by a technician on the day.</li>
-          <li>From {from} an hour, quoted for your event.</li>
-          <li>A kitchen and an accessible toilet on the same floor.</li>
+          <li>AV set up and run by a technician on the day (£).</li>
+          <li>From {from} an hour (3-hour minimum) or a day rate, quoted for your event.</li>
+          <li>Toilets just outside the doors, tea and coffee in the foyer, and an accessible toilet on the same floor.</li>
         </ul>
       </div>
     </div>
@@ -162,13 +226,13 @@ const schema = [
         <div class="section-head">
           <span class="eyebrow">Breakout and networking</span>
           <h2 id="grove-heading">Where can guests break out and network?</h2>
-          <p>Add as many breakout and networking spaces as your event needs. Every one has a flatscreen with wireless casting.</p>
+          <p>Six breakout rooms, all on hand for parallel sessions, plus space to mingle. Every breakout room has a flatscreen with wireless casting.</p>
         </div>
         <ul class="tick-list">
           <li><span>The {grove.name}, under its greenery canopy, for standing, mingling and talking over drinks.</span></li>
           <li><span>The Auditorium foyer, right outside the hall.</span></li>
           <li><span>Open networking space at the back of the {auditorium.name}, if you don't need the whole room.</span></li>
-          <li><span>More breakout rooms, added as you need them.</span></li>
+          <li><span>Six breakout rooms for 20 to 30 people each, and the Pod for up to 4.</span></li>
         </ul>
       </div>
       <div class="media">
@@ -184,7 +248,8 @@ const schema = [
         <h2 id="food-heading">Can you cater for an event?</h2>
       </div>
       <div class="prose">
-        <p>You're welcome to bring your own catering. If you'd rather we sorted it, our partner {catering.partner} can cater for you: you order from them and pay them directly, and we'll put you in touch when you book.</p>
+        <p>Our catering partner, {catering.partner}, can put together a menu for your event, including vegetarian, vegan and gluten-free options. You order from them and pay them directly, and we'll put you in touch when you book.</p>
+        <p>We mainly work with {catering.partner} so the food and service are consistent. If you have a special request, talk to us first: other arrangements can sometimes be made with our approval.</p>
         <p>There's a fridge for storing food, and tea and coffee are included all day, in or near every space you book.</p>
       </div>
     </div>
@@ -200,7 +265,23 @@ const schema = [
 
   <Comparison />
 
-  <Reviews reviews={reviews} heading="What do event organisers say?" />
+  <section class="section" aria-labelledby="testimonials-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Testimonials</span>
+        <h2 id="testimonials-heading">What do event organisers say?</h2>
+      </div>
+      <div class="grid testimonials">
+        {testimonials.map((t) => (
+          <figure class="card testimonial">
+            <blockquote>“{t.quote}”</blockquote>
+            <figcaption>{t.name}<span>, {t.org}</span></figcaption>
+          </figure>
+        ))}
+      </div>
+      <p class="testimonials__more"><a href="/reviews/">Read our Google reviews</a></p>
+    </div>
+  </section>
 
   <Faqs faqs={faqs} heading="Event venue questions" />
 
@@ -228,6 +309,21 @@ const schema = [
 </Base>
 
 <style>
+  .features { list-style: none; margin: 0; padding: 0; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .feature { overflow: hidden; display: flex; flex-direction: column; }
+  .feature :global(img) { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  .feature__body { padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 8px; }
+  .feature__body h3 { font-size: 20px; }
+  .feature__body p { font-size: var(--text-small-size); color: var(--moc-slate-text); }
+  .testimonials { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .testimonial { margin: 0; padding: 28px; display: flex; flex-direction: column; gap: 16px; }
+  .testimonial blockquote { margin: 0; font: 600 18px/1.5 var(--font-display); color: var(--moc-purple-900); }
+  .testimonial figcaption { margin-top: auto; font-weight: 700; font-size: var(--text-small-size); }
+  .testimonial figcaption span { font-weight: 500; color: var(--moc-slate-text); }
+  .testimonials__more { margin-top: 20px; font-weight: 700; }
+  @media (max-width: 1100px) { .features { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 900px) { .testimonials { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .features { grid-template-columns: 1fr; } }
   .all-faqs { padding-top: 0; }
   .all-faqs__inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 22px 28px; border-radius: var(--radius-card); background: var(--moc-white); box-shadow: var(--moc-shadow-card); }
   .all-faqs__inner p { margin: 0; font-size: var(--text-lead-size); }

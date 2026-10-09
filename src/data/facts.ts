@@ -275,7 +275,7 @@ export const hostedEvent = [
   'Hosts checking on your event all day, so you have everything you need',
   'Tea and coffee included, in or near every space you book',
   'Flipcharts if you need them',
-  'AV in the Auditorium set up and run by a technician',
+  'AV in the Auditorium set up and run by a technician (£)',
   'Flatscreens with wireless casting in every breakout and networking space',
   '1Gb fibre WiFi throughout the building',
   'Free parking, with an overflow car park if it fills up',
