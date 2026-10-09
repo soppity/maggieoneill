@@ -166,7 +166,10 @@ export const volunteers: TeamMember[] = [
     role: 'Volunteer',
     image: 177,
     line: 'Liam helps run Maggie’s Meals and looks after the tech at bigger events.',
-    bio: ['Liam helps to run Maggie’s Meals and provides AV and tech support for our bigger events. He’s also an all-round biscuit fiend.'],
+    bio: [
+      'Professionally, Liam runs the back end of websites. He works flexibly, which means he can volunteer around the Centre and the church.',
+      'Liam helps to run Maggie’s Meals and provides AV and tech support for our bigger events. He’s also an all-round biscuit fiend.',
+    ],
   },
   {
     name: 'Bill',
