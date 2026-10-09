@@ -47,6 +47,13 @@ export const images: Record<number, LibraryImage> = {
   112: img(112, '6ab68344974a9da6eebefb00.webp', "Tins and packets on the Maggie's Meals shelves at the Maggie O'Neill Centre"),
   // Maggie's Meals, supplied by the owner, Oct 2026.
   180: img(180, '6ac4bc7422bc27f58f90dd17.jpeg', "Maggie's Meals at the Maggie O'Neill Centre"),
+  // Supplied by the owner, Oct 2026.
+  181: img(181, '6ac905b4bd6bb710ca11850b.webp', "A full Auditorium at the Maggie O'Neill Centre seen from the back, with the audience seated for a talk and LED lights under the stage"),
+  182: img(182, '6ac905b4a8f849292352cd26.webp', "The sound mixing desk in the Auditorium at the Maggie O'Neill Centre"),
+  183: img(183, '6ac905b4157ff968cecca0ea.webp', "A breakout and networking space at the Maggie O'Neill Centre"),
+  184: img(184, '6ac905b4c478ac55356d3c50.webp', "The entrance to the Maggie O'Neill Centre"),
+  185: img(185, '6ac905b4a8f849292352cd20.webp', "The free car park at the Maggie O'Neill Centre on a sunny day"),
+  186: img(186, '6ac905b4c478ac55356d3c51.webp', "The free 50-space car park outside the Maggie O'Neill Centre in the sunshine"),
   110: img(110, '6ab68344352b2c340195dd7c.webp', "Maggie's Meals volunteers in front of the stocked pantry shelves at the Maggie O'Neill Centre"),
   113: img(113, '6ab6833453ee44f56b33c8e0.webp', "A busy event in the Auditorium at the Maggie O'Neill Centre, with purple stage lighting"),
   114: img(114, '6ab683339b248207685a66a8.webp', "An audience listening to a talk in the Auditorium at the Maggie O'Neill Centre"),
