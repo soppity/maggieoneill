@@ -123,6 +123,9 @@ export const parking = {
 };
 
 export const accessibility = {
+  // Owner, Oct 2026: three accessible bays; no lift, so first-floor rooms are stairs only. Three rooms are on the ground floor.
+  accessibleBays: 3,
+  noLift: "We don't have a lift to the first-floor rooms, but we have 3 ground-floor rooms.",
   // Word for word, from docs/content/contact-forms-booking.md.
   stepFree:
     'Step-free access. Accessible parking spaces right outside the Auditorium. The Auditorium side door can be opened to shorten the route.',
