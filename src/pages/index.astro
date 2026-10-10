@@ -124,11 +124,12 @@ const reviews = [
     secondary={{ label: 'Book a visit', href: '#enquire' }}
   >
     <ProofStrip />
+    {/* Owner, Oct 2026: lead with the registered address specialism, not "we do virtual offices too". */}
     <a class="hero-vo" href="/services/virtual-office/">
       <span class="hero-vo__icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
       </span>
-      <span class="hero-vo__text"><strong>Need a business address?</strong><span>We do virtual offices too <span aria-hidden="true">→</span></span></span>
+      <span class="hero-vo__text"><strong>Knowsley's number one registered address provider</strong><span>We specialise in registered addresses and virtual offices, from {formatPrice(virtualOffice.from)} a month <span aria-hidden="true">→</span></span></span>
     </a>
   </Hero>
 
@@ -164,6 +165,7 @@ const reviews = [
   .hero-vo { margin-top: 24px; display: inline-flex; align-items: center; gap: 14px; padding: 14px 24px 14px 14px; border-radius: 20px; background: var(--moc-white); border: 2px solid var(--moc-purple-700); color: var(--moc-purple-900); font-size: clamp(17px, 1.6vw, 20px); text-decoration: none; box-shadow: var(--moc-shadow-card-hover); transition: background var(--duration-base, 200ms) ease, color var(--duration-base, 200ms) ease; }
   .hero-vo__text { display: grid; gap: 2px; line-height: 1.3; }
   .hero-vo strong { font-weight: 800; }
+  .hero-vo__text > span { font-size: 0.85em; }
   .hero-vo:hover { background: var(--moc-purple-700); color: var(--moc-white); }
   .hero-vo__icon { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--moc-purple-tint); color: var(--moc-purple-700); }
 </style>
