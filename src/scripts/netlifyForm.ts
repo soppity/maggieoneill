@@ -3,6 +3,9 @@
 // 2. to Netlify Forms (POST to "/" with form-name), for storage and email alerts. This only works when form
 //    detection is switched on in Netlify, so it's best effort.
 // It counts as sent if either succeeds. The page then shows its thank-you (no mailto).
+// Why the last submission failed, for the on-page error message.
+export let lastError = '';
+
 export async function submitNetlifyForm(form: HTMLFormElement, extra: Record<string, string> = {}): Promise<boolean> {
   const data = new FormData(form);
   for (const [k, v] of Object.entries(extra)) data.set(k, v);
@@ -13,6 +16,11 @@ export async function submitNetlifyForm(form: HTMLFormElement, extra: Record<str
     fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: urlencoded }),
   ]);
   const ok = [toCrm, toNetlify].some((r) => r.status === 'fulfilled' && r.value.ok);
+  // A short code for the error message, so a failed test says which route broke (e.g. "crm 502 CRM 404 / forms 404").
+  const code = async (r: PromiseSettledResult<Response>) =>
+    r.status === 'fulfilled' ? `${r.value.status}${r.value.ok ? '' : ' ' + (await r.value.text().catch(() => '')).slice(0, 40)}`.trim() : 'network';
+  lastError = ok ? '' : `crm ${await code(toCrm)} / forms ${await code(toNetlify)}`;
+  if (!ok) console.error('Form not sent:', lastError);
   if (ok) {
     const w = window as unknown as { dataLayer?: Record<string, unknown>[] };
     (w.dataLayer = w.dataLayer || []).push({ event: 'generate_lead', form_name: data.get('form-name') });

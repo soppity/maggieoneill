@@ -10,11 +10,14 @@ const DROP = new Set(['bot-field', 'form-name']);
 
 export const handler = async (event) => {
   if (event.httpMethod !== 'POST') return { statusCode: 405, body: 'POST only' };
+  // Netlify can hand the body over base64-encoded; accept JSON or a url-encoded form either way.
+  const raw = event.isBase64Encoded ? Buffer.from(event.body || '', 'base64').toString('utf8') : event.body || '';
   let data;
   try {
-    data = JSON.parse(event.body || '{}');
+    data = raw.trim().startsWith('{') ? JSON.parse(raw) : Object.fromEntries(new URLSearchParams(raw));
   } catch {
-    return { statusCode: 400, body: 'Bad JSON' };
+    console.error('Could not read the submission body');
+    return { statusCode: 400, body: 'Bad body' };
   }
   // Honeypot filled in: a bot. Say OK so it doesn't retry, but send nothing on.
   if (data['bot-field']) return { statusCode: 200, body: 'ok' };
@@ -29,12 +32,13 @@ export const handler = async (event) => {
   try {
     const res = await fetch(WEBHOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
     if (!res.ok) {
-      console.error(`GoHighLevel webhook returned ${res.status}`);
-      return { statusCode: 502, body: 'CRM did not accept the submission' };
+      const detail = (await res.text().catch(() => '')).slice(0, 300);
+      console.error(`GoHighLevel webhook returned ${res.status}: ${detail}`);
+      return { statusCode: 502, body: `CRM ${res.status}` };
     }
     return { statusCode: 200, body: 'ok' };
   } catch (err) {
     console.error('Forwarding to GoHighLevel failed:', err);
-    return { statusCode: 502, body: 'Could not reach the CRM' };
+    return { statusCode: 502, body: 'CRM unreachable' };
   }
 };

@@ -246,7 +246,7 @@ const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 
 </Base>
 
 <script>
-  import { isEmail, isUkMobile, setFieldError, submitNetlifyForm } from '../../../scripts/netlifyForm';
+  import { isEmail, isUkMobile, lastError, setFieldError, submitNetlifyForm } from '../../../scripts/netlifyForm';
 
   const TOTAL = 11;
   const STORE = 'moc-operator-lease-drafts';
@@ -459,8 +459,8 @@ const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 
       location.href = '/thank-you/lease-details/';
     } else {
       button.disabled = false;
-      status.textContent = 'Sorry, that didn’t send. Your answers are saved here, so please try again, or call us on 0151 482 0408.';
-      status.dataset.state = 'error';
+      status.textContent = `Sorry, that didn’t send. Your answers are saved here, so please try again, or call us on 0151 482 0408. (Error: ${lastError})`;
+      (status as HTMLElement).dataset.state = 'error';
       status.scrollIntoView({ block: 'center', behavior: 'smooth' });
       saveDraft();
     }
