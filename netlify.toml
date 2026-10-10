@@ -55,5 +55,191 @@
 #   status = 301
 #   force = true
 
-# TODO before launch: crawl the live site and map every old URL (SEO spec 2.3, SOP section 8).
-# Still to map: each /faq-items/* URL to the page its FAQ belongs to, and the hot-desking and coworking blog posts.
+# Old mobtc.co.uk URLs (live Yoast sitemaps, Oct 2026), so nothing indexed returns a 404.
+# Kept as is on the new site: /, /about/, /blog/, /contact/, /services/virtual-office/, /services/meeting-rooms/,
+# /services/event-space-business-and-community/, /services/private-offices/. /thank-you/ is now the enquiry thank-you page (noindex).
+# Old blog posts (dated permalinks). None of the old posts were carried over, so each goes to the closest page.
+[[redirects]]
+  from = "/2024/11/12/6-reasons-a-virtual-office-will-kill-it/"
+  to = "/services/virtual-office/"
+  status = 301
+[[redirects]]
+  from = "/2023/12/06/collaboration-in-our-flexible-workspace/"
+  to = "/services/private-offices/"
+  status = 301
+[[redirects]]
+  from = "/2023/10/23/reduce-office-space-costs/"
+  to = "/services/virtual-office/"
+  status = 301
+[[redirects]]
+  from = "/2023/04/18/training-room-hire-5-questions/"
+  to = "/services/training-rooms/"
+  status = 301
+[[redirects]]
+  from = "/2023/06/01/what-is-coworking/"
+  to = "/services/meeting-rooms/"
+  status = 301
+[[redirects]]
+  from = "/2023/06/02/how-to-manage-your-time-better/"
+  to = "/blog/"
+  status = 301
+[[redirects]]
+  from = "/2023/08/15/hot-desking-in-merseyside/"
+  to = "/services/meeting-rooms/"
+  status = 301
+[[redirects]]
+  from = "/2023/08/29/introverts-and-hot-desking/"
+  to = "/services/meeting-rooms/"
+  status = 301
+[[redirects]]
+  from = "/2024/09/13/how-shared-workspaces-drive-business-growth/"
+  to = "/services/private-offices/"
+  status = 301
+[[redirects]]
+  from = "/2024/10/22/meeting-spaces-the-hybrid-work-solution/"
+  to = "/services/meeting-rooms/"
+  status = 301
+[[redirects]]
+  from = "/2024/10/22/how-hot-desking-can-benefit-small-business/"
+  to = "/services/meeting-rooms/"
+  status = 301
+# Any other old dated URL (date archives, stray posts).
+[[redirects]]
+  from = "/2021/*"
+  to = "/blog/"
+  status = 301
+[[redirects]]
+  from = "/2022/*"
+  to = "/blog/"
+  status = 301
+[[redirects]]
+  from = "/2023/*"
+  to = "/blog/"
+  status = 301
+[[redirects]]
+  from = "/2024/*"
+  to = "/blog/"
+  status = 301
+[[redirects]]
+  from = "/2025/*"
+  to = "/blog/"
+  status = 301
+[[redirects]]
+  from = "/2026/*"
+  to = "/blog/"
+  status = 301
+# Old pages that no longer exist (the rest keep their URLs).
+[[redirects]]
+  from = "/about/the-team/"
+  to = "/about/#team"
+  status = 301
+[[redirects]]
+  from = "/about/our-story/"
+  to = "/about/#maggies-story"
+  status = 301
+[[redirects]]
+  from = "/about/vision-mission-values/"
+  to = "/about/"
+  status = 301
+[[redirects]]
+  from = "/services/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/locations.kml"
+  to = "/contact/"
+  status = 301
+# Old Avada FAQ items: thin pages, so each goes to the page that now answers it.
+[[redirects]]
+  from = "/faq-items/will-this-replace-a-receptionist-or-staff/"
+  to = "/services/virtual-office/call-answering/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/im-not-techy-how-am-i-supposed-to-use-all-this/"
+  to = "/services/virtual-office/call-answering/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/who-actually-sets-everything-up-for-me/"
+  to = "/services/virtual-office/call-answering/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/what-happens-if-something-isnt-working/"
+  to = "/services/virtual-office/call-answering/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/how-can-you-offer-these-hi-tech-tools-at-an-affordable-price-for-small-businesses/"
+  to = "/services/virtual-office/call-answering/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/i-just-need-a-registered-address-for-my-business-do-i-have-to-get-anything-else/"
+  to = "/services/virtual-office/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/am-i-locked-into-a-contract/"
+  to = "/services/virtual-office/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/can-i-switch-plans-later/"
+  to = "/services/virtual-office/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/what-is-the-total-capacity-of-your-venue/"
+  to = "/services/event-space-business-and-community/faqs/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/is-there-ample-parking-on-site/"
+  to = "/services/event-space-business-and-community/faqs/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/what-are-your-opening-hours-for-events/"
+  to = "/services/event-space-business-and-community/faqs/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/can-we-bring-our-own-catering/"
+  to = "/services/event-space-business-and-community/faqs/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/is-catering-available-on-site/"
+  to = "/services/event-space-business-and-community/faqs/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/what-audio-visual-a-v-equipment-is-available-in-the-auditorium/"
+  to = "/services/event-space-business-and-community/faqs/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/what-is-your-cancellation-policy/"
+  to = "/booking-terms/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/do-you-require-a-deposit-and-what-are-the-payment-terms/"
+  to = "/booking-terms/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/what-is-included-in-the-room-hire-fee/"
+  to = "/whats-included/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/how-do-i-check-availability-or-schedule-a-visit/"
+  to = "/visit/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/*"
+  to = "/"
+  status = 301
+# WordPress leftovers: these sections don't exist on the new site.
+[[redirects]]
+  from = "/author/*"
+  to = "/about/"
+  status = 301
+[[redirects]]
+  from = "/tag/*"
+  to = "/blog/"
+  status = 301
+[[redirects]]
+  from = "/category/*"
+  to = "/blog/"
+  status = 301
+[[redirects]]
+  from = "/feed/*"
+  to = "/blog/"
+  status = 301

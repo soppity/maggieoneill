@@ -1,12 +1,12 @@
 ---
-// Terms and conditions. So far this holds the Knowsley Operator Licence service section from the owner (src/data/legal.ts).
-// TODO(owner): wording for the rest of the site (room hire enquiries, virtual office, analytics) to add alongside.
+// Terms and conditions: general sections, then the Knowsley Operator Licence service section (src/data/legal.ts).
+// General sections drafted Oct 2026 from the site's facts; owner to review before launch.
 import Base from '../../layouts/Base.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import LegalDoc from '../../components/LegalDoc.astro';
 import { site } from '../../data/facts';
 import { images } from '../../data/images';
-import { legalUpdated, termsOperator } from '../../data/legal';
+import { legalUpdated, termsGeneral, termsOperator } from '../../data/legal';
 import { breadcrumbNode } from '../../lib/schema';
 
 const path = '/terms/';
@@ -21,6 +21,7 @@ const schema = [breadcrumbNode(url, [{ name: 'Home', url: `${site.url}/` }, { na
     <div class="container legal">
       <h1>Terms and conditions</h1>
       <p class="legal__updated">Last updated: {legalUpdated}</p>
+      <LegalDoc heading="The Maggie O'Neill Centre" sections={termsGeneral} links={{ 'Room hire': { label: 'Read our booking and cancellation terms', href: '/booking-terms/' } }} questions={false} />
       <LegalDoc heading="Knowsley Operator Licence service" sections={termsOperator} />
     </div>
   </section>

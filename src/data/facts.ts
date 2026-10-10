@@ -65,10 +65,11 @@ export const booking = {
 };
 
 export const forms = {
-  general: { id: 'PTEyaGYXB96ztNMrZVGB', name: 'Website Enquiry', height: 789 },
-  virtualOffice: { id: 'RWoOkRV2NaAKLVe4JSmF', name: 'Virtual Office Page - Form', height: 1006 },
+  // thankYou: set each GoHighLevel form's "On submit → Redirect to URL" to https://mobtc.co.uk + this path (GHL settings).
+  general: { id: 'PTEyaGYXB96ztNMrZVGB', name: 'Website Enquiry', height: 789, thankYou: '/thank-you/' },
+  virtualOffice: { id: 'RWoOkRV2NaAKLVe4JSmF', name: 'Virtual Office Page - Form', height: 1006, thankYou: '/thank-you/virtual-office/' },
   // Owner, Oct 2026: the private offices waitlist (on /services/private-offices/ only).
-  officeWaitlist: { id: 'oEBrrucinDJHDzwwGmdO', name: 'Office Waitlist', height: 960 },
+  officeWaitlist: { id: 'oEBrrucinDJHDzwwGmdO', name: 'Office Waitlist', height: 960, thankYou: '/thank-you/office-waitlist/' },
 };
 
 export const reviews = {

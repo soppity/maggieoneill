@@ -1,7 +1,10 @@
-// Privacy policy and terms (owner brief, Oct 2026). So far these cover the Knowsley Operator Licence service only,
-// word for word from the owner, apart from the charity number (the current one from facts.ts) and the phone number
-// (the main number only). Each item is one paragraph or a list.
-import { address, contact, site } from './facts';
+// Privacy policy and terms (owner, Oct 2026). Two parts each:
+// - General: drafted for the owner from the site's confirmed facts ("write them", Oct 2026). Owner to review, ideally
+//   with a solicitor, before launch.
+// - Knowsley Operator Licence service: word for word from the owner, apart from the charity number (facts.ts) and the
+//   phone number (the main number only).
+// Each block is one paragraph or a list.
+import { address, booking, contact, hours, site, virtualOffice } from './facts';
 
 export type LegalBlock = string | string[];
 export type LegalSection = { title: string; blocks: LegalBlock[] };
@@ -9,7 +12,123 @@ export type LegalSection = { title: string; blocks: LegalBlock[] };
 const who = `The Maggie O'Neill Centre (registered charity ${site.charityNumber})`;
 const where = address.oneLine;
 
-export const legalUpdated = 'May 2026';
+export const legalUpdated = 'October 2026';
+
+const vo = virtualOffice;
+const ca = virtualOffice.callAnswering;
+
+export const privacyGeneral: LegalSection[] = [
+  {
+    title: 'Who we are',
+    blocks: [`${who} is the data controller for personal information collected through this website and when you use our rooms, virtual office, call answering and private office services. Our address is ${where}. Contact us at ${contact.email} or ${contact.phone}.`],
+  },
+  {
+    title: 'What information we collect',
+    blocks: [
+      [
+        'Enquiries: your name, email address, phone number, organisation and your message, when you fill in a form on this website, call, email, text or WhatsApp us',
+        'Room bookings: the booker\'s contact details, the organisation, dates, numbers and any access, dietary or other needs you tell us about',
+        'Virtual office clients: your name, contact details, company details and the identity and address details we need for our anti-money laundering (AML) checks. On plans that include it, we also open and scan your post so you can read it in your mailbox app',
+        `Call answering clients: recordings, transcripts and summaries of the calls our AI voice agent answers for you, and the details your callers leave`,
+        'Private office licensees and waitlist: your contact details and the details of your business',
+        'Website use: pages visited and how you found us, through Google Analytics, only if you accept analytics cookies',
+      ],
+    ],
+  },
+  {
+    title: 'Why we collect it',
+    blocks: [[
+      'To answer your enquiry and arrange a visit or booking',
+      'To provide the services you sign up for: room hire, virtual office, call answering and private offices',
+      'To invoice you and take payment',
+      'To carry out the anti-money laundering checks the law requires for registered office services',
+      'To send you messages about your booking or service, such as confirmations, post notifications and call summaries',
+      'To understand how people use this website and improve it, if you accept analytics cookies',
+    ]],
+  },
+  {
+    title: 'Legal basis for processing',
+    blocks: [[
+      'Contract: to provide a service you have asked for or signed up to',
+      'Legal obligation: AML checks and keeping financial records',
+      'Legitimate interests: answering enquiries, running and improving our services, keeping our building and records secure',
+      'Consent: analytics cookies, and any optional updates you sign up for. You can withdraw consent at any time',
+    ]],
+  },
+  {
+    title: 'Who we share it with',
+    blocks: [
+      [
+        'GoHighLevel (LeadConnector): our CRM, which runs our website forms, call answering and client messages',
+        'Netlify: hosts this website and stores submissions from some of its forms',
+        `OfficeRnD: our room booking system (${new URL(booking.url).hostname})`,
+        'PilotoMail: the mailbox app virtual office clients use to read their scanned post',
+        'Google: Google Analytics (only with your consent) and Google Maps (only if you press "Show the map")',
+        'Our payment providers: to take payments and set up direct debits',
+        'Our catering partner, if you ask us to put you in touch for an event',
+        'Legal or regulatory authorities: where the law requires it',
+      ],
+      'Some of these providers store data outside the UK. Where they do, we rely on the safeguards UK data protection law allows. We do not sell your data.',
+    ],
+  },
+  {
+    title: 'How long we keep it',
+    blocks: ['We keep enquiry details for as long as we need them to deal with your enquiry and any booking that follows. We keep client records for the length of your service and for 6 years after it ends, in line with standard commercial and charity record-keeping requirements. AML records are kept for 5 years after the end of the business relationship, as the Money Laundering Regulations 2017 require.'],
+  },
+  {
+    title: 'Your rights',
+    blocks: [
+      'Under UK GDPR, you have the right to:',
+      [
+        'Access the personal data we hold about you',
+        'Correct inaccurate data',
+        'Request erasure (subject to our legal retention obligations)',
+        'Object to processing based on legitimate interests',
+        'Receive your data in a portable, machine-readable format',
+        'Withdraw consent at any time where consent is the legal basis',
+      ],
+      `Email ${contact.email} to exercise any of these rights. We respond within 30 days. You can also complain to the Information Commissioner's Office (ico.org.uk).`,
+    ],
+  },
+  { title: 'Cookies', blocks: ['We only set analytics cookies if you accept them. Our cookie page lists everything this website uses and lets you change your choice at any time.'] },
+  { title: 'Security', blocks: ['We use appropriate technical and organisational measures to protect your data against unauthorised access, loss or disclosure. This website is served over HTTPS, and post and client records are handled in-house by our team.'] },
+  { title: 'Changes to this policy', blocks: ['We may update this policy from time to time. The date at the top shows the latest version.'] },
+];
+
+export const termsGeneral: LegalSection[] = [
+  { title: 'About us', blocks: [`${who} runs a training, meeting and event venue, virtual offices, call answering and private offices at ${where}. These terms apply to this website and, alongside any agreement you sign with us, to our services.`] },
+  {
+    title: 'Using this website',
+    blocks: ['We keep the information on this website accurate and up to date, but prices, rooms and services can change, and the price we confirm to you in writing is the one that applies. Links to other websites are for your convenience; we are not responsible for their content.'],
+  },
+  {
+    title: 'Room hire',
+    blocks: ['Room, meeting, training and event bookings are covered by our booking and cancellation terms, which explain changes, cancellations, deposits and payment.'],
+  },
+  {
+    title: 'Virtual office',
+    blocks: [
+      [
+        `Plans are paid monthly. ${vo.terms}`,
+        'Your address goes live once our anti-money laundering (AML) checks are complete. We may refuse or end a service where the checks are not satisfied.',
+        'You must use the address lawfully and keep your details with us up to date.',
+        `Post is handled in-house by our team. You can collect it from reception, ${hours.summary}, and on plans that include it we open and scan it so you can read it in your mailbox app.`,
+        "Director's Cover adds a director's service address to either plan.",
+      ],
+    ],
+  },
+  {
+    title: 'Call answering',
+    blocks: [`${ca.summary} You are responsible for telling your callers how their information is used, where the law requires it.`],
+  },
+  { title: 'Private offices', blocks: ['Private offices are let under a separate agreement, which sets out the term, price and conditions.'] },
+  {
+    title: 'Limitation of liability',
+    blocks: ["Nothing in these terms limits liability for death or personal injury caused by negligence, for fraud, or for anything else the law doesn't allow us to limit. Otherwise, we are not liable for indirect losses, loss of profit or loss of business arising from your use of this website or our services, and our total liability is limited to the fees you paid us for the service concerned in the 12 months before the claim."],
+  },
+  { title: 'Governing law', blocks: ['These terms are governed by the laws of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of the courts of England and Wales.'] },
+  { title: 'Changes to these terms', blocks: ['We may update these terms from time to time. The date at the top shows the latest version.'] },
+];
 
 export const privacyOperator: LegalSection[] = [
   { title: 'Who we are', blocks: [`${who} is the data controller for the personal information collected through this website and the Knowsley Operator Licence service. Our address is ${where}. Contact us at ${contact.email} or ${contact.phone}.`] },
