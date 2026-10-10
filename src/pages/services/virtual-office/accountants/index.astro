@@ -1,7 +1,7 @@
 ---
 // For accountants (referral partners). Spec: Website Blueprint page 8b (Template: Service).
 // Audience: accountants, bookkeepers and company formation agents in Merseyside. Job: turn them into a steady source of
-// virtual office clients. No commission (accountants must disclose it), so the client gets 15% off instead.
+// virtual office clients. No commission (accountants must disclose it), so the client gets 20% off instead.
 // PilotoMail screens: docs/assets/pilotomail/ (client names in the picker are anonymised: never show real ones).
 // Schema: Service (audience: accountants) + FAQPage + BreadcrumbList.
 import Base from '../../../../layouts/Base.astro';
@@ -20,7 +20,7 @@ const url = `${site.url}${path}`;
 const parent = '/services/virtual-office/';
 const title = "Registered Office Partner for Accountants, Liverpool | Maggie O'Neill Centre";
 const description =
-  "Give your clients a registered office near Liverpool at 15% off, and see all their post under one login. Maggie O'Neill Centre.";
+  "Give your clients a registered office near Liverpool at 20% off, and see all their post under one login. Maggie O'Neill Centre.";
 
 const off = ap.discount;
 const [p20, p40] = virtualOffice.plans;

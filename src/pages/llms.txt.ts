@@ -2,7 +2,7 @@
 // Based on docs/seo-files/llms.txt.
 import type { APIRoute } from 'astro';
 import { guidePath, publishedGuides } from '../data/guides';
-import { accessibility, address, booking, contact, formatPrice, rooms, hours, lastYear, listNames, maggiesMeals, parking, rateGroups, reviews, site, virtualOffice } from '../data/facts';
+import { accessibility, accountantPartners, address, booking, contact, formatPrice, rooms, hours, lastYear, listNames, maggiesMeals, parking, rateGroups, reviews, site, virtualOffice } from '../data/facts';
 
 const u = (path: string) => `${site.url}${path}`;
 const rates = rateGroups()
@@ -41,7 +41,7 @@ Key facts:
 ## Virtual office
 - [Virtual office near Liverpool](${u('/services/virtual-office/')}): registered office, director's service address, business address and mail handling, from £${virtualOffice.from} a month, for businesses in Merseyside and across the UK
 - [Call answering](${u('/services/virtual-office/call-answering/')}): ${virtualOffice.callAnswering.summary}
-- [For accountants](${u('/services/virtual-office/accountants/')}): 15% off for referred clients and one login for all client post
+- [For accountants](${u('/services/virtual-office/accountants/')}): ${accountantPartners.discount}% off for referred clients and one login for all client post
 ${publishedGuides('virtual-office').map((g) => `- [${g.title}](${u(guidePath(g))}): ${g.summary}\n`).join('')}
 ## About
 - [About the ${site.name}](${u('/about/')})

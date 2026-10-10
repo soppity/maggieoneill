@@ -182,7 +182,7 @@ Use `seo-files/schema-sitewide.jsonld` as the base on **every** page. Add page-s
 | Sector pages (Oliver McGowan, care, fostering and adoption, NHS, councils and schools) | A `Service` with `audience` (`Audience` with audienceType, for example "Oliver McGowan Tier 2 training providers"), plus the Auditorium or room `Place`. On the Oliver McGowan page, also add the Auditorium's accessibility amenityFeatures. **No hearing loop.** **No price.** |
 | Virtual office | A `Service` "Virtual office" with `hasOfferCatalog`: the four `Offer`s at £20, £30, £40 and £50 (priceCurrency GBP, unitText "MONTH", with a description of each), plus an add-on `Offer` for call answering at £39 a month. Set areaServed to the list of areas. |
 | Call answering | A `Service` "Call answering service" with an `Offer` at £39 a month, and provider → `#org`. |
-| Accountants | A `Service` with `audience` "Accountants and bookkeepers", and an `Offer` described as 15% off for referred clients. |
+| Accountants | A `Service` with `audience` "Accountants and bookkeepers", and an `Offer` described as 20% off for referred clients. |
 | Guides and blog | `Article` (headline, datePublished, dateModified, author → a named `Person` host or `#org`, publisher → `#org`, image). |
 | Case studies | `Article`, with `about` → the client `Organization` (name and logo only) and `mentions` → `#venue`. |
 | Contact | `ContactPage`, plus `ContactPoint` nodes (telephone and WhatsApp, contactType "customer service", areaServed GB, availableLanguage en). |
