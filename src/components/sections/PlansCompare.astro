@@ -1,6 +1,7 @@
 ---
 // Virtual office prices as a ladder (owner, Oct 2026): two plans from £20, then Director's Cover as a £10 add-on.
 // The toggle swaps every price to its "with Director's Cover" figure. Works without JavaScript (CSS :has).
+// The plus line in each card is a label for the same toggle, so pressing it adds or removes the cover (owner, Oct 2026).
 import { formatPrice, planFeatures, virtualOffice, withCover } from '../../data/facts';
 
 interface Props {
@@ -23,7 +24,7 @@ const step = full.price - addressOnly.price;
     </div>
 
     <label class="dc-toggle">
-      <input type="checkbox" class="dc-toggle__input" />
+      <input type="checkbox" class="dc-toggle__input" id="dc-toggle" />
       <span class="dc-toggle__switch" aria-hidden="true"></span>
       <span class="dc-toggle__text">
         <strong>Add {dc.name} for <span class="nowrap">+{formatPrice(dc.price)} a month</span></strong>
@@ -51,8 +52,10 @@ const step = full.price - addressOnly.price;
               </li>
             ))}
             <li class="plan__dc">
-              <span class="without-dc">Add {dc.name} for +{formatPrice(dc.price)}: your home off both places on Companies House</span>
-              <span class="with-dc">{dc.name}: a director's service address, so your home is off both places</span>
+              <label for="dc-toggle">
+                <span class="without-dc">Add {dc.name} for +{formatPrice(dc.price)}: your home off both places on Companies House</span>
+                <span class="with-dc">{dc.name}: a director's service address, so your home is off both places</span>
+              </label>
             </li>
           </ul>
           <a class:list={['btn', i === 0 ? 'btn--primary' : 'btn--secondary', 'plan__cta']} href="#get-your-address">
@@ -119,12 +122,19 @@ const step = full.price - addressOnly.price;
     background: var(--moc-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6 10h8' stroke='%2394A0AE' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") center/14px no-repeat;
   }
   .plan__features li.plan__dc { margin-top: 6px; padding-top: 12px; border-top: 1px dashed var(--moc-border); font-weight: 600; color: var(--moc-purple-900); }
-  .plan__features li.plan__dc::before {
+  .plan__features li.plan__dc label::before {
     background: var(--moc-purple-tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 5v10M5 10h10' stroke='%234A0D8F' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") center/14px no-repeat;
   }
-  .plans-section:has(.dc-toggle__input:checked) .plan__features li.plan__dc::before {
+  .plans-section:has(.dc-toggle__input:checked) .plan__features li.plan__dc label::before {
     background: var(--moc-coral-tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-7' fill='none' stroke='%23D64A26' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat;
   }
+  /* The plus line is a label for the toggle: the icon sits inside the label so pressing it works too. */
+  .plan__features li.plan__dc { display: block; }
+  .plan__features li.plan__dc::before { content: none; }
+  .plan__features li.plan__dc label { display: grid; grid-template-columns: 18px 1fr; gap: 8px; align-items: start; cursor: pointer; }
+  .plan__features li.plan__dc label::before { content: ''; width: 18px; height: 18px; margin-top: 2px; border-radius: 50%; transition: box-shadow 0.15s; }
+  .plan__features li.plan__dc label:hover { color: var(--moc-purple-700); }
+  .plan__features li.plan__dc label:hover::before { box-shadow: 0 0 0 2px var(--moc-purple-700); }
   .plan__cta { margin-top: auto; }
   .plans__note { margin-top: 28px; max-width: 900px; }
   @media (max-width: 700px) { .plans { grid-template-columns: 1fr; row-gap: 36px; } }

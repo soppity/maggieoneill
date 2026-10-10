@@ -348,7 +348,7 @@ export const virtualOffice = {
   // Owner, Oct 2026: never name one person as the post handler. Post is handled by the team at reception.
   signUp: [
     { title: 'Tell us the basics', text: 'Your name, email, phone and the plan you want. It takes about a minute.' },
-    { title: 'Confirm your ID', text: 'We send a secure form for the ID checks the law requires for registered office services.' },
+    { title: 'Complete your AML check', text: 'We send a secure form for the anti-money laundering (AML) checks the law requires for registered office services.' },
     { title: 'Get your address', text: "You get your new address and access to your mailbox app. You're live as soon as the checks are done." },
   ],
   // An AI voice agent answers, 24/7. Always call it "call answering", never "AI receptionist".

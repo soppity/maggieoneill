@@ -18,9 +18,9 @@ import { breadcrumbNode, faqNode, serviceNode } from '../../../../lib/schema';
 const path = '/services/virtual-office/accountants/';
 const url = `${site.url}${path}`;
 const parent = '/services/virtual-office/';
-const title = "Registered Office Partner for Accountants, Liverpool | Maggie O'Neill Centre";
+const title = "Registered Address Partner for Accountants, Liverpool | Maggie O'Neill Centre";
 const description =
-  "Give your clients a registered office near Liverpool at 20% off, and see all their post under one login. Maggie O'Neill Centre.";
+  "Give your clients a registered address near Liverpool at 20% off, and see all their post under one login. Maggie O'Neill Centre.";
 
 const off = ap.discount;
 const [p20, p40] = virtualOffice.plans;
@@ -30,7 +30,7 @@ const ca = virtualOffice.callAnswering;
 const discounted = (n: number) => Math.round(n * (100 - off)) / 100;
 const fmt = (n: number) => (Number.isInteger(n) ? formatPrice(n) : `£${n.toFixed(2)}`);
 
-const lede = `Refer your clients to the Maggie O'Neill Centre for their registered office. They get ${off}% off for as long as they stay, you see all their post under one login, and every address supports a local charity.`;
+const lede = `Refer your clients to the Maggie O'Neill Centre for their registered address. They get ${off}% off for as long as they stay, you see all their post under one login, and every address supports a local charity.`;
 
 const benefits = [
   {
@@ -43,7 +43,7 @@ const benefits = [
   },
   {
     title: 'No more registered-address admin',
-    text: "Your clients' registered office is a real building with a team at reception. Post is handled, scanned and in the app, so it stops being your problem.",
+    text: "Your clients' registered address is a real building with a team at reception. Post is handled, scanned and in the app, so it stops being your problem.",
   },
   {
     title: 'Every referral does good',
@@ -80,20 +80,20 @@ const faqs = [
     a: 'Yes. Each client keeps their own access to their mailbox. Your login sits alongside theirs.',
   },
   {
-    q: 'Who does the ID checks?',
-    a: "We do. Anyone providing a registered office service has to check their clients' identity by law, so we send each client a secure ID form after they sign up.",
+    q: 'Who does the AML checks?',
+    a: "We do. Anyone providing a registered address has to carry out anti-money laundering (AML) checks on their clients by law, so we send each client a secure AML form after they sign up.",
   },
   {
     q: 'Can my clients use the address with Companies House?',
-    a: `Yes. Every plan includes a registered office address at ${address.oneLine}. Director's Cover adds a director's service address, so their home comes off the register in both places.`,
+    a: `Yes. Every plan includes a registered address at ${address.oneLine}. Director's Cover adds a director's service address, so their home comes off the register in both places.`,
   },
 ];
 
 const schema = [
   serviceNode({
     url,
-    name: 'Registered office partner for accountants',
-    serviceType: 'Registered office address referral partnership',
+    name: 'Registered address partner for accountants',
+    serviceType: 'Registered address referral partnership',
     description: lede,
     audience: ap.audience,
     areaServed: ['Liverpool', 'Merseyside', 'Knowsley'],
@@ -134,7 +134,7 @@ const schema = [
   />
 
   <Hero
-    title="A registered office partner for accountants near Liverpool"
+    title="A registered address partner for accountants near Liverpool"
     tagline="Your clients' post, handled. Your admin, gone."
     lede={lede}
     image={6}
@@ -232,7 +232,7 @@ const schema = [
         <p>The discount doesn't apply to {ca.name.toLowerCase()}, which stays at {formatPrice(ca.price)} a month.</p>
         <p>
           Post is handled in-house by our team, and clients can collect it from reception, {hours.summary}.
-          We run the ID checks the law requires for registered office services, so that's off your plate too.
+          We run the AML checks the law requires for a registered address, so that's off your plate too.
         </p>
       </div>
     </div>
