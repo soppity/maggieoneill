@@ -413,7 +413,7 @@ export const caseStudies: CaseStudy[] = [
         'A room set up the same way every time, so your training days are predictable.',
         'Invoices to your trust, with PO numbers welcome.',
         'Free parking for staff travelling in.',
-        'Fully accessible on the ground floor, with an accessible toilet.',
+        'Step-free on the ground floor, with an accessible toilet. The Auditorium, Community Room, Forum, Grove and Pod are all on the ground floor.',
       ],
     },
     rooms: ['summit', 'forum', 'community-room', 'foundry', 'grove', 'auditorium'],

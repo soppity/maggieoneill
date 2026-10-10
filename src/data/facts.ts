@@ -123,6 +123,12 @@ export const parking = {
 };
 
 export const accessibility = {
+  // Owner, Oct 2026: three accessible bays. No lift, so first-floor rooms are stairs only.
+  // Ground floor: Auditorium, Community Room, Forum, Grove and Pod (Room.floor). First floor: Summit, Foundry, Hub.
+  accessibleBays: 3,
+  noLift: "We don't have a lift to the first-floor rooms, but the Auditorium, Community Room, Forum, Grove and Pod are all on the ground floor.",
+  // For key-fact rows on room and sector pages.
+  accessLine: 'Step-free on the ground floor, with accessible parking and an accessible toilet. No lift to the first floor.',
   // Word for word, from docs/content/contact-forms-booking.md.
   stepFree:
     'Step-free access. Accessible parking spaces right outside the Auditorium. The Auditorium side door can be opened to shorten the route.',
@@ -134,6 +140,9 @@ export const accessibility = {
   quietRoom: 'Quiet room off the Auditorium foyer, with acoustic insulation and dim lights, signed on the door.',
   lighting: 'Adjustable lighting in the Auditorium.',
 };
+// One answer for "Is the Maggie O'Neill Centre accessible?" wherever it appears, so the caveat is never missed.
+export const accessibilityFaq = `Yes, on the ground floor. There's step-free access, ${accessibility.accessibleBays} accessible parking bays and ${accessibility.toiletGeneral.charAt(0).toLowerCase()}${accessibility.toiletGeneral.slice(1, -1)}. ${accessibility.noLift} Tell us about any accessibility needs when you book and we'll put you in a ground-floor room.`;
+
 
 // The team, from the owner, Oct 2026. Short lines for the homepage, bios for the About page.
 // Patrick is often on site but isn't always the main point of contact: Tania runs the day to day.
@@ -202,6 +211,7 @@ export interface Room {
   // hourFrom: a starting hourly rate, quoted per event (the Auditorium).
   prices?: { hour?: number; day?: number; hourFrom?: number };
   image: number;
+  floor: 'ground' | 'first';
 }
 export const rooms: Room[] = [
   {
@@ -212,13 +222,14 @@ export const rooms: Room[] = [
     capacity: { cabaret: 60, theatre: 100 }, // theatre 100 confirmed by the owner, Oct 2026
     prices: { hourFrom: 100 },
     image: 117,
+    floor: 'ground',
   },
-  { slug: 'summit', name: 'Summit', kind: 'Training and meeting room', goodFor: 'Training days and meetings', capacity: {}, prices: { hour: 30, day: 180 }, image: 44 },
-  { slug: 'forum', name: 'Forum', kind: 'Training and meeting room', goodFor: 'Training, meetings and open networking', capacity: {}, prices: { hour: 30, day: 180 }, image: 35 },
-  { slug: 'grove', name: 'Grove', kind: 'Event and meeting room', goodFor: 'Events, networking and training', capacity: {}, prices: { hour: 30, day: 180 }, image: 62 },
-  { slug: 'foundry', name: 'Foundry', kind: 'Training and meeting room', goodFor: 'Classroom training and team meetings', capacity: {}, prices: { hour: 25, day: 165 }, image: 92 },
-  { slug: 'hub', name: 'Hub', kind: 'Meeting room', goodFor: 'Small meetings and interviews', capacity: {}, prices: { hour: 25, day: 165 }, image: 88 },
-  { slug: 'community-room', name: 'Community Room', kind: 'Training room', goodFor: 'Training sessions and group work', capacity: {}, prices: { hour: 30, day: 180 }, image: 105 },
+  { slug: 'summit', name: 'Summit', kind: 'Training and meeting room', goodFor: 'Training days and meetings', capacity: {}, prices: { hour: 30, day: 180 }, image: 44, floor: 'first' },
+  { slug: 'forum', name: 'Forum', kind: 'Training and meeting room', goodFor: 'Training, meetings and open networking', capacity: {}, prices: { hour: 30, day: 180 }, image: 35, floor: 'ground' },
+  { slug: 'grove', name: 'Grove', kind: 'Event and meeting room', goodFor: 'Events, networking and training', capacity: {}, prices: { hour: 30, day: 180 }, image: 62, floor: 'ground' },
+  { slug: 'foundry', name: 'Foundry', kind: 'Training and meeting room', goodFor: 'Classroom training and team meetings', capacity: {}, prices: { hour: 25, day: 165 }, image: 92, floor: 'first' },
+  { slug: 'hub', name: 'Hub', kind: 'Meeting room', goodFor: 'Small meetings and interviews', capacity: {}, prices: { hour: 25, day: 165 }, image: 88, floor: 'first' },
+  { slug: 'community-room', name: 'Community Room', kind: 'Training room', goodFor: 'Training sessions and group work', capacity: {}, prices: { hour: 30, day: 180 }, image: 105, floor: 'ground' },
   {
     slug: 'pod',
     name: 'Pod',
@@ -227,6 +238,7 @@ export const rooms: Room[] = [
     capacity: { boardroom: 4 },
     prices: { hour: 20, day: 120 },
     image: 95,
+    floor: 'ground',
   },
 ];
 
@@ -263,7 +275,7 @@ export const hostedEvent = [
   'Hosts checking on your event all day, so you have everything you need',
   'Tea and coffee included, in or near every space you book',
   'Flipcharts if you need them',
-  'AV in the Auditorium set up and run by a technician',
+  'AV in the Auditorium set up and run by a technician (£)',
   'Flatscreens with wireless casting in every breakout and networking space',
   '1Gb fibre WiFi throughout the building',
   'Free parking, with an overflow car park if it fills up',

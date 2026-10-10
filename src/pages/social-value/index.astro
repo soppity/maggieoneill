@@ -8,7 +8,7 @@ import Hero from '../../components/sections/Hero.astro';
 import Photo from '../../components/Photo.astro';
 import Faqs from '../../components/sections/Faqs.astro';
 import CtaBand from '../../components/sections/CtaBand.astro';
-import { allNations, contact, lastYear, maggiesMeals, site, trackRecord } from '../../data/facts';
+import { accessibility, allNations, contact, lastYear, maggiesMeals, site, trackRecord } from '../../data/facts';
 import { images } from '../../data/images';
 import { storySummary } from '../../data/story';
 import { bookingTermsPath, larger } from '../../data/bookingTerms';
@@ -179,7 +179,7 @@ const schema = [
           <li>Invoices to your organisation, with PO numbers welcome.</li>
           <li>{larger.paymentMethods.split('. ')[0]}.</li>
           <li><span>Clear <a href={bookingTermsPath}>booking and cancellation terms</a>.</span></li>
-          <li>Fully accessible on the ground floor, with an accessible toilet.</li>
+          <li>{accessibility.accessLine}</li>
           <li>Free parking on site, in Huyton, Knowsley.</li>
         </ul>
       </div>

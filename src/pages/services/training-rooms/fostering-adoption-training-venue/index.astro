@@ -15,7 +15,7 @@ import Reviews from '../../../../components/sections/Reviews.astro';
 import Faqs from '../../../../components/sections/Faqs.astro';
 import FindUs from '../../../../components/sections/FindUs.astro';
 import Photo from '../../../../components/Photo.astro';
-import { accessibility, contact, hours, listNames, parking, site } from '../../../../data/facts';
+import { accessibility, accessibilityFaq, contact, hours, listNames, parking, site } from '../../../../data/facts';
 import { clientLogos, images } from '../../../../data/images';
 import { larger } from '../../../../data/bookingTerms';
 import { breadcrumbNode, faqNode, serviceNode } from '../../../../lib/schema';
@@ -40,7 +40,7 @@ const keyFacts = [
   { term: 'Evenings and weekends', detail: hours.extra },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
   { term: 'Boroughs', detail: `Knowsley, plus ${listNames(boroughs)}.` },
-  { term: 'Access', detail: 'Fully accessible on the ground floor, with an accessible toilet.' },
+  { term: 'Access', detail: accessibility.accessLine },
 ];
 
 const faqs = [
@@ -78,7 +78,7 @@ const faqs = [
   },
   {
     q: 'Is the venue accessible?',
-    a: `Yes. The Maggie O'Neill Centre is fully accessible on the ground floor, with step-free access, accessible parking and ${accessibility.toiletGeneral.charAt(0).toLowerCase()}${accessibility.toiletGeneral.slice(1)}`,
+    a: accessibilityFaq,
   },
   {
     q: 'How do booking and payment work for a course?',

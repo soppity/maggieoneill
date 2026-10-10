@@ -1,0 +1,270 @@
+---
+// Come and see it. Spec: Website Blueprint page 17 (Template: Trust). Audience: first-time bookers.
+// Job: turn a nervous first booking into a show-round. Schema: LocalBusiness (sitewide) + BreadcrumbList + FAQPage.
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Hero from '../../components/sections/Hero.astro';
+import PhotoJourney from '../../components/sections/PhotoJourney.astro';
+import Reviews from '../../components/sections/Reviews.astro';
+import FindUs from '../../components/sections/FindUs.astro';
+import Faqs from '../../components/sections/Faqs.astro';
+import { accessibility, accessibilityFaq, address, contact, hours, parking, site } from '../../data/facts';
+import { images } from '../../data/images';
+import { quotes } from '../../data/reviewQuotes';
+import { breadcrumbNode, faqNode } from '../../lib/schema';
+
+const path = '/visit/';
+const url = `${site.url}${path}`;
+const title = "Book a Visit, Huyton L36 8HT | Maggie O'Neill Centre";
+const description =
+  "See the rooms before you book. Pop in for a tea and a look round the Maggie O'Neill Centre, 433 Liverpool Road, Huyton L36 8HT. Free parking.";
+
+// Getting here, from the owner, Oct 2026.
+const routes = {
+  car: [
+    {
+      from: 'From Manchester, Warrington and the east',
+      time: 'about 50 minutes from Manchester',
+      text: 'Take the M62 west to junction 6 (Tarbock Island). Then take the M57 north towards Southport and leave at junction 3.',
+    },
+    {
+      from: 'From Preston, Wigan, Southport and the north',
+      time: 'about 50 minutes from Preston',
+      text: 'Take the M6 south to junction 26, then the M58 towards Liverpool. At the end of the M58, join the M57 south and leave at junction 3.',
+    },
+    {
+      from: 'From Chester, North Wales and Runcorn',
+      time: 'about 40 minutes from Chester',
+      text: "Take the M56 east to junction 12, then follow signs across the Mersey Gateway Bridge. It's a toll bridge, so pay online by midnight the next day. Follow the A562 onto the Knowsley Expressway (A5300). It runs straight onto the M57 north, and you leave at junction 3.",
+    },
+    {
+      from: 'From the Midlands and the south',
+      time: '',
+      text: 'Take the M6 north to junction 21A and the M62 west to junction 6. Then follow the Manchester directions above.',
+    },
+    {
+      from: 'From Liverpool city centre',
+      time: '20 to 30 minutes, about 7.5 miles',
+      text: "Head east on the A57, which starts as Prescot Road and becomes East Prescot Road, through Old Swan and Knotty Ash. Stay on it past Page Moss, where it becomes Liverpool Road. We're on the left just after Seth Powell Way.",
+    },
+  ],
+  bus: [
+    {
+      from: 'From Liverpool city centre',
+      time: 'about 45 minutes',
+      text: "From Lime Street, walk about 6 minutes to the Fraser Street stop on London Road. Take the 10A towards St Helens, which runs roughly every 9 minutes; the 10 and 10B also work. Get off at Hillside Road, then walk a minute east along Liverpool Road. We're on the left. You'll pass the Kingsway, Seth Powell Way and Primrose Drive stops just before yours, so you'll know you're close.",
+    },
+    { from: 'From St Helens, Prescot or Whiston', time: '', text: 'Take the 10 or 10A towards Liverpool and get off at Hillside Road.' },
+  ],
+  train: [
+    {
+      from: 'From Manchester',
+      time: 'about 1 hour 15 minutes',
+      text: 'Take a Northern train from Piccadilly to Huyton; the Liverpool Lime Street service takes about 45 minutes. Walk 3 minutes to the Derby Road stop and take the 9 towards Liverpool. Get off at Wastle Bridge Road, about 11 minutes later, and walk about 4 minutes to us.',
+    },
+    { from: 'From Wigan', time: '', text: 'There are direct Northern trains to Huyton. From there, follow the bus directions.' },
+    {
+      from: 'From London, Birmingham and further afield',
+      time: '',
+      text: 'Take the train to Liverpool Lime Street, then follow the bus directions from the city centre.',
+    },
+  ],
+};
+
+const journey = [
+  { image: 185, caption: 'The free car park, with 50 spaces right outside. Plain from the outside, we know.' },
+  { image: 184, caption: 'The entrance, with a ramp and handrails up to the front door.' },
+  { image: 6, caption: 'Reception, where a host will meet you and put the kettle on.' },
+  { image: 66, caption: 'The Grove, one of our meeting and event rooms, under its greenery canopy.' },
+  { image: 44, caption: 'The Summit, set in a U-shape for a training day.' },
+  { image: 118, caption: 'The Auditorium, with its stage, lectern and sound system.' },
+];
+
+const faqs = [
+  {
+    q: "Can I look round the Maggie O'Neill Centre before I book?",
+    a: `We insist! We love to show people round and let you see the space for yourself. Use the form on this page, call ${contact.phone} or email ${contact.email}, and we'll find a time that suits you.`,
+  },
+  {
+    q: 'When can I come for a look round?',
+    a: `We do tours every weekday, ${hours.summary.replace('Monday to Friday, ', '')}. Just shout: use the form on this page or call ${contact.phone}, and we'll have a host ready to show you round.`,
+  },
+  {
+    q: "Where is the Maggie O'Neill Centre?",
+    a: `The Maggie O'Neill Centre is at ${address.oneLine}, in Knowsley, ${parking.motorway}.`,
+  },
+  {
+    q: 'Is there parking?',
+    a: `Yes. There's a free ${parking.spaces}-space car park outside, and you don't need to book. There are ${accessibility.accessibleBays} accessible parking bays, and ${parking.overflow}.`,
+  },
+  {
+    q: 'Can I get there by bus?',
+    a: 'Yes. The nearest stop is Hillside Road, a minute’s walk from our door. From Liverpool city centre, take the 10A towards St Helens from the Fraser Street stop on London Road (the 10 and 10B also work). From St Helens, Prescot or Whiston, take the 10 or 10A towards Liverpool.',
+  },
+  {
+    q: 'What is the nearest train station?',
+    a: 'Huyton and Roby stations are both around a mile and a half away. Most people finish the journey by bus or taxi.',
+  },
+  {
+    q: "Is the Maggie O'Neill Centre accessible?",
+    a: accessibilityFaq,
+  },
+];
+
+const schema = [
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Visit', url },
+  ]),
+  faqNode(url, faqs),
+];
+---
+<Base title={title} description={description} ogImage={images[3].src} ogImageAlt={images[3].alt} preloadImage={images[3].src} schema={schema}>
+  <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Visit', path }]} />
+
+  <Hero
+    title="Visit the Maggie O'Neill Centre"
+    tagline="Plain from the car park. Worth it once you're in."
+    lede="Come for a tea and a look round before you book. A host will show you the rooms and answer any questions on the spot."
+    image={3}
+    primary={{ label: 'Book a visit', href: '#enquire' }}
+    secondary={{ label: `Call ${contact.phone}`, href: contact.phoneHref }}
+  />
+
+  <section class="section section--white" id="getting-here" aria-labelledby="getting-heading">
+    <div class="container">
+      <div class="getting__head">
+        <div class="section-head">
+          <span class="eyebrow">Getting here</span>
+          <h2 id="getting-heading">How do I get to the Maggie O'Neill Centre?</h2>
+          <p class="getting__address">{site.name}, {address.oneLine}</p>
+          <p>
+            We're outside the city, so getting here is easier. There's a free {parking.spaces}-space car park, a bus stop a minute's walk away, and the M57 is
+            close by. If you get stuck on the way, ring reception on <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>.
+          </p>
+        </div>
+        <ul class="getting__facts">
+          <li><strong>{parking.spaces}</strong><span>free parking spaces, no need to book</span></li>
+          <li><strong>1 min</strong><span>walk from the Hillside Road bus stop</span></li>
+          <li><strong>J3</strong><span>of the M57, the easiest way in</span></li>
+        </ul>
+      </div>
+
+      <div class="ways">
+        <div class="way">
+          <h3>By car</h3>
+          <p>
+            Search for {site.name} in Google Maps, Apple Maps or Waze. We're listed, and it'll take you straight to the building.
+          </p>
+          <p>
+            We're on the north side of Liverpool Road (the A57), just past Seth Powell Way. The car park is free, with {parking.spaces} spaces, and you don't need to book.
+          </p>
+          <p>
+            Whichever direction you're coming from, the easiest way in is junction 3 of the M57. Leave there and take the A526 towards Huyton. At the roundabout,
+            take the second exit onto Seth Powell Way. Turn left onto Liverpool Road, and we're a short way along on the left.
+          </p>
+          <div class="routes">
+            {routes.car.map((r) => (
+              <details class="route">
+                <summary>{r.from}{r.time && <span>{r.time}</span>}</summary>
+                <p>{r.text}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+
+        <div class="way">
+          <h3>By bus</h3>
+          <p>The nearest stop is Hillside Road, a minute's walk from our door.</p>
+          <div class="routes">
+            {routes.bus.map((r) => (
+              <details class="route">
+                <summary>{r.from}{r.time && <span>{r.time}</span>}</summary>
+                <p>{r.text}</p>
+              </details>
+            ))}
+          </div>
+          <p class="way__note">For live times, use the Merseytravel app or website.</p>
+
+          <h3 class="way__sub">By train</h3>
+          <p>The nearest stations are Huyton and Roby, both around a mile and a half away. Most people finish the journey by bus or taxi.</p>
+          <div class="routes">
+            {routes.train.map((r) => (
+              <details class="route">
+                <summary>{r.from}{r.time && <span>{r.time}</span>}</summary>
+                <p>{r.text}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="access">
+        <div>
+          <h3>Accessibility</h3>
+          <p>
+            We have disabled access on the ground floor and {accessibility.accessibleBays} accessible parking bays. If anyone in your group has specific needs, tell
+            us when you book. We'll put you in a ground-floor room and sort out whatever else helps on the day.
+          </p>
+        </div>
+        <p class="access__note"><strong>Please note:</strong> {accessibility.noLift} Tell us about any accessibility needs when you book, so we can make sure you're in a ground-floor room.</p>
+      </div>
+
+      <div class="tour">
+        <p><strong>Come and see it.</strong> If you'd like to look round before you book, we do tours every weekday. Just shout.</p>
+        <a class="btn btn--primary" href="#enquire">Book a visit</a>
+      </div>
+    </div>
+  </section>
+
+  <PhotoJourney
+    heading="What will you see when you visit?"
+    intro="Here's the walk from the car park to the rooms. The real thing comes with a cup of tea."
+    stops={journey}
+  />
+
+  <Reviews heading="What do first-time visitors say?" reviews={[quotes.john, quotes.megan, quotes.laura]} />
+
+  <FindUs />
+
+  <Faqs faqs={faqs} heading="Questions about visiting" />
+
+  <section class="section section--white more-links" aria-label="Related pages">
+    <div class="container">
+      <p>
+        Ready to book? See <a href="/services/training-rooms/">training room hire near Liverpool</a> and
+        {' '}<a href="/services/meeting-rooms/">meeting rooms in Huyton</a>, or <a href="/contact/">contact us</a>.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .getting__head { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); gap: clamp(24px, 4vw, 56px); align-items: end; margin-bottom: 40px; }
+  .getting__head .section-head { margin-bottom: 0; }
+  .getting__address { font-weight: 700; color: var(--moc-purple-900); font-size: var(--text-body-size) !important; }
+  .getting__facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .getting__facts li { display: flex; align-items: baseline; gap: 14px; padding: 14px 18px; background: var(--moc-bg-warm); border-radius: var(--radius-card); }
+  .getting__facts strong { font: 800 26px/1 var(--font-display); color: var(--moc-purple-700); min-width: 3.4em; flex: none; }
+  .getting__facts span { font-size: var(--text-small-size); }
+  .ways { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
+  .way { padding: 28px; border-radius: var(--radius-card); background: var(--moc-bg-warm); display: flex; flex-direction: column; gap: 14px; }
+  .way h3 { font-size: 22px; }
+  .way__sub { margin-top: 18px; }
+  .way__note { font-size: var(--text-small-size); color: var(--moc-slate-text); }
+  .routes { display: flex; flex-direction: column; gap: 8px; }
+  .route { background: var(--moc-white); border-radius: var(--radius-tile); }
+  .route summary { cursor: pointer; padding: 14px 18px; font-weight: 700; color: var(--moc-purple-900); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; list-style: none; }
+  .route summary::-webkit-details-marker { display: none; }
+  .route summary::after { content: '+'; font-weight: 800; color: var(--moc-coral-text); margin-left: auto; }
+  .route[open] summary::after { content: '\2212'; }
+  .route summary span { font-weight: 400; font-size: var(--text-small-size); color: var(--moc-slate-text); }
+  .route p { padding: 0 18px 16px; font-size: var(--text-small-size); }
+  .access { margin-top: 24px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; padding: 28px; border-radius: var(--radius-card); border: 2px solid var(--moc-purple-tint); }
+  .access h3 { font-size: 22px; margin-bottom: 10px; }
+  .access__note { margin: 0; padding: 18px 20px; background: var(--moc-coral-tint); border-left: 4px solid var(--moc-coral-500); border-radius: 0 var(--radius-tile) var(--radius-tile) 0; }
+  .tour { margin-top: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 22px 28px; border-radius: var(--radius-card); background: var(--moc-purple-tint); }
+  .tour p { margin: 0; font-size: var(--text-lead-size); }
+  .more-links { padding: 40px 0; }
+  @media (max-width: 900px) { .getting__head, .ways, .access { grid-template-columns: 1fr; } }
+</style>

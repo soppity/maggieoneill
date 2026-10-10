@@ -16,7 +16,7 @@ import Hosts from '../components/sections/Hosts.astro';
 import Faqs from '../components/sections/Faqs.astro';
 import MealsBand from '../components/sections/MealsBand.astro';
 import FindUs from '../components/sections/FindUs.astro';
-import { accessibility, address, contact, formatPrice, hours, layoutTriage, listNames, parking, rateGroups, rooms, site, trainingDayFrom, virtualOffice } from '../data/facts';
+import { accessibility, accessibilityFaq, address, contact, formatPrice, hours, layoutTriage, listNames, parking, rateGroups, rooms, site, trainingDayFrom, virtualOffice } from '../data/facts';
 import { images } from '../data/images';
 import { faqNode } from '../lib/schema';
 import { storySummary } from '../data/story';
@@ -48,7 +48,7 @@ const keyFacts = [
   { term: 'Included', detail: 'On-site hosts, the room set to your layout, a screen with Mac and PC wireless casting and HDMI, 1Gb fibre WiFi, and tea and coffee all day.' },
   { term: 'Prices', detail: `Training rooms from ${formatPrice(trainingDayFrom)} a day, everything included. ${hourFromLines.map(cap).join('. ')}.`, href: '/whats-included/', linkText: "See what's included" },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park on site, on a main bus route.` },
-  { term: 'Access', detail: 'Fully accessible on the ground floor, with accessible parking and an accessible toilet.' },
+  { term: 'Access', detail: accessibility.accessLine },
   { term: 'Hours', detail: `${hours.summary}. ${hours.extra}` },
   { term: 'Virtual office', detail: `From ${formatPrice(virtualOffice.from)} a month for a registered office address.`, href: '/services/virtual-office/', linkText: 'Plans and prices' },
 ];
@@ -77,7 +77,7 @@ const faqs = [
   },
   {
     q: "Is the Maggie O'Neill Centre accessible?",
-    a: `Yes. The Maggie O'Neill Centre is fully accessible on the ground floor, with step-free access, accessible parking and ${accessibility.toiletGeneral.charAt(0).toLowerCase()}${accessibility.toiletGeneral.slice(1)}`,
+    a: accessibilityFaq,
   },
   {
     q: "What are the Maggie O'Neill Centre's opening hours?",

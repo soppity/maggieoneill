@@ -12,7 +12,7 @@ import Reviews from '../../components/sections/Reviews.astro';
 import Faqs from '../../components/sections/Faqs.astro';
 import CtaBand from '../../components/sections/CtaBand.astro';
 import Photo from '../../components/Photo.astro';
-import { accessibility, catering, formatPrice, halfDay, hours, listNames, parking, rateGroups, rooms, site, trainingDayFrom } from '../../data/facts';
+import { accessibility, accessibilityFaq, catering, formatPrice, halfDay, hours, listNames, parking, rateGroups, rooms, site, trainingDayFrom } from '../../data/facts';
 import { images } from '../../data/images';
 import { bookingTermsPath, cancellationSummary } from '../../data/bookingTerms';
 import { breadcrumbNode, faqNode } from '../../lib/schema';
@@ -34,7 +34,7 @@ const keyFacts = [
   { term: 'Tech', detail: 'Screen with Mac and PC wireless casting and HDMI, cables provided, 1Gb fibre WiFi, flipchart and pens.' },
   { term: 'Refreshments', detail: 'Tea and coffee in the room, all day.' },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
-  { term: 'Access', detail: 'Fully accessible on the ground floor, with accessible parking and an accessible toilet.' },
+  { term: 'Access', detail: accessibility.accessLine },
 ];
 
 const day = [
@@ -69,7 +69,7 @@ const faqs = [
   },
   {
     q: "Is the Maggie O'Neill Centre accessible?",
-    a: `Yes. The Maggie O'Neill Centre is fully accessible on the ground floor, with step-free access, accessible parking and ${accessibility.toiletGeneral.charAt(0).toLowerCase()}${accessibility.toiletGeneral.slice(1)}`,
+    a: accessibilityFaq,
   },
   {
     q: 'How much does room hire cost?',
@@ -134,11 +134,12 @@ const schema = [
         <div class="section-head">
           <span class="eyebrow">Accessibility</span>
           <h2 id="access-heading">Is the building accessible?</h2>
-          <p>Yes. The Maggie O'Neill Centre is fully accessible on the ground floor, so everyone in your group can get in and get around.</p>
+          <p>Yes, on the ground floor. Tell us about any accessibility needs when you book and we'll put your group in a ground-floor room.</p>
         </div>
         <ul class="tick-list">
           <li>{accessibility.groundFloor}</li>
           <li>{accessibility.toiletGeneral}</li>
+          <li>{accessibility.noLift}</li>
         </ul>
       </div>
       <figure class="access__photo">

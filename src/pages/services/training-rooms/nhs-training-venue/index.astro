@@ -17,7 +17,7 @@ import { caseStudies } from '../../../../data/caseStudies';
 import Faqs from '../../../../components/sections/Faqs.astro';
 import FindUs from '../../../../components/sections/FindUs.astro';
 import Photo from '../../../../components/Photo.astro';
-import { accessibility, contact, formatPrice, layoutTriage, parking, rooms, site, trainingDayFrom } from '../../../../data/facts';
+import { accessibility, accessibilityFaq, contact, formatPrice, layoutTriage, parking, rooms, site, trainingDayFrom } from '../../../../data/facts';
 import { clientLogos, images } from '../../../../data/images';
 import { bookingTermsPath, larger, standard } from '../../../../data/bookingTerms';
 import { breadcrumbNode, faqNode, serviceNode } from '../../../../lib/schema';
@@ -41,7 +41,7 @@ const keyFacts = [
   { term: 'Invoicing', detail: 'Invoices to your trust or PCN, with PO numbers welcome.' },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
   { term: 'Your hosts', detail: 'On site all day, looking after your team.' },
-  { term: 'Access', detail: 'Fully accessible on the ground floor, with an accessible toilet.' },
+  { term: 'Access', detail: accessibility.accessLine },
 ];
 
 const faqs = [
@@ -83,7 +83,7 @@ const faqs = [
   },
   {
     q: 'Is the venue accessible?',
-    a: `Yes. The Maggie O'Neill Centre is fully accessible on the ground floor, with step-free access, accessible parking and ${accessibility.toiletGeneral.charAt(0).toLowerCase()}${accessibility.toiletGeneral.slice(1)}`,
+    a: accessibilityFaq,
   },
 ];
 
@@ -149,7 +149,7 @@ const schema = [
           <li>Invoices to your trust or PCN, with PO numbers welcome.</li>
           <li>Hourly booking for protected learning time, or a full day for training.</li>
           <li>Free parking for staff travelling in from across the area.</li>
-          <li>Fully accessible on the ground floor, with an accessible toilet.</li>
+          <li>{accessibility.accessLine}</li>
           <li>The room set and the screen tested before your trainer arrives.</li>
         </ul>
       </div>
