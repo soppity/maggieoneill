@@ -1,0 +1,122 @@
+---
+// Contact. Spec: Website Blueprint page 18 (Template: Trust). Audience: ready to enquire.
+// Job: a real person, a phone number and a short form. Schema: ContactPage + LocalBusiness (sitewide) + FAQPage.
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Hero from '../../components/sections/Hero.astro';
+import FindUs from '../../components/sections/FindUs.astro';
+import Faqs from '../../components/sections/Faqs.astro';
+import { address, contact, hours, site } from '../../data/facts';
+import { images } from '../../data/images';
+import { breadcrumbNode, faqNode } from '../../lib/schema';
+
+const path = '/contact/';
+const url = `${site.url}${path}`;
+const title = "Contact Us, Huyton L36 8HT | Maggie O'Neill Centre";
+const description =
+  "Call or message the Maggie O'Neill Centre, 433 Liverpool Road, Huyton L36 8HT. A real person replies the same working day.";
+
+const ways = [
+  {
+    title: 'Call us',
+    text: `${hours.summary}. You'll get a person, not a menu.`,
+    link: { label: contact.phone, href: contact.phoneHref, track: 'phone_click' },
+  },
+  {
+    title: 'WhatsApp or text',
+    text: 'Handy if you\'re on the move. Send us your dates and numbers and we\'ll come back to you.',
+    link: { label: contact.text, href: contact.whatsappHref, track: 'whatsapp_click' },
+  },
+  {
+    title: 'Email',
+    text: 'For anything that needs a bit more detail, like a quote, an invoice or a long list of questions.',
+    link: { label: contact.email ?? '', href: `mailto:${contact.email}`, track: 'email_click' },
+  },
+  {
+    title: 'Pop in',
+    text: `We're at ${address.oneLine}, with free parking outside. Come and have a look round.`,
+    link: { label: 'Plan your visit', href: '/visit/', track: undefined },
+  },
+];
+
+const faqs = [
+  {
+    q: "How quickly will the Maggie O'Neill Centre reply?",
+    a: 'The same working day. Patrick or Tania will get back to you, whether you call, message, email or fill in the form.',
+  },
+  {
+    q: "What are the Maggie O'Neill Centre's opening hours?",
+    a: `${hours.summary}. ${hours.extra}`,
+  },
+  {
+    q: 'Can I WhatsApp or text instead of calling?',
+    a: `Yes. WhatsApp or text ${contact.text} and we'll reply there.`,
+  },
+  {
+    q: 'Can I look round before I book?',
+    a: `We insist! Call ${contact.phone} or email ${contact.email} and we'll find a time that suits you.`,
+  },
+];
+
+const schema = [
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Contact', url },
+  ]),
+  faqNode(url, faqs),
+];
+---
+<Base title={title} description={description} ogImage={images[184].src} ogImageAlt={images[184].alt} preloadImage={images[184].src} schema={schema} pageType="ContactPage">
+  <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Contact', path }]} />
+
+  <Hero
+    title="Contact the Maggie O'Neill Centre"
+    tagline="Talk to a person."
+    lede="Patrick or Tania will reply the same working day. Call, message, email or fill in the form, whichever suits you."
+    image={184}
+    primary={{ label: `Call ${contact.phone}`, href: contact.phoneHref, track: 'phone_click' }}
+    secondary={{ label: 'Send an enquiry', href: '#enquire' }}
+  />
+
+  <section class="section section--white" aria-labelledby="ways-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Get in touch</span>
+        <h2 id="ways-heading">How can you reach us?</h2>
+      </div>
+      <ul class="grid ways">
+        {ways.map((w) => (
+          <li class="card way">
+            <h3>{w.title}</h3>
+            <p>{w.text}</p>
+            <a class="way__link" href={w.link.href} data-track={w.link.track} rel={w.link.href.startsWith('http') ? 'noopener' : undefined}>{w.link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <FindUs />
+
+  <Faqs faqs={faqs} heading="Questions about getting in touch" />
+
+  <section class="section section--white more-links" aria-label="Related pages">
+    <div class="container">
+      <p>
+        Looking for something specific? See <a href="/services/meeting-rooms/">meeting rooms in Huyton</a>,
+        {' '}<a href="/services/training-rooms/">training room hire</a>, our
+        {' '}<a href="/services/event-space-business-and-community/">conference and event venue</a> or our
+        {' '}<a href="/services/virtual-office/">virtual office in Liverpool</a>.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .ways { grid-template-columns: repeat(4, minmax(0, 1fr)); list-style: none; padding: 0; margin: 0; }
+  .way { padding: 28px; display: flex; flex-direction: column; gap: 10px; }
+  .way p { font-size: var(--text-small-size); color: var(--moc-slate-text); flex: 1; }
+  .way__link { font-weight: 700; overflow-wrap: anywhere; }
+  @media (max-width: 1000px) { .ways { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .ways { grid-template-columns: 1fr; } }
+</style>
