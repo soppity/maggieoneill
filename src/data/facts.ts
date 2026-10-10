@@ -442,3 +442,11 @@ export const careClients = [
   'Nexime Healthcare', 'Capricorn Care NW Ltd', 'BR-1 Care', 'Prosper Care', 'Homecarers Liverpool (HCL)',
   'City Health Care Partnership CIC', 'G&H Care',
 ];
+
+// Accountant referral partners (PROJECT_NOTES.md, Blueprint 8b). We pay no commission, because accountants must
+// disclose commission to their clients: the saving goes to the client instead, for as long as they stay.
+// Referrals are tracked by which client mailboxes the accountant's email is on in PilotoMail.
+export const accountantPartners = {
+  discount: 15,
+  audience: 'Accountants, bookkeepers and company formation agents',
+};
