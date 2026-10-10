@@ -2,7 +2,7 @@
 // Based on docs/seo-files/llms.txt.
 import type { APIRoute } from 'astro';
 import { guidePath, publishedGuides } from '../data/guides';
-import { accessibility, accountantPartners, address, booking, contact, formatPrice, rooms, hours, lastYear, listNames, maggiesMeals, parking, rateGroups, reviews, site, virtualOffice } from '../data/facts';
+import { accessibility, accountantPartners, address, booking, contact, formatPrice, rooms, hours, lastYear, listNames, maggiesMeals, operatorLicence, parking, rateGroups, reviews, site, virtualOffice } from '../data/facts';
 
 const u = (path: string) => `${site.url}${path}`;
 const rates = rateGroups()
@@ -25,6 +25,7 @@ Key facts:
 - Room hire, everything included: ${rates}. ${rooms.filter((r) => r.prices?.hourFrom).map((r) => `The ${r.name} from ${formatPrice(r.prices!.hourFrom!)} an hour.`).join(' ')}
 - Maggie's Meals: ${maggiesMeals.schedule}.
 - Virtual office plans: ${planList} a month, plus Director's Cover (director's service address) for £${virtualOffice.directorsCover.price} a month on either plan. Call answering add-on £${virtualOffice.callAnswering.price} a month plus ${virtualOffice.callAnswering.perResponse} per AI response.
+- Knowsley private hire operator's licence address: a ${operatorLicence.termMonths}-month satellite office lease with planning permission (not a virtual office, which Knowsley Council rejects), ${operatorLicence.tiers.map((t) => `£${t.price} a month for ${t.label}`).join(', ')}, no setup fee, exit clause if the council refuses or revokes the licence. Used by ${operatorLicence.operatorsSupported} operators.
 - Book or check availability: ${booking.url}
 
 ## Rooms and venue hire
@@ -42,6 +43,7 @@ Key facts:
 - [Virtual office near Liverpool](${u('/services/virtual-office/')}): registered office, director's service address, business address and mail handling, from £${virtualOffice.from} a month, for businesses in Merseyside and across the UK
 - [Call answering](${u('/services/virtual-office/call-answering/')}): ${virtualOffice.callAnswering.summary}
 - [For accountants](${u('/services/virtual-office/accountants/')}): ${accountantPartners.discount}% off for referred clients and one login for all client post
+- [Knowsley operator licence address](${u(operatorLicence.path)}): lease of planning-approved satellite office premises in Knowsley for private hire operator's licences, from £${operatorLicence.from} a month
 ${publishedGuides('virtual-office').map((g) => `- [${g.title}](${u(guidePath(g))}): ${g.summary}\n`).join('')}
 ## About
 - [About the ${site.name}](${u('/about/')})

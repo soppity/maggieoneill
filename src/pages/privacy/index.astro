@@ -1,0 +1,33 @@
+---
+// Privacy policy. So far this holds the Knowsley Operator Licence service section from the owner (src/data/legal.ts).
+// TODO(owner): wording for the rest of the site (room hire enquiries, virtual office, analytics) to add alongside.
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import LegalDoc from '../../components/LegalDoc.astro';
+import { site } from '../../data/facts';
+import { images } from '../../data/images';
+import { legalUpdated, privacyOperator } from '../../data/legal';
+import { breadcrumbNode } from '../../lib/schema';
+
+const path = '/privacy/';
+const url = `${site.url}${path}`;
+const title = "Privacy Policy | Maggie O'Neill Centre";
+const description = "How the Maggie O'Neill Centre collects, uses and protects personal information, including for the Knowsley Operator Licence service.";
+const schema = [breadcrumbNode(url, [{ name: 'Home', url: `${site.url}/` }, { name: 'Privacy', url }])];
+---
+<Base title={title} description={description} ogImage={images[6].src} ogImageAlt={images[6].alt} schema={schema}>
+  <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Privacy', path }]} />
+  <section class="section section--white">
+    <div class="container legal">
+      <h1>Privacy policy</h1>
+      <p class="legal__updated">Last updated: {legalUpdated}</p>
+      <LegalDoc heading="Knowsley Operator Licence service" sections={privacyOperator} />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .legal { max-width: 820px; display: flex; flex-direction: column; gap: 16px; }
+  .legal h1 { font-size: clamp(34px, 4.6vw, 52px); }
+  .legal__updated { color: var(--moc-slate-text); font-weight: 600; margin-bottom: 12px; }
+</style>

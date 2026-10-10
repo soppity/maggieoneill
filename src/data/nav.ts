@@ -29,6 +29,8 @@ export const mainNav: NavItem[] = [
       { label: 'Plans and prices', href: '/services/virtual-office/' },
       { label: 'Call answering', href: '/services/virtual-office/call-answering/' },
       { label: 'For accountants', href: '/services/virtual-office/accountants/' },
+      // Owner, Oct 2026: taxi operators look under virtual office, but Knowsley won't accept one, so signpost the package here.
+      { label: 'Knowsley operator licence (taxis)', href: '/operators-licence/' },
       { label: 'Guides', href: '/blog/' },
     ],
   },
@@ -59,6 +61,7 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
       { label: 'Private offices', href: '/services/private-offices/' },
       { label: 'Virtual office in Liverpool from £20', href: '/services/virtual-office/' },
       { label: 'Call answering', href: '/services/virtual-office/call-answering/' },
+      { label: 'Knowsley operator licence address', href: '/operators-licence/' },
     ],
   },
   {

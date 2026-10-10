@@ -30,7 +30,8 @@ export default defineConfig({
   build: { format: 'directory' },
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/404'),
+      // Unlisted operator licence pages (guide, lease form, wrong-borough page) are noindex and sent privately: keep them out.
+      filter: (page) => !page.includes('/404') && !/\/operators-licence\/.+/.test(new URL(page).pathname),
       serialize(item) {
         const lastmod = lastModified(new URL(item.url).pathname);
         if (lastmod) item.lastmod = lastmod;

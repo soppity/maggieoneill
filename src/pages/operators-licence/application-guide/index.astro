@@ -1,0 +1,391 @@
+---
+// Knowsley operator licence: APPLICATION GUIDE. UNLISTED (owner brief, Oct 2026).
+// noindex, nofollow; not in the nav, footer, sitemap or llms.txt; never linked from a public page.
+// Sent privately to operators who are a good fit. This is the only page that shows the planning reference.
+// Print-friendly: each step starts on a new printed page.
+import Base from '../../../layouts/Base.astro';
+import Faqs from '../../../components/sections/Faqs.astro';
+import { address, contact, operatorLicence as ol, site } from '../../../data/facts';
+
+const title = "How to Apply for a Knowsley Private Hire Operator's Licence: Step-by-Step Guide";
+const description = "A private, step-by-step guide to the Knowsley Private Hire Operator's Licence application, from the Maggie O'Neill Centre.";
+const ogImage = `${site.url}/images/operators-licence/operators-licence-guide-og.png`;
+
+// Private: Knowsley Council planning reference, in the exact format the council form validates.
+const planningRef = '09/00608/COU - Wed 04 Aug 2010';
+const img = (name: string) => `/images/operators-licence/${name}`;
+
+const gather = [
+  { item: 'Basic DBS certificate', note: 'For every owner, director, and responsible person', cost: '~£25 from gov.uk' },
+  { item: 'Public liability insurance', note: 'Active policy covering your operation', cost: '£100–300/yr typical' },
+  { item: 'Proof of citizenship or Right to Work', note: 'For all directors', cost: '—' },
+  { item: 'HM Tax Check code', note: 'Must be less than 3 months old when you apply', cost: 'Free, from gov.uk' },
+  { item: 'Council application fee', note: 'Paid when you submit, see fee table below', cost: 'From £242' },
+];
+
+const feesNew = [
+  { v: '1 vehicle', rec: true, y1: '£242', y5: '£847' },
+  { v: '2-10 vehicles', y1: '£308', y5: '£1,078' },
+  { v: '11-50 vehicles', y1: '£467.50', y5: '£1,628' },
+  { v: '51+ vehicles', y1: '£550', y5: '£1,920' },
+];
+const feesRenewal = [
+  { v: '1 vehicle', y1: '£231', y5: '£803' },
+  { v: '2-10 vehicles', y1: '£297', y5: '£1,039.50' },
+  { v: '11-50 vehicles', y1: '£440', y5: '£1,545.50' },
+  { v: '51+ vehicles', y1: '£528', y5: '£1,837' },
+];
+
+type Note = { label: string; text: string; strong?: boolean };
+const sections: { title: string; image: string; alt: string; notes: Note[]; tip?: string; open?: boolean; planning?: boolean; uploads?: boolean }[] = [
+  {
+    title: 'Limited Company/Sole Trader Details',
+    image: 'council-limited-company.png',
+    alt: 'Knowsley Council Private Hire Operator Licence application, Limited Company/Sole Trader Details section',
+    notes: [
+      { label: 'Full name of Company', text: "That's simply your company name." },
+      { label: 'Company Registration Number', text: "That's only relevant if you said that you are a limited company." },
+      { label: 'Address of your Registered Office', text: "That's wherever your business is registered to. This is not the part where you fill in our address. You just do your registered office, whatever that looks like, whatever that means." },
+      { label: 'Responsible Contact', text: 'You are the responsible contact.' },
+    ],
+    tip: "None of our details are on this page. You are the responsible contact, and the registered office is your own business's registered address.",
+  },
+  {
+    title: 'Alternative Correspondence Address',
+    image: 'council-alternative-address.png',
+    alt: 'Knowsley Council Private Hire Operator Licence application, Alternative Correspondence Address section',
+    notes: [
+      { label: 'Address Fields', text: "This section is for if you have a director's address or a correspondence address that is different from your registered office address or your registered business address. If they're both the same, just rewrite the same address again." },
+    ],
+  },
+  {
+    title: 'Operator Details',
+    image: 'council-operator-details.png',
+    alt: 'Knowsley Council Private Hire Operator Licence application, Operator Details section, showing fields for trading name, company registration number, operator address, telephone, email, and website',
+    notes: [
+      { label: 'Trading Name of Business', text: "The same as your registered business name unless you're just going to be trading under a different name in Knowsley." },
+      { label: 'Company Registration Number', text: "There is no red asterisk because if you're a sole trader you leave it blank. If you're a limited company you obviously fill it out again." },
+      { label: "Address of Operator's Office", strong: true, text: "This part is imperative that you get correct. The address of operator's office is where you include your office number from us. It is a custom number that you get upon signing a lease with us. So it will be \"Office [Your Number]\" and then it's our full address that we'll send over to you on the lease so you'll have that ready to go. The council knows us; they'll recognise it and you'll be good to go." },
+      { label: 'Town or city / Postcode', text: "That's all ours." },
+      { label: 'Operator Telephone Number', text: "That's your phone number, nothing to do with us." },
+      { label: 'Operator Email', text: "That's your email address, nothing to do with us." },
+      { label: 'Operator Website', text: 'If you have a website, you can include it. If you do not, you skip it.' },
+    ],
+  },
+  {
+    title: 'Planning Permission',
+    image: 'council-planning-permission.png',
+    alt: 'Knowsley Council Private Hire Operator Licence application, Planning Permission section',
+    open: true,
+    planning: true,
+    notes: [],
+  },
+  {
+    title: 'Operation Details',
+    image: 'council-operation-details.png',
+    alt: 'Knowsley Council Private Hire Operator Licence application, Operation Details section, showing fields for number of vehicles, drivers, hours of operation, and vehicle types',
+    notes: [
+      { label: 'How many vehicles do you intend to operate from the premises?', text: 'The minimum you have to put is 1. Even for a satellite office, you cannot put 0.' },
+      { label: 'How many drivers do you intend to operate under this licence?', text: 'This must match what you are paying for on your lease. Be honest about what you are starting with right now. If you declare fewer cars than you actually run, you will get flagged and get in trouble. We can check with the council, and your lease price will be updated accordingly.' },
+    ],
+    tip: "Don't inflate your numbers, but don't under-declare either. Declare exactly what you're starting with now. You can always update the licence later if you add vehicles.",
+  },
+  {
+    title: 'Document Uploads',
+    image: 'council-document-uploads.png',
+    alt: 'Knowsley Council Private Hire Operator Licence application, Document Uploads section, showing file upload fields for lease, planning permission, DBS, insurance, and tax check',
+    uploads: true,
+    notes: [],
+  },
+];
+
+const youUpload: Note[] = [
+  { label: 'Basic DBS certificate', text: 'PDF or photo for every owner/director. Must be clearly readable.' },
+  { label: 'Public liability insurance', text: 'Active certificate covering your operation.' },
+  { label: 'HM Tax Check code', text: 'Confirmation page from gov.uk (less than 3 months old).' },
+  { label: 'Proof of ID', text: 'Current driving licence or passport for each director.' },
+  { label: 'Proof of citizenship or Right to Work', text: 'For all directors.' },
+];
+const weProvide: Note[] = [
+  { label: 'Signed lease agreement', text: 'File must be the signed version, not the draft.' },
+  { label: 'Planning permission document', text: 'The original Knowsley Council planning permission certificate from 4 August 2010.' },
+];
+
+const tierList = ol.tiers.map((t) => `£${t.price} for ${t.label.replace(' to ', '-').replace(' vehicles', '').replace(' vehicle', ' car')}`).join(', ');
+
+const faqs = [
+  { q: "Does Knowsley Council accept virtual office addresses for Private Hire Operator's Licences?", a: `No. Knowsley specifically rejects virtual office addresses. Knowsley Council requires an office number of a physical office, whereas a virtual office only provides an address, not a physical lease. We've done this over 15 times, and these are the required specifics. The Maggie O'Neill Centre provides exactly what they need: a satellite office lease at ${address.street}, Huyton, with the planning permission documentation included.` },
+  { q: "Can I use a residential address for my Knowsley operator's licence?", a: "Some operators try this. Knowsley typically rejects residential addresses because they don't have commercial planning permission for use as private hire operator premises. The council may also ask for landlord permission if the address is rented. A satellite office at MOC is the simpler, council-recognised route." },
+  { q: "What is the planning permission reference at the Maggie O'Neill Centre?", a: "We are a Class E commercial building, which is the correct planning permission for a Knowsley operator licence. Our specific Knowsley Council planning reference is 09/00608/COU, granted on 4 August 2010, for use as a private hire taxi operator's premises. We provide the full PDF the day you sign your lease." },
+  { q: "How much does a Knowsley Private Hire Operator's Licence cost?", a: `The council charges from £242 for a new 1-year licence covering one vehicle, up to £1,920 for a 5-year licence covering 51+ vehicles. The fee table is in Step 1 above. The MOC lease is a separate 12-month term starting from £100/month, tiered by vehicle count (${tierList}).` },
+  { q: 'Should I get a 1-year or 5-year operator licence?', a: "5-year licences are roughly 30% cheaper per year than five consecutive 1-year licences. But the fee isn't refunded on refusal, so for first-time applicants, the 1-year option at £242 is the lower-risk play. Once you know your application is solid (typically on renewal), the 5-year option is the cheaper choice long-term." },
+  { q: 'How long does the Knowsley operator licence application take?', a: 'Knowsley requires a minimum 14-day public consultation period and typically processes new applications within six weeks of submission. Renewals are usually faster, typically 2–3 weeks.' },
+  { q: 'What happens if Knowsley refuses my licence application?', a: "The lease agreement has an exit clause built in. If the council refuses your licence, you email us the refusal letter, your direct debit is cancelled, and you're released from the remainder of the lease term. You don't pay for months you can't use." },
+  { q: "What documents do I need to apply for a Knowsley operator's licence?", a: 'You provide: basic DBS certificate, public liability insurance, HM Tax Check code, proof of ID, proof of citizenship or Right to Work for all directors, and the council application fee. We provide a signed lease agreement and the planning permission certificate PDF, which we send you after you sign. You are responsible for submitting these to the council. Full breakdown in Step 1.' },
+  { q: "Can I use the Maggie O'Neill Centre address if I live outside Knowsley?", a: 'Yes. Your personal home address can be anywhere. The operator address (where you operate from as a business) is what needs to be in Knowsley with planning permission. Many of our operators live elsewhere in Liverpool City Region.' },
+  { q: "Do I need to physically work at the Maggie O'Neill Centre to use the address?", a: "No. The lease grants you the right to use the address as your council-registered base of operation. You don't need to attend physically to operate. The centre is here if you ever want to host a meeting, but day-to-day operation can be entirely off-site." },
+  { q: 'What is the Knowsley operator licence consultation period?', a: "A minimum 14-day window after your application is submitted, during which the council publishes notice of your application on their licensing register. Members of the public, neighbouring businesses, or other interested parties can submit objections during this window. Most applications go through without objection, but it's a mandatory step before the council can grant a licence." },
+  { q: 'Can I add more vehicles to my licence later?', a: "Yes. You can apply to amend your operator's licence at any time during its term. If your vehicle count moves you into a higher fee band (e.g. from 1 vehicle to 2–10), the council will charge a pro-rated top-up fee. You don't need a new application, just an amendment." },
+];
+---
+<Base
+  title={title}
+  description={description}
+  ogImage={ogImage}
+  ogImageAlt="Knowsley Private Hire Operator's Licence application guide"
+  noindex
+  mobileBar="custom"
+  mobileBarHref="/operators-licence/apply/"
+  mobileBarLabel="Submit lease details"
+>
+  <section class="section guide-head">
+    <div class="container guide-head__inner">
+      <span class="eyebrow">Application guide</span>
+      <h1>Applying for a Knowsley Private Hire Operator's Licence</h1>
+      <p class="guide-head__lede">
+        Everything we know about the process, in one place. Read once before you start, refer back as you go. This guide is free to use whether you
+        sign a lease with us or not, written by the people who've helped {ol.operatorsSupported} operators get their Knowsley licence.
+      </p>
+      <p class="guide-head__meta">12-minute read · Last verified 15 May 2026</p>
+      <nav class="guide-toc" aria-label="Guide steps">
+        <a href="#step-1">Step 1: Before you start</a>
+        <a href="#step-2">Step 2: Fill in the application</a>
+        <a href="#step-3">Step 3: After you submit</a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="section section--white guide-step" id="step-1" aria-labelledby="step-1-heading">
+    <div class="container guide-body">
+      <span class="eyebrow">Step 1</span>
+      <h2 id="step-1-heading">Before you start</h2>
+      <p class="guide-lead">Have these ready before you open the Knowsley Council portal. It's much faster if you can upload as you go.</p>
+
+      <h3>Documents to gather yourself</h3>
+      <div class="table-wrap">
+        <table class="guide-table">
+          <thead><tr><th scope="col">Item</th><th scope="col">Note</th><th scope="col">Cost</th></tr></thead>
+          <tbody>
+            {gather.map((g) => <tr><th scope="row">{g.item}</th><td>{g.note}</td><td>{g.cost}</td></tr>)}
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Documents we send you: included in your lease</h3>
+      <ul class="tick-list">
+        <li><span><strong>Your signed lease agreement:</strong> sent to you after you sign.</span></li>
+        <li><span><strong>MOC planning permission document:</strong> sent to you after you sign.</span></li>
+      </ul>
+
+      <h3>Council fees: what you'll pay them</h3>
+      <p>
+        The fee depends on how many vehicles you declare and the licence length. Most operators here declare 1 vehicle, since you're not running a
+        fleet from our address. Our lease pricing follows the same tiers: £100/mo for 1 car, £150/mo for 2-10, £200/mo for 11-50, and £250/mo for 51+.
+      </p>
+      <div class="table-wrap">
+        <table class="guide-table">
+          <thead><tr><th scope="col">Vehicles declared</th><th scope="col">1 year</th><th scope="col">5 years</th></tr></thead>
+          <tbody>
+            {feesNew.map((f) => <tr><th scope="row">{f.v}{f.rec && <span class="guide-badge">Recommended</span>}</th><td>{f.y1}</td><td>{f.y5}</td></tr>)}
+          </tbody>
+        </table>
+      </div>
+      <details class="guide-toggle">
+        <summary>Show renewal rates</summary>
+        <div class="table-wrap">
+          <table class="guide-table">
+            <thead><tr><th scope="col">Vehicles declared (Renewal)</th><th scope="col">1 year</th><th scope="col">5 years</th></tr></thead>
+            <tbody>
+              {feesRenewal.map((f) => <tr><th scope="row">{f.v}</th><td>{f.y1}</td><td>{f.y5}</td></tr>)}
+            </tbody>
+          </table>
+        </div>
+      </details>
+      <p class="guide-callout">
+        <strong>Worth knowing:</strong> 5-year licences are roughly 30% cheaper per year than five consecutive 1-year licences. But the fee isn't
+        refunded on refusal, so for first-time applicants, the 1-year option at £242 is the lower-risk play. Renew to the 5-year option once you know
+        the application is solid.
+      </p>
+    </div>
+  </section>
+
+  <section class="section guide-step" id="step-2" aria-labelledby="step-2-heading">
+    <div class="container guide-body">
+      <span class="eyebrow">Step 2</span>
+      <h2 id="step-2-heading">Fill in the application</h2>
+      <p class="guide-lead">Section by section. Each section below shows you the actual screen in the council form, with our notes on what goes where.</p>
+
+      <div class="guide-sections">
+        {sections.map((s) => (
+          <details class="guide-section" open={s.open}>
+            <summary><span>Section: {s.title}</span></summary>
+            <div class="guide-section__body">
+              <img class="guide-shot" src={img(s.image)} alt={s.alt} loading="lazy" decoding="async" onerror="this.hidden=true" />
+              {s.planning && (
+                <div class="guide-planning">
+                  <p>The council asks for a planning permission reference. Use ours: copy the line below directly into the field.</p>
+                  <p class="guide-copy__label" id="copy-label">Copy and paste into the planning permission field</p>
+                  <div class="guide-copy">
+                    <code data-copy-text aria-labelledby="copy-label">{planningRef}</code>
+                    <button type="button" class="btn btn--primary guide-copy__btn" data-copy-btn>Copy</button>
+                  </div>
+                  <p class="guide-warn">
+                    If you paste this with extra spaces, line breaks, or change the format, the council validation will fail. Use the Copy button: don't
+                    retype it by hand. The format <code>{planningRef}</code> is what the council expects, including the dashes and the day of the week.
+                  </p>
+                </div>
+              )}
+              {s.uploads && (
+                <div class="guide-uploads">
+                  <h4>Uploaded by you</h4>
+                  <dl class="guide-notes">
+                    {youUpload.map((n) => <div><dt>{n.label}</dt><dd>{n.text}</dd></div>)}
+                  </dl>
+                  <h4>Provided by us (we send these to you after you sign: upload them here)</h4>
+                  <dl class="guide-notes">
+                    {weProvide.map((n) => <div><dt>{n.label}</dt><dd>{n.text}</dd></div>)}
+                  </dl>
+                  <p class="guide-warn">
+                    <strong>Common rejection reason:</strong> blurry or partial DBS photo, or an expired insurance certificate. If you took DBS or ID photos
+                    on your phone, check the whole document is visible, in focus, and well-lit before uploading. PDF is safer than photo if you have one.
+                    If your insurance renewed mid-application, upload the new certificate immediately: out-of-date documents will get the application paused.
+                  </p>
+                </div>
+              )}
+              {s.notes.length > 0 && (
+                <dl class="guide-notes">
+                  {s.notes.map((n) => <div class:list={{ 'guide-notes--key': n.strong }}><dt>{n.label}</dt><dd>{n.text}</dd></div>)}
+                </dl>
+              )}
+              {s.tip && <p class="guide-callout">{s.tip}</p>}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white guide-step" id="step-3" aria-labelledby="step-3-heading">
+    <div class="container guide-body">
+      <span class="eyebrow">Step 3</span>
+      <h2 id="step-3-heading">After you submit</h2>
+      <p class="guide-lead">Knowsley requires a minimum 14-day public consultation period and most decisions arrive within six weeks. Here's what to expect.</p>
+
+      <h3>The timeline</h3>
+      <ol class="guide-timeline">
+        <li><strong>Days 1–14: Consultation period</strong><span>Application published on the Knowsley Council register. Mandatory step.</span></li>
+        <li><strong>Weeks 3–5: Council review</strong><span>Officers review documents, DBS, Companies House, and planning permission.</span></li>
+        <li><strong>Week 6: Decision</strong><span>You receive the decision by email and post.</span></li>
+      </ol>
+
+      <h3>If your application is granted</h3>
+      <p>
+        You'll receive your operator's licence by email and post. Add the licence number to your records, share it with your insurers if asked, and
+        continue operating from our address. The council will contact you 28–30 days before expiry to remind you to renew. Start the renewal at least
+        28 days before your current licence expires to avoid any operating gap.
+      </p>
+
+      <h3>If your application is refused</h3>
+      <p>
+        Email <a href={`mailto:${contact.email}`}>{contact.email}</a> with the council refusal letter as an attachment. We'll activate the exit clause.
+        Your monthly direct debit is cancelled, the lease is terminated, and you owe nothing further. You can also appeal the council's decision through
+        their internal appeals process within 21 days. We can help with this if you want our notes on what tends to trigger refusals in Knowsley specifically.
+      </p>
+    </div>
+  </section>
+
+  <div class="guide-faqs">
+    <Faqs faqs={faqs} heading="Common questions" />
+  </div>
+
+  <section class="section section--white guide-close" aria-label="Next steps">
+    <div class="container guide-close__inner">
+      <div class="card guide-close__card">
+        <h2>Stuck on something?</h2>
+        <p>Call us on <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a> or email <a href={`mailto:${contact.email}`}>{contact.email}</a>.</p>
+      </div>
+      <div class="card guide-close__card">
+        <h2>Ready to submit your lease details?</h2>
+        <p><a class="btn btn--primary" href="/operators-licence/apply/">Submit lease details</a></p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Printing: open every collapsible section first so nothing is left out.
+  window.addEventListener('beforeprint', () => document.querySelectorAll('details').forEach((d) => (d.open = true)));
+
+  // Copy the planning reference exactly. Clipboard API, with a textarea + execCommand fallback.
+  document.querySelectorAll<HTMLButtonElement>('[data-copy-btn]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const text = btn.parentElement?.querySelector('[data-copy-text]')?.textContent?.trim() ?? '';
+      let ok = false;
+      try {
+        await navigator.clipboard.writeText(text);
+        ok = true;
+      } catch {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'absolute';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try { ok = document.execCommand('copy'); } catch { ok = false; }
+        ta.remove();
+      }
+      btn.textContent = ok ? 'Copied' : 'Select and copy';
+      setTimeout(() => (btn.textContent = 'Copy'), 2500);
+    });
+  });
+</script>
+
+<style>
+  .guide-head__inner { display: flex; flex-direction: column; gap: 14px; max-width: 860px; }
+  .guide-head h1 { font-size: clamp(34px, 4.6vw, 54px); line-height: 1.08; }
+  .guide-head__lede { font-size: var(--text-lead-size); }
+  .guide-head__meta { color: var(--moc-slate-text); font-weight: 600; }
+  .guide-toc { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+  .guide-toc a { padding: 8px 14px; border-radius: var(--radius-pill); background: var(--moc-purple-tint); color: var(--moc-purple-800); font-weight: 700; text-decoration: none; }
+  .guide-body { max-width: 900px; display: flex; flex-direction: column; gap: 16px; }
+  .guide-body h2 { margin-bottom: 4px; }
+  .guide-body h3 { margin-top: 18px; }
+  .guide-lead { font-size: var(--text-lead-size); color: var(--moc-slate-text); }
+  .table-wrap { overflow-x: auto; }
+  .guide-table { width: 100%; border-collapse: collapse; background: var(--moc-white); border-radius: 12px; overflow: hidden; box-shadow: var(--moc-shadow-card); }
+  .guide-table th, .guide-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--moc-border); vertical-align: top; }
+  .guide-table thead th { background: var(--moc-purple-900); color: var(--moc-white); font-size: 15px; }
+  .guide-table tbody th { color: var(--moc-purple-900); }
+  .guide-badge { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: var(--radius-pill); background: var(--moc-coral-tint); color: var(--moc-coral-text); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+  .guide-toggle summary { cursor: pointer; font-weight: 700; color: var(--moc-purple-700); margin-bottom: 10px; }
+  .guide-callout { padding: 16px 18px; border-radius: 12px; background: var(--moc-purple-tint); color: var(--moc-purple-900); }
+  .guide-warn { padding: 16px 18px; border-radius: 12px; background: var(--moc-coral-tint); color: var(--moc-purple-900); }
+  .guide-sections { display: grid; gap: 14px; }
+  .guide-section { background: var(--moc-white); border-radius: var(--radius-card); box-shadow: var(--moc-shadow-card); }
+  .guide-section summary { cursor: pointer; padding: 18px 22px; font: 700 19px/1.3 var(--font-display); color: var(--moc-purple-900); }
+  .guide-section__body { padding: 0 22px 22px; display: flex; flex-direction: column; gap: 14px; }
+  .guide-shot { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--moc-border); }
+  .guide-notes { display: grid; gap: 12px; margin: 0; }
+  .guide-notes dt { font-weight: 700; color: var(--moc-purple-900); }
+  .guide-notes dd { margin: 2px 0 0; }
+  .guide-notes--key { padding: 14px 16px; border-left: 4px solid var(--moc-coral-500); background: var(--moc-coral-tint); border-radius: 8px; }
+  .guide-copy__label { font-weight: 700; color: var(--moc-purple-900); }
+  .guide-copy { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .guide-copy code { font-size: 18px; padding: 12px 16px; border-radius: 10px; background: var(--moc-bg); border: 1.5px dashed var(--moc-purple-700); color: var(--moc-purple-900); user-select: all; }
+  .guide-timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; counter-reset: t; }
+  .guide-timeline li { display: flex; flex-direction: column; gap: 4px; padding: 16px 18px 16px 22px; border-left: 4px solid var(--moc-purple-700); background: var(--moc-bg); border-radius: 0 12px 12px 0; }
+  .guide-timeline strong { color: var(--moc-purple-900); }
+  .guide-close__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .guide-close__card { padding: 28px; display: flex; flex-direction: column; gap: 12px; }
+  .guide-close__card h2 { font-size: 24px; }
+  @media (max-width: 760px) { .guide-close__inner { grid-template-columns: 1fr; } }
+
+  /* Print: each step on a new page, sections open, no site chrome. */
+  @media print {
+    :global(header), :global(footer), :global(.mobile-bar), :global(.cookie-banner), .guide-toc, .guide-copy__btn, .guide-close { display: none !important; }
+    .guide-step { break-before: page; page-break-before: always; }
+    .section { padding: 12px 0; }
+    .guide-section, .guide-table { box-shadow: none; border: 1px solid #ccc; }
+  }
+</style>

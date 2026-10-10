@@ -13,8 +13,9 @@ import CaseCard from '../../../components/CaseCard.astro';
 import { caseStudies } from '../../../data/caseStudies';
 import Faqs from '../../../components/sections/Faqs.astro';
 import VirtualOfficeForm from '../../../components/sections/VirtualOfficeForm.astro';
+import OperatorLicenceNote from '../../../components/sections/OperatorLicenceNote.astro';
 import Photo from '../../../components/Photo.astro';
-import { address, formatPrice, hours, listNames, reviews, rooms, site, virtualOffice, withCover } from '../../../data/facts';
+import { address, formatPrice, hours, listNames, operatorLicence, reviews, rooms, site, virtualOffice, withCover } from '../../../data/facts';
 import { images } from '../../../data/images';
 import { breadcrumbNode, faqNode, serviceNode } from '../../../lib/schema';
 
@@ -113,6 +114,10 @@ const faqs = [
     a: `Anyone providing a registered office service has to carry out anti-money laundering (AML) checks on their clients by law. The Maggie O'Neill Centre sends you a secure form for this after you sign up.`,
   },
   {
+    q: "Can I use a virtual office for a taxi or private hire operator's licence?",
+    a: `Not in Knowsley. Some councils accept a virtual office address, but Knowsley Council requires the office number of a physical office with planning permission. For Knowsley operators, the Maggie O'Neill Centre has a dedicated package: a 12-month satellite office lease with planning permission, from £${operatorLicence.from} a month, with an exit clause if the council refuses your licence. See the Knowsley operator licence address page.`,
+  },
+  {
     q: 'Is it a real address or a PO box?',
     a: `It's a real building with people in it: the Maggie O'Neill Centre, ${address.street}, Huyton. Companies House doesn't accept a PO box as a registered office address.`,
   },
@@ -175,6 +180,8 @@ const voReviewCount = reviews.count;
 
   <KeyFacts heading="Your virtual office, in a few lines" intro={intro} facts={keyFacts} />
   <p class="container updated">Last updated: October 2026</p>
+
+  <OperatorLicenceNote />
 
   <section class="section" aria-labelledby="who-heading">
     <div class="container two-col">

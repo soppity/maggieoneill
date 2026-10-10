@@ -1,0 +1,504 @@
+---
+// Knowsley operator licence: LEASE DETAILS FORM, 11 steps. UNLISTED (owner brief, Oct 2026).
+// noindex; not in the nav, footer, sitemap or llms.txt. Owner, Oct 2026: this is THE lease details form, linked from the
+// public operator licence page's CTAs and from the private guide.
+// Answers save in this browser (localStorage) so "Save and continue later" works on the same device.
+// Everything submits as one Netlify form, "operator-lease-details", at step 11. Direct debit set-up and lease signing
+// are handled by the team afterwards (there is no operator portal).
+import Base from '../../../layouts/Base.astro';
+import { address, contact, operatorLicence as ol, site } from '../../../data/facts';
+import '../../../styles/forms.css';
+
+const title = "Apply | Knowsley Operator Licence Address | Maggie O'Neill Centre";
+const description = "Submit your lease details for a Knowsley operator licence address at the Maggie O'Neill Centre.";
+const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 10 Vehicles', '11-50': '11 to 50 Vehicles', '51+': '51+ Vehicles' };
+---
+<Base
+  title={title}
+  description={description}
+  ogImage={`${site.url}/images/operators-licence/operators-licence-hero.png`}
+  ogImageAlt="Knowsley operator licence address"
+  noindex
+  mobileBar="custom"
+  mobileBarHref={contact.phoneHref}
+  mobileBarLabel={`Call ${contact.phone}`}
+>
+  <section class="section wiz-section">
+    <div class="container wiz">
+      <p class="wiz__offline" data-offline hidden>You're offline. Your input is saved locally. We'll sync when you're back.</p>
+
+      <div class="wiz__progress" aria-live="polite">
+        <span data-progress-label>Step 1 of 11</span>
+        <span class="wiz__bar"><span data-progress-bar style="width: 9%"></span></span>
+      </div>
+
+      <form class="form wiz__form" name="operator-lease-details" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-wizard novalidate>
+        <input type="hidden" name="form-name" value="operator-lease-details" />
+        <input type="hidden" name="monthly_price" value="" />
+        <p class="form__honeypot"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+
+        <!-- Step 1 -->
+        <section class="wiz-step" data-step="1">
+          <h1 class="wiz-step__q">Which council are you applying to?</h1>
+          <p class="wiz-step__help">We can only support Knowsley applications, but we'll help point you in the right direction if you're applying elsewhere.</p>
+          <fieldset class="choices field">
+            <legend class="visually-hidden">Council</legend>
+            {['Knowsley', 'Liverpool', 'Sefton', 'Other'].map((c) => (
+              <label class="choice"><input type="radio" name="council" value={c.toLowerCase()} /><span><strong>{c}</strong></span></label>
+            ))}
+            <span class="field__error"></span>
+          </fieldset>
+          <details class="wiz-resume" data-resume>
+            <summary>Already started? Enter your email to continue.</summary>
+            <div class="wiz-resume__row">
+              <input type="email" placeholder="your@email.com" aria-label="Your email" autocomplete="email" data-resume-email />
+              <button type="button" class="btn btn--secondary" data-resume-btn>Continue</button>
+            </div>
+            <p class="form__status" data-resume-msg role="status"></p>
+          </details>
+        </section>
+
+        <!-- Step 2 -->
+        <section class="wiz-step" data-step="2" hidden>
+          <h2 class="wiz-step__q">What's your email address?</h2>
+          <p class="wiz-step__help">We'll save your progress as you go, so you can come back later if you get interrupted. We won't use your email for marketing, just to send you links to continue and to deliver your documents after you sign.</p>
+          <div class="field">
+            <label for="w-email">Email address</label>
+            <input id="w-email" name="email" type="email" autocomplete="email" placeholder="your@email.com" />
+            <span class="field__error"></span>
+          </div>
+        </section>
+
+        <!-- Step 3 -->
+        <section class="wiz-step" data-step="3" hidden>
+          <h2 class="wiz-step__q">Is this a new application, or are you renewing an existing operator's licence?</h2>
+          <p class="wiz-step__help">If you're renewing, we'll ask for your expiry date next so we can keep an eye on the timeline with you.</p>
+          <fieldset class="choices field">
+            <legend class="visually-hidden">Application type</legend>
+            <label class="choice"><input type="radio" name="application_type" value="new" /><span><strong>New application</strong><small>I've never had a Knowsley operator's licence, or my last one expired and I need to apply fresh.</small></span></label>
+            <label class="choice"><input type="radio" name="application_type" value="renewal" /><span><strong>Renewal</strong><small>I currently have a valid Knowsley operator's licence and need to renew it before it expires.</small></span></label>
+            <span class="field__error"></span>
+          </fieldset>
+        </section>
+
+        <!-- Step 4 (renewal only) -->
+        <section class="wiz-step" data-step="4" hidden>
+          <h2 class="wiz-step__q">When does your current licence expire?</h2>
+          <p class="wiz-step__help">We'll help you time the renewal so there's no gap in your operating licence.</p>
+          <div class="field">
+            <label for="w-expiry">Expiry date</label>
+            <input id="w-expiry" name="expiry_date" type="date" />
+            <span class="field__error"></span>
+          </div>
+        </section>
+
+        <!-- Step 5 -->
+        <section class="wiz-step" data-step="5" hidden>
+          <h2 class="wiz-step__q">How many vehicles will you be operating?</h2>
+          <p class="wiz-step__help">Our lease pricing is tiered based on the number of vehicles on your operator licence.</p>
+          <fieldset class="choices field">
+            <legend class="visually-hidden">Vehicles</legend>
+            {ol.tiers.map((t) => (
+              <label class="choice"><input type="radio" name="vehicles" value={t.vehicles} data-price={t.price} /><span><strong>{vehicleLabels[t.vehicles]}</strong><small>£{t.price} per month</small></span></label>
+            ))}
+            <span class="field__error"></span>
+          </fieldset>
+        </section>
+
+        <!-- Step 6 -->
+        <section class="wiz-step" data-step="6" hidden>
+          <h2 class="wiz-step__q">Are you applying as a sole operator, or with other drivers working under your licence?</h2>
+          <p class="wiz-step__help">An operator licence covers the business. You can add or remove drivers under it later without re-applying.</p>
+          <fieldset class="choices field">
+            <legend class="visually-hidden">Drivers</legend>
+            <label class="choice"><input type="radio" name="drivers" value="sole" /><span><strong>Sole operator, just me</strong><small>I'm the only driver on the licence.</small></span></label>
+            <label class="choice"><input type="radio" name="drivers" value="with_drivers" /><span><strong>With drivers</strong><small>I have, or will have, other drivers operating under my licence.</small></span></label>
+            <span class="field__error"></span>
+          </fieldset>
+        </section>
+
+        <!-- Step 7 -->
+        <section class="wiz-step" data-step="7" hidden>
+          <h2 class="wiz-step__q">Are you applying as a limited company or a sole trader?</h2>
+          <p class="wiz-step__help">If you're a limited company we'll ask for your Companies House number next. If you're a sole trader, we'll move straight on.</p>
+          <fieldset class="choices field">
+            <legend class="visually-hidden">Business structure</legend>
+            <label class="choice"><input type="radio" name="structure" value="limited" /><span><strong>Limited company</strong><small>I have a registered Ltd that's the operator on the licence.</small></span></label>
+            <label class="choice"><input type="radio" name="structure" value="sole_trader" /><span><strong>Sole trader</strong><small>I'm trading under my own name, not through a Ltd.</small></span></label>
+            <span class="field__error"></span>
+          </fieldset>
+        </section>
+
+        <!-- Step 8 (limited only) -->
+        <section class="wiz-step" data-step="8" hidden>
+          <h2 class="wiz-step__q">What's your Companies House number?</h2>
+          <p class="wiz-step__help">8-digit number. You'll find it on your certificate of incorporation or any Companies House email. We'll use this to confirm your company details automatically.</p>
+          <div class="field">
+            <label for="w-ch">Companies House number</label>
+            <input id="w-ch" name="companies_house" inputmode="numeric" maxlength="8" placeholder="12345678" autocomplete="off" />
+            <span class="field__error"></span>
+          </div>
+        </section>
+
+        <!-- Step 9 -->
+        <section class="wiz-step" data-step="9" hidden>
+          <h2 class="wiz-step__q">Tell us about yourself.</h2>
+          <p class="wiz-step__help">We need this for the lease and our mandatory anti-money laundering (AML) checks. The council also needs your name and date of birth to run their licensing checks. Your personal address stays on your application and isn't shown publicly.</p>
+          <div class="field">
+            <label for="w-name">Full legal name <span class="req">*</span></label>
+            <input id="w-name" name="full_name" autocomplete="name" placeholder="As it appears on your ID" />
+            <span class="field__error"></span>
+          </div>
+          <div class="field">
+            <label for="w-dob">Date of birth <span class="req">*</span></label>
+            <input id="w-dob" name="dob" type="date" autocomplete="bday" />
+            <span class="field__error"></span>
+          </div>
+          <div class="field">
+            <label for="w-street">Street address <span class="req">*</span></label>
+            <input id="w-street" name="street" autocomplete="address-line1" placeholder="e.g. 123 Main St" />
+            <span class="field__error"></span>
+          </div>
+          <div class="form__row">
+            <div class="field">
+              <label for="w-city">City/Town <span class="req">*</span></label>
+              <input id="w-city" name="city" autocomplete="address-level2" placeholder="e.g. Huyton" />
+              <span class="field__error"></span>
+            </div>
+            <div class="field">
+              <label for="w-postcode">Postcode <span class="req">*</span></label>
+              <input id="w-postcode" name="postcode" autocomplete="postal-code" placeholder="e.g. L36 8HT" />
+              <span class="field__error"></span>
+            </div>
+          </div>
+          <div class="form__row">
+            <div class="field">
+              <label for="w-county">County</label>
+              <input id="w-county" name="county" placeholder="e.g. Merseyside" />
+            </div>
+            <div class="field">
+              <label for="w-country">Country</label>
+              <input id="w-country" name="country" autocomplete="country-name" placeholder="e.g. United Kingdom" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 10 -->
+        <section class="wiz-step" data-step="10" hidden>
+          <h2 class="wiz-step__q">What's your trading name and best mobile number?</h2>
+          <p class="wiz-step__help">Your trading name is what your business is known by publicly. It can be the same as your limited company name or different.</p>
+          <div class="field">
+            <label for="w-trading">Trading name <span class="req">*</span></label>
+            <input id="w-trading" name="trading_name" autocomplete="organization" placeholder="e.g. Bloggs Cars" />
+            <span class="field__error"></span>
+          </div>
+          <div class="field">
+            <label for="w-mobile">Mobile number <span class="req">*</span></label>
+            <input id="w-mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="07xxx xxxxxx" />
+            <span class="field__error"></span>
+          </div>
+          <p class="field__hint">By continuing you agree to a {ol.termMonths}-month lease term, subject to the exit clauses above.</p>
+        </section>
+
+        <!-- Step 11 -->
+        <section class="wiz-step" data-step="11" hidden>
+          <h2 class="wiz-step__q">Review your details and the lease.</h2>
+          <p class="wiz-step__help">Have a look through everything below. The exit clause is real: {ol.exitClause}</p>
+          <div class="wiz-review card">
+            <div class="wiz-review__head"><h3>Your details</h3><button type="button" class="wiz-link" data-edit>Edit</button></div>
+            <dl class="wiz-review__rows" data-review></dl>
+          </div>
+          <div class="wiz-review card">
+            <h3>Your lease: {ol.termMonths} months, £<span data-review-price>100</span>/month</h3>
+            <p>A satellite office lease at {address.street}, Huyton, {address.postcode}, the Maggie O'Neill Centre. Used as your council-registered operator address. Direct debit on the 1st of each month. Based on your selection of <span data-review-cars>1</span> vehicle(s).</p>
+            <h4>Exit clause</h4>
+            <p>If Knowsley Council refuses your operator's licence application or revokes your issued licence, you're released from this lease. Your direct debit is cancelled and you owe nothing for months after the refusal.</p>
+            <h4>Documents you'll receive</h4>
+            <ul class="tick-list">
+              <li><span>Signed lease agreement</span></li>
+              <li><span>Knowsley planning permission document</span></li>
+            </ul>
+          </div>
+        </section>
+
+        <p class="form__status" data-status role="status" aria-live="polite"></p>
+
+        <div class="wiz__nav">
+          <button type="button" class="btn btn--secondary" data-back hidden>Back</button>
+          <button type="button" class="wiz-link" data-save hidden>Save and continue later</button>
+          <button type="button" class="btn btn--primary" data-next>Continue</button>
+          <button type="submit" class="btn btn--primary" data-submit hidden>Submit lease details</button>
+        </div>
+      </form>
+
+      <div class="form-thanks wiz__done" data-done hidden tabindex="-1">
+        <h2>Thanks, we'll be in touch within one working day to set up your direct debit and send your lease to sign.</h2>
+        <p>Questions in the meantime? Call <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a> or email <a href={`mailto:${contact.email}`}>{contact.email}</a>.</p>
+      </div>
+
+      <dialog class="wiz-dialog" data-saved-dialog>
+        <h2>Progress Saved</h2>
+        <p>When you return to this form, just type in your email address and pick up where you left off.</p>
+        <form method="dialog"><button class="btn btn--primary">Got it</button></form>
+      </dialog>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import { isEmail, isUkMobile, setFieldError, submitNetlifyForm } from '../../../scripts/netlifyForm';
+
+  const TOTAL = 11;
+  const STORE = 'moc-operator-lease-drafts';
+  const form = document.querySelector<HTMLFormElement>('[data-wizard]')!;
+  const steps = [...form.querySelectorAll<HTMLElement>('.wiz-step')];
+  const $ = <T extends Element>(sel: string) => document.querySelector<T>(sel);
+  const field = (name: string) => form.elements.namedItem(name) as HTMLInputElement | RadioNodeList | null;
+  const val = (name: string) => {
+    const f = field(name);
+    return f ? String((f as HTMLInputElement).value ?? '').trim() : '';
+  };
+  const el = (name: string) => form.querySelector<HTMLInputElement>(`[name="${name}"]`);
+
+  let current = 1;
+  const history: number[] = [];
+
+  // ---- Local drafts (try/catch: storage can be blocked) ----
+  type Draft = { data: Record<string, string>; step: number; saved: string };
+  const readStore = (): Record<string, Draft> => {
+    try { return JSON.parse(localStorage.getItem(STORE) || '{}'); } catch { return {}; }
+  };
+  const fieldNames = ['council', 'email', 'application_type', 'expiry_date', 'vehicles', 'drivers', 'structure', 'companies_house', 'full_name', 'dob', 'street', 'city', 'postcode', 'county', 'country', 'trading_name', 'mobile'];
+  const snapshot = () => Object.fromEntries(fieldNames.map((n) => [n, val(n)]));
+  function saveDraft() {
+    const email = val('email').toLowerCase();
+    if (!isEmail(email)) return false;
+    try {
+      const store = readStore();
+      store[email] = { data: snapshot(), step: current, saved: new Date().toISOString() };
+      localStorage.setItem(STORE, JSON.stringify(store));
+      return true;
+    } catch { return false; }
+  }
+  function restore(d: Draft) {
+    for (const [n, v] of Object.entries(d.data)) {
+      const f = field(n);
+      if (!f || !v) continue;
+      (f as HTMLInputElement).value = v;
+    }
+    history.length = 0;
+    show(Math.max(2, d.step || 2));
+  }
+
+  // ---- Navigation ----
+  function show(n: number) {
+    current = n;
+    steps.forEach((s) => (s.hidden = Number(s.dataset.step) !== n));
+    $('[data-progress-label]')!.textContent = `Step ${n} of ${TOTAL}`;
+    ($('[data-progress-bar]') as HTMLElement).style.width = `${Math.round((n / TOTAL) * 100)}%`;
+    ($('[data-back]') as HTMLElement).hidden = n === 1;
+    ($('[data-save]') as HTMLElement).hidden = n < 3;
+    ($('[data-next]') as HTMLElement).hidden = n === TOTAL;
+    ($('[data-submit]') as HTMLElement).hidden = n !== TOTAL;
+    if (n === TOTAL) buildReview();
+    const status = $('[data-status]');
+    if (status) status.textContent = '';
+    const heading = steps.find((s) => Number(s.dataset.step) === n)?.querySelector<HTMLElement>('.wiz-step__q');
+    heading?.setAttribute('tabindex', '-1');
+    heading?.focus({ preventScroll: true });
+    form.scrollIntoView({ block: 'start' });
+  }
+  function nextStep(n: number) {
+    if (n === 3) return val('application_type') === 'renewal' ? 4 : 5;
+    if (n === 7) return val('structure') === 'limited' ? 8 : 9;
+    return n + 1;
+  }
+
+  // ---- Validation: short, friendly messages ----
+  const today = () => new Date(new Date().toDateString());
+  function validate(n: number): boolean {
+    const errs: [string, string][] = [];
+    const need = (name: string, msg: string) => { if (!val(name)) errs.push([name, msg]); };
+    if (n === 1) need('council', 'Please choose the council you’re applying to.');
+    if (n === 2) { if (!isEmail(val('email'))) errs.push(['email', 'Please enter a valid email address.']); }
+    if (n === 3) need('application_type', 'Please choose new application or renewal.');
+    if (n === 4) {
+      if (!val('expiry_date')) errs.push(['expiry_date', 'Please enter your licence expiry date.']);
+      else if (new Date(val('expiry_date')) < today()) errs.push(['expiry_date', 'That date has passed. If your licence has expired, choose New application instead.']);
+    }
+    if (n === 5) need('vehicles', 'Please choose how many vehicles.');
+    if (n === 6) need('drivers', 'Please choose one option.');
+    if (n === 7) need('structure', 'Please choose limited company or sole trader.');
+    if (n === 8) { if (!/^\d{8}$/.test(val('companies_house'))) errs.push(['companies_house', 'Companies House numbers are 8 digits, like 12345678.']); }
+    if (n === 9) {
+      if (val('full_name').length < 3) errs.push(['full_name', 'Please enter your full legal name.']);
+      const dob = val('dob');
+      if (!dob) errs.push(['dob', 'Please enter your date of birth.']);
+      else {
+        const d = new Date(dob); const adult = new Date(d.getFullYear() + 18, d.getMonth(), d.getDate());
+        if (adult > today()) errs.push(['dob', 'You need to be 18 or over to hold a lease.']);
+      }
+      need('street', 'Please enter your street address.');
+      need('city', 'Please enter your city or town.');
+      need('postcode', 'Please enter your postcode.');
+    }
+    if (n === 10) {
+      if (val('trading_name').length < 2) errs.push(['trading_name', 'Please enter your trading name.']);
+      if (!isUkMobile(val('mobile'))) errs.push(['mobile', 'Please enter a UK mobile starting 07, like 07123 456789.']);
+    }
+    const stepEl = steps.find((s) => Number(s.dataset.step) === n);
+    stepEl?.querySelectorAll('input, select').forEach((i) => setFieldError(i, ''));
+    errs.forEach(([name, msg]) => setFieldError(el(name), msg));
+    if (errs.length) el(errs[0][0])?.focus();
+    return errs.length === 0;
+  }
+
+  $('[data-next]')!.addEventListener('click', () => {
+    if (!validate(current)) return;
+    if (current === 1 && val('council') !== 'knowsley') {
+      location.href = `/operators-licence/exit/?borough=${encodeURIComponent(val('council'))}`;
+      return;
+    }
+    history.push(current);
+    const n = nextStep(current);
+    saveDraft();
+    show(n);
+  });
+  $('[data-back]')!.addEventListener('click', () => show(history.pop() ?? 1));
+  $('[data-edit]')!.addEventListener('click', () => { history.push(current); show(2); });
+  $('[data-save]')!.addEventListener('click', () => {
+    if (saveDraft()) ($('[data-saved-dialog]') as HTMLDialogElement).showModal();
+    else { const s = $('[data-status]'); if (s) s.textContent = 'We couldn’t save in this browser. Your answers stay on this page while it’s open.'; }
+  });
+
+  // Clear a field's error as soon as it's changed.
+  form.addEventListener('input', (e) => setFieldError(e.target as Element, ''));
+  form.addEventListener('change', (e) => setFieldError(e.target as Element, ''));
+
+  // Enter key moves forward instead of submitting early.
+  form.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && (e.target as HTMLElement).tagName === 'INPUT' && current !== TOTAL) {
+      e.preventDefault();
+      ($('[data-next]') as HTMLButtonElement).click();
+    }
+  });
+
+  // ---- Resume ----
+  $('[data-resume-btn]')!.addEventListener('click', () => {
+    const email = ($('[data-resume-email]') as HTMLInputElement).value.trim().toLowerCase();
+    const msg = $('[data-resume-msg]')!;
+    const draft = readStore()[email];
+    if (draft) {
+      msg.textContent = 'Welcome back! Picking up where you left off.';
+      restore(draft);
+    } else {
+      msg.textContent = 'We couldn’t find a saved application for that email.';
+    }
+  });
+
+  // ---- Review ----
+  const labels: Record<string, Record<string, string>> = {
+    council: { knowsley: 'Knowsley' },
+    application_type: { new: 'New application', renewal: 'Renewal' },
+    drivers: { sole: 'Sole operator', with_drivers: 'With drivers' },
+    structure: { limited: 'Limited company', sole_trader: 'Sole trader' },
+  };
+  const nice = (name: string) => labels[name]?.[val(name)] ?? val(name);
+  function buildReview() {
+    const limited = val('structure') === 'limited';
+    const rows: [string, string][] = [
+      ['Email', val('email')],
+      ['Borough', nice('council')],
+      ['App Type', nice('application_type') + (val('application_type') === 'renewal' && val('expiry_date') ? ` (expires ${val('expiry_date')})` : '')],
+      ['Vehicles', val('vehicles')],
+      ['Structure', nice('drivers')],
+      ['Business', nice('structure')],
+      ...(limited ? [['Companies House', val('companies_house')] as [string, string]] : []),
+      ['Director', val('full_name')],
+      ['DOB', val('dob')],
+      ['Address', [val('street'), val('city'), val('postcode'), val('county'), val('country')].filter(Boolean).join(', ')],
+      ['Trading Name', val('trading_name')],
+      ['Mobile', val('mobile')],
+    ];
+    const dl = $('[data-review]')!;
+    dl.replaceChildren(...rows.map(([k, v]) => {
+      const row = document.createElement('div');
+      const dt = document.createElement('dt'); dt.textContent = k;
+      const dd = document.createElement('dd'); dd.textContent = v || '—';
+      row.append(dt, dd);
+      return row;
+    }));
+    const price = form.querySelector<HTMLInputElement>('[name="vehicles"]:checked')?.dataset.price ?? '100';
+    $('[data-review-price]')!.textContent = price;
+    $('[data-review-cars]')!.textContent = val('vehicles') || '1';
+    (el('monthly_price') as HTMLInputElement).value = `£${price}`;
+  }
+
+  // ---- Submit ----
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (current !== TOTAL) return;
+    // Clear answers from steps that were skipped, so the submission matches the path taken.
+    if (val('application_type') !== 'renewal') (el('expiry_date') as HTMLInputElement).value = '';
+    if (val('structure') !== 'limited') (el('companies_house') as HTMLInputElement).value = '';
+    const button = $('[data-submit]') as HTMLButtonElement;
+    const status = $('[data-status]')!;
+    button.disabled = true;
+    status.textContent = 'Sending…';
+    const ok = await submitNetlifyForm(form);
+    if (ok) {
+      try {
+        const store = readStore(); delete store[val('email').toLowerCase()];
+        localStorage.setItem(STORE, JSON.stringify(store));
+      } catch { /* storage blocked: nothing to clear */ }
+      form.hidden = true;
+      ($('.wiz__progress') as HTMLElement).hidden = true;
+      const done = $('[data-done]') as HTMLElement;
+      done.hidden = false;
+      done.focus();
+    } else {
+      button.disabled = false;
+      status.textContent = 'Sorry, that didn’t send. Your answers are saved here, so please try again, or call us on 0151 482 0408.';
+      saveDraft();
+    }
+  });
+
+  // ---- Offline notice ----
+  const offline = $('[data-offline]') as HTMLElement;
+  const net = () => { offline.hidden = navigator.onLine; if (!navigator.onLine) saveDraft(); };
+  window.addEventListener('online', net);
+  window.addEventListener('offline', net);
+  net();
+</script>
+
+<style>
+  .wiz-section { background: var(--moc-purple-tint); min-height: 70vh; }
+  .wiz { max-width: 720px; display: flex; flex-direction: column; gap: 18px; }
+  .wiz__offline { padding: 12px 16px; border-radius: 12px; background: var(--moc-coral-tint); color: var(--moc-purple-900); font-weight: 600; }
+  .wiz__progress { display: flex; flex-direction: column; gap: 8px; font-weight: 700; color: var(--moc-purple-900); }
+  .wiz__bar { display: block; height: 8px; border-radius: 4px; background: var(--moc-white); overflow: hidden; }
+  .wiz__bar span { display: block; height: 100%; background: var(--moc-coral-500); transition: width 0.2s; }
+  .wiz__form { background: var(--moc-white); border-radius: var(--radius-card); box-shadow: var(--moc-shadow-card); padding: clamp(22px, 4vw, 40px); scroll-margin-top: 100px; }
+  .wiz-step { display: flex; flex-direction: column; gap: 16px; }
+  .wiz-step__q { font-size: clamp(24px, 3vw, 32px); line-height: 1.2; color: var(--moc-purple-900); }
+  .wiz-step__q:focus { outline: none; }
+  .wiz-step__help { color: var(--moc-slate-text); }
+  .wiz__nav { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; justify-content: flex-end; padding-top: 8px; border-top: 1px solid var(--moc-border); }
+  .wiz__nav [data-back] { margin-right: auto; }
+  .wiz-link { background: none; border: 0; padding: 8px 4px; font: inherit; font-weight: 700; color: var(--moc-purple-700); text-decoration: underline; cursor: pointer; }
+  .wiz-resume summary { cursor: pointer; font-weight: 700; color: var(--moc-purple-700); }
+  .wiz-resume__row { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+  .wiz-resume__row input { flex: 1; min-width: 200px; font: inherit; font-size: 16px; padding: 12px 14px; border: 1.5px solid var(--moc-border); border-radius: 12px; }
+  .wiz-review { padding: 22px; display: flex; flex-direction: column; gap: 10px; box-shadow: none; border: 1px solid var(--moc-border); }
+  .wiz-review__head { display: flex; justify-content: space-between; align-items: center; }
+  .wiz-review__rows { display: grid; gap: 6px; margin: 0; }
+  .wiz-review__rows div { display: grid; grid-template-columns: 150px 1fr; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--moc-border); }
+  .wiz-review__rows dt { font-weight: 700; color: var(--moc-purple-900); }
+  .wiz-review__rows dd { margin: 0; overflow-wrap: anywhere; }
+  .wiz-dialog { border: 0; border-radius: var(--radius-card); padding: 28px; max-width: 420px; box-shadow: var(--moc-shadow-card-hover); }
+  .wiz-dialog::backdrop { background: rgba(42, 7, 82, 0.4); }
+  .wiz-dialog h2 { font-size: 24px; margin-bottom: 8px; }
+  .wiz-dialog p { margin-bottom: 16px; }
+  .wiz__done h2 { font-size: clamp(22px, 2.6vw, 28px); line-height: 1.3; }
+  @media (max-width: 520px) { .wiz-review__rows div { grid-template-columns: 1fr; gap: 2px; } }
+</style>

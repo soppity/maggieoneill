@@ -46,5 +46,14 @@
   status = 301
   force = true
 
+# Old Knowsley operator licence subdomain (owner brief, Oct 2026). LEAVE COMMENTED until nothing else
+# still runs on taxi.mobtc.co.uk (direct debit set-up, lease signing, admin), or a catch-all would break it.
+# Once those have moved, add taxi.mobtc.co.uk to this Netlify site as a domain alias and uncomment.
+# [[redirects]]
+#   from = "https://taxi.mobtc.co.uk/*"
+#   to = "https://mobtc.co.uk/operators-licence/"
+#   status = 301
+#   force = true
+
 # TODO before launch: crawl the live site and map every old URL (SEO spec 2.3, SOP section 8).
 # Still to map: each /faq-items/* URL to the page its FAQ belongs to, and the hot-desking and coworking blog posts.
