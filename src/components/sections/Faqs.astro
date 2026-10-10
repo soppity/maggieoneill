@@ -1,7 +1,8 @@
 ---
 // Visible FAQs as <details>. The page passes the same list to faqNode() so the schema matches word for word.
 // Pass `faqs` for one list, or `groups` for titled sections (as on the events FAQ page).
-type Faq = { q: string; a: string };
+// Optional `link`: one phrase of the answer (`text`, as written) becomes a link. The schema keeps the plain text.
+type Faq = { q: string; a: string; link?: { text: string; href: string } };
 interface Props {
   faqs?: Faq[];
   groups?: { title: string; faqs: Faq[] }[];
@@ -29,7 +30,13 @@ const parts = (text: string) => text.split(emailPattern).map((part, i) => ({ tex
           {g.faqs.map((f) => (
             <details class="faqs__item">
               <summary>{g.title ? <h4>{f.q}</h4> : <h3>{f.q}</h3>}</summary>
-              <p>{parts(f.a).map((part) => (part.email ? <a href={`mailto:${part.text}`}>{part.text}</a> : part.text))}</p>
+              {f.link && f.a.includes(f.link.text) ? (
+                <p>
+                  {f.a.split(f.link.text)[0]}<a href={f.link.href} rel={f.link.href.startsWith('http') ? 'noopener' : undefined}>{f.link.text}</a>{f.a.split(f.link.text).slice(1).join(f.link.text)}
+                </p>
+              ) : (
+                <p>{parts(f.a).map((part) => (part.email ? <a href={`mailto:${part.text}`}>{part.text}</a> : part.text))}</p>
+              )}
             </details>
           ))}
         </div>

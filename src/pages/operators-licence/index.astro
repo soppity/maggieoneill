@@ -1,12 +1,16 @@
 ---
-// Knowsley operator licence address. Public service page (owner brief, Oct 2026), moved in from taxi.mobtc.co.uk.
-// Sells the satellite office lease to private hire operators applying to Knowsley Council.
-// Rules from the brief: CTAs are only "Check if you qualify" (#enquire) and Call. Never link to, mention or embed the
-// application guide or the lease form, no chat widget, and never show the planning reference (public wording is
-// "Class E commercial building"). Schema: Service + FAQPage + BreadcrumbList.
+// Knowsley operator licence address. Public service page (owner briefs, Oct 2026), moved in from taxi.mobtc.co.uk.
+// Sells the satellite office lease to private hire operators who need premises in Knowsley for their operator's licence.
+// Keyword brief (Oct 2026): primary "knowsley operator licence address"; secondary "knowsley private hire (operator)",
+// "operator licence knowsley", "private hire operator premises / operating base Knowsley", "knowsley taxi licensing".
+// Rules: one CTA (the lease details form, a GoHighLevel survey once its ID is set; until then the short Netlify
+// enquiry form) plus the main phone number. Never link to the application guide, never show the planning reference
+// (public wording: "planning permission in place"), no chat widget, no other licensing authorities named.
+// Schema: Service (BusinessAudience, four Offers) + FAQPage + BreadcrumbList.
 import Base from '../../layouts/Base.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/sections/Hero.astro';
+import KeyFacts from '../../components/sections/KeyFacts.astro';
 import Steps from '../../components/sections/Steps.astro';
 import Faqs from '../../components/sections/Faqs.astro';
 import { address, contact, operatorLicence as ol, parking, site } from '../../data/facts';
@@ -16,27 +20,36 @@ import '../../styles/forms.css';
 
 const path = ol.path;
 const url = `${site.url}${path}`;
+// "Knowsley Operator Licence Address from £100 | Maggie O'Neill Centre" renders at 67 characters, so the shorter form.
 const title = "Knowsley Operator Licence Address | Maggie O'Neill Centre";
-const description =
-  "Need a council-recognised Knowsley address for your Operator's Licence? Real lease, planning permission, exit clause if refused. Starting from £100/month.";
+const description = `A real lease and planning-approved premises in Knowsley for your private hire operator's licence. From £${ol.from} a month, exit clause if refused.`;
 const ogImage = `${site.url}/images/operators-licence/operators-licence-hero.png`;
 const heroAlt = "Maggie O'Neill Centre, Knowsley address for private hire operator licence applications";
+const councilChange = 'https://www.knowsley.gov.uk/business-licences-and-consumers/licences-and-permits/taxi-and-private-hire/private-hire-operator-6';
+const councilNew = 'https://www.knowsley.gov.uk/business-licences-and-consumers/licences-and-permits/taxi-and-private-hire/private-hire-operator-1';
 
-const lede = `You need a real lease, real planning permission and a real council-approved address in Knowsley for your Operator's Licence. Starting from £${ol.from} a month for ${ol.termMonths} months, with an exit clause if your application is refused. It's the compliant Knowsley address, not a virtual office, used by ${ol.operatorsSupported} operators in the borough.`;
+// Answer first: who, what, where, price, proof (40 to 60 words).
+const lede = `The Maggie O'Neill Centre in Huyton leases satellite office space to private hire operators who need premises in Knowsley for their operator's licence. You get a real ${ol.termMonths}-month lease at a planning-approved address, from £${ol.from} a month, with an exit clause if Knowsley Council refuses your application. ${ol.operatorsSupported} operators already use it.`;
 
-const reasons = [
-  {
-    title: 'A real lease',
-    text: "Not a virtual office: Knowsley rejects those. Yours is signed, dated and council-recognised, a satellite office lease with a real address.",
-  },
-  {
-    title: 'Planning permission ready',
-    text: 'The exact planning reference Knowsley asks for. We send you the PDF the moment you sign.',
-  },
-  {
-    title: "Exit if you're refused",
-    text: ol.exitClause,
-  },
+const tierList = ol.tiers.map((t) => `£${t.price} for ${t.label}`).join(', ');
+
+const keyFacts = [
+  { term: 'Address', detail: `${address.oneLine}, in Knowsley.` },
+  { term: 'Price by fleet size', detail: `${tierList}, a month.` },
+  { term: 'Lease term', detail: `${ol.termMonths} months, direct debit on the 1st.` },
+  { term: 'Exit clause', detail: ol.exitClause },
+  { term: 'Planning permission', detail: ol.planningLine },
+  { term: 'Setup fee', detail: 'None.' },
+  { term: 'Operators supported', detail: `${ol.operatorsSupported} use our address in Knowsley.` },
+  { term: 'Phone', detail: contact.phone, href: contact.phoneHref, linkText: 'Call now' },
+];
+
+const getsWithLease = [
+  { title: 'A real lease', text: `A signed ${ol.termMonths}-month satellite office lease with your own office number. Not a virtual office.` },
+  { title: 'Planning approval', text: 'Planning permission is in place for the premises. We send you the certificate once you sign.' },
+  { title: 'An exit clause', text: ol.exitClause },
+  { title: 'Help with your application', text: 'We walk you through the Knowsley Council application, section by section, at no extra cost.' },
+  { title: 'The address for your application', text: "Your office number and our address, ready for the operator's office field on the council form." },
 ];
 
 const numbers = [
@@ -46,66 +59,77 @@ const numbers = [
 ];
 
 const steps = [
-  { title: 'Tell us about your operation', text: "Quick call or enquiry. We confirm you're applying to Knowsley and agree your vehicle tier." },
-  { title: 'Sign your lease', text: `${ol.termMonths}-month satellite office lease with your own office number, plus the Knowsley planning permission certificate PDF.` },
+  { title: 'Send us your details', text: "Fill in the form below or call us. We confirm you're applying to Knowsley and agree your vehicle band." },
+  { title: 'Sign your lease', text: `${ol.termMonths}-month satellite office lease with your own office number, plus the planning permission certificate.` },
   { title: 'Apply to the council, with our help', text: `We walk you through the Knowsley application at no extra cost. Most decisions arrive within ${ol.decisionWeeks} weeks.` },
 ];
 
-const tierList = ol.tiers.map((t) => `£${t.price} for ${t.label}`).join(', ');
-
-const faqs = [
+type Faq = { q: string; a: string; link?: { text: string; href: string } };
+const faqs: Faq[] = [
   {
-    q: "Does Knowsley Council accept virtual office addresses for Private Hire Operator's Licences?",
-    a: `No. Knowsley specifically rejects virtual office addresses. Knowsley Council requires an office number of a physical office, whereas a virtual office only provides an address, not a physical lease. We've done this over 15 times, and these are the required specifics. The Maggie O'Neill Centre provides exactly what they need: a satellite office lease at ${address.street}, Huyton, with the planning permission documentation included.`,
+    q: "Is the Maggie O'Neill Centre in Knowsley?",
+    a: `Yes. The Maggie O'Neill Centre is at ${address.oneLine}, in Huyton, within Knowsley Metropolitan Borough. There's free ${parking.spaces}-space parking and easy access from the M57.`,
+  },
+  {
+    q: "Can an operator based outside Knowsley get a Knowsley private hire operator's licence?",
+    a: "Yes. Knowsley taxi licensing requires the operator's licence to be held for premises inside the borough, not for where you live. Your home address can be anywhere, and many of the operators who use the Maggie O'Neill Centre live elsewhere in the Liverpool City Region.",
+  },
+  {
+    q: "Can I use my home address for a Knowsley operator's licence?",
+    a: "Usually not. A private hire booking office needs planning approval, and most residential addresses don't have commercial planning permission for use as private hire operator premises. A satellite office lease at the Maggie O'Neill Centre is the simpler, council-recognised route.",
+  },
+  {
+    q: 'How long is the lease?',
+    a: `The lease at the Maggie O'Neill Centre is ${ol.termMonths} months, with direct debit on the 1st of each month and no setup fee. After the first ${ol.termMonths} months, either side can end it with 30 days' written notice.`,
+  },
+  {
+    q: 'Do you help with the Knowsley council application?',
+    a: "Yes. The Maggie O'Neill Centre helps every operator through the Knowsley Council private hire operator's licence application at no extra cost, with a walkthrough of every section of the form once you're on board.",
+  },
+  {
+    q: 'How long does a Knowsley operator licence application take?',
+    a: `Knowsley Licensing typically processes new private hire operator licence applications within ${ol.decisionWeeks} weeks of submission. Renewals are usually faster.`,
+  },
+  {
+    q: 'Can I move my existing Knowsley operator licence to your address?',
+    a: "Yes. If you already hold a Knowsley private hire operator's licence, sign the lease with the Maggie O'Neill Centre and then tell Knowsley Council about your change of details.",
+    link: { text: 'tell Knowsley Council about your change of details', href: councilChange },
+  },
+  {
+    q: "How much does a Knowsley council private hire operator's licence cost?",
+    a: `Knowsley Council charges from £${ol.councilFeeFrom} for a new 1-year operator's licence covering one vehicle, up to £${ol.councilFeeTo} for a 5-year licence covering 51+ vehicles. The council fee is separate from the lease, and current fees are on Knowsley Council's private hire operator page.`,
+    link: { text: "Knowsley Council's private hire operator page", href: councilNew },
   },
   {
     q: "What planning permission does the Maggie O'Neill Centre have?",
-    a: `We are ${ol.planningPublic}, which is the correct planning permission for a Knowsley satellite office operator licence. We provide the full PDF of the planning permission certificate the day you sign your lease.`,
-  },
-  {
-    q: "How much does a Knowsley Private Hire Operator's Licence cost?",
-    a: `Knowsley Council charges from £${ol.councilFeeFrom} for a new 1-year licence covering one vehicle, up to £${ol.councilFeeTo} for a 5-year licence covering 51+ vehicles. We'll talk you through the right fee band for your operation. The lease with the Maggie O'Neill Centre is a separate ${ol.termMonths}-month term starting from £${ol.from} a month, tiered by vehicle count: ${tierList}.`,
-  },
-  {
-    q: 'How long does the Knowsley operator licence application take?',
-    a: `Knowsley Licensing typically processes new applications within ${ol.decisionWeeks} weeks of submission. Renewals are usually faster.`,
-  },
-  {
-    q: 'What happens if Knowsley refuses my licence application?',
-    a: "The lease agreement has an exit clause built in. If the council refuses your licence, you email us a copy of the refusal letter, your direct debit is cancelled, and you're released from the remainder of the lease term. You don't pay for months you can't use.",
-  },
-  {
-    q: "Can I use a residential address for my Knowsley operator's licence?",
-    a: "Some operators try this. Knowsley typically rejects residential addresses because they don't have commercial planning permission for use as private hire operator premises. A satellite office lease at the Maggie O'Neill Centre is the simpler, council-recognised route.",
+    a: `The Maggie O'Neill Centre is ${ol.planningPublic}, with planning permission in place for the premises. The reference is shared once you qualify, and you get the full planning permission certificate the day you sign your lease.`,
   },
   {
     q: "What documents do I need to apply for a Knowsley operator's licence?",
     a: "You provide: basic DBS certificate, public liability insurance certificate, HM Tax Check code, proof of ID for each director, proof of citizenship or Right to Work for all directors, and the council application fee. We provide a signed lease agreement and the planning permission certificate PDF, which we send you after you sign. You're responsible for submitting these to the council.",
   },
   {
-    q: "Can I use the Maggie O'Neill Centre address if I live outside Knowsley?",
-    a: 'Yes. Your personal home address can be anywhere. The operator address (where you operate from as a business) is what needs to be in Knowsley with planning permission. Many of our operators live elsewhere in Liverpool City Region.',
-  },
-  {
     q: "Do I need to physically work at the Maggie O'Neill Centre to use the address?",
-    a: "No. The lease grants you the right to use the address as your council-registered base of operation. You don't need to attend physically to operate. The centre is here if you ever want to host a meeting, but day-to-day operation can be entirely off-site.",
-  },
-  {
-    q: "Where is the Maggie O'Neill Centre?",
-    a: `${address.oneLine}, within Knowsley Metropolitan Borough, with free ${parking.spaces}-space parking and easy M57 access. We're a registered charity (${site.charityNumber}) running a flexible workspace facility, with profits funding Maggie's Meals and community programmes across Knowsley.`,
+    a: "No. The lease grants you the right to use the Maggie O'Neill Centre as your council-registered base of operation, and you don't need to attend to operate. The centre is here if you ever want to host a meeting, but day-to-day operation can be entirely off-site.",
   },
 ];
 
 const schema = [
   serviceNode({
     url,
-    name: "Knowsley Private Hire Operator's Licence Address",
-    serviceType: 'Private Hire Operator Address Service',
-    description: `Council-recognised satellite office lease with planning permission for Knowsley Private Hire Operator's Licence applications. Starting from £${ol.from} per month, ${ol.termMonths}-month term, exit clause included if the council refuses.`,
-    audience: 'Taxi and private hire operators applying to Knowsley Council',
-    areaServed: ['Knowsley Metropolitan Borough'],
+    name: 'Knowsley private hire operator licence address',
+    serviceType: 'Satellite office lease for private hire operator licensing',
+    description: lede,
+    audience: 'Private hire and taxi operators',
+    audienceType: 'BusinessAudience',
+    atVenue: true,
+    areaServed: ['Knowsley', 'North West England'],
     catalogName: 'Satellite office lease, priced by vehicles on the licence',
-    offers: ol.tiers.map((t) => ({ name: `Satellite office lease, ${t.label}`, price: t.price, description: `${ol.termMonths}-month lease, direct debit on the 1st, no setup fee.` })),
+    offers: ol.tiers.map((t) => ({
+      name: `Satellite office lease, ${t.label}`,
+      price: t.price,
+      description: `${ol.termMonths}-month satellite office lease covering ${t.label} on your Knowsley private hire operator's licence. Direct debit on the 1st, no setup fee.`,
+    })),
   }),
   breadcrumbNode(url, [
     { name: 'Home', url: `${site.url}/` },
@@ -122,7 +146,7 @@ const schema = [
   preloadImage={images[3].src}
   schema={schema}
   mobileBar="custom"
-  mobileBarHref="#enquire"
+  mobileBarHref="#get-started"
   mobileBarLabel="Check if you qualify"
 >
   <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: "Operator's licence", path }]} />
@@ -133,39 +157,62 @@ const schema = [
     lede={lede}
     image={3}
     imageAlt={heroAlt}
-    primary={{ label: 'Check if you qualify', href: '#enquire' }}
+    primary={{ label: 'Check if you qualify', href: '#get-started' }}
     secondary={{ label: `Call now: ${contact.phone}`, href: contact.phoneHref }}
   >
     <p class="ol-supporting"><strong>{ol.operatorsSupported}</strong> operators supported</p>
   </Hero>
 
-  <section class="section section--white ol-trust" aria-label="Who uses us">
-    <div class="container ol-trust__inner">
-      <span class="eyebrow">Used every week by Knowsley's private hire operators</span>
-      <p>{ol.operatorsSupported} taxi and private hire operators use our address as their council-registered satellite office in Knowsley.</p>
+  <KeyFacts
+    heading="Your Knowsley operator licence address, in a few lines"
+    intro={`For Knowsley private hire operators, the operating base has to be real premises in the borough. Ours is a satellite office lease at the Maggie O'Neill Centre, with planning permission in place and help with your private hire operator licence application included.`}
+    facts={keyFacts}
+  />
+  <p class="container updated">Last updated: October 2026</p>
+
+  <section class="section" aria-label="Premises in Knowsley">
+    <div class="container ol-why">
+      <div class="ol-why__block">
+        <span class="eyebrow">Knowsley private hire</span>
+        <h2>Why do private hire operators need premises in Knowsley?</h2>
+        <p>
+          Because Knowsley Council grants a private hire operator's licence for premises inside the borough, and officers inspect the premises
+          before the licence is granted. If you're based elsewhere and want to run Knowsley-licensed drivers and vehicles, you need an operating base
+          in Knowsley with planning approval. A satellite office lease at the Maggie O'Neill Centre gives you exactly that.
+        </p>
+      </div>
+      <div class="ol-why__block">
+        <span class="eyebrow">Not a virtual office</span>
+        <h2>Can a virtual office be used for a Knowsley operator's licence?</h2>
+        <p>
+          No. Knowsley Council needs real premises with planning approval for a private hire operator's licence, so this is a lease, not a virtual
+          office. A <a href="/services/virtual-office/">virtual office</a> is the right choice for a registered address or a business address, and
+          we provide those too, but for your Knowsley operator's licence you need the satellite office lease.
+        </p>
+      </div>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="why-heading">
+  <section class="section section--white" aria-labelledby="gets-heading">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">Why it works</span>
-        <h2 id="why-heading">Why does Knowsley accept our address?</h2>
-        <p>Three reasons Knowsley accepts our address when they reject virtual offices.</p>
+        <span class="eyebrow">What's included</span>
+        <h2 id="gets-heading">What do I get with the lease?</h2>
+        <p>Everything Knowsley taxi licensing asks for on the premises side, plus help with the paperwork.</p>
       </div>
-      <ol class="grid ol-reasons">
-        {reasons.map((r, i) => (
+      <ul class="grid ol-reasons">
+        {getsWithLease.map((r, i) => (
           <li class="card ol-reason">
             <span class="ol-reason__num" aria-hidden="true">{i + 1}</span>
             <h3>{r.title}</h3>
             <p>{r.text}</p>
           </li>
         ))}
-      </ol>
+      </ul>
     </div>
   </section>
 
-  <section class="section section--white" aria-labelledby="help-heading">
+  <section class="section" aria-labelledby="help-heading">
     <div class="container ol-help">
       <div>
         <span class="eyebrow">On your side</span>
@@ -187,10 +234,10 @@ const schema = [
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Our pricing</span>
-        <h2 id="pricing-heading">How much is a Knowsley operator licence address?</h2>
+        <h2 id="pricing-heading">How much does a Knowsley operator licence address cost?</h2>
         <p>
-          Starting at £{ol.from} a month. {ol.termMonths} months, direct debit on the 1st, no setup fee. Our lease pricing follows the tiers of car
-          amounts in the operator licence application.
+          From £{ol.from} a month, priced by the vehicle bands on the council's operator licence application. {ol.termMonths} months, direct debit
+          on the 1st, no setup fee.
         </p>
       </div>
       <ul class="grid ol-tiers">
@@ -201,103 +248,131 @@ const schema = [
           </li>
         ))}
       </ul>
-      <p class="ol-pricing__cta"><a class="btn btn--primary" href="#enquire">Check if you qualify</a></p>
     </div>
   </section>
 
-  <Steps id="how-heading" eyebrow="How it works" heading="How do you get a Knowsley operator licence address?" intro="Three steps, and we help with all of them." steps={steps} tone="white" />
+  <section class="section section--white" aria-labelledby="refused-heading">
+    <div class="container ol-refused">
+      <span class="eyebrow">Exit clause</span>
+      <h2 id="refused-heading">What happens if Knowsley refuses my application?</h2>
+      <p>
+        You're released from the lease. If Knowsley Council refuses your operator's licence application or revokes your issued licence, email us a
+        copy of the council's letter, your direct debit is cancelled, and you owe nothing for the months after. It's built into the agreement.
+      </p>
+    </div>
+  </section>
 
-  <section class="section ol-enquire" id="enquire" aria-labelledby="enquire-heading">
+  <Steps
+    id="start-heading"
+    eyebrow="Get started"
+    heading="How do I get started?"
+    intro="Send us your details using the form below. Once we've reviewed them, we send you the application guide and the planning details."
+    steps={steps}
+  />
+
+  <section class="section ol-enquire" id="get-started" aria-labelledby="enquire-heading">
     <div class="container ol-enquire__inner">
       <div class="ol-enquire__copy">
-        <span class="eyebrow">Enquire</span>
+        <span class="eyebrow">Your details</span>
         <h2 id="enquire-heading">See if we're the right fit</h2>
-        <p>Tell us a little about your operation and we'll call you back, usually within one working day.</p>
+        <p>Tell us about your operation and we'll be in touch, usually within one working day.</p>
         <p>Prefer to talk? <a href={contact.phoneHref} data-track="phone_click">Call {contact.phone}</a>.</p>
       </div>
       <div class="ol-enquire__box">
-        <form class="form" name="operator-licence-enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-ol-enquiry novalidate>
-          <input type="hidden" name="form-name" value="operator-licence-enquiry" />
-          <p class="form__honeypot"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
-          <div class="form__row">
-            <div class="field">
-              <label for="ol-name">Full name <span class="req">*</span></label>
-              <input id="ol-name" name="name" autocomplete="name" required />
-              <span class="field__error"></span>
+        {ol.leaseFormId ? (
+          <iframe
+            src={`https://api.leadconnectorhq.com/widget/survey/${ol.leaseFormId}`}
+            style={`width:100%;height:${ol.leaseFormHeight}px;border:none;display:block`}
+            id={`inline-${ol.leaseFormId}`}
+            scrolling="no"
+            title="Lease details"
+          ></iframe>
+        ) : (
+          <>
+            <form class="form" name="operator-licence-enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-ol-enquiry novalidate>
+              <input type="hidden" name="form-name" value="operator-licence-enquiry" />
+              <p class="form__honeypot"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+              <div class="form__row">
+                <div class="field">
+                  <label for="ol-name">Full name <span class="req">*</span></label>
+                  <input id="ol-name" name="name" autocomplete="name" required />
+                  <span class="field__error"></span>
+                </div>
+                <div class="field">
+                  <label for="ol-mobile">Mobile <span class="req">*</span></label>
+                  <input id="ol-mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="07xxx xxxxxx" required />
+                  <span class="field__error"></span>
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="field">
+                  <label for="ol-email">Email <span class="req">*</span></label>
+                  <input id="ol-email" name="email" type="email" autocomplete="email" required />
+                  <span class="field__error"></span>
+                </div>
+                <div class="field">
+                  <label for="ol-trading">Trading name</label>
+                  <input id="ol-trading" name="trading_name" autocomplete="organization" />
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="field">
+                  <label for="ol-council">Which council are you applying to? <span class="req">*</span></label>
+                  <select id="ol-council" name="council" required>
+                    <option value="">Choose</option>
+                    <option value="knowsley">Knowsley</option>
+                    <option value="other">Another council</option>
+                  </select>
+                  <span class="field__error"></span>
+                </div>
+                <div class="field">
+                  <label for="ol-vehicles">How many vehicles?</label>
+                  <select id="ol-vehicles" name="vehicles">
+                    <option value="">Choose</option>
+                    {ol.tiers.map((t) => <option value={t.vehicles}>{t.vehicles === '2-10' ? '2–10' : t.vehicles === '11-50' ? '11–50' : t.vehicles}</option>)}
+                  </select>
+                </div>
+              </div>
+              <p class="form__note" data-ol-borough hidden>
+                Our planning permission is specific to Knowsley Council, so we can only support Knowsley applications.
+                {' '}<a href="/operators-licence/exit/?borough=other">See where to go next</a>.
+              </p>
+              <div class="field">
+                <label for="ol-type">New application or renewal?</label>
+                <select id="ol-type" name="application_type">
+                  <option value="">Choose</option>
+                  <option value="new">New application</option>
+                  <option value="renewal">Renewal</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="ol-notes">Anything else we should know?</label>
+                <textarea id="ol-notes" name="notes"></textarea>
+              </div>
+              <p class="form__status" role="status" aria-live="polite"></p>
+              <p><button class="btn btn--primary" type="submit">Send my details</button></p>
+            </form>
+            <div class="form-thanks" data-ol-thanks hidden tabindex="-1">
+              <h3>Thanks, we'll be in touch shortly.</h3>
+              <p>If it's urgent, call us on <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>.</p>
             </div>
-            <div class="field">
-              <label for="ol-mobile">Mobile <span class="req">*</span></label>
-              <input id="ol-mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="07xxx xxxxxx" required />
-              <span class="field__error"></span>
-            </div>
-          </div>
-          <div class="form__row">
-            <div class="field">
-              <label for="ol-email">Email <span class="req">*</span></label>
-              <input id="ol-email" name="email" type="email" autocomplete="email" required />
-              <span class="field__error"></span>
-            </div>
-            <div class="field">
-              <label for="ol-trading">Trading name</label>
-              <input id="ol-trading" name="trading_name" autocomplete="organization" />
-            </div>
-          </div>
-          <div class="form__row">
-            <div class="field">
-              <label for="ol-council">Which council are you applying to? <span class="req">*</span></label>
-              <select id="ol-council" name="council" required>
-                <option value="">Choose a council</option>
-                <option value="knowsley">Knowsley</option>
-                <option value="liverpool">Liverpool</option>
-                <option value="sefton">Sefton</option>
-                <option value="other">Other</option>
-              </select>
-              <span class="field__error"></span>
-            </div>
-            <div class="field">
-              <label for="ol-vehicles">How many vehicles?</label>
-              <select id="ol-vehicles" name="vehicles">
-                <option value="">Choose</option>
-                {ol.tiers.map((t) => <option value={t.vehicles}>{t.vehicles === '2-10' ? '2–10' : t.vehicles === '11-50' ? '11–50' : t.vehicles}</option>)}
-              </select>
-            </div>
-          </div>
-          <p class="form__note" data-ol-borough hidden>
-            Our planning permission is specific to Knowsley Council, so we can only support Knowsley applications.
-            {' '}<a href="/operators-licence/exit/" data-ol-exit>See where to go next</a>.
-          </p>
-          <div class="field">
-            <label for="ol-type">New application or renewal?</label>
-            <select id="ol-type" name="application_type">
-              <option value="">Choose</option>
-              <option value="new">New application</option>
-              <option value="renewal">Renewal</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="ol-notes">Anything else we should know?</label>
-            <textarea id="ol-notes" name="notes"></textarea>
-          </div>
-          <p class="form__status" role="status" aria-live="polite"></p>
-          <p><button class="btn btn--primary" type="submit">Request a call back</button></p>
-        </form>
-        <div class="form-thanks" data-ol-thanks hidden tabindex="-1">
-          <h3>Thanks, we'll be in touch shortly.</h3>
-          <p>If it's urgent, call us on <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>.</p>
-        </div>
+          </>
+        )}
       </div>
     </div>
   </section>
 
-  <Faqs faqs={faqs} heading="Questions about the Knowsley operator licence address" />
+  {ol.leaseFormId && <script is:inline src="https://link.msgsndr.com/js/form_embed.js" defer></script>}
+
+  <Faqs faqs={faqs} heading="Knowsley private hire licence questions" />
 
   <section class="section section--white ol-close" aria-label="About us">
     <div class="container">
-      <p class="ol-close__line">Registered charity {site.charityNumber} · {ol.operatorsSupported} operators supported</p>
+      <p class="ol-close__line">{ol.operatorsSupported} operators supported · Registered charity {site.charityNumber}</p>
       <p>
         Also at the Maggie O'Neill Centre: <a href="/services/meeting-rooms/">meeting rooms in Huyton</a>,
         {' '}<a href="/services/virtual-office/call-answering/">call answering</a> and a
-        {' '}<a href="/services/virtual-office/">virtual office for other businesses</a>. <a href="/visit/">Come and see the building</a>.
+        {' '}<a href="/services/virtual-office/">virtual office for registered and business addresses</a>. <a href="/visit/">Come and see the building</a>.
       </p>
     </div>
   </section>
@@ -306,22 +381,18 @@ const schema = [
 <script>
   import { isEmail, isUkMobile, setFieldError, submitNetlifyForm } from '../../scripts/netlifyForm';
 
+  // Fallback enquiry form (shown until the GoHighLevel lease details survey ID is set).
   const form = document.querySelector<HTMLFormElement>('[data-ol-enquiry]');
   const thanks = document.querySelector<HTMLElement>('[data-ol-thanks]');
   const council = form?.querySelector<HTMLSelectElement>('[name="council"]');
   const note = form?.querySelector<HTMLElement>('[data-ol-borough]');
-  const exitLink = form?.querySelector<HTMLAnchorElement>('[data-ol-exit]');
 
-  // Clear a field's error as soon as it's changed.
   form?.addEventListener('input', (e) => setFieldError(e.target as Element, ''));
   form?.addEventListener('change', (e) => setFieldError(e.target as Element, ''));
 
   // Not Knowsley? Say so before they submit, and point them to the right place.
   council?.addEventListener('change', () => {
-    const v = council.value;
-    const other = v !== '' && v !== 'knowsley';
-    if (note) note.hidden = !other;
-    if (exitLink) exitLink.href = `/operators-licence/exit/?borough=${encodeURIComponent(v)}`;
+    if (note) note.hidden = council.value !== 'other';
   });
 
   form?.addEventListener('submit', async (e) => {
@@ -357,9 +428,10 @@ const schema = [
 <style>
   .ol-supporting { margin-top: 18px; color: var(--moc-purple-900); }
   .ol-supporting strong { font-family: var(--font-display); font-size: 22px; }
-  .ol-trust { padding-top: 32px; padding-bottom: 32px; }
-  .ol-trust__inner { display: flex; flex-direction: column; gap: 8px; }
-  .ol-trust__inner p { font-size: var(--text-lead-size); color: var(--moc-purple-900); max-width: 820px; }
+  .updated { margin-top: -40px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
+  .ol-why { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); }
+  .ol-why__block { display: flex; flex-direction: column; gap: 12px; }
+  .ol-why__block p { font-size: var(--text-lead-size); }
   .ol-reasons { grid-template-columns: repeat(3, minmax(0, 1fr)); list-style: none; padding: 0; margin: 0; }
   .ol-reason { padding: 28px; display: flex; flex-direction: column; gap: 10px; }
   .ol-reason__num { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--moc-coral-tint); color: var(--moc-coral-text); font: 800 18px/1 var(--font-display); }
@@ -377,7 +449,8 @@ const schema = [
   .ol-tier h3 { font-size: 19px; }
   .ol-tier__price strong { font: 800 44px/1 var(--font-display); color: var(--moc-purple-900); letter-spacing: -0.02em; }
   .ol-tier__price { color: var(--moc-slate-text); }
-  .ol-pricing__cta { margin-top: 28px; }
+  .ol-refused { max-width: 860px; display: flex; flex-direction: column; gap: 12px; }
+  .ol-refused p { font-size: var(--text-lead-size); }
   .ol-enquire { background: var(--moc-purple-tint); scroll-margin-top: 88px; }
   .ol-enquire__inner { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 64px); align-items: start; }
   .ol-enquire__copy { display: flex; flex-direction: column; gap: 14px; position: sticky; top: 104px; }
@@ -386,9 +459,9 @@ const schema = [
   .ol-close__line { font-weight: 700; color: var(--moc-purple-900); margin-bottom: 10px; }
   @media (max-width: 960px) { .ol-tiers { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 900px) {
-    .ol-reasons { grid-template-columns: 1fr; }
-    .ol-help, .ol-enquire__inner { grid-template-columns: 1fr; }
+    .ol-why, .ol-reasons, .ol-help, .ol-enquire__inner { grid-template-columns: 1fr; }
     .ol-enquire__copy { position: static; }
+    .updated { margin-top: -24px; }
   }
   @media (max-width: 520px) { .ol-tiers { grid-template-columns: 1fr; } }
 </style>

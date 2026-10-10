@@ -43,7 +43,7 @@ Key facts:
 - [Virtual office near Liverpool](${u('/services/virtual-office/')}): registered office, director's service address, business address and mail handling, from £${virtualOffice.from} a month, for businesses in Merseyside and across the UK
 - [Call answering](${u('/services/virtual-office/call-answering/')}): ${virtualOffice.callAnswering.summary}
 - [For accountants](${u('/services/virtual-office/accountants/')}): ${accountantPartners.discount}% off for referred clients and one login for all client post
-- [Knowsley operator licence address](${u(operatorLicence.path)}): for taxi and private hire operators applying to Knowsley Council, which doesn't accept virtual offices. Satellite office lease with planning permission from £${operatorLicence.from} a month
+- [Knowsley operator licence address](${u(operatorLicence.path)}): lease of planning-approved satellite office premises in Knowsley for private hire operator's licences, from £${operatorLicence.from} a month
 ${publishedGuides('virtual-office').map((g) => `- [${g.title}](${u(guidePath(g))}): ${g.summary}\n`).join('')}
 ## About
 - [About the ${site.name}](${u('/about/')})

@@ -53,7 +53,7 @@ const { mobileBar = 'rooms', mobileBarHref, mobileBarLabel, preloadImage, ...seo
     <main id="main">
       <slot />
     </main>
-    <Footer />
+    <Footer mainNumberOnly={mobileBar === 'custom'} />
     <MobileBar variant={mobileBar} href={mobileBarHref} label={mobileBarLabel} />
     <CookieBanner />
     <script>
