@@ -460,6 +460,8 @@ const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 
     } else {
       button.disabled = false;
       status.textContent = 'Sorry, that didn’t send. Your answers are saved here, so please try again, or call us on 0151 482 0408.';
+      status.dataset.state = 'error';
+      status.scrollIntoView({ block: 'center', behavior: 'smooth' });
       saveDraft();
     }
   });

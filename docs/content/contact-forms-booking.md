@@ -97,4 +97,4 @@ Every form ends on its own thank-you page, so GA4 can count conversions (page vi
 | Operator lease details (Netlify `operator-lease-details`) | `/thank-you/lease-details/` | Coded: the form goes there after a successful send |
 | Wrong-borough opt-in (Netlify `exit-page-optin`) | `/thank-you/updates/` | Coded |
 
-Netlify Forms submissions are also forwarded to GoHighLevel's inbound webhook by `netlify/functions/submission-created.mjs` (override the URL with the `GHL_WEBHOOK_URL` environment variable in Netlify).
+The coded forms post straight to `netlify/functions/lead.mjs`, which forwards them to GoHighLevel's inbound webhook (override the URL with the `GHL_WEBHOOK_URL` environment variable in Netlify). They also post to Netlify Forms, best effort, which only stores them if form detection is switched on in Netlify (Forms → Enable form detection).
