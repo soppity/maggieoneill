@@ -92,7 +92,6 @@ export const termsOperator: LegalSection[] = [
       [
         'A signed satellite office lease agreement specifying your individual office number',
         'The Knowsley Council planning permission certificate PDF (Class E)',
-        'Access to your operator portal for document downloads and application progress tracking',
         'Support in completing your council application at no extra charge',
       ],
     ],
@@ -144,7 +143,6 @@ export const termsOperator: LegalSection[] = [
     blocks: [[
       'Provide you with a signed lease agreement and planning permission certificate within a reasonable time of lease execution',
       `Maintain the planning permission at ${address.street} for the duration of your lease`,
-      'Make your documents available for download in your operator portal',
       'Provide reasonable support in completing your council application at no extra charge',
       'Process exit clause activations promptly upon receipt of a valid refusal or revocation letter',
     ]],

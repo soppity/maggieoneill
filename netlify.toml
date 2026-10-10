@@ -46,8 +46,8 @@
   status = 301
   force = true
 
-# Old Knowsley operator licence subdomain (owner brief, Oct 2026). LEAVE COMMENTED for now: the operator portal,
-# direct debit mandate page, lease signing and /admin still run on taxi.mobtc.co.uk, and a catch-all would break them.
+# Old Knowsley operator licence subdomain (owner brief, Oct 2026). LEAVE COMMENTED until nothing else
+# still runs on taxi.mobtc.co.uk (direct debit set-up, lease signing, admin), or a catch-all would break it.
 # Once those have moved, add taxi.mobtc.co.uk to this Netlify site as a domain alias and uncomment.
 # [[redirects]]
 #   from = "https://taxi.mobtc.co.uk/*"

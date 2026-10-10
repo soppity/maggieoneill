@@ -14,7 +14,6 @@ const ogImage = `${site.url}/images/operators-licence/operators-licence-guide-og
 // Private: Knowsley Council planning reference, in the exact format the council form validates.
 const planningRef = '09/00608/COU - Wed 04 Aug 2010';
 const img = (name: string) => `/images/operators-licence/${name}`;
-const portal = 'https://taxi.mobtc.co.uk/operators-licence/portal';
 
 const gather = [
   { item: 'Basic DBS certificate', note: 'For every owner, director, and responsible person', cost: '~£25 from gov.uk' },
@@ -105,6 +104,7 @@ const youUpload: Note[] = [
   { label: 'Public liability insurance', text: 'Active certificate covering your operation.' },
   { label: 'HM Tax Check code', text: 'Confirmation page from gov.uk (less than 3 months old).' },
   { label: 'Proof of ID', text: 'Current driving licence or passport for each director.' },
+  { label: 'Proof of citizenship or Right to Work', text: 'For all directors.' },
 ];
 const weProvide: Note[] = [
   { label: 'Signed lease agreement', text: 'File must be the signed version, not the draft.' },
@@ -121,7 +121,7 @@ const faqs = [
   { q: 'Should I get a 1-year or 5-year operator licence?', a: "5-year licences are roughly 30% cheaper per year than five consecutive 1-year licences. But the fee isn't refunded on refusal, so for first-time applicants, the 1-year option at £242 is the lower-risk play. Once you know your application is solid (typically on renewal), the 5-year option is the cheaper choice long-term." },
   { q: 'How long does the Knowsley operator licence application take?', a: 'Knowsley requires a minimum 14-day public consultation period and typically processes new applications within six weeks of submission. Renewals are usually faster, typically 2–3 weeks.' },
   { q: 'What happens if Knowsley refuses my licence application?', a: "The lease agreement has an exit clause built in. If the council refuses your licence, you email us the refusal letter, your direct debit is cancelled, and you're released from the remainder of the lease term. You don't pay for months you can't use." },
-  { q: "What documents do I need to apply for a Knowsley operator's licence?", a: 'You provide: basic DBS certificate, public liability insurance, HM Tax Check code, proof of ID, and the council application fee. We provide a signed lease agreement and the planning permission certificate PDF, ready to download from your portal. You are responsible for downloading these from us and submitting them to the council. Full breakdown in Step 1.' },
+  { q: "What documents do I need to apply for a Knowsley operator's licence?", a: 'You provide: basic DBS certificate, public liability insurance, HM Tax Check code, proof of ID, proof of citizenship or Right to Work for all directors, and the council application fee. We provide a signed lease agreement and the planning permission certificate PDF, which we send you after you sign. You are responsible for submitting these to the council. Full breakdown in Step 1.' },
   { q: "Can I use the Maggie O'Neill Centre address if I live outside Knowsley?", a: 'Yes. Your personal home address can be anywhere. The operator address (where you operate from as a business) is what needs to be in Knowsley with planning permission. Many of our operators live elsewhere in Liverpool City Region.' },
   { q: "Do I need to physically work at the Maggie O'Neill Centre to use the address?", a: "No. The lease grants you the right to use the address as your council-registered base of operation. You don't need to attend physically to operate. The centre is here if you ever want to host a meeting, but day-to-day operation can be entirely off-site." },
   { q: 'What is the Knowsley operator licence consultation period?', a: "A minimum 14-day window after your application is submitted, during which the council publishes notice of your application on their licensing register. Members of the public, neighbouring businesses, or other interested parties can submit objections during this window. Most applications go through without objection, but it's a mandatory step before the council can grant a licence." },
@@ -173,8 +173,8 @@ const faqs = [
 
       <h3>Documents we send you: included in your lease</h3>
       <ul class="tick-list">
-        <li><span><strong>Your signed lease agreement:</strong> in your portal after you sign.</span></li>
-        <li><span><strong>MOC planning permission document:</strong> in your portal after you sign.</span></li>
+        <li><span><strong>Your signed lease agreement:</strong> sent to you after you sign.</span></li>
+        <li><span><strong>MOC planning permission document:</strong> sent to you after you sign.</span></li>
       </ul>
 
       <h3>Council fees: what you'll pay them</h3>
@@ -241,7 +241,7 @@ const faqs = [
                   <dl class="guide-notes">
                     {youUpload.map((n) => <div><dt>{n.label}</dt><dd>{n.text}</dd></div>)}
                   </dl>
-                  <h4>Provided by us (download from your portal and upload here)</h4>
+                  <h4>Provided by us (we send these to you after you sign: upload them here)</h4>
                   <dl class="guide-notes">
                     {weProvide.map((n) => <div><dt>{n.label}</dt><dd>{n.text}</dd></div>)}
                   </dl>
@@ -282,7 +282,7 @@ const faqs = [
       <p>
         You'll receive your operator's licence by email and post. Add the licence number to your records, share it with your insurers if asked, and
         continue operating from our address. The council will contact you 28–30 days before expiry to remind you to renew. Start the renewal at least
-        28 days before your current licence expires to avoid any operating gap. Track it in <a href={portal} rel="noopener">your MOC portal</a>.
+        28 days before your current licence expires to avoid any operating gap.
       </p>
 
       <h3>If your application is refused</h3>
