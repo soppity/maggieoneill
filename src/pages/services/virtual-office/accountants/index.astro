@@ -1,0 +1,317 @@
+---
+// For accountants (referral partners). Spec: Website Blueprint page 8b (Template: Service).
+// Audience: accountants, bookkeepers and company formation agents in Merseyside. Job: turn them into a steady source of
+// virtual office clients. No commission (accountants must disclose it), so the client gets 20% off instead.
+// PilotoMail screens: docs/assets/pilotomail/ (client names in the picker are anonymised: never show real ones).
+// Schema: Service (audience: accountants) + FAQPage + BreadcrumbList.
+import Base from '../../../../layouts/Base.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import Hero from '../../../../components/sections/Hero.astro';
+import Steps from '../../../../components/sections/Steps.astro';
+import PlansCompare from '../../../../components/sections/PlansCompare.astro';
+import Faqs from '../../../../components/sections/Faqs.astro';
+import VirtualOfficeForm from '../../../../components/sections/VirtualOfficeForm.astro';
+import { accountantPartners as ap, address, contact, formatPrice, hours, site, virtualOffice, withCover } from '../../../../data/facts';
+import { images } from '../../../../data/images';
+import { breadcrumbNode, faqNode, serviceNode } from '../../../../lib/schema';
+
+const path = '/services/virtual-office/accountants/';
+const url = `${site.url}${path}`;
+const parent = '/services/virtual-office/';
+// SEO: the title and meta use "registered office address" (the common search); visible copy says "registered address" (owner, Oct 2026).
+const title = "Registered Office Address Partner for Accountants, Liverpool | Maggie O'Neill Centre";
+const description =
+  "Give your clients a registered office address near Liverpool at 20% off, and see all their post under one login. Maggie O'Neill Centre.";
+
+const off = ap.discount;
+const [p20, p40] = virtualOffice.plans;
+const dc = virtualOffice.directorsCover;
+const ca = virtualOffice.callAnswering;
+// Owner, Oct 2026: 20% off both plans and Director's Cover; call answering gets 10% off.
+const priceGrid = [
+  { name: p20.name, price: p20.price, pct: off, kind: 'plan' },
+  { name: p40.name, price: p40.price, pct: off, kind: 'plan' },
+  { name: `${dc.name} add-on`, price: dc.price, pct: off, kind: 'addon' },
+  { name: `${p20.name} + ${dc.name}`, price: withCover(p20), pct: off, kind: 'cover' },
+  { name: `${p40.name} + ${dc.name}`, price: withCover(p40), pct: off, kind: 'cover' },
+  { name: `${ca.name} add-on`, price: ca.price, pct: ap.callAnsweringDiscount, kind: 'addon', extra: `plus ${ca.perResponse} per AI response` },
+];
+const discounted = (n: number, pct = off) => Math.round(n * (100 - pct)) / 100;
+const caOff = ap.callAnsweringDiscount;
+const fmt = (n: number) => (Number.isInteger(n) ? formatPrice(n) : `£${n.toFixed(2)}`);
+
+const lede = `Refer your clients to the Maggie O'Neill Centre for their registered address. They get ${off}% off for as long as they stay, you see all their post under one login, and every address supports a local charity.`;
+
+const benefits = [
+  {
+    title: 'One login for every client',
+    text: "Each client gets their own mailbox in PilotoMail, with your email added to it. Log in once, pick a client, and see their post. No chasing anyone for a photo of a letter from HMRC.",
+  },
+  {
+    title: `${off}% off for your clients`,
+    text: `Every client you refer pays ${off}% less, for as long as they stay with us. It isn't an introductory offer.`,
+  },
+  {
+    title: 'No more registered-address admin',
+    text: "Your clients' registered address is a real building with a team at reception. Post is handled, scanned and in the app, so it stops being your problem.",
+  },
+  {
+    title: 'Every referral does good',
+    text: "We're a charity. What your clients pay helps fund Maggie's Meals and our community work in Knowsley.",
+  },
+];
+
+const steps = [
+  { title: 'Tell us you want to partner', text: "Call, email or message us. We'll have a quick chat and make a note of your practice." },
+  { title: 'Send your clients our way', text: `Your client signs up on the form below and tells us you referred them. Their ${off}% off is applied from day one.` },
+  { title: 'Your email goes on their mailbox', text: 'We add your email to their PilotoMail mailbox, so their post shows up under your one login.' },
+  { title: 'See their post in one place', text: 'Log in, choose the client, and read what has arrived. Your client sees their own post too.' },
+];
+
+const faqs = [
+  {
+    q: 'Do you pay accountants a referral fee?',
+    a: `No. Accountants have to disclose any commission to their clients, so instead of paying a referral fee we pass the saving straight to your client as ${off}% off. There's nothing to declare, and your client gets the benefit.`,
+  },
+  {
+    q: 'How long does the discount last?',
+    a: `For as long as your client stays with the Maggie O'Neill Centre. It isn't an introductory offer.`,
+  },
+  {
+    q: 'How much will my clients pay?',
+    a: `With ${off}% off, the ${p20.name} plan is ${fmt(discounted(p20.price))} a month instead of ${formatPrice(p20.price)}, and the ${p40.name} plan is ${fmt(discounted(p40.price))} instead of ${formatPrice(p40.price)}. ${dc.name} is ${fmt(discounted(dc.price))} a month instead of ${formatPrice(dc.price)}, so a plan with cover comes to ${fmt(discounted(withCover(p20)))} instead of ${formatPrice(withCover(p20))}, or ${fmt(discounted(withCover(p40)))} instead of ${formatPrice(withCover(p40))}. ${ca.name} is ${caOff}% off, at ${fmt(discounted(ca.price, caOff))} a month instead of ${formatPrice(ca.price)}. ${virtualOffice.terms}`,
+  },
+  {
+    q: "How do I see my clients' post?",
+    a: "Through PilotoMail, the mailbox app our virtual office clients use. We add your email to each referred client's mailbox, so you log in once and choose which client's post to view.",
+  },
+  {
+    q: 'Do my clients still see their own post?',
+    a: 'Yes. Each client keeps their own access to their mailbox. Your login sits alongside theirs.',
+  },
+  {
+    q: 'Who does the AML checks?',
+    a: "We do. Anyone providing a registered address has to carry out anti-money laundering (AML) checks on their clients by law, so we send each client a secure AML form after they sign up.",
+  },
+  {
+    q: 'Can my clients use the address with Companies House?',
+    a: `Yes. Every plan includes a registered address at ${address.oneLine}. Director's Cover adds a director's service address, so their home comes off the register in both places.`,
+  },
+];
+
+const schema = [
+  serviceNode({
+    url,
+    name: 'Registered address partner for accountants',
+    serviceType: 'Registered address referral partnership',
+    description: lede,
+    audience: ap.audience,
+    areaServed: ['Liverpool', 'Merseyside', 'Knowsley'],
+    catalogName: `Virtual office plans at ${off}% off for referred clients`,
+    offers: virtualOffice.plans.map((p) => ({
+      name: `${p.name} (${off}% off for referred clients)`,
+      price: discounted(p.price),
+      description: p.summary,
+    })).concat(
+      { name: `${dc.name} add-on (${off}% off for referred clients)`, price: discounted(dc.price), description: dc.summary },
+      { name: `${ca.name} add-on (${caOff}% off for referred clients)`, price: discounted(ca.price, caOff), description: ca.summary },
+    ),
+  }),
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Virtual office', url: `${site.url}${parent}` },
+    { name: 'For accountants', url },
+  ]),
+  faqNode(url, faqs),
+];
+---
+<Base
+  title={title}
+  description={description}
+  ogImage={`${site.url}/images/pilotomail/mailbox-picker-hero.webp`}
+  ogImageAlt="The PilotoMail 'Choose your mailbox' screen, listing example client companies"
+  preloadImage="/images/pilotomail/mailbox-picker-hero.webp"
+  schema={schema}
+  mobileBar="virtual-office"
+>
+  <Breadcrumbs
+    trail={[
+      { name: 'Home', path: '/' },
+      { name: 'Virtual office', path: parent },
+      { name: 'For accountants', path },
+    ]}
+  />
+
+  <Hero
+    title="A registered address partner for accountants near Liverpool"
+    tagline="Your clients' post, handled. Your admin, gone."
+    lede={lede}
+    image={6}
+    screen={{ src: '/images/pilotomail/mailbox-picker-hero.webp', width: 1400, height: 947, alt: "The PilotoMail 'Choose your mailbox' screen, listing example client companies under one accountant's login" }}
+    primary={{ label: 'Become a partner', href: '#partner' }}
+    secondary={{ label: `Call ${contact.phone}`, href: contact.phoneHref }}
+  />
+
+  <section class="section section--white" aria-labelledby="benefits-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Why partner with us</span>
+        <h2 id="benefits-heading">What do you and your clients get?</h2>
+      </div>
+      <ul class="grid benefits">
+        {benefits.map((b) => (
+          <li class="card benefit">
+            <h3>{b.title}</h3>
+            <p>{b.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--cream" aria-labelledby="commission-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">No commission</span>
+        <h2 id="commission-heading">Why don't we pay a referral fee?</h2>
+      </div>
+      <div class="prose">
+        <p>
+          Accountants have to disclose any commission they earn to their clients. So we don't pay one. Instead, the saving goes
+          straight to your client as {off}% off their virtual office, for as long as they stay.
+        </p>
+        <p>There's nothing to declare, your advice stays clean, and your client is better off for listening to you.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="login-heading">
+    <div class="container two-col two-col--media">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">One login</span>
+          <h2 id="login-heading">How do you see your clients' post?</h2>
+          <p>
+            Our virtual office clients use PilotoMail, a mailbox app. We add your email to each referred client's mailbox, so you
+            log in once and choose whose post you want to see.
+          </p>
+        </div>
+        <ul class="tick-list">
+          <li>One login, however many clients you refer.</li>
+          <li>Pick a client from your list and read what has arrived.</li>
+          <li>On the {p40.name} plan, post is opened and scanned, so you can read it the same day.</li>
+          <li>Your clients keep their own access too.</li>
+        </ul>
+      </div>
+      <div class="screens">
+        <figure class="screen">
+          <img src="/images/pilotomail/login.webp" width="1400" height="745" loading="lazy" decoding="async" alt="The PilotoMail sign-in screen with the Maggie O'Neill Centre logo" />
+          <figcaption>Sign in once with your email.</figcaption>
+        </figure>
+        <figure class="screen">
+          <img src="/images/pilotomail/mailbox-picker.webp" width="1400" height="745" loading="lazy" decoding="async" alt="The PilotoMail 'Choose your mailbox' screen listing example client companies" />
+          <figcaption>Choose the client whose post you want to see. (Example names.)</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <Steps
+    id="how-heading"
+    eyebrow="How it works"
+    heading="How does a referral work?"
+    intro="Four steps, and most of them are ours."
+    steps={steps}
+  />
+
+  <PlansCompare heading="What is in each virtual office plan?" />
+
+  <section class="section section--white" aria-labelledby="discount-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Partner prices</span>
+        <h2 id="discount-heading">What do referred clients pay?</h2>
+        <p>{off}% off every plan and {dc.name}, and {ap.callAnsweringDiscount}% off {ca.name.toLowerCase()}, for as long as they stay. {virtualOffice.terms}</p>
+      </div>
+      <ul class="grid prices">
+        {priceGrid.map((r) => (
+          <li class:list={['card', 'price', `price--${r.kind}`]}>
+            <span class="price__off">{r.pct}% off</span>
+            <h3>{r.name}</h3>
+            <p class="price__now"><strong>{fmt(discounted(r.price, r.pct))}</strong> a month</p>
+            <p class="price__was">Usually <s>{formatPrice(r.price)}</s>{r.extra && `, ${r.extra}`}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="prices__note">
+        Post is handled in-house by our team, and clients can collect it from reception, {hours.summary}. We run the AML checks the law
+        requires for a registered address, so that's off your plate too.
+      </p>
+    </div>
+  </section>
+
+  <section class="section partner" id="partner" aria-labelledby="partner-heading">
+    <div class="container partner__inner">
+      <div>
+        <span class="eyebrow">Become a partner</span>
+        <h2 id="partner-heading">Want to refer your clients?</h2>
+        <p>Have a quick chat with us and we'll set you up. There's no contract and nothing to sign.</p>
+      </div>
+      <div class="partner__actions">
+        <a class="btn btn--primary" href={contact.phoneHref} data-track="phone_click">Call {contact.phone}</a>
+        {contact.email && <a class="btn btn--secondary" href={`mailto:${contact.email}?subject=Accountant%20partner`} data-track="email_click">Email {contact.email}</a>}
+        <a class="btn btn--secondary" href={contact.whatsappHref} rel="noopener" data-track="whatsapp_click">WhatsApp {contact.text}</a>
+      </div>
+    </div>
+  </section>
+
+  <Faqs faqs={faqs} heading="Questions from accountants" />
+
+  <VirtualOfficeForm
+    heading="Signing up a client?"
+    intro={`Your client can fill this in themselves. Ask them to put your name or practice in the form so we can apply their ${off}% off and add your email to their mailbox.`}
+  />
+
+  <section class="section section--white more-links" aria-label="Related pages">
+    <div class="container">
+      <p>
+        See our <a href={parent}>virtual office in Liverpool</a>,
+        {' '}<a href="/services/virtual-office/call-answering/">call answering</a>, or
+        {' '}<a href="/blog/home-address-companies-house/">how to get your home address off Companies House</a>.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .benefits { grid-template-columns: repeat(4, minmax(0, 1fr)); list-style: none; padding: 0; margin: 0; }
+  .benefit { padding: 28px; display: flex; flex-direction: column; gap: 10px; }
+  .benefit p { font-size: var(--text-small-size); color: var(--moc-slate-text); }
+  .two-col { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .two-col--media { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .two-col .section-head { margin-bottom: 24px; }
+  .prose { display: flex; flex-direction: column; gap: 16px; font-size: var(--text-lead-size); }
+  .screens { display: flex; flex-direction: column; gap: 24px; }
+  .screen { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .screen img { width: 100%; height: auto; border-radius: var(--radius-card); box-shadow: var(--moc-shadow-card); }
+  .screen figcaption { font-size: var(--text-small-size); color: var(--moc-slate-text); }
+  .prices { grid-template-columns: repeat(3, minmax(0, 1fr)); list-style: none; padding: 0; margin: 0; }
+  .price { padding: 26px 24px; display: flex; flex-direction: column; gap: 8px; border-top: 4px solid var(--moc-coral-500); }
+  .price--cover { border-top-color: var(--moc-purple-700); }
+  .price--addon { border-top-color: var(--moc-slate-2); }
+  .price__off { align-self: flex-start; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: var(--moc-coral-tint); color: var(--moc-coral-text); padding: 4px 10px; border-radius: var(--radius-pill); }
+  .price h3 { font-size: 19px; }
+  .price__now strong { font: 800 44px/1 var(--font-display); color: var(--moc-purple-900); letter-spacing: -0.02em; }
+  .price__now { color: var(--moc-slate-text); }
+  .price__was { font-size: var(--text-small-size); color: var(--moc-slate-text); }
+  .prices__note { margin-top: 28px; max-width: 900px; }
+  @media (max-width: 900px) { .prices { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .prices { grid-template-columns: 1fr; } }
+  .partner { background: var(--moc-purple-tint); }
+  .partner__inner { display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap; }
+  .partner__inner h2 { margin: 6px 0 10px; }
+  .partner__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  @media (max-width: 1000px) { .benefits { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 900px) { .two-col, .two-col--media { grid-template-columns: 1fr; } }
+  @media (max-width: 520px) { .benefits { grid-template-columns: 1fr; } .partner__actions .btn { width: 100%; justify-content: center; } }
+</style>

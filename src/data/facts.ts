@@ -348,7 +348,7 @@ export const virtualOffice = {
   // Owner, Oct 2026: never name one person as the post handler. Post is handled by the team at reception.
   signUp: [
     { title: 'Tell us the basics', text: 'Your name, email, phone and the plan you want. It takes about a minute.' },
-    { title: 'Confirm your ID', text: 'We send a secure form for the ID checks the law requires for registered office services.' },
+    { title: 'Complete your AML check', text: 'We send a secure form for the anti-money laundering (AML) checks the law requires for registered office services.' },
     { title: 'Get your address', text: "You get your new address and access to your mailbox app. You're live as soon as the checks are done." },
   ],
   // An AI voice agent answers, 24/7. Always call it "call answering", never "AI receptionist".
@@ -442,3 +442,14 @@ export const careClients = [
   'Nexime Healthcare', 'Capricorn Care NW Ltd', 'BR-1 Care', 'Prosper Care', 'Homecarers Liverpool (HCL)',
   'City Health Care Partnership CIC', 'G&H Care',
 ];
+
+// Accountant referral partners (PROJECT_NOTES.md, Blueprint 8b). We pay no commission, because accountants must
+// disclose commission to their clients: the saving goes to the client instead, for as long as they stay.
+// Referrals are tracked by which client mailboxes the accountant's email is on in PilotoMail.
+export const accountantPartners = {
+  // Owner, Oct 2026: 20% (was 15% in the blueprint), on both plans and Director's Cover.
+  discount: 20,
+  // Owner, Oct 2026: call answering gets 10% off its monthly fee for referred clients.
+  callAnsweringDiscount: 10,
+  audience: 'Accountants, bookkeepers and company formation agents',
+};
