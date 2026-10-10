@@ -4,7 +4,7 @@
 // Set GHL_WEBHOOK_URL in Netlify's environment variables to change the destination without a code change.
 const WEBHOOK =
   process.env.GHL_WEBHOOK_URL ||
-  'https://services.leadconnectorhq.com/hooks/4cpmA1xPfhyLI1A2OPDr/webhook-trigger/3b0fd02e-19d4-4eb7-be05-8fd64e8166a0';
+  'https://services.leadconnectorhq.com/hooks/4cpmA1xPfhyLI1A2OPDr/webhook-trigger/db80a780-d898-48a6-9a47-4dc139945d36';
 
 const DROP = new Set(['bot-field', 'form-name']);
 
