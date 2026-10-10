@@ -447,7 +447,9 @@ export const careClients = [
 // disclose commission to their clients: the saving goes to the client instead, for as long as they stay.
 // Referrals are tracked by which client mailboxes the accountant's email is on in PilotoMail.
 export const accountantPartners = {
-  // Owner, Oct 2026: 20% (was 15% in the blueprint), on both plans and Director's Cover. Not on call answering.
+  // Owner, Oct 2026: 20% (was 15% in the blueprint), on both plans and Director's Cover.
   discount: 20,
+  // Owner, Oct 2026: call answering gets 10% off its monthly fee for referred clients.
+  callAnsweringDiscount: 10,
   audience: 'Accountants, bookkeepers and company formation agents',
 };

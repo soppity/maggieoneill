@@ -75,6 +75,20 @@ const step = full.price - addressOnly.price;
   </div>
 </section>
 
+<script>
+  // The plus line in each card toggles the cover in place. Without this, the browser focuses the hidden switch
+  // above the cards and scrolls the page up to it (owner, Oct 2026: don't snap up). The label still works without JS.
+  document.querySelectorAll<HTMLInputElement>('.dc-toggle__input').forEach((input) => {
+    input.closest('.plans-section')?.querySelectorAll('.plan__dc label').forEach((label) => {
+      label.addEventListener('click', (e) => {
+        e.preventDefault();
+        input.checked = !input.checked;
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+    });
+  });
+</script>
+
 <style>
   .nowrap { white-space: nowrap; }
   .with-dc { display: none; }
@@ -84,6 +98,7 @@ const step = full.price - addressOnly.price;
   .dc-toggle {
     display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center; max-width: 760px; margin-bottom: 40px;
     padding: 18px 22px; background: var(--moc-white); border: 2px dashed var(--moc-coral-500); border-radius: var(--radius-card); cursor: pointer;
+    position: relative;
   }
   .dc-toggle:has(.dc-toggle__input:checked) { border-style: solid; background: var(--moc-coral-tint); }
   .dc-toggle__input { position: absolute; opacity: 0; width: 1px; height: 1px; }
