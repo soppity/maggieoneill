@@ -8,6 +8,7 @@ import KeyFacts from '../../../../components/sections/KeyFacts.astro';
 import Steps from '../../../../components/sections/Steps.astro';
 import Faqs from '../../../../components/sections/Faqs.astro';
 import VirtualOfficeForm from '../../../../components/sections/VirtualOfficeForm.astro';
+import OperatorLicenceNote from '../../../../components/sections/OperatorLicenceNote.astro';
 import { formatPrice, rooms, site, virtualOffice } from '../../../../data/facts';
 import { images } from '../../../../data/images';
 import { breadcrumbNode, faqNode, serviceNode } from '../../../../lib/schema';
@@ -120,6 +121,8 @@ const schema = [
 
   <KeyFacts heading="Call answering, in a few lines" intro={intro} facts={keyFacts} />
   <p class="container updated">Last updated: October 2026</p>
+
+  <OperatorLicenceNote />
 
   <Steps
     id="how-heading"

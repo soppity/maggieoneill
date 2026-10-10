@@ -1,0 +1,113 @@
+---
+// Knowsley operator licence: WRONG BOROUGH page. UNLISTED, noindex (owner brief, Oct 2026).
+// Reads ?borough=liverpool|sefton|other and shows where to go next. Council links checked Oct 2026.
+import Base from '../../../layouts/Base.astro';
+import { contact, site } from '../../../data/facts';
+import '../../../styles/forms.css';
+
+const title = "We can only support Knowsley applications | Maggie O'Neill Centre";
+const description = "Our planning permission is specific to Knowsley Council. Here's where to look if you're applying for a private hire operator's licence elsewhere.";
+---
+<Base
+  title={title}
+  description={description}
+  ogImage={`${site.url}/images/operators-licence/operators-licence-hero.png`}
+  ogImageAlt="Maggie O'Neill Centre"
+  noindex
+  mobileBar="custom"
+  mobileBarHref={contact.phoneHref}
+  mobileBarLabel={`Call ${contact.phone}`}
+>
+  <section class="section">
+    <div class="container ex">
+      <span class="eyebrow">Wrong borough</span>
+      <h1>Sorry, we can only support Knowsley applications.</h1>
+      <p class="ex__lede">Our planning permission at the Maggie O'Neill Centre is specific to Knowsley Council. It can't be used to apply for a private hire operator's licence anywhere else.</p>
+      <p>Other councils (Liverpool, Sefton, Wirral, St Helens) each have their own rules on what addresses they accept. Here's where to go next.</p>
+
+      <div class="card ex__card">
+        <h2>Where to look for your borough</h2>
+        <div data-borough="liverpool" hidden>
+          <h3>Liverpool City Council: Hackney Carriage &amp; Private Hire</h3>
+          <p><a href="https://liverpool.gov.uk/business/licences-and-permits/taxi-licences/" rel="noopener" target="_blank">Visit licensing pages →</a></p>
+          <p>Liverpool requires a registered office address with appropriate planning use within Liverpool City Council boundaries.</p>
+        </div>
+        <div data-borough="sefton" hidden>
+          <h3>Sefton Council: Taxi &amp; Private Hire Licensing</h3>
+          <p><a href="https://www.sefton.gov.uk/business/licensing-registration/taxi-licensing/new-operators-license/" rel="noopener" target="_blank">Visit licensing pages →</a></p>
+          <p>Sefton has slightly different planning permission requirements; check their licensing team for what they accept.</p>
+        </div>
+        <div data-borough="other">
+          <p>Search your council's website for "private hire operator licence". Every council in the UK has a licensing team you can contact directly.</p>
+          <p>If you're somewhere else in Merseyside, the four other Liverpool City Region councils are Liverpool, Sefton, Wirral, and St Helens, and each has its own licensing pages.</p>
+        </div>
+        <p class="ex__note">Most councils require either commercial premises with planning permission for use as a private hire operator's office, or sometimes accept residential addresses with landlord/owner permission. Virtual offices are widely rejected, including by Knowsley.</p>
+      </div>
+
+      <div class="card ex__card">
+        <h2>Before you go</h2>
+        <p>We work with operators across the Liverpool City Region in other ways: meeting rooms, training spaces, business addresses for non-licensing needs. If you'd ever benefit from any of that, leave your email and we'll let you know when something's relevant. No spam: we'll only get in touch if there's a genuine fit.</p>
+        <form class="form ex__form" name="exit-page-optin" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-optin novalidate>
+          <input type="hidden" name="form-name" value="exit-page-optin" />
+          <input type="hidden" name="borough" value="" />
+          <p class="form__honeypot"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+          <div class="field">
+            <label for="ex-email">Email address</label>
+            <div class="ex__row">
+              <input id="ex-email" name="email" type="email" autocomplete="email" placeholder="your@email.com" />
+              <button class="btn btn--primary" type="submit">Keep me posted</button>
+            </div>
+            <span class="field__error"></span>
+          </div>
+          <p class="form__status" role="status" aria-live="polite"></p>
+        </form>
+        <p class="form-thanks" data-optin-thanks hidden>Thanks, we'll only be in touch if there's a genuine fit.</p>
+      </div>
+
+      <p class="ex__more">Need a meeting room, virtual office, or auditorium? <a href="/">Browse our main services →</a></p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import { isEmail, setFieldError, submitNetlifyForm } from '../../../scripts/netlifyForm';
+
+  const borough = (new URLSearchParams(location.search).get('borough') || 'other').toLowerCase();
+  const known = ['liverpool', 'sefton'].includes(borough) ? borough : 'other';
+  document.querySelectorAll<HTMLElement>('[data-borough]').forEach((b) => (b.hidden = b.dataset.borough !== known));
+
+  const form = document.querySelector<HTMLFormElement>('[data-optin]');
+  const boroughField = form?.querySelector<HTMLInputElement>('[name="borough"]');
+  if (boroughField) boroughField.value = borough;
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = form.querySelector<HTMLInputElement>('[name="email"]');
+    if (!isEmail(email?.value ?? '')) { setFieldError(email, 'Please enter a valid email address.'); email?.focus(); return; }
+    setFieldError(email, '');
+    const status = form.querySelector<HTMLElement>('.form__status');
+    if (status) status.textContent = 'Sending…';
+    if (await submitNetlifyForm(form)) {
+      form.hidden = true;
+      const thanks = document.querySelector<HTMLElement>('[data-optin-thanks]');
+      if (thanks) thanks.hidden = false;
+    } else if (status) {
+      status.textContent = 'Sorry, that didn’t send. Please try again.';
+      status.dataset.state = 'error';
+    }
+  });
+</script>
+
+<style>
+  .ex { max-width: 820px; display: flex; flex-direction: column; gap: 18px; }
+  .ex h1 { font-size: clamp(32px, 4.4vw, 50px); line-height: 1.08; }
+  .ex__lede { font-size: var(--text-lead-size); }
+  .ex__card { padding: clamp(22px, 3vw, 32px); display: flex; flex-direction: column; gap: 12px; }
+  .ex__card h2 { font-size: 24px; }
+  .ex__card h3 { font-size: 19px; margin-bottom: 6px; }
+  .ex__card [data-borough] { display: flex; flex-direction: column; gap: 6px; }
+  .ex__card [data-borough][hidden] { display: none; }
+  .ex__note { color: var(--moc-slate-text); }
+  .ex__row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .ex__row input { flex: 1; min-width: 220px; }
+  .ex__more { font-weight: 700; }
+</style>

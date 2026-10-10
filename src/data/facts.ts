@@ -453,3 +453,27 @@ export const accountantPartners = {
   callAnsweringDiscount: 10,
   audience: 'Accountants, bookkeepers and company formation agents',
 };
+
+// Knowsley Private Hire Operator's Licence address (owner brief, Oct 2026; moved in from taxi.mobtc.co.uk).
+// A real satellite office lease, not a virtual office: Knowsley rejects virtual offices for operator licences.
+// PUBLIC-SAFE FACTS ONLY. The planning reference must never go in here (this file feeds llms.txt and schema).
+// It lives only on the private application guide and in docs/knowledge/operators-licence.md (internal).
+export const operatorLicence = {
+  path: '/operators-licence/',
+  operatorsSupported: '15+',
+  termMonths: 12,
+  setupFee: 0,
+  from: 100,
+  tiers: [
+    { vehicles: '1', label: '1 vehicle', price: 100 },
+    { vehicles: '2-10', label: '2 to 10 vehicles', price: 150 },
+    { vehicles: '11-50', label: '11 to 50 vehicles', price: 200 },
+    { vehicles: '51+', label: '51+ vehicles', price: 250 },
+  ],
+  planningPublic: 'a Class E commercial building',
+  councilFeeFrom: 242,
+  councilFeeTo: '1,920',
+  decisionWeeks: 6,
+  exitClause:
+    "If Knowsley Council refuses your licence application or revokes your issued licence, you're released from the lease. It's built into the agreement.",
+};

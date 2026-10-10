@@ -1,0 +1,39 @@
+---
+// Signpost for taxi and private hire operators on virtual office pages (owner, Oct 2026).
+// Other boroughs accept a virtual office for an operator's licence, but Knowsley doesn't, so operators often land on
+// the virtual office page looking for the wrong thing. Subtle but clear: one strip, one link.
+import { operatorLicence as ol } from '../../data/facts';
+
+interface Props {
+  tone?: 'white' | 'page' | 'cream';
+}
+const { tone = 'white' } = Astro.props;
+---
+<section class:list={['ol-note-wrap', { 'section--white': tone === 'white', 'section--cream': tone === 'cream' }]} aria-label="For taxi and private hire operators">
+  <div class="container">
+    <a class="ol-note" href={ol.path}>
+      <span class="ol-note__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14v-5l-2-5H7l-2 5z"/><path d="M5 12h14"/><circle cx="8" cy="17" r="1.6"/><circle cx="16" cy="17" r="1.6"/></svg>
+      </span>
+      <span class="ol-note__text">
+        <strong>Taxi or private hire operator in Knowsley?</strong>
+        <span>Knowsley Council doesn't accept a virtual office for an operator's licence. We have a dedicated package: a real satellite office lease with planning permission, from £{ol.from} a month. <span class="ol-note__more">See the operator licence package →</span></span>
+      </span>
+    </a>
+  </div>
+</section>
+
+<style>
+  .ol-note-wrap { padding: 20px 0; }
+  .ol-note {
+    display: flex; gap: 16px; align-items: flex-start; padding: 16px 20px; border-radius: 16px;
+    background: var(--moc-white); border: 1.5px dashed var(--moc-purple-700); color: var(--moc-purple-900); text-decoration: none;
+    transition: background var(--duration-base, 200ms) ease;
+  }
+  .section--white .ol-note { background: var(--moc-bg); }
+  .ol-note:hover { background: var(--moc-purple-tint); color: var(--moc-purple-900); }
+  .ol-note__icon { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--moc-purple-tint); color: var(--moc-purple-700); }
+  .ol-note__text { display: grid; gap: 4px; line-height: 1.45; }
+  .ol-note__text > span { color: var(--moc-ink); font-size: 15.5px; }
+  .ol-note__more { color: var(--moc-coral-text); font-weight: 700; white-space: nowrap; }
+</style>

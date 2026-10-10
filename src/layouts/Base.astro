@@ -18,12 +18,14 @@ interface Props {
   schema?: Node[];
   pageType?: string;
   dateModified?: string;
-  mobileBar?: 'rooms' | 'virtual-office';
+  mobileBar?: 'rooms' | 'virtual-office' | 'custom';
   mobileBarHref?: string;
+  mobileBarLabel?: string;
+  noindex?: boolean;
   preloadImage?: string;
 }
 
-const { mobileBar = 'rooms', mobileBarHref, preloadImage, ...seo } = Astro.props;
+const { mobileBar = 'rooms', mobileBarHref, mobileBarLabel, preloadImage, ...seo } = Astro.props;
 ---
 <!doctype html>
 <html lang="en-GB">
@@ -52,7 +54,7 @@ const { mobileBar = 'rooms', mobileBarHref, preloadImage, ...seo } = Astro.props
       <slot />
     </main>
     <Footer />
-    <MobileBar variant={mobileBar} href={mobileBarHref} />
+    <MobileBar variant={mobileBar} href={mobileBarHref} label={mobileBarLabel} />
     <CookieBanner />
     <script>
       // Key events for GA4 via the dataLayer (SEO spec 8.1). GTM reads these once the container is added.

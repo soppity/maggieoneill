@@ -1,7 +1,7 @@
 ---
 // The GoHighLevel virtual office form (never on the same page as the general form).
 // Every "Get your address" button and the mobile bar on virtual office pages scroll here.
-import { contact, forms, virtualOffice } from '../../data/facts';
+import { contact, forms, operatorLicence, virtualOffice } from '../../data/facts';
 
 interface Props {
   heading?: string;
@@ -23,6 +23,7 @@ const form = forms.virtualOffice;
         <li>{virtualOffice.terms}</li>
         <li>Want call answering too? It's £{virtualOffice.callAnswering.price} a month plus {virtualOffice.callAnswering.perResponse} per AI response, and we'll set it up with you after you sign up.</li>
         <li>Not sure which plan? Tell us what you need and we'll help you pick.</li>
+        <li>Taxi or private hire operator applying to Knowsley? A virtual office won't do for your licence: see our <a href={operatorLicence.path}>Knowsley operator licence package</a>.</li>
       </ul>
       <p class="vo-form__talk">
         Prefer to talk? Call <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a> or WhatsApp{' '}

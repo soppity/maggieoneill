@@ -12,15 +12,17 @@ interface Props {
   schema?: Node[];
   pageType?: string;
   dateModified?: string;
+  // Unlisted pages (sent privately, e.g. the operator licence guide and form): never indexed, never in the sitemap.
+  noindex?: boolean;
 }
 
-const { title, description, path, ogImage, ogImageAlt, schema = [], pageType, dateModified } = Astro.props;
+const { title, description, path, ogImage, ogImageAlt, schema = [], pageType, dateModified, noindex: unlisted = false } = Astro.props;
 const url = new URL(path, site.url).href;
 
 // Deploy previews and branch deploys must never be indexed (SEO spec 2.2).
 // Netlify sets CONTEXT at build time; production builds have CONTEXT=production.
 const context = process.env.CONTEXT;
-const noindex = context !== undefined && context !== 'production';
+const noindex = unlisted || (context !== undefined && context !== 'production');
 
 const jsonLd = graph([
   ...sitewideNodes(),
