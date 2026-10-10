@@ -460,10 +460,7 @@ export const accountantPartners = {
 // It lives only on the private application guide and in docs/knowledge/operators-licence.md (internal).
 export const operatorLicence = {
   path: '/operators-licence/',
-  // The lease details form is a multi-page GoHighLevel survey, embedded (never coded). Until its ID is set, the page
-  // falls back to the short Netlify enquiry form. TODO(owner): GHL survey ID and height.
-  leaseFormId: null as string | null,
-  leaseFormHeight: 900,
+  // The lease details form is the coded 11-step form at /operators-licence/apply/ (owner, Oct 2026: no GoHighLevel survey).
   operatorsSupported: '15+',
   termMonths: 12,
   setupFee: 0,

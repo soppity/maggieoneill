@@ -4,9 +4,9 @@ Source: owner brief, Oct 2026 (moved in from taxi.mobtc.co.uk). Fees last verifi
 Public facts also live in `src/data/facts.ts` (`operatorLicence`), which feeds the pages, schema and llms.txt.
 
 ## Pages
-- Public: `/operators-licence/` (indexed, in the sitemap, nav under Virtual office, footer, llms.txt). CTAs: "Check if you qualify" (enquiry form) and Call.
-- Unlisted (noindex, not in nav/footer/sitemap/llms, never linked from a public page): `/operators-licence/application-guide/`, `/operators-licence/apply/` (11-step lease details form), `/operators-licence/exit/?borough=liverpool|sefton|other`.
-- Netlify forms: `operator-licence-enquiry`, `operator-lease-details`, `exit-page-optin`.
+- Public: `/operators-licence/` (indexed, in the sitemap, nav under Virtual office, footer, llms.txt). CTAs: "Check if you qualify" → the lease details form at `/operators-licence/apply/`, and Call.
+- Unlisted (noindex, not in nav/footer/sitemap/llms, never linked from a public page): `/operators-licence/application-guide/`, `/operators-licence/apply/` (11-step lease details form, also linked from the public page's CTAs), `/operators-licence/exit/?borough=liverpool|sefton|other`.
+- Netlify forms: `operator-lease-details` (the lease details form) and `exit-page-optin`.
 - There is no operator portal (owner, Oct 2026). Documents are sent to the operator after they sign; direct debit set-up and lease signing are handled by the team.
 - Signposted from the virtual office pages (strip after key facts, an FAQ, and a line by the sign-up form), because other boroughs accept a virtual office but Knowsley doesn't.
 
@@ -22,7 +22,7 @@ Public facts also live in `src/data/facts.ts` (`operatorLicence`), which feeds t
 - **Council fees (new, 1yr/5yr):** 1 veh £242/£847 · 2–10 £308/£1,078 · 11–50 £467.50/£1,628 · 51+ £550/£1,920. **Renewal:** £231/£803 · £297/£1,039.50 · £440/£1,545.50 · £528/£1,837. Recommend 1-year for first-timers because the fee isn't refunded on refusal.
 - **Timeline:** 14-day minimum public consultation, then review, decision ~6 weeks. Renewals ~2–3 weeks. Renew ≥28 days before expiry. Appeals within 21 days.
 - **Track record:** 15+ operators supported.
-- **Contacts:** 0151 482 0408 (main number, use for everything; never 07446 491121) · info@mobtc.co.uk. Registered charity number: use `site.charityNumber` (the brief's 1102507 is the old number).
+- **Contacts:** 0151 482 0408 (main number, use for everything; never 07446 491121) · info@mobtc.co.uk. Registered charity number: 1215599, from `site.charityNumber` (owner confirmed Oct 2026; 1102507 is out of date).
 - **Sales process:** the public page sells the service and captures enquiries. The application guide, lease form and (later) chatbot are shared privately with qualified operators only.
 
 ## INTERNAL: never show publicly

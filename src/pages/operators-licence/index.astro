@@ -3,8 +3,7 @@
 // Sells the satellite office lease to private hire operators who need premises in Knowsley for their operator's licence.
 // Keyword brief (Oct 2026): primary "knowsley operator licence address"; secondary "knowsley private hire (operator)",
 // "operator licence knowsley", "private hire operator premises / operating base Knowsley", "knowsley taxi licensing".
-// Rules: one CTA (the lease details form, a GoHighLevel survey once its ID is set; until then the short Netlify
-// enquiry form) plus the main phone number. Never link to the application guide, never show the planning reference
+// Rules: one CTA (the coded lease details form at /operators-licence/apply/, owner Oct 2026) plus the main phone number. Never link to the application guide, never show the planning reference
 // (public wording: "planning permission in place"), no chat widget, no other licensing authorities named.
 // Schema: Service (BusinessAudience, four Offers) + FAQPage + BreadcrumbList.
 import Base from '../../layouts/Base.astro';
@@ -16,7 +15,6 @@ import Faqs from '../../components/sections/Faqs.astro';
 import { address, contact, operatorLicence as ol, parking, site } from '../../data/facts';
 import { images } from '../../data/images';
 import { breadcrumbNode, faqNode, serviceNode } from '../../lib/schema';
-import '../../styles/forms.css';
 
 const path = ol.path;
 const url = `${site.url}${path}`;
@@ -26,6 +24,7 @@ const description = `A real lease and planning-approved premises in Knowsley for
 const ogImage = `${site.url}/images/operators-licence/operators-licence-hero.png`;
 const heroAlt = "Maggie O'Neill Centre, Knowsley address for private hire operator licence applications";
 const councilChange = 'https://www.knowsley.gov.uk/business-licences-and-consumers/licences-and-permits/taxi-and-private-hire/private-hire-operator-6';
+const applyPath = `${ol.path}apply/`;
 const councilNew = 'https://www.knowsley.gov.uk/business-licences-and-consumers/licences-and-permits/taxi-and-private-hire/private-hire-operator-1';
 
 // Answer first: who, what, where, price, proof (40 to 60 words).
@@ -59,7 +58,7 @@ const numbers = [
 ];
 
 const steps = [
-  { title: 'Send us your details', text: "Fill in the form below or call us. We confirm you're applying to Knowsley and agree your vehicle band." },
+  { title: 'Send us your details', text: "Fill in our lease details form or call us. We confirm you're applying to Knowsley and agree your vehicle band." },
   { title: 'Sign your lease', text: `${ol.termMonths}-month satellite office lease with your own office number, plus the planning permission certificate.` },
   { title: 'Apply to the council, with our help', text: `We walk you through the Knowsley application at no extra cost. Most decisions arrive within ${ol.decisionWeeks} weeks.` },
 ];
@@ -146,7 +145,7 @@ const schema = [
   preloadImage={images[3].src}
   schema={schema}
   mobileBar="custom"
-  mobileBarHref="#get-started"
+  mobileBarHref={applyPath}
   mobileBarLabel="Check if you qualify"
 >
   <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: "Operator's licence", path }]} />
@@ -157,7 +156,7 @@ const schema = [
     lede={lede}
     image={3}
     imageAlt={heroAlt}
-    primary={{ label: 'Check if you qualify', href: '#get-started' }}
+    primary={{ label: 'Check if you qualify', href: applyPath }}
     secondary={{ label: `Call now: ${contact.phone}`, href: contact.phoneHref }}
   >
     <p class="ol-supporting"><strong>{ol.operatorsSupported}</strong> operators supported</p>
@@ -266,7 +265,7 @@ const schema = [
     id="start-heading"
     eyebrow="Get started"
     heading="How do I get started?"
-    intro="Send us your details using the form below. Once we've reviewed them, we send you the application guide and the planning details."
+    intro="Send us your details using our lease details form. Once we've reviewed them, we send you the application guide and the planning details."
     steps={steps}
   />
 
@@ -275,94 +274,19 @@ const schema = [
       <div class="ol-enquire__copy">
         <span class="eyebrow">Your details</span>
         <h2 id="enquire-heading">See if we're the right fit</h2>
-        <p>Tell us about your operation and we'll be in touch, usually within one working day.</p>
-        <p>Prefer to talk? <a href={contact.phoneHref} data-track="phone_click">Call {contact.phone}</a>.</p>
+        <p>Tell us about your operation in our lease details form. Your answers save as you go, so you can come back and finish later.</p>
       </div>
       <div class="ol-enquire__box">
-        {ol.leaseFormId ? (
-          <iframe
-            src={`https://api.leadconnectorhq.com/widget/survey/${ol.leaseFormId}`}
-            style={`width:100%;height:${ol.leaseFormHeight}px;border:none;display:block`}
-            id={`inline-${ol.leaseFormId}`}
-            scrolling="no"
-            title="Lease details"
-          ></iframe>
-        ) : (
-          <>
-            <form class="form" name="operator-licence-enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-ol-enquiry novalidate>
-              <input type="hidden" name="form-name" value="operator-licence-enquiry" />
-              <p class="form__honeypot"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
-              <div class="form__row">
-                <div class="field">
-                  <label for="ol-name">Full name <span class="req">*</span></label>
-                  <input id="ol-name" name="name" autocomplete="name" required />
-                  <span class="field__error"></span>
-                </div>
-                <div class="field">
-                  <label for="ol-mobile">Mobile <span class="req">*</span></label>
-                  <input id="ol-mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="07xxx xxxxxx" required />
-                  <span class="field__error"></span>
-                </div>
-              </div>
-              <div class="form__row">
-                <div class="field">
-                  <label for="ol-email">Email <span class="req">*</span></label>
-                  <input id="ol-email" name="email" type="email" autocomplete="email" required />
-                  <span class="field__error"></span>
-                </div>
-                <div class="field">
-                  <label for="ol-trading">Trading name</label>
-                  <input id="ol-trading" name="trading_name" autocomplete="organization" />
-                </div>
-              </div>
-              <div class="form__row">
-                <div class="field">
-                  <label for="ol-council">Which council are you applying to? <span class="req">*</span></label>
-                  <select id="ol-council" name="council" required>
-                    <option value="">Choose</option>
-                    <option value="knowsley">Knowsley</option>
-                    <option value="other">Another council</option>
-                  </select>
-                  <span class="field__error"></span>
-                </div>
-                <div class="field">
-                  <label for="ol-vehicles">How many vehicles?</label>
-                  <select id="ol-vehicles" name="vehicles">
-                    <option value="">Choose</option>
-                    {ol.tiers.map((t) => <option value={t.vehicles}>{t.vehicles === '2-10' ? '2–10' : t.vehicles === '11-50' ? '11–50' : t.vehicles}</option>)}
-                  </select>
-                </div>
-              </div>
-              <p class="form__note" data-ol-borough hidden>
-                Our planning permission is specific to Knowsley Council, so we can only support Knowsley applications.
-                {' '}<a href="/operators-licence/exit/?borough=other">See where to go next</a>.
-              </p>
-              <div class="field">
-                <label for="ol-type">New application or renewal?</label>
-                <select id="ol-type" name="application_type">
-                  <option value="">Choose</option>
-                  <option value="new">New application</option>
-                  <option value="renewal">Renewal</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="ol-notes">Anything else we should know?</label>
-                <textarea id="ol-notes" name="notes"></textarea>
-              </div>
-              <p class="form__status" role="status" aria-live="polite"></p>
-              <p><button class="btn btn--primary" type="submit">Send my details</button></p>
-            </form>
-            <div class="form-thanks" data-ol-thanks hidden tabindex="-1">
-              <h3>Thanks, we'll be in touch shortly.</h3>
-              <p>If it's urgent, call us on <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>.</p>
-            </div>
-          </>
-        )}
+        <ul class="tick-list">
+          <li><span>Which council you're applying to, and whether it's a new application or a renewal.</span></li>
+          <li><span>How many vehicles, so we can confirm your price band.</span></li>
+          <li><span>Your business details, for the lease and our anti-money laundering (AML) checks.</span></li>
+        </ul>
+        <p class="ol-enquire__cta"><a class="btn btn--primary" href={applyPath}>Start your lease details</a></p>
+        <p>Prefer to talk? <a href={contact.phoneHref} data-track="phone_click">Call {contact.phone}</a>.</p>
       </div>
     </div>
   </section>
-
-  {ol.leaseFormId && <script is:inline src="https://link.msgsndr.com/js/form_embed.js" defer></script>}
 
   <Faqs faqs={faqs} heading="Knowsley private hire licence questions" />
 
@@ -377,53 +301,6 @@ const schema = [
     </div>
   </section>
 </Base>
-
-<script>
-  import { isEmail, isUkMobile, setFieldError, submitNetlifyForm } from '../../scripts/netlifyForm';
-
-  // Fallback enquiry form (shown until the GoHighLevel lease details survey ID is set).
-  const form = document.querySelector<HTMLFormElement>('[data-ol-enquiry]');
-  const thanks = document.querySelector<HTMLElement>('[data-ol-thanks]');
-  const council = form?.querySelector<HTMLSelectElement>('[name="council"]');
-  const note = form?.querySelector<HTMLElement>('[data-ol-borough]');
-
-  form?.addEventListener('input', (e) => setFieldError(e.target as Element, ''));
-  form?.addEventListener('change', (e) => setFieldError(e.target as Element, ''));
-
-  // Not Knowsley? Say so before they submit, and point them to the right place.
-  council?.addEventListener('change', () => {
-    if (note) note.hidden = council.value !== 'other';
-  });
-
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const get = (n: string) => form.querySelector<HTMLInputElement>(`[name="${n}"]`);
-    const checks: [HTMLInputElement | null, string][] = [
-      [get('name'), (get('name')?.value.trim().length ?? 0) < 2 ? 'Please tell us your name.' : ''],
-      [get('mobile'), isUkMobile(get('mobile')?.value ?? '') ? '' : 'Please enter a UK mobile starting 07.'],
-      [get('email'), isEmail(get('email')?.value ?? '') ? '' : 'Please enter a valid email address.'],
-      [get('council'), get('council')?.value ? '' : 'Please choose a council.'],
-    ];
-    checks.forEach(([el, msg]) => setFieldError(el, msg));
-    const firstBad = checks.find(([, msg]) => msg);
-    if (firstBad) {
-      firstBad[0]?.focus();
-      return;
-    }
-    const status = form.querySelector<HTMLElement>('.form__status');
-    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
-    if (button) button.disabled = true;
-    if (status) { status.textContent = 'Sending…'; status.removeAttribute('data-state'); }
-    const ok = await submitNetlifyForm(form);
-    if (ok) {
-      form.hidden = true;
-      if (thanks) { thanks.hidden = false; thanks.focus(); }
-    } else {
-      if (button) button.disabled = false;
-      if (status) { status.textContent = 'Sorry, that didn’t send. Please try again, or call us on 0151 482 0408.'; status.dataset.state = 'error'; }
-    }
-  });
-</script>
 
 <style>
   .ol-supporting { margin-top: 18px; color: var(--moc-purple-900); }
@@ -455,6 +332,7 @@ const schema = [
   .ol-enquire__inner { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 64px); align-items: start; }
   .ol-enquire__copy { display: flex; flex-direction: column; gap: 14px; position: sticky; top: 104px; }
   .ol-enquire__copy p { font-size: var(--text-lead-size); }
+  .ol-enquire__cta { margin: 22px 0 14px; }
   .ol-enquire__box { background: var(--moc-white); border-radius: var(--radius-card); box-shadow: var(--moc-shadow-card); padding: clamp(22px, 3vw, 36px); }
   .ol-close__line { font-weight: 700; color: var(--moc-purple-900); margin-bottom: 10px; }
   @media (max-width: 960px) { .ol-tiers { grid-template-columns: 1fr 1fr; } }
