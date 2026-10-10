@@ -11,7 +11,7 @@ import Steps from '../../../../components/sections/Steps.astro';
 import PlansCompare from '../../../../components/sections/PlansCompare.astro';
 import Faqs from '../../../../components/sections/Faqs.astro';
 import VirtualOfficeForm from '../../../../components/sections/VirtualOfficeForm.astro';
-import { accountantPartners as ap, address, contact, formatPrice, hours, site, virtualOffice } from '../../../../data/facts';
+import { accountantPartners as ap, address, contact, formatPrice, hours, site, virtualOffice, withCover } from '../../../../data/facts';
 import { images } from '../../../../data/images';
 import { breadcrumbNode, faqNode, serviceNode } from '../../../../lib/schema';
 
@@ -24,6 +24,9 @@ const description =
 
 const off = ap.discount;
 const [p20, p40] = virtualOffice.plans;
+const dc = virtualOffice.directorsCover;
+const ca = virtualOffice.callAnswering;
+// Owner, Oct 2026: the discount covers both plans and Director's Cover, but not call answering.
 const discounted = (n: number) => Math.round(n * (100 - off)) / 100;
 const fmt = (n: number) => (Number.isInteger(n) ? formatPrice(n) : `£${n.toFixed(2)}`);
 
@@ -66,7 +69,7 @@ const faqs = [
   },
   {
     q: 'How much will my clients pay?',
-    a: `With ${off}% off, the ${p20.name} plan is ${fmt(discounted(p20.price))} a month instead of ${formatPrice(p20.price)}, and the ${p40.name} plan is ${fmt(discounted(p40.price))} instead of ${formatPrice(p40.price)}. ${virtualOffice.terms}`,
+    a: `With ${off}% off, the ${p20.name} plan is ${fmt(discounted(p20.price))} a month instead of ${formatPrice(p20.price)}, and the ${p40.name} plan is ${fmt(discounted(p40.price))} instead of ${formatPrice(p40.price)}. ${dc.name} is ${fmt(discounted(dc.price))} a month instead of ${formatPrice(dc.price)}, so a plan with cover comes to ${fmt(discounted(withCover(p20)))} instead of ${formatPrice(withCover(p20))}, or ${fmt(discounted(withCover(p40)))} instead of ${formatPrice(withCover(p40))}. ${ca.name} stays at ${formatPrice(ca.price)} a month. ${virtualOffice.terms}`,
   },
   {
     q: "How do I see my clients' post?",
@@ -99,7 +102,11 @@ const schema = [
       name: `${p.name} (${off}% off for referred clients)`,
       price: discounted(p.price),
       description: p.summary,
-    })),
+    })).concat({
+      name: `${dc.name} add-on (${off}% off for referred clients)`,
+      price: discounted(dc.price),
+      description: dc.summary,
+    }),
   }),
   breadcrumbNode(url, [
     { name: 'Home', url: `${site.url}/` },
@@ -219,7 +226,10 @@ const schema = [
         <p>
           With {off}% off, the {p20.name} plan is <strong>{fmt(discounted(p20.price))} a month</strong> instead of {formatPrice(p20.price)},
           and the {p40.name} plan is <strong>{fmt(discounted(p40.price))} a month</strong> instead of {formatPrice(p40.price)}.
+          {dc.name} is <strong>{fmt(discounted(dc.price))}</strong> instead of {formatPrice(dc.price)}, so a plan with cover comes to
+          {' '}{fmt(discounted(withCover(p20)))} instead of {formatPrice(withCover(p20))}, or {fmt(discounted(withCover(p40)))} instead of {formatPrice(withCover(p40))}.
         </p>
+        <p>The discount doesn't apply to {ca.name.toLowerCase()}, which stays at {formatPrice(ca.price)} a month.</p>
         <p>
           Post is handled in-house by our team, and clients can collect it from reception, {hours.summary}.
           We run the ID checks the law requires for registered office services, so that's off your plate too.
