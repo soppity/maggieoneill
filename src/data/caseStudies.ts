@@ -57,7 +57,7 @@ export const caseStudies: CaseStudy[] = [
     logo: 156,
     sector: 'care',
     kind: 'venue',
-    title: "Amore Case Study: Care Training Venue | Maggie O'Neill Centre",
+    title: "Amore Case Study: Care Training | Maggie O'Neill Centre",
     description:
       "Amore moved all of its care training to one central venue. Four years on, it trains at the Maggie O'Neill Centre in Huyton almost every week.",
     h1: 'Amore: every mandatory training day, in one place',
@@ -182,7 +182,7 @@ export const caseStudies: CaseStudy[] = [
     logo: 153,
     sector: 'care',
     kind: 'venue',
-    title: "AFG Case Study: Care Training & Meetings | Maggie O'Neill Centre",
+    title: "AFG Case Study: Care Training | Maggie O'Neill Centre",
     description:
       "After Covid, Alternative Futures Group moved its training to the Maggie O'Neill Centre: mandatory care training, meetings and a four-week systems rollout.",
     h1: 'AFG: staff training, meetings and a company-wide rollout',
@@ -367,7 +367,7 @@ export const caseStudies: CaseStudy[] = [
     logo: 164,
     sector: 'nhs',
     kind: 'venue',
-    title: "Alder Hey Case Study: NHS Staff Training | Maggie O'Neill Centre",
+    title: "Alder Hey Case Study: NHS Training | Maggie O'Neill Centre",
     description:
       "Alder Hey's Sunflower House has trained its staff at the Maggie O'Neill Centre for over a year, and other Alder Hey teams have followed.",
     h1: 'Alder Hey: training Sunflower House staff, and the teams that followed',

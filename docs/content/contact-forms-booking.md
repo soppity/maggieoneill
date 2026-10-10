@@ -85,3 +85,16 @@ Notes:
 
 ## Call answering
 Call answering (£39 a month) is an add-on. It's mentioned on the virtual office page beside the plans, and the details are discussed with the client after they submit the virtual office form. It has no separate form or sign-up link. Its own page's CTA ("Add call answering") goes to the virtual office form.
+
+## Thank-you pages (Oct 2026)
+Every form ends on its own thank-you page, so GA4 can count conversions (page view, plus a `form_thank_you` dataLayer event with the form name). All are noindex and out of the sitemap.
+
+| Form | Thank-you page | How it gets there |
+| --- | --- | --- |
+| Website Enquiry (GHL `PTEyaGYXB96ztNMrZVGB`) | `/thank-you/` | Set in GoHighLevel: form → Settings → On submit → Redirect to URL `https://mobtc.co.uk/thank-you/` |
+| Virtual Office Page - Form (GHL `RWoOkRV2NaAKLVe4JSmF`) | `/thank-you/virtual-office/` | Set in GoHighLevel the same way |
+| Office Waitlist (GHL `oEBrrucinDJHDzwwGmdO`) | `/thank-you/office-waitlist/` | Set in GoHighLevel the same way |
+| Operator lease details (Netlify `operator-lease-details`) | `/thank-you/lease-details/` | Coded: the form goes there after a successful send |
+| Wrong-borough opt-in (Netlify `exit-page-optin`) | `/thank-you/updates/` | Coded |
+
+Netlify Forms submissions are also forwarded to GoHighLevel's inbound webhook by `netlify/functions/submission-created.mjs` (override the URL with the `GHL_WEBHOOK_URL` environment variable in Netlify).

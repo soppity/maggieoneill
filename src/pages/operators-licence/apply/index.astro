@@ -451,11 +451,12 @@ const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 
         const store = readStore(); delete store[val('email').toLowerCase()];
         localStorage.setItem(STORE, JSON.stringify(store));
       } catch { /* storage blocked: nothing to clear */ }
+      // Thank-you page for conversion tracking; the on-page message is the fallback if navigation is blocked.
       form.hidden = true;
       ($('.wiz__progress') as HTMLElement).hidden = true;
       const done = $('[data-done]') as HTMLElement;
       done.hidden = false;
-      done.focus();
+      location.href = '/thank-you/lease-details/';
     } else {
       button.disabled = false;
       status.textContent = 'Sorry, that didn’t send. Your answers are saved here, so please try again, or call us on 0151 482 0408.';

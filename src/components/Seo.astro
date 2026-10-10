@@ -22,6 +22,8 @@ const url = new URL(path, site.url).href;
 // Deploy previews and branch deploys must never be indexed (SEO spec 2.2).
 // Netlify sets CONTEXT at build time; production builds have CONTEXT=production.
 const context = process.env.CONTEXT;
+// Production (CONTEXT=production) is indexable except pages that pass noindex on purpose: the private operator licence
+// guide, lease form and wrong-borough page, and the thank-you pages. Local builds (no CONTEXT) are indexable too.
 const noindex = unlisted || (context !== undefined && context !== 'production');
 
 const jsonLd = graph([

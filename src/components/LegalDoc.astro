@@ -6,8 +6,11 @@ import { contact } from '../data/facts';
 interface Props {
   heading: string;
   sections: LegalSection[];
+  // Links added to a section's last paragraph, by section title (e.g. the cookie page from "Cookies").
+  links?: Record<string, { label: string; href: string }>;
+  questions?: boolean;
 }
-const { heading, sections } = Astro.props;
+const { heading, sections, links = {}, questions = true } = Astro.props;
 ---
 <section class="legal-part">
   <h2>{heading}</h2>
@@ -16,10 +19,11 @@ const { heading, sections } = Astro.props;
       <li>
         <h3>{s.title}</h3>
         {s.blocks.map((b) => (Array.isArray(b) ? <ul>{b.map((i) => <li>{i}</li>)}</ul> : <p>{b}</p>))}
+        {links[s.title] && <p><a href={links[s.title].href}>{links[s.title].label}</a></p>}
       </li>
     ))}
   </ol>
-  <p class="legal-q">Questions? Email <a href={`mailto:${contact.email}`}>{contact.email}</a> or call <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>.</p>
+  {questions && <p class="legal-q">Questions? Email <a href={`mailto:${contact.email}`}>{contact.email}</a> or call <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>.</p>}
 </section>
 
 <style>

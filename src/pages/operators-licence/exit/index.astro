@@ -87,6 +87,7 @@ const description = "Our planning permission is specific to Knowsley Council. He
     const status = form.querySelector<HTMLElement>('.form__status');
     if (status) status.textContent = 'Sending…';
     if (await submitNetlifyForm(form)) {
+      location.href = '/thank-you/updates/';
       form.hidden = true;
       const thanks = document.querySelector<HTMLElement>('[data-optin-thanks]');
       if (thanks) thanks.hidden = false;
