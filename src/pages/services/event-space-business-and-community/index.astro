@@ -98,6 +98,11 @@ const features = [
     text: 'The heart of the building: warm, comfortable and set up before anyone arrives. Toilets are just outside the doors, and tea and coffee are in the foyer all day, so nobody goes without.',
   },
   {
+    image: 182,
+    title: 'Auditorium AV',
+    text: 'A professional sound system for the serious stuff. It plays music and handles up to six speakers at once, so panels, awards and launches sound as good as they look. A technician (£) runs it on the day.',
+  },
+  {
     image: 66,
     title: 'Six breakout rooms',
     text: "Day to day we're a meeting and training venue, so every room is already equipped. Solicitors, care companies and charities use them every week, and your sessions can run side by side.",
@@ -108,7 +113,7 @@ const features = [
     text: "Free parking right outside, which you rarely find at our prices: usually only big city conference centres have their own. There's an overflow car park across the road for bigger events.",
   },
   {
-    image: 182,
+    image: 54,
     title: 'AV in every space',
     text: 'Every room has a screen or projector, cables, a flipchart and paper, with tea and coffee close by, so parallel sessions run without a hitch.',
   },
@@ -309,7 +314,10 @@ const schema = [
 </Base>
 
 <style>
-  .features { list-style: none; margin: 0; padding: 0; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  /* Five cards: the two Auditorium cards lead, wider, then three across. */
+  .features { list-style: none; margin: 0; padding: 0; grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .feature { grid-column: span 2; }
+  .feature:nth-child(-n + 2) { grid-column: span 3; }
   .feature { overflow: hidden; display: flex; flex-direction: column; }
   .feature :global(img) { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
   .feature__body { padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 8px; }
@@ -321,9 +329,9 @@ const schema = [
   .testimonial figcaption { margin-top: auto; font-weight: 700; font-size: var(--text-small-size); }
   .testimonial figcaption span { font-weight: 500; color: var(--moc-slate-text); }
   .testimonials__more { margin-top: 20px; font-weight: 700; }
-  @media (max-width: 1100px) { .features { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 1100px) { .features { grid-template-columns: 1fr 1fr; } .feature, .feature:nth-child(-n + 2) { grid-column: auto; } .feature:last-child { grid-column: 1 / -1; } .feature:last-child :global(img) { aspect-ratio: 16 / 7; } }
   @media (max-width: 900px) { .testimonials { grid-template-columns: 1fr; } }
-  @media (max-width: 560px) { .features { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .features { grid-template-columns: 1fr; } .feature:last-child :global(img) { aspect-ratio: 4 / 3; } }
   .all-faqs { padding-top: 0; }
   .all-faqs__inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 22px 28px; border-radius: var(--radius-card); background: var(--moc-white); box-shadow: var(--moc-shadow-card); }
   .all-faqs__inner p { margin: 0; font-size: var(--text-lead-size); }
