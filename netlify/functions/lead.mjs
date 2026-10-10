@@ -30,7 +30,7 @@ export const handler = async (event) => {
     page: event.headers?.referer || '',
   };
   try {
-    const res = await fetch(WEBHOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    const res = await fetch(WEBHOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: AbortSignal.timeout(8000) });
     if (!res.ok) {
       const detail = (await res.text().catch(() => '')).slice(0, 300);
       console.error(`GoHighLevel webhook returned ${res.status}: ${detail}`);

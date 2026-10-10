@@ -444,7 +444,8 @@ const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 
     const button = $('[data-submit]') as HTMLButtonElement;
     const status = $('[data-status]')!;
     button.disabled = true;
-    status.textContent = 'Sending…';
+    button.textContent = 'Sending…';
+    status.textContent = 'Sending your details…';
     const ok = await submitNetlifyForm(form);
     if (ok) {
       try {
@@ -459,6 +460,7 @@ const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 
       location.href = '/thank-you/lease-details/';
     } else {
       button.disabled = false;
+      button.textContent = 'Submit lease details';
       status.textContent = `Sorry, that didn’t send. Your answers are saved here, so please try again, or call us on 0151 482 0408. (Error: ${lastError})`;
       (status as HTMLElement).dataset.state = 'error';
       status.scrollIntoView({ block: 'center', behavior: 'smooth' });

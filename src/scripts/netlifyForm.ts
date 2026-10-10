@@ -11,14 +11,18 @@ export async function submitNetlifyForm(form: HTMLFormElement, extra: Record<str
   for (const [k, v] of Object.entries(extra)) data.set(k, v);
   const entries = Object.fromEntries([...data.entries()].map(([k, v]) => [k, String(v)]));
   const urlencoded = new URLSearchParams(entries).toString();
+  // Never wait more than 12 seconds, so the page always shows a result.
+  const timed = (url: string, init: RequestInit) => fetch(url, { ...init, signal: AbortSignal.timeout(12000) });
   const [toCrm, toNetlify] = await Promise.allSettled([
-    fetch('/.netlify/functions/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(entries) }),
-    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: urlencoded }),
+    timed('/.netlify/functions/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(entries) }),
+    timed('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: urlencoded }),
   ]);
   const ok = [toCrm, toNetlify].some((r) => r.status === 'fulfilled' && r.value.ok);
   // A short code for the error message, so a failed test says which route broke (e.g. "crm 502 CRM 404 / forms 404").
   const code = async (r: PromiseSettledResult<Response>) =>
-    r.status === 'fulfilled' ? `${r.value.status}${r.value.ok ? '' : ' ' + (await r.value.text().catch(() => '')).slice(0, 40)}`.trim() : 'network';
+    r.status === 'fulfilled'
+      ? `${r.value.status}${r.value.ok ? '' : ' ' + (await r.value.text().catch(() => '')).replace(/\s+/g, ' ').slice(0, 30)}`.trim()
+      : (r.reason as Error)?.name === 'TimeoutError' ? 'timeout' : 'network';
   lastError = ok ? '' : `crm ${await code(toCrm)} / forms ${await code(toNetlify)}`;
   if (!ok) console.error('Form not sent:', lastError);
   if (ok) {
