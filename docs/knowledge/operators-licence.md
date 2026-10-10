@@ -17,7 +17,7 @@ Public facts also live in `src/data/facts.ts` (`operatorLicence`), which feeds t
 - **Exit clause:** released with no further payments if Knowsley formally refuses or revokes the licence. The operator emails the letter to info@mobtc.co.uk. Doesn't apply to withdrawn, unsubmitted, paused or queried applications.
 - **Planning (public wording):** Class E commercial building, the correct planning permission for a Knowsley satellite office operator licence. Full certificate PDF provided on signing.
 - **Operator address format on the council form:** "Office [Number]" + MOC address. The office number is issued on lease signing.
-- **Operator provides:** basic DBS (every owner/director/responsible person, ~£25), public liability insurance (£100–300/yr typical), HM Tax Check code (<3 months old), proof of ID per director, council fee.
+- **Operator provides:** basic DBS (every owner/director/responsible person, ~£25), public liability insurance (£100–300/yr typical), HM Tax Check code (<3 months old), proof of ID per director, proof of citizenship or Right to Work for all directors, council fee.
 - **MOC provides:** signed lease + planning permission certificate PDF via the operator portal, plus free help with the council application.
 - **Council fees (new, 1yr/5yr):** 1 veh £242/£847 · 2–10 £308/£1,078 · 11–50 £467.50/£1,628 · 51+ £550/£1,920. **Renewal:** £231/£803 · £297/£1,039.50 · £440/£1,545.50 · £528/£1,837. Recommend 1-year for first-timers because the fee isn't refunded on refusal.
 - **Timeline:** 14-day minimum public consultation, then review, decision ~6 weeks. Renewals ~2–3 weeks. Renew ≥28 days before expiry. Appeals within 21 days.
