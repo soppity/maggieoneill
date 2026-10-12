@@ -13,6 +13,12 @@
 # Netlify also sends X-Robots-Tag: noindex on deploy-preview URLs by default.
 
 # --- 301 redirects (docs/README.md "Redirects") ---
+# Close off the Netlify preview domain: everything on maggieoneill.netlify.app goes to the live site.
+[[redirects]]
+  from = "https://maggieoneill.netlify.app/*"
+  to = "https://mobtc.co.uk/:splat"
+  status = 301
+  force = true
 [[redirects]]
   from = "/services/meeting-training-rooms/*"
   to = "/services/training-rooms/"
