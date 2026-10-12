@@ -6,7 +6,7 @@ description: Draft this week's Google Business Profile post for the Maggie O'Nei
 # Weekly Google Business Profile post
 
 Draft one Google Business Profile (GBP) post for the Maggie O'Neill Centre. You only draft it: you can't reach
-GBP. The owner publishes it, usually by pasting the brief at the end into Claude in Chrome.
+GBP. The owner publishes it by pasting the brief at the end into Claude in Chrome, which publishes without a preview step (owner, Oct 2026).
 
 ## Sources (read these, never invent)
 
@@ -69,7 +69,7 @@ Open the profile (business.google.com, or search "Maggie O'Neill Centre" on Goog
 Download this photo and upload it: <image URL>
 Post text: <post text>
 Button: <button> → <tracked URL>
-Show me the preview before you publish.
+Publish it straight away (no preview needed), then tell me it's live.
 ```
 
 Don't commit, push or open pull requests: this skill only drafts.
