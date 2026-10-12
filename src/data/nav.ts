@@ -35,7 +35,14 @@ export const mainNav: NavItem[] = [
     ],
   },
   { label: 'Meeting rooms', href: '/services/meeting-rooms/' },
-  { label: 'Events', href: '/services/event-space-business-and-community/' },
+  {
+    label: 'Events',
+    href: '/services/event-space-business-and-community/',
+    children: [
+      { label: 'Event space hire', href: '/services/event-space-business-and-community/' },
+      { label: 'Conference venue', href: '/services/conference-venue/' },
+    ],
+  },
   { label: 'Private offices', href: '/services/private-offices/' },
   {
     label: "Why Maggie's",
@@ -57,7 +64,8 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
     links: [
       { label: 'Training rooms', href: '/services/training-rooms/' },
       { label: 'Meeting rooms', href: '/services/meeting-rooms/' },
-      { label: 'Events and conferences', href: '/services/event-space-business-and-community/' },
+      { label: 'Event space hire', href: '/services/event-space-business-and-community/' },
+      { label: 'Conference venue near Liverpool', href: '/services/conference-venue/' },
       { label: 'Private offices', href: '/services/private-offices/' },
       { label: 'Virtual office in Liverpool from £20', href: '/services/virtual-office/' },
       { label: 'Call answering', href: '/services/virtual-office/call-answering/' },
