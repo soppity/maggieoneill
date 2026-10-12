@@ -309,7 +309,7 @@ export const planFeatures: { key: PlanFeature; label: string }[] = [
   { key: 'businessAddress', label: 'Use it as your business address everywhere' },
   { key: 'collectPost', label: 'Collect your post from reception' },
   { key: 'postScanned', label: 'Post opened and scanned, so you can read it anywhere' },
-  { key: 'roomHours', label: "2 free meeting room hours a month (they don't roll over)" },
+  { key: 'roomHours', label: '2 free meeting room hours a month, worth £40' },
   { key: 'coffee', label: 'Free coffee when you call in' },
 ];
 
