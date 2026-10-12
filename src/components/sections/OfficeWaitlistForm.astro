@@ -1,5 +1,6 @@
 ---
 // The GoHighLevel private office waitlist form. "Join the waitlist" buttons on the offices page scroll here (#waitlist).
+import GhlForm from '../GhlForm.astro';
 import { contact, forms, privateOffices as po } from '../../data/facts';
 
 const form = forms.officeWaitlist;
@@ -21,29 +22,10 @@ const form = forms.officeWaitlist;
       </p>
     </div>
     <div class="wl-form__box">
-      <iframe
-        src={`https://api.leadconnectorhq.com/widget/form/${form.id}`}
-        style={`width:100%;height:${form.height}px;border:none;border-radius:8px;display:block`}
-        id={`inline-${form.id}`}
-        data-layout="{'id':'INLINE'}"
-        data-trigger-type="alwaysShow"
-        data-trigger-value=""
-        data-activation-type="alwaysActivated"
-        data-activation-value=""
-        data-deactivation-type="neverDeactivate"
-        data-deactivation-value=""
-        data-form-name={form.name}
-        data-height={form.height}
-        data-layout-iframe-id={`inline-${form.id}`}
-        data-form-id={form.id}
-        data-cookie-consent="true"
-        data-cookie-consent-provider="auto"
-        title={form.name}></iframe>
+      <GhlForm form={form} />
     </div>
   </div>
 </section>
-
-<script is:inline src="https://link.msgsndr.com/js/form_embed.js" defer></script>
 
 <style>
   .wl-form { background: var(--moc-purple-tint); scroll-margin-top: 88px; }
