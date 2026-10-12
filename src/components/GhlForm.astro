@@ -1,0 +1,30 @@
+---
+// One GoHighLevel form embed for the whole site. Matches GHL's own inline embed code exactly,
+// because GHL's form_embed.js sizes and shows the iframe itself. Don't add loading="lazy" or size it
+// from a wrapper: the general and virtual office forms didn't show while they did (Oct 2026).
+import type { forms } from '../data/facts';
+
+interface Props {
+  form: (typeof forms)[keyof typeof forms];
+}
+const { form } = Astro.props;
+---
+<iframe
+  src={`https://api.leadconnectorhq.com/widget/form/${form.id}`}
+  style={`width:100%;height:${form.height}px;border:none;border-radius:8px;display:block`}
+  id={`inline-${form.id}`}
+  data-layout="{'id':'INLINE'}"
+  data-trigger-type="alwaysShow"
+  data-trigger-value=""
+  data-activation-type="alwaysActivated"
+  data-activation-value=""
+  data-deactivation-type="neverDeactivate"
+  data-deactivation-value=""
+  data-form-name={form.name}
+  data-height={form.height}
+  data-layout-iframe-id={`inline-${form.id}`}
+  data-form-id={form.id}
+  data-cookie-consent="true"
+  data-cookie-consent-provider="auto"
+  title={form.name}></iframe>
+<script is:inline src="https://link.msgsndr.com/js/form_embed.js" defer></script>
