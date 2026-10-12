@@ -1,6 +1,8 @@
 ---
 // Events and conferences. Spec: Website Blueprint page 7 (Template: Service). Keep this URL: it has search history.
-// Job: sell the Auditorium (60 cabaret, 100 theatre) and the Grove for networking as a hosted alternative to a hotel.
+// Job: sell the Auditorium (60 cabaret, 100 theatre) and the Grove for launches, talks, networking and community events.
+// Oct 2026: conference and corporate searches moved to /services/conference-venue/, so this page leads on events.
+// Owner, Oct 2026: business, training and community events only. Not a party or function venue.
 // Auditorium pricing is "from £100 an hour", quoted per event (owner, Oct 2026).
 // Owner, Oct 2026: lectern, mics and sound system confirmed; AV run by a technician; no wireless casting in the Auditorium
 // itself (breakout spaces have it). Breakout: the Grove, the Auditorium foyer, as many extra spaces as needed, and open
@@ -31,10 +33,10 @@ const cab = auditorium.capacity.cabaret!;
 const theatre = auditorium.capacity.theatre!;
 const from = formatPrice(auditorium.prices!.hourFrom!);
 
-const title = "Conference Venue near Liverpool | Maggie O'Neill Centre";
-const description = `A hosted ${theatre}-seat auditorium with six breakout rooms in Huyton, near Liverpool. Stage, sound system, AV and 50 free parking spaces. The hotel alternative.`;
+const title = "Event Space Hire near Liverpool | Maggie O'Neill Centre";
+const description = `Event space hire in Huyton, near Liverpool: a ${theatre}-seat Auditorium with a stage and sound system, the Grove for networking, and ${parking.spaces} free parking spaces.`;
 
-const intro = `The Maggie O'Neill Centre in Huyton, near Liverpool, hosts conferences, launches, community events and networking. The ${auditorium.name} seats up to ${theatre} theatre style or ${cab} cabaret, with a stage, lectern, microphones, sound system and AV run by a technician (£). It costs from ${from} an hour, with a 3-hour minimum, or a day rate, quoted for your event. Six breakout rooms can run sessions alongside it. Hosts check on your event all day, our catering partner can feed everyone, and there are ${parking.spaces} free parking spaces outside.`;
+const intro = `The Maggie O'Neill Centre in Huyton, near Liverpool, hosts launches, talks, networking and community events. The ${auditorium.name} seats up to ${theatre} theatre style or ${cab} cabaret, with a stage, lectern, microphones, sound system and AV run by a technician (£). It costs from ${from} an hour, with a 3-hour minimum, or a day rate, quoted for your event. Six breakout rooms can run sessions alongside it. Hosts check on your event all day, our catering partner can feed everyone, and there are ${parking.spaces} free parking spaces outside.`;
 
 const keyFacts = [
   { term: 'Capacity', detail: `Up to ${theatre} theatre style or ${cab} cabaret in the ${auditorium.name}.` },
@@ -83,6 +85,10 @@ const faqs = [
   {
     q: 'How do I check availability or arrange a visit?',
     a: `Call ${contact.phone}, email ${contact.email}, or use the form on this page. If you'd like to see the space first, we do tours every weekday. Just shout.`,
+  },
+  {
+    q: 'Do you host parties or private functions?',
+    a: "No. The Maggie O'Neill Centre hosts business, training and community events only, so we don't take bookings for parties or private functions.",
   },
   {
     q: 'What is the total capacity of the venue?',
@@ -142,8 +148,8 @@ const testimonials = [
 const schema = [
   serviceNode({
     url,
-    name: 'Conference and event venue hire',
-    serviceType: 'Conference, event and networking venue hire',
+    name: 'Event space hire',
+    serviceType: 'Event and networking venue hire',
     description: intro,
     provider: 'venue',
     areaServed: ['Huyton', 'Knowsley', 'Liverpool', 'Merseyside'],
@@ -160,16 +166,16 @@ const schema = [
   roomPlaceNode(grove, images[grove.image]?.src),
   breadcrumbNode(url, [
     { name: 'Home', url: `${site.url}/` },
-    { name: 'Events and conferences', url },
+    { name: 'Event space hire', url },
   ]),
   faqNode(url, faqs),
 ];
 ---
 <Base title={title} description={description} ogImage={images[181].src} ogImageAlt={images[181].alt} preloadImage={images[181].src} schema={schema}>
-  <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Events and conferences', path }]} />
+  <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Event space hire', path }]} />
 
   <Hero
-    title="Conference and event venue near Liverpool"
+    title="Event space hire near Liverpool"
     tagline="Better than a hotel. Built only for this."
     lede={`The Maggie O'Neill Centre Auditorium seats ${theatre}, with six breakout rooms alongside, ${parking.spaces} free parking spaces outside, and your hosts looking after the day.`}
     image={181}
@@ -212,7 +218,7 @@ const schema = [
         <div class="section-head">
           <span class="eyebrow">The {auditorium.name}</span>
           <h2 id="aud-heading">What is the Auditorium like?</h2>
-          <p>A proper hall for talks, conferences, launches and community events, set the way you need it before your guests arrive.</p>
+          <p>A proper hall for talks, launches and community events, set the way you need it before your guests arrive. Running a conference? See our <a href="/services/conference-venue/">conference venue near Liverpool</a>.</p>
         </div>
         <ul class="tick-list">
           <li>Up to {theatre} theatre style, or {cab} cabaret style at tables.</li>
@@ -302,7 +308,8 @@ const schema = [
   <section class="section section--white more-links" aria-label="Related pages">
     <div class="container">
       <p>
-        See also <a href="/services/meeting-rooms/">meeting room hire in Huyton</a>,
+        See also our <a href="/services/conference-venue/">conference venue near Liverpool</a>,
+        {' '}<a href="/services/meeting-rooms/">meeting room hire in Huyton</a>,
         {' '}<a href="/services/training-rooms/council-training-venue/">council and public sector events</a>,
         {' '}<a href="/whats-included/">everything that's included</a> and our <a href={bookingTermsPath}>booking terms</a>, or call
         {' '}<a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>.

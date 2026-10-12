@@ -36,7 +36,8 @@ Key facts:
 - [NHS training venue](${u('/services/training-rooms/nhs-training-venue/')}): clinical and admin training days and monthly meetings
 - [Councils, schools and public sector](${u('/services/training-rooms/council-training-venue/')}): training, INSET days and social value
 - [Meeting rooms](${u('/services/meeting-rooms/')}): from the Pod (boardroom for 4, £20 an hour or £120 a day) upwards
-- [Events and conferences](${u('/services/event-space-business-and-community/')}): the Auditorium
+- [Conference venue near Liverpool](${u('/services/conference-venue/')}): the Auditorium for conferences of up to 100 delegates, six breakout rooms and 50 free parking spaces, 30 seconds from the M57
+- [Event space hire](${u('/services/event-space-business-and-community/')}): the Auditorium and the Grove for launches, talks, networking and community events (no parties or private functions)
 - [What's included](${u('/whats-included/')})
 
 ## Virtual office
