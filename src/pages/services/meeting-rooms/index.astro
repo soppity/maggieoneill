@@ -25,7 +25,7 @@ import Reviews from '../../../components/sections/Reviews.astro';
 
 const path = '/services/meeting-rooms/';
 const url = `${site.url}${path}`;
-const title = "Meeting Room Hire in Knowsley | Maggie O'Neill Centre";
+const title = "Meeting Room Hire near Liverpool, Huyton | Maggie O'Neill Centre";
 
 const order = ['pod', 'hub', 'foundry', 'forum', 'summit', 'grove'];
 const meetingRooms = order.map((s) => rooms.find((r) => r.slug === s)!);
@@ -37,9 +37,9 @@ const rateSentences = groups.map(
   (g) => `${the(g.rooms.filter((r) => order.includes(r.slug)).map((r) => r.name))} ${g.rooms.length > 1 ? 'cost' : 'costs'} ${formatPrice(g.hour)} an hour or ${formatPrice(g.day)} a day`,
 );
 
-const description = `Hosted meeting rooms and boardrooms in Huyton, from the ${pod.name} at ${formatPrice(pod.prices!.hour!)} an hour. Screen, tea and coffee and free parking included. Maggie O'Neill Centre.`;
+const description = `Hosted meeting rooms and boardrooms in Huyton, near Liverpool, from the ${pod.name} at ${formatPrice(pod.prices!.hour!)} an hour. Screen, tea and coffee and free parking included, ${parking.motorway}. Maggie O'Neill Centre.`;
 
-const intro = `The Maggie O'Neill Centre in Huyton, Knowsley, has meeting rooms for everything from a one-to-one in the ${pod.name} to a team away day. Rooms cost from ${formatPrice(pod.prices!.hour!)} an hour. Every meeting and training room has a screen with Mac and PC wireless casting and HDMI, tea and coffee are served in the room, parking is free, and hosts are on site all day.`;
+const intro = `The Maggie O'Neill Centre in Huyton, 20 to 30 minutes from Liverpool city centre and ${parking.motorway}, has meeting rooms for everything from a one-to-one in the ${pod.name} to a team away day. Rooms cost from ${formatPrice(pod.prices!.hour!)} an hour, with ${parking.spaces} free parking spaces outside. Every meeting and training room has a screen with Mac and PC wireless casting and HDMI, tea and coffee are served in the room, and hosts are on site all day.`;
 
 const keyFacts = [
   { term: 'Prices', detail: `From ${formatPrice(pod.prices!.hour!)} an hour, by the hour or the day, everything included.`, href: '#rooms', linkText: 'All room rates' },
@@ -54,7 +54,7 @@ const keyFacts = [
 
 const faqs = [
   {
-    q: 'How much does it cost to hire a meeting room in Knowsley?',
+    q: 'How much does it cost to hire a meeting room near Liverpool?',
     a: `Meeting rooms at the Maggie O'Neill Centre in Huyton cost from ${formatPrice(pod.prices!.hour!)} an hour. ${rateSentences.map(cap).join('. ')}. Your host, tea and coffee, the screen and free parking are included.`,
   },
   {
@@ -138,7 +138,7 @@ const schema = [
 
   <Hero
     title="Meeting rooms where you walk in, sit down and get on with it."
-    lede="Whether it's a quiet one-to-one in the Pod or a whole team around the table, your host has the room ready, the screen on and the coffee poured before you've taken your coat off."
+    lede="Whether it's a quiet one-to-one in the Pod or a whole team around the table, your host has the room ready, the screen on and the coffee poured before you've taken your coat off. From £20 an hour, with free parking outside, 30 seconds from the M57."
     image={66}
     secondary={{ label: 'See the rooms', href: '#rooms' }}
   />

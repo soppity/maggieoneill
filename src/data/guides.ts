@@ -54,6 +54,14 @@ export const guides: Guide[] = [
     published: '2026-10-04',
   },
   {
+    slug: 'cheapest-virtual-office-address-uk',
+    title: 'The cheapest virtual office address in the UK: what the price includes',
+    stream: 'virtual-office',
+    summary: 'What £10 to £20 a month really buys, what cheap providers charge extra for, and how to compare registered office prices properly.',
+    image: 3,
+    published: '2026-10-13',
+  },
+  {
     slug: 'planning-a-training-day',
     title: 'Planning a training day',
     stream: 'training',

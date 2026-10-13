@@ -27,10 +27,10 @@ const from = formatPrice(po.from);
 const [single, double] = po.sizes;
 const full = po.vacancies === 0;
 
-const title = "Private Offices to Rent in Huyton | Maggie O'Neill Centre";
-const description = `Private offices in Huyton from ${from} a month, all bills included, with hosts on site, free meeting room hours and free parking. Maggie O'Neill Centre.`;
+const title = "Private Offices to Rent in Huyton, near Liverpool | Maggie O'Neill Centre";
+const description = `Private offices in Huyton, near Liverpool, from ${from} a month, all bills included, with hosts on site, free meeting room hours and free parking, ${parking.motorway}. Maggie O'Neill Centre.`;
 
-const intro = `The Maggie O'Neill Centre in Huyton, Knowsley, has ${po.total} private offices: single offices for ${single.people.replace(' people', '')} and double offices for ${double.people}. Offices cost from ${from} a month on a ${po.lease}, with all bills and utilities included, ${po.freeMeetingHours} free meeting room hours a month, 1Gb fibre WiFi, hosts on site and free parking.${full ? ' All offices are currently let, so join the waitlist and we’ll be in touch when one comes up.' : ''}`;
+const intro = `The Maggie O'Neill Centre in Huyton, Knowsley, 20 to 30 minutes from Liverpool city centre and ${parking.motorway}, has ${po.total} private offices: single offices for ${single.people.replace(' people', '')} and double offices for ${double.people}. Offices cost from ${from} a month on a ${po.lease}, with all bills and utilities included, ${po.freeMeetingHours} free meeting room hours a month, 1Gb fibre WiFi, hosts on site and free parking.${full ? ' All offices are currently let, so join the waitlist and we’ll be in touch when one comes up.' : ''}`;
 
 const keyFacts = [
   { term: 'Price', detail: `From ${from} a month on a ${po.lease}. All bills and utilities included.` },

@@ -1,0 +1,168 @@
+---
+// Virtual office guide 6: the national "cheapest virtual office address" cluster (OpenSEO keyword clustering, Oct 2026).
+// Comparison pages are what Google and AI assistants cite for "cheapest" questions, so this guide carries a real price table.
+// Competitor prices are advertised entry prices seen in October 2026: check each provider's page before publishing an update.
+// Legal points must be checked against gov.uk before publishing (Blueprint 04 · Check before the push).
+import Guide from '../../../layouts/Guide.astro';
+import { address, formatPrice, virtualOffice, withCover } from '../../../data/facts';
+import { guideBySlug } from '../../../data/guides';
+
+const guide = guideBySlug('cheapest-virtual-office-address-uk');
+const [p20, p40] = virtualOffice.plans;
+const dc = virtualOffice.directorsCover;
+
+const title = "Cheapest Virtual Office Address in the UK | Maggie O'Neill Centre";
+const description =
+  'The cheapest virtual office addresses in the UK cost £10 to £20 a month, but the headline price often leaves out the registered office, post and setup fees. What to compare.';
+
+const answer = `The cheapest virtual office address in the UK is around £10 to £20 a month. The catch is what the headline price covers: many "from" prices buy a business address only, and the registered office for Companies House, a director's service address, post handling and a setup fee are charged on top. At the Maggie O'Neill Centre, ${formatPrice(p20.price)} a month includes the registered office and business address, with Director's Cover a ${formatPrice(dc.price)} add-on.`;
+
+// Advertised entry prices seen on providers' own pages and listings in October 2026. "Not stated" means the page we saw
+// did not say. Prices and inclusions change: check before quoting them to anyone.
+const comparison = [
+  { provider: "Maggie O'Neill Centre, Huyton near Liverpool", from: formatPrice(p20.price), registered: 'Included', post: 'Collect from reception; opened and scanned on the £40 plan', setup: 'None', term: 'One month' },
+  { provider: 'Virtually There, Liverpool', from: '£10', registered: 'Registered office package from about £17', post: 'Charged by plan', setup: 'Not stated', term: 'Not stated' },
+  { provider: 'Your City Office (national)', from: '£19.88', registered: 'Not stated', post: 'Charged by plan', setup: 'Not stated', term: 'Not stated' },
+  { provider: 'ABC Offices, Liverpool', from: '£30', registered: 'Not stated', post: 'Not stated', setup: 'Not stated', term: 'Not stated' },
+  { provider: 'Virtual HQ, Liverpool', from: '£40', registered: 'Not stated', post: 'Not stated', setup: '£30', term: 'Not stated' },
+  { provider: '54 St James Street, Liverpool', from: 'Not stated', registered: 'Not stated', post: 'Not stated', setup: 'Not stated', term: 'Not stated (top plan £85)' },
+  { provider: 'Online formation agents (typical)', from: '£10 to £25', registered: 'Usually included', post: 'Official post only; forwarding charged per item', setup: 'Often a one-off fee', term: 'Usually a year, paid up front' },
+];
+
+const faqs = [
+  {
+    q: 'What is the cheapest virtual office address in the UK?',
+    a: `Around £10 to £20 a month for a plan that includes a registered office address. Cheaper "from" prices usually cover a business address only. At the Maggie O'Neill Centre, ${formatPrice(p20.price)} a month includes the registered office and business address at ${address.oneLine}.`,
+  },
+  {
+    q: 'Can I get a free registered office address?',
+    a: 'The only free registered office is your own home or premises, which puts that address on the public register. Some company formation packages bundle a registered office for the first year, then charge a yearly fee after that.',
+  },
+  {
+    q: 'Is a £10 a month virtual office address legitimate?',
+    a: 'It can be, if it is a real address in a staffed building where post reaches someone acting for your company. Check that the provider carries out anti-money laundering checks, that the price includes the registered office if you need one, and that the address is not a PO box.',
+  },
+  {
+    q: 'What does a cheap virtual office usually leave out?',
+    a: 'The registered office address, a director’s service address, post forwarding or scanning, a setup fee, an identity check fee and VAT. Some also need a year paid up front. Add those up before comparing the monthly price.',
+  },
+  {
+    q: "Does the £20 plan at the Maggie O'Neill Centre include a registered office?",
+    a: `Yes. ${p20.name} at ${formatPrice(p20.price)} a month includes a registered office address for Companies House, a business address you can use everywhere, and post collected from reception. Director's Cover adds a director's service address for ${formatPrice(dc.price)} a month, making it ${formatPrice(withCover(p20))}. ${virtualOffice.terms}`,
+  },
+  {
+    q: 'Can I use a Liverpool virtual office if my business is elsewhere in the UK?',
+    a: 'Yes. A company registered in England and Wales can have its registered office anywhere in England or Wales. On a plan with post opened and scanned, you read your post wherever you are, and official letters reach you the same day they are scanned.',
+  },
+];
+---
+<Guide
+  guide={guide}
+  title={title}
+  description={description}
+  answer={answer}
+  faqs={faqs}
+  cta={{
+    heading: `A registered office address for ${formatPrice(p20.price)} a month`,
+    text: `A real address at ${address.street}, Huyton, near Liverpool, with the registered office included, post handled in-house by our team, and no lock-in.`,
+    href: '/services/virtual-office/',
+    label: 'Virtual office Liverpool',
+  }}
+>
+  <h2>What "cheapest" usually leaves out</h2>
+  <p>
+    A virtual office address has two jobs. One is the business address you put on your website, invoices and letters. The other is the
+    registered office, the official address Companies House holds for your company. Many of the cheapest prices cover the first job only.
+    Before you compare monthly prices, check which of these are in the price and which are extra:
+  </p>
+  <ul>
+    <li><strong>The registered office address.</strong> Often a separate plan or a yearly fee on top of a "business address" price.</li>
+    <li><strong>A director's service address.</strong> The address shown against you as a director. Without it, your home can stay on the public register even after the company's registered office changes.</li>
+    <li><strong>Post.</strong> Some plans only receive official post from Companies House and HMRC. Forwarding other post is charged per item, and scanning is a higher plan.</li>
+    <li><strong>A setup fee.</strong> A one-off charge of £20 to £50 is common and rarely in the headline.</li>
+    <li><strong>An identity check fee.</strong> Providers must carry out anti-money laundering checks; a few charge for them.</li>
+    <li><strong>VAT.</strong> "From £10" is sometimes £12 once VAT is added. Check whether the price shown includes it.</li>
+    <li><strong>The contract.</strong> The lowest monthly rate is often a year paid in advance. A monthly rolling plan can cost a little more each month and much less if you only need it for six.</li>
+  </ul>
+
+  <h2>What a cheap address must still be</h2>
+  <p>Whatever the price, Companies House has the same rules for a registered office:</p>
+  <ul>
+    <li><strong>An appropriate address.</strong> Post sent to the company would come to the attention of someone acting for it, and delivery could be acknowledged.</li>
+    <li><strong>A physical address, not a PO box.</strong></li>
+    <li><strong>In the right part of the UK.</strong> A company registered in England and Wales needs a registered office in England or Wales; Scottish and Northern Irish companies need one in Scotland or Northern Ireland.</li>
+    <li><strong>With the provider's permission</strong>, which comes with your agreement and their anti-money laundering checks on you.</li>
+  </ul>
+  <p>
+    A staffed building where real people take in the post meets all four. That is the test to apply to any price that looks too good:
+    who, exactly, picks up the letter from HMRC?
+  </p>
+
+  <h2>Cheapest virtual office addresses compared</h2>
+  <p>
+    Advertised entry prices seen on providers' own pages and comparison listings in October 2026, for Liverpool business centres and a
+    typical online formation agent. "Not stated" means the page we saw did not say. Prices and inclusions change, so check the provider's
+    page before you rely on a figure.
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Provider</th>
+          <th scope="col">From, a month</th>
+          <th scope="col">Registered office</th>
+          <th scope="col">Post</th>
+          <th scope="col">Setup fee</th>
+          <th scope="col">Minimum term</th>
+        </tr>
+      </thead>
+      <tbody>
+        {comparison.map((c) => (
+          <tr>
+            <td>{c.provider}</td>
+            <td>{c.from}</td>
+            <td>{c.registered}</td>
+            <td>{c.post}</td>
+            <td>{c.setup}</td>
+            <td>{c.term}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p>
+    In this comparison, the Maggie O'Neill Centre's {p20.name} plan is the lowest monthly price that includes the registered office, with no
+    setup fee and a one-month notice period. Add {dc.name} and the whole of your home address comes off the public register for
+    {' '}{formatPrice(withCover(p20))} a month. The {formatPrice(p40.price)} {p40.name} plan adds post opened and scanned and two free meeting
+    room hours a month.
+  </p>
+
+  <h2>How to compare prices properly</h2>
+  <p>Put every provider through the same six questions, and write the answers in a row each. The cheapest row at the end is rarely the cheapest headline.</p>
+  <ol>
+    <li>Is the registered office address included, or a separate fee?</li>
+    <li>Is a director's service address included, and what does it add?</li>
+    <li>What happens to post: collected, forwarded per item, or scanned? What does a scanned letter cost?</li>
+    <li>Is there a setup fee, an identity check fee, or VAT on top?</li>
+    <li>What is the minimum term, and can you cancel monthly?</li>
+    <li>Is it a staffed building you could visit, or a mailbox at a sorting address?</li>
+  </ol>
+
+  <h2>When the cheapest is not the best value</h2>
+  <p>
+    Official letters go to your registered office: Companies House reminders, HMRC penalties, court papers. The cost of one missed letter
+    is more than a year's difference between a £10 plan and a £20 one. So weigh the price against who handles the post, how quickly you
+    are told it has arrived, and whether you can collect it. A provider you can phone and visit is worth a few pounds a month.
+  </p>
+  <p>
+    At the Maggie O'Neill Centre, your post comes to the team at reception in a building with hosts on site all day, free parking
+    outside and meeting rooms down the corridor. The centre is a registered charity, so what you pay funds Maggie's Meals in Knowsley.
+    Clients across the UK choose it for that reason, as much as for the price.
+  </p>
+  <p class="callout">
+    More detail: <a href="/blog/registered-office-vs-business-address/">registered office vs business address</a>,
+    {' '}<a href="/blog/home-address-companies-house/">how to keep your home address off Companies House</a> and
+    {' '}<a href="/blog/virtual-office-limited-company/">can a limited company use a virtual office</a>. Or see
+    {' '}<a href="/services/virtual-office/">virtual office plans in Liverpool from {formatPrice(p20.price)} a month</a>.
+  </p>
+</Guide>
