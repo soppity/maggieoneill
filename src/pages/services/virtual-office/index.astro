@@ -30,11 +30,11 @@ const dc = virtualOffice.directorsCover;
 const ca = virtualOffice.callAnswering;
 const pod = rooms.find((r) => r.slug === 'pod')!;
 
-const intro = `A virtual office at the Maggie O'Neill Centre costs ${formatPrice(p20.price)} a month and includes a registered office address for Companies House and a business address you can use everywhere, at ${address.street}, Huyton, near Liverpool, ${address.postcode}. Post is handled in-house by our team and collected from reception, with free parking outside. The ${formatPrice(p40.price)} ${p40.name} plan adds unlimited post scanning and 2 free meeting room hours a month, worth ${formatPrice(p40.price)}, and Director's Cover adds a director's service address for ${formatPrice(dc.price)}. ${virtualOffice.terms}`;
+const intro = `A virtual office at the Maggie O'Neill Centre costs ${formatPrice(p20.price)} a month and includes a registered office address for Companies House and a business address you can use everywhere, at ${address.street}, Huyton, near Liverpool, ${address.postcode}. Post is handled in-house by our team and collected from reception, with free parking outside. The ${formatPrice(p40.price)} ${p40.name} plan adds unlimited post scanning and 2 free meeting room hours a month, worth ${formatPrice(p40.price)}, and Director's Cover adds a director's service address for ${formatPrice(dc.price)}. ${virtualOffice.vat} ${virtualOffice.terms}`;
 
 const keyFacts = [
   { term: 'Address', detail: `${address.street}, Huyton, Liverpool, ${address.postcode}. A real building with people in it.` },
-  { term: 'Prices', detail: `From ${formatPrice(p20.price)} a month for ${p20.name}, or ${formatPrice(p40.price)} for ${p40.name}.`, href: '#plans', linkText: 'Compare plans' },
+  { term: 'Prices', detail: `From ${formatPrice(p20.price)} a month for ${p20.name}, or ${formatPrice(p40.price)} for ${p40.name}. No VAT to add.`, href: '#plans', linkText: 'Compare plans' },
   { term: "Director's Cover", detail: `+${formatPrice(dc.price)} a month on either plan. Your home off Companies House in both places.` },
   { term: 'Post', detail: `Handled in-house by our team at reception. Opened and scanned on the ${p40.name} plan.` },
   { term: 'Meeting rooms', detail: `In the same building. The ${p40.name} plan includes 2 free hours a month.` },
@@ -67,7 +67,7 @@ const reasons = [
 const faqs = [
   {
     q: 'How much is a virtual office in Liverpool?',
-    a: `A virtual office at the Maggie O'Neill Centre costs from ${formatPrice(p20.price)} a month for a registered office and business address. The ${formatPrice(p40.price)} ${p40.name} plan adds unlimited post scanning and 2 free meeting room hours a month, worth ${formatPrice(p40.price)}. Director's Cover adds ${formatPrice(dc.price)} a month to either plan, taking it to ${formatPrice(withCover(p20))} or ${formatPrice(withCover(p40))}.`,
+    a: `A virtual office at the Maggie O'Neill Centre costs from ${formatPrice(p20.price)} a month for a registered office and business address. The ${formatPrice(p40.price)} ${p40.name} plan adds unlimited post scanning and 2 free meeting room hours a month, worth ${formatPrice(p40.price)}. Director's Cover adds ${formatPrice(dc.price)} a month to either plan, taking it to ${formatPrice(withCover(p20))} or ${formatPrice(withCover(p40))}. There is no VAT to add: the centre is a charity and is not VAT registered.`,
   },
   {
     q: 'What is the cheapest virtual office in Liverpool that includes a registered office?',
@@ -205,6 +205,20 @@ const voReviewCount = reviews.count;
           {reasons.map((r) => <li>{r}</li>)}
         </ul>
       </div>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="bigname-heading">
+    <div class="container two-col">
+      <div class="section-head">
+        <span class="eyebrow">Why not a big-name provider?</span>
+        <h2 id="bigname-heading">Why pay for perks you'll never use?</h2>
+        <p>The national brands start at £65 a month in Liverpool. Here's what that price is buying, and why a local business rarely needs it.</p>
+      </div>
+      <ul class="tick-list">
+        {virtualOffice.whyNotBigName.map((w) => <li>{w}</li>)}
+        <li>And there's no VAT to add: the centre is a charity and isn't VAT registered, so {formatPrice(p20.price)} means {formatPrice(p20.price)}.</li>
+      </ul>
     </div>
   </section>
 

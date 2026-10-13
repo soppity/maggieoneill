@@ -15,7 +15,7 @@ const title = "Cheapest Virtual Office Address in the UK | Maggie O'Neill Centre
 const description =
   'The cheapest virtual office addresses in the UK cost £10 to £20 a month, but the headline price often leaves out the registered office, post and setup fees. What to compare.';
 
-const answer = `Headline prices for a virtual office address in the UK start at about £10 a month plus VAT, but that usually buys a trading address only. Once you add the registered office for Companies House, VAT, any setup fee and post handling, the real figure is £16 to £50 a month, and the city-centre brands charge £65 and up. At the Maggie O'Neill Centre, ${formatPrice(p20.price)} a month includes the registered office and business address, with Director's Cover a ${formatPrice(dc.price)} add-on and no setup fee.`;
+const answer = `Headline prices for a virtual office address in the UK start at about £10 a month plus VAT, but that usually buys a trading address only. Once you add the registered office for Companies House, VAT, any setup fee and post handling, the real figure is £16 to £50 a month, and the city-centre brands charge £65 and up for lounges and addresses a local business never uses. At the Maggie O'Neill Centre, ${formatPrice(p20.price)} a month includes the registered office and business address, with no VAT, no setup fee and Director's Cover a ${formatPrice(dc.price)} add-on.`;
 
 // Prices from each provider's own pages as indexed on 13 October 2026. Where a page says a price excludes VAT, the
 // VAT-inclusive figure is shown. "Not stated" means the page did not say. Prices change: check before quoting them.
@@ -23,8 +23,8 @@ const comparison = [
   {
     provider: "Maggie O'Neill Centre, Huyton near Liverpool",
     from: `${formatPrice(p20.price)} a month`,
-    real: `${formatPrice(p20.price)} with the registered office included; ${formatPrice(withCover(p20))} with a director's service address`,
-    included: 'Registered office and business address, post collected from reception, staffed building with free parking and coffee, meeting rooms in the same building. No setup fee.',
+    real: `${formatPrice(p20.price)} with the registered office included and no VAT (the centre is a charity and not VAT registered); ${formatPrice(withCover(p20))} with a director's service address`,
+    included: 'Registered office and business address, post collected from reception, staffed building with free parking and coffee, meeting rooms in the same building. No setup fee, no VAT.',
     term: 'Monthly, one month\u2019s notice',
   },
   {
@@ -98,6 +98,10 @@ const faqs = [
   {
     q: "Does the £20 plan at the Maggie O'Neill Centre include a registered office?",
     a: `Yes. ${p20.name} at ${formatPrice(p20.price)} a month includes a registered office address for Companies House, a business address you can use everywhere, and post collected from reception. Director's Cover adds a director's service address for ${formatPrice(dc.price)} a month, making it ${formatPrice(withCover(p20))}. ${virtualOffice.terms}`,
+  },
+  {
+    q: "Is VAT added to the Maggie O'Neill Centre's virtual office prices?",
+    a: `No. The centre is a charity and is not VAT registered, so ${formatPrice(p20.price)} a month is what you pay. Most commercial providers add 20% VAT on top of the price they advertise.`,
   },
   {
     q: 'Can I use a Liverpool virtual office if my business is elsewhere in the UK?',
@@ -184,19 +188,23 @@ const faqs = [
   </p>
   <p>
     In this comparison, the Maggie O'Neill Centre's {p20.name} plan is the lowest monthly price that includes the registered office, with
-    no setup fee and a one-month notice period. Add {dc.name} and the whole of your home address comes off the public register for
+    no VAT, no setup fee and a one-month notice period. Add {dc.name} and the whole of your home address comes off the public register for
     {' '}{formatPrice(withCover(p20))} a month. The {formatPrice(p40.price)} {p40.name} plan adds unlimited post scanning and two free meeting
     room hours a month, worth {formatPrice(p40.price)}.
   </p>
 
-  <h2>When a prestigious address costs more than it earns</h2>
+  <h2>Paying for perks you will never use</h2>
   <p>
-    The big-brand virtual offices start at £65 a month in Liverpool, and the price has a reason: it bundles a city-centre address with
-    things a local business rarely uses. Access to a lounge network in other cities is no use to a plumber in Prescot or a care company
-    in Kirkby. A postcode by the docks does not make a Knowsley business easier to find, and when a client does want to meet, a
-    city-centre address means paying to park. For most small businesses in Merseyside, the practical test is simpler: is it a real,
-    staffed building, will someone you can name tell you when your post arrives, and can you get there and park for free when you
-    need to? That is what the price should buy.
+    The big-brand virtual offices start at £65 a month in Liverpool, and the price has a reason: it bundles things a small business
+    outside the city centre does not need. Part of what you pay is access to lounges and buildings in other cities, which a plumber in
+    Prescot or a care company in Kirkby will never set foot in. Part of it is the postcode: a city-centre address does not make a
+    Knowsley business easier to find, and when a client does want to meet, it means paying to park. The brand name costs money too.
+  </p>
+  <p>
+    For most small businesses in Merseyside, the practical test is simpler. Is it a real, staffed building? Will someone you can name
+    tell you when your post arrives? Can you get there and park for free when you need to? Is there a room you can meet a client in?
+    That is what the price should buy, and it is what the {formatPrice(p20.price)} and {formatPrice(p40.price)} plans at the Maggie
+    O'Neill Centre are built around.
   </p>
 
   <h2>How to compare prices properly</h2>
