@@ -186,6 +186,10 @@ export function serviceNode(opts: {
   provider?: 'org' | 'venue';
   areaServed?: string[];
   audience?: string;
+  // 'BusinessAudience' for services sold to businesses (operator licence page). Defaults to 'Audience'.
+  audienceType?: 'Audience' | 'BusinessAudience';
+  // true links the service to the building (#venue) as its location.
+  atVenue?: boolean;
   offers?: OfferInput[];
   catalogName?: string;
 }): Node {
@@ -199,7 +203,8 @@ export function serviceNode(opts: {
     provider: { '@id': id(opts.provider ?? 'org') },
     areaServed: (opts.areaServed ?? ['Liverpool', 'Merseyside']).map((name) => ({ '@type': 'Place', name })),
   };
-  if (opts.audience) node.audience = { '@type': 'Audience', audienceType: opts.audience };
+  if (opts.audience) node.audience = { '@type': opts.audienceType ?? 'Audience', audienceType: opts.audience };
+  if (opts.atVenue) node.location = { '@id': id('venue') };
   if (opts.offers?.length === 1 && !opts.catalogName) node.offers = offerNode(opts.offers[0], opts.url);
   else if (opts.offers?.length) {
     node.hasOfferCatalog = {

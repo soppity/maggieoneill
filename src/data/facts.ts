@@ -65,10 +65,11 @@ export const booking = {
 };
 
 export const forms = {
-  general: { id: 'PTEyaGYXB96ztNMrZVGB', name: 'Website Enquiry', height: 789 },
-  virtualOffice: { id: 'RWoOkRV2NaAKLVe4JSmF', name: 'Virtual Office Page - Form', height: 1006 },
+  // thankYou: set each GoHighLevel form's "On submit → Redirect to URL" to https://mobtc.co.uk + this path (GHL settings).
+  general: { id: 'PTEyaGYXB96ztNMrZVGB', name: 'Website Enquiry', height: 789, thankYou: '/thank-you/' },
+  virtualOffice: { id: 'RWoOkRV2NaAKLVe4JSmF', name: 'Virtual Office Page - Form', height: 1006, thankYou: '/thank-you/virtual-office/' },
   // Owner, Oct 2026: the private offices waitlist (on /services/private-offices/ only).
-  officeWaitlist: { id: 'oEBrrucinDJHDzwwGmdO', name: 'Office Waitlist', height: 960 },
+  officeWaitlist: { id: 'oEBrrucinDJHDzwwGmdO', name: 'Office Waitlist', height: 960, thankYou: '/thank-you/office-waitlist/' },
 };
 
 export const reviews = {
@@ -308,7 +309,7 @@ export const planFeatures: { key: PlanFeature; label: string }[] = [
   { key: 'businessAddress', label: 'Use it as your business address everywhere' },
   { key: 'collectPost', label: 'Collect your post from reception' },
   { key: 'postScanned', label: 'Post opened and scanned, so you can read it anywhere' },
-  { key: 'roomHours', label: "2 free meeting room hours a month (they don't roll over)" },
+  { key: 'roomHours', label: '2 free meeting room hours a month, worth £40' },
   { key: 'coffee', label: 'Free coffee when you call in' },
 ];
 
@@ -452,4 +453,30 @@ export const accountantPartners = {
   // Owner, Oct 2026: call answering gets 10% off its monthly fee for referred clients.
   callAnsweringDiscount: 10,
   audience: 'Accountants, bookkeepers and company formation agents',
+};
+
+// Knowsley Private Hire Operator's Licence address (owner brief, Oct 2026; moved in from taxi.mobtc.co.uk).
+// A real satellite office lease, not a virtual office: Knowsley rejects virtual offices for operator licences.
+// PUBLIC-SAFE FACTS ONLY. The planning reference must never go in here (this file feeds llms.txt and schema).
+// It lives only on the private application guide and in docs/knowledge/operators-licence.md (internal).
+export const operatorLicence = {
+  path: '/operators-licence/',
+  // The lease details form is the coded 11-step form at /operators-licence/apply/ (owner, Oct 2026: no GoHighLevel survey).
+  operatorsSupported: '15+',
+  termMonths: 12,
+  setupFee: 0,
+  from: 100,
+  tiers: [
+    { vehicles: '1', label: '1 vehicle', price: 100 },
+    { vehicles: '2-10', label: '2 to 10 vehicles', price: 150 },
+    { vehicles: '11-50', label: '11 to 50 vehicles', price: 200 },
+    { vehicles: '51+', label: '51+ vehicles', price: 250 },
+  ],
+  planningPublic: 'a Class E commercial building',
+  planningLine: 'In place. The reference is shared once you qualify.',
+  councilFeeFrom: 242,
+  councilFeeTo: '1,920',
+  decisionWeeks: 6,
+  exitClause:
+    "If Knowsley Council refuses your licence application or revokes your issued licence, you're released from the lease. It's built into the agreement.",
 };

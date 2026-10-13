@@ -8,6 +8,7 @@ import KeyFacts from '../../../../components/sections/KeyFacts.astro';
 import Steps from '../../../../components/sections/Steps.astro';
 import Faqs from '../../../../components/sections/Faqs.astro';
 import VirtualOfficeForm from '../../../../components/sections/VirtualOfficeForm.astro';
+import OperatorLicenceNote from '../../../../components/sections/OperatorLicenceNote.astro';
 import { formatPrice, rooms, site, virtualOffice } from '../../../../data/facts';
 import { images } from '../../../../data/images';
 import { breadcrumbNode, faqNode, serviceNode } from '../../../../lib/schema';
@@ -108,9 +109,8 @@ const schema = [
   />
 
   <Hero
-    title={`Call answering service near Liverpool, ${price} a month`}
-    tagline="Every call answered, even when you're busy."
-    lede="A human-like AI voice agent answers your business calls 24/7, takes the message and emails you a summary, transcript and recording."
+    title="Every call answered, so you don't have to."
+    lede={`Never miss a customer while you're on a job or in a meeting. Your calls are answered day and night, and you get a summary, transcript and recording by email, for ${price} a month.`}
     image={6}
     primary={{ label: 'Add call answering', href: '#get-your-address' }}
     secondary={{ label: 'How it works', href: '#how-heading' }}
@@ -120,6 +120,8 @@ const schema = [
 
   <KeyFacts heading="Call answering, in a few lines" intro={intro} facts={keyFacts} />
   <p class="container updated">Last updated: October 2026</p>
+
+  <OperatorLicenceNote />
 
   <Steps
     id="how-heading"

@@ -2,7 +2,7 @@
 // Based on docs/seo-files/llms.txt.
 import type { APIRoute } from 'astro';
 import { guidePath, publishedGuides } from '../data/guides';
-import { accessibility, accountantPartners, address, booking, contact, formatPrice, rooms, hours, lastYear, listNames, maggiesMeals, parking, rateGroups, reviews, site, virtualOffice } from '../data/facts';
+import { accessibility, accountantPartners, address, booking, contact, formatPrice, rooms, hours, lastYear, listNames, maggiesMeals, operatorLicence, parking, rateGroups, reviews, site, virtualOffice } from '../data/facts';
 
 const u = (path: string) => `${site.url}${path}`;
 const rates = rateGroups()
@@ -25,6 +25,7 @@ Key facts:
 - Room hire, everything included: ${rates}. ${rooms.filter((r) => r.prices?.hourFrom).map((r) => `The ${r.name} from ${formatPrice(r.prices!.hourFrom!)} an hour.`).join(' ')}
 - Maggie's Meals: ${maggiesMeals.schedule}.
 - Virtual office plans: ${planList} a month, plus Director's Cover (director's service address) for £${virtualOffice.directorsCover.price} a month on either plan. Call answering add-on £${virtualOffice.callAnswering.price} a month plus ${virtualOffice.callAnswering.perResponse} per AI response.
+- Knowsley private hire operator's licence address: a ${operatorLicence.termMonths}-month satellite office lease with planning permission (not a virtual office, which Knowsley Council rejects), ${operatorLicence.tiers.map((t) => `£${t.price} a month for ${t.label}`).join(', ')}, no setup fee, exit clause if the council refuses or revokes the licence. Used by ${operatorLicence.operatorsSupported} operators.
 - Book or check availability: ${booking.url}
 
 ## Rooms and venue hire
@@ -35,13 +36,15 @@ Key facts:
 - [NHS training venue](${u('/services/training-rooms/nhs-training-venue/')}): clinical and admin training days and monthly meetings
 - [Councils, schools and public sector](${u('/services/training-rooms/council-training-venue/')}): training, INSET days and social value
 - [Meeting rooms](${u('/services/meeting-rooms/')}): from the Pod (boardroom for 4, £20 an hour or £120 a day) upwards
-- [Events and conferences](${u('/services/event-space-business-and-community/')}): the Auditorium
+- [Conference venue near Liverpool](${u('/services/conference-venue/')}): the Auditorium for conferences of up to 100 delegates, six breakout rooms and 50 free parking spaces, 30 seconds from the M57
+- [Event space hire](${u('/services/event-space-business-and-community/')}): the Auditorium and the Grove for launches, talks, networking and community events (no parties or private functions)
 - [What's included](${u('/whats-included/')})
 
 ## Virtual office
 - [Virtual office near Liverpool](${u('/services/virtual-office/')}): registered office, director's service address, business address and mail handling, from £${virtualOffice.from} a month, for businesses in Merseyside and across the UK
 - [Call answering](${u('/services/virtual-office/call-answering/')}): ${virtualOffice.callAnswering.summary}
 - [For accountants](${u('/services/virtual-office/accountants/')}): ${accountantPartners.discount}% off for referred clients and one login for all client post
+- [Knowsley operator licence address](${u(operatorLicence.path)}): lease of planning-approved satellite office premises in Knowsley for private hire operator's licences, from £${operatorLicence.from} a month
 ${publishedGuides('virtual-office').map((g) => `- [${g.title}](${u(guidePath(g))}): ${g.summary}\n`).join('')}
 ## About
 - [About the ${site.name}](${u('/about/')})

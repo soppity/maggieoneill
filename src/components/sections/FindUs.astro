@@ -1,5 +1,6 @@
 ---
 // Find us + enquiry. The map only loads when tapped. The GHL general form loads its script on this page only.
+import GhlForm from '../GhlForm.astro';
 import Photo from '../Photo.astro';
 import { accessibility, address, contact, forms, hours, parking, site } from '../../data/facts';
 
@@ -32,32 +33,12 @@ const mapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(`${site.nam
     <div class="find-us__form" id="enquire">
       <h3>Book a visit or ask us anything</h3>
       <p>Come and see the rooms before you book, or tell us your dates and numbers. Prefer to talk? Call <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a> or WhatsApp <a href={contact.whatsappHref} rel="noopener" data-track="whatsapp_click">{contact.text}</a>.</p>
-      <div class="find-us__iframe" style={`min-height:${form.height}px;height:${form.height}px`}>
-        <iframe
-          src={`https://api.leadconnectorhq.com/widget/form/${form.id}`}
-          style="width:100%;height:100%;border:none;border-radius:0px"
-          id={`inline-${form.id}`}
-          data-layout="{'id':'INLINE'}"
-          data-trigger-type="alwaysShow"
-          data-trigger-value=""
-          data-activation-type="alwaysActivated"
-          data-activation-value=""
-          data-deactivation-type="neverDeactivate"
-          data-deactivation-value=""
-          data-form-name={form.name}
-          data-height={form.height}
-          data-layout-iframe-id={`inline-${form.id}`}
-          data-form-id={form.id}
-          data-cookie-consent="true"
-          data-cookie-consent-provider="auto"
-          title={form.name}
-          loading="lazy"></iframe>
+      <div class="find-us__iframe">
+        <GhlForm form={form} />
       </div>
     </div>
   </div>
 </section>
-
-<script is:inline src="https://link.msgsndr.com/js/form_embed.js" defer></script>
 
 <script>
   // Tap-to-load map, so Google Maps never slows the first load.

@@ -1,0 +1,20 @@
+---
+// Thank-you page for the "Office Waitlist" form. noindex, not in the sitemap (see components/ThankYou.astro).
+import Base from '../../../layouts/Base.astro';
+import ThankYou from '../../../components/ThankYou.astro';
+
+import { images } from '../../../data/images';
+---
+<Base title={"Thank You | Office Waitlist | Maggie O'Neill Centre"} description="Thanks for getting in touch with the Maggie O'Neill Centre." ogImage={images[6].src} ogImageAlt={images[6].alt} noindex>
+  <ThankYou
+    form={'Office Waitlist'}
+    heading={"You're on the waitlist."}
+    text={"We'll be in touch as soon as an office comes up. Joining the waitlist doesn't commit you to anything."}
+    next={[]}
+    links={[
+    { label: 'Back to private offices', href: '/services/private-offices/' },
+    { label: 'Meeting rooms in the meantime', href: '/services/meeting-rooms/' }
+    ]}
+    showWhatsApp={true}
+  />
+</Base>

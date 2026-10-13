@@ -1,0 +1,38 @@
+---
+// A legal page body: numbered sections of paragraphs and lists (privacy policy, terms).
+import type { LegalSection } from '../data/legal';
+import { contact } from '../data/facts';
+
+interface Props {
+  heading: string;
+  sections: LegalSection[];
+  // Links added to a section's last paragraph, by section title (e.g. the cookie page from "Cookies").
+  links?: Record<string, { label: string; href: string }>;
+  questions?: boolean;
+}
+const { heading, sections, links = {}, questions = true } = Astro.props;
+---
+<section class="legal-part">
+  <h2>{heading}</h2>
+  <ol class="legal-list">
+    {sections.map((s) => (
+      <li>
+        <h3>{s.title}</h3>
+        {s.blocks.map((b) => (Array.isArray(b) ? <ul>{b.map((i) => <li>{i}</li>)}</ul> : <p>{b}</p>))}
+        {links[s.title] && <p><a href={links[s.title].href}>{links[s.title].label}</a></p>}
+      </li>
+    ))}
+  </ol>
+  {questions && <p class="legal-q">Questions? Email <a href={`mailto:${contact.email}`}>{contact.email}</a> or call <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>.</p>}
+</section>
+
+<style>
+  .legal-part { display: flex; flex-direction: column; gap: 18px; }
+  .legal-part h2 { font-size: clamp(24px, 3vw, 30px); }
+  .legal-list { margin: 0; padding-left: 1.4em; display: grid; gap: 22px; }
+  .legal-list > li::marker { font-weight: 800; color: var(--moc-purple-700); }
+  .legal-list h3 { font-size: 19px; margin-bottom: 8px; }
+  .legal-list p + p, .legal-list p + ul, .legal-list ul + p { margin-top: 10px; }
+  .legal-list ul { margin: 8px 0 0; padding-left: 1.2em; display: grid; gap: 6px; }
+  .legal-q { font-weight: 600; }
+</style>

@@ -181,7 +181,7 @@ const groups = [
 const schema = [
   breadcrumbNode(url, [
     { name: 'Home', url: `${site.url}/` },
-    { name: 'Events and conferences', url: `${site.url}${parent}` },
+    { name: 'Event space hire', url: `${site.url}${parent}` },
     { name: 'Event FAQs', url },
   ]),
   faqNode(url, groups.flatMap((g) => g.faqs)),
@@ -191,7 +191,7 @@ const schema = [
   <Breadcrumbs
     trail={[
       { name: 'Home', path: '/' },
-      { name: 'Events and conferences', path: parent },
+      { name: 'Event space hire', path: parent },
       { name: 'Event FAQs', path },
     ]}
   />

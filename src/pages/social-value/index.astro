@@ -21,6 +21,7 @@ const description =
   "Every booking at the Maggie O'Neill Centre funds Maggie's Meals and community support in Knowsley. A social value statement ready for your procurement report.";
 
 const community = [
+  { title: 'Free space for local groups', text: 'Hundreds of hours of free space given to hyper-local community groups every year.', wide: true },
   { title: "Maggie's Meals", text: `Our social supermarket, open ${maggiesMeals.schedule.charAt(0).toLowerCase()}${maggiesMeals.schedule.slice(1)}. ${lastYear.mealsAccessed} people used it in the last year.` },
   { title: 'Community coffee mornings', text: 'An open door and a hot drink for anyone who wants company.' },
   { title: 'Community clean-ups', text: 'Clean-ups around Huyton, looking after the area we share.' },
@@ -35,7 +36,7 @@ const churchFamily = [
   { title: 'Moral support', text: 'A listening ear and someone alongside you when life gets difficult.' },
 ];
 
-const statement = `The Maggie O'Neill Centre is a registered charity (no. ${site.charityNumber}) that has served Huyton and Knowsley for over ${trackRecord.yearsServing} years. During the Covid lockdowns, its staff and volunteers delivered over ${trackRecord.covidParcels} food parcels. Income from room hire and virtual offices funds the charity's community work in the borough, including Maggie's Meals, a weekly social supermarket used by ${lastYear.mealsAccessed} people in the last year; community coffee mornings; community clean-ups around Huyton; church gatherings, small groups and men's and women's groups that are open to everyone; and ${allNations.name}, an annual summer celebration where ${allNations.nationalities} nationalities share food and traditional dress from home. It also funds the charity's care for its church family, including home-cooked meals for people who are unwell, struggling or have just had a baby, hospital visits and moral support, extended to others in the community as volunteer capacity allows. Booking the Maggie O'Neill Centre keeps spend in Knowsley and supports health, wellbeing and food security in the local community.`;
+const statement = `The Maggie O'Neill Centre is a registered charity (no. ${site.charityNumber}) that has served Huyton and Knowsley for over ${trackRecord.yearsServing} years. During the Covid lockdowns, its staff and volunteers delivered over ${trackRecord.covidParcels} food parcels. Income from room hire and virtual offices funds the charity's community work in the borough, including Maggie's Meals, a weekly social supermarket used by ${lastYear.mealsAccessed} people in the last year; hundreds of hours of free space given to hyper-local community groups every year; community coffee mornings; community clean-ups around Huyton; church gatherings, small groups and men's and women's groups that are open to everyone; and ${allNations.name}, an annual summer celebration where ${allNations.nationalities} nationalities share food and traditional dress from home. It also funds the charity's care for its church family, including home-cooked meals for people who are unwell, struggling or have just had a baby, hospital visits and moral support, extended to others in the community as volunteer capacity allows. Booking the Maggie O'Neill Centre keeps spend in Knowsley and supports health, wellbeing and food security in the local community.`;
 
 const faqs = [
   {
@@ -94,7 +95,7 @@ const schema = [
       <h3 class="funds__group">Open to everyone</h3>
       <ul class="grid funds">
         {community.map((f) => (
-          <li class="card fund">
+          <li class:list={['card fund', { 'fund--wide': f.wide }]}>
             <h4>{f.title}</h4>
             <p>{f.text}</p>
           </li>
@@ -148,6 +149,7 @@ const schema = [
         <div><dt>rooms hired</dt><dd>{lastYear.roomsHired}</dd></div>
         <div><dt>businesses served</dt><dd>{lastYear.businessesServed}</dd></div>
         <div><dt>people accessed Maggie's Meals</dt><dd>{lastYear.mealsAccessed}</dd></div>
+        <div><dt>hours of free space given to hyper-local community groups</dt><dd>{lastYear.freeSpaceHours}</dd></div>
       </dl>
     </div>
   </section>
@@ -184,7 +186,7 @@ const schema = [
         </ul>
       </div>
       <div class="media">
-        <Photo n={1} width={720} height={540} sizes="(max-width: 900px) 100vw, 520px" />
+        <Photo n={3} width={720} height={540} sizes="(max-width: 900px) 100vw, 520px" />
       </div>
     </div>
   </section>
@@ -250,11 +252,12 @@ const schema = [
   .funds__intro { max-width: 62ch; margin: -4px 0 20px; color: var(--moc-slate-text); }
   .fund h4 { font-size: 20px; font-weight: var(--text-h3-weight); }
   .fund { padding: 26px 28px; display: flex; flex-direction: column; gap: 8px; }
+  .fund--wide { grid-column: 1 / -1; }
   .fund p { font-size: var(--text-small-size); color: var(--moc-slate-text); }
   .numbers { background: var(--moc-purple-700); color: var(--moc-white); }
   .numbers h2 { color: var(--moc-white); }
   .numbers .eyebrow { color: var(--moc-purple-tint-2); }
-  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 0; }
+  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin: 0; }
   .stats div { display: flex; flex-direction: column-reverse; gap: 6px; }
   .stats dd { margin: 0; font: 800 clamp(44px, 6vw, 72px)/1 var(--font-display); color: var(--moc-white); }
   .stats dt { color: rgba(255, 255, 255, 0.9); }
@@ -279,6 +282,6 @@ const schema = [
   @media (max-width: 560px) { .record li { grid-template-columns: 1fr; gap: 4px; } }
   .prose { display: flex; flex-direction: column; gap: 16px; }
   .more-links { padding: 40px 0; }
-  @media (max-width: 900px) { .two-col, .two-col--media { grid-template-columns: 1fr; } }
+  @media (max-width: 900px) { .two-col, .two-col--media { grid-template-columns: 1fr; } .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 560px) { .funds, .stats { grid-template-columns: 1fr; } }
 </style>

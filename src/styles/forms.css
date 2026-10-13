@@ -1,0 +1,31 @@
+/* Native forms (Netlify Forms) for the operator licence pages. The rest of the site embeds GoHighLevel forms. */
+.form { display: grid; gap: 18px; }
+.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label, .field legend { font-weight: 700; color: var(--moc-purple-900); font-size: 15px; }
+.field .req { color: var(--moc-coral-text); }
+.field input, .field select, .field textarea {
+  font: inherit; font-size: 16px; color: var(--moc-ink); background: var(--moc-white);
+  border: 1.5px solid var(--moc-border); border-radius: 12px; padding: 12px 14px; width: 100%;
+}
+.field textarea { min-height: 110px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--moc-purple-700); box-shadow: 0 0 0 3px var(--moc-purple-tint); }
+.field[data-invalid] input, .field[data-invalid] select, .field[data-invalid] textarea { border-color: var(--moc-coral-text); }
+.field__error { font-size: 14px; color: var(--moc-coral-text); font-weight: 600; }
+.field__error:empty { display: none; }
+.field__hint { font-size: 14px; color: var(--moc-slate-text); }
+.form__honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.form__note { padding: 14px 16px; border-radius: 12px; background: var(--moc-coral-tint); color: var(--moc-purple-900); font-size: 15px; }
+.form__status { font-weight: 600; }
+.form__status[data-state='error'] { color: var(--moc-coral-text); }
+.form-thanks { padding: 28px; border-radius: var(--radius-card); background: var(--moc-purple-tint); color: var(--moc-purple-900); }
+.form-thanks h3 { margin-bottom: 8px; }
+.choices { display: grid; gap: 12px; border: 0; padding: 0; margin: 0; }
+.choice { position: relative; display: block; cursor: pointer; }
+.choice input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.choice span { display: flex; flex-direction: column; gap: 4px; padding: 16px 18px; border: 1.5px solid var(--moc-border); border-radius: 14px; background: var(--moc-white); }
+.choice strong { color: var(--moc-purple-900); }
+.choice small { color: var(--moc-slate-text); font-size: 15px; }
+.choice input:checked + span { border-color: var(--moc-purple-700); background: var(--moc-purple-tint); box-shadow: 0 0 0 2px var(--moc-purple-700) inset; }
+.choice input:focus-visible + span { outline: 3px solid var(--moc-coral-500); outline-offset: 2px; }
+@media (max-width: 640px) { .form__row { grid-template-columns: 1fr; } }

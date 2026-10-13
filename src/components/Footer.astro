@@ -2,6 +2,11 @@
 import { address, contact, hours, reviews, site } from '../data/facts';
 import { footerColumns } from '../data/nav';
 
+interface Props {
+  // Operator licence pages show the main number only (owner brief, Oct 2026).
+  mainNumberOnly?: boolean;
+}
+const { mainNumberOnly = false } = Astro.props;
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
@@ -13,8 +18,8 @@ const year = new Date().getFullYear();
         <address class="site-footer__nap">
           <strong>{site.name}</strong><br />
           {address.street}, {address.locality}, {address.city}, {address.postcode}<br />
-          Phone <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a><br />
-          Text or WhatsApp <a href={contact.whatsappHref} data-track="whatsapp_click" rel="noopener">{contact.text}</a>
+          Phone <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>
+          {!mainNumberOnly && <><br />Text or WhatsApp <a href={contact.whatsappHref} data-track="whatsapp_click" rel="noopener">{contact.text}</a></>}
           {contact.email && <><br /><a href={`mailto:${contact.email}`} data-track="email_click">{contact.email}</a></>}
         </address>
         <p class="site-footer__hours">Open {hours.summary}. {hours.extra}</p>

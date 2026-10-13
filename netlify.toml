@@ -13,6 +13,12 @@
 # Netlify also sends X-Robots-Tag: noindex on deploy-preview URLs by default.
 
 # --- 301 redirects (docs/README.md "Redirects") ---
+# Close off the Netlify preview domain: everything on maggieoneill.netlify.app goes to the live site.
+[[redirects]]
+  from = "https://maggieoneill.netlify.app/*"
+  to = "https://mobtc.co.uk/:splat"
+  status = 301
+  force = true
 [[redirects]]
   from = "/services/meeting-training-rooms/*"
   to = "/services/training-rooms/"
@@ -46,69 +52,43 @@
   status = 301
   force = true
 
-# --- Old WordPress URLs still in Google's index and Search Console (SEO audit, 12 Oct 2026) ---
-# Specific rules come before wildcards: Netlify uses the first matching rule.
+# Old Knowsley operator licence subdomain (owner brief, Oct 2026). LEAVE COMMENTED until nothing else
+# still runs on taxi.mobtc.co.uk (direct debit set-up, lease signing, admin), or a catch-all would break it.
+# Once those have moved, add taxi.mobtc.co.uk to this Netlify site as a domain alias and uncomment.
+# [[redirects]]
+#   from = "https://taxi.mobtc.co.uk/*"
+#   to = "https://mobtc.co.uk/operators-licence/"
+#   status = 301
+#   force = true
 
-# Old services index (1,174 impressions in the 3 months to 9 Oct 2026, mostly retired hot-desking terms).
+# Old mobtc.co.uk URLs (live Yoast sitemaps, Oct 2026), so nothing indexed returns a 404.
+# Kept as is on the new site: /, /about/, /blog/, /contact/, /services/virtual-office/, /services/meeting-rooms/,
+# /services/event-space-business-and-community/, /services/private-offices/. /thank-you/ is now the enquiry thank-you page (noindex).
+# Old blog posts (dated permalinks). None of the old posts were carried over, so each goes to the closest page.
 [[redirects]]
-  from = "/services/"
+  from = "/2024/11/12/6-reasons-a-virtual-office-will-kill-it/"
+  to = "/services/virtual-office/"
+  status = 301
+[[redirects]]
+  from = "/2023/12/06/collaboration-in-our-flexible-workspace/"
+  to = "/services/private-offices/"
+  status = 301
+[[redirects]]
+  from = "/2023/10/23/reduce-office-space-costs/"
+  to = "/services/virtual-office/"
+  status = 301
+[[redirects]]
+  from = "/2023/04/18/training-room-hire-5-questions/"
   to = "/services/training-rooms/"
   status = 301
-
-# Old FAQ items. Known slugs go to the page that now answers them; the rest go to the event FAQs.
 [[redirects]]
-  from = "/faq-items/how-do-i-check-availability-or-schedule-a-visit/"
-  to = "/visit/"
+  from = "/2023/06/01/what-is-coworking/"
+  to = "/services/meeting-rooms/"
   status = 301
 [[redirects]]
-  from = "/faq-items/is-there-ample-parking-on-site/"
-  to = "/visit/"
+  from = "/2023/06/02/how-to-manage-your-time-better/"
+  to = "/blog/"
   status = 301
-[[redirects]]
-  from = "/faq-items/what-is-included-in-the-room-hire-fee/"
-  to = "/whats-included/"
-  status = 301
-[[redirects]]
-  from = "/faq-items/what-happens-if-something-isnt-working/"
-  to = "/whats-included/"
-  status = 301
-[[redirects]]
-  from = "/faq-items/im-not-techy-how-am-i-supposed-to-use-all-this/"
-  to = "/whats-included/"
-  status = 301
-[[redirects]]
-  from = "/faq-items/can-we-bring-our-own-catering/"
-  to = "/services/event-space-business-and-community/faqs/"
-  status = 301
-[[redirects]]
-  from = "/faq-items/what-are-your-opening-hours-for-events/"
-  to = "/services/event-space-business-and-community/faqs/"
-  status = 301
-[[redirects]]
-  from = "/faq-items/what-audio-visual-a-v-equipment-is-available-in-the-auditorium/"
-  to = "/services/event-space-business-and-community/faqs/"
-  status = 301
-[[redirects]]
-  from = "/faq-items/will-this-replace-a-receptionist-or-staff/"
-  to = "/services/virtual-office/call-answering/"
-  status = 301
-[[redirects]]
-  from = "/faq-items/how-can-you-offer-these-hi-tech-tools-at-an-affordable-price-for-small-businesses/"
-  to = "/services/virtual-office/call-answering/"
-  status = 301
-[[redirects]]
-  from = "/faq-items/*"
-  to = "/services/event-space-business-and-community/faqs/"
-  status = 301
-
-# Old about subpages (the-team, vision-mission-values; org.nyc still links to the latter).
-[[redirects]]
-  from = "/about/*"
-  to = "/about/"
-  status = 301
-
-# Old dated blog posts. Hot-desking and coworking posts go to the meeting rooms page, which keeps a hot-desk section;
-# everything else goes to the guides.
 [[redirects]]
   from = "/2023/08/15/hot-desking-in-merseyside/"
   to = "/services/meeting-rooms/"
@@ -119,11 +99,24 @@
   status = 301
 [[redirects]]
   from = "/2024/09/13/how-shared-workspaces-drive-business-growth/"
-  to = "/services/meeting-rooms/"
+  to = "/services/private-offices/"
   status = 301
 [[redirects]]
   from = "/2024/10/22/meeting-spaces-the-hybrid-work-solution/"
   to = "/services/meeting-rooms/"
+  status = 301
+[[redirects]]
+  from = "/2024/10/22/how-hot-desking-can-benefit-small-business/"
+  to = "/services/meeting-rooms/"
+  status = 301
+# Any other old dated URL (date archives, stray posts).
+[[redirects]]
+  from = "/2021/*"
+  to = "/blog/"
+  status = 301
+[[redirects]]
+  from = "/2022/*"
+  to = "/blog/"
   status = 301
 [[redirects]]
   from = "/2023/*"
@@ -137,11 +130,112 @@
   from = "/2025/*"
   to = "/blog/"
   status = 301
-
-# WordPress archive URLs that should not exist on the new site.
+[[redirects]]
+  from = "/2026/*"
+  to = "/blog/"
+  status = 301
+# Old pages that no longer exist (the rest keep their URLs).
+[[redirects]]
+  from = "/about/the-team/"
+  to = "/about/#team"
+  status = 301
+[[redirects]]
+  from = "/about/our-story/"
+  to = "/about/#maggies-story"
+  status = 301
+[[redirects]]
+  from = "/about/vision-mission-values/"
+  to = "/about/"
+  status = 301
+[[redirects]]
+  from = "/services/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/locations.kml"
+  to = "/contact/"
+  status = 301
+# Old Avada FAQ items: thin pages, so each goes to the page that now answers it.
+[[redirects]]
+  from = "/faq-items/will-this-replace-a-receptionist-or-staff/"
+  to = "/services/virtual-office/call-answering/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/im-not-techy-how-am-i-supposed-to-use-all-this/"
+  to = "/services/virtual-office/call-answering/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/who-actually-sets-everything-up-for-me/"
+  to = "/services/virtual-office/call-answering/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/what-happens-if-something-isnt-working/"
+  to = "/services/virtual-office/call-answering/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/how-can-you-offer-these-hi-tech-tools-at-an-affordable-price-for-small-businesses/"
+  to = "/services/virtual-office/call-answering/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/i-just-need-a-registered-address-for-my-business-do-i-have-to-get-anything-else/"
+  to = "/services/virtual-office/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/am-i-locked-into-a-contract/"
+  to = "/services/virtual-office/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/can-i-switch-plans-later/"
+  to = "/services/virtual-office/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/what-is-the-total-capacity-of-your-venue/"
+  to = "/services/event-space-business-and-community/faqs/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/is-there-ample-parking-on-site/"
+  to = "/services/event-space-business-and-community/faqs/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/what-are-your-opening-hours-for-events/"
+  to = "/services/event-space-business-and-community/faqs/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/can-we-bring-our-own-catering/"
+  to = "/services/event-space-business-and-community/faqs/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/is-catering-available-on-site/"
+  to = "/services/event-space-business-and-community/faqs/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/what-audio-visual-a-v-equipment-is-available-in-the-auditorium/"
+  to = "/services/event-space-business-and-community/faqs/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/what-is-your-cancellation-policy/"
+  to = "/booking-terms/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/do-you-require-a-deposit-and-what-are-the-payment-terms/"
+  to = "/booking-terms/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/what-is-included-in-the-room-hire-fee/"
+  to = "/whats-included/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/how-do-i-check-availability-or-schedule-a-visit/"
+  to = "/visit/"
+  status = 301
+[[redirects]]
+  from = "/faq-items/*"
+  to = "/"
+  status = 301
+# WordPress leftovers: these sections don't exist on the new site.
 [[redirects]]
   from = "/author/*"
-  to = "/blog/"
+  to = "/about/"
   status = 301
 [[redirects]]
   from = "/tag/*"
@@ -151,14 +245,15 @@
   from = "/category/*"
   to = "/blog/"
   status = 301
-
-# Old uploads. The privacy policy PDF still earns impressions; /privacy/ is live on the production site.
+[[redirects]]
+  from = "/feed/*"
+  to = "/blog/"
+  status = 301
+# Old Yoast sitemaps and the WordPress privacy PDF (still indexed, Oct 2026).
 [[redirects]]
   from = "/wp-content/uploads/2023/01/Privacy-policy.pdf"
   to = "/privacy/"
   status = 301
-
-# Old WordPress sitemaps Google still references (URL Inspection, 12 Oct 2026). The Astro sitemap is /sitemap-index.xml.
 [[redirects]]
   from = "/sitemap_index.xml"
   to = "/sitemap-index.xml"
@@ -179,13 +274,3 @@
   from = "/avada_faq-sitemap.xml"
   to = "/sitemap-index.xml"
   status = 301
-
-# Old operator licence subdomain. Takes effect once taxi.mobtc.co.uk is added to this Netlify site as a domain alias.
-[[redirects]]
-  from = "https://taxi.mobtc.co.uk/*"
-  to = "https://mobtc.co.uk/operators-licence/"
-  status = 301
-  force = true
-
-# Still to do before the old sitemaps drop out: add virtual.mobtc.co.uk and taxi.mobtc.co.uk as domain aliases on the
-# Netlify site, then submit /sitemap-index.xml in Search Console (SEO spec 2.3, SOP section 8).

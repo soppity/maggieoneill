@@ -1,0 +1,275 @@
+---
+// Conference venue. Added Oct 2026 from Search Console demand on the events page: "conference venue near liverpool
+// with parking", "corporate meeting venue merseyside", "alternative to hotel conference venues merseyside",
+// "conference venue with parking st helens", "strategy day venue near liverpool". This page owns those conference and
+// corporate searches; the events page owns launches, AGMs, networking and community events. Keep them distinct.
+// Owner, Oct 2026: business, training and community events only. Not a party or function venue: never invite them.
+// Facts (capacity, prices, AV, catering, parking) come from facts.ts, as on the events page.
+import Base from '../../../layouts/Base.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import Hero from '../../../components/sections/Hero.astro';
+import KeyFacts from '../../../components/sections/KeyFacts.astro';
+import ClientLogos from '../../../components/sections/ClientLogos.astro';
+import HostedDay from '../../../components/sections/HostedDay.astro';
+import Comparison from '../../../components/sections/Comparison.astro';
+import Faqs from '../../../components/sections/Faqs.astro';
+import FindUs from '../../../components/sections/FindUs.astro';
+import Photo from '../../../components/Photo.astro';
+import { accessibility, catering, contact, formatPrice, hostedEvent, parking, rooms, site } from '../../../data/facts';
+import { images } from '../../../data/images';
+import { bookingTermsPath, larger } from '../../../data/bookingTerms';
+import { breadcrumbNode, faqNode, roomPlaceNode, serviceNode } from '../../../lib/schema';
+
+const path = '/services/conference-venue/';
+const url = `${site.url}${path}`;
+const eventsPath = '/services/event-space-business-and-community/';
+const auditorium = rooms.find((r) => r.slug === 'auditorium')!;
+const grove = rooms.find((r) => r.slug === 'grove')!;
+const summit = rooms.find((r) => r.slug === 'summit')!;
+const cab = auditorium.capacity.cabaret!;
+const theatre = auditorium.capacity.theatre!;
+const from = formatPrice(auditorium.prices!.hourFrom!);
+const dayRoom = formatPrice(summit.prices!.day!);
+
+const title = "Conference Venue near Liverpool | Maggie O'Neill Centre";
+const description = `A hosted conference venue in Huyton, near Liverpool, with a ${theatre}-seat Auditorium, six breakout rooms and ${parking.spaces} free parking spaces, ${parking.motorway}. The hotel alternative.`;
+
+const intro = `The Maggie O'Neill Centre in Huyton is a conference venue near Liverpool with ${parking.spaces} free parking spaces outside, ${parking.motorway}. The ${auditorium.name} seats up to ${theatre} theatre style or ${cab} cabaret, with a stage, microphones and sound system, and six breakout rooms run sessions alongside it. Conferences cost from ${from} an hour, with a 3-hour minimum, or a day rate quoted for your event. Hosts look after your delegates all day.`;
+
+const keyFacts = [
+  { term: 'Delegates', detail: `Up to ${theatre} theatre style or ${cab} cabaret in the ${auditorium.name}.` },
+  { term: 'Prices', detail: `From ${from} an hour (3-hour minimum) or a day rate, quoted for your conference.` },
+  { term: 'Parking', detail: `Free ${parking.spaces}-space car park outside, and ${parking.overflow}.` },
+  { term: 'Getting here', detail: `${parking.motorway[0].toUpperCase()}${parking.motorway.slice(1)}, on a main bus route, in Huyton near Liverpool.` },
+  { term: 'Breakout', detail: `Six breakout rooms for 20 to 30 people each, including the ${grove.name} for networking.` },
+  { term: 'AV', detail: 'Stage, lectern, microphones for up to six speakers, projector and sound system, run by a technician (£).' },
+  { term: 'Catering', detail: `Tea and coffee included all day. Food from our partner, ${catering.partner}.` },
+  { term: 'Access', detail: accessibility.accessLine },
+];
+
+const reasons = [
+  {
+    title: 'Parking for your delegates',
+    text: `${parking.spaces} free spaces right outside, and an overflow car park across the road for bigger conferences. Nobody pays for parking or hunts for a space, and nobody arrives late from a city-centre car park.`,
+  },
+  {
+    title: 'Easy to reach from across Merseyside',
+    text: `We're ${parking.motorway}, so delegates from Liverpool, St Helens and Warrington can drive straight here without crossing the city centre.`,
+  },
+  {
+    title: 'A venue built for this',
+    text: "We're a training and meeting venue every day of the week. Rooms are set before you arrive, the tech is tested, and the hosts know how a conference day runs.",
+  },
+  {
+    title: 'Hotel standards, fairer prices',
+    text: "No per-delegate charge for tea and coffee, no paid car park and no corporate markup. We're a charity, so the money goes back into the community.",
+  },
+];
+
+const formats = [
+  {
+    title: `Conferences for up to ${theatre}`,
+    text: `The ${auditorium.name} for keynotes and panels, with the six breakout rooms for workshops and parallel sessions.`,
+  },
+  {
+    title: 'Corporate meetings and AGMs',
+    text: `Board meetings, AGMs and all-staff briefings in the ${auditorium.name}, set theatre or cabaret style.`,
+  },
+  {
+    title: 'Strategy and away days',
+    text: `Smaller teams can take a single room for the day, from ${dayRoom}, and add the ${grove.name} for a change of scene.`,
+  },
+  {
+    title: 'Seminars and briefings',
+    text: 'Public sector, NHS and professional briefings, with microphones for up to six speakers and a lectern on stage.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Is there parking for conference delegates?',
+    a: `Yes. There's a free ${parking.spaces}-space car park right outside, with accessible bays by the ${auditorium.name}. For larger conferences there's an overflow car park across the main road, and a parking attendant will point your delegates to it.`,
+  },
+  {
+    q: 'How far is the venue from Liverpool?',
+    a: `The Maggie O'Neill Centre is in Huyton, Knowsley, on the east side of Liverpool and ${parking.motorway}. It's on a main bus route, and delegates driving from St Helens or Warrington can reach it without going into the city centre.`,
+  },
+  {
+    q: 'How many people can a conference hold?',
+    a: `The ${auditorium.name} seats up to ${theatre} theatre style or ${cab} cabaret at tables. Six breakout rooms take 20 to 30 people each, theatre style, for workshops and parallel sessions.`,
+  },
+  {
+    q: 'How much does conference venue hire cost?',
+    a: `The ${auditorium.name} costs from ${from} an hour, with a 3-hour minimum, or a day rate. We quote for each conference, depending on the rooms, layout and AV you need. The AV technician is charged separately, and food is ordered directly from our catering partner.`,
+  },
+  {
+    q: 'Why choose you over a hotel conference venue?',
+    a: `Free parking for every delegate, tea and coffee included all day rather than charged per head, and hosts whose only job is your event. Rooms are our whole business, not a sideline to the bedrooms.`,
+  },
+  {
+    q: 'What AV is there for speakers?',
+    a: `The ${auditorium.name} has a stage, a lectern, microphones for up to six people at once, a projector, a sound system and lighting. A technician sets up and runs the AV on the day; this is charged and needed for every ${auditorium.name} booking. Every breakout room has a flatscreen with wireless casting.`,
+  },
+  {
+    q: 'Can you cater for a conference?',
+    a: `Yes. Tea and coffee are included all day. For food, ${catering.partner} can put together a menu for your delegates, including vegetarian, vegan and gluten-free options. You order and pay them directly, and we'll put you in touch when you book.`,
+  },
+  {
+    q: 'Do you host parties or private functions?',
+    a: `No. The Maggie O'Neill Centre hosts business, training and community events only, so we don't take bookings for parties or private functions.`,
+  },
+  {
+    q: 'What are the payment and cancellation terms?',
+    a: `Conferences count as larger bookings. ${larger.payment[0]} ${larger.chargeable} Full details are in our booking terms.`,
+  },
+  {
+    q: 'Can we visit before we book?',
+    a: `Yes. We show organisers around every weekday. Call ${contact.phone}, email ${contact.email}, or use the form on this page.`,
+  },
+];
+
+const schema = [
+  serviceNode({
+    url,
+    name: 'Conference venue hire near Liverpool',
+    serviceType: 'Conference venue hire',
+    description: intro,
+    provider: 'venue',
+    areaServed: ['Huyton', 'Knowsley', 'Liverpool', 'St Helens', 'Merseyside'],
+    offers: [
+      {
+        name: `${auditorium.name} conference hire`,
+        price: auditorium.prices!.hourFrom!,
+        unit: 'HOUR',
+        description: `Hosted conference hire of the ${auditorium.name}, from ${from} an hour, quoted per conference.`,
+      },
+    ],
+  }),
+  roomPlaceNode(auditorium, images[auditorium.image]?.src),
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Conference venue', url },
+  ]),
+  faqNode(url, faqs),
+];
+---
+<Base title={title} description={description} ogImage={images[114].src} ogImageAlt={images[114].alt} preloadImage={images[114].src} schema={schema}>
+  <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Conference venue', path }]} />
+
+  <Hero
+    title="A conference venue that's better than a hotel."
+    lede={`Your delegates park free right outside, ${parking.motorway}, and walk into a ${theatre}-seat Auditorium that's already set. Our hosts look after the day so you can look after your speakers.`}
+    image={114}
+    primary={{ label: 'Plan your conference', href: '#enquire' }}
+    secondary={{ label: `Call ${contact.phone}`, href: contact.phoneHref }}
+  />
+
+  <ClientLogos heading="Organisations that hold conferences and training here" />
+
+  <KeyFacts heading="Conference venue hire, in a few lines" intro={intro} facts={keyFacts} />
+  <p class="container updated">Last updated: October 2026</p>
+
+  <section class="section section--white" aria-labelledby="why-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Why organisers choose us</span>
+        <h2 id="why-heading">Why hold your conference outside the city centre?</h2>
+        <p>Delegates arrive on time and relaxed when the parking is free and the motorway is 30 seconds away.</p>
+      </div>
+      <ul class="grid reasons">
+        {reasons.map((r) => (
+          <li class="card reason">
+            <h3>{r.title}</h3>
+            <p>{r.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--cream" aria-labelledby="aud-heading">
+    <div class="container two-col two-col--media">
+      <div class="media">
+        <Photo n={118} width={720} height={540} sizes="(max-width: 900px) 100vw, 520px" />
+      </div>
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">The {auditorium.name}</span>
+          <h2 id="aud-heading">What is the conference room like?</h2>
+          <p>A proper hall with a stage, set the way you need it before your delegates arrive.</p>
+        </div>
+        <ul class="tick-list">
+          <li>Up to {theatre} delegates theatre style, or {cab} cabaret style at tables.</li>
+          <li>A stage, lectern, microphones for up to six speakers, projector, sound system and lighting.</li>
+          <li>AV set up and run by a technician on the day (£).</li>
+          <li>Six breakout rooms for workshops, each with a flatscreen and wireless casting.</li>
+          <li>Toilets just outside the doors, tea and coffee in the foyer, and an accessible toilet on the same floor.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="formats-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">What you can run here</span>
+        <h2 id="formats-heading">What kind of conferences and corporate events do you host?</h2>
+        <p>Business, training and community events. We don't host parties or private functions.</p>
+      </div>
+      <ul class="grid formats">
+        {formats.map((f) => (
+          <li class="card format">
+            <h3>{f.title}</h3>
+            <p>{f.text}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="formats__more">
+        Planning a launch, networking event or community event instead? See our <a href={eventsPath}>event space hire</a>.
+      </p>
+    </div>
+  </section>
+
+  <HostedDay
+    image={113}
+    caption="A conference in the Auditorium, with the stage lighting set."
+    items={hostedEvent}
+    heading="What's included when you book a conference?"
+    intro="Everything below comes with every conference at the Maggie O'Neill Centre."
+  />
+
+  <Comparison />
+
+  <Faqs faqs={faqs} heading="Conference venue questions" />
+
+  <section class="section section--white more-links" aria-label="Related pages">
+    <div class="container">
+      <p>
+        See also <a href={eventsPath}>event space hire</a>,
+        {' '}<a href="/services/meeting-rooms/">meeting room hire in Huyton</a>,
+        {' '}<a href="/services/training-rooms/council-training-venue/">council and public sector venue</a>,
+        {' '}<a href="/services/training-rooms/nhs-training-venue/">NHS training venue</a> and our <a href={bookingTermsPath}>booking terms</a>, or call
+        {' '}<a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>.
+      </p>
+    </div>
+  </section>
+
+  <FindUs />
+</Base>
+
+<style>
+  .reasons, .formats { list-style: none; margin: 0; padding: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .reason, .format { padding: 26px 28px; display: flex; flex-direction: column; gap: 8px; }
+  .reason h3, .format h3 { font-size: 20px; }
+  .reason p, .format p { font-size: var(--text-small-size); color: var(--moc-slate-text); }
+  .formats__more { margin-top: 24px; font-weight: 700; }
+  .two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .two-col--media { align-items: center; }
+  .two-col .section-head { margin-bottom: 24px; }
+  .media { margin: 0; }
+  .media :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
+  .updated { margin-top: -40px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
+  .more-links { padding: 40px 0; }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } .updated { margin-top: -24px; } }
+  @media (max-width: 640px) { .reasons, .formats { grid-template-columns: 1fr; } }
+</style>
