@@ -209,7 +209,7 @@ export const termsOperator: LegalSection[] = [
     blocks: [
       `We provide a 12-month satellite office lease at ${where}. The lease grants you the right to use this address as your council-registered base of operation for the purposes of a Knowsley Private Hire Operator's Licence application. The service includes:`,
       [
-        'A signed satellite office lease agreement specifying your individual office number',
+        'A signed satellite office lease agreement specifying your individual suite number',
         'The Knowsley Council planning permission certificate PDF (Class E)',
         'Support in completing your council application at no extra charge',
       ],
