@@ -308,7 +308,7 @@ export const planFeatures: { key: PlanFeature; label: string }[] = [
   { key: 'registeredOffice', label: 'Registered office address for Companies House' },
   { key: 'businessAddress', label: 'Use it as your business address everywhere' },
   { key: 'collectPost', label: 'Collect your post from reception' },
-  { key: 'postScanned', label: 'Post opened and scanned, so you can read it anywhere' },
+  { key: 'postScanned', label: 'Unlimited post opened and scanned, so you can read it anywhere' },
   { key: 'roomHours', label: '2 free meeting room hours a month, worth £40' },
   { key: 'coffee', label: 'Free coffee when you call in' },
 ];
@@ -334,7 +334,7 @@ export const virtualOffice = {
     {
       name: 'Virtual Office',
       price: 40,
-      summary: 'Your address, plus post opened and scanned and 2 free meeting room hours a month.',
+      summary: 'Your address, plus unlimited post scanning and 2 free meeting room hours a month, worth £40.',
       features: [...addressOnly, 'postScanned', 'roomHours', 'coffee'],
     },
   ] as VirtualOfficePlan[],

@@ -15,24 +15,73 @@ const title = "Cheapest Virtual Office Address in the UK | Maggie O'Neill Centre
 const description =
   'The cheapest virtual office addresses in the UK cost £10 to £20 a month, but the headline price often leaves out the registered office, post and setup fees. What to compare.';
 
-const answer = `The cheapest virtual office address in the UK is around £10 to £20 a month. The catch is what the headline price covers: many "from" prices buy a business address only, and the registered office for Companies House, a director's service address, post handling and a setup fee are charged on top. At the Maggie O'Neill Centre, ${formatPrice(p20.price)} a month includes the registered office and business address, with Director's Cover a ${formatPrice(dc.price)} add-on.`;
+const answer = `Headline prices for a virtual office address in the UK start at about £10 a month plus VAT, but that usually buys a trading address only. Once you add the registered office for Companies House, VAT, any setup fee and post handling, the real figure is £16 to £50 a month, and the city-centre brands charge £65 and up. At the Maggie O'Neill Centre, ${formatPrice(p20.price)} a month includes the registered office and business address, with Director's Cover a ${formatPrice(dc.price)} add-on and no setup fee.`;
 
-// Advertised entry prices seen on providers' own pages and listings in October 2026. "Not stated" means the page we saw
-// did not say. Prices and inclusions change: check before quoting them to anyone.
+// Prices from each provider's own pages as indexed on 13 October 2026. Where a page says a price excludes VAT, the
+// VAT-inclusive figure is shown. "Not stated" means the page did not say. Prices change: check before quoting them.
 const comparison = [
-  { provider: "Maggie O'Neill Centre, Huyton near Liverpool", from: formatPrice(p20.price), registered: 'Included', post: 'Collect from reception; opened and scanned on the £40 plan', setup: 'None', term: 'One month' },
-  { provider: 'Virtually There, Liverpool', from: '£10', registered: 'Registered office package from about £17', post: 'Charged by plan', setup: 'Not stated', term: 'Not stated' },
-  { provider: 'Your City Office (national)', from: '£19.88', registered: 'Not stated', post: 'Charged by plan', setup: 'Not stated', term: 'Not stated' },
-  { provider: 'ABC Offices, Liverpool', from: '£30', registered: 'Not stated', post: 'Not stated', setup: 'Not stated', term: 'Not stated' },
-  { provider: 'Virtual HQ, Liverpool', from: '£40', registered: 'Not stated', post: 'Not stated', setup: '£30', term: 'Not stated' },
-  { provider: '54 St James Street, Liverpool', from: 'Not stated', registered: 'Not stated', post: 'Not stated', setup: 'Not stated', term: 'Not stated (top plan £85)' },
-  { provider: 'Online formation agents (typical)', from: '£10 to £25', registered: 'Usually included', post: 'Official post only; forwarding charged per item', setup: 'Often a one-off fee', term: 'Usually a year, paid up front' },
+  {
+    provider: "Maggie O'Neill Centre, Huyton near Liverpool",
+    from: `${formatPrice(p20.price)} a month`,
+    real: `${formatPrice(p20.price)} with the registered office included; ${formatPrice(withCover(p20))} with a director's service address`,
+    included: 'Registered office and business address, post collected from reception, staffed building with free parking and coffee, meeting rooms in the same building. No setup fee.',
+    term: 'Monthly, one month\u2019s notice',
+  },
+  {
+    provider: 'Virtually There, Liverpool L1',
+    from: '£10 a month plus VAT, billed annually',
+    real: 'About £19 to £20 a month with VAT for the registered office package (£16 to £17 plus VAT); the £10 price is a trading address only',
+    included: 'Trading address and 10 post scans on the entry price. Registered office is an add-on from £7.50 to £8.50 plus VAT. No meeting room hours or coffee listed. No setup fee.',
+    term: 'Paid for the year',
+  },
+  {
+    provider: 'Regus, Liverpool city centre',
+    from: '£65 a month (Business Address)',
+    real: '£65 to £135 a month; VAT not stated on the page',
+    included: 'Business address, phone answering and access to a global lounge network. Registered office and mail forwarding not priced on the page.',
+    term: 'Flexible, per the page',
+  },
+  {
+    provider: 'Virtual HQ, Rodney Chambers, Liverpool',
+    from: '£36 a month',
+    real: '£48 a month with VAT (£40 plus VAT) plus a £36 setup fee with VAT; registered office, scanning and phone are extra',
+    included: 'Business address. Mail scanning, registered office and telephone services are add-ons. 10% off if paid annually.',
+    term: 'Rolling, per comparison sites',
+  },
+  {
+    provider: '54 St James Street, Liverpool',
+    from: '£15.99 a month (Bronze)',
+    real: 'Bronze cannot be used for Companies House; Silver and above can, price not shown. Gold £60, Platinum £85. VAT not stated',
+    included: 'Business address on Bronze. Registered office from Silver. Landline number on Gold.',
+    term: 'Not stated',
+  },
+  {
+    provider: 'ABC Offices, Liverpool L6',
+    from: '£30 a month',
+    real: '£30 for a business address and mail handling; registered office not priced. VAT not stated',
+    included: 'Business address and mail handling. An older Gold plan page lists 2 conference room hours a month at £40.',
+    term: 'Not stated',
+  },
+  {
+    provider: 'Your City Office, Rodney Chambers, Liverpool',
+    from: '£19.88 a month (this is the fax-to-email line)',
+    real: 'Business Address £49.84 a month, registered office charged separately. VAT not stated',
+    included: 'Statutory post held or forwarded at postage cost; other post returned to sender.',
+    term: 'Not stated',
+  },
+  {
+    provider: 'Mail Boxes Etc., Liverpool L2',
+    from: '£60 a year for the registered office, including VAT',
+    real: 'About £43 a month with VAT, because the registered office is an add-on to a mailbox from £460 a year',
+    included: 'Mailbox and registered office. Prices include VAT.',
+    term: '12 months',
+  },
 ];
 
 const faqs = [
   {
     q: 'What is the cheapest virtual office address in the UK?',
-    a: `Around £10 to £20 a month for a plan that includes a registered office address. Cheaper "from" prices usually cover a business address only. At the Maggie O'Neill Centre, ${formatPrice(p20.price)} a month includes the registered office and business address at ${address.oneLine}.`,
+    a: `Headline prices start at about £10 a month plus VAT, but that is usually a trading address only. A plan that includes the registered office for Companies House costs £16 to £50 a month once VAT and setup fees are added. At the Maggie O'Neill Centre, ${formatPrice(p20.price)} a month includes the registered office and business address at ${address.oneLine}, with no setup fee.`,
   },
   {
     q: 'Can I get a free registered office address?',
@@ -76,7 +125,7 @@ const faqs = [
     Before you compare monthly prices, check which of these are in the price and which are extra:
   </p>
   <ul>
-    <li><strong>The registered office address.</strong> Often a separate plan or a yearly fee on top of a "business address" price.</li>
+    <li><strong>The registered office address.</strong> Often a separate add-on, or a higher tier, on top of a "trading address" price that cannot be used for Companies House or a business bank account.</li>
     <li><strong>A director's service address.</strong> The address shown against you as a director. Without it, your home can stay on the public register even after the company's registered office changes.</li>
     <li><strong>Post.</strong> Some plans only receive official post from Companies House and HMRC. Forwarding other post is charged per item, and scanning is a higher plan.</li>
     <li><strong>A setup fee.</strong> A one-off charge of £20 to £50 is common and rarely in the headline.</li>
@@ -100,20 +149,19 @@ const faqs = [
 
   <h2>Cheapest virtual office addresses compared</h2>
   <p>
-    Advertised entry prices seen on providers' own pages and comparison listings in October 2026, for Liverpool business centres and a
-    typical online formation agent. "Not stated" means the page we saw did not say. Prices and inclusions change, so check the provider's
-    page before you rely on a figure.
+    Prices from each provider's own pages as indexed on 13 October 2026, for Liverpool providers. Where a page says a price excludes
+    VAT, the VAT-inclusive figure is shown. "Not stated" means the page did not say. Prices change, so check the provider's page
+    before you rely on a figure.
   </p>
   <div class="table-wrap">
     <table>
       <thead>
         <tr>
           <th scope="col">Provider</th>
-          <th scope="col">From, a month</th>
-          <th scope="col">Registered office</th>
-          <th scope="col">Post</th>
-          <th scope="col">Setup fee</th>
-          <th scope="col">Minimum term</th>
+          <th scope="col">Advertised from</th>
+          <th scope="col">What you pay for a registered office, with VAT and setup</th>
+          <th scope="col">What is included</th>
+          <th scope="col">Term</th>
         </tr>
       </thead>
       <tbody>
@@ -121,9 +169,8 @@ const faqs = [
           <tr>
             <td>{c.provider}</td>
             <td>{c.from}</td>
-            <td>{c.registered}</td>
-            <td>{c.post}</td>
-            <td>{c.setup}</td>
+            <td>{c.real}</td>
+            <td>{c.included}</td>
             <td>{c.term}</td>
           </tr>
         ))}
@@ -131,10 +178,25 @@ const faqs = [
     </table>
   </div>
   <p>
-    In this comparison, the Maggie O'Neill Centre's {p20.name} plan is the lowest monthly price that includes the registered office, with no
-    setup fee and a one-month notice period. Add {dc.name} and the whole of your home address comes off the public register for
-    {' '}{formatPrice(withCover(p20))} a month. The {formatPrice(p40.price)} {p40.name} plan adds post opened and scanned and two free meeting
-    room hours a month.
+    Two things stand out. The lowest headline prices are trading addresses: Virtually There's £10 and 54 St James Street's Bronze plan
+    cannot be used for Companies House, and the registered office is an add-on or a higher tier. And the entry price is rarely the
+    monthly price: VAT, a setup fee or a year paid up front sit behind most of them.
+  </p>
+  <p>
+    In this comparison, the Maggie O'Neill Centre's {p20.name} plan is the lowest monthly price that includes the registered office, with
+    no setup fee and a one-month notice period. Add {dc.name} and the whole of your home address comes off the public register for
+    {' '}{formatPrice(withCover(p20))} a month. The {formatPrice(p40.price)} {p40.name} plan adds unlimited post scanning and two free meeting
+    room hours a month, worth {formatPrice(p40.price)}.
+  </p>
+
+  <h2>When a prestigious address costs more than it earns</h2>
+  <p>
+    The big-brand virtual offices start at £65 a month in Liverpool, and the price has a reason: it bundles a city-centre address with
+    things a local business rarely uses. Access to a lounge network in other cities is no use to a plumber in Prescot or a care company
+    in Kirkby. A postcode by the docks does not make a Knowsley business easier to find, and when a client does want to meet, a
+    city-centre address means paying to park. For most small businesses in Merseyside, the practical test is simpler: is it a real,
+    staffed building, will someone you can name tell you when your post arrives, and can you get there and park for free when you
+    need to? That is what the price should buy.
   </p>
 
   <h2>How to compare prices properly</h2>

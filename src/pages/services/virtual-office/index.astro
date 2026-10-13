@@ -30,7 +30,7 @@ const dc = virtualOffice.directorsCover;
 const ca = virtualOffice.callAnswering;
 const pod = rooms.find((r) => r.slug === 'pod')!;
 
-const intro = `A virtual office at the Maggie O'Neill Centre costs ${formatPrice(p20.price)} a month and includes a registered office address for Companies House and a business address you can use everywhere, at ${address.street}, Huyton, near Liverpool, ${address.postcode}. Post is handled in-house by our team and collected from reception, with free parking outside. The ${formatPrice(p40.price)} ${p40.name} plan adds post opened and scanned and 2 free meeting room hours a month, and Director's Cover adds a director's service address for ${formatPrice(dc.price)}. ${virtualOffice.terms}`;
+const intro = `A virtual office at the Maggie O'Neill Centre costs ${formatPrice(p20.price)} a month and includes a registered office address for Companies House and a business address you can use everywhere, at ${address.street}, Huyton, near Liverpool, ${address.postcode}. Post is handled in-house by our team and collected from reception, with free parking outside. The ${formatPrice(p40.price)} ${p40.name} plan adds unlimited post scanning and 2 free meeting room hours a month, worth ${formatPrice(p40.price)}, and Director's Cover adds a director's service address for ${formatPrice(dc.price)}. ${virtualOffice.terms}`;
 
 const keyFacts = [
   { term: 'Address', detail: `${address.street}, Huyton, Liverpool, ${address.postcode}. A real building with people in it.` },
@@ -67,7 +67,7 @@ const reasons = [
 const faqs = [
   {
     q: 'How much is a virtual office in Liverpool?',
-    a: `A virtual office at the Maggie O'Neill Centre costs from ${formatPrice(p20.price)} a month for a registered office and business address. The ${formatPrice(p40.price)} ${p40.name} plan adds post opened and scanned and 2 free meeting room hours a month. Director's Cover adds ${formatPrice(dc.price)} a month to either plan, taking it to ${formatPrice(withCover(p20))} or ${formatPrice(withCover(p40))}.`,
+    a: `A virtual office at the Maggie O'Neill Centre costs from ${formatPrice(p20.price)} a month for a registered office and business address. The ${formatPrice(p40.price)} ${p40.name} plan adds unlimited post scanning and 2 free meeting room hours a month, worth ${formatPrice(p40.price)}. Director's Cover adds ${formatPrice(dc.price)} a month to either plan, taking it to ${formatPrice(withCover(p20))} or ${formatPrice(withCover(p40))}.`,
   },
   {
     q: 'What is the cheapest virtual office in Liverpool that includes a registered office?',
