@@ -10,7 +10,7 @@ const WEBHOOK =
 const ROUTES = {
   'good-meeting-guide':
     process.env.GHL_WEBHOOK_GOOD_MEETING_GUIDE ||
-    'https://services.leadconnectorhq.com/hooks/4cpmA1xPfhyLI1A2OPDr/webhook-trigger/d667f071-1cf3-4ccf-99c5-709840e84a27',
+    'https://services.leadconnectorhq.com/hooks/4cpmA1xPfhyLI1A2OPDr/webhook-trigger/380db4cf-9761-4a66-afee-9ab9acc33619',
 };
 
 const DROP = new Set(['bot-field', 'form-name']);
