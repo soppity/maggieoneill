@@ -44,11 +44,11 @@ const keyFacts = [
 ];
 
 const getsWithLease = [
-  { title: 'A real lease', text: `A signed ${ol.termMonths}-month satellite office lease with your own office number. Not a virtual office.` },
+  { title: 'A real lease', text: `A signed ${ol.termMonths}-month satellite office lease with your own suite number, at Class E commercial premises. Not a virtual office.` },
   { title: 'Planning approval', text: 'Planning permission is in place for the premises. We send you the certificate once you sign.' },
   { title: 'An exit clause', text: ol.exitClause },
   { title: 'Help with your application', text: 'We walk you through the Knowsley Council application, section by section, at no extra cost.' },
-  { title: 'The address for your application', text: "Your office number and our address, ready for the operator's office field on the council form." },
+  { title: 'The address for your application', text: "Your suite number and our address, ready for the operator's office field on the council form." },
 ];
 
 const numbers = [
@@ -59,7 +59,7 @@ const numbers = [
 
 const steps = [
   { title: 'Send us your details', text: "Fill in our lease details form or call us. We confirm you're applying to Knowsley and agree your vehicle band." },
-  { title: 'Sign your lease', text: `${ol.termMonths}-month satellite office lease with your own office number, plus the planning permission certificate.` },
+  { title: 'Sign your lease', text: `${ol.termMonths}-month satellite office lease with your own suite number, plus the planning permission certificate.` },
   { title: 'Apply to the council, with our help', text: `We walk you through the Knowsley application at no extra cost. Most decisions arrive within ${ol.decisionWeeks} weeks.` },
 ];
 
@@ -75,7 +75,11 @@ const faqs: Faq[] = [
   },
   {
     q: "Can I use my home address for a Knowsley operator's licence?",
-    a: "Usually not. A private hire booking office needs planning approval, and most residential addresses don't have commercial planning permission for use as private hire operator premises. A satellite office lease at the Maggie O'Neill Centre is the simpler, council-recognised route.",
+    a: "Usually not. Knowsley Council asks for a lease, with a suite number, at Class E commercial premises, and a home is residential, not Class E. A satellite office lease at the Maggie O'Neill Centre is the simpler, council-recognised route.",
+  },
+  {
+    q: 'Does Knowsley Council inspect the premises?',
+    a: "No. Licensing officers don't visit the premises. They ask for a signed lease, with a suite number, at Class E commercial premises inside the borough. The Maggie O'Neill Centre is a Class E commercial building, and your lease names your own suite number, so the application has what the council asks for.",
   },
   {
     q: 'How long is the lease?',
@@ -174,17 +178,18 @@ const schema = [
         <span class="eyebrow">Knowsley private hire</span>
         <h2>Why do private hire operators need premises in Knowsley?</h2>
         <p>
-          Because Knowsley Council grants a private hire operator's licence for premises inside the borough, and officers inspect the premises
-          before the licence is granted. If you're based elsewhere and want to run Knowsley-licensed drivers and vehicles, you need an operating base
-          in Knowsley with planning approval. A satellite office lease at the Maggie O'Neill Centre gives you exactly that.
+          Because Knowsley Council grants a private hire operator's licence for premises inside the borough. Licensing officers don't inspect the
+          premises: they ask for a signed lease, with a suite number, at Class E commercial premises in Knowsley. If you're based elsewhere and want
+          to run Knowsley-licensed drivers and vehicles, you need exactly that. The Maggie O'Neill Centre is a Class E commercial building, and a
+          satellite office lease here gives you the lease, the suite number and the planning permission certificate.
         </p>
       </div>
       <div class="ol-why__block">
         <span class="eyebrow">Not a virtual office</span>
         <h2>Can a virtual office be used for a Knowsley operator's licence?</h2>
         <p>
-          No. Knowsley Council needs real premises with planning approval for a private hire operator's licence, so this is a lease, not a virtual
-          office. A <a href="/services/virtual-office/">virtual office</a> is the right choice for a registered address or a business address, and
+          No. Knowsley Council asks for a lease, with a suite number, at Class E commercial premises for a private hire operator's licence, so this
+          is a lease, not a virtual office. A <a href="/services/virtual-office/">virtual office</a> is the right choice for a registered address or a business address, and
           we provide those too, but for your Knowsley operator's licence you need the satellite office lease.
         </p>
       </div>

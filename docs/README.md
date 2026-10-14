@@ -104,9 +104,14 @@ The full page specs are in the Website Blueprint. Build in this order, with a re
 - `/services/coworking/` → `/services/meeting-rooms/`
 - `virtual.mobtc.co.uk/*` → `/services/virtual-office/` (and `/ai-receptionist` → `/services/virtual-office/call-answering/`). This is set on the subdomain's host.
 - `/virtual-office-new/` → `/services/virtual-office/`
-- `/faq-items/*` → the page each FAQ belongs to
-- Hot-desking and coworking blog posts → `/blog/` or the closest guide
-- `/author/*`, `/tag/*`, `/category/*` should not exist on the new site. If any are kept, set them to noindex.
+- `/faq-items/*` → the page each FAQ belongs to (known slugs mapped to `/visit/`, `/whats-included/`, the event FAQs or call answering; the rest to the event FAQs)
+- `/services/` (old services index) → `/services/training-rooms/`
+- `/about/the-team/`, `/about/vision-mission-values/` and any other `/about/*` → `/about/`
+- Hot-desking and coworking blog posts → `/services/meeting-rooms/`; any other `/2023/*`, `/2024/*`, `/2025/*` post → `/blog/`
+- `/author/*`, `/tag/*`, `/category/*` → `/blog/` (they do not exist on the new site)
+- `/wp-content/uploads/2023/01/Privacy-policy.pdf` → `/privacy/`
+- Old WordPress sitemaps (`/sitemap_index.xml`, `/sitemap.xml`, `/post-sitemap.xml`, `/page-sitemap.xml`, `/avada_faq-sitemap.xml`) → `/sitemap-index.xml`
+- `taxi.mobtc.co.uk/*` → `/operators-licence/` (set on the subdomain alias, like `virtual.`)
 
 Before launch, crawl the live site and map **every** old URL to a new one, so no indexed page returns a 404.
 

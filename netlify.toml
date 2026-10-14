@@ -249,3 +249,28 @@
   from = "/feed/*"
   to = "/blog/"
   status = 301
+# Old Yoast sitemaps and the WordPress privacy PDF (still indexed, Oct 2026).
+[[redirects]]
+  from = "/wp-content/uploads/2023/01/Privacy-policy.pdf"
+  to = "/privacy/"
+  status = 301
+[[redirects]]
+  from = "/sitemap_index.xml"
+  to = "/sitemap-index.xml"
+  status = 301
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap-index.xml"
+  status = 301
+[[redirects]]
+  from = "/post-sitemap.xml"
+  to = "/sitemap-index.xml"
+  status = 301
+[[redirects]]
+  from = "/page-sitemap.xml"
+  to = "/sitemap-index.xml"
+  status = 301
+[[redirects]]
+  from = "/avada_faq-sitemap.xml"
+  to = "/sitemap-index.xml"
+  status = 301

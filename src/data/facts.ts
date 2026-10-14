@@ -308,7 +308,7 @@ export const planFeatures: { key: PlanFeature; label: string }[] = [
   { key: 'registeredOffice', label: 'Registered office address for Companies House' },
   { key: 'businessAddress', label: 'Use it as your business address everywhere' },
   { key: 'collectPost', label: 'Collect your post from reception' },
-  { key: 'postScanned', label: 'Post opened and scanned, so you can read it anywhere' },
+  { key: 'postScanned', label: 'Unlimited post opened and scanned, so you can read it anywhere' },
   { key: 'roomHours', label: '2 free meeting room hours a month, worth £40' },
   { key: 'coffee', label: 'Free coffee when you call in' },
 ];
@@ -334,7 +334,7 @@ export const virtualOffice = {
     {
       name: 'Virtual Office',
       price: 40,
-      summary: 'Your address, plus post opened and scanned and 2 free meeting room hours a month.',
+      summary: 'Your address, plus unlimited post scanning and 2 free meeting room hours a month, worth £40.',
       features: [...addressOnly, 'postScanned', 'roomHours', 'coffee'],
     },
   ] as VirtualOfficePlan[],
@@ -346,6 +346,15 @@ export const virtualOffice = {
     short: 'Keep your home off Companies House in both places',
   },
   terms: 'No lock-in. Cancel any time with one month\'s notice.',
+  // Owner, Oct 2026: the centre is a charity and not VAT registered, so no VAT is added to any virtual office price.
+  vat: 'No VAT is added: the centre is a charity and is not VAT registered, so the price you see is the price you pay.',
+  // Owner, Oct 2026: the differentiator against the big providers. Small businesses outside the city centre pay for
+  // lounges, city addresses and building access they never use.
+  whyNotBigName: [
+    'With the big providers, part of the price is access to lounges and buildings in other cities. A business in Knowsley, St Helens or Warrington never uses them, but pays for them every month.',
+    'A city-centre address does not help a local business be found locally, and when a client wants to meet, it means paying to park. Here, parking is free and the M57 is 30 seconds away.',
+    'You get a real building with hosts in it: people who know your name, tell you when your post arrives, and have a meeting room ready down the corridor.',
+  ],
   // Owner, Oct 2026: never name one person as the post handler. Post is handled by the team at reception.
   signUp: [
     { title: 'Tell us the basics', text: 'Your name, email, phone and the plan you want. It takes about a minute.' },
