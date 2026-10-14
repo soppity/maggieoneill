@@ -1,0 +1,125 @@
+---
+// The Good Meeting Guide: lead magnet landing page (owner, Oct 2026). Replaces the GHL page at goodmeeting.mobtc.co.uk
+// (301 in netlify.toml). The form posts to netlify/functions/lead.mjs, which forwards it to the GHL webhook with
+// form_name "good-meeting-guide", and to Netlify Forms as a backup. On success the visitor goes to the thank-you page,
+// which has the download. The home page pop-up (components/GuidePopup.astro) links here.
+// TODO (owner): replace the copy below with the wording from the old GHL page once it's pasted in.
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Photo from '../../components/Photo.astro';
+import { goodMeetingGuide as gmg, site } from '../../data/facts';
+import { images } from '../../data/images';
+import { breadcrumbNode } from '../../lib/schema';
+import '../../styles/forms.css';
+
+const url = `${site.url}${gmg.path}`;
+const title = "Free Good Meeting Guide | Maggie O'Neill Centre";
+const description =
+  "Download the Good Meeting Guide, free from the hosts at the Maggie O'Neill Centre, for anyone who plans meetings and training days near Liverpool.";
+
+const schema = [
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: gmg.name, url },
+  ]),
+];
+---
+<Base title={title} description={description} ogImage={images[35].src} ogImageAlt={images[35].alt} preloadImage={images[35].src} schema={schema}>
+  <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: gmg.name, path: gmg.path }]} />
+
+  <section class="section gmg">
+    <div class="container gmg__inner">
+      <div class="gmg__copy">
+        <span class="eyebrow">Free download</span>
+        <h1>{gmg.name}</h1>
+        <p class="gmg__lede">
+          We host meetings and training days every week, so we've seen what makes people leave glad they came. We've put it
+          into a short, practical guide for anyone who plans them.
+        </p>
+        <div class="gmg__media">
+          <Photo n={35} width={720} height={540} sizes="(max-width: 900px) 100vw, 520px" />
+        </div>
+      </div>
+
+      <div class="card gmg__box">
+        <h2>Get your free copy</h2>
+        <p class="gmg__hint">Tell us where to send it and the download opens straight away.</p>
+        <form class="form" name={gmg.formName} method="POST" data-netlify="true" netlify-honeypot="bot-field" data-gmg novalidate>
+          <input type="hidden" name="form-name" value={gmg.formName} />
+          <p class="form__honeypot"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+          <div class="field">
+            <label for="gmg-name">First name <span class="req">*</span></label>
+            <input id="gmg-name" name="first_name" type="text" autocomplete="given-name" required />
+            <span class="field__error"></span>
+          </div>
+          <div class="field">
+            <label for="gmg-email">Email address <span class="req">*</span></label>
+            <input id="gmg-email" name="email" type="email" autocomplete="email" required />
+            <span class="field__error"></span>
+          </div>
+          <div class="field">
+            <label for="gmg-org">Organisation <span class="field__hint">(optional)</span></label>
+            <input id="gmg-org" name="organisation" type="text" autocomplete="organization" />
+          </div>
+          <label class="gmg__consent">
+            <input type="checkbox" name="marketing_consent" value="yes" />
+            <span>Send me the occasional email about meetings and training at the Maggie O'Neill Centre. You can unsubscribe at any time.</span>
+          </label>
+          <button class="btn btn--primary" type="submit">Send me the guide</button>
+          <p class="form__status" role="status" aria-live="polite"></p>
+          <p class="gmg__privacy">We use your details to send you the guide. See our <a href="/privacy/">privacy policy</a>.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import { goodMeetingGuide as gmg } from '../../data/facts';
+  import { isEmail, lastError, setFieldError, submitNetlifyForm } from '../../scripts/netlifyForm';
+
+  const form = document.querySelector<HTMLFormElement>('[data-gmg]');
+  form?.addEventListener('input', (e) => setFieldError(e.target as HTMLInputElement, ''));
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = form.querySelector<HTMLInputElement>('[name="first_name"]');
+    const email = form.querySelector<HTMLInputElement>('[name="email"]');
+    let ok = true;
+    if (!name?.value.trim()) { setFieldError(name, 'Please tell us your first name.'); ok = false; }
+    if (!isEmail(email?.value ?? '')) { setFieldError(email, 'Please enter a valid email address.'); ok = false; }
+    if (!ok) { form.querySelector<HTMLElement>('[data-invalid] input')?.focus(); return; }
+
+    const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const status = form.querySelector<HTMLElement>('.form__status');
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+    if (status) { status.textContent = ''; delete status.dataset.state; }
+    // Unticked checkboxes aren't sent, so say "no" explicitly for the CRM.
+    const consent = form.querySelector<HTMLInputElement>('[name="marketing_consent"]');
+    if (await submitNetlifyForm(form, { marketing_consent: consent?.checked ? 'yes' : 'no' })) {
+      location.href = gmg.thankYou;
+    } else {
+      if (btn) { btn.disabled = false; btn.textContent = 'Send me the guide'; }
+      if (status) {
+        status.textContent = `Sorry, that didn't send. Please try again. (Error: ${lastError})`;
+        status.dataset.state = 'error';
+      }
+    }
+  });
+</script>
+
+<style>
+  .gmg { background: var(--moc-hero-wash); }
+  .gmg__inner { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: clamp(32px, 5vw, 64px); align-items: start; }
+  .gmg__copy { display: flex; flex-direction: column; gap: 18px; }
+  .gmg h1 { font-size: clamp(36px, 4.6vw, 56px); line-height: 1.06; }
+  .gmg__lede { font-size: var(--text-lead-size); max-width: 560px; }
+  .gmg__media { margin-top: 8px; }
+  .gmg__media :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); box-shadow: var(--moc-shadow-card); }
+  .gmg__box { padding: clamp(24px, 3vw, 36px); display: flex; flex-direction: column; gap: 10px; }
+  .gmg__box h2 { font-size: 28px; }
+  .gmg__hint { color: var(--moc-slate-text); margin-bottom: 8px; }
+  .gmg__consent { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; font-size: 15px; color: var(--moc-slate-text); cursor: pointer; }
+  .gmg__consent input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--moc-purple-700); }
+  .gmg__privacy { font-size: var(--text-caption-size); color: var(--moc-slate-text); }
+  @media (max-width: 900px) { .gmg__inner { grid-template-columns: 1fr; } }
+</style>

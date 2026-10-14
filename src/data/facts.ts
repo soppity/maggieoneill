@@ -64,6 +64,18 @@ export const booking = {
   url: 'https://maggieoneill.officernd.com/public/calendar',
 };
 
+// Lead magnet (owner, Oct 2026): the Good Meeting Guide. The form on its page posts to the GHL webhook through
+// netlify/functions/lead.mjs with form_name "good-meeting-guide"; the thank-you page gives the download.
+export const goodMeetingGuide = {
+  name: 'The Good Meeting Guide',
+  path: '/good-meeting-guide/',
+  thankYou: '/thank-you/good-meeting-guide/',
+  formName: 'good-meeting-guide',
+  pdf: 'https://assets.cdn.filesafe.space/4cpmA1xPfhyLI1A2OPDr/media/6abbbae84c3f56b726986e07.pdf',
+  // localStorage key so the home page pop-up only shows once per browser.
+  popupSeenKey: 'moc-gmg-popup-seen',
+};
+
 export const forms = {
   // thankYou: set each GoHighLevel form's "On submit → Redirect to URL" to https://mobtc.co.uk + this path (GHL settings).
   general: { id: 'PTEyaGYXB96ztNMrZVGB', name: 'Website Enquiry', height: 789, thankYou: '/thank-you/' },
