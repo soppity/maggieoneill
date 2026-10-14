@@ -52,6 +52,13 @@
   status = 301
   force = true
 
+# Old Good Meeting Guide landing page (GHL). Takes effect once goodmeeting.mobtc.co.uk is added to this Netlify site as a domain alias.
+[[redirects]]
+  from = "https://goodmeeting.mobtc.co.uk/*"
+  to = "https://mobtc.co.uk/good-meeting-guide/"
+  status = 301
+  force = true
+
 # Old Knowsley operator licence subdomain (owner brief, Oct 2026). LEAVE COMMENTED until nothing else
 # still runs on taxi.mobtc.co.uk (direct debit set-up, lease signing, admin), or a catch-all would break it.
 # Once those have moved, add taxi.mobtc.co.uk to this Netlify site as a domain alias and uncomment.

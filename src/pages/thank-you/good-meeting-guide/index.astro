@@ -1,0 +1,20 @@
+---
+// Thank-you page for the Good Meeting Guide form, with the download. noindex, not in the sitemap (see components/ThankYou.astro).
+import Base from '../../../layouts/Base.astro';
+import ThankYou from '../../../components/ThankYou.astro';
+import { contact, goodMeetingGuide as gmg } from '../../../data/facts';
+import { images } from '../../../data/images';
+---
+<Base title={"Your Good Meeting Guide | Maggie O'Neill Centre"} description="Download the Good Meeting Guide from the Maggie O'Neill Centre." ogImage={images[35].src} ogImageAlt={images[35].alt} noindex mobileBar="custom" mobileBarHref={contact.phoneHref} mobileBarLabel={`Call ${contact.phone}`}>
+  <ThankYou
+    form={gmg.formName}
+    eyebrow="Here's your guide"
+    heading="Your Good Meeting Guide is ready."
+    text="Download it below and keep it for your next meeting or training day. When you're ready to book a room, we'll have it set before you arrive and the kettle on."
+    links={[
+      { label: 'Download the guide (PDF)', href: gmg.pdf },
+      { label: 'See our meeting rooms', href: '/services/meeting-rooms/' },
+    ]}
+    showWhatsApp={false}
+  />
+</Base>

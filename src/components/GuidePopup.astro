@@ -1,0 +1,65 @@
+---
+// Home page pop-up for the Good Meeting Guide (owner, Oct 2026). Shows once per browser: after 15 seconds or half-way
+// down the page, whichever comes first, and never while the cookie banner is open. A slide-in card, not a full-screen
+// overlay, so it doesn't block the page (Google penalises intrusive interstitials on mobile). Links to the guide page.
+import { goodMeetingGuide as gmg } from '../data/facts';
+---
+<aside class="gp" data-guide-popup aria-labelledby="gp-title" hidden>
+  <button class="gp__close" type="button" aria-label="Close" data-gp-close>
+    <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" /></svg>
+  </button>
+  <span class="eyebrow">Free guide</span>
+  <p class="gp__title" id="gp-title">Why everyone secretly hates your meetings</p>
+  <p class="gp__text">And the 4 changes that fix it. A free 14-page guide, 10 minutes to read.</p>
+  <a class="btn btn--primary gp__cta" href={gmg.path} data-track="guide_popup_click">Get the free guide</a>
+</aside>
+
+<script>
+  import { goodMeetingGuide as gmg } from '../data/facts';
+
+  const box = document.querySelector<HTMLElement>('[data-guide-popup]');
+  const seen = () => { try { return localStorage.getItem(gmg.popupSeenKey) === '1'; } catch { return false; } };
+  const markSeen = () => { try { localStorage.setItem(gmg.popupSeenKey, '1'); } catch { /* storage blocked: may show again */ } };
+
+  if (box && !seen()) {
+    let shown = false;
+    const cookieOpen = () => { const c = document.getElementById('cookie-banner'); return !!c && !c.hidden; };
+    const show = () => {
+      if (shown) return;
+      if (cookieOpen()) { setTimeout(show, 3000); return; }
+      shown = true;
+      markSeen();
+      box.hidden = false;
+      requestAnimationFrame(() => box.classList.add('is-open'));
+      window.removeEventListener('scroll', onScroll);
+    };
+    const onScroll = () => {
+      const h = document.documentElement;
+      if (h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight) > 0.5) show();
+    };
+    const timer = setTimeout(show, 15000);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    const close = () => { clearTimeout(timer); box.classList.remove('is-open'); setTimeout(() => (box.hidden = true), 250); };
+    box.querySelector('[data-gp-close]')?.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && box.classList.contains('is-open')) close(); });
+  }
+</script>
+
+<style>
+  .gp {
+    position: fixed; right: 24px; bottom: 24px; z-index: 60; width: min(360px, calc(100vw - 32px));
+    padding: 24px 24px 22px; border-radius: var(--radius-card); background: var(--moc-white);
+    box-shadow: var(--moc-shadow-card-hover); border-top: 4px solid var(--moc-coral-500);
+    display: flex; flex-direction: column; gap: 8px;
+    opacity: 0; transform: translateY(16px); transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+  }
+  .gp.is-open { opacity: 1; transform: none; }
+  .gp__close { position: absolute; top: 10px; right: 10px; width: 36px; height: 36px; display: grid; place-items: center; border: 0; border-radius: 50%; background: transparent; color: var(--moc-purple-900); cursor: pointer; }
+  .gp__close:hover { background: var(--moc-purple-tint); }
+  .gp__title { margin: 0; font: 800 24px/1.15 var(--font-display); color: var(--moc-purple-900); padding-right: 28px; }
+  .gp__text { margin: 0; color: var(--moc-slate-text); font-size: var(--text-small-size); }
+  .gp__cta { margin-top: 8px; align-self: flex-start; }
+  /* Sit above the mobile call bar. */
+  @media (max-width: 900px) { .gp { right: 16px; left: 16px; width: auto; bottom: 88px; } }
+  @media (prefers-reduced-motion: reduce) { .gp { transition: none; } }
+</style>

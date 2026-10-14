@@ -19,6 +19,7 @@ import FindUs from '../components/sections/FindUs.astro';
 import { accessibility, accessibilityFaq, address, contact, formatPrice, hours, layoutTriage, listNames, parking, rateGroups, rooms, site, trainingDayFrom, virtualOffice } from '../data/facts';
 import { images } from '../data/images';
 import { faqNode } from '../lib/schema';
+import GuidePopup from '../components/GuidePopup.astro';
 import { storySummary } from '../data/story';
 
 const title = "Training & Meeting Rooms, Huyton | Maggie O'Neill Centre";
@@ -157,6 +158,7 @@ const reviews = [
   <MealsBand />
 
   <FindUs />
+  <GuidePopup />
 </Base>
 
 
