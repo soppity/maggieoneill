@@ -6,6 +6,13 @@ const WEBHOOK =
   process.env.GHL_WEBHOOK_URL ||
   'https://services.leadconnectorhq.com/hooks/4cpmA1xPfhyLI1A2OPDr/webhook-trigger/db80a780-d898-48a6-9a47-4dc139945d36';
 
+// Forms with their own GHL workflow get their own inbound webhook (keyed by form-name); everything else uses WEBHOOK.
+const ROUTES = {
+  'good-meeting-guide':
+    process.env.GHL_WEBHOOK_GOOD_MEETING_GUIDE ||
+    'https://services.leadconnectorhq.com/hooks/4cpmA1xPfhyLI1A2OPDr/webhook-trigger/d667f071-1cf3-4ccf-99c5-709840e84a27',
+};
+
 const DROP = new Set(['bot-field', 'form-name']);
 
 export const handler = async (event) => {
@@ -30,7 +37,7 @@ export const handler = async (event) => {
     page: event.headers?.referer || '',
   };
   try {
-    const res = await fetch(WEBHOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: AbortSignal.timeout(8000) });
+    const res = await fetch(ROUTES[body.form_name] || WEBHOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: AbortSignal.timeout(8000) });
     if (!res.ok) {
       const detail = (await res.text().catch(() => '')).slice(0, 300);
       console.error(`GoHighLevel webhook returned ${res.status}: ${detail}`);
