@@ -1,17 +1,18 @@
 ---
 // Community hall vs Maggie's vs hotel, 9 rows (Brand Strategy 03). Competitors are never named.
+// Owner, Oct 2026: plain words, and on phones each row becomes a card with Maggie's first and every answer labelled.
 import { parking } from '../../data/facts';
 
 const rows = [
-  ['Who looks after you', 'A key in a lockbox, or a caretaker', 'On-site hosts, all day', 'Reception, busy with check-ins'],
-  ['Room set-up', 'You move the tables', 'Set to your layout before you arrive', 'Set up, often by agency staff'],
-  ['Tech', 'Bring your own projector', 'Screens with Mac and PC wireless casting, HDMI cables and 1Gb fibre WiFi, all tested', 'Available, often charged extra'],
-  ['Tea and coffee', 'Bring your own', 'In the room, all day, included', 'Timed breaks, charged per delegate'],
-  ['Parking', 'Street parking, if you are lucky', `Free ${parking.spaces}-space car park outside, M57 30 seconds away`, 'Paid, or limited'],
-  ['Feel', 'Tired, sometimes damp', 'Calm, spotless and beautifully designed, with oil diffusers filling the air with a lovely scent', 'Corporate and anonymous'],
-  ['Built for', 'Everything at once', 'Training and meetings. It is the whole job.', 'Bedrooms. Room hire is a sideline.'],
-  ['Price', 'Cheap, you do the work', 'Honest day rates, everything included', 'Premium, to cover the hotel'],
-  ['Where the money goes', 'Building upkeep', "Maggie's Meals and Knowsley community support", 'Shareholders'],
+  ['Who looks after you', 'Often nobody. You get a key from a lockbox.', 'Hosts on site, all day', 'Reception staff, busy with hotel guests'],
+  ['Room set-up', 'You move the tables', 'Ready in your layout before you arrive', 'Set up, often by agency staff'],
+  ['Tech', 'Bring your own projector', 'Screens with Mac and PC wireless casting, HDMI and 1Gb fibre WiFi. All tested.', 'There, but often costs extra'],
+  ['Tea and coffee', 'Bring your own', 'In the room all day. Included.', 'At set break times. You pay per person.'],
+  ['Parking', "Street parking, if you're lucky", `Free ${parking.spaces}-space car park. The M57 is 30 seconds away.`, 'You pay, or there isn\'t much'],
+  ['How it feels', 'Tired, sometimes damp', 'Calm and spotless. Oil diffusers make it smell lovely.', 'Plain and a bit faceless'],
+  ['Built for', 'Lots of different things', "Training and meetings. That's the whole job.", 'Bedrooms. Room hire comes second.'],
+  ['Price', 'Cheap, but you do the work', 'Fair day rates. Everything included.', 'High, to pay for the hotel'],
+  ['Where the money goes', 'Looking after the building', "Maggie's Meals and help for people in Knowsley", 'Shareholders'],
 ];
 const cols = ['Community hall', "Maggie's", 'Hotel'];
 ---
@@ -20,7 +21,7 @@ const cols = ['Community hall', "Maggie's", 'Hotel'];
     <div class="section-head">
       <span class="eyebrow">Hall vs Maggie's vs hotel</span>
       <h2 id="compare-heading">How does Maggie's compare with a hall or a hotel?</h2>
-      <p>A community hall leaves the work to you. A hotel fits room hire around its bedrooms. Maggie's is a hosted venue: rooms are the whole job.</p>
+      <p>A hall leaves the work to you. A hotel puts its bedrooms first. At Maggie's, rooms are the whole job.</p>
     </div>
     <table class="compare">
       <caption class="visually-hidden">How a community hall, the Maggie O'Neill Centre and a hotel compare for training and meeting room hire</caption>
@@ -34,7 +35,15 @@ const cols = ['Community hall', "Maggie's", 'Hotel'];
         {rows.map(([label, ...cells]) => (
           <tr>
             <th scope="row">{label}</th>
-            {cells.map((c, i) => <td class:list={{ 'is-us': i === 1 }} data-label={cols[i]}>{c}</td>)}
+            {cells.map((c, i) => (
+              <td class:list={{ 'is-us': i === 1 }}>
+                <span class="compare__who">
+                  <span class="compare__mark" aria-hidden="true">{i === 1 ? '✓' : '✕'}</span>
+                  <span class="compare__name">{cols[i]}</span>
+                </span>
+                <span class="compare__text">{c}</span>
+              </td>
+            ))}
           </tr>
         ))}
       </tbody>
@@ -44,23 +53,36 @@ const cols = ['Community hall', "Maggie's", 'Hotel'];
 </section>
 
 <style>
-  .compare { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--moc-white); border-radius: var(--radius-card); box-shadow: var(--moc-shadow-card); overflow: hidden; font-size: var(--text-small-size); }
-  .compare th, .compare td { padding: 16px 20px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--moc-border); }
+  .compare { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--moc-white); border-radius: var(--radius-card); box-shadow: var(--moc-shadow-card); overflow: hidden; font-size: 17px; line-height: 1.5; }
+  .compare th, .compare td { padding: 18px 20px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--moc-border); }
   .compare tbody tr:last-child > * { border-bottom: 0; }
-  .compare thead th { font: 700 18px/1.2 var(--font-display); color: var(--moc-purple-900); }
-  .compare tbody th { font-weight: 700; color: var(--moc-purple-900); width: 20%; }
+  .compare thead th { font: 800 20px/1.2 var(--font-display); color: var(--moc-purple-900); }
+  .compare tbody th { font: 700 18px/1.3 var(--font-display); color: var(--moc-purple-900); width: 20%; }
   .compare td { color: var(--moc-slate-text); width: 26.6%; }
   .compare .is-us { background: var(--moc-purple-tint); color: var(--moc-ink); font-weight: 600; }
   .compare thead .is-us { background: var(--moc-purple-700); color: var(--moc-white); }
+  /* On desktop the column heading names the venue, so the in-cell label only shows its tick. */
+  .compare__name { display: none; }
+  .compare__who { display: none; }
+  .compare td.is-us .compare__who { display: inline-flex; margin-right: 6px; }
+  .compare__mark { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; font-size: 13px; font-weight: 800; background: var(--moc-slate-2); color: var(--moc-white); }
+  .is-us .compare__mark { background: var(--moc-coral-500); color: var(--moc-purple-900); }
   .compare__more { margin-top: 24px; font-weight: 700; }
+
+  /* Phones: one card per row. Maggie's comes first and stands out; hall and hotel follow, each clearly named. */
   @media (max-width: 760px) {
-    .compare, .compare tbody, .compare tr, .compare th, .compare td { display: block; width: 100%; }
+    .compare { background: transparent; box-shadow: none; border-radius: 0; overflow: visible; }
     .compare thead { display: none; }
-    .compare tbody tr { border-bottom: 1px solid var(--moc-border); padding: 8px 0; }
-    .compare tbody tr:last-child { border-bottom: 0; }
-    .compare th, .compare td { border-bottom: 0; padding: 6px 20px; }
-    .compare tbody th { padding-top: 14px; font-size: 16px; }
-    .compare td::before { content: attr(data-label) ': '; font-weight: 700; color: var(--moc-purple-900); }
-    .compare .is-us { margin: 4px 0; }
+    .compare, .compare tbody { display: block; width: 100%; }
+    .compare tbody { display: grid; gap: 16px; }
+    .compare tr { display: flex; flex-direction: column; gap: 8px; padding: 18px; background: var(--moc-white); border-radius: var(--radius-card); box-shadow: var(--moc-shadow-card); }
+    .compare th, .compare td { display: block; width: 100%; padding: 0; border: 0; }
+    .compare tbody th { width: 100%; font-size: 20px; margin-bottom: 4px; }
+    .compare td { order: 2; display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; align-items: start; padding: 10px 12px; border-radius: 12px; background: var(--moc-bg); font-size: 16px; }
+    .compare td.is-us { order: 1; padding: 14px; background: var(--moc-purple-700); color: var(--moc-white); font-size: 17px; }
+    .compare__who, .compare td.is-us .compare__who { display: inline-flex; align-items: center; gap: 8px; margin: 0; grid-column: 1 / -1; }
+    .compare__name { display: inline; font-size: 13px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--moc-slate-text); }
+    .is-us .compare__name { color: var(--moc-coral-400); }
+    .compare__text { grid-column: 1 / -1; }
   }
 </style>
