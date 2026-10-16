@@ -23,13 +23,13 @@ const pod = rooms.find((r) => r.slug === 'pod')!;
 const title = "Call Answering Service, £39 a Month | Maggie O'Neill Centre";
 const description = `Never miss a call. An AI voice agent answers 24/7 and emails you a summary, transcript and recording. ${price} a month from Maggie O'Neill Centre.`;
 
-const intro = `Call answering from the Maggie O'Neill Centre uses a human-like AI voice agent that answers your business calls 24/7. With your availability switched on, calls can be transferred to you. With it off, the AI takes the message and emails you a summary, transcript and recording. It costs ${price} a month plus ${per} per AI response, with no charge per call.`;
+const intro = `Call answering from the Maggie O'Neill Centre uses an AI voice agent that sounds like a person. It answers your business calls 24/7. When your availability is on, calls can be put through to you. When it's off, the AI takes a message. Then it emails you a summary, transcript and recording. It costs ${price} a month, plus ${per} per AI response. There's no charge per call.`;
 
 const keyFacts = [
   { term: 'Price', detail: `${price} a month, plus ${per} per AI response. No charge per call.` },
-  { term: 'Who answers', detail: 'A human-like AI voice agent.' },
+  { term: 'Who answers', detail: 'An AI voice agent that sounds like a person.' },
   { term: 'Hours', detail: '24 hours a day, 7 days a week.' },
-  { term: 'Your availability', detail: 'On: calls can be transferred to you. Off: the AI takes the message.' },
+  { term: 'Your availability', detail: 'On: calls can be put through to you. Off: the AI takes a message.' },
   { term: 'By email', detail: 'A summary, transcript and recording of every call.' },
   { term: 'Record', detail: 'Every call is stored in your CRM account.' },
   { term: 'With a virtual office', detail: `Add it to any plan, from ${formatPrice(virtualOffice.from)} a month.`, href: '/services/virtual-office/', linkText: 'See virtual office plans' },
@@ -37,39 +37,39 @@ const keyFacts = [
 
 const whoFor = [
   { title: 'Trades', text: "You can't answer the phone up a ladder or under a sink. The customer still gets through." },
-  { title: 'Sole traders', text: 'No receptionist, no missed work. Callers get an answer instead of voicemail, even at night.' },
-  { title: 'Clinics and therapists', text: "You're with a client. New enquiries are taken and sent to you for after the session." },
-  { title: 'Small offices', text: 'Cover lunch, busy mornings and days out, without hiring anyone.' },
+  { title: 'Sole traders', text: 'No receptionist, no missed work. Callers get an answer, not voicemail, even at night.' },
+  { title: 'Clinics and therapists', text: "You're with a client. We take new enquiries and send them to you for after the session." },
+  { title: 'Small offices', text: 'Cover lunch, busy mornings and days out. No need to hire anyone.' },
 ];
 
 const faqs = [
   {
     q: 'How much does call answering cost?',
-    a: `Call answering from the Maggie O'Neill Centre costs ${price} a month plus ${per} per AI response. There is no charge per call, so a short call costs a few pence.`,
+    a: `Call answering from the Maggie O'Neill Centre costs ${price} a month, plus ${per} per AI response. There's no charge per call. So a short call costs a few pence.`,
   },
   {
     q: 'Who answers my calls?',
-    a: "A human-like AI voice agent answers your calls. It takes the caller's details and message, and can put calls through to you when you're available.",
+    a: "An AI voice agent that sounds like a person answers your calls. It takes the caller's details and message. It can put calls through to you when you're free.",
   },
   {
     q: 'What hours does call answering cover?',
-    a: 'Call answering from the Maggie O\'Neill Centre runs 24 hours a day, 7 days a week. When your availability is on, calls can be transferred to you; when it is off, the AI takes the message and emails it to you.',
+    a: 'Call answering from the Maggie O\'Neill Centre runs 24 hours a day, 7 days a week. When your availability is on, calls can be put through to you. When it\'s off, the AI takes a message and emails it to you.',
   },
   {
     q: 'How do I get my messages?',
-    a: 'After each call you get an email with a summary, a full transcript and a recording. Every call is also stored in your CRM account.',
+    a: 'After each call, you get an email with a summary, a full transcript and a recording. Every call is also saved in your CRM account.',
   },
   {
     q: 'How is this different from a human answering service?',
-    a: `Human answering services often charge a flat fee per call, such as £1.50. Call answering from the Maggie O'Neill Centre charges ${per} per AI response instead, so most calls, which are short, cost much less.`,
+    a: `Services where a person answers often charge a set fee per call, such as £1.50. Call answering from the Maggie O'Neill Centre charges ${per} per AI response instead. Most calls are short, so they cost much less.`,
   },
   {
     q: 'Do I need a virtual office to use call answering?',
-    a: `No. Call answering works on its own for ${price} a month plus ${per} per AI response, or alongside a virtual office plan from ${formatPrice(virtualOffice.from)} a month.`,
+    a: `No. Call answering works on its own for ${price} a month, plus ${per} per AI response. Or you can add it to a virtual office plan, from ${formatPrice(virtualOffice.from)} a month.`,
   },
   {
     q: 'How do I sign up for call answering?',
-    a: "Fill in the virtual office form on this page and say you'd like call answering. The Maggie O'Neill Centre will set up how you want your calls handled with you.",
+    a: "Fill in the virtual office form on this page. Say you'd like call answering. The Maggie O'Neill Centre will then set up your calls the way you want, with you.",
   },
 ];
 
@@ -110,7 +110,7 @@ const schema = [
 
   <Hero
     title="Every call answered, so you don't have to."
-    lede={`Never miss a customer while you're on a job or in a meeting. Your calls are answered day and night, and you get a summary, transcript and recording by email, for ${price} a month.`}
+    lede={`Never miss a customer while you're on a job or in a meeting. We answer your calls day and night. You get a summary, transcript and recording by email. All for ${price} a month.`}
     image={6}
     primary={{ label: 'Add call answering', href: '#get-your-address' }}
     secondary={{ label: 'How it works', href: '#how-heading' }}
@@ -127,7 +127,7 @@ const schema = [
     id="how-heading"
     eyebrow="How it works"
     heading="What happens when someone calls my business?"
-    intro="Every call is answered, day or night, so no customer hits voicemail and rings the next name on the list."
+    intro="Every call is answered, day or night. So no customer hits voicemail and rings the next name on the list."
     steps={ca.steps}
     tone="cream"
   />
@@ -141,12 +141,12 @@ const schema = [
       </div>
       <div class="grid choices">
         <div class="card choice">
-          <h3>Availability on: transferred to you</h3>
-          <p>When you're free to take calls, switch your availability on. The AI answers, then the call can be transferred to you, so urgent calls still reach you.</p>
+          <h3>Availability on: put through to you</h3>
+          <p>When you're free to take calls, switch your availability on. The AI answers, then puts the call through to you. So urgent calls still reach you.</p>
         </div>
         <div class="card choice">
           <h3>Availability off: message emailed</h3>
-          <p>When you're busy or away, switch it off. The AI takes the message and you get a summary, transcript and recording by email.</p>
+          <p>When you're busy or away, switch it off. The AI takes a message. You get a summary, transcript and recording by email.</p>
         </div>
       </div>
     </div>
@@ -176,15 +176,15 @@ const schema = [
         <span class="eyebrow">Virtual office</span>
         <h2 id="vo-heading">Can I add call answering to a virtual office?</h2>
         <p>
-          Yes. Add call answering to any virtual office plan for {price} a month plus {per} per AI response. Your address, your post and your
-          calls are all looked after by the Maggie O'Neill Centre.
+          Yes. Add call answering to any virtual office plan for {price} a month, plus {per} per AI response. Then the Maggie O'Neill Centre
+          looks after your address, your post and your calls.
         </p>
       </div>
       <div class="prose">
         <p>
           Virtual office plans start at {formatPrice(virtualOffice.from)} a month for a registered office address. The
-          {' '}{formatPrice(virtualOffice.plans[1].price)} {virtualOffice.plans[1].name} plan adds unlimited post scanning and 2 free meeting room hours a month,
-          and Director's Cover adds {formatPrice(virtualOffice.directorsCover.price)} a month to either plan.
+          {' '}{formatPrice(virtualOffice.plans[1].price)} {virtualOffice.plans[1].name} plan adds unlimited post scanning and 2 free meeting room hours a month.
+          Director's Cover adds {formatPrice(virtualOffice.directorsCover.price)} a month to either plan.
         </p>
         <p><a href="/services/virtual-office/">See virtual office plans and prices</a></p>
         <p>

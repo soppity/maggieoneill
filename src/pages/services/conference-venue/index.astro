@@ -34,89 +34,89 @@ const dayRoom = formatPrice(summit.prices!.day!);
 const title = "Conference Venue near Liverpool | Maggie O'Neill Centre";
 const description = `A hosted conference venue in Huyton, near Liverpool, with a ${theatre}-seat Auditorium, six breakout rooms and ${parking.spaces} free parking spaces, ${parking.motorway}. The hotel alternative.`;
 
-const intro = `The Maggie O'Neill Centre in Huyton is a conference venue near Liverpool with ${parking.spaces} free parking spaces outside, ${parking.motorway}. The ${auditorium.name} seats up to ${theatre} theatre style or ${cab} cabaret, with a stage, microphones and sound system, and six breakout rooms run sessions alongside it. Conferences cost from ${from} an hour, with a 3-hour minimum, or a day rate quoted for your event. Hosts look after your delegates all day.`;
+const intro = `The Maggie O'Neill Centre is a conference venue in Huyton, near Liverpool. There are ${parking.spaces} free parking spaces outside, and we're ${parking.motorway}. The ${auditorium.name} seats up to ${theatre} theatre style (rows) or ${cab} cabaret (small round tables). It has a stage, microphones and a sound system. Six breakout rooms can run sessions at the same time. Conferences cost from ${from} an hour, with a 3-hour minimum. Or we quote a day rate for your event. Hosts look after your guests all day.`;
 
 const keyFacts = [
-  { term: 'Delegates', detail: `Up to ${theatre} theatre style or ${cab} cabaret in the ${auditorium.name}.` },
-  { term: 'Prices', detail: `From ${from} an hour (3-hour minimum) or a day rate, quoted for your conference.` },
+  { term: 'Group size', detail: `Up to ${theatre} theatre style or ${cab} cabaret in the ${auditorium.name}.` },
+  { term: 'Prices', detail: `From ${from} an hour (3-hour minimum), or a day rate. We quote for your conference.` },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park outside, and ${parking.overflow}.` },
-  { term: 'Getting here', detail: `${parking.motorway[0].toUpperCase()}${parking.motorway.slice(1)}, on a main bus route, in Huyton near Liverpool.` },
-  { term: 'Breakout', detail: `Six breakout rooms for 20 to 30 people each, including the ${grove.name} for networking.` },
-  { term: 'AV', detail: 'Stage, lectern, microphones for up to six speakers, projector and sound system, run by a technician (£).' },
-  { term: 'Catering', detail: `Tea and coffee included all day. Food from our partner, ${catering.partner}.` },
+  { term: 'Getting here', detail: `${parking.motorway[0].toUpperCase()}${parking.motorway.slice(1)}, on a main bus route. In Huyton, near Liverpool.` },
+  { term: 'Breakout rooms', detail: `Six breakout rooms for 20 to 30 people each. The ${grove.name} is for networking.` },
+  { term: 'Tech', detail: 'Stage, lectern, microphones for up to six speakers, projector and sound system. Run by a technician (£).' },
+  { term: 'Catering', detail: `Tea and coffee free all day. Food from our partner, ${catering.partner}.` },
   { term: 'Access', detail: accessibility.accessLine },
 ];
 
 const reasons = [
   {
-    title: 'Parking for your delegates',
-    text: `${parking.spaces} free spaces right outside, and an overflow car park across the road for bigger conferences. Nobody pays for parking or hunts for a space, and nobody arrives late from a city-centre car park.`,
+    title: 'Parking for your guests',
+    text: `${parking.spaces} free spaces right outside. For bigger conferences, there's an overflow car park across the road. Nobody pays to park or hunts for a space. Nobody turns up late from a city-centre car park.`,
   },
   {
     title: 'Easy to reach from across Merseyside',
-    text: `We're ${parking.motorway}, so delegates from Liverpool, St Helens and Warrington can drive straight here without crossing the city centre.`,
+    text: `We're ${parking.motorway}. People from Liverpool, St Helens and Warrington can drive straight here. They don't need to cross the city centre.`,
   },
   {
     title: 'A venue built for this',
-    text: "We're a training and meeting venue every day of the week. Rooms are set before you arrive, the tech is tested, and the hosts know how a conference day runs.",
+    text: "We're a training and meeting venue every day of the week. Rooms are set before you arrive. The tech is tested. Our hosts know how a conference day runs.",
   },
   {
     title: 'Hotel standards, fairer prices',
-    text: "No per-delegate charge for tea and coffee, no paid car park and no corporate markup. We're a charity, so the money goes back into the community.",
+    text: "We don't charge per person for tea and coffee. There's no paid car park and no big company markup. We're a charity, so the money goes back into the community.",
   },
 ];
 
 const formats = [
   {
     title: `Conferences for up to ${theatre}`,
-    text: `The ${auditorium.name} for keynotes and panels, with the six breakout rooms for workshops and parallel sessions.`,
+    text: `Use the ${auditorium.name} for keynotes and panels. Use the six breakout rooms for workshops and side sessions.`,
   },
   {
     title: 'Corporate meetings and AGMs',
-    text: `Board meetings, AGMs and all-staff briefings in the ${auditorium.name}, set theatre or cabaret style.`,
+    text: `Board meetings, AGMs and all-staff briefings in the ${auditorium.name}. Set theatre or cabaret style.`,
   },
   {
     title: 'Strategy and away days',
-    text: `Smaller teams can take a single room for the day, from ${dayRoom}, and add the ${grove.name} for a change of scene.`,
+    text: `Smaller teams can book one room for the day, from ${dayRoom}. Add the ${grove.name} for a change of scene.`,
   },
   {
     title: 'Seminars and briefings',
-    text: 'Public sector, NHS and professional briefings, with microphones for up to six speakers and a lectern on stage.',
+    text: 'Public sector, NHS and professional briefings. There are microphones for up to six speakers and a lectern on stage.',
   },
 ];
 
 const faqs = [
   {
-    q: 'Is there parking for conference delegates?',
-    a: `Yes. There's a free ${parking.spaces}-space car park right outside, with accessible bays by the ${auditorium.name}. For larger conferences there's an overflow car park across the main road, and a parking attendant will point your delegates to it.`,
+    q: 'Is there parking for conference guests?',
+    a: `Yes. There's a free ${parking.spaces}-space car park right outside. It has accessible bays by the ${auditorium.name}. For bigger conferences, there's an overflow car park across the main road. A parking attendant will show your guests where to go.`,
   },
   {
     q: 'How far is the venue from Liverpool?',
-    a: `The Maggie O'Neill Centre is in Huyton, Knowsley, on the east side of Liverpool and ${parking.motorway}. It's on a main bus route, and delegates driving from St Helens or Warrington can reach it without going into the city centre.`,
+    a: `The Maggie O'Neill Centre is in Huyton, Knowsley, on the east side of Liverpool. We're ${parking.motorway}, on a main bus route. If you drive from St Helens or Warrington, you don't need to go into the city centre.`,
   },
   {
     q: 'How many people can a conference hold?',
-    a: `The ${auditorium.name} seats up to ${theatre} theatre style or ${cab} cabaret at tables. Six breakout rooms take 20 to 30 people each, theatre style, for workshops and parallel sessions.`,
+    a: `The ${auditorium.name} seats up to ${theatre} theatre style, or ${cab} cabaret at tables. Six breakout rooms take 20 to 30 people each, theatre style. Use them for workshops and side sessions.`,
   },
   {
     q: 'How much does conference venue hire cost?',
-    a: `The ${auditorium.name} costs from ${from} an hour, with a 3-hour minimum, or a day rate. We quote for each conference, depending on the rooms, layout and AV you need. The AV technician is charged separately, and food is ordered directly from our catering partner.`,
+    a: `The ${auditorium.name} costs from ${from} an hour, with a 3-hour minimum. Or you can pay a day rate. We quote for each conference. It depends on the rooms, layout and tech you need. The AV technician costs extra. You order food straight from our catering partner.`,
   },
   {
     q: 'Why choose you over a hotel conference venue?',
-    a: `Free parking for every delegate, tea and coffee included all day rather than charged per head, and hosts whose only job is your event. Rooms are our whole business, not a sideline to the bedrooms.`,
+    a: `Parking is free for everyone. Tea and coffee are included all day, not charged per head. Our hosts' only job is your event. Rooms are our whole business, not a side line to the bedrooms.`,
   },
   {
     q: 'What AV is there for speakers?',
-    a: `The ${auditorium.name} has a stage, a lectern, microphones for up to six people at once, a projector, a sound system and lighting. A technician sets up and runs the AV on the day; this is charged and needed for every ${auditorium.name} booking. Every breakout room has a flatscreen with wireless casting.`,
+    a: `The ${auditorium.name} has a stage, a lectern and microphones for up to six people at once. There's a projector, a sound system and lighting. A technician sets up and runs the AV on the day. You pay for this, and every ${auditorium.name} booking needs it. Every breakout room has a flatscreen with wireless casting.`,
   },
   {
     q: 'Can you cater for a conference?',
-    a: `Yes. Tea and coffee are included all day. For food, ${catering.partner} can put together a menu for your delegates, including vegetarian, vegan and gluten-free options. You order and pay them directly, and we'll put you in touch when you book.`,
+    a: `Yes. Tea and coffee are included all day. For food, ${catering.partner} can make a menu for your guests. They do vegetarian, vegan and gluten-free options. You order and pay them directly. We'll put you in touch when you book.`,
   },
   {
     q: 'Do you host parties or private functions?',
-    a: `No. The Maggie O'Neill Centre hosts business, training and community events only, so we don't take bookings for parties or private functions.`,
+    a: `No. The Maggie O'Neill Centre hosts business, training and community events only. We don't take bookings for parties or private functions.`,
   },
   {
     q: 'What are the payment and cancellation terms?',
@@ -158,7 +158,7 @@ const schema = [
 
   <Hero
     title="A conference venue that's better than a hotel."
-    lede={`Your delegates park free right outside, ${parking.motorway}, and walk into a ${theatre}-seat Auditorium that's already set. Our hosts look after the day so you can look after your speakers.`}
+    lede={`Your guests park free right outside, ${parking.motorway}. They walk into a ${theatre}-seat Auditorium that's already set. Our hosts look after the day. You look after your speakers.`}
     image={114}
     primary={{ label: 'Plan your conference', href: '#enquire' }}
     secondary={{ label: `Call ${contact.phone}`, href: contact.phoneHref }}
@@ -166,7 +166,7 @@ const schema = [
 
   <ClientLogos heading="Organisations that hold conferences and training here" />
 
-  <KeyFacts heading="Conference venue hire, in a few lines" intro={intro} facts={keyFacts} />
+  <KeyFacts heading="Conference venue hire, in short" intro={intro} facts={keyFacts} />
   <p class="container updated">Last updated: October 2026</p>
 
   <section class="section section--white" aria-labelledby="why-heading">
@@ -174,7 +174,7 @@ const schema = [
       <div class="section-head">
         <span class="eyebrow">Why organisers choose us</span>
         <h2 id="why-heading">Why hold your conference outside the city centre?</h2>
-        <p>Delegates arrive on time and relaxed when the parking is free and the motorway is 30 seconds away.</p>
+        <p>Parking is free and the motorway is 30 seconds away. So your guests arrive on time and relaxed.</p>
       </div>
       <ul class="grid reasons">
         {reasons.map((r) => (
@@ -196,14 +196,16 @@ const schema = [
         <div class="section-head">
           <span class="eyebrow">The {auditorium.name}</span>
           <h2 id="aud-heading">What is the conference room like?</h2>
-          <p>A proper hall with a stage, set the way you need it before your delegates arrive.</p>
+          <p>A proper hall with a stage. We set it the way you need before your guests arrive.</p>
         </div>
         <ul class="tick-list">
-          <li>Up to {theatre} delegates theatre style, or {cab} cabaret style at tables.</li>
-          <li>A stage, lectern, microphones for up to six speakers, projector, sound system and lighting.</li>
+          <li>Up to {theatre} people theatre style, or {cab} cabaret style at tables.</li>
+          <li>A stage, lectern and microphones for up to six speakers.</li>
+          <li>A projector, sound system and lighting.</li>
           <li>AV set up and run by a technician on the day (£).</li>
-          <li>Six breakout rooms for workshops, each with a flatscreen and wireless casting.</li>
-          <li>Toilets just outside the doors, tea and coffee in the foyer, and an accessible toilet on the same floor.</li>
+          <li>Six breakout rooms for workshops. Each has a flatscreen and wireless casting.</li>
+          <li>Toilets just outside the doors. An accessible toilet on the same floor.</li>
+          <li>Tea and coffee in the foyer.</li>
         </ul>
       </div>
     </div>
@@ -225,7 +227,7 @@ const schema = [
         ))}
       </ul>
       <p class="formats__more">
-        Planning a launch, networking event or community event instead? See our <a href={eventsPath}>event space hire</a>.
+        Planning a launch, networking event or community event? See our <a href={eventsPath}>event space hire</a>.
       </p>
     </div>
   </section>
@@ -235,7 +237,7 @@ const schema = [
     caption="A conference in the Auditorium, with the stage lighting set."
     items={hostedEvent}
     heading="What's included when you book a conference?"
-    intro="Everything below comes with every conference at the Maggie O'Neill Centre."
+    intro="Every conference at the Maggie O'Neill Centre comes with all of this."
   />
 
   <Comparison />
@@ -248,7 +250,7 @@ const schema = [
         See also <a href={eventsPath}>event space hire</a>,
         {' '}<a href="/services/meeting-rooms/">meeting room hire in Huyton</a>,
         {' '}<a href="/services/training-rooms/council-training-venue/">council and public sector venue</a>,
-        {' '}<a href="/services/training-rooms/nhs-training-venue/">NHS training venue</a> and our <a href={bookingTermsPath}>booking terms</a>, or call
+        {' '}<a href="/services/training-rooms/nhs-training-venue/">NHS training venue</a> and our <a href={bookingTermsPath}>booking terms</a>. Or call
         {' '}<a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>.
       </p>
     </div>

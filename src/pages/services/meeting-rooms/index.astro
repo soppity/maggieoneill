@@ -39,51 +39,51 @@ const rateSentences = groups.map(
 
 const description = `Hosted meeting rooms and boardrooms in Huyton, near Liverpool, from the ${pod.name} at ${formatPrice(pod.prices!.hour!)} an hour. Screen, tea and coffee and free parking included, ${parking.motorway}. Maggie O'Neill Centre.`;
 
-const intro = `The Maggie O'Neill Centre in Huyton, 20 to 30 minutes from Liverpool city centre and ${parking.motorway}, has meeting rooms for everything from a one-to-one in the ${pod.name} to a team away day. Rooms cost from ${formatPrice(pod.prices!.hour!)} an hour, with ${parking.spaces} free parking spaces outside. Every meeting and training room has a screen with Mac and PC wireless casting and HDMI, tea and coffee are served in the room, and hosts are on site all day.`;
+const intro = `The Maggie O'Neill Centre is in Huyton. It's 20 to 30 minutes from Liverpool city centre and ${parking.motorway}. We have meeting rooms for a one-to-one in the ${pod.name} or a whole team away day. Rooms cost from ${formatPrice(pod.prices!.hour!)} an hour. There are ${parking.spaces} free parking spaces outside. Every meeting and training room has a screen with Mac and PC wireless casting and HDMI. We bring tea and coffee to the room, and hosts are here all day.`;
 
 const keyFacts = [
-  { term: 'Prices', detail: `From ${formatPrice(pod.prices!.hour!)} an hour, by the hour or the day, everything included.`, href: '#rooms', linkText: 'All room rates' },
-  { term: 'Rooms', detail: `${meetingRooms.length} rooms, from the ${pod.name} for ${pod.capacity.boardroom} to rooms for whole teams.` },
+  { term: 'Prices', detail: `From ${formatPrice(pod.prices!.hour!)} an hour. Book by the hour or the day. Everything is included.`, href: '#rooms', linkText: 'All room rates' },
+  { term: 'Rooms', detail: `${meetingRooms.length} rooms. The ${pod.name} seats ${pod.capacity.boardroom}, and bigger rooms fit whole teams.` },
   { term: 'Good for', detail: 'Team meetings, board meetings, interviews, client meetings and away days.' },
-  { term: 'Tech', detail: 'Screen with Mac and PC wireless casting and HDMI, cables provided, 1Gb fibre WiFi, flipchart and pens.' },
-  { term: 'Refreshments', detail: 'Tea and coffee in the room, all day, included.' },
+  { term: 'Tech', detail: 'A screen with Mac and PC wireless casting and HDMI. Cables, 1Gb fibre WiFi, a flipchart and pens.' },
+  { term: 'Tea and coffee', detail: 'Served in your room all day. Included.' },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
-  { term: 'Your hosts', detail: 'On site all day, so you can walk in and get started.' },
-  { term: 'Cancelling', detail: 'Free to change up to 1 business day before a standard booking.', href: bookingTermsPath, linkText: 'Booking terms' },
+  { term: 'Your hosts', detail: 'Here all day. Just walk in and get started.' },
+  { term: 'Cancelling', detail: 'Change a standard booking for free up to 1 business day before.', href: bookingTermsPath, linkText: 'Booking terms' },
 ];
 
 const faqs = [
   {
     q: 'How much does it cost to hire a meeting room near Liverpool?',
-    a: `Meeting rooms at the Maggie O'Neill Centre in Huyton cost from ${formatPrice(pod.prices!.hour!)} an hour. ${rateSentences.map(cap).join('. ')}. Your host, tea and coffee, the screen and free parking are included.`,
+    a: `Meeting rooms at the Maggie O'Neill Centre in Huyton cost from ${formatPrice(pod.prices!.hour!)} an hour. ${rateSentences.map(cap).join('. ')}. Your host, tea and coffee, the screen and free parking are all included.`,
   },
   {
     q: 'Can I book a meeting room by the hour?',
-    a: `Yes. Every meeting room at the Maggie O'Neill Centre can be booked by the hour or by the day. There are no half-day rates, so a shorter meeting is simply charged at the hourly rate.`,
+    a: `Yes. You can book every meeting room at the Maggie O'Neill Centre by the hour or the day. There are no half-day rates. A short meeting just costs the hourly rate.`,
   },
   {
     q: 'Do you have a small room for interviews or one-to-ones?',
-    a: `Yes. The ${pod.name} at the Maggie O'Neill Centre seats up to ${pod.capacity.boardroom} around an oak table with a wall screen, and costs ${formatPrice(pod.prices!.hour!)} an hour or ${formatPrice(pod.prices!.day!)} a day.`,
+    a: `Yes. The ${pod.name} at the Maggie O'Neill Centre seats up to ${pod.capacity.boardroom} around an oak table. It has a wall screen. It costs ${formatPrice(pod.prices!.hour!)} an hour or ${formatPrice(pod.prices!.day!)} a day.`,
   },
   {
     q: 'Do you have a boardroom?',
-    a: "Yes. The Hub is set as a boardroom, and the larger rooms at the Maggie O'Neill Centre can be set boardroom style too. Tell us your numbers and we'll set the right room before you arrive.",
+    a: "Yes. The Hub is set as a boardroom. We can set the bigger rooms at the Maggie O'Neill Centre boardroom style too. Tell us your numbers. We'll set the right room before you arrive.",
   },
   {
     q: 'How many people can the meeting rooms hold?',
-    a: `It depends on the room and the layout, from ${pod.capacity.boardroom} in the ${pod.name} to whole teams in the larger rooms. ${layoutTriage}`,
+    a: `It depends on the room and the layout. The ${pod.name} seats ${pod.capacity.boardroom}, and the bigger rooms fit whole teams. ${layoutTriage}`,
   },
   {
     q: 'Do you offer hot desking or coworking?',
-    a: `No. The Maggie O'Neill Centre no longer offers hot desks or coworking. For a quiet room to work or meet in, the ${pod.name} is ${formatPrice(pod.prices!.hour!)} an hour, and a virtual office gives you a business address from ${formatPrice(virtualOffice.from)} a month.`,
+    a: `No. The Maggie O'Neill Centre no longer has hot desks or coworking. For a quiet room to work or meet in, the ${pod.name} is ${formatPrice(pod.prices!.hour!)} an hour. For a business address, a virtual office costs from ${formatPrice(virtualOffice.from)} a month.`,
   },
   {
     q: 'Is there a screen in every meeting room?',
-    a: "Yes. Every meeting and training room at the Maggie O'Neill Centre has a screen with wireless casting from Mac and PC, plus HDMI, and the cables are provided. There's 1Gb fibre WiFi, a flipchart and pens too.",
+    a: "Yes. Every meeting and training room at the Maggie O'Neill Centre has a screen. You can cast to it from a Mac or PC, or plug in with HDMI. We give you the cables. There's 1Gb fibre WiFi, a flipchart and pens too.",
   },
   {
     q: "Is parking free at the Maggie O'Neill Centre?",
-    a: `Yes. The Maggie O'Neill Centre has a free ${parking.spaces}-space car park on site, ${parking.motorway}, and it is on a main bus route.`,
+    a: `Yes. The Maggie O'Neill Centre has a free ${parking.spaces}-space car park on site. It's ${parking.motorway}, and on a main bus route.`,
   },
   {
     q: 'Can you provide lunch?',
@@ -99,7 +99,7 @@ const faqs = [
   },
   {
     q: 'Can I book a meeting room in the evening or at the weekend?',
-    a: `Yes. The Maggie O'Neill Centre is open ${hours.summary}, and evening and weekend room hire is available on request.`,
+    a: `Yes. The Maggie O'Neill Centre is open ${hours.summary}. You can ask us for evening and weekend room hire.`,
   },
 ];
 
@@ -138,18 +138,18 @@ const schema = [
 
   <Hero
     title="Meeting rooms where you walk in, sit down and get on with it."
-    lede="Whether it's a quiet one-to-one in the Pod or a whole team around the table, your host has the room ready, the screen on and the coffee poured before you've taken your coat off. From £20 an hour, with free parking outside, 30 seconds from the M57."
+    lede="A quiet one-to-one in the Pod, or a whole team round the table. Your host has the room ready, the screen on and the coffee poured. From £20 an hour, with free parking, 30 seconds from the M57."
     image={66}
     secondary={{ label: 'See the rooms', href: '#rooms' }}
   />
 
-  <KeyFacts heading="Meeting room hire, in a few lines" intro={intro} facts={keyFacts} />
+  <KeyFacts heading="Meeting room hire, in short" intro={intro} facts={keyFacts} />
   <p class="container updated">Last updated: October 2026</p>
 
   <div id="rooms">
     <RoomCards
       heading="Which meeting rooms can you hire?"
-      intro="Every room is hosted, set to your layout and has a screen with Mac and PC wireless casting and HDMI. Book by the hour or the day."
+      intro="Every room is hosted and set to your layout. Each has a screen with Mac and PC wireless casting and HDMI. Book by the hour or the day."
       order={order}
     />
   </div>
@@ -164,8 +164,8 @@ const schema = [
           <span class="eyebrow">The {pod.name}</span>
           <h2 id="pod-heading">Need a small room for an interview or a one-to-one?</h2>
           <p>
-            The {pod.name} seats up to {pod.capacity.boardroom} around an oak table, with a wall screen. It's {formatPrice(pod.prices!.hour!)} an hour or
-            {' '}{formatPrice(pod.prices!.day!)} a day, with tea and coffee and free parking included.
+            The {pod.name} seats up to {pod.capacity.boardroom} around an oak table. It has a wall screen. It's {formatPrice(pod.prices!.hour!)} an hour or
+            {' '}{formatPrice(pod.prices!.day!)} a day. Tea and coffee and free parking are included.
           </p>
         </div>
         <ul class="tick-list">
@@ -186,8 +186,8 @@ const schema = [
         <span class="eyebrow">Regular meetings</span>
         <h2 id="monthly-heading">Need somewhere for your monthly meetings?</h2>
         <p>
-          Boards, partnerships and teams that work across several sites book here every month. It's neutral ground, easy to reach, and the room
-          is set the same way every time.
+          Boards, partners and teams from different sites meet here every month. It's neutral ground and easy to reach. We set the room
+          the same way every time.
         </p>
       </div>
       <CaseCard study={pcn} />
@@ -204,11 +204,11 @@ const schema = [
       </div>
       <div class="prose">
         <p>
-          We no longer offer hot desks or coworking. If you need a quiet room to work, meet a client or take calls, the {pod.name} is
+          We no longer have hot desks or coworking. Need a quiet room to work, meet a client or take calls? The {pod.name} is
           {' '}{formatPrice(pod.prices!.hour!)} an hour.
         </p>
         <p>
-          If you need a business address, a <a href="/services/virtual-office/">virtual office</a> gives you a real address in Huyton from
+          Need a business address? A <a href="/services/virtual-office/">virtual office</a> gives you a real address in Huyton. It costs from
           {' '}{formatPrice(virtualOffice.from)} a month.
         </p>
       </div>
@@ -225,8 +225,8 @@ const schema = [
     <div class="container">
       <p>
         Running a course? See <a href="/services/training-rooms/">training room hire near Liverpool</a>. Planning something bigger? See
-        {' '}<a href="/services/event-space-business-and-community/">events and conferences</a>. Also see <a href="/whats-included/">everything that's included</a>,
-        {' '}<a href="/case-studies/">case studies</a> and our <a href={bookingTermsPath}>booking terms</a>, or call
+        {' '}<a href="/services/event-space-business-and-community/">events and conferences</a>. You can also see <a href="/whats-included/">everything that's included</a>,
+        {' '}<a href="/case-studies/">case studies</a> and our <a href={bookingTermsPath}>booking terms</a>. Or call
         {' '}<a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>.
       </p>
     </div>

@@ -23,25 +23,25 @@ const title = "What's Included in Room Hire | Maggie O'Neill Centre";
 const description =
   "Every room at the Maggie O'Neill Centre comes hosted: layout set, screen tested, tea in the room, free parking. Nothing to bring. See the full list.";
 
-const intro = `Every room booking at the Maggie O'Neill Centre is hosted. On-site hosts look after your group, the room is set to your layout, the screen is tested, tea and coffee are in the room all day, and parking is free. There's nothing to bring, not even an HDMI cable.`;
+const intro = `Every room booking at the Maggie O'Neill Centre is hosted. Our hosts look after your group. We set the room to your layout and test the screen. Tea and coffee are in the room all day. Parking is free. There's nothing to bring, not even an HDMI cable.`;
 
 const auditorium = rooms.find((r) => r.slug === 'auditorium')!;
 const the = (names: string[]) => listNames(names.map((n) => `the ${n}`));
 
 const keyFacts = [
-  { term: 'Your hosts', detail: 'On site all day, looking after your group.' },
+  { term: 'Your hosts', detail: 'Here all day, looking after your group.' },
   { term: 'Room set-up', detail: 'Set to your layout before you arrive.' },
-  { term: 'Tech', detail: 'Screen with Mac and PC wireless casting and HDMI, cables provided, 1Gb fibre WiFi, flipchart and pens.' },
-  { term: 'Refreshments', detail: 'Tea and coffee in the room, all day.' },
+  { term: 'Tech', detail: 'A screen with Mac and PC wireless casting and HDMI. Cables, 1Gb fibre WiFi, a flipchart and pens.' },
+  { term: 'Tea and coffee', detail: 'In your room, all day.' },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
   { term: 'Access', detail: accessibility.accessLine },
 ];
 
 const day = [
-  { title: 'You arrive', text: 'Your hosts are on site to point your group to the room.' },
-  { title: 'The room is ready', text: 'Set to your layout, the screen tested, and tea and coffee waiting.' },
-  { title: 'During the day', text: 'A mid-morning check-in with your trainer, plus the kitchen and fridge if you need them.' },
-  { title: 'Next time', text: 'Room notes are kept, so your next booking is set up the same way.' },
+  { title: 'You arrive', text: 'Your hosts are here to show your group to the room.' },
+  { title: 'The room is ready', text: 'It\'s set to your layout. The screen is tested. Tea and coffee are waiting.' },
+  { title: 'During the day', text: 'We check in with your trainer mid-morning. You can use the kitchen and fridge too.' },
+  { title: 'Next time', text: 'We keep notes on your room. So your next booking is set up the same way.' },
 ];
 
 const reviews = [
@@ -53,19 +53,19 @@ const reviews = [
 const faqs = [
   {
     q: "What's included when you hire a room at the Maggie O'Neill Centre?",
-    a: 'Every room booking includes on-site hosts, the room set to your layout, a screen with Mac and PC wireless casting and HDMI, 1Gb fibre WiFi, a flipchart and pens, tea and coffee in the room all day, kitchen and fridge access, and free parking.',
+    a: 'Every room booking comes with hosts on site and the room set to your layout. You get a screen with Mac and PC wireless casting and HDMI. There\'s 1Gb fibre WiFi, a flipchart and pens. Tea and coffee are in the room all day. You can use the kitchen and fridge, and parking is free.',
   },
   {
     q: 'Are tea and coffee included in the room hire price?',
-    a: "Yes. Tea and coffee are served in the room all day and included in every booking at the Maggie O'Neill Centre.",
+    a: "Yes. We serve tea and coffee in the room all day. It's included in every booking at the Maggie O'Neill Centre.",
   },
   {
     q: 'Do I need to bring an HDMI cable or projector?',
-    a: "No. Every meeting and training room at the Maggie O'Neill Centre has a screen with wireless casting from Mac and PC (AirPlay for MacBooks and iPads, and screen casting from Windows laptops), plus HDMI. The cables are provided and tested before you arrive.",
+    a: "No. Every meeting and training room at the Maggie O'Neill Centre has a screen. You can cast to it from a Mac or PC (AirPlay for MacBooks and iPads, and screen casting from Windows laptops). Or plug in with HDMI. We give you the cables and test them before you arrive.",
   },
   {
     q: 'Is parking included?',
-    a: `Yes. Parking is free for every delegate in the Maggie O'Neill Centre's ${parking.spaces}-space car park, ${parking.motorway}.`,
+    a: `Yes. Parking is free for everyone in the Maggie O'Neill Centre's ${parking.spaces}-space car park. It's ${parking.motorway}.`,
   },
   {
     q: "Is the Maggie O'Neill Centre accessible?",
@@ -73,7 +73,7 @@ const faqs = [
   },
   {
     q: 'How much does room hire cost?',
-    a: `Training rooms at the Maggie O'Neill Centre start at ${formatPrice(trainingDayFrom)} a day, with everything on this page included. ${rateGroups()
+    a: `Training rooms at the Maggie O'Neill Centre start at ${formatPrice(trainingDayFrom)} a day. Everything on this page is included. ${rateGroups()
       .map((g) => `${the(g.rooms.map((r) => r.name))} ${g.rooms.length > 1 ? 'cost' : 'costs'} ${formatPrice(g.hour)} an hour or ${formatPrice(g.day)} a day`)
       .map((t) => t.charAt(0).toUpperCase() + t.slice(1))
       .join('. ')}. The ${auditorium.name} costs from ${formatPrice(auditorium.prices!.hourFrom!)} an hour.`,
@@ -92,7 +92,7 @@ const faqs = [
   },
   {
     q: 'Can I hire a room in the evening or at the weekend?',
-    a: `Yes. The Maggie O'Neill Centre is open ${hours.summary}, and evening and weekend room hire is available on request.`,
+    a: `Yes. The Maggie O'Neill Centre is open ${hours.summary}. You can ask us for evening and weekend room hire.`,
   },
 ];
 
@@ -115,7 +115,7 @@ const schema = [
     secondary={{ label: 'See room prices', href: '/services/training-rooms/#rooms' }}
   />
 
-  <KeyFacts heading="Every booking, in a few lines" intro={intro} facts={keyFacts} />
+  <KeyFacts heading="Every booking, in short" intro={intro} facts={keyFacts} />
 
   <HostedDay showMore={false} />
 
@@ -123,7 +123,7 @@ const schema = [
     id="day-heading"
     eyebrow="A day at Maggie's"
     heading="What happens on the day?"
-    intro="From the moment your group arrives to your next booking, your host looks after the details."
+    intro="From the moment your group arrives to your next booking, your host looks after the little things."
     steps={day}
     tone="cream"
   />
@@ -134,7 +134,7 @@ const schema = [
         <div class="section-head">
           <span class="eyebrow">Accessibility</span>
           <h2 id="access-heading">Is the building accessible?</h2>
-          <p>Yes, on the ground floor. Tell us about any accessibility needs when you book and we'll put your group in a ground-floor room.</p>
+          <p>Yes, on the ground floor. Tell us about any access needs when you book. We'll put your group in a ground-floor room.</p>
         </div>
         <ul class="tick-list">
           <li>{accessibility.groundFloor}</li>
@@ -144,7 +144,7 @@ const schema = [
       </div>
       <figure class="access__photo">
         <Photo n={158} width={640} height={480} sizes="(max-width: 900px) 100vw, 480px" />
-        <figcaption>The accessible toilet, with grab rails, a fold-down rail and an emergency pull cord.</figcaption>
+        <figcaption>The accessible toilet. It has grab rails, a fold-down rail and an emergency pull cord.</figcaption>
       </figure>
     </div>
   </section>
@@ -171,7 +171,7 @@ const schema = [
       <p>
         Everything on this page comes with <a href="/services/training-rooms/">training room hire near Liverpool</a>,
         {' '}<a href="/services/meeting-rooms/">meeting room hire in Huyton</a> and
-        {' '}<a href="/services/event-space-business-and-community/">events and conferences</a>. Read <a href="/reviews/">all our Google reviews</a> and our <a href={bookingTermsPath}>booking and cancellation terms</a>.
+        {' '}<a href="/services/event-space-business-and-community/">events and conferences</a>. You can read <a href="/reviews/">all our Google reviews</a> and our <a href={bookingTermsPath}>booking and cancellation terms</a>.
       </p>
     </div>
   </section>

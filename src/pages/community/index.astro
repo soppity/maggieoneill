@@ -22,14 +22,14 @@ const mealsWhen = `${maggiesMeals.schedule.charAt(0).toLowerCase()}${maggiesMeal
 
 const openToAll = [
   { title: 'Community coffee mornings', text: 'An open door and a hot drink for anyone who wants company.' },
-  { title: 'Community clean-ups', text: 'Clean-ups around Huyton, looking after the area we share.' },
+  { title: 'Community clean-ups', text: 'We clean up around Huyton and look after the area we share.' },
   {
     title: 'Church gatherings and groups',
-    text: "Our church gatherings, small groups and men's and women's groups are open to everyone. Many people find a real sense of belonging here, even if they don't share our faith.",
+    text: "Our church gatherings, small groups and men's and women's groups are open to everyone. Many people feel they belong here, even if they don't share our faith.",
   },
   {
     title: allNations.name,
-    text: `Held ${allNations.when}. People from ${allNations.nationalities} nationalities take over the building with food from home and traditional dress.`,
+    text: `Held ${allNations.when}. People from ${allNations.nationalities} nationalities fill the building. They bring food from home and wear traditional dress.`,
   },
 ];
 
@@ -43,7 +43,7 @@ const stats = [
 const faqs = [
   {
     q: "What is Maggie's Meals?",
-    a: `Maggie's Meals is the social supermarket at the Maggie O'Neill Centre in Huyton, run by the charity and its volunteers. ${lastYear.mealsAccessed} people used it in the last year.`,
+    a: `Maggie's Meals is the social supermarket at the Maggie O'Neill Centre in Huyton. The charity and its volunteers run it. ${lastYear.mealsAccessed} people used it in the last year.`,
   },
   {
     q: "When is Maggie's Meals open?",
@@ -51,11 +51,11 @@ const faqs = [
   },
   {
     q: "How does booking a room help Maggie's Meals?",
-    a: "The Maggie O'Neill Centre is a registered charity. Income from room hire and virtual offices funds Maggie's Meals and the charity's community work in Knowsley, so every booking does some good a few streets away.",
+    a: "The Maggie O'Neill Centre is a registered charity. Money from room hire and virtual offices pays for Maggie's Meals and our community work in Knowsley. So every booking does some good a few streets away.",
   },
   {
     q: 'Does the Maggie O’Neill Centre support local community groups?',
-    a: `Yes. In the last year the Maggie O'Neill Centre gave ${lastYear.freeSpaceHours} hours of free space to hyper-local community groups in Huyton. Room hire from businesses, public bodies and charities is what makes that possible.`,
+    a: `Yes. In the last year the Maggie O'Neill Centre gave ${lastYear.freeSpaceHours} hours of free space to hyper-local community groups in Huyton. Room hire from businesses, public bodies and charities makes that possible.`,
   },
   {
     q: 'Are the church groups open to everyone?',
@@ -63,7 +63,7 @@ const faqs = [
   },
   {
     q: 'What time is church?',
-    a: `Church meets at ${church.times}, on the Maggie O'Neill Centre site. For more information, email ${church.email}.`,
+    a: `Church meets at ${church.times}, on the Maggie O'Neill Centre site. To find out more, email ${church.email}.`,
   },
 ];
 
@@ -81,7 +81,7 @@ const schema = [
   <Hero
     title="Maggie's Meals and community"
     tagline="Where your booking goes."
-    lede={`Room hire at the Maggie O'Neill Centre funds Maggie's Meals, our social supermarket, and the charity's community work in Huyton and Knowsley. We're a registered charity (no. ${site.charityNumber}), and we've been here for over ${trackRecord.yearsServing} years.`}
+    lede={`Room hire at the Maggie O'Neill Centre pays for Maggie's Meals, our social supermarket. It also pays for our community work in Huyton and Knowsley. We're a registered charity (no. ${site.charityNumber}), and we've been here for over ${trackRecord.yearsServing} years.`}
     image={110}
     secondary={{ label: 'Social value for buyers', href: '/social-value/' }}
   />
@@ -95,10 +95,10 @@ const schema = [
         </div>
         <div class="prose">
           <p class="lead">
-            Maggie's Meals is our social supermarket, open {mealsWhen} at the Maggie O'Neill Centre. {lastYear.mealsAccessed} people used it in the last year.
+            Maggie's Meals is our social supermarket. It's open {mealsWhen} at the Maggie O'Neill Centre. {lastYear.mealsAccessed} people used it in the last year.
           </p>
           <p>
-            It's run by the charity and our volunteers, including Liam and Bill, and it's paid for by the rooms, offices and virtual offices our customers book.
+            The charity and our volunteers run it, including Liam and Bill. It's paid for by the rooms, offices and virtual offices our customers book.
             When you hire a room here, part of what you pay keeps the shelves stocked.
           </p>
         </div>
@@ -133,7 +133,7 @@ const schema = [
       <div class="section-head">
         <span class="eyebrow">Open to everyone</span>
         <h2 id="open-heading">What else happens at the Maggie O'Neill Centre?</h2>
-        <p>Alongside Maggie's Meals, the building hosts plenty more for the local community.</p>
+        <p>As well as Maggie's Meals, lots more goes on here for local people.</p>
       </div>
       <ul class="grid groups">
         {openToAll.map((g) => (
@@ -160,7 +160,7 @@ const schema = [
       <div class="prose">
         <p class="lead">Yes. In the last year we gave {lastYear.freeSpaceHours} hours of free space to hyper-local community groups.</p>
         <p>
-          It's part of how we serve the streets around us. Room hire from businesses, public bodies and charities is what makes it possible.
+          It's part of how we serve the streets around us. Room hire from businesses, public bodies and charities makes it possible.
         </p>
       </div>
     </div>
@@ -174,11 +174,11 @@ const schema = [
       </div>
       <div class="prose">
         <p>
-          The Maggie O'Neill Centre began as a church, and the new church is still on the property. When someone in our church family is unwell, going through a
-          hard time or has a new baby, we're there for them, with home-cooked meals, hospital visits and moral support.
+          The Maggie O'Neill Centre began as a church. The new church is still on the site. Someone in our church family might be unwell, going through a
+          hard time or have a new baby. When that happens, we're there for them. We bring home-cooked meals, make hospital visits and give moral support.
         </p>
         <p>
-          We extend meals, hospital visits and moral support to others in the community when our volunteers have the capacity. Everyone who helps is a volunteer, so we look
+          When our volunteers have time, we do the same for others in the community. Everyone who helps is a volunteer, so we look
           after their time carefully.
         </p>
       </div>
@@ -194,7 +194,7 @@ const schema = [
         </div>
         <div class="prose">
           <p>
-            Volunteers. {volunteers.map((v) => v.name).join(' and ')} help to run Maggie's Meals every week, alongside the rest of the team at the Maggie O'Neill
+            Volunteers. {volunteers.map((v) => v.name).join(' and ')} help to run Maggie's Meals every week. They work with the rest of the team at the Maggie O'Neill
             Centre. <a href="/about/#team">Meet the team</a>.
           </p>
         </div>
@@ -223,7 +223,7 @@ const schema = [
 
   <CtaBand
     heading="Book a room, and do some good"
-    text="Every room you hire at the Maggie O'Neill Centre helps fund Maggie's Meals. Check availability online, or call and talk it through."
+    text="Every room you hire at the Maggie O'Neill Centre helps pay for Maggie's Meals. See what's free online, or call us for a chat."
   />
 </Base>
 

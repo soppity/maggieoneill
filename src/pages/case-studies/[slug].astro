@@ -34,7 +34,7 @@ const updatedLabel = new Date(study.published).toLocaleDateString('en-GB', { mon
 const intro =
   study.kind === 'virtual-office'
     ? `${study.lede} We're a registered charity in Huyton, near Liverpool, and our hosts handle every letter and parcel.`
-    : `${study.lede} Rooms are set before anyone arrives, hosts are on site all day, tea and coffee are served in the room, and parking is free, ${parking.motorway}.`;
+    : `${study.lede} Rooms are set before anyone arrives. Hosts are on site all day. Tea and coffee are served in the room. Parking is free, ${parking.motorway}.`;
 const isVo = study.kind === 'virtual-office';
 
 const schema = [
@@ -127,7 +127,7 @@ const schema = [
   {isVo ? <VirtualOfficeBand /> : <HostedDay />}
 
   {study.rooms && (
-    <RoomCards heading={study.roomsHeading} intro="Tell us your numbers and what the day involves, and we'll recommend the right room." order={study.rooms} simple />
+    <RoomCards heading={study.roomsHeading} intro="Tell us how many people are coming and what the day involves. We'll suggest the right room." order={study.rooms} simple />
   )}
 
   <section class="section section--white" aria-labelledby="related-heading">
@@ -147,7 +147,7 @@ const schema = [
   </section>
 
   {isVo ? (
-    <CtaBand heading="Want an address that's handled properly?" text="Sign up online in about a minute, or call and talk it through with our team." primary={{ label: 'Get your address', href: '/services/virtual-office/' }} />
+    <CtaBand heading="Want an address that's handled properly?" text="Sign up online in about a minute. Or call and talk it through with our team." primary={{ label: 'Get your address', href: '/services/virtual-office/' }} />
   ) : (
     <CtaBand heading="Planning training dates of your own?" />
   )}

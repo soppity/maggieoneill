@@ -28,7 +28,7 @@ const applyPath = `${ol.path}apply/`;
 const councilNew = 'https://www.knowsley.gov.uk/business-licences-and-consumers/licences-and-permits/taxi-and-private-hire/private-hire-operator-1';
 
 // Answer first: who, what, where, price, proof (40 to 60 words).
-const lede = `The Maggie O'Neill Centre in Huyton leases satellite office space to private hire operators who need premises in Knowsley for their operator's licence. You get a real ${ol.termMonths}-month lease at a planning-approved address, from £${ol.from} a month, with an exit clause if Knowsley Council refuses your application. ${ol.operatorsSupported} operators already use it.`;
+const lede = `The Maggie O'Neill Centre in Huyton leases satellite office space to private hire operators. It's for operators who need premises in Knowsley for their operator's licence. You get a real ${ol.termMonths}-month lease at a planning-approved address, from £${ol.from} a month. There's an exit clause if Knowsley Council refuses your application. ${ol.operatorsSupported} operators already use it.`;
 
 const tierList = ol.tiers.map((t) => `£${t.price} for ${t.label}`).join(', ');
 
@@ -39,81 +39,81 @@ const keyFacts = [
   { term: 'Exit clause', detail: ol.exitClause },
   { term: 'Planning permission', detail: ol.planningLine },
   { term: 'Setup fee', detail: 'None.' },
-  { term: 'Operators supported', detail: `${ol.operatorsSupported} use our address in Knowsley.` },
+  { term: 'Operators helped', detail: `${ol.operatorsSupported} use our address in Knowsley.` },
   { term: 'Phone', detail: contact.phone, href: contact.phoneHref, linkText: 'Call now' },
 ];
 
 const getsWithLease = [
-  { title: 'A real lease', text: `A signed ${ol.termMonths}-month satellite office lease with your own suite number, at Class E commercial premises. Not a virtual office.` },
+  { title: 'A real lease', text: `A signed ${ol.termMonths}-month satellite office lease, at Class E commercial premises. You get your own suite number.` },
   { title: 'Planning approval', text: 'Planning permission is in place for the premises. We send you the certificate once you sign.' },
   { title: 'An exit clause', text: ol.exitClause },
-  { title: 'Help with your application', text: 'We walk you through the Knowsley Council application, section by section, at no extra cost.' },
-  { title: 'The address for your application', text: "Your suite number and our address, ready for the operator's office field on the council form." },
+  { title: 'Help with your application', text: 'We take you through the Knowsley Council application, step by step. There is no extra cost.' },
+  { title: 'The address for your application', text: "Your suite number and our address. They're ready to go in the operator's office box on the council form." },
 ];
 
 const numbers = [
   { figure: `£${ol.setupFee}`, label: 'Setup or hidden fees' },
   { figure: `${ol.termMonths} mo`, label: 'Lease with exit clause' },
-  { figure: ol.operatorsSupported, label: 'Operators supported' },
+  { figure: ol.operatorsSupported, label: 'Operators helped' },
 ];
 
 const steps = [
-  { title: 'Send us your details', text: "Fill in our lease details form or call us. We confirm you're applying to Knowsley and agree your vehicle band." },
-  { title: 'Sign your lease', text: `${ol.termMonths}-month satellite office lease with your own suite number, plus the planning permission certificate.` },
-  { title: 'Apply to the council, with our help', text: `We walk you through the Knowsley application at no extra cost. Most decisions arrive within ${ol.decisionWeeks} weeks.` },
+  { title: 'Send us your details', text: "Fill in our lease details form or call us. We check you're applying to Knowsley. Then we agree your vehicle band." },
+  { title: 'Sign your lease', text: `You sign a ${ol.termMonths}-month satellite office lease with your own suite number. You also get the planning permission certificate.` },
+  { title: 'Apply to the council, with our help', text: `We take you through the Knowsley application at no extra cost. Most decisions come within ${ol.decisionWeeks} weeks.` },
 ];
 
 type Faq = { q: string; a: string; link?: { text: string; href: string } };
 const faqs: Faq[] = [
   {
     q: "Is the Maggie O'Neill Centre in Knowsley?",
-    a: `Yes. The Maggie O'Neill Centre is at ${address.oneLine}, in Huyton, within Knowsley Metropolitan Borough. There's free ${parking.spaces}-space parking and easy access from the M57.`,
+    a: `Yes. The Maggie O'Neill Centre is at ${address.oneLine}. That's in Huyton, inside Knowsley Metropolitan Borough. There's a free ${parking.spaces}-space car park, and it's easy to reach from the M57.`,
   },
   {
     q: "Can an operator based outside Knowsley get a Knowsley private hire operator's licence?",
-    a: "Yes. Knowsley taxi licensing requires the operator's licence to be held for premises inside the borough, not for where you live. Your home address can be anywhere, and many of the operators who use the Maggie O'Neill Centre live elsewhere in the Liverpool City Region.",
+    a: "Yes. Knowsley taxi licensing needs the operator's licence to be for premises inside the borough. It doesn't matter where you live. Your home address can be anywhere. Many of the operators who use the Maggie O'Neill Centre live elsewhere in the Liverpool City Region.",
   },
   {
     q: "Can I use my home address for a Knowsley operator's licence?",
-    a: "Usually not. Knowsley Council asks for a lease, with a suite number, at Class E commercial premises, and a home is residential, not Class E. A satellite office lease at the Maggie O'Neill Centre is the simpler, council-recognised route.",
+    a: "Usually not. Knowsley Council asks for a lease, with a suite number, at Class E commercial premises. A home is residential, not Class E. A satellite office lease at the Maggie O'Neill Centre is the simpler route, and the council recognises it.",
   },
   {
     q: 'Does Knowsley Council inspect the premises?',
-    a: "No. Licensing officers don't visit the premises. They ask for a signed lease, with a suite number, at Class E commercial premises inside the borough. The Maggie O'Neill Centre is a Class E commercial building, and your lease names your own suite number, so the application has what the council asks for.",
+    a: "No. Licensing officers don't visit the premises. They ask for a signed lease, with a suite number, at Class E commercial premises inside the borough. The Maggie O'Neill Centre is a Class E commercial building. Your lease names your own suite number. So your application has what the council asks for.",
   },
   {
     q: 'How long is the lease?',
-    a: `The lease at the Maggie O'Neill Centre is ${ol.termMonths} months, with direct debit on the 1st of each month and no setup fee. After the first ${ol.termMonths} months, either side can end it with 30 days' written notice.`,
+    a: `The lease at the Maggie O'Neill Centre is ${ol.termMonths} months. You pay by direct debit on the 1st of each month. There's no setup fee. After the first ${ol.termMonths} months, either side can end it with 30 days' written notice.`,
   },
   {
     q: 'Do you help with the Knowsley council application?',
-    a: "Yes. The Maggie O'Neill Centre helps every operator through the Knowsley Council private hire operator's licence application at no extra cost, with a walkthrough of every section of the form once you're on board.",
+    a: "Yes. The Maggie O'Neill Centre helps every operator with the Knowsley Council private hire operator's licence application. There's no extra cost. Once you're on board, we take you through every section of the form.",
   },
   {
     q: 'How long does a Knowsley operator licence application take?',
-    a: `Knowsley Licensing typically processes new private hire operator licence applications within ${ol.decisionWeeks} weeks of submission. Renewals are usually faster.`,
+    a: `Knowsley Licensing usually decides new private hire operator licence applications within ${ol.decisionWeeks} weeks of you sending them in. Renewals are often faster.`,
   },
   {
     q: 'Can I move my existing Knowsley operator licence to your address?',
-    a: "Yes. If you already hold a Knowsley private hire operator's licence, sign the lease with the Maggie O'Neill Centre and then tell Knowsley Council about your change of details.",
+    a: "Yes. Do you already hold a Knowsley private hire operator's licence? Sign the lease with the Maggie O'Neill Centre. Then tell Knowsley Council about your change of details.",
     link: { text: 'tell Knowsley Council about your change of details', href: councilChange },
   },
   {
     q: "How much does a Knowsley council private hire operator's licence cost?",
-    a: `Knowsley Council charges from £${ol.councilFeeFrom} for a new 1-year operator's licence covering one vehicle, up to £${ol.councilFeeTo} for a 5-year licence covering 51+ vehicles. The council fee is separate from the lease, and current fees are on Knowsley Council's private hire operator page.`,
+    a: `Knowsley Council charges from £${ol.councilFeeFrom} for a new 1-year operator's licence for one vehicle. It goes up to £${ol.councilFeeTo} for a 5-year licence for 51+ vehicles. The council fee is separate from the lease. You can see current fees on Knowsley Council's private hire operator page.`,
     link: { text: "Knowsley Council's private hire operator page", href: councilNew },
   },
   {
     q: "What planning permission does the Maggie O'Neill Centre have?",
-    a: `The Maggie O'Neill Centre is ${ol.planningPublic}, with planning permission in place for the premises. The reference is shared once you qualify, and you get the full planning permission certificate the day you sign your lease.`,
+    a: `The Maggie O'Neill Centre is ${ol.planningPublic}. Planning permission is in place for the premises. We share the reference once you qualify. You get the full planning permission certificate the day you sign your lease.`,
   },
   {
     q: "What documents do I need to apply for a Knowsley operator's licence?",
-    a: "You provide: basic DBS certificate, public liability insurance certificate, HM Tax Check code, proof of ID for each director, proof of citizenship or Right to Work for all directors, and the council application fee. We provide a signed lease agreement and the planning permission certificate PDF, which we send you after you sign. You're responsible for submitting these to the council.",
+    a: "You provide: a basic DBS certificate, a public liability insurance certificate, an HM Tax Check code, proof of ID for each director, proof of citizenship or Right to Work for all directors, and the council application fee. We provide a signed lease and the planning permission certificate PDF. We send these to you after you sign. It's up to you to send them all to the council.",
   },
   {
     q: "Do I need to physically work at the Maggie O'Neill Centre to use the address?",
-    a: "No. The lease grants you the right to use the Maggie O'Neill Centre as your council-registered base of operation, and you don't need to attend to operate. The centre is here if you ever want to host a meeting, but day-to-day operation can be entirely off-site.",
+    a: "No. The lease gives you the right to use the Maggie O'Neill Centre as the operating base the council has on record. You don't need to come in to operate. The centre is here if you ever want to hold a meeting. But you can run things day to day from somewhere else.",
   },
 ];
 
@@ -156,18 +156,18 @@ const schema = [
 
   <Hero
     title="Your Knowsley operator's licence premises, sorted."
-    lede={`A real lease at planning-approved premises in Knowsley, from £${ol.from} a month, with an exit clause if the council says no. We've helped other operators through it, and we'll help you too.`}
+    lede={`A real lease at planning-approved premises in Knowsley, from £${ol.from} a month. There's an exit clause if the council says no. We've helped other operators through it, and we'll help you too.`}
     image={3}
     imageAlt={heroAlt}
     primary={{ label: 'Check if you qualify', href: applyPath }}
     secondary={{ label: `Call now: ${contact.phone}`, href: contact.phoneHref }}
   >
-    <p class="ol-supporting"><strong>{ol.operatorsSupported}</strong> operators supported</p>
+    <p class="ol-supporting"><strong>{ol.operatorsSupported}</strong> operators helped</p>
   </Hero>
 
   <KeyFacts
     heading="Your Knowsley operator licence address, in a few lines"
-    intro={`For Knowsley private hire operators, the operating base has to be real premises in the borough. Ours is a satellite office lease at the Maggie O'Neill Centre, with planning permission in place and help with your private hire operator licence application included.`}
+    intro={`For Knowsley private hire operators, the operating base has to be real premises in the borough. Ours is a satellite office lease at the Maggie O'Neill Centre. Planning permission is in place. Help with your private hire operator licence application is included.`}
     facts={keyFacts}
   />
   <p class="container updated">Last updated: October 2026</p>
@@ -178,9 +178,9 @@ const schema = [
         <span class="eyebrow">Knowsley private hire</span>
         <h2>Why do private hire operators need premises in Knowsley?</h2>
         <p>
-          Because Knowsley Council grants a private hire operator's licence for premises inside the borough. Licensing officers don't inspect the
-          premises: they ask for a signed lease, with a suite number, at Class E commercial premises in Knowsley. If you're based elsewhere and want
-          to run Knowsley-licensed drivers and vehicles, you need exactly that. The Maggie O'Neill Centre is a Class E commercial building, and a
+          Because Knowsley Council gives a private hire operator's licence for premises inside the borough. Licensing officers don't inspect the
+          premises. They ask for a signed lease, with a suite number, at Class E commercial premises in Knowsley. Are you based elsewhere? Do you want
+          to run Knowsley-licensed drivers and vehicles? Then you need just that. The Maggie O'Neill Centre is a Class E commercial building. A
           satellite office lease here gives you the lease, the suite number and the planning permission certificate.
         </p>
       </div>
@@ -188,9 +188,9 @@ const schema = [
         <span class="eyebrow">Not a virtual office</span>
         <h2>Can a virtual office be used for a Knowsley operator's licence?</h2>
         <p>
-          No. Knowsley Council asks for a lease, with a suite number, at Class E commercial premises for a private hire operator's licence, so this
-          is a lease, not a virtual office. A <a href="/services/virtual-office/">virtual office</a> is the right choice for a registered address or a business address, and
-          we provide those too, but for your Knowsley operator's licence you need the satellite office lease.
+          No. For a private hire operator's licence, Knowsley Council asks for a lease, with a suite number, at Class E commercial premises. So this
+          is a lease, not a virtual office. A <a href="/services/virtual-office/">virtual office</a> is right for a registered address or a business address.
+          We offer those too. But for your Knowsley operator's licence, you need the satellite office lease.
         </p>
       </div>
     </div>
@@ -201,7 +201,7 @@ const schema = [
       <div class="section-head">
         <span class="eyebrow">What's included</span>
         <h2 id="gets-heading">What do I get with the lease?</h2>
-        <p>Everything Knowsley taxi licensing asks for on the premises side, plus help with the paperwork.</p>
+        <p>Everything Knowsley taxi licensing asks for on the premises side. Plus help with the paperwork.</p>
       </div>
       <ul class="grid ol-reasons">
         {getsWithLease.map((r, i) => (
@@ -221,8 +221,8 @@ const schema = [
         <span class="eyebrow">On your side</span>
         <h2 id="help-heading">We want you to get your licence.</h2>
         <p>
-          If your application fails, you don't need us, and we don't want you trapped in a lease you can't use. That's why we help you through the
-          council application at no extra cost, with a step-by-step walkthrough of every section of the Knowsley form once you're on board.
+          If your application fails, you don't need us. And we don't want you stuck in a lease you can't use. That's why we help you with the
+          council application at no extra cost. Once you're on board, we take you through every section of the Knowsley form, step by step.
         </p>
       </div>
       <ul class="ol-numbers">
@@ -239,8 +239,8 @@ const schema = [
         <span class="eyebrow">Our pricing</span>
         <h2 id="pricing-heading">How much does a Knowsley operator licence address cost?</h2>
         <p>
-          From £{ol.from} a month, priced by the vehicle bands on the council's operator licence application. {ol.termMonths} months, direct debit
-          on the 1st, no setup fee.
+          From £{ol.from} a month. The price follows the vehicle bands on the council's operator licence application. The lease is {ol.termMonths} months.
+          You pay by direct debit on the 1st, and there's no setup fee.
         </p>
       </div>
       <ul class="grid ol-tiers">
@@ -259,8 +259,8 @@ const schema = [
       <span class="eyebrow">Exit clause</span>
       <h2 id="refused-heading">What happens if Knowsley refuses my application?</h2>
       <p>
-        You're released from the lease. If Knowsley Council refuses your operator's licence application or revokes your issued licence, email us a
-        copy of the council's letter, your direct debit is cancelled, and you owe nothing for the months after. It's built into the agreement.
+        You're released from the lease. Say Knowsley Council refuses your operator's licence application, or takes away (revokes) your licence.
+        Just email us a copy of the council's letter. We cancel your direct debit, and you owe nothing for the months after. It's built into the agreement.
       </p>
     </div>
   </section>
@@ -269,7 +269,7 @@ const schema = [
     id="start-heading"
     eyebrow="Get started"
     heading="How do I get started?"
-    intro="Send us your details using our lease details form. Once we've reviewed them, we send you the application guide and the planning details."
+    intro="Send us your details on our lease details form. Once we've checked them, we send you the application guide and the planning details."
     steps={steps}
   />
 
@@ -278,11 +278,11 @@ const schema = [
       <div class="ol-enquire__copy">
         <span class="eyebrow">Your details</span>
         <h2 id="enquire-heading">See if we're the right fit</h2>
-        <p>Tell us about your operation in our lease details form. Your answers save as you go, so you can come back and finish later.</p>
+        <p>Tell us about your business in our lease details form. Your answers save as you go. So you can come back and finish later.</p>
       </div>
       <div class="ol-enquire__box">
         <ul class="tick-list">
-          <li><span>Which council you're applying to, and whether it's a new application or a renewal.</span></li>
+          <li><span>Which council you're applying to. And if it's a new application or a renewal.</span></li>
           <li><span>How many vehicles, so we can confirm your price band.</span></li>
           <li><span>Your business details, for the lease and our anti-money laundering (AML) checks.</span></li>
         </ul>
@@ -296,7 +296,7 @@ const schema = [
 
   <section class="section section--white ol-close" aria-label="About us">
     <div class="container">
-      <p class="ol-close__line">{ol.operatorsSupported} operators supported · Registered charity {site.charityNumber}</p>
+      <p class="ol-close__line">{ol.operatorsSupported} operators helped · Registered charity {site.charityNumber}</p>
       <p>
         Also at the Maggie O'Neill Centre: <a href="/services/meeting-rooms/">meeting rooms in Huyton</a>,
         {' '}<a href="/services/virtual-office/call-answering/">call answering</a> and a
