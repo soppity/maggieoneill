@@ -38,3 +38,4 @@
 - Not a party venue (owner, Oct 2026): business, training and community events only. Never write pages or copy that invite parties, Christmas parties or private functions. The Google Business Profile says the same ("No functions, parties or meals").
 - Conference vs events (Oct 2026): /services/conference-venue/ owns conference, corporate meeting, "hotel alternative" and "with parking" searches. /services/event-space-business-and-community/ owns launches, talks, networking and community events. Don't let their titles or H1s overlap.
 - H1s (owner, Oct 2026, revised): written for the booker, never keyword-stuffed. The <title> tag keeps the search terms. Under the H1, one warm, natural sentence that sells the service to that buyer (no separate tagline). Home page H1 is "Looked after at Maggie's."
+- Tea and coffee (owner, Oct 2026): self-serve, already in the room all day. Hosts don't bring or serve it. Never write "we serve", "we bring" or "served in the room".

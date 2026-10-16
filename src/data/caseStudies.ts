@@ -84,7 +84,7 @@ export const caseStudies: CaseStudy[] = [
         heading: 'What does weekly training look like here?',
         points: [
           "Amore's trainers arrive to a room that's already set for the day.",
-          'Hosts are on site all day. Tea and coffee are served in the room.',
+          'Hosts are on site all day. Self-serve tea and coffee is in the room.',
           'We keep notes on each room, so a regular booking is set the same way every time.',
           'Staff park for free or come by bus. Getting to training is never the hard part.',
         ],
@@ -147,7 +147,7 @@ export const caseStudies: CaseStudy[] = [
         points: [
           `The Auditorium seats up to ${auditorium.capacity.cabaret!} cabaret style (small round tables), so practices can sit together. Or it seats up to ${auditorium.capacity.theatre!} theatre style.`,
           'The room is set before anyone arrives. The stage, screen and lighting are ready for the first speaker.',
-          'Hosts are on site all day. Tea and coffee are served for everyone.',
+          'Hosts are on site all day. Self-serve tea and coffee is in the room for everyone.',
           `Free parking on site for staff coming in from every practice, ${parking.motorway}.`,
         ],
       },

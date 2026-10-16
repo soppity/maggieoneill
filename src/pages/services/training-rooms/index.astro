@@ -33,14 +33,14 @@ const groups = rateGroups(['pod']);
 const rateSentences = groups.map((g) => `${the(g.rooms.map((r) => r.name))} cost ${formatPrice(g.hour)} an hour or ${formatPrice(g.day)} a day`);
 const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
-const intro = `Maggie O'Neill Centre is a hosted training venue in Huyton, near Liverpool. Training rooms start at ${formatPrice(trainingDayFrom)} a day. They seat groups from ${pod.capacity.boardroom} up to ${auditorium.capacity.cabaret}. Every meeting and training room has a screen with Mac and PC wireless casting and HDMI. We bring tea and coffee to the room. Parking is free, and hosts are on site all day.`;
+const intro = `Maggie O'Neill Centre is a hosted training venue in Huyton, near Liverpool. Training rooms start at ${formatPrice(trainingDayFrom)} a day. They seat groups from ${pod.capacity.boardroom} up to ${auditorium.capacity.cabaret}. Every meeting and training room has a screen with Mac and PC wireless casting and HDMI. Self-serve tea and coffee is in the room all day. Parking is free, and hosts are on site all day.`;
 
 const keyFacts = [
   { term: 'Prices', detail: `From ${formatPrice(trainingDayFrom)} a day. Everything is included.`, href: '#rooms', linkText: 'All room rates' },
   { term: 'Group sizes', detail: `From ${pod.capacity.boardroom} in the ${pod.name} to ${auditorium.capacity.cabaret} cabaret in the ${auditorium.name}.` },
   { term: 'Layouts', detail: 'U-shape, boardroom, classroom, cabaret, banquet or theatre. We\'ll tell you which one works best.' },
   { term: 'Tech', detail: 'Every meeting and training room has a screen with Mac and PC wireless casting and HDMI. We provide the cables, 1Gb fibre WiFi, a flipchart and pens.' },
-  { term: 'Tea and coffee', detail: 'Served in the room all day. It\'s included.' },
+  { term: 'Tea and coffee', detail: 'In the room all day. It\'s self-serve and included.' },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
   { term: 'Access', detail: accessibility.accessLine },
   { term: 'Hours', detail: `${hours.summary}. ${hours.extra}` },
@@ -70,7 +70,7 @@ const faqs = [
   },
   {
     q: 'Are tea and coffee included?',
-    a: "Yes. We serve tea and coffee in the room all day. It's included in every booking at the Maggie O'Neill Centre.",
+    a: "Yes. Tea and coffee are in the room all day. It's self-serve, so help yourself. It's included in every booking at the Maggie O'Neill Centre.",
   },
   {
     q: "Is parking free at the Maggie O'Neill Centre?",
