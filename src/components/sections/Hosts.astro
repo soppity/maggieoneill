@@ -15,8 +15,8 @@ const team = [...hosts, ...volunteers];
     <div class="section-head">
       <span class="eyebrow">Meet the team</span>
       <h2 id="hosts-heading">{onAbout ? 'Who will you meet at the Maggie O’Neill Centre?' : 'Who will look after you on the day?'}</h2>
-      <p>{onAbout ? "Our team is on site at the Maggie O'Neill Centre all day, looking after every group." : "Our hosts are on site at the Maggie O'Neill Centre all day, looking after every group, with our volunteers alongside them."}</p>
-      {!onAbout && <p class="hosts__story">The centre is named after Maggie O'Neill, who bought this derelict 1930s hall with her family in the 1980s. <a href="/about/">Meet the team and read Maggie's story</a></p>}
+      <p>{onAbout ? "Our team is on site at the Maggie O'Neill Centre all day. We look after every group." : "Our hosts are on site at the Maggie O'Neill Centre all day. They look after every group, and our volunteers help too."}</p>
+      {!onAbout && <p class="hosts__story">The centre is named after Maggie O'Neill. In the 1980s, she and her family bought this old 1930s hall. It was empty and falling apart. <a href="/about/">Meet the team and read Maggie's story</a></p>}
     </div>
     <div class:list={['grid hosts', { 'hosts--list': onAbout }]}>
       {team.map((h) => (

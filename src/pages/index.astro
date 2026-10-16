@@ -39,14 +39,14 @@ const hourFromLines = rooms
   .map((r) => `the ${r.name} from ${formatPrice(r.prices!.hourFrom!)} an hour`);
 const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
-const intro = `The Maggie O'Neill Centre is a charity-run hosted venue at ${address.street}, Huyton, near Liverpool. Care providers, NHS teams, Knowsley Council, schools and fostering and adoption teams hire our training and meeting rooms. Hosts are on site all day, tea and coffee are included and parking is free.`;
+const intro = `Maggie O'Neill Centre is a charity-run hosted venue at ${address.street}, Huyton, near Liverpool. Care providers, NHS teams, Knowsley Council, schools, and fostering and adoption teams hire our training and meeting rooms. Hosts are on site all day. Tea and coffee are included, and parking is free.`;
 
-const voIntro = `We're also a virtual office provider. A virtual office gives your business a real address in Huyton to use as your registered office and on your website, so your home address stays private and off Companies House. Our team looks after your post, plans start at ${formatPrice(virtualOffice.from)} a month, and there's no lock-in. Businesses across the UK choose us because we're a charity: every month's fee helps fund Maggie's Meals.`;
+const voIntro = `We're also a virtual office provider. A virtual office gives your business a real address in Huyton. You can use it as your registered office and on your website. So your home address stays private and off Companies House. Our team looks after your post. Plans start at ${formatPrice(virtualOffice.from)} a month, and there's no lock-in. Businesses across the UK choose us because we're a charity. Every month's fee helps fund Maggie's Meals.`;
 
 const keyFacts = [
   { term: 'Where', detail: `${address.street}, Huyton, ${address.postcode}. Near Liverpool, ${parking.motorway}.` },
-  { term: 'Rooms', detail: `Training, meeting and event rooms, from the ${pod.name}, a boardroom for ${pod.capacity.boardroom}, to the ${auditorium.name} for up to ${auditorium.capacity.cabaret} cabaret.` },
-  { term: 'Included', detail: 'On-site hosts, the room set to your layout, a screen with Mac and PC wireless casting and HDMI, 1Gb fibre WiFi, and tea and coffee all day.' },
+  { term: 'Rooms', detail: `Training, meeting and event rooms. They go from the ${pod.name}, a boardroom for ${pod.capacity.boardroom}, up to the ${auditorium.name}, for up to ${auditorium.capacity.cabaret} cabaret.` },
+  { term: 'Included', detail: 'On-site hosts and the room set to your layout. A screen with Mac and PC wireless casting and HDMI. 1Gb fibre WiFi, and tea and coffee all day.' },
   { term: 'Prices', detail: `Training rooms from ${formatPrice(trainingDayFrom)} a day, everything included. ${hourFromLines.map(cap).join('. ')}.`, href: '/whats-included/', linkText: "See what's included" },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park on site, on a main bus route.` },
   { term: 'Access', detail: accessibility.accessLine },
@@ -58,19 +58,19 @@ const keyFacts = [
 const faqs = [
   {
     q: "What is the Maggie O'Neill Centre?",
-    a: `The Maggie O'Neill Centre is a charity-run training, meeting and event venue at ${address.oneLine}. The Maggie O'Neill Centre also provides virtual offices from ${formatPrice(virtualOffice.from)} a month.`,
+    a: `Maggie O'Neill Centre is a charity-run training, meeting and event venue at ${address.oneLine}. Maggie O'Neill Centre also offers virtual offices from ${formatPrice(virtualOffice.from)} a month.`,
   },
   {
     q: "Is parking free at the Maggie O'Neill Centre?",
-    a: `Yes. The Maggie O'Neill Centre has a free ${parking.spaces}-space car park on site, ${parking.motorway}, and it is on a main bus route.`,
+    a: `Yes. Maggie O'Neill Centre has a free ${parking.spaces}-space car park on site. It's ${parking.motorway}, and on a main bus route.`,
   },
   {
     q: "What's included when you hire a room at the Maggie O'Neill Centre?",
-    a: 'Every room booking includes on-site hosts, the room set to your layout, a screen with Mac and PC wireless casting and HDMI, 1Gb fibre WiFi, a flipchart, free parking, and tea and coffee in the room all day.',
+    a: "Every room booking includes on-site hosts and the room set to your layout. You get a screen with Mac and PC wireless casting and HDMI, 1Gb fibre WiFi and a flipchart. Parking is free, and there's tea and coffee in the room all day.",
   },
   {
     q: 'How much does it cost to hire a room?',
-    a: `Training rooms at the Maggie O'Neill Centre start at ${formatPrice(trainingDayFrom)} a day, with your host, tea and coffee, the screen and parking included. ${rateLines.map(cap).join('. ')}. ${hourFromLines.map((l) => cap(l.replace(' from ', ' costs from '))).join('. ')}. Call ${contact.phone} for an event quote.`,
+    a: `Training rooms at the Maggie O'Neill Centre start at ${formatPrice(trainingDayFrom)} a day. That includes your host, tea and coffee, the screen and parking. ${rateLines.map(cap).join('. ')}. ${hourFromLines.map((l) => cap(l.replace(' from ', ' costs from '))).join('. ')}. Call ${contact.phone} for an event quote.`,
   },
   {
     q: 'Which room layout should I choose?',
@@ -82,15 +82,15 @@ const faqs = [
   },
   {
     q: "What are the Maggie O'Neill Centre's opening hours?",
-    a: `The Maggie O'Neill Centre is open ${hours.summary}. ${hours.extra}`,
+    a: `Maggie O'Neill Centre is open ${hours.summary}. ${hours.extra}`,
   },
   {
     q: "Is the Maggie O'Neill Centre a charity?",
-    a: `Yes. The Maggie O'Neill Centre is a registered charity in England and Wales, number ${site.charityNumber}. Every booking funds Maggie's Meals and community support in Knowsley.`,
+    a: `Yes. Maggie O'Neill Centre is a registered charity in England and Wales, number ${site.charityNumber}. Every booking funds Maggie's Meals and community support in Knowsley.`,
   },
   {
     q: 'How much is a virtual office in Liverpool?',
-    a: `Virtual office plans at the Maggie O'Neill Centre start at ${formatPrice(voLow.price)} a month for a registered office address. The ${formatPrice(vo40.price)} ${vo40.name} plan adds unlimited post scanning and 2 free meeting room hours a month, worth ${formatPrice(vo40.price)}. Director's Cover adds ${formatPrice(virtualOffice.directorsCover.price)} a month to either plan and keeps your home off Companies House.`,
+    a: `Virtual office plans at the Maggie O'Neill Centre start at ${formatPrice(voLow.price)} a month for a registered office address. The ${formatPrice(vo40.price)} ${vo40.name} plan adds unlimited post scanning and 2 free meeting room hours a month, worth ${formatPrice(vo40.price)}. Director's Cover adds ${formatPrice(virtualOffice.directorsCover.price)} a month to either plan. It keeps your home off Companies House.`,
   },
   {
     q: 'Who was Maggie O\'Neill?',
@@ -98,7 +98,7 @@ const faqs = [
   },
   {
     q: "Is the Maggie O'Neill Centre the same as MOBTC?",
-    a: `Yes. MOBTC is short for the centre's old name, the Maggie O'Neill Business and Training Centre. It is the same building at ${address.street}, Huyton.`,
+    a: `Yes. MOBTC is short for the centre's old name, the Maggie O'Neill Business and Training Centre. It's the same building at ${address.street}, Huyton.`,
   },
 ];
 
@@ -119,7 +119,7 @@ const reviews = [
 >
   <Hero
     title={site.brandLine}
-    lede={`Training and meeting rooms in Huyton, near Liverpool, where your hosts are on site, the room is ready and the kettle is on. Every booking helps fund Maggie's Meals in Knowsley.`}
+    lede={`Training and meeting rooms in Huyton, near Liverpool. Your hosts are on site, the room is ready and the kettle is on. Every booking helps fund Maggie's Meals in Knowsley.`}
     image={105}
     secondary={{ label: 'Book a visit', href: '#enquire' }}
   >

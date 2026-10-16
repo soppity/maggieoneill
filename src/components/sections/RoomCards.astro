@@ -13,7 +13,7 @@ interface Props {
 }
 const {
   heading = 'Which training rooms can you hire?',
-  intro = 'Every room is hosted and set to your layout. Meeting and training rooms have a screen with Mac and PC wireless casting and HDMI, and the Auditorium has a stage, sound system and technician-run AV. Prices include everything on the Hosted Day list.',
+  intro = 'Every room is hosted and set to your layout. Meeting and training rooms have a screen with Mac and PC wireless casting and HDMI. The Auditorium has a stage, a sound system, and screens and sound run by a technician. Prices include everything on the Hosted Day list.',
   order = ['summit', 'forum', 'community-room', 'foundry', 'hub', 'grove', 'auditorium', 'pod'],
   simple = false,
 } = Astro.props;
@@ -50,7 +50,7 @@ const priceLine = (r: Room) =>
       ))}
     </ul>
     <div class="room-cards__foot">
-      <p>Not sure which room? Tell us your numbers and we'll recommend one. <a href="/whats-included/">See everything that's included</a></p>
+      <p>Not sure which room? Tell us your numbers and we'll pick one for you. <a href="/whats-included/">See everything that's included</a></p>
       <a class="btn btn--primary" href={booking.url} target="_blank" rel="noopener" data-track="booking_click">Check availability</a>
     </div>
   </div>
