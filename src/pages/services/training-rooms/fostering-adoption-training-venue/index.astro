@@ -30,13 +30,13 @@ const description =
 
 const sessions = ['Adoption preparation courses', 'Skills to Foster', 'Foster carer training', 'Support groups', 'Panel meetings', 'Evening and weekend sessions'];
 
-const intro = `Adoption in Merseyside, Knowsley Fostering and Foster4 choose the Maggie O'Neill Centre in Huyton, Knowsley, to train prospective adopters and foster carers. The rooms are calm and clean, your host is on site all day, tea and coffee are served in the room, and parking is free. Fostering and adoption teams from ${listNames(boroughs)} are welcome too.`;
+const intro = `Adoption in Merseyside, Knowsley Fostering and Foster4 choose the Maggie O'Neill Centre in Huyton, Knowsley. They train prospective adopters and foster carers here. The rooms are calm and clean. Your host is on site all day, and we bring tea and coffee to the room. Parking is free. Fostering and adoption teams from ${listNames(boroughs)} are welcome too.`;
 
 const keyFacts = [
   { term: 'Who uses it', detail: 'Adoption in Merseyside, Knowsley Fostering and Foster4.' },
   { term: 'Sessions', detail: 'Preparation courses, Skills to Foster, support groups and panels.' },
-  { term: 'The rooms', detail: 'Calm and clean, set for your course before anyone arrives.' },
-  { term: 'Your hosts', detail: 'On site all day, looking after your team.' },
+  { term: 'The rooms', detail: 'Calm and clean. We set them for your course before anyone arrives.' },
+  { term: 'Your hosts', detail: 'On site all day to look after your team.' },
   { term: 'Evenings and weekends', detail: hours.extra },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
   { term: 'Boroughs', detail: `Knowsley, plus ${listNames(boroughs)}.` },
@@ -50,15 +50,15 @@ const faqs = [
   },
   {
     q: 'We are not in Knowsley. Can we still book?',
-    a: `Yes. Fostering and adoption teams from ${listNames(boroughs)} are welcome. The Maggie O'Neill Centre is in Huyton, ${parking.motorway}, with free parking for everyone.`,
+    a: `Yes. Fostering and adoption teams from ${listNames(boroughs)} are welcome. Maggie O'Neill Centre is in Huyton, ${parking.motorway}. Parking is free for everyone.`,
   },
   {
     q: 'Can we run adoption preparation courses and Skills to Foster here?',
-    a: "Yes. Adoption preparation courses, Skills to Foster, foster carer training and support groups all run at the Maggie O'Neill Centre. Your agency delivers the session, and we host it.",
+    a: "Yes. Adoption preparation courses, Skills to Foster, foster carer training and support groups all run at the Maggie O'Neill Centre. Your agency runs the session. We host it.",
   },
   {
     q: 'Can we hold fostering or adoption panels here?',
-    a: 'Yes. A private meeting room can be booked for your panel at the usual room rate, with tea and coffee in the room and your host on hand.',
+    a: 'Yes. You can book a private meeting room for your panel at the usual room rate. Tea and coffee come to the room, and your host is on hand.',
   },
   {
     q: 'Do you offer evening and weekend sessions?',
@@ -66,15 +66,15 @@ const faqs = [
   },
   {
     q: 'What if someone needs a moment away from the group?',
-    a: 'There is space in reception to step out for a breather, and your host is on site all day to help if anyone needs something.',
+    a: 'There is space in reception to step out for a breather. Your host is on site all day to help if anyone needs something.',
   },
   {
     q: 'How big are the groups you can host?',
-    a: 'Fostering and adoption courses often have up to 25 people. Tell us how many are coming and we’ll recommend the right room and set it before you arrive.',
+    a: 'Fostering and adoption courses often have up to 25 people. Tell us how many are coming. We’ll suggest the right room and set it before you arrive.',
   },
   {
     q: 'Is parking free?',
-    a: `Yes. The Maggie O'Neill Centre has a free ${parking.spaces}-space car park on site, ${parking.motorway}.`,
+    a: `Yes. There's a free ${parking.spaces}-space car park on site at the Maggie O'Neill Centre, ${parking.motorway}.`,
   },
   {
     q: 'Is the venue accessible?',
@@ -82,15 +82,15 @@ const faqs = [
   },
   {
     q: 'How do booking and payment work for a course?',
-    a: `If your dates make up one course, the whole course counts as one larger booking, secured with a 25% deposit. ${larger.paymentMethods}`,
+    a: `If your dates make up one course, the whole course counts as one larger booking. A 25% deposit secures it. ${larger.paymentMethods}`,
   },
 ];
 
 const journey = [
   { image: 1, caption: `The free car park, ${parking.motorway}.` },
   { image: 4, caption: 'The front door, with a ramp and handrails.' },
-  { image: 6, caption: 'Reception, with chairs if anyone needs to step out for a moment.' },
-  { image: 35, caption: 'Arrive at your room, ready to go.' },
+  { image: 6, caption: 'Reception, with chairs if anyone needs a moment away.' },
+  { image: 35, caption: 'Your room, ready when you arrive.' },
   { image: 62, caption: 'The Grove, with its greenery canopy.' },
   { image: 158, caption: 'The accessible toilet, with grab rails and an emergency pull cord.' },
 ];
@@ -132,7 +132,7 @@ const schema = [
 
   <Hero
     title="Hard conversations need a calm room."
-    lede="Preparing to foster or adopt is one of the biggest steps a family takes. Adoption in Merseyside, Knowsley Fostering and Foster4 bring their families here because the rooms are calm and the welcome is warm, and teams from every nearby borough are welcome too."
+    lede="Getting ready to foster or adopt is one of the biggest steps a family takes. Adoption in Merseyside, Knowsley Fostering and Foster4 bring their families here. The rooms are calm and the welcome is warm. Teams from every nearby borough are welcome too."
     image={105}
     primary={{ label: 'Plan your preparation dates', href: '#enquire' }}
     secondary={{ label: 'See the space', href: '#journey-heading' }}
@@ -149,12 +149,12 @@ const schema = [
         <div class="section-head">
           <span class="eyebrow">Why calm matters</span>
           <h2 id="calm-heading">Why does the room matter for prospective adopters and foster carers?</h2>
-          <p>The people in the room are thinking about becoming parents. The subjects are heavy, and emotions can run high. The venue should feel safe.</p>
+          <p>The people in the room are thinking about becoming parents. The subjects are heavy. Feelings can run high. The venue should feel safe.</p>
         </div>
         <ul class="tick-list">
           <li>Calm, clean rooms, set before anyone arrives.</li>
           <li>Space in reception to step out for a breather.</li>
-          <li>A host on site all day, who notices if someone needs something.</li>
+          <li>A host on site all day, who spots if someone needs something.</li>
           <li>Tea and coffee in the room, so nobody has to leave to find a drink.</li>
         </ul>
       </div>
@@ -169,7 +169,7 @@ const schema = [
       <div class="section-head">
         <span class="eyebrow">What the sessions need</span>
         <h2 id="sessions-heading">Which fostering and adoption sessions run here?</h2>
-        <p>Your agency delivers the session, and we host it. Daytime, evening and weekend dates are all possible.</p>
+        <p>Your agency runs the session. We host it. You can book daytime, evening and weekend dates.</p>
       </div>
       <ul class="chips">
         {sessions.map((s) => <li>{s}</li>)}
@@ -180,7 +180,7 @@ const schema = [
   <div id="rooms">
     <RoomCards
       heading="Which rooms suit fostering and adoption training?"
-      intro="Calm, clean, private rooms. Tell us how many are coming and we'll recommend the right one."
+      intro="Calm, clean, private rooms. Tell us how many are coming. We'll suggest the right one."
       order={['community-room', 'grove', 'forum', 'summit']}
       simple
     />
@@ -192,7 +192,7 @@ const schema = [
         <span class="eyebrow">Every borough welcome</span>
         <h2 id="borough-heading">Coming from another borough?</h2>
         <p>
-          The Maggie O'Neill Centre is in Huyton, Knowsley, {parking.motorway}. It's easy to reach from {listNames(boroughs)}, and parking is free
+          Maggie O'Neill Centre is in Huyton, Knowsley, {parking.motorway}. It's easy to reach from {listNames(boroughs)}. Parking is free
           for everyone.
         </p>
       </div>
@@ -205,7 +205,7 @@ const schema = [
   <HostedDay />
 
   <PhotoJourney
-    intro="Share these with your families before the course, so nobody walks in not knowing what to expect."
+    intro="Share these with your families before the course. Then everyone knows what to expect when they walk in."
     stops={journey}
   />
 

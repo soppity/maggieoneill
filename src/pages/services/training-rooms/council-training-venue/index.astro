@@ -28,43 +28,43 @@ const title = "Council & CPD Training, Knowsley | Maggie O'Neill Centre";
 const description =
   "Training and team days for Knowsley Council, housing and schools, in the borough. Hosted rooms, free parking and social value built in. Maggie O'Neill Centre.";
 
-const intro = `The Maggie O'Neill Centre is a Knowsley charity in Huyton, ${parking.motorway}. Knowsley Council teams, Livv Housing and local schools book its training rooms for training days, CPD and team meetings. Hosts are on site all day, tea and coffee are served in the room, parking is free, and every booking funds Maggie's Meals in the borough.`;
+const intro = `Maggie O'Neill Centre is a Knowsley charity in Huyton, ${parking.motorway}. Knowsley Council teams, Livv Housing and local schools book our training rooms. They use them for training days, CPD and team meetings. Hosts are on site all day, and we bring tea and coffee to the room. Parking is free. Every booking funds Maggie's Meals in the borough.`;
 
 const keyFacts = [
   { term: 'Who uses it', detail: 'Knowsley Council, Livv Housing and local schools.' },
   { term: 'Social value', detail: "A registered charity. Every booking funds Maggie's Meals in Knowsley." },
   { term: 'Sessions', detail: 'Training days, CPD, INSET days, Knowsley Education days and governor meetings.' },
-  { term: 'Prices', detail: `From ${formatPrice(hourFrom)} an hour or ${formatPrice(trainingDayFrom)} a day, everything included.`, href: '/whats-included/', linkText: "See what's included" },
-  { term: 'Invoicing', detail: 'Invoices to your council, school or organisation, with PO numbers welcome.' },
+  { term: 'Prices', detail: `From ${formatPrice(hourFrom)} an hour or ${formatPrice(trainingDayFrom)} a day. Everything is included.`, href: '/whats-included/', linkText: "See what's included" },
+  { term: 'Invoicing', detail: 'We invoice your council, school or organisation. PO numbers are welcome.' },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
-  { term: 'Your hosts', detail: 'On site all day, looking after your team.' },
+  { term: 'Your hosts', detail: 'On site all day to look after your team.' },
   { term: 'Access', detail: accessibility.accessLine },
 ];
 
 const faqs = [
   {
     q: "Who in the public sector uses the Maggie O'Neill Centre?",
-    a: "Knowsley Council teams, Livv Housing, and schools including Meadow Park Primary, Alt Bridge School and Knowsley Central School book training rooms at the Maggie O'Neill Centre.",
+    a: "Knowsley Council teams and Livv Housing book training rooms at the Maggie O'Neill Centre. So do schools, like Meadow Park Primary, Alt Bridge School and Knowsley Central School.",
   },
   {
     q: 'How does booking here add social value?',
-    a: "The Maggie O'Neill Centre is a registered charity in Knowsley. What you pay for the room funds Maggie's Meals and community support in the borough, so the spend stays local.",
+    a: "Maggie O'Neill Centre is a registered charity in Knowsley. What you pay for the room funds Maggie's Meals and community support in the borough. So the spend stays local.",
   },
   {
     q: 'Can you provide social value information for our procurement?',
-    a: `Yes. The Maggie O'Neill Centre's social value statement is on the social value page, written to copy straight into your procurement or social value report. Call ${contact.phone} with any questions.`,
+    a: `Yes. Our social value statement is on the Maggie O'Neill Centre social value page. It's written so you can copy it straight into your procurement or social value report. Call ${contact.phone} with any questions.`,
   },
   {
     q: 'Can schools book INSET days here?',
-    a: "Yes. Schools book the Maggie O'Neill Centre for INSET days, staff CPD, SEND training and governor meetings, and Knowsley Education hosts days here too. Your school delivers the session, and we host it.",
+    a: "Yes. Schools book the Maggie O'Neill Centre for INSET days, staff CPD, SEND training and governor meetings. Knowsley Education hosts days here too. Your school runs the session. We host it.",
   },
   {
     q: 'Do you invoice, and do you take purchase orders?',
-    a: `Yes. The Maggie O'Neill Centre invoices your council, school or organisation, and PO numbers are welcome. ${larger.paymentMethods.split('. ')[0]}.`,
+    a: `Yes. Maggie O'Neill Centre invoices your council, school or organisation. PO numbers are welcome. ${larger.paymentMethods.split('. ')[0]}.`,
   },
   {
     q: 'How much does a training room cost?',
-    a: `Training rooms at the Maggie O'Neill Centre cost from ${formatPrice(hourFrom)} an hour or ${formatPrice(trainingDayFrom)} a day, with on-site hosts, the screen, tea and coffee, and free parking included.`,
+    a: `Training rooms at the Maggie O'Neill Centre cost from ${formatPrice(hourFrom)} an hour or ${formatPrice(trainingDayFrom)} a day. That includes on-site hosts, the screen, tea and coffee, and free parking.`,
   },
   {
     q: 'How many people can we bring?',
@@ -72,11 +72,11 @@ const faqs = [
   },
   {
     q: 'What happens if we need to cancel?',
-    a: `${standard.definition} ${standard.points[0].split(' Business days')[0]} Larger bookings and courses have their own terms, set out in the booking terms.`,
+    a: `${standard.definition} ${standard.points[0].split(' Business days')[0]} Larger bookings and courses have their own terms. You'll find them in the booking terms.`,
   },
   {
     q: 'Is there parking?',
-    a: `Yes. The Maggie O'Neill Centre has a free ${parking.spaces}-space car park on site, ${parking.motorway}.`,
+    a: `Yes. There's a free ${parking.spaces}-space car park on site at the Maggie O'Neill Centre, ${parking.motorway}.`,
   },
   {
     q: 'Is the venue accessible?',
@@ -121,13 +121,13 @@ const schema = [
 
   <Hero
     title="Train in the borough, and the spend stays local."
-    lede="Knowsley Council, Livv Housing and local schools train here, a few minutes from where their teams work. Every booking funds Maggie's Meals, so your training budget does good in the same community you serve."
+    lede="Knowsley Council, Livv Housing and local schools train here. It's a few minutes from where their teams work. Every booking funds Maggie's Meals. So your training budget does good in the same community you serve."
     image={114}
     primary={{ label: 'Get the social value statement', href: '/social-value/#statement' }}
     secondary={{ label: 'See the rooms', href: '#rooms' }}
   />
 
-  <ClientLogos heading="Public sector organisations that use the Maggie O'Neill Centre" logos={[...publicLogos, ...schoolLogos]} />
+  <ClientLogos heading="Public sector teams who use the Maggie O'Neill Centre" logos={[...publicLogos, ...schoolLogos]} />
 
   <KeyFacts heading="Your public sector training venue, in a few lines" intro={intro} facts={keyFacts} />
   <p class="container updated">Last updated: October 2026</p>
@@ -138,8 +138,8 @@ const schema = [
         <span class="eyebrow">Social value</span>
         <h2 id="value-heading">How does booking here add social value?</h2>
         <p>
-          The Maggie O'Neill Centre is a registered charity (no. {site.charityNumber}) in Knowsley. What you pay for the room funds Maggie's Meals
-          and community support in the borough, so your training budget stays local.
+          Maggie O'Neill Centre is a registered charity (no. {site.charityNumber}) in Knowsley. What you pay for the room funds Maggie's Meals
+          and community support in the borough. So your training budget stays local.
         </p>
       </div>
       <div>
@@ -167,7 +167,7 @@ const schema = [
           <li>Staff CPD and SEND training.</li>
           <li>Governor meetings.</li>
           <li>Days hosted by Knowsley Education.</li>
-          <li>Free parking for every member of staff, and the room set before anyone arrives.</li>
+          <li>Free parking for all your staff. The room is set before anyone arrives.</li>
         </ul>
       </div>
       <div class="media">
@@ -179,7 +179,7 @@ const schema = [
   <div id="rooms">
     <RoomCards
       heading="Which rooms can public sector teams hire?"
-      intro="Every room is hosted and set to your layout. Meeting and training rooms have a screen with Mac and PC wireless casting and HDMI, and the Auditorium has a stage, sound system and technician-run AV. Prices include everything on the Hosted Day list."
+      intro="Every room is hosted and set to your layout. Meeting and training rooms have a screen with Mac and PC wireless casting and HDMI. The Auditorium has a stage, a sound system, and a technician to run the screens and sound. Prices include everything on the Hosted Day list."
       order={['auditorium', 'summit', 'forum', 'community-room', 'foundry', 'grove', 'hub']}
     />
   </div>
@@ -191,7 +191,7 @@ const schema = [
       <div class="section-head">
         <span class="eyebrow">Case study</span>
         <h2 id="livv-heading">How does Livv Housing Group use the Maggie O'Neill Centre?</h2>
-        <p>For over 14 years: leadership training, department meetings, company-wide programmes and the overflow when their own rooms are full.</p>
+        <p>Livv has trained here for over 14 years. They use us for leadership training, department meetings and company-wide programmes. They also come here when their own rooms are full.</p>
       </div>
       <CaseCard study={caseStudies.find((c) => c.slug === 'livv-housing-group')!} />
     </div>
