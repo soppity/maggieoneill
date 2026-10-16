@@ -24,17 +24,17 @@ const ways = [
   },
   {
     title: 'WhatsApp or text',
-    text: 'Handy if you\'re on the move. Send us your dates and numbers and we\'ll come back to you.',
+    text: 'Handy if you\'re on the move. Send us your dates and numbers. We\'ll get back to you.',
     link: { label: contact.text, href: contact.whatsappHref, track: 'whatsapp_click' },
   },
   {
     title: 'Email',
-    text: 'For anything that needs a bit more detail, like a quote, an invoice or a long list of questions.',
+    text: 'For things that need more detail. Like a quote, an invoice or a long list of questions.',
     link: { label: contact.email ?? '', href: `mailto:${contact.email}`, track: 'email_click' },
   },
   {
     title: 'Pop in',
-    text: `We're at ${address.oneLine}, with free parking outside. Come and have a look round.`,
+    text: `We're at ${address.oneLine}. Parking outside is free. Come and have a look round.`,
     link: { label: 'Plan your visit', href: '/visit/', track: undefined },
   },
 ];
@@ -42,7 +42,7 @@ const ways = [
 const faqs = [
   {
     q: "How quickly will the Maggie O'Neill Centre reply?",
-    a: 'The same working day. Patrick or Tania will get back to you, whether you call, message, email or fill in the form.',
+    a: 'The same working day. Patrick or Tania will get back to you. It doesn\'t matter if you call, message, email or fill in the form.',
   },
   {
     q: "What are the Maggie O'Neill Centre's opening hours?",
@@ -54,7 +54,7 @@ const faqs = [
   },
   {
     q: 'Can I look round before I book?',
-    a: `We insist! Call ${contact.phone} or email ${contact.email} and we'll find a time that suits you.`,
+    a: `We insist! Call ${contact.phone} or email ${contact.email}. We'll find a time that suits you.`,
   },
 ];
 
@@ -72,7 +72,7 @@ const schema = [
   <Hero
     title="Contact the Maggie O'Neill Centre"
     tagline="Talk to a person."
-    lede="Patrick or Tania will reply the same working day. Call, message, email or fill in the form, whichever suits you."
+    lede="Patrick or Tania will reply the same working day. Call, message, email or fill in the form. Whatever suits you."
     image={184}
     primary={{ label: `Call ${contact.phone}`, href: contact.phoneHref, track: 'phone_click' }}
     secondary={{ label: 'Send an enquiry', href: '#enquire' }}

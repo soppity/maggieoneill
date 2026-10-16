@@ -21,31 +21,31 @@ const description =
   "Every booking at the Maggie O'Neill Centre funds Maggie's Meals and community support in Knowsley. A social value statement ready for your procurement report.";
 
 const community = [
-  { title: 'Free space for local groups', text: 'Hundreds of hours of free space given to hyper-local community groups every year.', wide: true },
+  { title: 'Free space for local groups', text: 'Every year we give hundreds of hours of free space to hyper-local community groups.', wide: true },
   { title: "Maggie's Meals", text: `Our social supermarket, open ${maggiesMeals.schedule.charAt(0).toLowerCase()}${maggiesMeals.schedule.slice(1)}. ${lastYear.mealsAccessed} people used it in the last year.` },
   { title: 'Community coffee mornings', text: 'An open door and a hot drink for anyone who wants company.' },
-  { title: 'Community clean-ups', text: 'Clean-ups around Huyton, looking after the area we share.' },
-  { title: 'Church gatherings and groups', text: "Our church gatherings, small groups and men's and women's groups are open for everyone to come along and enjoy. Many people find a real sense of community and belonging here, even if they don't share our faith." },
+  { title: 'Community clean-ups', text: 'We clean up around Huyton and look after the area we share.' },
+  { title: 'Church gatherings and groups', text: "Our church gatherings, small groups and men's and women's groups are open to everyone. Come along and enjoy them. Many people feel at home and feel they belong here, even if they don't share our faith." },
 ];
 
 // Owner, Oct 2026: meals, hospital visits and moral support are for people connected to the church. Described as care for the
 // church family, without "only" or "members". Extended to others as volunteer capacity allows. Gatherings, groups, coffee mornings and clean-ups are open to all.
 const churchFamily = [
-  { title: 'Meals when life is hard', text: 'Home-cooked meals for people who are unwell, going through a hard time mentally, emotionally or financially, or who have just had a baby.' },
+  { title: 'Meals when life is hard', text: 'Home-cooked meals for people who are unwell or have just had a baby. Also for people going through a hard time mentally, emotionally or with money.' },
   { title: 'Hospital visits', text: 'We visit people in hospital, so nobody goes through it alone.' },
-  { title: 'Moral support', text: 'A listening ear and someone alongside you when life gets difficult.' },
+  { title: 'Moral support', text: 'Someone to listen and stand by you when life gets hard.' },
 ];
 
-const statement = `The Maggie O'Neill Centre is a registered charity (no. ${site.charityNumber}) that has served Huyton and Knowsley for over ${trackRecord.yearsServing} years. During the Covid lockdowns, its staff and volunteers delivered over ${trackRecord.covidParcels} food parcels. Income from room hire and virtual offices funds the charity's community work in the borough, including Maggie's Meals, a weekly social supermarket used by ${lastYear.mealsAccessed} people in the last year; hundreds of hours of free space given to hyper-local community groups every year; community coffee mornings; community clean-ups around Huyton; church gatherings, small groups and men's and women's groups that are open to everyone; and ${allNations.name}, an annual summer celebration where ${allNations.nationalities} nationalities share food and traditional dress from home. It also funds the charity's care for its church family, including home-cooked meals for people who are unwell, struggling or have just had a baby, hospital visits and moral support, extended to others in the community as volunteer capacity allows. Booking the Maggie O'Neill Centre keeps spend in Knowsley and supports health, wellbeing and food security in the local community.`;
+const statement = `The Maggie O'Neill Centre is a registered charity (no. ${site.charityNumber}). It has served Huyton and Knowsley for over ${trackRecord.yearsServing} years. During the Covid lockdowns, its staff and volunteers delivered over ${trackRecord.covidParcels} food parcels. Money from room hire and virtual offices pays for the charity's community work in the borough. This includes Maggie's Meals, a weekly social supermarket. ${lastYear.mealsAccessed} people used it in the last year. The charity gives hundreds of hours of free space to hyper-local community groups every year. It runs community coffee mornings and community clean-ups around Huyton. Its church gatherings, small groups and men's and women's groups are open to everyone. It also holds ${allNations.name}, a summer celebration each year. People from ${allNations.nationalities} nationalities share food and traditional dress from home. The money also pays for the charity's care for its church family. This includes home-cooked meals for people who are unwell, struggling or have just had a baby. It also includes hospital visits and moral support. When volunteers have time, this care reaches others in the community too. Booking the Maggie O'Neill Centre keeps spend in Knowsley. It supports health, wellbeing and food security in the local community.`;
 
 const faqs = [
   {
     q: "How does booking the Maggie O'Neill Centre add social value?",
-    a: "The Maggie O'Neill Centre is a registered charity in Knowsley. What you pay for room hire funds Maggie's Meals and the charity's community support in the borough, so your spend stays local and does good.",
+    a: "The Maggie O'Neill Centre is a registered charity in Knowsley. What you pay for room hire funds Maggie's Meals and our community support in the borough. So your spend stays local and does good.",
   },
   {
     q: 'Can we use your social value statement in our procurement report?',
-    a: `Yes. The social value statement on this page is written to be copied into a procurement or social value report. Call ${contact.phone} or email ${contact.email} with any questions.`,
+    a: `Yes. The social value statement on this page is written for you to copy. Paste it into a procurement or social value report. Call ${contact.phone} or email ${contact.email} with any questions.`,
   },
   {
     q: "Is the Maggie O'Neill Centre a registered charity?",
@@ -53,15 +53,15 @@ const faqs = [
   },
   {
     q: "How long has the Maggie O'Neill Centre been serving Knowsley?",
-    a: `The charity has served Huyton and Knowsley for over ${trackRecord.yearsServing} years. ${trackRecord.openedBy} officially opened the Maggie O'Neill Centre building in ${trackRecord.openedYear}, and during the Covid lockdowns its staff and volunteers delivered over ${trackRecord.covidParcels} food parcels.`,
+    a: `The charity has served Huyton and Knowsley for over ${trackRecord.yearsServing} years. ${trackRecord.openedBy} officially opened the Maggie O'Neill Centre building in ${trackRecord.openedYear}. During the Covid lockdowns, its staff and volunteers delivered over ${trackRecord.covidParcels} food parcels.`,
   },
   {
     q: "What is Maggie's Meals?",
-    a: `Maggie's Meals is the charity's social supermarket at the Maggie O'Neill Centre, open ${maggiesMeals.schedule.charAt(0).toLowerCase()}${maggiesMeals.schedule.slice(1)}. ${lastYear.mealsAccessed} people accessed it in the last year.`,
+    a: `Maggie's Meals is the charity's social supermarket at the Maggie O'Neill Centre. It's open ${maggiesMeals.schedule.charAt(0).toLowerCase()}${maggiesMeals.schedule.slice(1)}. ${lastYear.mealsAccessed} people used it in the last year.`,
   },
   {
     q: 'Do you invoice, and do you take purchase orders?',
-    a: `Yes. The Maggie O'Neill Centre invoices your organisation, and PO numbers are welcome. ${larger.paymentMethods.split('. ')[0]}.`,
+    a: `Yes. The Maggie O'Neill Centre sends an invoice to your organisation, and PO numbers are welcome. ${larger.paymentMethods.split('. ')[0]}.`,
   },
 ];
 
@@ -79,7 +79,7 @@ const schema = [
   <Hero
     title="Social value at the Maggie O'Neill Centre"
     tagline="Your booking does good a few streets away."
-    lede={`The Maggie O'Neill Centre is a registered charity (no. ${site.charityNumber}) that has served Huyton and Knowsley for over ${trackRecord.yearsServing} years. Every room booking and virtual office funds our community work in the borough.`}
+    lede={`The Maggie O'Neill Centre is a registered charity (no. ${site.charityNumber}). We've served Huyton and Knowsley for over ${trackRecord.yearsServing} years. Every room booking and virtual office pays for our community work in the borough.`}
     image={110}
     primary={{ label: 'Get the statement', href: '#statement' }}
     secondary={{ label: `Call ${contact.phone}`, href: contact.phoneHref }}
@@ -90,7 +90,7 @@ const schema = [
       <div class="section-head">
         <span class="eyebrow">What your booking funds</span>
         <h2 id="funds-heading">What does your booking pay for?</h2>
-        <p>Room hire and virtual office income keeps the charity's work going, week in, week out.</p>
+        <p>Money from room hire and virtual offices keeps the charity's work going, week in, week out.</p>
       </div>
       <h3 class="funds__group">Open to everyone</h3>
       <ul class="grid funds">
@@ -102,7 +102,7 @@ const schema = [
         ))}
       </ul>
       <h3 class="funds__group">Caring for our church family</h3>
-      <p class="funds__intro">The Maggie O'Neill Centre began as a church, and the new church is still on the property. When someone in our church family is unwell, going through a hard time or has a new baby, we're there for them. We extend meals, hospital visits and moral support to others in the community when our volunteers have the capacity. Everyone who helps is a volunteer, so we look after their time carefully.</p>
+      <p class="funds__intro">The Maggie O'Neill Centre began as a church. The new church is still on the site. Someone in our church family might be unwell, going through a hard time or have a new baby. When that happens, we're there for them. When our volunteers have time, we bring meals, hospital visits and moral support to others in the community too. Everyone who helps is a volunteer, so we look after their time carefully.</p>
       <ul class="grid funds funds--three">
         {churchFamily.map((f) => (
           <li class="card fund">
@@ -123,10 +123,10 @@ const schema = [
         </div>
         <div class="prose">
           <p>
-            {allNations.name} is an event held {allNations.when}. People from {allNations.nationalities} different nationalities take over the whole building,
-            cooking food from their country and wearing traditional dress.
+            {allNations.name} is an event held {allNations.when}. People from {allNations.nationalities} different nationalities fill the whole building.
+            They cook food from their country and wear traditional dress.
           </p>
-          <p>It's a wonderful time celebrating every culture and nation on earth, and discovering just how much unites us as people around the globe.</p>
+          <p>It's a wonderful time. We celebrate every culture and nation on earth. And we find out how much we all share as people.</p>
         </div>
       </div>
       <ul class="nations">
@@ -148,7 +148,7 @@ const schema = [
       <dl class="stats">
         <div><dt>rooms hired</dt><dd>{lastYear.roomsHired}</dd></div>
         <div><dt>businesses served</dt><dd>{lastYear.businessesServed}</dd></div>
-        <div><dt>people accessed Maggie's Meals</dt><dd>{lastYear.mealsAccessed}</dd></div>
+        <div><dt>people used Maggie's Meals</dt><dd>{lastYear.mealsAccessed}</dd></div>
         <div><dt>hours of free space given to hyper-local community groups</dt><dd>{lastYear.freeSpaceHours}</dd></div>
       </dl>
     </div>
@@ -178,7 +178,7 @@ const schema = [
         </div>
         <ul class="tick-list">
           <li>Registered charity in England and Wales, no. {site.charityNumber}.</li>
-          <li>Invoices to your organisation, with PO numbers welcome.</li>
+          <li>We invoice your organisation, and PO numbers are welcome.</li>
           <li>{larger.paymentMethods.split('. ')[0]}.</li>
           <li><span>Clear <a href={bookingTermsPath}>booking and cancellation terms</a>.</span></li>
           <li>{accessibility.accessLine}</li>
@@ -220,8 +220,8 @@ const schema = [
       <p>
         See our <a href="/services/training-rooms/council-training-venue/">council and public sector training</a>,
         {' '}<a href="/services/training-rooms/nhs-training-venue/">NHS training venue</a> and
-        {' '}<a href="/community/">Maggie's Meals and community</a> pages, or go back to
-        {' '}<a href="/services/training-rooms/">training room hire near Liverpool</a>.
+        {' '}<a href="/community/">Maggie's Meals and community</a> pages.
+        {' '}Or go back to <a href="/services/training-rooms/">training room hire near Liverpool</a>.
       </p>
     </div>
   </section>

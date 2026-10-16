@@ -22,7 +22,7 @@ export const site = {
   heroLine: 'Your hosts are on site, the room is ready and the kettle is on.',
   closer: "Every booking funds Maggie's Meals.",
   socialDescription:
-    "Maggie O'Neill Centre is a charity-run training, meeting and event venue in Huyton, near Liverpool, with free parking and hosts on site. Virtual offices from £20 a month.",
+    "Maggie O'Neill Centre is a charity-run training, meeting and event venue in Huyton, near Liverpool. Free parking and hosts on site. Virtual offices from £20 a month.",
   charityNumber: '1215599',
   charityRegister: 'registered in England and Wales',
 };
@@ -139,22 +139,22 @@ export const accessibility = {
   // Owner, Oct 2026: three accessible bays. No lift, so first-floor rooms are stairs only.
   // Ground floor: Auditorium, Community Room, Forum, Grove and Pod (Room.floor). First floor: Summit, Foundry, Hub.
   accessibleBays: 3,
-  noLift: "We don't have a lift to the first-floor rooms, but the Auditorium, Community Room, Forum, Grove and Pod are all on the ground floor.",
+  noLift: "We don't have a lift to the first-floor rooms. But the Auditorium, Community Room, Forum, Grove and Pod are all on the ground floor.",
   // For key-fact rows on room and sector pages.
   accessLine: 'Step-free on the ground floor, with accessible parking and an accessible toilet. No lift to the first floor.',
   // Word for word, from docs/content/contact-forms-booking.md.
   stepFree:
     'Step-free access. Accessible parking spaces right outside the Auditorium. The Auditorium side door can be opened to shorten the route.',
   toilet:
-    'Accessible toilet on the same floor as the Auditorium, a short walk away next to the kitchen. It has grab rails, a fold-down rail and an emergency pull cord.',
+    "Accessible toilet on the same floor as the Auditorium. It's a short walk away, next to the kitchen. It has grab rails, a fold-down rail and an emergency pull cord.",
   // General wording for pages other than Oliver McGowan (owner, Oct 2026). The Auditorium detail above is for OM pages.
   groundFloor: 'Fully accessible on the ground floor, with step-free access and accessible parking.',
   toiletGeneral: 'An accessible toilet with grab rails, a fold-down rail and an emergency pull cord.',
-  quietRoom: 'Quiet room off the Auditorium foyer, with acoustic insulation and dim lights, signed on the door.',
+  quietRoom: 'Quiet room off the Auditorium foyer. It has acoustic insulation and dim lights, and a sign on the door.',
   lighting: 'Adjustable lighting in the Auditorium.',
 };
 // One answer for "Is the Maggie O'Neill Centre accessible?" wherever it appears, so the caveat is never missed.
-export const accessibilityFaq = `Yes, on the ground floor. There's step-free access, ${accessibility.accessibleBays} accessible parking bays and ${accessibility.toiletGeneral.charAt(0).toLowerCase()}${accessibility.toiletGeneral.slice(1, -1)}. ${accessibility.noLift} Tell us about any accessibility needs when you book and we'll put you in a ground-floor room.`;
+export const accessibilityFaq = `Yes, on the ground floor. There's step-free access and ${accessibility.accessibleBays} accessible parking bays. There's also ${accessibility.toiletGeneral.charAt(0).toLowerCase()}${accessibility.toiletGeneral.slice(1, -1)}. ${accessibility.noLift} Tell us about any access needs when you book. We'll put you in a ground-floor room.`;
 
 
 // The team, from the owner, Oct 2026. Short lines for the homepage, bios for the About page.
@@ -172,10 +172,10 @@ export const hosts: TeamMember[] = [
     name: 'Patrick',
     role: 'Director',
     image: 179,
-    line: 'Patrick has run the centre for over 9 years, and is on site most days.',
+    line: 'Patrick has run the centre for over 9 years. He’s on site most days.',
     bio: [
-      'Patrick has run the Maggie O’Neill Centre for over 9 years. When he started, the centre couldn’t afford to pay even minimum wage, so he lived in the building.',
-      'What began as a projector on a table is now 10 private offices, 7 meeting and training rooms, an Auditorium and over 40 virtual office clients.',
+      'Patrick has run the Maggie O’Neill Centre for over 9 years. When he started, the centre couldn’t even pay minimum wage. So he lived in the building.',
+      'It started with a projector on a table. Now there are 10 private offices, 7 meeting and training rooms, an Auditorium and over 40 virtual office clients.',
     ],
   },
   {
@@ -184,8 +184,8 @@ export const hosts: TeamMember[] = [
     image: 137,
     line: 'Tania runs the day to day: your booking, your event, and making sure you’re looked after.',
     bio: [
-      'As Community Manager, Tania runs most of the day to day at the Maggie O’Neill Centre. She coordinates bookings and events, and makes sure everyone is looked after while they’re here.',
-      'She lives in the middle of nowhere in Wales, and loves early mornings looking out over the Welsh hills to the sound of bleating sheep.',
+      'As Community Manager, Tania runs most of the day to day at the Maggie O’Neill Centre. She sorts out bookings and events. She makes sure everyone is looked after while they’re here.',
+      'She lives in the middle of nowhere in Wales. She loves early mornings, looking out over the Welsh hills to the sound of bleating sheep.',
     ],
   },
 ];
@@ -196,8 +196,8 @@ export const volunteers: TeamMember[] = [
     image: 177,
     line: 'Liam helps run Maggie’s Meals and looks after the tech at bigger events.',
     bio: [
-      'Professionally, Liam is a web developer. He works flexibly, which means he can volunteer around the Centre and the church.',
-      'Liam helps to run Maggie’s Meals and provides AV and tech support for our bigger events. He’s also an all-round biscuit fiend.',
+      'Liam is a web developer by trade. He works flexible hours, so he can volunteer around the Centre and the church.',
+      'Liam helps run Maggie’s Meals. He also looks after the screens, sound and tech at our bigger events. And he’s an all-round biscuit fiend.',
     ],
   },
   {
@@ -205,7 +205,7 @@ export const volunteers: TeamMember[] = [
     role: 'Volunteer',
     image: 178,
     line: 'Bill helps run Maggie’s Meals and lends a hand in the car park on busy days.',
-    bio: ['Bill helps to run Maggie’s Meals and lends a hand in the car park on busier days. He always has a dad joke ready.'],
+    bio: ['Bill helps run Maggie’s Meals. He lends a hand in the car park on busier days. He always has a dad joke ready.'],
   },
 ];
 
@@ -257,25 +257,25 @@ export const rooms: Room[] = [
 
 // The Hosted Day: what every room booking includes (Brand Strategy, The Hosted Day).
 export const layoutTriage =
-  "Tell us how many people are coming and what the day involves, and we'll recommend the room and layout that works, then set it up before you arrive.";
+  "Tell us how many people are coming and what the day involves. Then we'll pick the right room and layout. We'll set it up before you arrive.";
 
 export const layouts: { key: Layout; name: string; bestFor: string }[] = [
-  { key: 'uShape', name: 'U-shape', bestFor: 'Discussion-led training, where everyone can see each other and the trainer can step inside the U.' },
-  { key: 'boardroom', name: 'Boardroom', bestFor: 'Meetings, interviews and small groups working around one table.' },
-  { key: 'classroom', name: 'Classroom', bestFor: 'Courses with note-taking or laptops, with everyone facing the front.' },
-  { key: 'cabaret', name: 'Cabaret', bestFor: 'Group work at round tables, with every seat facing the screen.' },
-  { key: 'banquet', name: 'Banquet', bestFor: 'Lunches, celebrations and networking around full round tables.' },
-  { key: 'theatre', name: 'Theatre', bestFor: 'Talks and briefings, with rows of chairs facing the front and no tables.' },
+  { key: 'uShape', name: 'U-shape', bestFor: 'Training with lots of talking. Everyone can see each other, and the trainer can step inside the U.' },
+  { key: 'boardroom', name: 'Boardroom', bestFor: 'Meetings, interviews and small groups around one table.' },
+  { key: 'classroom', name: 'Classroom', bestFor: 'Courses with notes or laptops. Everyone faces the front.' },
+  { key: 'cabaret', name: 'Cabaret', bestFor: 'Group work at round tables. Every seat faces the screen.' },
+  { key: 'banquet', name: 'Banquet', bestFor: 'Lunches and networking around full round tables.' },
+  { key: 'theatre', name: 'Theatre', bestFor: 'Talks and briefings. Rows of chairs face the front, with no tables.' },
 ];
 
 export const hostedDay = [
   'Room set to your layout before you arrive',
   'On-site hosts, all day',
-  'Tea and coffee in the room, all day',
+  'Self-serve tea and coffee in the room, all day',
   'Screen with Mac and PC wireless casting and HDMI cables',
   '1Gb fibre WiFi throughout the building',
   'Flipchart and pens',
-  'Free parking for every delegate',
+  'Free parking for everyone in your group',
   'A mid-morning check-in with your trainer',
   'Kitchen and fridge access',
   'Room notes kept for next time',
@@ -284,11 +284,11 @@ export const hostedDay = [
 // The Hosted Day for events and Auditorium bookings (owner, Oct 2026). Only on the events page and when talking
 // about events or the Auditorium; every other page uses hostedDay above.
 export const hostedEvent = [
-  'Your event talked through and prepped for the day',
-  'Hosts checking on your event all day, so you have everything you need',
+  'We talk your event through and get it ready for the day',
+  'Hosts check on your event all day, so you have what you need',
   'Tea and coffee included, in or near every space you book',
   'Flipcharts if you need them',
-  'AV in the Auditorium set up and run by a technician (£)',
+  'Screens and sound in the Auditorium, set up and run by a technician (£)',
   'Flatscreens with wireless casting in every breakout and networking space',
   '1Gb fibre WiFi throughout the building',
   'Free parking, with an overflow car park if it fills up',
@@ -354,23 +354,23 @@ export const virtualOffice = {
     name: "Director's Cover",
     price: 10,
     summary:
-      "Your plan replaces your home as your company's registered office. Director's Cover replaces it as your director's service address too, so new filings show our address in both places your home used to appear.",
+      "Your plan replaces your home as your company's registered office. Director's Cover replaces it as your director's service address too. So new filings show our address in both places your home used to be.",
     short: 'Keep your home off Companies House in both places',
   },
   terms: 'No lock-in. Cancel any time with one month\'s notice.',
   // Owner, Oct 2026: the centre is a charity and not VAT registered, so no VAT is added to any virtual office price.
-  vat: 'No VAT is added: the centre is a charity and is not VAT registered, so the price you see is the price you pay.',
+  vat: 'No VAT is added. The centre is a charity and is not VAT registered. So the price you see is the price you pay.',
   // Owner, Oct 2026: the differentiator against the big providers. Small businesses outside the city centre pay for
   // lounges, city addresses and building access they never use.
   whyNotBigName: [
-    'With the big providers, part of the price is access to lounges and buildings in other cities. A business in Knowsley, St Helens or Warrington never uses them, but pays for them every month.',
-    'A city-centre address does not help a local business be found locally, and when a client wants to meet, it means paying to park. Here, parking is free and the M57 is 30 seconds away.',
-    'You get a real building with hosts in it: people who know your name, tell you when your post arrives, and have a meeting room ready down the corridor.',
+    'With the big providers, part of the price pays for lounges and buildings in other cities. A business in Knowsley, St Helens or Warrington never uses them. But it pays for them every month.',
+    "A city-centre address doesn't help a local business get found locally. And when a client wants to meet, you pay to park. Here, parking is free and the M57 is 30 seconds away.",
+    "You get a real building with hosts in it. They know your name and tell you when your post arrives. And there's a meeting room ready down the corridor.",
   ],
   // Owner, Oct 2026: never name one person as the post handler. Post is handled by the team at reception.
   signUp: [
     { title: 'Tell us the basics', text: 'Your name, email, phone and the plan you want. It takes about a minute.' },
-    { title: 'Complete your AML check', text: 'We send a secure form for the anti-money laundering (AML) checks the law requires for registered office services.' },
+    { title: 'Complete your AML check', text: 'We send you a secure form for the anti-money laundering (AML) checks. The law needs these for registered office services.' },
     { title: 'Get your address', text: "You get your new address and access to your mailbox app. You're live as soon as the checks are done." },
   ],
   // An AI voice agent answers, 24/7. Always call it "call answering", never "AI receptionist".
@@ -379,20 +379,20 @@ export const virtualOffice = {
     price: 39,
     perResponse: '2p',
     summary:
-      'A human-like AI voice agent answers your calls 24/7, takes the message, and emails you a summary, transcript and recording. £39 a month plus 2p per AI response, with no charge per call.',
+      'A human-like AI voice agent answers your calls 24/7 and takes the message. Then it emails you a summary, transcript and recording. £39 a month plus 2p per AI response, with no charge per call.',
     steps: [
       { title: 'Your call is answered', text: 'A human-like AI voice agent picks up every call, day or night, so nobody hits voicemail.' },
       { title: 'The message is taken', text: 'Who called, why, and how to get back to them.' },
-      { title: 'Transferred or messaged', text: 'With your availability on, the call can be transferred to you. With it off, the AI takes the message.' },
+      { title: 'Transferred or messaged', text: 'With your availability on, the call can be put through to you. With it off, the AI takes the message.' },
       { title: 'Emailed to you', text: 'A summary, a full transcript and a recording of the call arrive by email.' },
-      { title: 'Kept in your CRM', text: 'Every call is stored in your CRM account, so you have a record of who rang and what they needed.' },
+      { title: 'Kept in your CRM', text: 'Every call is stored in your CRM account. So you have a record of who rang and what they needed.' },
     ],
   },
 
   areasServed: ['Liverpool', 'Knowsley', 'St Helens', 'Sefton', 'Wirral', 'Halton', 'Warrington', 'West Lancashire'],
   // Owner, Oct 2026: there are clients across the UK who chose a charity for their registered address.
   national:
-    "We also have clients across the UK who chose a charity for their registered address, instead of an online service or a profit-making company. On the Virtual Office plan your post is scanned, so you don't need to be local, and every month's fee helps fund Maggie's Meals.",
+    "We also have clients across the UK. They chose a charity for their registered address, not an online service or a profit-making company. On the Virtual Office plan your post is scanned, so you don't need to be local. And every month's fee helps fund Maggie's Meals.",
 };
 
 // Sector pages under the training rooms hub, with their first sentence (Blueprint 03 · Messaging).
@@ -405,13 +405,13 @@ export const sectorPages = [
 ];
 
 // Room hire is by the hour or the day. There are no half-day rates (owner, Oct 2026).
-export const halfDay = 'There are no half-day rates. Rooms are hired by the hour or by the day, so a shorter session is charged at the hourly rate.';
+export const halfDay = 'There are no half-day rates. Rooms are hired by the hour or by the day. So a shorter session is charged at the hourly rate.';
 
 // Catering is outsourced: the booker deals with Superior Catering directly (owner, Oct 2026).
 export const catering = {
   partner: 'Superior Catering',
   summary:
-    "Catering is provided by our partner, Superior Catering. You order and pay for it with them directly, and we'll put you in touch when you book.",
+    "Catering comes from our partner, Superior Catering. You order and pay for it with them directly. We'll put you in touch when you book.",
 };
 
 // Who the training rooms suit (PROJECT_NOTES.md).
@@ -499,5 +499,5 @@ export const operatorLicence = {
   councilFeeTo: '1,920',
   decisionWeeks: 6,
   exitClause:
-    "If Knowsley Council refuses your licence application or revokes your issued licence, you're released from the lease. It's built into the agreement.",
+    "If Knowsley Council turns down your licence application, you're released from the lease. The same goes if it revokes your licence after it's issued. It's built into the agreement.",
 };

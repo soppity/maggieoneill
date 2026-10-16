@@ -18,8 +18,8 @@ const step = full.price - addressOnly.price;
       <span class="eyebrow">Plans and prices</span>
       <h2 id="plans-heading">{heading}</h2>
       <p>
-        A virtual office at the Maggie O'Neill Centre starts at {formatPrice(virtualOffice.from)} a month. Same address, same building, whichever
-        plan you pick. {virtualOffice.vat} {virtualOffice.terms}
+        A virtual office at the Maggie O'Neill Centre starts at {formatPrice(virtualOffice.from)} a month. You get the same address and the same building,
+        whichever plan you pick. {virtualOffice.vat} {virtualOffice.terms}
       </p>
     </div>
 
@@ -28,7 +28,7 @@ const step = full.price - addressOnly.price;
       <span class="dc-toggle__switch" aria-hidden="true"></span>
       <span class="dc-toggle__text">
         <strong>Add {dc.name} for <span class="nowrap">+{formatPrice(dc.price)} a month</span></strong>
-        <span>{dc.short}: your registered office and your director's service address.</span>
+        <span>{dc.short}. That's your registered office and your director's service address.</span>
       </span>
     </label>
 
@@ -67,9 +67,9 @@ const step = full.price - addressOnly.price;
     </div>
 
     <p class="plans__note">
-      {dc.name} adds {formatPrice(dc.price)} a month to either plan: {formatPrice(addressOnly.price)} becomes {formatPrice(withCover(addressOnly))}, and
+      {dc.name} adds {formatPrice(dc.price)} a month to either plan. So {formatPrice(addressOnly.price)} becomes {formatPrice(withCover(addressOnly))}, and
       {' '}{formatPrice(full.price)} becomes {formatPrice(withCover(full))}. If you move up to {full.name} later, your cover moves with you. Two free
-      meeting room hours a month are worth more than the {formatPrice(step)} between the plans. Add
+      meeting room hours a month are worth more than the {formatPrice(step)} between the plans. You can also add
       {' '}<a href="/services/virtual-office/call-answering/">call answering for {formatPrice(virtualOffice.callAnswering.price)} a month</a> to either plan.
     </p>
   </div>

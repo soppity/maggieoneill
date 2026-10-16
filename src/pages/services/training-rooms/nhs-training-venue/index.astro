@@ -31,43 +31,43 @@ const title = "NHS Training Venue near Liverpool | Maggie O'Neill Centre";
 const description =
   "Hosted training rooms for NHS trusts and PCNs in Huyton. Clinical and admin training days, monthly team meetings and free parking. Maggie O'Neill Centre.";
 
-const intro = `NHS teams from Alder Hey Children's Hospital and Primary Care Networks train and meet at the Maggie O'Neill Centre in Huyton, near Liverpool, ${parking.motorway}. Rooms are set before you arrive, hosts are on site all day, tea and coffee are served in the room, and parking is free for staff travelling in. Invoices and purchase orders work the way NHS finance teams need them to.`;
+const intro = `NHS teams from Alder Hey Children's Hospital and Primary Care Networks train and meet at the Maggie O'Neill Centre. We're in Huyton, near Liverpool, ${parking.motorway}. Your room is set before you arrive. Hosts are on site all day, and self-serve tea and coffee is in the room all day. Parking is free for staff travelling in. Invoices and purchase orders work the way NHS finance teams need.`;
 
 const keyFacts = [
   { term: 'Who uses it', detail: "Alder Hey Children's Hospital and Primary Care Networks." },
   { term: 'Sessions', detail: 'Clinical and admin training days, protected learning time and team meetings.' },
-  { term: 'The Auditorium', detail: `Up to ${auditorium.capacity.cabaret} cabaret or ${auditorium.capacity.theatre} theatre, popular with PCNs.` },
-  { term: 'Prices', detail: `From ${formatPrice(hourFrom)} an hour or ${formatPrice(trainingDayFrom)} a day, everything included.`, href: '/whats-included/', linkText: "See what's included" },
-  { term: 'Invoicing', detail: 'Invoices to your trust or PCN, with PO numbers welcome.' },
+  { term: 'The Auditorium', detail: `Up to ${auditorium.capacity.cabaret} cabaret or ${auditorium.capacity.theatre} theatre. It's popular with PCNs.` },
+  { term: 'Prices', detail: `From ${formatPrice(hourFrom)} an hour or ${formatPrice(trainingDayFrom)} a day. Everything is included.`, href: '/whats-included/', linkText: "See what's included" },
+  { term: 'Invoicing', detail: 'We invoice your trust or PCN. PO numbers are welcome.' },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
-  { term: 'Your hosts', detail: 'On site all day, looking after your team.' },
+  { term: 'Your hosts', detail: 'On site all day to look after your team.' },
   { term: 'Access', detail: accessibility.accessLine },
 ];
 
 const faqs = [
   {
     q: "Which NHS teams use the Maggie O'Neill Centre?",
-    a: "NHS teams from Alder Hey Children's Hospital and Primary Care Networks train and meet at the Maggie O'Neill Centre in Huyton, near Liverpool.",
+    a: "NHS teams from Alder Hey Children's Hospital and Primary Care Networks train and meet here. The Maggie O'Neill Centre is in Huyton, near Liverpool.",
   },
   {
     q: 'Can we run clinical training here?',
-    a: "Yes. NHS teams run clinical and admin training days at the Maggie O'Neill Centre. Your team delivers the training, and we host it.",
+    a: "Yes. NHS teams run clinical and admin training days at the Maggie O'Neill Centre. Your team runs the training. We host it.",
   },
   {
     q: 'Can we book a room for protected learning time?',
-    a: `Yes. Rooms can be booked by the hour, from ${formatPrice(hourFrom)} an hour, so a protected learning time session doesn't mean paying for a full day.`,
+    a: `Yes. You can book rooms by the hour, from ${formatPrice(hourFrom)} an hour. So you don't pay for a full day for a protected learning time session.`,
   },
   {
     q: 'Can we hold our monthly team meetings here?',
-    a: 'Yes. Ask us to hold regular dates, and we’ll set the room the same way each time.',
+    a: 'Yes. Ask us to hold your regular dates. We’ll set the room the same way each time.',
   },
   {
     q: 'Do you invoice, and do you take purchase orders?',
-    a: `Yes. The Maggie O'Neill Centre invoices your trust or PCN, and PO numbers are welcome. ${larger.paymentMethods.split('. ')[0]}.`,
+    a: `Yes. Maggie O'Neill Centre invoices your trust or PCN. PO numbers are welcome. ${larger.paymentMethods.split('. ')[0]}.`,
   },
   {
     q: 'How much does an NHS training room cost?',
-    a: `Training rooms at the Maggie O'Neill Centre cost from ${formatPrice(hourFrom)} an hour or ${formatPrice(trainingDayFrom)} a day, with on-site hosts, the screen, tea and coffee, and free parking included.`,
+    a: `Training rooms at the Maggie O'Neill Centre cost from ${formatPrice(hourFrom)} an hour or ${formatPrice(trainingDayFrom)} a day. That includes on-site hosts, the screen, tea and coffee, and free parking.`,
   },
   {
     q: 'How many people can we train at once?',
@@ -75,11 +75,11 @@ const faqs = [
   },
   {
     q: 'Is there parking for staff travelling in?',
-    a: `Yes. The Maggie O'Neill Centre has a free ${parking.spaces}-space car park on site, ${parking.motorway}.`,
+    a: `Yes. There's a free ${parking.spaces}-space car park on site at the Maggie O'Neill Centre, ${parking.motorway}.`,
   },
   {
     q: 'What happens if we need to cancel?',
-    a: `${standard.definition} ${standard.points[0].split(' Business days')[0]} Larger bookings and courses have their own terms, set out in the booking terms.`,
+    a: `${standard.definition} ${standard.points[0].split(' Business days')[0]} Larger bookings and courses have their own terms. You'll find them in the booking terms.`,
   },
   {
     q: 'Is the venue accessible?',
@@ -126,12 +126,12 @@ const schema = [
 
   <Hero
     title="Your clinical and admin teams, trained close to home."
-    lede="Your teams give so much every day. Here the room is set before they arrive, the tea is made and parking is free, and invoices and POs work the way your finance team needs. Alder Hey and Primary Care Network teams already train with us."
+    lede="Your teams give so much every day. Here the room is set before they arrive. The tea is made and parking is free. Invoices and POs work the way your finance team needs. Alder Hey and Primary Care Network teams already train with us."
     image={113}
     secondary={{ label: 'See the rooms', href: '#rooms' }}
   />
 
-  <ClientLogos heading="NHS and primary care organisations that use the Maggie O'Neill Centre" logos={nhsLogos} />
+  <ClientLogos heading="NHS and primary care teams who use the Maggie O'Neill Centre" logos={nhsLogos} />
 
   <KeyFacts heading="Your NHS training venue, in a few lines" intro={intro} facts={keyFacts} />
   <p class="container updated">Last updated: October 2026</p>
@@ -142,14 +142,14 @@ const schema = [
         <div class="section-head">
           <span class="eyebrow">What NHS teams need</span>
           <h2 id="needs-heading">What does an NHS team need from a training venue?</h2>
-          <p>A venue that's easy to justify: local, ready on time, accessible and simple to pay.</p>
+          <p>A venue that's easy to justify. It's local, ready on time, accessible and simple to pay.</p>
         </div>
         <ul class="tick-list">
-          <li>Invoices to your trust or PCN, with PO numbers welcome.</li>
-          <li>Hourly booking for protected learning time, or a full day for training.</li>
-          <li>Free parking for staff travelling in from across the area.</li>
+          <li>We invoice your trust or PCN. PO numbers are welcome.</li>
+          <li>Book by the hour for protected learning time, or a full day for training.</li>
+          <li>Free parking for staff coming in from across the area.</li>
           <li>{accessibility.accessLine}</li>
-          <li>The room set and the screen tested before your trainer arrives.</li>
+          <li>We set the room and test the screen before your trainer arrives.</li>
         </ul>
       </div>
       <div class="media">
@@ -167,12 +167,12 @@ const schema = [
         <div class="section-head">
           <span class="eyebrow">The Auditorium</span>
           <h2 id="auditorium-heading">Is there a room for a whole PCN?</h2>
-          <p>Yes. Primary Care Networks often book the Auditorium for training days and whole-network meetings.</p>
+          <p>Yes. Primary Care Networks often book the Auditorium. They use it for training days and whole-network meetings.</p>
         </div>
         <ul class="tick-list">
-          <li>Seats up to {auditorium.capacity.cabaret} cabaret style, so practices can sit together at tables, or up to {auditorium.capacity.theatre} theatre style.</li>
+          <li>It seats up to {auditorium.capacity.cabaret} cabaret style, so each practice can sit together at a table. Or up to {auditorium.capacity.theatre} theatre style.</li>
           <li>A stage, screen and lighting for talks, training and presentations.</li>
-          <li>From {formatPrice(auditorium.prices!.hourFrom!)} an hour, quoted for your session.</li>
+          <li>From {formatPrice(auditorium.prices!.hourFrom!)} an hour. We'll quote for your session.</li>
           <li>Tea and coffee in the room, and free parking for everyone attending.</li>
         </ul>
       </div>
@@ -181,7 +181,7 @@ const schema = [
 
   <RoomCards
     heading="Which rooms can NHS teams hire?"
-    intro="Every room is hosted and set to your layout. Meeting and training rooms have a screen with Mac and PC wireless casting and HDMI, and the Auditorium has a stage, sound system and technician-run AV. Prices include everything on the Hosted Day list."
+    intro="Every room is hosted and set to your layout. Meeting and training rooms have a screen with Mac and PC wireless casting and HDMI. The Auditorium has a stage, a sound system, and a technician to run the screens and sound. Prices include everything on the Hosted Day list."
     order={['auditorium', 'summit', 'forum', 'community-room', 'foundry', 'grove', 'hub']}
   />
 
@@ -207,8 +207,8 @@ const schema = [
       </div>
       <div class="prose">
         <p>
-          Yes. The Maggie O'Neill Centre is a registered charity (no. {site.charityNumber}). What you pay for the room funds Maggie's Meals and
-          community support in Knowsley, so your training budget does some good locally too.
+          Yes. Maggie O'Neill Centre is a registered charity (no. {site.charityNumber}). What you pay for the room funds Maggie's Meals and
+          community support in Knowsley. So your training budget does some good locally too.
         </p>
         <p><a href="/social-value/">Social value at the Maggie O'Neill Centre</a></p>
       </div>
@@ -240,10 +240,10 @@ const schema = [
   .two-col .section-head { margin-bottom: 24px; }
   .media { margin: 0; }
   .media :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
-  .updated { margin-top: -40px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
+  .updated { margin-top: 0; padding-top: 16px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
   .stories { display: grid; gap: 16px; }
   .story { padding: 24px 28px; display: flex; flex-direction: column; gap: 8px; }
   .prose { display: flex; flex-direction: column; gap: 16px; }
   .more-links { padding: 40px 0; }
-  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } .updated { margin-top: -24px; } }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } .updated { margin-top: 0; padding-top: 16px; } }
 </style>

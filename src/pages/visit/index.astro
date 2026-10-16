@@ -25,34 +25,34 @@ const routes = {
     {
       from: 'From Manchester, Warrington and the east',
       time: 'about 50 minutes from Manchester',
-      text: 'Take the M62 west to junction 6 (Tarbock Island). Then take the M57 north towards Southport and leave at junction 3.',
+      text: 'Take the M62 west to junction 6 (Tarbock Island). Then take the M57 north towards Southport. Leave at junction 3.',
     },
     {
       from: 'From Preston, Wigan, Southport and the north',
       time: 'about 50 minutes from Preston',
-      text: 'Take the M6 south to junction 26, then the M58 towards Liverpool. At the end of the M58, join the M57 south and leave at junction 3.',
+      text: 'Take the M6 south to junction 26. Then take the M58 towards Liverpool. At the end of the M58, join the M57 south. Leave at junction 3.',
     },
     {
       from: 'From Chester, North Wales and Runcorn',
       time: 'about 40 minutes from Chester',
-      text: "Take the M56 east to junction 12, then follow signs across the Mersey Gateway Bridge. It's a toll bridge, so pay online by midnight the next day. Follow the A562 onto the Knowsley Expressway (A5300). It runs straight onto the M57 north, and you leave at junction 3.",
+      text: "Take the M56 east to junction 12. Then follow signs across the Mersey Gateway Bridge. It's a toll bridge, so pay online by midnight the next day. Follow the A562 onto the Knowsley Expressway (A5300). It runs straight onto the M57 north. Leave at junction 3.",
     },
     {
       from: 'From the Midlands and the south',
       time: '',
-      text: 'Take the M6 north to junction 21A and the M62 west to junction 6. Then follow the Manchester directions above.',
+      text: 'Take the M6 north to junction 21A. Then take the M62 west to junction 6. From there, follow the Manchester directions above.',
     },
     {
       from: 'From Liverpool city centre',
       time: '20 to 30 minutes, about 7.5 miles',
-      text: "Head east on the A57, which starts as Prescot Road and becomes East Prescot Road, through Old Swan and Knotty Ash. Stay on it past Page Moss, where it becomes Liverpool Road. We're on the left just after Seth Powell Way.",
+      text: "Head east on the A57. It starts as Prescot Road, then becomes East Prescot Road. It goes through Old Swan and Knotty Ash. Stay on it past Page Moss, where it becomes Liverpool Road. We're on the left, just after Seth Powell Way.",
     },
   ],
   bus: [
     {
       from: 'From Liverpool city centre',
       time: 'about 45 minutes',
-      text: "From Lime Street, walk about 6 minutes to the Fraser Street stop on London Road. Take the 10A towards St Helens, which runs roughly every 9 minutes; the 10 and 10B also work. Get off at Hillside Road, then walk a minute east along Liverpool Road. We're on the left. You'll pass the Kingsway, Seth Powell Way and Primrose Drive stops just before yours, so you'll know you're close.",
+      text: "From Lime Street, walk about 6 minutes to the Fraser Street stop on London Road. Take the 10A towards St Helens. It runs about every 9 minutes. The 10 and 10B work too. Get off at Hillside Road. Then walk a minute east along Liverpool Road. We're on the left. Just before your stop, you'll pass Kingsway, Seth Powell Way and Primrose Drive. Then you'll know you're close.",
     },
     { from: 'From St Helens, Prescot or Whiston', time: '', text: 'Take the 10 or 10A towards Liverpool and get off at Hillside Road.' },
   ],
@@ -60,22 +60,22 @@ const routes = {
     {
       from: 'From Manchester',
       time: 'about 1 hour 15 minutes',
-      text: 'Take a Northern train from Piccadilly to Huyton; the Liverpool Lime Street service takes about 45 minutes. Walk 3 minutes to the Derby Road stop and take the 9 towards Liverpool. Get off at Wastle Bridge Road, about 11 minutes later, and walk about 4 minutes to us.',
+      text: 'Take a Northern train from Piccadilly to Huyton. The Liverpool Lime Street train takes about 45 minutes. Walk 3 minutes to the Derby Road stop. Take the 9 towards Liverpool. Get off at Wastle Bridge Road, about 11 minutes later. Then it\'s about a 4-minute walk to us.',
     },
-    { from: 'From Wigan', time: '', text: 'There are direct Northern trains to Huyton. From there, follow the bus directions.' },
+    { from: 'From Wigan', time: '', text: 'Direct Northern trains run to Huyton. From there, follow the bus directions.' },
     {
       from: 'From London, Birmingham and further afield',
       time: '',
-      text: 'Take the train to Liverpool Lime Street, then follow the bus directions from the city centre.',
+      text: 'Take the train to Liverpool Lime Street. Then follow the bus directions from the city centre.',
     },
   ],
 };
 
 const journey = [
   { image: 185, caption: 'The free car park, with 50 spaces right outside. Plain from the outside, we know.' },
-  { image: 184, caption: 'The entrance, with a ramp and handrails up to the front door.' },
-  { image: 6, caption: 'Reception, where a host will meet you and put the kettle on.' },
-  { image: 66, caption: 'The Grove, one of our meeting and event rooms, under its greenery canopy.' },
+  { image: 184, caption: 'The entrance. A ramp and handrails lead up to the front door.' },
+  { image: 6, caption: 'Reception. A host will meet you here and show you to your room.' },
+  { image: 66, caption: 'The Grove, one of our meeting and event rooms. It has a canopy of greenery.' },
   { image: 44, caption: 'The Summit, set in a U-shape for a training day.' },
   { image: 118, caption: 'The Auditorium, with its stage, lectern and sound system.' },
 ];
@@ -83,11 +83,11 @@ const journey = [
 const faqs = [
   {
     q: "Can I look round the Maggie O'Neill Centre before I book?",
-    a: `We insist! We love to show people round and let you see the space for yourself. Use the form on this page, call ${contact.phone} or email ${contact.email}, and we'll find a time that suits you.`,
+    a: `We insist! We love to show people round, so you can see the space for yourself. Use the form on this page, call ${contact.phone} or email ${contact.email}. We'll find a time that suits you.`,
   },
   {
     q: 'When can I come for a look round?',
-    a: `We do tours every weekday, ${hours.summary.replace('Monday to Friday, ', '')}. Just shout: use the form on this page or call ${contact.phone}, and we'll have a host ready to show you round.`,
+    a: `We do tours every weekday, ${hours.summary.replace('Monday to Friday, ', '')}. Just shout. Use the form on this page or call ${contact.phone}. We'll have a host ready to show you round.`,
   },
   {
     q: "Where is the Maggie O'Neill Centre?",
@@ -95,15 +95,15 @@ const faqs = [
   },
   {
     q: 'Is there parking?',
-    a: `Yes. There's a free ${parking.spaces}-space car park outside, and you don't need to book. There are ${accessibility.accessibleBays} accessible parking bays, and ${parking.overflow}.`,
+    a: `Yes. There's a free ${parking.spaces}-space car park outside. You don't need to book. There are ${accessibility.accessibleBays} accessible parking bays. There's also ${parking.overflow}.`,
   },
   {
     q: 'Can I get there by bus?',
-    a: 'Yes. The nearest stop is Hillside Road, a minute’s walk from our door. From Liverpool city centre, take the 10A towards St Helens from the Fraser Street stop on London Road (the 10 and 10B also work). From St Helens, Prescot or Whiston, take the 10 or 10A towards Liverpool.',
+    a: 'Yes. The nearest stop is Hillside Road, a minute’s walk from our door. From Liverpool city centre, take the 10A towards St Helens. Get on at the Fraser Street stop on London Road. The 10 and 10B work too. From St Helens, Prescot or Whiston, take the 10 or 10A towards Liverpool.',
   },
   {
     q: 'What is the nearest train station?',
-    a: 'Huyton and Roby stations are both around a mile and a half away. Most people finish the journey by bus or taxi.',
+    a: 'Huyton and Roby stations are both about a mile and a half away. Most people do the last bit by bus or taxi.',
   },
   {
     q: "Is the Maggie O'Neill Centre accessible?",
@@ -125,7 +125,7 @@ const schema = [
   <Hero
     title="Visit the Maggie O'Neill Centre"
     tagline="Plain from the car park. Worth it once you're in."
-    lede="Come for a tea and a look round before you book. A host will show you the rooms and answer any questions on the spot."
+    lede="Come for a tea and a look round before you book. A host will show you the rooms. Ask them anything."
     image={3}
     primary={{ label: 'Book a visit', href: '#enquire' }}
     secondary={{ label: `Call ${contact.phone}`, href: contact.phoneHref }}
@@ -139,8 +139,8 @@ const schema = [
           <h2 id="getting-heading">How do I get to the Maggie O'Neill Centre?</h2>
           <p class="getting__address">{site.name}, {address.oneLine}</p>
           <p>
-            We're outside the city, so getting here is easier. There's a free {parking.spaces}-space car park, a bus stop a minute's walk away, and the M57 is
-            close by. If you get stuck on the way, ring reception on <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>.
+            We're outside the city, so it's easier to get here. There's a free {parking.spaces}-space car park. A bus stop is a minute's walk away, and the M57 is
+            close by. Stuck on the way? Ring reception on <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>.
           </p>
         </div>
         <ul class="getting__facts">
@@ -154,14 +154,14 @@ const schema = [
         <div class="way">
           <h3>By car</h3>
           <p>
-            Search for {site.name} in Google Maps, Apple Maps or Waze. We're listed, and it'll take you straight to the building.
+            Search for {site.name} in Google Maps, Apple Maps or Waze. We're listed. It'll take you straight to the building.
           </p>
           <p>
-            We're on the north side of Liverpool Road (the A57), just past Seth Powell Way. The car park is free, with {parking.spaces} spaces, and you don't need to book.
+            We're on the north side of Liverpool Road (the A57), just past Seth Powell Way. The car park is free, with {parking.spaces} spaces. You don't need to book.
           </p>
           <p>
-            Whichever direction you're coming from, the easiest way in is junction 3 of the M57. Leave there and take the A526 towards Huyton. At the roundabout,
-            take the second exit onto Seth Powell Way. Turn left onto Liverpool Road, and we're a short way along on the left.
+            Whichever way you come, the easiest way in is junction 3 of the M57. Leave there and take the A526 towards Huyton. At the roundabout,
+            take the second exit onto Seth Powell Way. Turn left onto Liverpool Road. We're a short way along on the left.
           </p>
           <div class="routes">
             {routes.car.map((r) => (
@@ -187,7 +187,7 @@ const schema = [
           <p class="way__note">For live times, use the Merseytravel app or website.</p>
 
           <h3 class="way__sub">By train</h3>
-          <p>The nearest stations are Huyton and Roby, both around a mile and a half away. Most people finish the journey by bus or taxi.</p>
+          <p>The nearest stations are Huyton and Roby. Both are about a mile and a half away. Most people do the last bit by bus or taxi.</p>
           <div class="routes">
             {routes.train.map((r) => (
               <details class="route">
@@ -203,15 +203,15 @@ const schema = [
         <div>
           <h3>Accessibility</h3>
           <p>
-            We have disabled access on the ground floor and {accessibility.accessibleBays} accessible parking bays. If anyone in your group has specific needs, tell
-            us when you book. We'll put you in a ground-floor room and sort out whatever else helps on the day.
+            We have disabled access on the ground floor and {accessibility.accessibleBays} accessible parking bays. Does anyone in your group have access needs? Tell
+            us when you book. We'll put you in a ground-floor room. We'll sort out whatever else helps on the day.
           </p>
         </div>
-        <p class="access__note"><strong>Please note:</strong> {accessibility.noLift} Tell us about any accessibility needs when you book, so we can make sure you're in a ground-floor room.</p>
+        <p class="access__note"><strong>Please note:</strong> {accessibility.noLift} Tell us about any access needs when you book. Then we can make sure you're in a ground-floor room.</p>
       </div>
 
       <div class="tour">
-        <p><strong>Come and see it.</strong> If you'd like to look round before you book, we do tours every weekday. Just shout.</p>
+        <p><strong>Come and see it.</strong> Want a look round before you book? We do tours every weekday. Just shout.</p>
         <a class="btn btn--primary" href="#enquire">Book a visit</a>
       </div>
     </div>

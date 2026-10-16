@@ -33,14 +33,14 @@ const groups = rateGroups(['pod']);
 const rateSentences = groups.map((g) => `${the(g.rooms.map((r) => r.name))} cost ${formatPrice(g.hour)} an hour or ${formatPrice(g.day)} a day`);
 const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
-const intro = `The Maggie O'Neill Centre is a hosted training venue in Huyton, near Liverpool. Training rooms cost from ${formatPrice(trainingDayFrom)} a day and seat groups from ${pod.capacity.boardroom} up to ${auditorium.capacity.cabaret}. Every meeting and training room has a screen with Mac and PC wireless casting and HDMI, tea and coffee are served in the room, parking is free, and hosts are on site all day.`;
+const intro = `Maggie O'Neill Centre is a hosted training venue in Huyton, near Liverpool. Training rooms start at ${formatPrice(trainingDayFrom)} a day. They seat groups from ${pod.capacity.boardroom} up to ${auditorium.capacity.cabaret}. Every meeting and training room has a screen with Mac and PC wireless casting and HDMI. Self-serve tea and coffee is in the room all day. Parking is free, and hosts are on site all day.`;
 
 const keyFacts = [
-  { term: 'Prices', detail: `From ${formatPrice(trainingDayFrom)} a day, everything included.`, href: '#rooms', linkText: 'All room rates' },
+  { term: 'Prices', detail: `From ${formatPrice(trainingDayFrom)} a day. Everything is included.`, href: '#rooms', linkText: 'All room rates' },
   { term: 'Group sizes', detail: `From ${pod.capacity.boardroom} in the ${pod.name} to ${auditorium.capacity.cabaret} cabaret in the ${auditorium.name}.` },
-  { term: 'Layouts', detail: 'U-shape, boardroom, classroom, cabaret, banquet or theatre. We recommend the one that works.' },
-  { term: 'Tech', detail: 'Screen with Mac and PC wireless casting and HDMI in every meeting and training room, cables provided, 1Gb fibre WiFi, flipchart and pens.' },
-  { term: 'Refreshments', detail: 'Tea and coffee in the room, all day, included.' },
+  { term: 'Layouts', detail: 'U-shape, boardroom, classroom, cabaret, banquet or theatre. We\'ll tell you which one works best.' },
+  { term: 'Tech', detail: 'Every meeting and training room has a screen with Mac and PC wireless casting and HDMI. We provide the cables, 1Gb fibre WiFi, a flipchart and pens.' },
+  { term: 'Tea and coffee', detail: 'In the room all day. It\'s self-serve and included.' },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
   { term: 'Access', detail: accessibility.accessLine },
   { term: 'Hours', detail: `${hours.summary}. ${hours.extra}` },
@@ -50,39 +50,39 @@ const keyFacts = [
 const faqs = [
   {
     q: 'How much does it cost to hire a training room near Liverpool?',
-    a: `Training rooms at the Maggie O'Neill Centre start at ${formatPrice(trainingDayFrom)} a day, with your host, tea and coffee, the screen and free parking included. ${rateSentences.map(cap).join('. ')}. The ${auditorium.name} costs from ${formatPrice(auditorium.prices!.hourFrom!)} an hour.`,
+    a: `Training rooms at the Maggie O'Neill Centre start at ${formatPrice(trainingDayFrom)} a day. That includes your host, tea and coffee, the screen and free parking. ${rateSentences.map(cap).join('. ')}. The ${auditorium.name} costs from ${formatPrice(auditorium.prices!.hourFrom!)} an hour.`,
   },
   {
     q: 'How do I check availability?',
-    a: `You can check availability and book online through the Maggie O'Neill Centre booking calendar, or call ${contact.phone} and speak to a host.`,
+    a: `You can check dates and book online in the Maggie O'Neill Centre booking calendar. Or call ${contact.phone} and speak to a host.`,
   },
   {
     q: 'How many people can the training rooms hold?',
-    a: `The training rooms at the Maggie O'Neill Centre suit groups from ${pod.capacity.boardroom} in the ${pod.name} to ${auditorium.capacity.cabaret} cabaret style in the ${auditorium.name}. Tell us your numbers and we'll recommend the right room.`,
+    a: `Training rooms at the Maggie O'Neill Centre fit groups from ${pod.capacity.boardroom} in the ${pod.name} to ${auditorium.capacity.cabaret} cabaret style in the ${auditorium.name}. Tell us your numbers. We'll suggest the right room.`,
   },
   {
     q: 'Which layout should I book?',
-    a: `You don't need to choose a layout yourself. ${layoutTriage.replace("we'll", "your host at the Maggie O'Neill Centre will")}`,
+    a: `You don't need to pick a layout yourself. ${layoutTriage.replace("we'll", "your host at the Maggie O'Neill Centre will")}`,
   },
   {
     q: 'Is there a screen in every training room?',
-    a: "Yes. Every meeting and training room at the Maggie O'Neill Centre has a screen with wireless casting from Mac and PC (AirPlay for MacBooks and iPads, and screen casting from Windows laptops), plus HDMI, and the HDMI cables are provided. There's 1Gb fibre WiFi, a flipchart and pens too.",
+    a: "Yes. Every meeting and training room at the Maggie O'Neill Centre has a screen. You can cast to it from a Mac or PC. Use AirPlay on MacBooks and iPads, or screen casting on Windows laptops. There's HDMI too, and we provide the HDMI cables. You also get 1Gb fibre WiFi, a flipchart and pens.",
   },
   {
     q: 'Are tea and coffee included?',
-    a: "Yes. Tea and coffee are served in the room all day and included in every booking at the Maggie O'Neill Centre.",
+    a: "Yes. Tea and coffee are in the room all day. It's self-serve, so help yourself. It's included in every booking at the Maggie O'Neill Centre.",
   },
   {
     q: "Is parking free at the Maggie O'Neill Centre?",
-    a: `Yes. The Maggie O'Neill Centre has a free ${parking.spaces}-space car park on site, ${parking.motorway}, and it is on a main bus route.`,
+    a: `Yes. There's a free ${parking.spaces}-space car park on site at the Maggie O'Neill Centre, ${parking.motorway}. We're on a main bus route too.`,
   },
   {
     q: 'Will someone be there on the day?',
-    a: `Yes. Hosts are on site at the Maggie O'Neill Centre all day, looking after your group. You can also call ${contact.phone} and speak to a real person.`,
+    a: `Yes. Hosts are on site at the Maggie O'Neill Centre all day. They look after your group. You can also call ${contact.phone} and speak to a real person.`,
   },
   {
     q: 'What do I need to bring?',
-    a: "Nothing. The screen, HDMI cables, 1Gb fibre WiFi, flipchart, pens and refreshments are all ready before you arrive at the Maggie O'Neill Centre.",
+    a: "Nothing. We have it all ready at the Maggie O'Neill Centre before you arrive. That's the screen, HDMI cables, 1Gb fibre WiFi, flipchart, pens, tea and coffee.",
   },
   {
     q: 'Is the training venue accessible?',
@@ -94,7 +94,7 @@ const faqs = [
   },
   {
     q: 'Can I book a half day?',
-    a: `${halfDay.replace('There are no half-day rates.', "The Maggie O'Neill Centre doesn't have half-day rates.")}`,
+    a: `${halfDay.replace('There are no half-day rates.', "Maggie O'Neill Centre doesn't have half-day rates.")}`,
   },
   {
     q: 'Can you provide lunch or catering?',
@@ -102,7 +102,7 @@ const faqs = [
   },
   {
     q: 'Can I hire a training room in the evening or at the weekend?',
-    a: `Yes. The Maggie O'Neill Centre is open ${hours.summary}, and evening and weekend room hire is available on request.`,
+    a: `Yes. Maggie O'Neill Centre is open ${hours.summary}. Just ask if you need a room in the evening or at the weekend.`,
   },
 ];
 
@@ -143,7 +143,7 @@ const schema = [
 
   <Hero
     title="Training rooms your delegates will ask to come back to."
-    lede="You've got enough to think about on a training day. We'll have the room set before you arrive, the tea made and the screen working, with free parking outside and hosts on hand all day, so you can just teach."
+    lede="You've got enough to think about on a training day. We'll set the room before you arrive. The tea is made and the screen works. Parking is free and hosts are here all day. You just teach."
     image={105}
     secondary={{ label: 'See rooms and prices', href: '#rooms' }}
   >
@@ -166,7 +166,7 @@ const schema = [
       <div class="section-head">
         <span class="eyebrow">Ideal for</span>
         <h2 id="ideal-heading">What kind of training happens here?</h2>
-        <p>Mandatory training, CPD and team learning for organisations across Merseyside.</p>
+        <p>Mandatory training, CPD and team learning for groups across Merseyside.</p>
       </div>
       <ul class="ideal__list">
         {idealFor.map((i) => <li>{i}</li>)}
@@ -179,7 +179,7 @@ const schema = [
       <div class="section-head">
         <span class="eyebrow">Case studies</span>
         <h2 id="cases-heading">Which care providers train here?</h2>
-        <p>Two of the care providers who run their staff training at the Maggie O'Neill Centre.</p>
+        <p>Here are two care providers who train their staff at the Maggie O'Neill Centre.</p>
       </div>
       <div class="grid cases">
         {featuredCases.map((c) => <CaseCard study={c} />)}
@@ -188,7 +188,7 @@ const schema = [
     </div>
   </section>
 
-  <Reviews reviews={reviews} heading="What do delegates and trainers say?" />
+  <Reviews reviews={reviews} heading="What do trainers and their groups say?" />
 
   <Comparison />
 
@@ -200,8 +200,8 @@ const schema = [
     <div class="container">
       <p>
         Need something different? See <a href="/services/meeting-rooms/">meeting room hire in Huyton</a>,
-        {' '}<a href="/services/event-space-business-and-community/">events and conferences</a> in the {auditorium.name}, or
-        {' '}<a href="/visit/">come and see the rooms</a> before you book. Read our <a href={bookingTermsPath}>booking and cancellation terms</a>.
+        {' '}<a href="/services/event-space-business-and-community/">events and conferences</a> in the {auditorium.name}.
+        {' '}Or <a href="/visit/">come and see the rooms</a> before you book. Read our <a href={bookingTermsPath}>booking and cancellation terms</a>.
       </p>
     </div>
   </section>
@@ -210,7 +210,7 @@ const schema = [
 </Base>
 
 <style>
-  .updated { margin-top: -40px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
+  .updated { margin-top: 0; padding-top: 16px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
   .ideal { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(24px, 5vw, 64px); align-items: center; }
   .ideal .section-head { margin-bottom: 0; }
   .ideal__list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
@@ -218,5 +218,5 @@ const schema = [
   .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cases__more { margin-top: 24px; font-weight: 700; }
   .more-links { padding: 40px 0; }
-  @media (max-width: 900px) { .ideal, .cases { grid-template-columns: 1fr; } .updated { margin-top: -24px; } }
+  @media (max-width: 900px) { .ideal, .cases { grid-template-columns: 1fr; } .updated { margin-top: 0; padding-top: 16px; } }
 </style>

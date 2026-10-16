@@ -39,38 +39,38 @@ const courses = [
   'Induction for new support workers',
 ];
 
-const intro = `Care providers run mandatory training for their support workers at the Maggie O'Neill Centre in Huyton, near Liverpool: ${courses
+const intro = `Care providers run mandatory training for their support workers at the Maggie O'Neill Centre in Huyton, near Liverpool. They run ${courses
   .slice(0, 4)
   .map((c) => c.charAt(0).toLowerCase() + c.slice(1))
-  .join(', ')} and more. The room is set before your trainer arrives, tea and coffee are served in the room, and parking is free for every delegate.`;
+  .join(', ')} and more. Your room is set before your trainer arrives. Self-serve tea and coffee is in the room all day. Parking is free for everyone on the course.`;
 
 const keyFacts = [
   { term: 'Courses', detail: 'TMVA, safety intervention, hoist, medication, first aid, safeguarding and induction.' },
-  { term: 'Practical space', detail: 'Rooms cleared for safety intervention, with floor space for a hoist.' },
-  { term: 'Set-up', detail: 'Room set to your layout and the screen tested before your trainer arrives.' },
-  { term: 'Repeat dates', detail: 'Regular dates held for your training calendar, if you ask.' },
-  { term: 'Prices', detail: `Training rooms from ${formatPrice(trainingDayFrom)} a day, everything included.`, href: '/whats-included/', linkText: "See what's included" },
+  { term: 'Practical space', detail: 'We clear the room for safety intervention. There\'s floor space for a hoist.' },
+  { term: 'Set-up', detail: 'We set your layout and test the screen before your trainer arrives.' },
+  { term: 'Repeat dates', detail: 'Just ask, and we\'ll hold regular dates for your training calendar.' },
+  { term: 'Prices', detail: `Training rooms from ${formatPrice(trainingDayFrom)} a day. Everything is included.`, href: '/whats-included/', linkText: "See what's included" },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
-  { term: 'Invoicing', detail: 'Invoices to your organisation, with PO numbers welcome.' },
+  { term: 'Invoicing', detail: 'We invoice your organisation. PO numbers are welcome.' },
   { term: 'Access', detail: accessibility.accessLine },
 ];
 
 const faqs = [
   {
     q: "What care training can we run at the Maggie O'Neill Centre?",
-    a: "Care providers run TMVA, safety intervention, hoist training, moving and handling, medication, first aid, safeguarding, epilepsy awareness and induction training at the Maggie O'Neill Centre. Your trainer delivers the course, and we host it.",
+    a: "Care providers run lots of courses at the Maggie O'Neill Centre. They include TMVA, safety intervention, hoist training, moving and handling, medication, first aid, safeguarding, epilepsy awareness and induction training. Your trainer runs the course. We host it.",
   },
   {
     q: 'Is there space for safety intervention and TMVA training?',
-    a: "Yes. Tell us it's a practical session, and the room is cleared before you arrive so there's open floor space for safety intervention and TMVA training.",
+    a: "Yes. Tell us it's a practical session. We'll clear the room before you arrive. That gives you open floor space for safety intervention and TMVA training.",
   },
   {
     q: 'Can we run hoist training?',
-    a: "Yes. There's floor space for a hoist. The Maggie O'Neill Centre doesn't provide a bed, so bring the equipment your session needs.",
+    a: "Yes. There's floor space for a hoist. Maggie O'Neill Centre doesn't provide a bed. Please bring the kit your session needs.",
   },
   {
     q: 'Can we book the same dates every month?',
-    a: 'Yes. Ask us to hold regular dates for your training calendar, and your host will keep the same room set the same way each time.',
+    a: 'Yes. Ask us to hold regular dates for your training calendar. Your host will keep the same room, set the same way each time.',
   },
   {
     q: 'How many support workers can we train at once?',
@@ -78,19 +78,19 @@ const faqs = [
   },
   {
     q: 'How much does a care training room cost?',
-    a: `Training rooms at the Maggie O'Neill Centre start at ${formatPrice(trainingDayFrom)} a day, with your host, the screen, tea and coffee, and free parking included.`,
+    a: `Training rooms at the Maggie O'Neill Centre start at ${formatPrice(trainingDayFrom)} a day. That includes your host, the screen, tea and coffee, and free parking.`,
   },
   {
     q: 'Do you invoice, and do you take purchase orders?',
-    a: `Yes. The Maggie O'Neill Centre invoices your organisation, and PO numbers are welcome. ${larger.paymentMethods.split('. ')[0]}.`,
+    a: `Yes. Maggie O'Neill Centre invoices your organisation. PO numbers are welcome. ${larger.paymentMethods.split('. ')[0]}.`,
   },
   {
     q: 'What happens if we need to cancel a training day?',
-    a: `${standard.definition} ${standard.points[0].split(' Business days')[0]} Block bookings and courses have their own terms, set out in the booking terms.`,
+    a: `${standard.definition} ${standard.points[0].split(' Business days')[0]} Block bookings and courses have their own terms. You'll find them in the booking terms.`,
   },
   {
-    q: 'Is there parking for all our delegates?',
-    a: `Yes. The Maggie O'Neill Centre has a free ${parking.spaces}-space car park on site, ${parking.motorway}.`,
+    q: 'Is there parking for everyone on the course?',
+    a: `Yes. There's a free ${parking.spaces}-space car park on site at the Maggie O'Neill Centre, ${parking.motorway}.`,
   },
   {
     q: 'Is the venue accessible?',
@@ -137,14 +137,14 @@ const schema = [
 
   <Hero
     title="Care training, in rooms built for it."
-    lede="Your support workers give everything on shift. On training day the room is ready before your trainer arrives, the tea is on, and there's free parking right outside, so the day goes smoothly from the start."
+    lede="Your support workers give everything on shift. On training day the room is ready before your trainer arrives. The tea is on. There's free parking right outside. So the day goes well from the start."
     image={43}
     primary={{ label: 'Plan your training dates', href: '#enquire' }}
     secondary={{ label: 'See the rooms', href: '#rooms' }}
   />
 
-  <ClientLogos heading="Care providers that train at the Maggie O'Neill Centre" logos={careLogos}>
-    <NameMarquee names={careClients} label="More care providers that train at the Maggie O'Neill Centre:" />
+  <ClientLogos heading="Care providers who train at the Maggie O'Neill Centre" logos={careLogos}>
+    <NameMarquee names={careClients} label="More care providers who train at the Maggie O'Neill Centre:" />
   </ClientLogos>
 
   <KeyFacts heading="Your care training venue, in a few lines" intro={intro} facts={keyFacts} />
@@ -156,13 +156,13 @@ const schema = [
         <div class="section-head">
           <span class="eyebrow">Built for care staff training</span>
           <h2 id="built-heading">What does a care training day need from a venue?</h2>
-          <p>A room that's ready, tech that works and space for the practical parts. That's what we set up every time.</p>
+          <p>A room that's ready. Tech that works. Space for the practical parts. We set all that up every time.</p>
         </div>
         <ul class="tick-list">
-          <li>Layouts for both halves of the day: tables for classroom work, then open floor for practical sessions.</li>
-          <li>The screen tested before your trainer walks in, with HDMI cables and Mac and PC wireless casting ready.</li>
-          <li>Room for a full cohort, with a host on site all day if anything's needed.</li>
-          <li>Regular dates held for your training calendar, in the same room, set the same way.</li>
+          <li>Layouts for both halves of the day. Tables for classroom work, then open floor for practical sessions.</li>
+          <li>We test the screen before your trainer walks in. HDMI cables and Mac and PC wireless casting are ready.</li>
+          <li>Room for a full group, with a host on site all day if you need anything.</li>
+          <li>We hold regular dates for your training calendar. Same room, set the same way.</li>
         </ul>
       </div>
       <div class="media">
@@ -176,7 +176,7 @@ const schema = [
       <div class="section-head">
         <span class="eyebrow">Courses we host</span>
         <h2 id="courses-heading">Which care courses run at the Maggie O'Neill Centre?</h2>
-        <p>Care providers bring their own trainers and run all of these here. Your trainer delivers the course, and we host it.</p>
+        <p>Care providers bring their own trainers and run all of these here. Your trainer runs the course. We host it.</p>
       </div>
       <ul class="courses">
         {courses.map((c) => <li>{c}</li>)}
@@ -193,12 +193,12 @@ const schema = [
         <div class="section-head">
           <span class="eyebrow">Space for practical kit</span>
           <h2 id="practical-heading">Is there room for safety intervention and hoist training?</h2>
-          <p>Yes. Tell us what the session involves when you book, and the room is set for it before you arrive.</p>
+          <p>Yes. Tell us what the session involves when you book. We'll set the room for it before you arrive.</p>
         </div>
         <ul class="tick-list">
-          <li>Tables moved back for open floor space during safety intervention and TMVA training.</li>
-          <li>Floor space for a hoist. We don't provide a bed, so bring the kit your session needs.</li>
-          <li>Free parking right outside, so trainers can unload equipment easily.</li>
+          <li>We move the tables back for open floor space during safety intervention and TMVA training.</li>
+          <li>Floor space for a hoist. We don't provide a bed, so please bring the kit your session needs.</li>
+          <li>Free parking right outside, so trainers can unload kit easily.</li>
         </ul>
       </div>
     </div>
@@ -207,7 +207,7 @@ const schema = [
   <div id="rooms">
     <RoomCards
       heading="Which rooms work for care training?"
-      intro="These rooms suit care training days. Tell us your numbers and what the day involves, and we'll recommend the right one."
+      intro="These rooms suit care training days. Tell us your numbers and what the day involves. We'll suggest the right one."
       order={['summit', 'forum', 'community-room', 'foundry', 'grove']}
     />
   </div>
@@ -219,7 +219,7 @@ const schema = [
       <div class="section-head">
         <span class="eyebrow">Who trains here</span>
         <h2 id="who-heading">Which care providers use the Maggie O'Neill Centre?</h2>
-        <p>Care providers are our biggest group of customers. Two of the regulars:</p>
+        <p>Care providers are our biggest group of customers. Here are two of our regulars.</p>
       </div>
       <div class="stories">
         {careCases.map((c) => <CaseCard study={c} />)}
@@ -227,7 +227,7 @@ const schema = [
     </div>
   </section>
 
-  <Reviews reviews={reviews} heading="What do trainers and delegates say?" />
+  <Reviews reviews={reviews} heading="What do trainers and their groups say?" />
 
   <section class="section section--white" aria-labelledby="booking-heading">
     <div class="container two-col">
@@ -267,11 +267,11 @@ const schema = [
   .two-col .section-head { margin-bottom: 24px; }
   .media { margin: 0; }
   .media :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
-  .updated { margin-top: -40px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
+  .updated { margin-top: 0; padding-top: 16px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
   .courses { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; align-content: start; }
   .courses li { padding: 12px 18px; border-radius: var(--radius-pill); background: var(--moc-white); color: var(--moc-purple-900); font-weight: 600; }
   .stories { display: grid; gap: 16px; }
   .story { padding: 24px 28px; display: flex; flex-direction: column; gap: 8px; }
   .more-links { padding: 40px 0; }
-  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } .updated { margin-top: -24px; } }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } .updated { margin-top: 0; padding-top: 16px; } }
 </style>

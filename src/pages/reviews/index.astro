@@ -32,10 +32,10 @@ const G = '<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24"><p
       <div>
         <span class="eyebrow">Reviews</span>
         <h1>Maggie O'Neill Centre reviews</h1>
-        <p class="rv-hero__tagline">Your delegates will tell you it was good.</p>
+        <p class="rv-hero__tagline">Your group will tell you it was good.</p>
         <p class="rv-hero__lede">
-          The Maggie O'Neill Centre in Huyton has {reviews.count} reviews on {reviews.source}. Here's what people mention most, grouped by theme and
-          by the kind of booking they made.
+          The Maggie O'Neill Centre in Huyton has {reviews.count} reviews on {reviews.source}. Here's what people say most.
+          We've grouped it by theme and by the kind of booking they made.
         </p>
       </div>
       <div class="rv-score">
@@ -54,7 +54,7 @@ const G = '<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24"><p
       <div class="section-head">
         <span class="eyebrow">In their words</span>
         <h2 id="themes-heading">What do people say about the Maggie O'Neill Centre?</h2>
-        <p>We read all {writtenReviews} Google reviews with written comments and counted what people chose to bring up. Here it is, most mentioned first.</p>
+        <p>We read all {writtenReviews} Google reviews that have written comments. We counted what people talked about. Here it is, with the most talked about first.</p>
       </div>
       <ol class="themes">
         {themes.map((t) => (
@@ -114,7 +114,7 @@ const G = '<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24"><p
       </div>
       <div class="prose">
         <p>
-          It takes a minute on Google. It helps if you say what you booked, for example "our
+          It takes a minute on Google. Please say what you booked, for example "our
           fostering training day" or "a team meeting in the Forum". That helps other people find the right room.
         </p>
         <p><a class="btn btn--primary" href={reviews.writeUrl} target="_blank" rel="noopener" data-track="review_click">Review us on Google</a></p>

@@ -30,13 +30,13 @@ const dc = virtualOffice.directorsCover;
 const ca = virtualOffice.callAnswering;
 const pod = rooms.find((r) => r.slug === 'pod')!;
 
-const intro = `A virtual office at the Maggie O'Neill Centre costs ${formatPrice(p20.price)} a month and includes a registered office address for Companies House and a business address you can use everywhere, at ${address.street}, Huyton, near Liverpool, ${address.postcode}. Post is handled in-house by our team and collected from reception, with free parking outside. The ${formatPrice(p40.price)} ${p40.name} plan adds unlimited post scanning and 2 free meeting room hours a month, worth ${formatPrice(p40.price)}, and Director's Cover adds a director's service address for ${formatPrice(dc.price)}. ${virtualOffice.vat} ${virtualOffice.terms}`;
+const intro = `A virtual office at the Maggie O'Neill Centre costs ${formatPrice(p20.price)} a month. You get a registered office address for Companies House. You also get a business address you can use everywhere. It's at ${address.street}, Huyton, near Liverpool, ${address.postcode}. Our own team looks after your post, and you collect it from reception. Parking outside is free. The ${formatPrice(p40.price)} ${p40.name} plan adds unlimited post scanning. It also gives you 2 free meeting room hours a month, worth ${formatPrice(p40.price)}. Director's Cover adds a director's service address for ${formatPrice(dc.price)}. ${virtualOffice.vat} ${virtualOffice.terms}`;
 
 const keyFacts = [
   { term: 'Address', detail: `${address.street}, Huyton, Liverpool, ${address.postcode}. A real building with people in it.` },
   { term: 'Prices', detail: `From ${formatPrice(p20.price)} a month for ${p20.name}, or ${formatPrice(p40.price)} for ${p40.name}. No VAT to add.`, href: '#plans', linkText: 'Compare plans' },
-  { term: "Director's Cover", detail: `+${formatPrice(dc.price)} a month on either plan. Your home off Companies House in both places.` },
-  { term: 'Post', detail: `Handled in-house by our team at reception. Opened and scanned on the ${p40.name} plan.` },
+  { term: "Director's Cover", detail: `+${formatPrice(dc.price)} a month on either plan. Keeps your home off Companies House in both places.` },
+  { term: 'Post', detail: `Our own team looks after it at reception. On the ${p40.name} plan, we open and scan it.` },
   { term: 'Meeting rooms', detail: `In the same building. The ${p40.name} plan includes 2 free hours a month.` },
   { term: 'Contract', detail: virtualOffice.terms },
   { term: 'Collect post', detail: `${hours.summary}. Free parking outside.` },
@@ -44,12 +44,12 @@ const keyFacts = [
 ];
 
 const whoFor = [
-  "New limited company directors who don't want their home on the public register",
-  'Sole traders and freelancers working from home',
+  'New limited company directors who want their home off the public register',
+  'Sole traders and freelancers who work from home',
   'Online sellers who need a business address',
   'Property companies, contractors, charities and CICs',
-  'Firms outside the region wanting a Liverpool presence',
-  'Businesses anywhere in the UK who would rather their registered address supported a charity',
+  'Firms further away who want a Liverpool address',
+  'Businesses anywhere in the UK who want their registered address to help a charity',
 ];
 
 // Why people switch, from the current virtual office page.
@@ -67,59 +67,59 @@ const reasons = [
 const faqs = [
   {
     q: 'How much is a virtual office in Liverpool?',
-    a: `A virtual office at the Maggie O'Neill Centre costs from ${formatPrice(p20.price)} a month for a registered office and business address. The ${formatPrice(p40.price)} ${p40.name} plan adds unlimited post scanning and 2 free meeting room hours a month, worth ${formatPrice(p40.price)}. Director's Cover adds ${formatPrice(dc.price)} a month to either plan, taking it to ${formatPrice(withCover(p20))} or ${formatPrice(withCover(p40))}. There is no VAT to add: the centre is a charity and is not VAT registered.`,
+    a: `A virtual office at the Maggie O'Neill Centre costs from ${formatPrice(p20.price)} a month. That gets you a registered office and business address. The ${formatPrice(p40.price)} ${p40.name} plan adds unlimited post scanning. It also gives you 2 free meeting room hours a month, worth ${formatPrice(p40.price)}. Director's Cover adds ${formatPrice(dc.price)} a month to either plan. That makes it ${formatPrice(withCover(p20))} or ${formatPrice(withCover(p40))}. There's no VAT to add. The centre is a charity and isn't VAT registered.`,
   },
   {
     q: 'What is the cheapest virtual office in Liverpool that includes a registered office?',
-    a: `The ${p20.name} plan at the Maggie O'Neill Centre is ${formatPrice(p20.price)} a month and includes a registered office address for Companies House, a business address and post collected from reception. Lower headline prices elsewhere often cover a business address only, with the registered office, post handling or a setup fee charged on top, so compare what each price includes. Our guide to the cheapest virtual office address in the UK explains what to check.`,
+    a: `The ${p20.name} plan at the Maggie O'Neill Centre is ${formatPrice(p20.price)} a month. It includes a registered office address for Companies House and a business address. You collect your post from reception. Cheaper prices elsewhere often cover a business address only. Then the registered office, post handling or a setup fee cost extra. So check what each price includes. Our guide to the cheapest virtual office address in the UK explains what to look for.`,
   },
   {
     q: 'Can I use the address as my registered office with Companies House?',
-    a: `Yes. Every virtual office plan at the Maggie O'Neill Centre includes a registered office address at ${address.oneLine}. You can also use it as your business address on your website, invoices and letters.`,
+    a: `Yes. Every virtual office plan at the Maggie O'Neill Centre includes a registered office address. It's at ${address.oneLine}. You can use it as your business address too. Put it on your website, invoices and letters.`,
   },
   {
     q: 'How do I keep my home address off Companies House?',
-    a: `Use the Maggie O'Neill Centre as your registered office and add Director's Cover, which gives you a director's service address too. New filings then show our address instead of your home. Older documents on the register may still show your home address, and Companies House explains how to apply to have it removed.`,
+    a: `Use the Maggie O'Neill Centre as your registered office. Then add Director's Cover, which gives you a director's service address too. New filings will show our address, not your home. Older papers on the register may still show your home address. Companies House explains how to ask for it to be removed.`,
   },
   {
     q: "What is Director's Cover?",
-    a: `Director's Cover is a ${formatPrice(dc.price)} a month add-on that gives you a director's service address at the Maggie O'Neill Centre. Your plan already replaces your home as your registered office, so with Director's Cover your home no longer needs to appear in either place on the public register.`,
+    a: `Director's Cover is a ${formatPrice(dc.price)} a month add-on. It gives you a director's service address at the Maggie O'Neill Centre. Your plan already swaps your home for our address as your registered office. With Director's Cover, your home doesn't need to show in either place on the public register.`,
   },
   {
     q: "If I upgrade my plan, do I keep Director's Cover?",
-    a: `Yes. If you have ${p20.name} with Director's Cover at ${formatPrice(withCover(p20))} a month and move up to ${p40.name}, your cover moves with you and the price becomes ${formatPrice(withCover(p40))} a month.`,
+    a: `Yes. Say you have ${p20.name} with Director's Cover at ${formatPrice(withCover(p20))} a month. If you move up to ${p40.name}, your cover moves with you. The price becomes ${formatPrice(withCover(p40))} a month.`,
   },
   {
     q: 'Who handles my post?',
-    a: `The Maggie O'Neill Centre handles your post in-house. It isn't outsourced to another company: our team looks after virtual office post at reception.`,
+    a: `We do, here at the Maggie O'Neill Centre. We don't send it to another company. Our own team looks after virtual office post at reception.`,
   },
   {
     q: 'Can I collect my post?',
-    a: `Yes. You can collect post from reception at the Maggie O'Neill Centre, ${hours.summary}, and parking is free while you do.`,
+    a: `Yes. You can collect post from reception at the Maggie O'Neill Centre, ${hours.summary}. Parking is free while you do.`,
   },
   {
     q: 'Can I meet clients at my virtual office address?',
-    a: `Yes. Meeting rooms are in the same building, from the ${pod.name} at ${formatPrice(pod.prices!.hour!)} an hour. The ${formatPrice(p40.price)} ${p40.name} plan includes 2 free meeting room hours a month.`,
+    a: `Yes. Meeting rooms are in the same building. They start with the ${pod.name} at ${formatPrice(pod.prices!.hour!)} an hour. The ${formatPrice(p40.price)} ${p40.name} plan includes 2 free meeting room hours a month.`,
   },
   {
     q: 'Do I need to be near Liverpool to use the virtual office?',
-    a: `No. The Maggie O'Neill Centre has virtual office clients across the UK who chose a charity for their registered address, instead of an online service or a profit-making company. On the Virtual Office plan your post is opened and scanned, so you can read it wherever you are.`,
+    a: `No. The Maggie O'Neill Centre has virtual office clients all over the UK. They chose a charity for their registered address, not an online service or a company run for profit. On the Virtual Office plan, we open and scan your post. So you can read it wherever you are.`,
   },
   {
     q: 'Is there a contract?',
-    a: `There's no lock-in. You can cancel a virtual office at the Maggie O'Neill Centre any time with one month's notice.`,
+    a: `There's no lock-in. You can cancel a virtual office at the Maggie O'Neill Centre any time. Just give one month's notice.`,
   },
   {
     q: 'How quickly can I start?',
-    a: `You can be live as soon as your AML checks are done. Fill in the form, complete the secure AML form we send you, and you get your address and mailbox app.`,
+    a: `You can start as soon as your AML checks are done. Fill in the form. Then fill in the secure AML form we send you. After that, you get your address and mailbox app.`,
   },
   {
     q: 'Why do you need to do an AML check?',
-    a: `Anyone providing a registered office service has to carry out anti-money laundering (AML) checks on their clients by law. The Maggie O'Neill Centre sends you a secure form for this after you sign up.`,
+    a: `By law, anyone who offers a registered office service must check their clients. These are called anti-money laundering (AML) checks. The Maggie O'Neill Centre sends you a secure form for this after you sign up.`,
   },
   {
     q: "Can I use a virtual office for a taxi or private hire operator's licence?",
-    a: `Not in Knowsley. Some councils accept a virtual office address, but Knowsley Council asks for a lease, with a suite number, at Class E commercial premises; officers don't inspect, but a virtual office isn't a lease. For Knowsley operators, the Maggie O'Neill Centre has a dedicated package: a 12-month satellite office lease with planning permission, from £${operatorLicence.from} a month, with an exit clause if the council refuses your licence. See the Knowsley operator licence address page.`,
+    a: `Not in Knowsley. Some councils accept a virtual office address. Knowsley Council asks for a lease, with a suite number, at Class E commercial premises. Officers don't inspect, but a virtual office isn't a lease. For Knowsley operators, the Maggie O'Neill Centre has its own package. It's a 12-month satellite office lease with planning permission, from £${operatorLicence.from} a month. There's an exit clause if the council refuses your licence. See the Knowsley operator licence address page.`,
   },
   {
     q: 'Is it a real address or a PO box?',
@@ -163,7 +163,7 @@ const voReviewCount = reviews.count;
 
   <Hero
     title="A business address, with real people handling your post."
-    lede={`Keep your home address private and give your business a proper base in Liverpool. Our team takes in your post, lets you know when it arrives, and there's a meeting room down the corridor when you need one. From ${formatPrice(virtualOffice.from)} a month.`}
+    lede={`Keep your home address private. Give your business a proper base in Liverpool. Our team takes in your post and tells you when it comes. And there's a meeting room down the corridor when you need one. From ${formatPrice(virtualOffice.from)} a month.`}
     image={29}
     primary={{ label: 'Get your address', href: '#get-your-address' }}
     secondary={{ label: 'See plans and prices', href: '#plans' }}
@@ -176,7 +176,7 @@ const voReviewCount = reviews.count;
     </ul>
     <ul class="vo-proof">
       <li><a href="/reviews/">{voReviewCount} Google reviews</a></li>
-      <li>Post handled in-house</li>
+      <li>Our own team handles your post</li>
       <li>Free parking when you collect</li>
     </ul>
   </Hero>
@@ -192,7 +192,7 @@ const voReviewCount = reviews.count;
         <div class="section-head">
           <span class="eyebrow">Who it's for</span>
           <h2 id="who-heading">Who uses a virtual office at Maggie's?</h2>
-          <p>Directors, sole traders and small firms who want a proper business address without renting an office.</p>
+          <p>For directors, sole traders and small firms. Get a proper business address without renting an office.</p>
         </div>
         <ul class="tick-list">
           {whoFor.map((w) => <li>{w}</li>)}
@@ -200,7 +200,7 @@ const voReviewCount = reviews.count;
       </div>
       <div class="card reasons">
         <h3>Why people switch</h3>
-        <p>Some switch for privacy. Others want a better business image: meeting rooms, organised post and a proper postcode.</p>
+        <p>Some switch for privacy. Others want their business to look better: meeting rooms, tidy post and a proper postcode.</p>
         <ul>
           {reasons.map((r) => <li>{r}</li>)}
         </ul>
@@ -213,11 +213,11 @@ const voReviewCount = reviews.count;
       <div class="section-head">
         <span class="eyebrow">Why not a big-name provider?</span>
         <h2 id="bigname-heading">Why pay for perks you'll never use?</h2>
-        <p>The national brands start at £65 a month in Liverpool. Here's what that price is buying, and why a local business rarely needs it.</p>
+        <p>The big national brands start at £65 a month in Liverpool. Here's what that price pays for. Most local businesses don't need it.</p>
       </div>
       <ul class="tick-list">
         {virtualOffice.whyNotBigName.map((w) => <li>{w}</li>)}
-        <li>And there's no VAT to add: the centre is a charity and isn't VAT registered, so {formatPrice(p20.price)} means {formatPrice(p20.price)}.</li>
+        <li>And there's no VAT to add. The centre is a charity and isn't VAT registered. So {formatPrice(p20.price)} means {formatPrice(p20.price)}.</li>
       </ul>
     </div>
   </section>
@@ -235,15 +235,15 @@ const voReviewCount = reviews.count;
       <div class="prose">
         <p>
           <strong>A registered office</strong> is your company's official address on the public register. Every plan includes one at the Maggie
-          O'Neill Centre, and you can use it as your business address everywhere else too.
+          O'Neill Centre. You can use it as your business address everywhere else too.
         </p>
         <p>
-          <strong>A director's service address</strong> is where Companies House and others send letters for you as a director. If you used your
+          <strong>A director's service address</strong> is where Companies House and others send letters to you as a director. If you used your
           home, it's on the public register. {dc.summary}
         </p>
         <p>
-          Director's Cover costs {formatPrice(dc.price)} a month on top of either plan: {formatPrice(p20.price)} becomes {formatPrice(withCover(p20))}, and
-          {' '}{formatPrice(p40.price)} becomes {formatPrice(withCover(p40))}. Move up from {p20.name} later and your cover comes with you.
+          Director's Cover costs {formatPrice(dc.price)} a month on top of either plan. {formatPrice(p20.price)} becomes {formatPrice(withCover(p20))},
+          and {formatPrice(p40.price)} becomes {formatPrice(withCover(p40))}. Move up from {p20.name} later and your cover comes with you.
         </p>
       </div>
     </div>
@@ -258,15 +258,15 @@ const voReviewCount = reviews.count;
         <div class="section-head">
           <span class="eyebrow">Your post</span>
           <h2 id="post-heading">What happens to my post?</h2>
-          <p>Your post comes to real people at the Maggie O'Neill Centre, not a sorting office. It isn't outsourced to another company.</p>
+          <p>Your post comes to real people at the Maggie O'Neill Centre, not a sorting office. We don't send it to another company.</p>
         </div>
         <ul class="tick-list">
-          <li>Our team looks after virtual office post at reception.</li>
-          <li>On the {formatPrice(p40.price)} {p40.name} plan, your post is opened and scanned, so you can read it in your mailbox app wherever you are.</li>
-          <li>On every plan, you can collect post from reception, {hours.summary}, with free parking outside.</li>
+          <li>Our own team looks after virtual office post at reception.</li>
+          <li>On the {formatPrice(p40.price)} {p40.name} plan, we open and scan your post. You can read it in your mailbox app wherever you are.</li>
+          <li>On every plan, you can collect post from reception, {hours.summary}. Parking outside is free.</li>
         </ul>
         <p class="post-review">
-          Salome, who runs Salowal Ltd, says in her Google review that she's told when her post arrives, and her clients are greeted at reception.
+          Salome runs Salowal Ltd. In her Google review, she says we tell her when her post arrives. She says her clients are greeted at reception too.
         </p>
       </div>
     </div>
@@ -277,11 +277,11 @@ const voReviewCount = reviews.count;
       <div class="section-head">
         <span class="eyebrow">Meeting rooms</span>
         <h2 id="meet-heading">Can I meet clients at my virtual office address?</h2>
-        <p>Yes. Meeting rooms are in the same building, so clients come to the address on your letterhead.</p>
+        <p>Yes. Meeting rooms are in the same building. So clients come to the address on your letterhead.</p>
       </div>
       <div class="prose">
         <p>
-          The {pod.name}, a boardroom for {pod.capacity.boardroom}, costs {formatPrice(pod.prices!.hour!)} an hour. Larger rooms are there for team days
+          The {pod.name} is a boardroom for {pod.capacity.boardroom}. It costs {formatPrice(pod.prices!.hour!)} an hour. Bigger rooms are there for team days
           and training. The {formatPrice(p40.price)} {p40.name} plan includes 2 free meeting room hours a month.
         </p>
         <p>Our hosts are on site, the tea is on, and parking is free.</p>
@@ -297,7 +297,7 @@ const voReviewCount = reviews.count;
         <span class="eyebrow">Areas we serve</span>
         <h2 id="areas-heading">Which areas does the virtual office cover?</h2>
         <p>
-          Businesses across Merseyside use our address in Huyton, near Liverpool: {listNames(virtualOffice.areasServed)}.
+          Businesses across Merseyside use our address in Huyton, near Liverpool. They come from {listNames(virtualOffice.areasServed)}.
         </p>
       </div>
       <ul class="areas">
@@ -315,7 +315,7 @@ const voReviewCount = reviews.count;
     id="signup-heading"
     eyebrow="How sign-up works"
     heading="How do I get a virtual office address?"
-    intro="Pick a plan and give us the basics. The AML check follows, and then your address is live."
+    intro="Pick a plan and tell us the basics. Then we do the AML check, and your address goes live."
     steps={virtualOffice.signUp}
   >
     <p class="steps-cta"><a class="btn btn--primary" href="#get-your-address">Get your address</a></p>
@@ -329,7 +329,7 @@ const voReviewCount = reviews.count;
       </div>
       <p class="prose">
         The Maggie O'Neill Centre is a registered charity (no. {site.charityNumber}). Profits from your virtual office fund Maggie's Meals, our social
-        supermarket, and community support in Knowsley. Want to see it? Come for a tour any weekday.
+        supermarket. They also fund community support in Knowsley. Want to see it? Come for a tour any weekday.
       </p>
     </div>
   </section>
@@ -368,7 +368,7 @@ const voReviewCount = reviews.count;
   .vo-proof { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: var(--text-small-size); font-weight: 600; color: var(--moc-purple-900); }
   .vo-proof li::before { content: '✓ '; color: var(--moc-coral-text); }
   .vo-proof a { color: inherit; }
-  .updated { margin-top: -40px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
+  .updated { margin-top: 0; padding-top: 16px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
   .two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
   .two-col--media { align-items: center; }
   .two-col .section-head { margin-bottom: 24px; }
@@ -387,6 +387,6 @@ const voReviewCount = reviews.count;
   .vo-guides li { display: flex; flex-direction: column; gap: 8px; padding: 22px 24px; border-radius: var(--radius-card); background: var(--moc-white); }
   .vo-guides a { font: 700 19px/1.25 var(--font-display); }
   .vo-guides span { font-size: var(--text-small-size); color: var(--moc-slate-text); }
-  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } .updated { margin-top: -24px; } }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } .updated { margin-top: 0; padding-top: 16px; } }
   .areas__case { margin-top: 28px; max-width: 760px; }
 </style>

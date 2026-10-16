@@ -13,7 +13,7 @@ const mapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(`${site.nam
       <div class="section-head">
         <span class="eyebrow">Find us</span>
         <h2 id="find-us-heading">Where is the Maggie O'Neill Centre?</h2>
-        <p>The Maggie O'Neill Centre is at {address.oneLine}, in Knowsley, {parking.motorway}.</p>
+        <p>Maggie O'Neill Centre is at {address.oneLine}, in Knowsley. It's {parking.motorway}.</p>
       </div>
       <ul class="tick-list">
         <li>A free {parking.spaces}-space car park outside, and a main bus route past the door.</li>
@@ -32,7 +32,7 @@ const mapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(`${site.nam
 
     <div class="find-us__form" id="enquire">
       <h3>Book a visit or ask us anything</h3>
-      <p>Come and see the rooms before you book, or tell us your dates and numbers. Prefer to talk? Call <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a> or WhatsApp <a href={contact.whatsappHref} rel="noopener" data-track="whatsapp_click">{contact.text}</a>.</p>
+      <p>Come and see the rooms before you book. Or just tell us your dates and numbers. Prefer to talk? Call <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a> or WhatsApp <a href={contact.whatsappHref} rel="noopener" data-track="whatsapp_click">{contact.text}</a>.</p>
       <div class="find-us__iframe">
         <GhlForm form={form} />
       </div>

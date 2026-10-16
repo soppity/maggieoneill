@@ -30,15 +30,15 @@ const full = po.vacancies === 0;
 const title = "Private Offices to Rent in Huyton, near Liverpool | Maggie O'Neill Centre";
 const description = `Private offices in Huyton, near Liverpool, from ${from} a month, all bills included, with hosts on site, free meeting room hours and free parking, ${parking.motorway}. Maggie O'Neill Centre.`;
 
-const intro = `The Maggie O'Neill Centre in Huyton, Knowsley, 20 to 30 minutes from Liverpool city centre and ${parking.motorway}, has ${po.total} private offices: single offices for ${single.people.replace(' people', '')} and double offices for ${double.people}. Offices cost from ${from} a month on a ${po.lease}, with all bills and utilities included, ${po.freeMeetingHours} free meeting room hours a month, 1Gb fibre WiFi, hosts on site and free parking.${full ? ' All offices are currently let, so join the waitlist and we’ll be in touch when one comes up.' : ''}`;
+const intro = `The Maggie O'Neill Centre is in Huyton, Knowsley. It's 20 to 30 minutes from Liverpool city centre and ${parking.motorway}. We have ${po.total} private offices. Single offices are for ${single.people.replace(' people', '')} people, and double offices for ${double.people}. Offices cost from ${from} a month on a ${po.lease}. All bills and utilities are included. You also get ${po.freeMeetingHours} free meeting room hours a month, 1Gb fibre WiFi, hosts on site and free parking.${full ? ' All offices are let right now. Join the waitlist and we’ll get in touch when one comes up.' : ''}`;
 
 const keyFacts = [
   { term: 'Price', detail: `From ${from} a month on a ${po.lease}. All bills and utilities included.` },
-  { term: 'Sizes', detail: `${single.name}s for ${single.people}, ${double.name.toLowerCase()}s for ${double.people}.` },
+  { term: 'Sizes', detail: `${single.name}s for ${single.people}. ${double.name}s for ${double.people}.` },
   { term: 'Furnished', detail: 'Desks, chairs and filing cabinets.' },
   { term: 'Meeting rooms', detail: `${po.freeMeetingHours} free hours a month, then ${po.meetingDiscount}% off.` },
-  { term: 'Deliveries', detail: 'Taken in by our hosts while you’re out.' },
-  { term: 'Access', detail: `${hours.summary}, with a late stay on ${po.lateStay}.` },
+  { term: 'Deliveries', detail: 'Our hosts take them in while you’re out.' },
+  { term: 'Access', detail: `${hours.summary}. Plus a late stay on ${po.lateStay}.` },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
   { term: 'Availability', detail: full ? `All ${po.total} offices are let. Join the waitlist.` : 'Ask us what’s available.', href: full ? '#waitlist' : '#enquire', linkText: full ? 'Join the waitlist' : 'Book a viewing' },
 ];
@@ -60,19 +60,19 @@ const faqs = [
   },
   {
     q: "What's included in the price?",
-    a: `All bills and utilities, desks, chairs and filing cabinets, 1Gb fibre WiFi, ${po.freeMeetingHours} free meeting room hours a month, hosts on site who take in your deliveries, a shared kitchen fully stocked for making tea and coffee, and free parking.`,
+    a: `All bills and utilities. Desks, chairs and filing cabinets. 1Gb fibre WiFi and ${po.freeMeetingHours} free meeting room hours a month. Hosts on site who take in your deliveries. A shared kitchen stocked for tea and coffee. And free parking.`,
   },
   {
     q: 'Can I book meeting rooms?',
-    a: `Yes. Office tenants get ${po.freeMeetingHours} free meeting room hours every month, and ${po.meetingDiscount}% off any hours after that. Rooms range from the ${pod.name}, a boardroom for ${pod.capacity.boardroom}, to rooms for whole teams.`,
+    a: `Yes. Office tenants get ${po.freeMeetingHours} free meeting room hours every month. Any hours after that are ${po.meetingDiscount}% off. The ${pod.name} is a boardroom for ${pod.capacity.boardroom}, and bigger rooms fit whole teams.`,
   },
   {
     q: 'Can I get into my office outside opening hours?',
-    a: `The building is open ${hours.summary}, and there's a late stay on ${po.lateStay}. There's no access outside those hours.`,
+    a: `The building is open ${hours.summary}. There's a late stay on ${po.lateStay}. You can't get in outside those hours.`,
   },
   {
     q: 'Do you offer phone systems?',
-    a: 'Yes. We can set up a VoIP phone system on your mobiles and laptops for an extra monthly cost. It runs over the internet, so your business number goes wherever you do.',
+    a: 'Yes. We can set up a VoIP phone system on your mobiles and laptops. It costs extra each month. It runs over the internet, so your business number goes wherever you go.',
   },
   {
     q: 'Do you take deliveries?',
@@ -80,11 +80,11 @@ const faqs = [
   },
   {
     q: 'Is there parking?',
-    a: `Yes. The Maggie O'Neill Centre has a free ${parking.spaces}-space car park on site, ${parking.motorway}, and it is on a main bus route.`,
+    a: `Yes. The Maggie O'Neill Centre has a free ${parking.spaces}-space car park on site. It's ${parking.motorway}, and on a main bus route.`,
   },
   {
     q: 'Do you offer hot desking?',
-    a: `No. The Maggie O'Neill Centre no longer offers hot desks or coworking. If you only need a room now and then, the ${pod.name} is ${formatPrice(pod.prices!.hour!)} an hour, and a virtual office gives you a business address without an office.`,
+    a: `No. The Maggie O'Neill Centre no longer has hot desks or coworking. Only need a room now and then? The ${pod.name} is ${formatPrice(pod.prices!.hour!)} an hour. A virtual office gives you a business address without an office.`,
   },
 ];
 
@@ -119,15 +119,15 @@ const schema = [
 
   <Hero
     title="Your own office door, with hosts down the corridor."
-    lede="A quiet office with all the bills included, free parking, meeting rooms when you need them and friendly faces in reception. Small teams settle here and stay."
+    lede="A quiet office with all the bills included. Free parking, meeting rooms when you need them and friendly faces in reception. Small teams settle here and stay."
     image={102}
     primary={{ label: full ? 'Join the waitlist' : 'Book a viewing', href: full ? '#waitlist' : '#enquire' }}
     secondary={{ label: `Call ${contact.phone}`, href: contact.phoneHref }}
   >
-    {full && <p class="po-status"><span aria-hidden="true">●</span> All {po.total} offices are currently let. <a href="#waitlist">Join the waitlist</a> to hear first when one comes up.</p>}
+    {full && <p class="po-status"><span aria-hidden="true">●</span> All {po.total} offices are let right now. <a href="#waitlist">Join the waitlist</a> to hear first when one comes up.</p>}
   </Hero>
 
-  <KeyFacts heading="Private offices, in a few lines" intro={intro} facts={keyFacts} />
+  <KeyFacts heading="Private offices, in short" intro={intro} facts={keyFacts} />
   <p class="container updated">Last updated: October 2026</p>
 
   <section class="section section--cream" aria-labelledby="office-heading">
@@ -135,7 +135,7 @@ const schema = [
       <div class="section-head">
         <span class="eyebrow">The offices</span>
         <h2 id="office-heading">What are the offices like?</h2>
-        <p>Quiet rooms with a window, furnished with desks, chairs and filing cabinets. Bring your laptop and get on with it.</p>
+        <p>Quiet rooms with a window. Each has desks, chairs and filing cabinets. Bring your laptop and get on with it.</p>
       </div>
       <ul class="sizes">
         {po.sizes.map((sz) => (
@@ -146,7 +146,7 @@ const schema = [
         ))}
         <li class="card size">
           <h3>From {from} a month</h3>
-          <p>On a {po.lease}, with all bills and utilities included.</p>
+          <p>On a {po.lease}. All bills and utilities included.</p>
         </li>
       </ul>
       <ul class="gallery">
@@ -166,13 +166,14 @@ const schema = [
       </div>
       <ul class="tick-list">
         <li><span>All bills and utilities included in the price.</span></li>
-        <li><span>{po.freeMeetingHours} free meeting room hours every month, and {po.meetingDiscount}% off any hours after that.</span></li>
-        <li><span>Hosts on site {hours.summary}, who welcome your visitors and take in your deliveries.</span></li>
+        <li><span>{po.freeMeetingHours} free meeting room hours every month. Then {po.meetingDiscount}% off any hours after that.</span></li>
+        <li><span>Hosts on site {hours.summary}. They welcome your visitors and take in your deliveries.</span></li>
         <li><span>A late stay on {po.lateStay}.</span></li>
         <li><span>1Gb fibre WiFi throughout the building.</span></li>
-        <li><span>A VoIP phone system on your mobiles and laptops, if you want one, for an extra monthly cost.</span></li>
-        <li><span>A shared kitchen, fully stocked for making tea and coffee, and free parking for you and your visitors, {parking.motorway}.</span></li>
-        <li><span>A calm, clean building, and a charity that puts what you pay back into Knowsley.</span></li>
+        <li><span>A VoIP phone system on your mobiles and laptops, if you want one. It costs extra each month.</span></li>
+        <li><span>A shared kitchen stocked for tea and coffee.</span></li>
+        <li><span>Free parking for you and your visitors, {parking.motorway}.</span></li>
+        <li><span>A calm, clean building. We're a charity, so what you pay goes back into Knowsley.</span></li>
       </ul>
     </div>
   </section>
@@ -186,7 +187,7 @@ const schema = [
         <h2 id="second-heading">Know of a building that could be our second location?</h2>
       </div>
       <div class="prose">
-        <p>Our offices are full and the waitlist is growing, so we're looking for a second location. If you know of a commercial property that could work, we'd love to hear about it.</p>
+        <p>Our offices are full and the waitlist is growing. So we're looking for a second building. Know of a business property that could work? We'd love to hear about it.</p>
         <p><a href={contact.phoneHref} data-track="phone_click">Call {contact.phone}</a> or <a href={`mailto:${contact.email}`}>email {contact.email}</a>.</p>
       </div>
     </div>
@@ -201,7 +202,7 @@ const schema = [
       <p>
         See also <a href="/services/meeting-rooms/">meeting room hire in Huyton</a>, <a href="/services/virtual-office/">virtual offices</a>, our
         {' '}<a href="/operators-licence/">Knowsley operator licence address</a> for private hire operators, and
-        {' '}<a href="/social-value/">where your money goes</a>, or call <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>.
+        {' '}<a href="/social-value/">where your money goes</a>. Or call <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>.
       </p>
     </div>
   </section>
@@ -220,8 +221,8 @@ const schema = [
   .gallery { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
   .gallery :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); width: 100%; height: 100%; object-fit: cover; }
   .prose { display: flex; flex-direction: column; gap: 16px; }
-  .updated { margin-top: -40px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
+  .updated { margin-top: 0; padding-top: 16px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
   .more-links { padding: 40px 0; }
-  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } .updated { margin-top: -24px; } }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } .updated { margin-top: 0; padding-top: 16px; } }
   @media (max-width: 700px) { .gallery, .sizes { grid-template-columns: 1fr; } }
 </style>

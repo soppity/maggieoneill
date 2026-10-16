@@ -47,7 +47,7 @@ export interface CaseStudy {
   published: string;
 }
 
-const getHere = `The Maggie O'Neill Centre is ${parking.motorway}, on a main bus route, with a free ${parking.spaces}-space car park on site.`;
+const getHere = `The Maggie O'Neill Centre is ${parking.motorway}, on a main bus route. There's a free ${parking.spaces}-space car park on site.`;
 
 export const caseStudies: CaseStudy[] = [
   {
@@ -63,11 +63,11 @@ export const caseStudies: CaseStudy[] = [
     h1: 'Amore: every mandatory training day, in one place',
     tagline: 'One central venue, instead of many.',
     line: 'Four years of training, almost every week, in one central venue.',
-    lede: "Amore has trained its staff at the Maggie O'Neill Centre for about four years. It brought all of its training venues together into one, and now holds the vast majority of its training here, almost every week.",
+    lede: "Amore has trained its staff at the Maggie O'Neill Centre for about four years. It swapped lots of training venues for just one. Now it holds almost all of its training here, almost every week.",
     glance: [
       { term: 'Who', detail: 'Amore, a care provider.' },
       { term: 'With us', detail: 'About four years.' },
-      { term: 'What they run here', detail: 'The vast majority of their staff training, including mandatory training for agency staff.' },
+      { term: 'What they run here', detail: 'Almost all of their staff training, including mandatory training for agency staff.' },
       { term: 'How often', detail: 'Almost every week.' },
     ],
     sections: [
@@ -75,8 +75,8 @@ export const caseStudies: CaseStudy[] = [
         eyebrow: 'The challenge',
         heading: 'Why did Amore bring all its training into one venue?',
         paragraphs: [
-          'Training spread across several venues means staff travelling somewhere different each time, trainers learning a new room each time, and more bookings to manage. Amore decided to bring all of its training together in one central venue.',
-          `It chose the Maggie O'Neill Centre for two reasons: the transport links, and a location that's central for all of its staff. ${getHere}`,
+          'When training is spread across lots of venues, staff travel somewhere different each time. Trainers have to learn a new room each time. And there are more bookings to manage. So Amore chose to bring all of its training into one central venue.',
+          `It chose the Maggie O'Neill Centre for two reasons. It has good transport links, and it's central for all of its staff. ${getHere}`,
         ],
       },
       {
@@ -84,16 +84,16 @@ export const caseStudies: CaseStudy[] = [
         heading: 'What does weekly training look like here?',
         points: [
           "Amore's trainers arrive to a room that's already set for the day.",
-          'Hosts are on site all day, and tea and coffee are served in the room.',
-          'We keep room notes, so a regular booking is set the same way every time.',
-          'Staff park for free or come by bus, so getting to training is never the hard part.',
+          'Hosts are on site all day. Self-serve tea and coffee is in the room.',
+          'We keep notes on each room, so a regular booking is set the same way every time.',
+          'Staff park for free or come by bus. Getting to training is never the hard part.',
         ],
       },
       {
         eyebrow: 'Four years on',
         heading: 'Why does Amore keep booking?',
         paragraphs: [
-          "Weekly training only works if the venue works every week. Four years in, Amore's trainers know the rooms, our hosts know how they like them set, and their staff know exactly where they're going.",
+          "Weekly training only works if the venue works every week. Four years in, Amore's trainers know the rooms. Our hosts know how they like them set. And their staff know just where they're going.",
         ],
       },
     ],
@@ -101,9 +101,9 @@ export const caseStudies: CaseStudy[] = [
       heading: 'What could this look like for your care company?',
       points: [
         'One central venue for all your training, instead of several.',
-        'Easy to reach for staff from across the area, by car or by bus.',
+        'Easy for staff from across the area to reach, by car or by bus.',
         'Weekly and block bookings, set the same way every time.',
-        'Invoices to your company, so the paperwork stays simple.',
+        'We invoice your company, so the paperwork stays simple.',
       ],
     },
     rooms: ['summit', 'forum', 'community-room', 'foundry', 'grove'],
@@ -125,10 +125,10 @@ export const caseStudies: CaseStudy[] = [
     h1: 'Central and South PCN: protected learning time for up to 100 people',
     tagline: 'A whole network, trained under one roof.',
     line: 'Protected learning time in the Auditorium, and meetings every month.',
-    lede: "Central and South PCN books the Auditorium at the Maggie O'Neill Centre for its protected learning time, with 60 to 100 people on site and sessions running through the day. Every month, it also books smaller rooms for board meetings and the other meetings a PCN needs to hold.",
+    lede: "Central and South PCN books the Auditorium at the Maggie O'Neill Centre for its protected learning time. It brings 60 to 100 people, with sessions all through the day. Every month, it also books smaller rooms. These are for board meetings and the other meetings a PCN needs to hold.",
     glance: [
       { term: 'Who', detail: 'Central and South PCN, a Primary Care Network.' },
-      { term: 'What they run here', detail: 'Protected learning time, with sessions and training through the day.' },
+      { term: 'What they run here', detail: 'Protected learning time, with sessions and training all through the day.' },
       { term: 'Group size', detail: '60 to 100 people on protected learning days.' },
       { term: 'Every month', detail: 'Board meetings and other PCN meetings in smaller rooms.' },
     ],
@@ -137,26 +137,26 @@ export const caseStudies: CaseStudy[] = [
         eyebrow: 'What they needed',
         heading: 'What does protected learning time need from a venue?',
         paragraphs: [
-          'Protected learning time brings a whole network together at once. For Central and South PCN, that means 60 to 100 people from different practices on site, with different sessions and training running through the day.',
-          "That needs one room big enough for everyone, somewhere every practice can reach, and a day that runs to time. The time is protected, and nobody wants to lose it to setting up.",
+          'Protected learning time brings a whole network together at once. For Central and South PCN, that means 60 to 100 people from different practices. Different sessions and training run all through the day.',
+          "So it needs one room big enough for everyone. It needs a place every practice can reach. And the day must run to time. The time is protected, and nobody wants to lose it to setting up.",
         ],
       },
       {
         eyebrow: 'How we host it',
         heading: "How does the Maggie O'Neill Centre host a protected learning day?",
         points: [
-          `The Auditorium seats up to ${auditorium.capacity.cabaret!} cabaret style, so practices can sit together at tables, or up to ${auditorium.capacity.theatre!} theatre style.`,
-          'The room is set before anyone arrives, with the stage, screen and lighting ready for the first speaker.',
-          'Hosts are on site all day, and tea and coffee are served for everyone.',
-          `Free parking on site for staff travelling in from every practice, ${parking.motorway}.`,
+          `The Auditorium seats up to ${auditorium.capacity.cabaret!} cabaret style (small round tables), so practices can sit together. Or it seats up to ${auditorium.capacity.theatre!} theatre style.`,
+          'The room is set before anyone arrives. The stage, screen and lighting are ready for the first speaker.',
+          'Hosts are on site all day. Self-serve tea and coffee is in the room for everyone.',
+          `Free parking on site for staff coming in from every practice, ${parking.motorway}.`,
         ],
       },
       {
         eyebrow: 'Every month',
         heading: 'Why hold PCN meetings here?',
         paragraphs: [
-          "Alongside the big days, Central and South PCN books smaller meeting rooms each month for its board meetings and the other meetings a PCN has to hold. Meeting at the Maggie O'Neill Centre means meeting in a shared space, away from any one practice's building.",
-          'One venue for the training days and the regular meetings also means one place to book, and staff who already know the way.',
+          "As well as the big days, Central and South PCN books smaller meeting rooms each month. These are for its board meetings and the other meetings a PCN has to hold. At the Maggie O'Neill Centre, they meet in a shared space, away from any one practice's building.",
+          'One venue for training days and regular meetings means one place to book. And staff already know the way.',
         ],
       },
     ],
@@ -165,7 +165,7 @@ export const caseStudies: CaseStudy[] = [
       points: [
         `Room for your whole network in one place: up to ${auditorium.capacity.cabaret!} cabaret or ${auditorium.capacity.theatre!} theatre style.`,
         'Smaller rooms for board and monthly meetings, in the same building.',
-        'Invoices to your PCN, with PO numbers welcome.',
+        'We invoice your PCN, and PO numbers are welcome.',
         'A shared space that belongs to no single practice.',
       ],
     },
@@ -188,20 +188,20 @@ export const caseStudies: CaseStudy[] = [
     h1: 'AFG: staff training, meetings and a company-wide rollout',
     tagline: 'Remote working, with a place to come together.',
     line: 'Care training and meetings since Covid, including a four-week systems rollout.',
-    lede: "After Covid, Alternative Futures Group (AFG) set its teams up to work largely remotely, and moved its training to the Maggie O'Neill Centre. Its learning team meets here, its support workers do their mandatory training here, and its corporate staff come in for meetings.",
+    lede: "After Covid, Alternative Futures Group (AFG) set its teams up to work mostly from home. It moved its training to the Maggie O'Neill Centre. Its learning team meets here. Its support workers do their mandatory training here. And its corporate staff come in for meetings.",
     glance: [
       { term: 'Who', detail: 'Alternative Futures Group (AFG), a care provider.' },
-      { term: 'With us since', detail: 'After Covid, when AFG moved to largely remote working.' },
+      { term: 'With us since', detail: 'After Covid, when AFG moved to working mostly from home.' },
       { term: 'What they run here', detail: 'Mandatory care training such as TMVA and epilepsy training, plus learning team and corporate meetings.' },
-      { term: 'Biggest booking', detail: 'A one-day systems training for every member of staff, run over four weeks.' },
+      { term: 'Biggest booking', detail: 'One day of systems training for every member of staff, run over four weeks.' },
     ],
     sections: [
       {
         eyebrow: 'The challenge',
         heading: 'Why did AFG move its training to us?',
         paragraphs: [
-          'After Covid, AFG built the setup it needed for its teams to work largely remotely. That meant it could stop running its own training facilities, and use ours instead.',
-          "Its people still need to come together: to train, to meet and to learn. The Maggie O'Neill Centre is where that happens.",
+          'After Covid, AFG set things up so its teams could work mostly from home. That meant it could stop running its own training rooms and use ours instead.',
+          "Its people still need to come together to train, to meet and to learn. The Maggie O'Neill Centre is where that happens.",
         ],
       },
       {
@@ -211,23 +211,23 @@ export const caseStudies: CaseStudy[] = [
           'Mandatory care training for support workers, including TMVA and epilepsy training.',
           'Learning team meetings.',
           'Meetings of all kinds for corporate staff.',
-          'A company-wide systems training, with every member of staff coming in for a one-day session over four weeks.',
+          'Systems training for the whole company. Every member of staff came in for a one-day session, over four weeks.',
         ],
       },
       {
         eyebrow: 'The big one',
         heading: 'How do you train a whole company in a month?',
         paragraphs: [
-          'When AFG needed every member of staff trained on its systems, it booked the Maggie O’Neill Centre for four weeks. Staff came in throughout the month, each for a one-day session.',
-          'A rollout like that only works if every day runs the same. The room is set the same way, the screen is ready, the tea is on and the car park is free. That’s what a hosted day is for.',
+          'AFG needed every member of staff trained on its systems. So it booked the Maggie O’Neill Centre for four weeks. Staff came in all through the month, each for a one-day session.',
+          'A rollout like that only works if every day runs the same. The room is set the same way. The screen is ready, the tea is on and the car park is free. That’s what a hosted day is for.',
         ],
       },
     ],
     takeaways: {
       heading: 'What could this look like for your organisation?',
       points: [
-        'A place to come together when your teams work remotely.',
-        'Practical care training, like TMVA, with floor space to move.',
+        'A place to come together when your teams work from home.',
+        'Hands-on care training, like TMVA, with floor space to move.',
         'Training that runs over weeks, planned with you from the start.',
         'Meeting rooms for corporate teams, in the same building.',
       ],
@@ -251,7 +251,7 @@ export const caseStudies: CaseStudy[] = [
     h1: 'Livv Housing Group: 14 years of training and meetings',
     tagline: "Whatever the booking, we're here for all of it.",
     line: 'Over 14 years of training, meetings and company-wide programmes.',
-    lede: "Livv Housing Group has booked the Maggie O'Neill Centre for over 14 years. Its teams use us for just about everything, from aspiring leaders training to department meetings, company-wide training over weeks and months, and a backup room when their own conference rooms are full.",
+    lede: "Livv Housing Group has booked the Maggie O'Neill Centre for over 14 years. Its teams use us for just about everything. That means aspiring leaders training, department meetings and company-wide training over weeks and months. It also means a backup room when their own conference rooms are full.",
     glance: [
       { term: 'Who', detail: 'Livv Housing Group, a housing association in Knowsley.' },
       { term: 'With us', detail: 'Over 14 years.' },
@@ -264,23 +264,23 @@ export const caseStudies: CaseStudy[] = [
         heading: "What does Livv Housing Group use the Maggie O'Neill Centre for?",
         points: [
           'Aspiring leaders training, for people growing into leadership roles.',
-          'Meeting space for different departments, as and when they need it.',
+          'Meeting space for different departments, whenever they need it.',
           'Company-wide training, run over weeks and months.',
-          'A backup venue when the conference rooms at their own office are booked out.',
+          'A backup venue when the conference rooms at their own office are fully booked.',
         ],
       },
       {
         eyebrow: 'The backup room',
         heading: 'Why use a venue when you have your own meeting rooms?',
         paragraphs: [
-          "Even with conference rooms of your own, there are weeks when everything's booked. With a venue you already know, a meeting can move here without anyone learning a new building or a new way of booking, and parking is free when they arrive.",
+          "Even with conference rooms of your own, some weeks everything's booked. If you already know a venue, a meeting can move here easily. Nobody has to learn a new building or a new way of booking. And parking is free when they arrive.",
         ],
       },
       {
         eyebrow: '14 years on',
         heading: 'What do 14 years of bookings look like?',
         paragraphs: [
-          "Fourteen years is a lot of training days. Programmes have come and gone and teams have changed, and the bookings have kept coming, from programmes that run for months to a single meeting that needed a room.",
+          "Fourteen years is a lot of training days. Programmes have come and gone, and teams have changed. But the bookings keep coming. Some are programmes that run for months. Some are a single meeting that needs a room.",
           "Whatever Livv needs, we're here for all of it.",
         ],
       },
@@ -290,8 +290,8 @@ export const caseStudies: CaseStudy[] = [
       points: [
         'One venue for training, meetings and the overflow.',
         'Programmes that run for weeks or months, booked with one venue.',
-        'A room for a single meeting when your own are full, subject to availability.',
-        "In the borough, so your spend stays in Knowsley and funds Maggie's Meals.",
+        'A room for a single meeting when your own are full, if we have one free.',
+        "We're in the borough, so your spend stays in Knowsley and funds Maggie's Meals.",
       ],
     },
     rooms: ['summit', 'forum', 'community-room', 'foundry', 'grove', 'hub', 'auditorium'],
@@ -313,7 +313,7 @@ export const caseStudies: CaseStudy[] = [
     h1: 'Libraries Connected: a London charity with a Liverpool address',
     tagline: "Your address doesn't need to be local.",
     line: 'A London charity, using our virtual office address for 2 years.',
-    lede: "Libraries Connected is a charity based in London. For 2 years, it has used the Maggie O'Neill Centre as its registered address, and we've handled all of its post and parcels.",
+    lede: "Libraries Connected is a charity based in London. For 2 years, it has used the Maggie O'Neill Centre as its registered address. We've handled all of its post and parcels.",
     glance: [
       { term: 'Who', detail: 'Libraries Connected, a charity based in London.' },
       { term: 'With us', detail: '2 years.' },
@@ -325,7 +325,7 @@ export const caseStudies: CaseStudy[] = [
         eyebrow: 'Why us',
         heading: 'Why did a London charity choose a Liverpool address?',
         paragraphs: [
-          "Libraries Connected needed a virtual address for the charity. When they looked, they found a provider whose values lined up with their own. The Maggie O'Neill Centre is a registered charity too, and what they pay funds Maggie's Meals and community support in Knowsley.",
+          "Libraries Connected needed a virtual address for the charity. When they looked, they found a provider whose values matched their own. The Maggie O'Neill Centre is a registered charity too. What they pay funds Maggie's Meals and community support in Knowsley.",
           "Being at the other end of the country doesn't matter. A registered address doesn't have to be near you. It has to be handled well.",
         ],
       },
@@ -333,9 +333,9 @@ export const caseStudies: CaseStudy[] = [
         eyebrow: 'How we look after it',
         heading: 'How do we handle their post?',
         points: [
-          'Every letter and parcel that arrives for them is logged in our mail management software.',
+          'We log every letter and parcel that comes for them in our mail software.',
           'We work with their team so they can always see what has arrived.',
-          'Items are forwarded on, as they ask.',
+          'We send items on, the way they ask.',
           "It's been a pleasure handling it all for them.",
         ],
       },
@@ -343,7 +343,7 @@ export const caseStudies: CaseStudy[] = [
         eyebrow: 'The proof',
         heading: 'Does your registered address need to be local?',
         paragraphs: [
-          "No. Libraries Connected is in London, and we're in Liverpool. What matters is that your post is in safe hands, and that you can see what's arrived without being here.",
+          "No. Libraries Connected is in London, and we're in Liverpool. What matters is that your post is in safe hands. And you can see what's arrived without being here.",
         ],
       },
     ],
@@ -373,28 +373,28 @@ export const caseStudies: CaseStudy[] = [
     h1: 'Alder Hey: training Sunflower House staff, and the teams that followed',
     tagline: 'When a venue does a good job, word gets around.',
     line: 'Over a year of staff training for Sunflower House, and other Alder Hey teams too.',
-    lede: "Sunflower House at Alder Hey Children's Hospital has been coming to the Maggie O'Neill Centre for over a year to train all of its staff. Other Alder Hey departments and teams now come here too, for the very same reasons.",
+    lede: "Sunflower House at Alder Hey Children's Hospital has come to the Maggie O'Neill Centre for over a year. It trains all of its staff here. Other Alder Hey departments and teams now come here too, for the same reasons.",
     glance: [
       { term: 'Who', detail: "Alder Hey Children's Hospital: Sunflower House, and other departments and teams." },
       { term: 'With us', detail: 'Over a year.' },
       { term: 'What they run here', detail: 'Training for all Sunflower House staff.' },
-      { term: 'Why they stay', detail: 'Rooms set up the same way every time, the right amenities, and a team that flexes to what they need.' },
+      { term: 'Why they stay', detail: 'Rooms set up the same way every time. The right kit, and a team that bends to fit what they need.' },
     ],
     sections: [
       {
         eyebrow: 'What they needed',
         heading: 'What did Sunflower House need from a training venue?',
         paragraphs: [
-          'Sunflower House needed a venue where it could train all of its staff. NHS training days are planned around busy rotas, so the venue has to be ready when people arrive, with nothing to sort out before the session can start.',
+          'Sunflower House needed a venue where it could train all of its staff. NHS training days are planned around busy rotas. So the venue has to be ready when people arrive. There should be nothing to sort out before the session can start.',
         ],
       },
       {
         eyebrow: 'How we host it',
         heading: 'Why does Sunflower House keep coming back?',
         points: [
-          'The room is set up the same way every time, so trainers and staff know exactly what to expect.',
-          'The right amenities are in place: the screen ready, tea and coffee in the room, 1Gb fibre WiFi, and free parking for staff travelling in.',
-          'We work to be flexible and accommodating, whatever the day needs.',
+          'The room is set up the same way every time, so trainers and staff know just what to expect.',
+          'The right things are in place. The screen is ready and tea and coffee are in the room. There’s 1Gb fibre WiFi, and parking is free for staff coming in.',
+          'We work hard to be flexible and helpful, whatever the day needs.',
           'Hosts are on site all day, so anything that comes up is sorted quickly.',
         ],
       },
@@ -402,17 +402,17 @@ export const caseStudies: CaseStudy[] = [
         eyebrow: 'Word gets around',
         heading: 'Why do other Alder Hey teams book here too?',
         paragraphs: [
-          'Other Alder Hey departments and teams now come to the Maggie O\u2019Neill Centre for the very same reasons. When a venue does a good job, word gets around.',
-          "We love having Alder Hey with us. It's a good feeling to know we're providing a space in Knowsley for staff doing such important work.",
+          'Other Alder Hey departments and teams now come to the Maggie O\u2019Neill Centre for the same reasons. When a venue does a good job, word gets around.',
+          "We love having Alder Hey with us. It feels good to give a space in Knowsley to staff doing such important work.",
         ],
       },
     ],
     takeaways: {
       heading: 'What could this look like for your NHS team?',
       points: [
-        'A room set up the same way every time, so your training days are predictable.',
-        'Invoices to your trust, with PO numbers welcome.',
-        'Free parking for staff travelling in.',
+        'A room set up the same way every time, so you know what to expect on training days.',
+        'We invoice your trust, and PO numbers are welcome.',
+        'Free parking for staff coming in.',
         'Step-free on the ground floor, with an accessible toilet. The Auditorium, Community Room, Forum, Grove and Pod are all on the ground floor.',
       ],
     },

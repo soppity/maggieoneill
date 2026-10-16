@@ -40,12 +40,12 @@ const discounted = (n: number, pct = off) => Math.round(n * (100 - pct)) / 100;
 const caOff = ap.callAnsweringDiscount;
 const fmt = (n: number) => (Number.isInteger(n) ? formatPrice(n) : `£${n.toFixed(2)}`);
 
-const lede = `Refer your clients to the Maggie O'Neill Centre for their registered address. They get ${off}% off for as long as they stay, you see all their post under one login, and every address supports a local charity.`;
+const lede = `Refer your clients to the Maggie O'Neill Centre for their registered address. They get ${off}% off for as long as they stay. You see all their post under one login. And every address helps a local charity.`;
 
 const benefits = [
   {
     title: 'One login for every client',
-    text: "Each client gets their own mailbox in PilotoMail, with your email added to it. Log in once, pick a client, and see their post. No chasing anyone for a photo of a letter from HMRC.",
+    text: "Each client gets their own mailbox in PilotoMail. We add your email to it. Log in once, pick a client, and see their post. No more chasing a photo of a letter from HMRC.",
   },
   {
     title: `${off}% off for your clients`,
@@ -53,7 +53,7 @@ const benefits = [
   },
   {
     title: 'No more registered-address admin',
-    text: "Your clients' registered address is a real building with a team at reception. Post is handled, scanned and in the app, so it stops being your problem.",
+    text: "Your clients' registered address is a real building with a team at reception. We handle the post, scan it and put it in the app. So it stops being your problem.",
   },
   {
     title: 'Every referral does good',
@@ -62,8 +62,8 @@ const benefits = [
 ];
 
 const steps = [
-  { title: 'Tell us you want to partner', text: "Call, email or message us. We'll have a quick chat and make a note of your practice." },
-  { title: 'Send your clients our way', text: `Your client signs up on the form below and tells us you referred them. Their ${off}% off is applied from day one.` },
+  { title: 'Tell us you want to partner', text: "Call, email or message us. We'll have a quick chat and note down your practice." },
+  { title: 'Send your clients our way', text: `Your client signs up on the form below. They tell us you sent them. Their ${off}% off starts from day one.` },
   { title: 'Your email goes on their mailbox', text: 'We add your email to their PilotoMail mailbox, so their post shows up under your one login.' },
   { title: 'See their post in one place', text: 'Log in, choose the client, and read what has arrived. Your client sees their own post too.' },
 ];
@@ -71,7 +71,7 @@ const steps = [
 const faqs = [
   {
     q: 'Do you pay accountants a referral fee?',
-    a: `No. Accountants have to disclose any commission to their clients, so instead of paying a referral fee we pass the saving straight to your client as ${off}% off. There's nothing to declare, and your client gets the benefit.`,
+    a: `No. Accountants have to tell their clients about any commission. So we don't pay a referral fee. Instead, we pass the saving straight to your client as ${off}% off. There's nothing to declare, and your client gets the benefit.`,
   },
   {
     q: 'How long does the discount last?',
@@ -79,11 +79,11 @@ const faqs = [
   },
   {
     q: 'How much will my clients pay?',
-    a: `With ${off}% off, the ${p20.name} plan is ${fmt(discounted(p20.price))} a month instead of ${formatPrice(p20.price)}, and the ${p40.name} plan is ${fmt(discounted(p40.price))} instead of ${formatPrice(p40.price)}. ${dc.name} is ${fmt(discounted(dc.price))} a month instead of ${formatPrice(dc.price)}, so a plan with cover comes to ${fmt(discounted(withCover(p20)))} instead of ${formatPrice(withCover(p20))}, or ${fmt(discounted(withCover(p40)))} instead of ${formatPrice(withCover(p40))}. ${ca.name} is ${caOff}% off, at ${fmt(discounted(ca.price, caOff))} a month instead of ${formatPrice(ca.price)}. ${virtualOffice.terms}`,
+    a: `With ${off}% off, the ${p20.name} plan is ${fmt(discounted(p20.price))} a month, not ${formatPrice(p20.price)}. The ${p40.name} plan is ${fmt(discounted(p40.price))}, not ${formatPrice(p40.price)}. ${dc.name} is ${fmt(discounted(dc.price))} a month, not ${formatPrice(dc.price)}. So a plan with cover comes to ${fmt(discounted(withCover(p20)))}, not ${formatPrice(withCover(p20))}. Or ${fmt(discounted(withCover(p40)))}, not ${formatPrice(withCover(p40))}. ${ca.name} is ${caOff}% off, at ${fmt(discounted(ca.price, caOff))} a month, not ${formatPrice(ca.price)}. ${virtualOffice.terms}`,
   },
   {
     q: "How do I see my clients' post?",
-    a: "Through PilotoMail, the mailbox app our virtual office clients use. We add your email to each referred client's mailbox, so you log in once and choose which client's post to view.",
+    a: "Through PilotoMail. It's the mailbox app our virtual office clients use. We add your email to the mailbox of each client you refer. So you log in once and choose which client's post to see.",
   },
   {
     q: 'Do my clients still see their own post?',
@@ -91,11 +91,11 @@ const faqs = [
   },
   {
     q: 'Who does the AML checks?',
-    a: "We do. Anyone providing a registered address has to carry out anti-money laundering (AML) checks on their clients by law, so we send each client a secure AML form after they sign up.",
+    a: "We do. By law, anyone who offers a registered address must check their clients. These are anti-money laundering (AML) checks. So we send each client a secure AML form after they sign up.",
   },
   {
     q: 'Can my clients use the address with Companies House?',
-    a: `Yes. Every plan includes a registered address at ${address.oneLine}. Director's Cover adds a director's service address, so their home comes off the register in both places.`,
+    a: `Yes. Every plan includes a registered address at ${address.oneLine}. Director's Cover adds a director's service address. Then their home comes off the register in both places.`,
   },
 ];
 
@@ -144,7 +144,7 @@ const schema = [
 
   <Hero
     title="Your clients' post, handled. Your admin, gone."
-    lede={`Send your clients to us for their registered address. They save ${off}% for as long as they stay, you see all their post in one place, and every address helps a local charity.`}
+    lede={`Send your clients to us for their registered address. They save ${off}% for as long as they stay. You see all their post in one place. And every address helps a local charity.`}
     image={6}
     screen={{ src: '/images/pilotomail/mailbox-picker-hero.webp', width: 1400, height: 947, alt: "The PilotoMail 'Choose your mailbox' screen, listing example client companies under one accountant's login" }}
     primary={{ label: 'Become a partner', href: '#partner' }}
@@ -176,10 +176,10 @@ const schema = [
       </div>
       <div class="prose">
         <p>
-          Accountants have to disclose any commission they earn to their clients. So we don't pay one. Instead, the saving goes
-          straight to your client as {off}% off their virtual office, for as long as they stay.
+          Accountants have to tell their clients about any commission they earn. So we don't pay one. Instead, the saving goes
+          straight to your client. They get {off}% off their virtual office, for as long as they stay.
         </p>
-        <p>There's nothing to declare, your advice stays clean, and your client is better off for listening to you.</p>
+        <p>There's nothing to declare. Your advice stays clean. And your client is better off for listening to you.</p>
       </div>
     </div>
   </section>
@@ -191,14 +191,14 @@ const schema = [
           <span class="eyebrow">One login</span>
           <h2 id="login-heading">How do you see your clients' post?</h2>
           <p>
-            Our virtual office clients use PilotoMail, a mailbox app. We add your email to each referred client's mailbox, so you
+            Our virtual office clients use PilotoMail, a mailbox app. We add your email to the mailbox of each client you refer. So you
             log in once and choose whose post you want to see.
           </p>
         </div>
         <ul class="tick-list">
           <li>One login, however many clients you refer.</li>
           <li>Pick a client from your list and read what has arrived.</li>
-          <li>On the {p40.name} plan, post is opened and scanned, so you can read it the same day.</li>
+          <li>On the {p40.name} plan, we open and scan the post. So you can read it the same day.</li>
           <li>Your clients keep their own access too.</li>
         </ul>
       </div>
@@ -230,7 +230,7 @@ const schema = [
       <div class="section-head">
         <span class="eyebrow">Partner prices</span>
         <h2 id="discount-heading">What do referred clients pay?</h2>
-        <p>{off}% off every plan and {dc.name}, and {ap.callAnsweringDiscount}% off {ca.name.toLowerCase()}, for as long as they stay. {virtualOffice.terms}</p>
+        <p>{off}% off every plan and {dc.name}. {ap.callAnsweringDiscount}% off {ca.name.toLowerCase()}. It lasts for as long as they stay. {virtualOffice.terms}</p>
       </div>
       <ul class="grid prices">
         {priceGrid.map((r) => (
@@ -243,8 +243,8 @@ const schema = [
         ))}
       </ul>
       <p class="prices__note">
-        Post is handled in-house by our team, and clients can collect it from reception, {hours.summary}. We run the AML checks the law
-        requires for a registered address, so that's off your plate too.
+        Our own team handles the post. Clients can collect it from reception, {hours.summary}. We also run the AML checks the law
+        asks for with a registered address. So that's off your plate too.
       </p>
     </div>
   </section>
@@ -268,7 +268,7 @@ const schema = [
 
   <VirtualOfficeForm
     heading="Signing up a client?"
-    intro={`Your client can fill this in themselves. Ask them to put your name or practice in the form so we can apply their ${off}% off and add your email to their mailbox.`}
+    intro={`Your client can fill this in themselves. Ask them to put your name or practice in the form. Then we can give them ${off}% off and add your email to their mailbox.`}
   />
 
   <section class="section section--white more-links" aria-label="Related pages">

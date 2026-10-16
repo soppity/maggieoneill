@@ -10,11 +10,11 @@ const form = forms.officeWaitlist;
     <div class="wl-form__copy">
       <span class="eyebrow">Waitlist</span>
       <h2 id="wl-form-heading">Join the waitlist</h2>
-      <p>All {po.total} offices are let right now. Leave your details and we'll be in touch as soon as one comes up.</p>
+      <p>All {po.total} offices are let right now. Leave your details. We'll be in touch as soon as one comes up.</p>
       <ul class="tick-list">
         <li>{po.sizes.map((s) => `${s.name}s for ${s.people}`).join(', ')}.</li>
         <li>From £{po.from} a month on a {po.lease}, with all bills included.</li>
-        <li>No obligation: joining the waitlist doesn't commit you to anything.</li>
+        <li>No obligation. Joining the waitlist doesn't tie you in to anything.</li>
       </ul>
       <p class="wl-form__talk">
         Prefer to talk? Call <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a> or WhatsApp{' '}

@@ -25,7 +25,7 @@ const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 
 >
   <section class="section wiz-section">
     <div class="container wiz">
-      <p class="wiz__offline" data-offline hidden>You're offline. Your input is saved locally. We'll sync when you're back.</p>
+      <p class="wiz__offline" data-offline hidden>You're offline. Your answers are saved on this device. We'll send them when you're back online.</p>
 
       <div class="wiz__progress" aria-live="polite">
         <span data-progress-label>Step 1 of 11</span>
@@ -40,7 +40,7 @@ const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 
         <!-- Step 1 -->
         <section class="wiz-step" data-step="1">
           <h1 class="wiz-step__q">Which council are you applying to?</h1>
-          <p class="wiz-step__help">We can only support Knowsley applications, but we'll help point you in the right direction if you're applying elsewhere.</p>
+          <p class="wiz-step__help">We can only help with Knowsley applications. If you're applying somewhere else, we'll point you the right way.</p>
           <fieldset class="choices field">
             <legend class="visually-hidden">Council</legend>
             {['Knowsley', 'Liverpool', 'Sefton', 'Other'].map((c) => (
@@ -61,7 +61,7 @@ const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 
         <!-- Step 2 -->
         <section class="wiz-step" data-step="2" hidden>
           <h2 class="wiz-step__q">What's your email address?</h2>
-          <p class="wiz-step__help">We'll save your progress as you go, so you can come back later if you get interrupted. We won't use your email for marketing, just to send you links to continue and to deliver your documents after you sign.</p>
+          <p class="wiz-step__help">We'll save your answers as you go. So you can come back later if you get stopped. We won't use your email for marketing. We only use it to send you links to carry on, and your documents after you sign.</p>
           <div class="field">
             <label for="w-email">Email address</label>
             <input id="w-email" name="email" type="email" autocomplete="email" placeholder="your@email.com" />
@@ -71,12 +71,12 @@ const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 
 
         <!-- Step 3 -->
         <section class="wiz-step" data-step="3" hidden>
-          <h2 class="wiz-step__q">Is this a new application, or are you renewing an existing operator's licence?</h2>
-          <p class="wiz-step__help">If you're renewing, we'll ask for your expiry date next so we can keep an eye on the timeline with you.</p>
+          <h2 class="wiz-step__q">Is this a new application, or are you renewing your operator's licence?</h2>
+          <p class="wiz-step__help">If you're renewing, we'll ask for your expiry date next. Then we can keep an eye on the dates with you.</p>
           <fieldset class="choices field">
             <legend class="visually-hidden">Application type</legend>
-            <label class="choice"><input type="radio" name="application_type" value="new" /><span><strong>New application</strong><small>I've never had a Knowsley operator's licence, or my last one expired and I need to apply fresh.</small></span></label>
-            <label class="choice"><input type="radio" name="application_type" value="renewal" /><span><strong>Renewal</strong><small>I currently have a valid Knowsley operator's licence and need to renew it before it expires.</small></span></label>
+            <label class="choice"><input type="radio" name="application_type" value="new" /><span><strong>New application</strong><small>I've never had a Knowsley operator's licence. Or my last one ran out and I need to apply again.</small></span></label>
+            <label class="choice"><input type="radio" name="application_type" value="renewal" /><span><strong>Renewal</strong><small>I have a valid Knowsley operator's licence. I need to renew it before it runs out.</small></span></label>
             <span class="field__error"></span>
           </fieldset>
         </section>
@@ -84,7 +84,7 @@ const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 
         <!-- Step 4 (renewal only) -->
         <section class="wiz-step" data-step="4" hidden>
           <h2 class="wiz-step__q">When does your current licence expire?</h2>
-          <p class="wiz-step__help">We'll help you time the renewal so there's no gap in your operating licence.</p>
+          <p class="wiz-step__help">We'll help you renew in good time. That way there's no gap in your licence.</p>
           <div class="field">
             <label for="w-expiry">Expiry date</label>
             <input id="w-expiry" name="expiry_date" type="date" />
@@ -94,8 +94,8 @@ const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 
 
         <!-- Step 5 -->
         <section class="wiz-step" data-step="5" hidden>
-          <h2 class="wiz-step__q">How many vehicles will you be operating?</h2>
-          <p class="wiz-step__help">Our lease pricing is tiered based on the number of vehicles on your operator licence.</p>
+          <h2 class="wiz-step__q">How many vehicles will you run?</h2>
+          <p class="wiz-step__help">Our lease price depends on how many vehicles are on your operator licence.</p>
           <fieldset class="choices field">
             <legend class="visually-hidden">Vehicles</legend>
             {ol.tiers.map((t) => (
@@ -107,12 +107,12 @@ const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 
 
         <!-- Step 6 -->
         <section class="wiz-step" data-step="6" hidden>
-          <h2 class="wiz-step__q">Are you applying as a sole operator, or with other drivers working under your licence?</h2>
-          <p class="wiz-step__help">An operator licence covers the business. You can add or remove drivers under it later without re-applying.</p>
+          <h2 class="wiz-step__q">Are you applying on your own, or with other drivers under your licence?</h2>
+          <p class="wiz-step__help">An operator licence covers the business. You can add or remove drivers later without applying again.</p>
           <fieldset class="choices field">
             <legend class="visually-hidden">Drivers</legend>
             <label class="choice"><input type="radio" name="drivers" value="sole" /><span><strong>Sole operator, just me</strong><small>I'm the only driver on the licence.</small></span></label>
-            <label class="choice"><input type="radio" name="drivers" value="with_drivers" /><span><strong>With drivers</strong><small>I have, or will have, other drivers operating under my licence.</small></span></label>
+            <label class="choice"><input type="radio" name="drivers" value="with_drivers" /><span><strong>With drivers</strong><small>I have, or will have, other drivers working under my licence.</small></span></label>
             <span class="field__error"></span>
           </fieldset>
         </section>
@@ -120,10 +120,10 @@ const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 
         <!-- Step 7 -->
         <section class="wiz-step" data-step="7" hidden>
           <h2 class="wiz-step__q">Are you applying as a limited company or a sole trader?</h2>
-          <p class="wiz-step__help">If you're a limited company we'll ask for your Companies House number next. If you're a sole trader, we'll move straight on.</p>
+          <p class="wiz-step__help">If you're a limited company, we'll ask for your Companies House number next. If you're a sole trader, we'll skip that step.</p>
           <fieldset class="choices field">
             <legend class="visually-hidden">Business structure</legend>
-            <label class="choice"><input type="radio" name="structure" value="limited" /><span><strong>Limited company</strong><small>I have a registered Ltd that's the operator on the licence.</small></span></label>
+            <label class="choice"><input type="radio" name="structure" value="limited" /><span><strong>Limited company</strong><small>I have a registered Ltd. It's the operator on the licence.</small></span></label>
             <label class="choice"><input type="radio" name="structure" value="sole_trader" /><span><strong>Sole trader</strong><small>I'm trading under my own name, not through a Ltd.</small></span></label>
             <span class="field__error"></span>
           </fieldset>
@@ -132,7 +132,7 @@ const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 
         <!-- Step 8 (limited only) -->
         <section class="wiz-step" data-step="8" hidden>
           <h2 class="wiz-step__q">What's your Companies House number?</h2>
-          <p class="wiz-step__help">8-digit number. You'll find it on your certificate of incorporation or any Companies House email. We'll use this to confirm your company details automatically.</p>
+          <p class="wiz-step__help">It's an 8-digit number. You'll find it on your certificate of incorporation or any Companies House email. We'll use it to check your company details for you.</p>
           <div class="field">
             <label for="w-ch">Companies House number</label>
             <input id="w-ch" name="companies_house" inputmode="numeric" maxlength="8" placeholder="12345678" autocomplete="off" />
@@ -143,7 +143,7 @@ const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 
         <!-- Step 9 -->
         <section class="wiz-step" data-step="9" hidden>
           <h2 class="wiz-step__q">Tell us about yourself.</h2>
-          <p class="wiz-step__help">We need this for the lease and our mandatory anti-money laundering (AML) checks. The council also needs your name and date of birth to run their licensing checks. Your personal address stays on your application and isn't shown publicly.</p>
+          <p class="wiz-step__help">We need this for the lease and our anti-money laundering (AML) checks, which the law says we must do. The council also needs your name and date of birth for its licensing checks. Your home address stays on your application. It isn't shown to the public.</p>
           <div class="field">
             <label for="w-name">Full legal name <span class="req">*</span></label>
             <input id="w-name" name="full_name" autocomplete="name" placeholder="As it appears on your ID" />
@@ -186,7 +186,7 @@ const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 
         <!-- Step 10 -->
         <section class="wiz-step" data-step="10" hidden>
           <h2 class="wiz-step__q">What's your trading name and best mobile number?</h2>
-          <p class="wiz-step__help">Your trading name is what your business is known by publicly. It can be the same as your limited company name or different.</p>
+          <p class="wiz-step__help">Your trading name is the name people know your business by. It can be the same as your limited company name, or different.</p>
           <div class="field">
             <label for="w-trading">Trading name <span class="req">*</span></label>
             <input id="w-trading" name="trading_name" autocomplete="organization" placeholder="e.g. Bloggs Cars" />
@@ -197,22 +197,22 @@ const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 
             <input id="w-mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="07xxx xxxxxx" />
             <span class="field__error"></span>
           </div>
-          <p class="field__hint">By continuing you agree to a {ol.termMonths}-month lease term, subject to the exit clauses above.</p>
+          <p class="field__hint">If you carry on, you agree to a {ol.termMonths}-month lease. The exit clause still applies.</p>
         </section>
 
         <!-- Step 11 -->
         <section class="wiz-step" data-step="11" hidden>
           <h2 class="wiz-step__q">Review your details and the lease.</h2>
-          <p class="wiz-step__help">Have a look through everything below. The exit clause is real: {ol.exitClause}</p>
+          <p class="wiz-step__help">Check everything below. The exit clause is real: {ol.exitClause}</p>
           <div class="wiz-review card">
             <div class="wiz-review__head"><h3>Your details</h3><button type="button" class="wiz-link" data-edit>Edit</button></div>
             <dl class="wiz-review__rows" data-review></dl>
           </div>
           <div class="wiz-review card">
             <h3>Your lease: {ol.termMonths} months, £<span data-review-price>100</span>/month</h3>
-            <p>A satellite office lease at {address.street}, Huyton, {address.postcode}, the Maggie O'Neill Centre. Used as your council-registered operator address. Direct debit on the 1st of each month. Based on your selection of <span data-review-cars>1</span> vehicle(s).</p>
+            <p>A satellite office lease at the Maggie O'Neill Centre, {address.street}, Huyton, {address.postcode}. It's the operator address you give the council. You pay by direct debit on the 1st of each month. The price is for <span data-review-cars>1</span> vehicle(s), as you chose.</p>
             <h4>Exit clause</h4>
-            <p>If Knowsley Council refuses your operator's licence application or revokes your issued licence, you're released from this lease. Your direct debit is cancelled and you owe nothing for months after the refusal.</p>
+            <p>If Knowsley Council refuses your operator's licence application, you're released from this lease. The same goes if it takes away (revokes) your licence. We cancel your direct debit. You owe nothing for the months after.</p>
             <h4>Documents you'll receive</h4>
             <ul class="tick-list">
               <li><span>Signed lease agreement</span></li>
@@ -232,13 +232,13 @@ const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 
       </form>
 
       <div class="form-thanks wiz__done" data-done hidden tabindex="-1">
-        <h2>Thanks, we'll be in touch within one working day to set up your direct debit and send your lease to sign.</h2>
+        <h2>Thanks! We'll be in touch within one working day. We'll set up your direct debit and send your lease to sign.</h2>
         <p>Questions in the meantime? Call <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a> or email <a href={`mailto:${contact.email}`}>{contact.email}</a>.</p>
       </div>
 
       <dialog class="wiz-dialog" data-saved-dialog>
         <h2>Progress Saved</h2>
-        <p>When you return to this form, just type in your email address and pick up where you left off.</p>
+        <p>When you come back to this form, just type in your email address. You'll pick up where you left off.</p>
         <form method="dialog"><button class="btn btn--primary">Got it</button></form>
       </dialog>
     </div>
