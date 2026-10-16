@@ -4,7 +4,7 @@
 export const bookingTermsPath = '/booking-terms/';
 
 export const cancellationSummary =
-  "A standard booking (one room for one day) is free to cancel or change up to 1 business day before your start time. After that, the full booking cost is payable. Larger bookings are fully chargeable once booked, with a 25% deposit to secure your dates.";
+  "A standard booking is one room for one day. It's free to cancel or change up to 1 business day before your start time. After that, the full booking cost is payable. Larger bookings are fully chargeable once booked, with a 25% deposit to secure your dates.";
 
 export const standard = {
   definition: 'A standard booking is one room for one day.',

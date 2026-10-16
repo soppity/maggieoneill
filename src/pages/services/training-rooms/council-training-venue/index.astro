@@ -221,7 +221,7 @@ const schema = [
   .two-col .section-head { margin-bottom: 24px; }
   .media { margin: 0; }
   .media :global(img) { aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
-  .updated { margin-top: -40px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
+  .updated { margin-top: 0; padding-top: 16px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
   .stats__label { font-size: var(--text-eyebrow-size); font-weight: 600; letter-spacing: var(--text-eyebrow-tracking); text-transform: uppercase; color: var(--moc-purple-700); }
   .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin: 12px 0 0; }
   .stats div { display: flex; flex-direction: column-reverse; gap: 6px; }
@@ -229,6 +229,6 @@ const schema = [
   .stats dt { font-size: var(--text-small-size); color: var(--moc-slate-text); }
   .stats__more { margin-top: 24px; font-weight: 700; }
   .more-links { padding: 40px 0; }
-  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } .updated { margin-top: -24px; } }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } .updated { margin-top: 0; padding-top: 16px; } }
   @media (max-width: 520px) { .stats { grid-template-columns: 1fr; } }
 </style>

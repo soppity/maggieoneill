@@ -81,7 +81,7 @@ const comparison = [
 const faqs = [
   {
     q: 'What is the cheapest virtual office address in the UK?',
-    a: `Headline prices start at about £10 a month plus VAT. But that is usually a trading address only. A plan with the registered office for Companies House costs £16 to £50 a month, once you add VAT and setup fees. At the Maggie O'Neill Centre, ${formatPrice(p20.price)} a month includes the registered office and business address at ${address.oneLine}. There's no setup fee.`,
+    a: `Headline prices start at about £10 a month plus VAT. But that is usually a trading address only. A plan with the registered office for Companies House costs more. Once you add VAT and setup fees, it's £16 to £50 a month. At the Maggie O'Neill Centre, it's ${formatPrice(p20.price)} a month. That includes the registered office and business address at ${address.oneLine}. There's no setup fee.`,
   },
   {
     q: 'Can I get a free registered office address?',
@@ -89,11 +89,11 @@ const faqs = [
   },
   {
     q: 'Is a £10 a month virtual office address legitimate?',
-    a: 'It can be, if it’s a real address in a building with staff, where post reaches someone acting for your company. Check that the provider does anti-money laundering checks. Check that the price includes the registered office, if you need one. And check that the address is not a PO box.',
+    a: 'It can be, if it’s a real address in a building with staff. Post must reach someone acting for your company. Check that the provider does anti-money laundering checks. Check that the price includes the registered office, if you need one. And check that the address is not a PO box.',
   },
   {
     q: 'What does a cheap virtual office usually leave out?',
-    a: 'It often leaves out the registered office address, a director’s service address, post forwarding or scanning, a setup fee, an identity check fee and VAT. Some also need a year paid up front. Add those up before you compare the monthly price.',
+    a: 'It often leaves out the registered office address and a director’s service address. Post forwarding or scanning is often extra. So are a setup fee, an identity check fee and VAT. Some also need a year paid up front. Add those up before you compare the monthly price.',
   },
   {
     q: "Does the £20 plan at the Maggie O'Neill Centre include a registered office?",
@@ -187,7 +187,7 @@ const faqs = [
     monthly price. Most of them hide VAT, a setup fee or a year paid up front.
   </p>
   <p>
-    In this list, the Maggie O'Neill Centre's {p20.name} plan is the lowest monthly price that includes the registered office. It has
+    Look at the plans in this list that include the registered office. The Maggie O'Neill Centre's {p20.name} plan has the lowest monthly price. It has
     no VAT, no setup fee and a one-month notice period. Add {dc.name}, and your home address comes off the public register completely, for
     {' '}{formatPrice(withCover(p20))} a month. The {formatPrice(p40.price)} {p40.name} plan adds unlimited post scanning and two free meeting
     room hours a month, worth {formatPrice(p40.price)}.

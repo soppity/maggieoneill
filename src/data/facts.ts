@@ -154,7 +154,7 @@ export const accessibility = {
   lighting: 'Adjustable lighting in the Auditorium.',
 };
 // One answer for "Is the Maggie O'Neill Centre accessible?" wherever it appears, so the caveat is never missed.
-export const accessibilityFaq = `Yes, on the ground floor. There's step-free access, ${accessibility.accessibleBays} accessible parking bays and ${accessibility.toiletGeneral.charAt(0).toLowerCase()}${accessibility.toiletGeneral.slice(1, -1)}. ${accessibility.noLift} Tell us about any access needs when you book. We'll put you in a ground-floor room.`;
+export const accessibilityFaq = `Yes, on the ground floor. There's step-free access and ${accessibility.accessibleBays} accessible parking bays. There's also ${accessibility.toiletGeneral.charAt(0).toLowerCase()}${accessibility.toiletGeneral.slice(1, -1)}. ${accessibility.noLift} Tell us about any access needs when you book. We'll put you in a ground-floor room.`;
 
 
 // The team, from the owner, Oct 2026. Short lines for the homepage, bios for the About page.
@@ -257,7 +257,7 @@ export const rooms: Room[] = [
 
 // The Hosted Day: what every room booking includes (Brand Strategy, The Hosted Day).
 export const layoutTriage =
-  "Tell us how many people are coming and what the day involves. Then we'll pick the right room and layout, and set it up before you arrive.";
+  "Tell us how many people are coming and what the day involves. Then we'll pick the right room and layout. We'll set it up before you arrive.";
 
 export const layouts: { key: Layout; name: string; bestFor: string }[] = [
   { key: 'uShape', name: 'U-shape', bestFor: 'Training with lots of talking. Everyone can see each other, and the trainer can step inside the U.' },
@@ -385,7 +385,7 @@ export const virtualOffice = {
       { title: 'The message is taken', text: 'Who called, why, and how to get back to them.' },
       { title: 'Transferred or messaged', text: 'With your availability on, the call can be put through to you. With it off, the AI takes the message.' },
       { title: 'Emailed to you', text: 'A summary, a full transcript and a recording of the call arrive by email.' },
-      { title: 'Kept in your CRM', text: 'Every call is stored in your CRM account, so you have a record of who rang and what they needed.' },
+      { title: 'Kept in your CRM', text: 'Every call is stored in your CRM account. So you have a record of who rang and what they needed.' },
     ],
   },
 

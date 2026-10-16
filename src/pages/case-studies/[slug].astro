@@ -167,7 +167,7 @@ const schema = [
   .case-hero__tagline { margin-top: 14px; font: 700 clamp(20px, 2.1vw, 26px)/1.25 var(--font-display); color: var(--moc-coral-text); }
   .case-hero__lede { margin-top: 18px; font-size: clamp(18px, 1.8vw, var(--text-lead-size)); line-height: 1.55; max-width: 600px; }
   .case-hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-  .updated { margin-top: -40px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
+  .updated { margin-top: 0; padding-top: 16px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
   .two-col { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
   .prose { display: flex; flex-direction: column; gap: 16px; }
   .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -175,6 +175,6 @@ const schema = [
   @media (max-width: 900px) {
     .case-hero__inner, .two-col, .cases { grid-template-columns: 1fr; }
     .case-hero__logo { aspect-ratio: auto; max-width: 320px; }
-    .updated { margin-top: -24px; }
+    .updated { margin-top: 0; padding-top: 16px; }
   }
 </style>

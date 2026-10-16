@@ -66,7 +66,7 @@ const faqs = [
   },
   {
     q: 'Is there a screen in every training room?',
-    a: "Yes. Every meeting and training room at the Maggie O'Neill Centre has a screen. You can cast to it from a Mac or PC (AirPlay for MacBooks and iPads, and screen casting from Windows laptops). There's HDMI too, and we provide the HDMI cables. You also get 1Gb fibre WiFi, a flipchart and pens.",
+    a: "Yes. Every meeting and training room at the Maggie O'Neill Centre has a screen. You can cast to it from a Mac or PC. Use AirPlay on MacBooks and iPads, or screen casting on Windows laptops. There's HDMI too, and we provide the HDMI cables. You also get 1Gb fibre WiFi, a flipchart and pens.",
   },
   {
     q: 'Are tea and coffee included?',
@@ -82,7 +82,7 @@ const faqs = [
   },
   {
     q: 'What do I need to bring?',
-    a: "Nothing. The screen, HDMI cables, 1Gb fibre WiFi, flipchart, pens, tea and coffee are all ready before you arrive at the Maggie O'Neill Centre.",
+    a: "Nothing. We have it all ready at the Maggie O'Neill Centre before you arrive. That's the screen, HDMI cables, 1Gb fibre WiFi, flipchart, pens, tea and coffee.",
   },
   {
     q: 'Is the training venue accessible?',
@@ -200,8 +200,8 @@ const schema = [
     <div class="container">
       <p>
         Need something different? See <a href="/services/meeting-rooms/">meeting room hire in Huyton</a>,
-        {' '}<a href="/services/event-space-business-and-community/">events and conferences</a> in the {auditorium.name}, or
-        {' '}<a href="/visit/">come and see the rooms</a> before you book. Read our <a href={bookingTermsPath}>booking and cancellation terms</a>.
+        {' '}<a href="/services/event-space-business-and-community/">events and conferences</a> in the {auditorium.name}.
+        {' '}Or <a href="/visit/">come and see the rooms</a> before you book. Read our <a href={bookingTermsPath}>booking and cancellation terms</a>.
       </p>
     </div>
   </section>
@@ -210,7 +210,7 @@ const schema = [
 </Base>
 
 <style>
-  .updated { margin-top: -40px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
+  .updated { margin-top: 0; padding-top: 16px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
   .ideal { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(24px, 5vw, 64px); align-items: center; }
   .ideal .section-head { margin-bottom: 0; }
   .ideal__list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
@@ -218,5 +218,5 @@ const schema = [
   .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cases__more { margin-top: 24px; font-weight: 700; }
   .more-links { padding: 40px 0; }
-  @media (max-width: 900px) { .ideal, .cases { grid-template-columns: 1fr; } .updated { margin-top: -24px; } }
+  @media (max-width: 900px) { .ideal, .cases { grid-template-columns: 1fr; } .updated { margin-top: 0; padding-top: 16px; } }
 </style>

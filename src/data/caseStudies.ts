@@ -378,7 +378,7 @@ export const caseStudies: CaseStudy[] = [
       { term: 'Who', detail: "Alder Hey Children's Hospital: Sunflower House, and other departments and teams." },
       { term: 'With us', detail: 'Over a year.' },
       { term: 'What they run here', detail: 'Training for all Sunflower House staff.' },
-      { term: 'Why they stay', detail: 'Rooms set up the same way every time, the right kit, and a team that bends to fit what they need.' },
+      { term: 'Why they stay', detail: 'Rooms set up the same way every time. The right kit, and a team that bends to fit what they need.' },
     ],
     sections: [
       {
@@ -393,7 +393,7 @@ export const caseStudies: CaseStudy[] = [
         heading: 'Why does Sunflower House keep coming back?',
         points: [
           'The room is set up the same way every time, so trainers and staff know just what to expect.',
-          'The right things are in place: the screen is ready, tea and coffee are in the room, there’s 1Gb fibre WiFi, and parking is free for staff coming in.',
+          'The right things are in place. The screen is ready and tea and coffee are in the room. There’s 1Gb fibre WiFi, and parking is free for staff coming in.',
           'We work hard to be flexible and helpful, whatever the day needs.',
           'Hosts are on site all day, so anything that comes up is sorted quickly.',
         ],

@@ -75,7 +75,7 @@ const faqs = [
   },
   {
     q: 'Can I use the address as my registered office with Companies House?',
-    a: `Yes. Every virtual office plan at the Maggie O'Neill Centre includes a registered office address at ${address.oneLine}. You can use it as your business address too. Put it on your website, invoices and letters.`,
+    a: `Yes. Every virtual office plan at the Maggie O'Neill Centre includes a registered office address. It's at ${address.oneLine}. You can use it as your business address too. Put it on your website, invoices and letters.`,
   },
   {
     q: 'How do I keep my home address off Companies House?',
@@ -297,7 +297,7 @@ const voReviewCount = reviews.count;
         <span class="eyebrow">Areas we serve</span>
         <h2 id="areas-heading">Which areas does the virtual office cover?</h2>
         <p>
-          Businesses across Merseyside use our address in Huyton, near Liverpool: {listNames(virtualOffice.areasServed)}.
+          Businesses across Merseyside use our address in Huyton, near Liverpool. They come from {listNames(virtualOffice.areasServed)}.
         </p>
       </div>
       <ul class="areas">
@@ -368,7 +368,7 @@ const voReviewCount = reviews.count;
   .vo-proof { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: var(--text-small-size); font-weight: 600; color: var(--moc-purple-900); }
   .vo-proof li::before { content: '✓ '; color: var(--moc-coral-text); }
   .vo-proof a { color: inherit; }
-  .updated { margin-top: -40px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
+  .updated { margin-top: 0; padding-top: 16px; margin-bottom: 0; font-size: var(--text-caption-size); color: var(--moc-slate-text); position: relative; }
   .two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
   .two-col--media { align-items: center; }
   .two-col .section-head { margin-bottom: 24px; }
@@ -387,6 +387,6 @@ const voReviewCount = reviews.count;
   .vo-guides li { display: flex; flex-direction: column; gap: 8px; padding: 22px 24px; border-radius: var(--radius-card); background: var(--moc-white); }
   .vo-guides a { font: 700 19px/1.25 var(--font-display); }
   .vo-guides span { font-size: var(--text-small-size); color: var(--moc-slate-text); }
-  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } .updated { margin-top: -24px; } }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } .updated { margin-top: 0; padding-top: 16px; } }
   .areas__case { margin-top: 28px; max-width: 760px; }
 </style>
