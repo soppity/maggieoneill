@@ -6,6 +6,7 @@
 import Base from '../../../layouts/Base.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import Hero from '../../../components/sections/Hero.astro';
+import ProofStrip from '../../../components/sections/ProofStrip.astro';
 import KeyFacts from '../../../components/sections/KeyFacts.astro';
 import RoomCards from '../../../components/sections/RoomCards.astro';
 import HostedDay from '../../../components/sections/HostedDay.astro';
@@ -141,7 +142,9 @@ const schema = [
     lede="A quiet one-to-one in the Pod, or a whole team round the table. Your host has the room ready, the screen on and the coffee poured. From £20 an hour, with free parking, 30 seconds from the M57."
     image={66}
     secondary={{ label: 'See the rooms', href: '#rooms' }}
-  />
+  >
+    <ProofStrip />
+  </Hero>
 
   <KeyFacts heading="Meeting room hire, in short" intro={intro} facts={keyFacts} />
   <p class="container updated">Last updated: October 2026</p>

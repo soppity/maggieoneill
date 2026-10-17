@@ -45,6 +45,7 @@ const priceLine = (r: Room) =>
                 <p class="room-card__price">{priceLine(r)}</p>
               </>
             )}
+            {r.note && <p class="room-card__note">{r.note}</p>}
           </div>
         </li>
       ))}
@@ -57,6 +58,7 @@ const priceLine = (r: Room) =>
 </section>
 
 <style>
+  .room-card__note { margin: 8px 0 0; font-size: var(--text-caption-size); line-height: 1.45; color: var(--moc-slate-text); }
   .room-card__floor { font-size: var(--text-caption-size); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--moc-slate-text); margin: 2px 0 0; }
   .room-cards { list-style: none; margin: 0; padding: 0; grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .room-card { display: flex; flex-direction: column; overflow: hidden; }

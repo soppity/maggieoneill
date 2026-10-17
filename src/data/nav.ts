@@ -31,6 +31,8 @@ export const mainNav: NavItem[] = [
       { label: 'For accountants', href: '/services/virtual-office/accountants/' },
       // Owner, Oct 2026: taxi operators look under virtual office, but Knowsley won't accept one, so signpost the package here.
       { label: 'Knowsley operator licence (taxis)', href: '/operators-licence/' },
+      // Owner, Oct 2026: a sublease for care companies registering with CQC (not a virtual office).
+      { label: 'CQC registration office (care)', href: '/services/cqc-registration-address/' },
       { label: 'Guides', href: '/blog/' },
     ],
   },

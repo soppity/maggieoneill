@@ -7,6 +7,7 @@
 import Base from '../../../../layouts/Base.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
 import Hero from '../../../../components/sections/Hero.astro';
+import ProofStrip from '../../../../components/sections/ProofStrip.astro';
 import KeyFacts from '../../../../components/sections/KeyFacts.astro';
 import ClientLogos from '../../../../components/sections/ClientLogos.astro';
 import RoomCards from '../../../../components/sections/RoomCards.astro';
@@ -129,7 +130,9 @@ const schema = [
     lede="Your teams give so much every day. Here the room is set before they arrive. The tea is made and parking is free. Invoices and POs work the way your finance team needs. Alder Hey and Primary Care Network teams already train with us."
     image={113}
     secondary={{ label: 'See the rooms', href: '#rooms' }}
-  />
+  >
+    <ProofStrip />
+  </Hero>
 
   <ClientLogos heading="NHS and primary care teams who use the Maggie O'Neill Centre" logos={nhsLogos} />
 

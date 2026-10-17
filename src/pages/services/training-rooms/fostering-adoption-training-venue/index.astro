@@ -1,11 +1,12 @@
 ---
 // Fostering and adoption training venue. Spec: Website Blueprint page 3b (Template: Sector) and PROJECT_NOTES.md.
-// The pitch is calm: prospective adopters and foster carers are in the room and emotions can run high.
+// The pitch is warm and hopeful: prospective adopters and foster carers are in the room. We're selling hope and family (owner, Oct 2026).
 // Adoption in Merseyside, Knowsley Fostering and Foster4 use us as their venue of choice; every borough is welcome.
 // We host the sessions; the agency delivers them.
 import Base from '../../../../layouts/Base.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
 import Hero from '../../../../components/sections/Hero.astro';
+import ProofStrip from '../../../../components/sections/ProofStrip.astro';
 import KeyFacts from '../../../../components/sections/KeyFacts.astro';
 import ClientLogos from '../../../../components/sections/ClientLogos.astro';
 import RoomCards from '../../../../components/sections/RoomCards.astro';
@@ -131,12 +132,14 @@ const schema = [
   />
 
   <Hero
-    title="Hard conversations need a calm room."
+    title="A warm, hopeful place for families to begin."
     lede="Getting ready to foster or adopt is one of the biggest steps a family takes. Adoption in Merseyside, Knowsley Fostering and Foster4 bring their families here. The rooms are calm and the welcome is warm. Teams from every nearby borough are welcome too."
     image={105}
     primary={{ label: 'Plan your preparation dates', href: '#enquire' }}
     secondary={{ label: 'See the space', href: '#journey-heading' }}
-  />
+  >
+    <ProofStrip />
+  </Hero>
 
   <ClientLogos heading="The venue of choice for Adoption in Merseyside, Knowsley Fostering and Foster4" logos={fosteringLogos} />
 
@@ -149,7 +152,7 @@ const schema = [
         <div class="section-head">
           <span class="eyebrow">Why calm matters</span>
           <h2 id="calm-heading">Why does the room matter for prospective adopters and foster carers?</h2>
-          <p>The people in the room are thinking about becoming parents. The subjects are heavy. Feelings can run high. The venue should feel safe.</p>
+          <p>The people in the room are getting ready to welcome a child into their family. It's a big, exciting step. The venue should feel warm, safe and full of hope.</p>
         </div>
         <ul class="tick-list">
           <li>Calm, clean rooms, set before anyone arrives.</li>
