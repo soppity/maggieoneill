@@ -1,0 +1,105 @@
+---
+// CQC registration office for care companies (owner, Oct 2026). A sublease at the Maggie O'Neill Centre, like the
+// operator licence lease, so a care company can register with CQC without renting an office it doesn't need.
+// Price and terms aren't published yet (facts.ts cqcRegistration): the page sells the service and asks people to get in touch.
+// Never call this a virtual office.
+import Base from '../../../layouts/Base.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import Hero from '../../../components/sections/Hero.astro';
+import KeyFacts from '../../../components/sections/KeyFacts.astro';
+import Steps from '../../../components/sections/Steps.astro';
+import Faqs from '../../../components/sections/Faqs.astro';
+import FindUs from '../../../components/sections/FindUs.astro';
+import { address, contact, cqcRegistration as cqc, formatPrice, parking, site, trainingDayFrom } from '../../../data/facts';
+import { images } from '../../../data/images';
+import { breadcrumbNode, faqNode, serviceNode } from '../../../lib/schema';
+
+const path = cqc.path;
+const url = `${site.url}${path}`;
+const title = "CQC Registration Office Address, Knowsley | Maggie O'Neill Centre";
+const description = `Register your care company with CQC without renting an office. A sublease at the Maggie O'Neill Centre in Huyton, Knowsley. ${cqc.careProvidersHome} care providers call us home.`;
+
+const intro = `Maggie O'Neill Centre gives care companies a sublease on space in our building at ${address.street}, Huyton. You can use it for your CQC registration. So you don't need to rent an office you don't need yet. ${cqc.careProvidersHome} care providers call us home for training, office space and CQC registration.`;
+
+const keyFacts = [
+  { term: 'What it is', detail: 'A sublease on space in our building. It is not a virtual office.' },
+  { term: 'Who it\'s for', detail: 'Care companies that need an address for CQC registration, but not a full office.' },
+  { term: 'Where', detail: `${address.street}, Huyton, ${address.postcode}. In Knowsley, ${parking.motorway}.` },
+  { term: 'Price', detail: 'Get in touch and we\'ll talk you through the price and terms.' },
+  { term: 'Training', detail: `Training rooms on site from ${formatPrice(trainingDayFrom)} a day, for your mandatory training.`, href: '/services/training-rooms/care-training-venue/', linkText: 'Care training venue' },
+  { term: 'Room to grow', detail: 'When you need your own office, ask about our private offices.', href: '/services/private-offices/', linkText: 'Private offices' },
+];
+
+const steps = [
+  { title: 'Get in touch', text: 'Tell us about your care company and when you want to register.' },
+  { title: 'Agree your sublease', text: 'We agree the details with you and set up your sublease.' },
+  { title: 'Register with CQC', text: 'Use your office here on your CQC registration.' },
+];
+
+const faqs = [
+  {
+    q: 'Can I register my care company with CQC without renting an office?',
+    a: `Yes. Maggie O'Neill Centre gives care companies a sublease on space in our building in Huyton. ${cqc.careProvidersHome} care providers call us home for training, office space and CQC registration.`,
+  },
+  {
+    q: 'Is this a virtual office?',
+    a: "No. It's a sublease on space in our building at the Maggie O'Neill Centre. It works the same way as the lease we give Knowsley taxi operators.",
+  },
+  {
+    q: 'How much does it cost?',
+    a: `Get in touch and we'll talk you through the price and terms. Call ${contact.phone} or fill in the form on this page.`,
+  },
+  {
+    q: 'Can we do our training here too?',
+    a: `Yes. Care providers run mandatory training here, like TMVA, medication, first aid and moving and handling. Training rooms start at ${formatPrice(trainingDayFrom)} a day.`,
+  },
+  {
+    q: 'What if we need a proper office later?',
+    a: 'Ask about our private offices. You can move in when you need your own space.',
+  },
+];
+
+const schema = [
+  serviceNode({
+    url,
+    name: 'CQC registration office',
+    serviceType: 'Office sublease for CQC registration',
+    description: intro,
+    audience: 'Care companies registering with CQC',
+    audienceType: 'BusinessAudience',
+    atVenue: true,
+    areaServed: ['Huyton', 'Knowsley', 'Liverpool', 'Merseyside'],
+  }),
+  breadcrumbNode(url, [
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'CQC registration office', url },
+  ]),
+  faqNode(url, faqs),
+];
+---
+<Base title={title} description={description} ogImage={images[43].src} ogImageAlt={images[43].alt} schema={schema}>
+  <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'CQC registration office', path }]} />
+
+  <Hero
+    title="Register with CQC without renting an office."
+    lede={`Starting a care company? You need somewhere for your CQC registration, but you might not need a whole office yet. We give you a sublease on space in our building. ${cqc.careProvidersHome} care providers already call us home.`}
+    image={43}
+    primary={{ label: 'Ask about a sublease', href: '#enquire' }}
+    secondary={{ label: 'How it works', href: '#how-heading' }}
+  />
+
+  <KeyFacts heading="CQC registration office, in short" intro={intro} facts={keyFacts} />
+
+  <Steps
+    id="how-heading"
+    eyebrow="How it works"
+    heading="How do I get a CQC registration office here?"
+    intro="Three simple steps. We help you all the way."
+    steps={steps}
+    tone="cream"
+  />
+
+  <Faqs faqs={faqs} heading="CQC registration questions" />
+
+  <FindUs />
+</Base>

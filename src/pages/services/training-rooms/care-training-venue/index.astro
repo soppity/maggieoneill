@@ -6,6 +6,7 @@
 import Base from '../../../../layouts/Base.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
 import Hero from '../../../../components/sections/Hero.astro';
+import ProofStrip from '../../../../components/sections/ProofStrip.astro';
 import KeyFacts from '../../../../components/sections/KeyFacts.astro';
 import ClientLogos from '../../../../components/sections/ClientLogos.astro';
 import RoomCards from '../../../../components/sections/RoomCards.astro';
@@ -141,7 +142,9 @@ const schema = [
     image={43}
     primary={{ label: 'Plan your training dates', href: '#enquire' }}
     secondary={{ label: 'See the rooms', href: '#rooms' }}
-  />
+  >
+    <ProofStrip />
+  </Hero>
 
   <ClientLogos heading="Care providers who train at the Maggie O'Neill Centre" logos={careLogos}>
     <NameMarquee names={careClients} label="More care providers who train at the Maggie O'Neill Centre:" />

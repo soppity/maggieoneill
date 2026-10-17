@@ -5,6 +5,7 @@
 import Base from '../../../../layouts/Base.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
 import Hero from '../../../../components/sections/Hero.astro';
+import ProofStrip from '../../../../components/sections/ProofStrip.astro';
 import KeyFacts from '../../../../components/sections/KeyFacts.astro';
 import ClientLogos from '../../../../components/sections/ClientLogos.astro';
 import HostedDay from '../../../../components/sections/HostedDay.astro';
@@ -153,7 +154,9 @@ const schema = [
     image={114}
     primary={{ label: 'Get in touch about your dates', href: '#enquire' }}
     secondary={{ label: 'See the space', href: '#journey-heading' }}
-  />
+  >
+    <ProofStrip />
+  </Hero>
 
   <ClientLogos heading="NHS and primary care teams who use the Maggie O'Neill Centre" logos={healthLogos} />
 

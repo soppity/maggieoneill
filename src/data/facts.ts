@@ -85,7 +85,8 @@ export const forms = {
 };
 
 export const reviews = {
-  count: 230,
+  // Owner, Oct 2026: show as "240+".
+  count: '240+',
   asOf: '28 September 2026',
   source: 'Google',
   // Direct "write a review" link from the Google Business Profile (owner, Oct 2026).
@@ -225,6 +226,8 @@ export interface Room {
   prices?: { hour?: number; day?: number; hourFrom?: number };
   image: number;
   floor: 'ground' | 'first';
+  // A caveat shown on the room card.
+  note?: string;
 }
 export const rooms: Room[] = [
   {
@@ -239,7 +242,7 @@ export const rooms: Room[] = [
   },
   { slug: 'summit', name: 'Summit', kind: 'Training and meeting room', goodFor: 'Training days and meetings', capacity: {}, prices: { hour: 30, day: 180 }, image: 44, floor: 'first' },
   { slug: 'forum', name: 'Forum', kind: 'Training and meeting room', goodFor: 'Training, meetings and open networking', capacity: {}, prices: { hour: 30, day: 180 }, image: 35, floor: 'ground' },
-  { slug: 'grove', name: 'Grove', kind: 'Event and meeting room', goodFor: 'Events, networking and training', capacity: {}, prices: { hour: 30, day: 180 }, image: 62, floor: 'ground' },
+  { slug: 'grove', name: 'Grove', kind: 'Event and meeting room', goodFor: 'Events, networking and training', capacity: {}, prices: { hour: 30, day: 180 }, image: 62, floor: 'ground', note: 'Acoustic curtains give privacy. Please don\'t book it for highly sensitive or confidential sessions.' }, // owner, Oct 2026
   { slug: 'foundry', name: 'Foundry', kind: 'Training and meeting room', goodFor: 'Classroom training and team meetings', capacity: {}, prices: { hour: 25, day: 165 }, image: 92, floor: 'first' },
   { slug: 'hub', name: 'Hub', kind: 'Meeting room', goodFor: 'Small meetings and interviews', capacity: {}, prices: { hour: 25, day: 165 }, image: 88, floor: 'first' },
   { slug: 'community-room', name: 'Community Room', kind: 'Training room', goodFor: 'Training sessions and group work', capacity: {}, prices: { hour: 30, day: 180 }, image: 105, floor: 'ground' },
@@ -396,12 +399,13 @@ export const virtualOffice = {
 };
 
 // Sector pages under the training rooms hub, with their first sentence (Blueprint 03 · Messaging).
+// Owner, Oct 2026: Oliver McGowan second (high-value work).
 export const sectorPages = [
   { name: 'Care and social care', line: 'Mandatory training, in rooms built for it.', href: '/services/training-rooms/care-training-venue/', linkText: 'Care training venue', image: 43 },
+  { name: 'Oliver McGowan training', line: 'A calm, accessible room for Oliver\u2019s Training.', href: '/services/training-rooms/oliver-mcgowan-training-venue/', linkText: 'Oliver McGowan training venue', image: 117 },
   { name: 'NHS and primary care', line: 'Your clinical and admin teams, trained close to home.', href: '/services/training-rooms/nhs-training-venue/', linkText: 'NHS training venue', image: 67 },
   { name: 'Councils, schools and public sector', line: 'Train in the borough, and the spend stays local.', href: '/services/training-rooms/council-training-venue/', linkText: 'Council training in Knowsley', image: 114 },
-  { name: 'Fostering and adoption', line: 'Hard conversations need a calm room.', href: '/services/training-rooms/fostering-adoption-training-venue/', linkText: 'Fostering and adoption training venue', image: 105 },
-  { name: 'Oliver McGowan training', line: 'A calm, accessible room for Oliver\u2019s Training.', href: '/services/training-rooms/oliver-mcgowan-training-venue/', linkText: 'Oliver McGowan training venue', image: 117 },
+  { name: 'Fostering and adoption', line: 'A warm, hopeful place for families to begin.', href: '/services/training-rooms/fostering-adoption-training-venue/', linkText: 'Fostering and adoption training venue', image: 105 },
 ];
 
 // Room hire is by the hour or the day. There are no half-day rates (owner, Oct 2026).
@@ -500,4 +504,12 @@ export const operatorLicence = {
   decisionWeeks: 6,
   exitClause:
     "If Knowsley Council turns down your licence application, you're released from the lease. The same goes if it revokes your licence after it's issued. It's built into the agreement.",
+};
+
+// CQC registration office (owner, Oct 2026): a sublease, like the operator licence lease, so a care company can
+// register with CQC without renting an office it doesn't need. Price and terms to come from the owner: until then the
+// page says "get in touch". Not a virtual office.
+export const cqcRegistration = {
+  path: '/services/cqc-registration-address/',
+  careProvidersHome: '20+',
 };

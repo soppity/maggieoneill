@@ -11,6 +11,14 @@ const cards = [
     image: 43,
   },
   {
+    sector: 'Oliver McGowan training',
+    line: 'A calm, accessible room for Tier 2 days.',
+    detail: 'The Auditorium seats up to 60 cabaret, with space for wheelchairs, a quiet room and accessible parking outside.',
+    href: '/services/training-rooms/oliver-mcgowan-training-venue/',
+    linkText: 'Oliver McGowan training venue',
+    image: 117,
+  },
+  {
     sector: 'NHS and primary care',
     line: 'Your clinical and admin teams, trained close to home.',
     detail: 'Training days and monthly team meetings for trusts and primary care networks.',
@@ -28,7 +36,7 @@ const cards = [
   },
   {
     sector: 'Everyone else',
-    line: 'Your trainer teaches. We handle the rest.',
+    line: 'Your trainer delivers. We handle the rest.',
     detail: 'Training companies, charities and local businesses, from a meeting for 4 to a conference.',
     href: '/services/training-rooms/',
     linkText: 'Training room hire',
@@ -46,7 +54,7 @@ const cards = [
     <div class="grid who-books">
       {cards.map((c) => (
         <a class="card who-books__card" href={c.href}>
-          <Photo n={c.image} width={600} height={360} sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 290px" />
+          <Photo n={c.image} width={600} height={360} sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 390px" />
           <div class="who-books__body">
             <span class="who-books__sector">{c.sector}</span>
             <h3>{c.line}</h3>
@@ -57,20 +65,21 @@ const cards = [
       ))}
     </div>
     <p class="who-books__more">
-      We also host: <a href="/services/training-rooms/oliver-mcgowan-training-venue/">Oliver McGowan training venue</a>{' and '}<a href="/services/training-rooms/fostering-adoption-training-venue/">fostering and adoption training venue</a>.
+      We also host fostering and adoption training: <a href="/services/training-rooms/fostering-adoption-training-venue/">fostering and adoption training venue</a>.
     </p>
   </div>
 </section>
 
 <style>
-  .who-books { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .who-books__card { display: flex; flex-direction: column; overflow: hidden; }
+  /* Owner, Oct 2026: 5 cards, 3 on the first row and 2 centred on the second. */
+  .who-books { display: flex; flex-wrap: wrap; justify-content: center; }
+  .who-books__card { display: flex; flex-direction: column; overflow: hidden; flex: 0 1 calc((100% - 2 * var(--grid-gap, 24px)) / 3); }
   .who-books__card :global(img) { aspect-ratio: 5 / 3; height: auto; }
   .who-books__body { display: flex; flex-direction: column; gap: 10px; padding: 22px 24px 26px; flex: 1; }
   .who-books__sector { font-size: var(--text-caption-size); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--moc-coral-text); }
   .who-books__body p { font-size: var(--text-small-size); color: var(--moc-slate-text); }
   .who-books__link { margin-top: auto; padding-top: 6px; font-weight: 700; color: var(--moc-purple-700); }
   .who-books__more { margin-top: 28px; font-size: var(--text-small-size); }
-  @media (max-width: 1100px) { .who-books { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 640px) { .who-books { grid-template-columns: 1fr; } }
+  @media (max-width: 1100px) { .who-books__card { flex-basis: calc((100% - var(--grid-gap, 24px)) / 2); } }
+  @media (max-width: 640px) { .who-books__card { flex-basis: 100%; } }
 </style>

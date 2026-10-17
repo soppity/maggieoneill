@@ -4,6 +4,7 @@
 import Base from '../../layouts/Base.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/sections/Hero.astro';
+import ProofStrip from '../../components/sections/ProofStrip.astro';
 import KeyFacts from '../../components/sections/KeyFacts.astro';
 import HostedDay from '../../components/sections/HostedDay.astro';
 import Steps from '../../components/sections/Steps.astro';
@@ -113,7 +114,9 @@ const schema = [
     lede="Every booking is hosted. Here's everything that comes with it."
     image={48}
     secondary={{ label: 'See room prices', href: '/services/training-rooms/#rooms' }}
-  />
+  >
+    <ProofStrip />
+  </Hero>
 
   <KeyFacts heading="Every booking, in short" intro={intro} facts={keyFacts} />
 
