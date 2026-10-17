@@ -47,9 +47,9 @@ export const guides: Guide[] = [
   },
   {
     slug: 'virtual-office-vs-home-address',
-    title: 'Virtual office vs home address vs coworking',
+    title: 'Virtual office vs home address',
     stream: 'virtual-office',
-    summary: 'Three ways to give a small business an address. We compare cost, privacy and what each one includes.',
+    summary: 'Two ways to give a small business an address. We compare cost, privacy and what each one includes.',
     image: 1,
     published: '2026-10-04',
   },

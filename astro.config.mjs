@@ -31,7 +31,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       // Unlisted operator licence pages (guide, lease form, wrong-borough page) and the thank-you pages are noindex: keep them out.
-      filter: (page) => !page.includes('/404') && !page.includes('/thank-you/') && !/\/operators-licence\/.+/.test(new URL(page).pathname),
+      filter: (page) => !page.includes('/404') && !page.includes('/thank-you/') && !/\/operators-licence\/.+/.test(new URL(page).pathname) && !new URL(page).pathname.startsWith('/services/cqc-registration-address/apply/'),
       serialize(item) {
         const lastmod = lastModified(new URL(item.url).pathname);
         if (lastmod) item.lastmod = lastmod;

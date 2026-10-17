@@ -36,7 +36,7 @@ export function sitewideNodes(): Node[] {
       'Free on-site parking',
       'Free 1Gb fibre WiFi',
       'Screens with Mac and PC wireless casting and HDMI in every meeting and training room',
-      'Stage, lectern, microphones, sound system and technician-run AV in the Auditorium',
+      'Stage, lectern, microphones, sound system and projector in the Auditorium, run by a technician',
       'Tea and coffee included',
       'Step-free access',
       'Accessible parking',
@@ -225,7 +225,7 @@ export function roomPlaceNode(room: { slug: string; name: string; capacity: Reco
     name: `The ${room.name} at the ${site.name}`,
     containedInPlace: { '@id': id('venue') },
     amenityFeature: (room.slug === 'auditorium'
-      ? ['Stage and lectern', 'Microphones and sound system', 'AV set up and run by a technician', 'Free 1Gb fibre WiFi', 'Tea and coffee included']
+      ? ['Stage and lectern', 'Microphones and sound system', 'Sound, mics and projector run by a technician', 'Free 1Gb fibre WiFi', 'Tea and coffee included']
       : ['Screen with Mac and PC wireless casting and HDMI', 'Free 1Gb fibre WiFi', 'Tea and coffee included']
     ).map((name) => ({
       '@type': 'LocationFeatureSpecification',

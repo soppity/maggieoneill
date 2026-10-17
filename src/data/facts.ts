@@ -507,9 +507,17 @@ export const operatorLicence = {
 };
 
 // CQC registration office (owner, Oct 2026): a sublease, like the operator licence lease, so a care company can
-// register with CQC without renting an office it doesn't need. Price and terms to come from the owner: until then the
-// page says "get in touch". Not a virtual office.
+// register with CQC without renting an office it doesn't need. £150 a month, 12-month lease, same exit clause as the
+// taxi lease. The lease details form is /services/cqc-registration-address/apply/ (unlisted, like the taxi one).
+// Not a virtual office.
 export const cqcRegistration = {
   path: '/services/cqc-registration-address/',
+  applyPath: '/services/cqc-registration-address/apply/',
+  thankYou: '/thank-you/cqc-lease-details/',
+  formName: 'cqc-lease-details',
   careProvidersHome: '20+',
+  price: 150,
+  termMonths: 12,
+  exitClause:
+    "If CQC turns down your registration, you're released from the lease. The same goes if CQC cancels your registration after it's issued. It's built into the agreement.",
 };

@@ -36,12 +36,12 @@ const from = formatPrice(auditorium.prices!.hourFrom!);
 const title = "Event Space Hire near Liverpool | Maggie O'Neill Centre";
 const description = `Event space hire in Huyton, near Liverpool: a ${theatre}-seat Auditorium with a stage and sound system, the Grove for networking, and ${parking.spaces} free parking spaces.`;
 
-const intro = `The Maggie O'Neill Centre in Huyton, near Liverpool, hosts launches, talks, networking and community events. The ${auditorium.name} seats up to ${theatre} theatre style (rows) or ${cab} cabaret (small round tables). It has a stage, lectern, microphones and sound system. A technician runs the AV (£). It costs from ${from} an hour, with a 3-hour minimum. Or we quote a day rate for your event. Six breakout rooms can run sessions at the same time. Hosts check on your event all day. Our catering partner can feed everyone. There are ${parking.spaces} free parking spaces outside.`;
+const intro = `The Maggie O'Neill Centre in Huyton, near Liverpool, hosts launches, talks, networking and community events. The ${auditorium.name} seats up to ${theatre} theatre style (rows) or ${cab} cabaret (small round tables). It has a stage, lectern, microphones and sound system. A technician runs the sound and projector (£). It costs from ${from} an hour, with a 3-hour minimum. Or we quote a day rate for your event. Six breakout rooms can run sessions at the same time. Hosts check on your event all day. Our catering partner can feed everyone. There are ${parking.spaces} free parking spaces outside.`;
 
 const keyFacts = [
   { term: 'Capacity', detail: `Up to ${theatre} theatre style or ${cab} cabaret in the ${auditorium.name}.` },
   { term: 'Prices', detail: `From ${from} an hour (3-hour minimum), or a day rate. We quote for your event.` },
-  { term: 'On stage', detail: 'A stage, lectern, microphones, sound system and lighting. A technician runs the AV (£).' },
+  { term: 'On stage', detail: 'A stage, lectern, microphones, sound system and lighting. A technician runs the sound and projector (£).' },
   { term: 'Breakout rooms', detail: `Six breakout rooms, including the ${grove.name}. Plus the Pod, the Auditorium foyer and space at the back of the hall.` },
   { term: 'Catering', detail: `From our partner, ${catering.partner}. Your own food only if we agree it first.` },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}. Plus ${parking.overflow}.` },
@@ -67,8 +67,8 @@ const faqs = [
     a: `Yes. Tea and coffee are included all day, in or near every space you book. For food, ${catering.partner} can make a menu for your event. They do vegetarian, vegan and gluten-free options. You order from them and pay them directly. We'll put you in touch when you book.`,
   },
   {
-    q: 'What AV equipment is in the Auditorium?',
-    a: `The ${auditorium.name} has a stage, a lectern, microphones, a projector, a sound system and lighting. A technician sets up and runs the AV on the day. You pay for this, and every Auditorium booking needs it. Tell us what your speakers need. We'll have it ready before you arrive.`,
+    q: 'What AV (sound, mics and screens) is in the Auditorium?',
+    a: `The ${auditorium.name} has a stage, a lectern, microphones, a projector, a sound system and lighting. A technician sets up and runs the sound, mics and projector on the day. You pay for this, and every Auditorium booking needs it. Tell us what your speakers need. We'll have it ready before you arrive.`,
   },
   {
     q: 'What is your cancellation policy?',
@@ -105,7 +105,7 @@ const features = [
   },
   {
     image: 182,
-    title: 'Auditorium AV',
+    title: 'Auditorium sound',
     text: 'A pro sound system for the big moments. It plays music and has microphones for up to six people at once. Panels, awards and launches sound as good as they look. A technician (£) runs it on the day.',
   },
   {
@@ -120,8 +120,8 @@ const features = [
   },
   {
     image: 54,
-    title: 'AV in every space',
-    text: 'Every room has a screen or projector, cables, a flipchart and paper. Tea and coffee are close by. So side-by-side sessions run without a hitch.',
+    title: 'Screens in every breakout room',
+    text: 'Every breakout room has an LED flatscreen you connect to wirelessly. No cords stretched across the room. There\'s a flipchart and paper too, and tea and coffee close by.',
   },
 ];
 
@@ -178,7 +178,7 @@ const schema = [
     title="Event space for launches, talks and community events."
     lede="A proper stage, a sound system and a team who care how your event goes. We'll talk it through with you first. Then we're here all day, so it goes the way you planned."
     image={181}
-    primary={{ label: 'Plan your event', href: '#enquire' }}
+    primary={{ label: 'Get in touch', href: '#enquire', track: 'contact_click' }}
     secondary={{ label: `Call ${contact.phone}`, href: contact.phoneHref }}
   />
 
@@ -222,7 +222,7 @@ const schema = [
         <ul class="tick-list">
           <li>Up to {theatre} theatre style, or {cab} cabaret style at tables.</li>
           <li>A stage, lectern, microphones, sound system and lighting.</li>
-          <li>AV set up and run by a technician on the day (£).</li>
+          <li>Sound, mics and projector set up and run by a technician on the day (£).</li>
           <li>From {from} an hour (3-hour minimum), or a day rate. We quote for your event.</li>
           <li>Toilets just outside the doors. An accessible toilet on the same floor.</li>
           <li>Tea and coffee in the foyer.</li>
@@ -299,7 +299,7 @@ const schema = [
   <section class="section section--cream all-faqs" aria-label="All event FAQs">
     <div class="container">
       <div class="all-faqs__inner">
-        <p>Numbers, layouts, AV, food, deposits, cancelling and more. Every question organisers ask us.</p>
+        <p>Numbers, layouts, tech, food, deposits, cancelling and more. Every question organisers ask us.</p>
         <a class="btn btn--primary" href="/services/event-space-business-and-community/faqs/">See all event FAQs</a>
       </div>
     </div>

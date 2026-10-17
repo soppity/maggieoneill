@@ -1,7 +1,8 @@
 ---
 // CQC registration office for care companies (owner, Oct 2026). A sublease at the Maggie O'Neill Centre, like the
 // operator licence lease, so a care company can register with CQC without renting an office it doesn't need.
-// Price and terms aren't published yet (facts.ts cqcRegistration): the page sells the service and asks people to get in touch.
+// £150 a month on a 12-month lease, same exit clause as the taxi lease (facts.ts cqcRegistration). CTAs go to the unlisted
+// lease details form at /services/cqc-registration-address/apply/.
 // Never call this a virtual office.
 import Base from '../../../layouts/Base.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
@@ -17,22 +18,24 @@ import { breadcrumbNode, faqNode, serviceNode } from '../../../lib/schema';
 const path = cqc.path;
 const url = `${site.url}${path}`;
 const title = "CQC Registration Office Address, Knowsley | Maggie O'Neill Centre";
-const description = `Register your care company with CQC without renting an office. A sublease at the Maggie O'Neill Centre in Huyton, Knowsley. ${cqc.careProvidersHome} care providers call us home.`;
+const description = `Register your care company with CQC without renting an office. A sublease at the Maggie O'Neill Centre in Huyton, Knowsley, for £${cqc.price} a month. ${cqc.careProvidersHome} care providers call us home.`;
 
-const intro = `Maggie O'Neill Centre gives care companies a sublease on space in our building at ${address.street}, Huyton. You can use it for your CQC registration. So you don't need to rent an office you don't need yet. ${cqc.careProvidersHome} care providers call us home for training, office space and CQC registration.`;
+const intro = `Maggie O'Neill Centre gives care companies a sublease on space in our building at ${address.street}, Huyton. You can use it for your CQC registration. So you don't need to rent an office you don't need yet. It's £${cqc.price} a month on a ${cqc.termMonths}-month lease. ${cqc.careProvidersHome} care providers call us home for training, office space and CQC registration.`;
 
 const keyFacts = [
   { term: 'What it is', detail: 'A sublease on space in our building. It is not a virtual office.' },
   { term: 'Who it\'s for', detail: 'Care companies that need an address for CQC registration, but not a full office.' },
   { term: 'Where', detail: `${address.street}, Huyton, ${address.postcode}. In Knowsley, ${parking.motorway}.` },
-  { term: 'Price', detail: 'Get in touch and we\'ll talk you through the price and terms.' },
+  { term: 'Price', detail: `£${cqc.price} a month. You pay by direct debit on the 1st.` },
+  { term: 'Lease term', detail: `${cqc.termMonths} months.` },
+  { term: 'Exit clause', detail: cqc.exitClause },
   { term: 'Training', detail: `Training rooms on site from ${formatPrice(trainingDayFrom)} a day, for your mandatory training.`, href: '/services/training-rooms/care-training-venue/', linkText: 'Care training venue' },
   { term: 'Room to grow', detail: 'When you need your own office, ask about our private offices.', href: '/services/private-offices/', linkText: 'Private offices' },
 ];
 
 const steps = [
-  { title: 'Get in touch', text: 'Tell us about your care company and when you want to register.' },
-  { title: 'Agree your sublease', text: 'We agree the details with you and set up your sublease.' },
+  { title: 'Send your lease details', text: 'Fill in our short form. It takes about 5 minutes.' },
+  { title: 'Sign your lease', text: 'We set up your direct debit and send your lease to sign.' },
   { title: 'Register with CQC', text: 'Use your office here on your CQC registration.' },
 ];
 
@@ -47,7 +50,11 @@ const faqs = [
   },
   {
     q: 'How much does it cost?',
-    a: `Get in touch and we'll talk you through the price and terms. Call ${contact.phone} or fill in the form on this page.`,
+    a: `It's £${cqc.price} a month on a ${cqc.termMonths}-month lease. You pay by direct debit on the 1st of each month.`,
+  },
+  {
+    q: 'What if CQC turns down my registration?',
+    a: cqc.exitClause,
   },
   {
     q: 'Can we do our training here too?',
@@ -64,6 +71,7 @@ const schema = [
     url,
     name: 'CQC registration office',
     serviceType: 'Office sublease for CQC registration',
+    offers: [{ name: 'CQC registration office sublease', price: cqc.price, unit: 'MONTH' as const, description: `${cqc.termMonths}-month lease, paid monthly by direct debit.` }],
     description: intro,
     audience: 'Care companies registering with CQC',
     audienceType: 'BusinessAudience',
@@ -82,9 +90,9 @@ const schema = [
 
   <Hero
     title="Register with CQC without renting an office."
-    lede={`Starting a care company? You need somewhere for your CQC registration, but you might not need a whole office yet. We give you a sublease on space in our building. ${cqc.careProvidersHome} care providers already call us home.`}
+    lede={`Starting a care company? You need somewhere for your CQC registration, but you might not need a whole office yet. We give you a sublease on space in our building for £${cqc.price} a month. ${cqc.careProvidersHome} care providers already call us home.`}
     image={43}
-    primary={{ label: 'Ask about a sublease', href: '#enquire' }}
+    primary={{ label: 'Check if you qualify', href: cqc.applyPath }}
     secondary={{ label: 'How it works', href: '#how-heading' }}
   />
 
@@ -97,9 +105,15 @@ const schema = [
     intro="Three simple steps. We help you all the way."
     steps={steps}
     tone="cream"
-  />
+  >
+    <p class="cqc-cta"><a class="btn btn--primary" href={cqc.applyPath}>Check if you qualify</a> <span>Or call <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a></span></p>
+  </Steps>
 
   <Faqs faqs={faqs} heading="CQC registration questions" />
 
   <FindUs />
 </Base>
+
+<style>
+  .cqc-cta { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; font-weight: 600; }
+</style>
