@@ -317,12 +317,13 @@ export const privateOffices = {
 // Pricing is shown as a ladder (owner, Oct 2026): lead with "from £20", then offer Director's Cover as a £10 add-on,
 // so the home address comes off both places it appears on Companies House. Two plans plus one add-on, never four plans.
 // Moving from Address Only + Director's Cover (£30) to Virtual Office keeps the cover, so it becomes £50.
-export type PlanFeature = 'registeredOffice' | 'businessAddress' | 'collectPost' | 'postScanned' | 'roomHours' | 'coffee';
+export type PlanFeature = 'registeredOffice' | 'businessAddress' | 'postUploaded' | 'collectPost' | 'postScanned' | 'roomHours' | 'coffee';
 
 export const planFeatures: { key: PlanFeature; label: string }[] = [
   { key: 'registeredOffice', label: 'Registered office address for Companies House' },
   { key: 'businessAddress', label: 'Use it as your business address everywhere' },
-  { key: 'collectPost', label: 'Collect your post from reception' },
+  { key: 'postUploaded', label: "A photo of every envelope, unopened, in your mailbox app. So you can see what's arrived" },
+  { key: 'collectPost', label: 'Pick your post up from reception, or have it forwarded for a flat £5 plus postage' },
   { key: 'postScanned', label: 'Unlimited post opened and scanned, so you can read it anywhere' },
   { key: 'roomHours', label: '2 free meeting room hours a month, worth £40' },
   { key: 'coffee', label: 'Free coffee when you call in' },
@@ -335,7 +336,9 @@ export interface VirtualOfficePlan {
   features: PlanFeature[];
 }
 
-const addressOnly: PlanFeature[] = ['registeredOffice', 'businessAddress', 'collectPost'];
+// Owner, Oct 2026: on every plan, a photo of each envelope (unopened) is uploaded, then the post is picked up or
+// forwarded (a flat £5 plus postage, virtualOffice.forwarding). The £40 plan also opens and scans it.
+const addressOnly: PlanFeature[] = ['registeredOffice', 'businessAddress', 'postUploaded', 'collectPost'];
 
 export const virtualOffice = {
   from: 20,
@@ -343,7 +346,7 @@ export const virtualOffice = {
     {
       name: 'Address Only',
       price: 20,
-      summary: 'A registered office and business address. Collect your post from reception.',
+      summary: 'A registered office and business address. We upload a photo of every envelope, unopened, so you can see what\'s arrived. Then pick it up, or have it forwarded.',
       features: addressOnly,
     },
     {
@@ -360,6 +363,7 @@ export const virtualOffice = {
       "Your plan replaces your home as your company's registered office. Director's Cover replaces it as your director's service address too. So new filings show our address in both places your home used to be.",
     short: 'Keep your home off Companies House in both places',
   },
+  forwarding: { fee: 5, text: 'a flat £5 plus postage' },
   terms: 'No lock-in. Cancel any time with one month\'s notice.',
   // Owner, Oct 2026: the centre is a charity and not VAT registered, so no VAT is added to any virtual office price.
   vat: 'No VAT is added. The centre is a charity and is not VAT registered. So the price you see is the price you pay.',
@@ -370,7 +374,7 @@ export const virtualOffice = {
     "A city-centre address doesn't help a local business get found locally. And when a client wants to meet, you pay to park. Here, parking is free and the M57 is 30 seconds away.",
     "You get a real building with hosts in it. They know your name and tell you when your post arrives. And there's a meeting room ready down the corridor.",
   ],
-  // Owner, Oct 2026: never name one person as the post handler. Post is handled by the team at reception.
+  // Owner, Oct 2026: never name one person as the post handler. Post is handled by our team and securely stored, not kept at reception.
   signUp: [
     { title: 'Tell us the basics', text: 'Your name, email, phone and the plan you want. It takes about a minute.' },
     { title: 'Complete your AML check', text: 'We send you a secure form for the anti-money laundering (AML) checks. The law needs these for registered office services.' },
