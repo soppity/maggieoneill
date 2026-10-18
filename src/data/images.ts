@@ -26,6 +26,7 @@ export const images: Record<number, LibraryImage> = {
   18: img(18, '6ab683479b248207685a6949.webp', "The purple neon logo on the oak slat wall in reception at the Maggie O'Neill Centre"),
   26: img(26, '6ab683516407f2cbe4d41d7f.webp', "A stack of client post on the shelf under the neon logo at the Maggie O'Neill Centre"),
   29: img(29, '6ab683505d1647127867f5b2.webp', "Post for a virtual office client on the shelf under the neon logo at the Maggie O'Neill Centre"),
+  31: img(31, '6ab6834e7e654f1003c2a600.webp', "The Forum at the Maggie O'Neill Centre, with a long white table in front of the greenery-draped oak slat wall and warm lights"),
   35: img(35, '6ab6833a5d1647127867f336.webp', "The Forum meeting and training room at the Maggie O'Neill Centre, bright with a long white table"),
   43: img(43, '6ab6833b5d1647127867f362.webp', "A trainer setting up a session in the Forum at the Maggie O'Neill Centre"),
   44: img(44, '6ab6834d3ae3da26fb60a42b.webp', "The Summit training room at the Maggie O'Neill Centre set in a U-shape"),
