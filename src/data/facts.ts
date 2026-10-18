@@ -317,12 +317,13 @@ export const privateOffices = {
 // Pricing is shown as a ladder (owner, Oct 2026): lead with "from £20", then offer Director's Cover as a £10 add-on,
 // so the home address comes off both places it appears on Companies House. Two plans plus one add-on, never four plans.
 // Moving from Address Only + Director's Cover (£30) to Virtual Office keeps the cover, so it becomes £50.
-export type PlanFeature = 'registeredOffice' | 'businessAddress' | 'collectPost' | 'postScanned' | 'roomHours' | 'coffee';
+export type PlanFeature = 'registeredOffice' | 'businessAddress' | 'postUploaded' | 'collectPost' | 'postScanned' | 'roomHours' | 'coffee';
 
 export const planFeatures: { key: PlanFeature; label: string }[] = [
   { key: 'registeredOffice', label: 'Registered office address for Companies House' },
   { key: 'businessAddress', label: 'Use it as your business address everywhere' },
-  { key: 'collectPost', label: 'Collect your post from reception' },
+  { key: 'postUploaded', label: "Every piece of post uploaded to your mailbox app, so you can see what's arrived" },
+  { key: 'collectPost', label: 'Pick your post up from reception, or ask us to forward it' },
   { key: 'postScanned', label: 'Unlimited post opened and scanned, so you can read it anywhere' },
   { key: 'roomHours', label: '2 free meeting room hours a month, worth £40' },
   { key: 'coffee', label: 'Free coffee when you call in' },
@@ -335,7 +336,8 @@ export interface VirtualOfficePlan {
   features: PlanFeature[];
 }
 
-const addressOnly: PlanFeature[] = ['registeredOffice', 'businessAddress', 'collectPost'];
+// Owner, Oct 2026: on every plan, each piece of post is uploaded so the client can see it, then picked up or forwarded.
+const addressOnly: PlanFeature[] = ['registeredOffice', 'businessAddress', 'postUploaded', 'collectPost'];
 
 export const virtualOffice = {
   from: 20,
@@ -343,7 +345,7 @@ export const virtualOffice = {
     {
       name: 'Address Only',
       price: 20,
-      summary: 'A registered office and business address. Collect your post from reception.',
+      summary: 'A registered office and business address. Every piece of post is uploaded for you to see. Then pick it up, or ask us to forward it.',
       features: addressOnly,
     },
     {
