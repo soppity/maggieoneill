@@ -275,7 +275,7 @@ export const hostedDay = [
   'Room set to your layout before you arrive',
   'On-site hosts, all day',
   'Self-serve tea and coffee in the room, all day',
-  'Screen with Mac and PC wireless casting and HDMI cables',
+  'LED flatscreen you connect to wirelessly (no cords across the room), plus HDMI cables',
   '1Gb fibre WiFi throughout the building',
   'Flipchart and pens',
   'Free parking for everyone in your group',

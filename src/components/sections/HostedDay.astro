@@ -10,6 +10,7 @@ interface Props {
   items?: string[];
   heading?: string;
   intro?: string;
+  eyebrow?: string;
 }
 const {
   showMore = true,
@@ -18,6 +19,7 @@ const {
   items = hostedDay,
   heading = "What's included when you hire a room?",
   intro = "Every room booking at the Maggie O'Neill Centre comes with all of this. You don't need to bring a thing. We've even got the HDMI cable.",
+  eyebrow = 'The Hosted Day',
 } = Astro.props;
 ---
 <section class="section" aria-labelledby="hosted-day-heading">
@@ -28,7 +30,7 @@ const {
     </div>
     <div>
       <div class="section-head">
-        <span class="eyebrow">The Hosted Day</span>
+        <span class="eyebrow">{eyebrow}</span>
         <h2 id="hosted-day-heading">{heading}</h2>
         <p>{intro}</p>
       </div>

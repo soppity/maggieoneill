@@ -36,7 +36,7 @@ const keyFacts = [
   { term: 'Lighting', detail: 'You can change the Auditorium lighting to suit the group.' },
   { term: 'Arrival', detail: 'Accessible parking is right outside the Auditorium. Just ask and we\'ll open the side door.' },
   { term: 'Accessible toilet', detail: 'On the same floor as the Auditorium. It\'s a short walk away, next to the kitchen.' },
-  { term: 'The day', detail: 'Full-day hire, set to your layout. The tech is tested, and self-serve tea and coffee is in the room.' },
+  { term: 'The day', detail: 'Full-day hire, set to your layout. The tech is tested, and self-serve tea and coffee is just outside the Auditorium.' },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
   { term: 'Funding', detail: 'Our invoices work for NHS and ICB funding. PO numbers are welcome.' },
 ];
@@ -85,7 +85,7 @@ const faqs = [
 ];
 
 const journey = [
-  { image: 1, caption: 'The free car park. Accessible spaces are right outside the Auditorium. Just ask and we’ll open the side door.' },
+  { image: 186, caption: 'The free car park. Accessible spaces are right outside the Auditorium. Just ask and we’ll open the side door.' },
   { image: 117, caption: `The Auditorium, ready before anyone arrives. For Tier 2 it's set cabaret style for up to ${seats}. There's room for wheelchairs.` },
   { image: 114, caption: 'The Auditorium in use. The lighting can be lowered to suit the group.' },
   { image: 158, caption: 'The accessible toilet, a short walk from the Auditorium on the same floor. It has grab rails, a fold-down rail and a pull cord.' },
@@ -155,7 +155,7 @@ const schema = [
     primary={{ label: 'Get in touch', href: '#enquire', track: 'contact_click' }}
     secondary={{ label: 'See the space', href: '#journey-heading' }}
   >
-    <ProofStrip />
+    <ProofStrip variant="auditorium" />
   </Hero>
 
   <ClientLogos heading="NHS and primary care teams who use the Maggie O'Neill Centre" logos={healthLogos} />
@@ -244,7 +244,12 @@ const schema = [
     </div>
   </section>
 
-  <HostedDay />
+  {/* Owner, Oct 2026: this page sells the Auditorium, so the Hosted Day is framed as the smaller rooms. */}
+  <HostedDay
+    eyebrow="Smaller groups too"
+    heading="Got smaller groups as well?"
+    intro={`As well as the Auditorium, we have ${rooms.length - 1} other spaces for groups of up to 20. NHS teams, PCNs and over 100 organisations use them. Every one comes with all of this.`}
+  />
 
   <PhotoJourney
     intro="Share these with your trainers and learners before the day. Then everyone knows what to expect when they walk in. A video walkthrough is on its way."
