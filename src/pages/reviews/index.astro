@@ -4,6 +4,7 @@
 import Base from '../../layouts/Base.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CtaBand from '../../components/sections/CtaBand.astro';
+import FindUs from '../../components/sections/FindUs.astro';
 import ReviewThemesChart from '../../components/sections/ReviewThemesChart.astro';
 import { address, reviews, site } from '../../data/facts';
 import { images } from '../../data/images';
@@ -123,6 +124,8 @@ const G = '<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24"><p
   </section>
 
   <CtaBand heading="See it for yourself" />
+
+  <FindUs />
 </Base>
 
 <style>

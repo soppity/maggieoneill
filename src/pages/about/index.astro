@@ -9,6 +9,7 @@ import Reviews from '../../components/sections/Reviews.astro';
 import Photo from '../../components/Photo.astro';
 import Faqs from '../../components/sections/Faqs.astro';
 import CtaBand from '../../components/sections/CtaBand.astro';
+import FindUs from '../../components/sections/FindUs.astro';
 import { contact, hosts, lastYear, volunteers, maggiesMeals, site, trackRecord } from '../../data/facts';
 import { images } from '../../data/images';
 import { story, storyHeading, storySummary } from '../../data/story';
@@ -181,6 +182,8 @@ const schema = [
     text="See the rooms for yourself and meet your hosts. Book a visit, or call and we'll find a time that suits you."
     primary={{ label: 'Book a visit', href: '/visit/' }}
   />
+
+  <FindUs />
 </Base>
 
 <style>
