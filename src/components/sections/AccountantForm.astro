@@ -15,7 +15,7 @@ const lowest = fp.tiers[fp.tiers.length - 1];
       <h2 id="partner-heading">Ready to add your clients?</h2>
       <p>Tell us about your firm and we'll set you up. It takes about a minute. There's no lock-in.</p>
       <ul class="tick-list">
-        <li>Firm plan: from {formatPrice(lowest.price)} a client, tiered by how many you add.</li>
+        <li>Firm plan: {formatPrice(fp.fee)} a month, plus from {formatPrice(lowest.price)} a client.</li>
         <li>Or refer clients who want the extras, with {ap.discount}% off.</li>
         <li>We'll call you back to talk it through.</li>
       </ul>
@@ -66,7 +66,7 @@ const lowest = fp.tiers[fp.tiers.length - 1];
 
       <fieldset class="choices field">
         <legend>How would you like to work with us? <span class="req">*</span></legend>
-        <label class="choice"><input type="radio" name="partner_option" value="Firm plan" /><span><strong>Firm plan</strong><small>{formatPrice(fp.tiers[0].price)} a client, dropping to {formatPrice(lowest.price)} as you add more. We bill your firm. You rebill your clients.</small></span></label>
+        <label class="choice"><input type="radio" name="partner_option" value="Firm plan" /><span><strong>Firm plan</strong><small>{formatPrice(fp.fee)} a month, plus {formatPrice(fp.tiers[0].price)} a client, dropping to {formatPrice(lowest.price)} as you add more. We bill your firm. You rebill your clients.</small></span></label>
         <label class="choice"><input type="radio" name="partner_option" value="Refer clients" /><span><strong>Refer clients</strong><small>Your clients come to us direct and pay us, with {ap.discount}% off and all the extras.</small></span></label>
         <label class="choice"><input type="radio" name="partner_option" value="Not sure yet" /><span><strong>Not sure yet</strong><small>Let's talk it through first.</small></span></label>
         <span class="field__error"></span>

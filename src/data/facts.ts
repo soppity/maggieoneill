@@ -490,7 +490,9 @@ export const accountantPartners = {
     // Sign-up form: components/sections/AccountantForm.astro, routed to its own GHL webhook in lead.mjs.
     formName: 'accountant-firm',
     thankYou: '/thank-you/accountant-firm/',
-    // Owner, Oct 2026: tiered, no firm fee. Every client is charged at the rate for the firm's total number of clients.
+    // Owner, Oct 2026: a monthly firm fee, plus a per-client price that depends on how many clients the firm has.
+    // Every client is charged at the rate for the firm's total number of clients.
+    fee: 50,
     tiers: [
       { max: 5, label: '1 to 5 clients', price: 20 },
       { max: 10, label: '6 to 10 clients', price: 15 },
