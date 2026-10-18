@@ -54,3 +54,4 @@
 - Call answering (owner, Oct 2026): the AI answers lots of calls at once (effectively unlimited), so nobody waits on hold.
 - Call answering (owner, Oct 2026): it can be bought on its own. No virtual office plan is needed. Say so wherever its price appears.
 - Accountants (owner, Oct 2026): firm plan is £50 a month per firm plus £10 a month per client (so £20 down to £11 a client as they add more). Forwarding and post requests are billed to the firm, which rebills its clients. Each client gets the full plan with Director's Cover, but no meeting room hours or coffee. One login for all their post. Clients who want the extras come to us direct as referrals, with 20% off.
+- Accountant sign-up form (owner, Oct 2026): AccountantForm.astro, form_name accountant-firm, own GHL webhook via GHL_WEBHOOK_ACCOUNTANT_FIRM in lead.mjs (falls back to the general webhook until set). Thank-you page /thank-you/accountant-firm/.

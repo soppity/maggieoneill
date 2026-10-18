@@ -1,0 +1,162 @@
+---
+// Sign-up form for accountants (owner, Oct 2026). Posts to netlify/functions/lead.mjs with form_name
+// "accountant-firm", which forwards it to its own GHL inbound webhook (ROUTES), and to Netlify Forms as a backup.
+// On success the visitor goes to the thank-you page.
+import '../../styles/forms.css';
+import { accountantPartners as ap, contact, formatPrice } from '../../data/facts';
+
+const fp = ap.firmPlan;
+---
+<section class="section partner" id="partner" aria-labelledby="partner-heading">
+  <div class="container partner__inner">
+    <div class="partner__intro">
+      <span class="eyebrow">Become a partner</span>
+      <h2 id="partner-heading">Ready to add your clients?</h2>
+      <p>Tell us about your firm and we'll set you up. It takes about a minute. There's no lock-in.</p>
+      <ul class="tick-list">
+        <li>Firm plan: {formatPrice(fp.fee)} a month, plus {formatPrice(fp.perClient)} a client.</li>
+        <li>Or refer clients who want the extras, with {ap.discount}% off.</li>
+        <li>We'll call you back to talk it through.</li>
+      </ul>
+      <p class="partner__or">
+        Rather talk now? Call <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a>
+        {contact.email && <> or email <a href={`mailto:${contact.email}?subject=Accountant%20partner`} data-track="email_click">{contact.email}</a></>}.
+      </p>
+    </div>
+
+    <form class="form card partner__form" name={fp.formName} method="POST" data-netlify="true" netlify-honeypot="bot-field" data-accountant-form novalidate>
+      <input type="hidden" name="form-name" value={fp.formName} />
+      <p class="form__honeypot"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+
+      <div class="form__row">
+        <div class="field">
+          <label for="af-name">Your name <span class="req">*</span></label>
+          <input id="af-name" name="name" type="text" autocomplete="name" required />
+          <span class="field__error"></span>
+        </div>
+        <div class="field">
+          <label for="af-firm">Firm name <span class="req">*</span></label>
+          <input id="af-firm" name="firm_name" type="text" autocomplete="organization" required />
+          <span class="field__error"></span>
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="field">
+          <label for="af-email">Email <span class="req">*</span></label>
+          <input id="af-email" name="email" type="email" autocomplete="email" required />
+          <span class="field__error"></span>
+        </div>
+        <div class="field">
+          <label for="af-phone">Phone <span class="req">*</span></label>
+          <input id="af-phone" name="phone" type="tel" autocomplete="tel" required />
+          <span class="field__error"></span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="af-type">What kind of firm are you?</label>
+        <select id="af-type" name="firm_type">
+          <option value="Accountant">Accountant</option>
+          <option value="Bookkeeper">Bookkeeper</option>
+          <option value="Company formation agent">Company formation agent</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <fieldset class="choices field">
+        <legend>How would you like to work with us? <span class="req">*</span></legend>
+        <label class="choice"><input type="radio" name="partner_option" value="Firm plan" /><span><strong>Firm plan</strong><small>{formatPrice(fp.fee)} a month, plus {formatPrice(fp.perClient)} a client. We bill your firm. You rebill your clients.</small></span></label>
+        <label class="choice"><input type="radio" name="partner_option" value="Refer clients" /><span><strong>Refer clients</strong><small>Your clients come to us direct and pay us, with {ap.discount}% off and all the extras.</small></span></label>
+        <label class="choice"><input type="radio" name="partner_option" value="Not sure yet" /><span><strong>Not sure yet</strong><small>Let's talk it through first.</small></span></label>
+        <span class="field__error"></span>
+      </fieldset>
+
+      <div class="form__row">
+        <div class="field">
+          <label for="af-clients">How many clients would you add?</label>
+          <select id="af-clients" name="client_count">
+            <option value="1 to 5">1 to 5</option>
+            <option value="6 to 10">6 to 10</option>
+            <option value="11 to 25">11 to 25</option>
+            <option value="26 to 50">26 to 50</option>
+            <option value="More than 50">More than 50</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="af-start">When would you like to start?</label>
+          <select id="af-start" name="start_when">
+            <option value="Straight away">Straight away</option>
+            <option value="Within a month">Within a month</option>
+            <option value="Just looking for now">Just looking for now</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="af-switching">Do your clients use another registered address now?</label>
+        <select id="af-switching" name="current_provider">
+          <option value="No, they use their home address">No, they use their home address</option>
+          <option value="Yes, another provider">Yes, another provider</option>
+          <option value="Some do, some don't">Some do, some don't</option>
+          <option value="Not sure">Not sure</option>
+        </select>
+        <span class="field__hint">If they're moving from another provider, we'll help you plan the switch.</span>
+      </div>
+
+      <div class="field">
+        <label for="af-message">Anything else? (optional)</label>
+        <textarea id="af-message" name="message" rows="3"></textarea>
+      </div>
+
+      <button class="btn btn--primary" type="submit">Send</button>
+      <p class="form__status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<script>
+  import { accountantPartners } from '../../data/facts';
+  import { isEmail, lastError, setFieldError, submitNetlifyForm } from '../../scripts/netlifyForm';
+
+  const form = document.querySelector<HTMLFormElement>('[data-accountant-form]');
+  form?.addEventListener('input', (e) => setFieldError(e.target as HTMLInputElement, ''));
+  form?.addEventListener('change', (e) => setFieldError(e.target as HTMLInputElement, ''));
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const val = (n: string) => form.querySelector<HTMLInputElement>(`[name="${n}"]`);
+    let ok = true;
+    for (const [n, msg] of [['name', 'Please tell us your name.'], ['firm_name', 'Please tell us your firm name.']] as const) {
+      if (!val(n)?.value.trim()) { setFieldError(val(n), msg); ok = false; }
+    }
+    if (!isEmail(val('email')?.value ?? '')) { setFieldError(val('email'), 'Please enter a valid email address.'); ok = false; }
+    if ((val('phone')?.value.replace(/\D/g, '') ?? '').length < 10) { setFieldError(val('phone'), 'Please enter a phone number we can call.'); ok = false; }
+    if (!form.querySelector('[name="partner_option"]:checked')) { setFieldError(val('partner_option'), 'Please choose one.'); ok = false; }
+    if (!ok) { form.querySelector<HTMLElement>('[data-invalid] input, [data-invalid] select')?.focus(); return; }
+
+    const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const status = form.querySelector<HTMLElement>('.form__status');
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+    if (status) { status.textContent = ''; delete status.dataset.state; }
+    if (await submitNetlifyForm(form)) {
+      location.href = accountantPartners.firmPlan.thankYou;
+    } else {
+      if (btn) { btn.disabled = false; btn.textContent = 'Send'; }
+      if (status) {
+        status.textContent = `Sorry, that didn't send. Please try again, or call us. (Error: ${lastError})`;
+        status.dataset.state = 'error';
+      }
+    }
+  });
+</script>
+
+<style>
+  .partner { background: var(--moc-purple-tint); scroll-margin-top: 80px; }
+  .partner__inner { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .partner__intro { display: flex; flex-direction: column; gap: 16px; }
+  .partner__intro h2 { margin: 0; }
+  .partner__or { font-size: var(--text-small-size); color: var(--moc-slate-text); }
+  .partner__form { padding: clamp(22px, 3vw, 32px); }
+  .partner__form .btn { justify-self: start; }
+  .partner__form .choice small { font-weight: 400; }
+  @media (max-width: 900px) { .partner__inner { grid-template-columns: 1fr; } }
+</style>

@@ -487,6 +487,9 @@ export const accountantPartners = {
   // full-paying individual clients get. One login for all their clients' post. Clients who want the extras come to us
   // direct as referrals, with 20% off (discount above).
   firmPlan: {
+    // Sign-up form: components/sections/AccountantForm.astro, routed to its own GHL webhook in lead.mjs.
+    formName: 'accountant-firm',
+    thankYou: '/thank-you/accountant-firm/',
     fee: 50,
     perClient: 10,
     includes: [

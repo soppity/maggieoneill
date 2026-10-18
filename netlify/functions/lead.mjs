@@ -15,6 +15,9 @@ const ROUTES = {
   'cqc-lease-details':
     process.env.GHL_WEBHOOK_CQC_LEASE ||
     'https://services.leadconnectorhq.com/hooks/4cpmA1xPfhyLI1A2OPDr/webhook-trigger/28f03e3d-d61e-4351-84fb-c1557a5ca420',
+  // Owner, Oct 2026: accountant partner sign-ups (firm plan or referral). Set GHL_WEBHOOK_ACCOUNTANT_FIRM in Netlify
+  // (or replace the fallback) once the GHL workflow exists; until then they go to the general webhook.
+  'accountant-firm': process.env.GHL_WEBHOOK_ACCOUNTANT_FIRM || WEBHOOK,
   'good-meeting-guide':
     process.env.GHL_WEBHOOK_GOOD_MEETING_GUIDE ||
     'https://services.leadconnectorhq.com/hooks/4cpmA1xPfhyLI1A2OPDr/webhook-trigger/380db4cf-9761-4a66-afee-9ab9acc33619',
