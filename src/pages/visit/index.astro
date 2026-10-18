@@ -25,17 +25,17 @@ const routes = {
     {
       from: 'From Manchester, Warrington and the east',
       time: 'about 50 minutes from Manchester',
-      text: 'Take the M62 west to junction 6 (Tarbock Island). Then take the M57 north towards Southport. Leave at junction 3.',
+      text: 'Take the M62 west to junction 6 (Tarbock Island). Then take the M57 north towards Southport. Leave at junction 2.',
     },
     {
       from: 'From Preston, Wigan, Southport and the north',
       time: 'about 50 minutes from Preston',
-      text: 'Take the M6 south to junction 26. Then take the M58 towards Liverpool. At the end of the M58, join the M57 south. Leave at junction 3.',
+      text: 'Take the M6 south to junction 26. Then take the M58 towards Liverpool. At the end of the M58, join the M57 south. Leave at junction 2.',
     },
     {
       from: 'From Chester, North Wales and Runcorn',
       time: 'about 40 minutes from Chester',
-      text: "Take the M56 east to junction 12. Then follow signs across the Mersey Gateway Bridge. It's a toll bridge, so pay online by midnight the next day. Follow the A562 onto the Knowsley Expressway (A5300). It runs straight onto the M57 north. Leave at junction 3.",
+      text: "Take the M56 east to junction 12. Then follow signs across the Mersey Gateway Bridge. It's a toll bridge, so pay online by midnight the next day. Follow the A562 onto the Knowsley Expressway (A5300). It runs straight onto the M57 north. Leave at junction 2.",
     },
     {
       from: 'From the Midlands and the south',
@@ -146,7 +146,7 @@ const schema = [
         <ul class="getting__facts">
           <li><strong>{parking.spaces}</strong><span>free parking spaces, no need to book</span></li>
           <li><strong>1 min</strong><span>walk from the Hillside Road bus stop</span></li>
-          <li><strong>J3</strong><span>of the M57, the easiest way in</span></li>
+          <li><strong>J2</strong><span>of the M57, the easiest way in</span></li>
         </ul>
       </div>
 
@@ -157,11 +157,11 @@ const schema = [
             Search for {site.name} in Google Maps, Apple Maps or Waze. We're listed. It'll take you straight to the building.
           </p>
           <p>
-            We're on the north side of Liverpool Road (the A57), just past Seth Powell Way. The car park is free, with {parking.spaces} spaces. You don't need to book.
+            We're on the north side of Liverpool Road (the A57), just past Seth Powell Way. We share the site with Unity Childcare nursery and the Apostolic Church, so look out for their signs too. The car park is free, with {parking.spaces} spaces. You don't need to book.
           </p>
           <p>
-            Whichever way you come, the easiest way in is junction 3 of the M57. Leave there and take the A526 towards Huyton. At the roundabout,
-            take the second exit onto Seth Powell Way. Turn left onto Liverpool Road. We're a short way along on the left.
+            Whichever way you come, the easiest way in is junction 2 of the M57. Leave there and get on the A57 towards Huyton and Liverpool.
+            It becomes Liverpool Road. We're a short way along on your right. To get in, make a U-turn at the lights, then pull in on your left.
           </p>
           <div class="routes">
             {routes.car.map((r) => (
