@@ -490,8 +490,13 @@ export const accountantPartners = {
     // Sign-up form: components/sections/AccountantForm.astro, routed to its own GHL webhook in lead.mjs.
     formName: 'accountant-firm',
     thankYou: '/thank-you/accountant-firm/',
-    fee: 50,
-    perClient: 10,
+    // Owner, Oct 2026: tiered, no firm fee. Every client is charged at the rate for the firm's total number of clients.
+    tiers: [
+      { max: 5, label: '1 to 5 clients', price: 20 },
+      { max: 10, label: '6 to 10 clients', price: 15 },
+      { max: 25, label: '11 to 25 clients', price: 12 },
+      { max: Infinity, label: '26 or more clients', price: 11 },
+    ],
     includes: [
       'Registered office address for Companies House',
       'Business address they can use everywhere',

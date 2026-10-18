@@ -2,7 +2,7 @@
 // For accountants (referral partners). Spec: Website Blueprint page 8b (Template: Service).
 // Audience: accountants, bookkeepers and company formation agents in Merseyside. Job: turn them into a steady source of
 // virtual office clients. Two ways in (owner, Oct 2026): the firm plan (the firm pays a flat fee plus a set price per
-// client, facts.ts accountantPartners.firmPlan), or referral, where the client pays us and gets 20% off (no commission,
+// client, tiered: facts.ts accountantPartners.firmPlan), or referral, where the client pays us and gets 20% off (no commission,
 // because accountants must disclose it).
 // PilotoMail screens: docs/assets/pilotomail/ (client names in the picker are anonymised: never show real ones).
 // Schema: Service (audience: accountants) + FAQPage + BreadcrumbList.
@@ -23,7 +23,7 @@ const parent = '/services/virtual-office/';
 // SEO: the title and meta use "registered office" (the common search; title kept to 60 characters); visible copy says "registered address" (owner, Oct 2026).
 const title = "Registered Office for Accountants | Maggie O'Neill Centre";
 const description =
-  `Registered office addresses for all your clients near Liverpool. £${ap.firmPlan.fee} a month for your firm, plus £${ap.firmPlan.perClient} a client, with Director's Cover. One login for all their post.`;
+  `Registered office addresses for all your clients near Liverpool, from £11 a client a month with Director's Cover. The more clients, the lower the price. One login for all their post.`;
 
 const off = ap.discount;
 const [p20, p40] = virtualOffice.plans;
@@ -43,10 +43,13 @@ const caOff = ap.callAnsweringDiscount;
 const fmt = (n: number) => (Number.isInteger(n) ? formatPrice(n) : `£${n.toFixed(2)}`);
 const fp = ap.firmPlan;
 const fullPrice = withCover(p40);
-const firmBill = (n: number) => fp.fee + fp.perClient * n;
+const tierFor = (n: number) => fp.tiers.find((t) => n <= t.max)!;
+const firmBill = (n: number) => tierFor(n).price * n;
+const firstTier = fp.tiers[0];
+const lowest = fp.tiers[fp.tiers.length - 1];
 const firmExamples = fp.examples.map((n) => ({ n, bill: firmBill(n), each: firmBill(n) / n, usual: fullPrice * n }));
 
-const lede = `Put all your clients' registered addresses with the Maggie O'Neill Centre. It's ${formatPrice(fp.fee)} a month for your firm, plus ${formatPrice(fp.perClient)} a month for each client. Every client gets the full plan with ${dc.name}. You see all their post under one login. And every address helps a local charity.`;
+const lede = `Put all your clients' registered addresses with the Maggie O'Neill Centre. It's ${formatPrice(firstTier.price)} a client a month, dropping to ${formatPrice(lowest.price)} as you add more. Every client gets the full plan with ${dc.name}. You see all their post under one login. And every address helps a local charity.`;
 
 const benefits = [
   {
@@ -54,8 +57,8 @@ const benefits = [
     text: "Each client gets their own mailbox in PilotoMail. We add your email to it. Log in once, pick a client, and see their post. No more chasing a photo of a letter from HMRC.",
   },
   {
-    title: `${formatPrice(fp.perClient)} a client`,
-    text: `Plus ${formatPrice(fp.fee)} a month for your firm. Each client gets the full plan with ${dc.name}, which is usually ${formatPrice(fullPrice)} a month.`,
+    title: `From ${formatPrice(lowest.price)} a client`,
+    text: `${formatPrice(firstTier.price)} a client to start, dropping to ${formatPrice(lowest.price)} as you add more. Each client gets the full plan with ${dc.name}, which is usually ${formatPrice(fullPrice)} a month.`,
   },
   {
     title: 'No more registered-address admin',
@@ -77,7 +80,7 @@ const steps = [
 const faqs = [
   {
     q: 'How much is the firm plan?',
-    a: `It's ${formatPrice(fp.fee)} a month for your firm, plus ${formatPrice(fp.perClient)} a month for each client. So 10 clients come to ${formatPrice(firmBill(10))} a month, and 25 clients come to ${formatPrice(firmBill(25))}. There's no VAT to add. The centre is a charity and isn't VAT registered. ${virtualOffice.terms}`,
+    a: `It's tiered, so the more clients you add, the less each one costs. ${fp.tiers.map((t) => `${t.label}: ${formatPrice(t.price)} each a month`).join('. ')}. Every client is charged at the rate for your total. So 10 clients come to ${formatPrice(firmBill(10))} a month, and 25 clients come to ${formatPrice(firmBill(25))}. There's no VAT to add. The centre is a charity and isn't VAT registered. ${virtualOffice.terms}`,
   },
   {
     q: 'What does each client get?',
@@ -93,7 +96,7 @@ const faqs = [
   },
   {
     q: 'Is there a minimum number of clients?',
-    a: 'No. Start with a few and add more whenever you like. The more clients you add, the less each one costs you, because the firm fee is shared across them.',
+    a: 'No. Start with a few and add more whenever you like. The more clients you add, the lower the price for every one of them.',
   },
   {
     q: 'Do you pay accountants a referral fee?',
@@ -135,8 +138,7 @@ const schema = [
     areaServed: ['Liverpool', 'Merseyside', 'Knowsley'],
     catalogName: 'Registered address plans for accountants',
     offers: [
-      { name: 'Firm plan: firm fee', price: fp.fee, description: 'Monthly fee for the accounting firm. One login for all clients\' post.' },
-      { name: 'Firm plan: per client', price: fp.perClient, description: `Each client: full plan with ${dc.name}, post opened and scanned. Meeting room hours and coffee not included.` },
+      ...fp.tiers.map((t) => ({ name: `Firm plan, ${t.label}`, price: t.price, description: `Per client, per month. Full plan with ${dc.name}, post opened and scanned. Meeting room hours and coffee not included.` })),
     ].concat(virtualOffice.plans.map((p) => ({
       name: `${p.name} (${off}% off for referred clients)`,
       price: discounted(p.price),
@@ -173,7 +175,7 @@ const schema = [
 
   <Hero
     title="Your clients' post, handled. Your admin, gone."
-    lede={`Put all your clients' registered addresses with us. ${formatPrice(fp.fee)} a month for your firm, plus ${formatPrice(fp.perClient)} a client, with ${dc.name} included. You see all their post in one place. And every address helps a local charity.`}
+    lede={`Put all your clients' registered addresses with us. From ${formatPrice(lowest.price)} a client a month, with ${dc.name} included. The more clients, the lower the price. You see all their post in one place. And every address helps a local charity.`}
     image={6}
     screen={{ src: '/images/pilotomail/mailbox-picker-hero.webp', width: 1400, height: 947, alt: "The PilotoMail 'Choose your mailbox' screen, listing example client companies under one accountant's login" }}
     primary={{ label: 'Become a partner', href: '#partner' }}
@@ -242,15 +244,17 @@ const schema = [
         <span class="eyebrow">The firm plan</span>
         <h2 id="firm-heading">What is in the firm plan, and what does it cost?</h2>
         <p>
-          {formatPrice(fp.fee)} a month for your firm, plus {formatPrice(fp.perClient)} a month for each client. One bill, one login.
+          The more clients you add, the less each one costs. One bill, one login.
           {' '}{virtualOffice.vat} {virtualOffice.terms}
         </p>
       </div>
       <div class="firm__grid">
         <div class="card firm__price">
-          <p class="firm__sum"><strong>{formatPrice(fp.fee)}</strong> a month for your firm</p>
-          <p class="firm__plus">+</p>
-          <p class="firm__sum"><strong>{formatPrice(fp.perClient)}</strong> a month per client</p>
+          <p class="firm__sum">From <strong>{formatPrice(lowest.price)}</strong> a client a month</p>
+          <ul class="firm__tiers">
+            {fp.tiers.map((t) => <li><span>{t.label}</span><strong>{formatPrice(t.price)} each</strong></li>)}
+          </ul>
+          <p class="firm__usual">Every client is charged at the rate for your total number of clients.</p>
           <p class="firm__usual">Each client gets the full plan with {dc.name}, usually <s>{formatPrice(fullPrice)}</s> a month.</p>
           <h3>Every client gets</h3>
           <ul class="tick-list">
@@ -260,7 +264,7 @@ const schema = [
         </div>
         <div class="firm__examples">
           <h3>What would my firm pay?</h3>
-          <p>The more clients you add, the less each one costs. The firm fee is shared across them all.</p>
+          <p>Reach the next band and every one of your clients drops to the lower price.</p>
           <table class="firm__table">
             <thead>
               <tr><th scope="col">Clients</th><th scope="col">Your bill</th><th scope="col">Per client</th><th scope="col">Usually</th></tr>
@@ -367,7 +371,9 @@ const schema = [
   .firm__price { padding: 32px; display: flex; flex-direction: column; gap: 12px; border-top: 4px solid var(--moc-coral-500); }
   .firm__sum { color: var(--moc-slate-text); }
   .firm__sum strong { font: 800 48px/1 var(--font-display); color: var(--moc-purple-900); letter-spacing: -0.02em; margin-right: 6px; }
-  .firm__plus { font: 800 28px/1 var(--font-display); color: var(--moc-coral-text); }
+  .firm__tiers { list-style: none; margin: 4px 0; padding: 0; display: grid; gap: 0; }
+  .firm__tiers li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--moc-border); }
+  .firm__tiers strong { color: var(--moc-purple-900); }
   .firm__usual, .firm__excl { font-size: var(--text-small-size); color: var(--moc-slate-text); }
   .firm__price h3 { margin-top: 8px; font-size: 19px; }
   .firm__costs { margin-top: clamp(24px, 4vw, 40px); padding: 24px 28px; background: var(--moc-white); border-left: 4px solid var(--moc-purple-700); border-radius: 0 var(--radius-tile) var(--radius-tile) 0; max-width: 900px; display: flex; flex-direction: column; gap: 8px; }
