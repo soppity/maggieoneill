@@ -44,10 +44,10 @@ const fmt = (n: number) => (Number.isInteger(n) ? formatPrice(n) : `£${n.toFixe
 const fp = ap.firmPlan;
 const fullPrice = withCover(p40);
 const tierFor = (n: number) => fp.tiers.find((t) => n <= t.max)!;
-const firmBill = (n: number) => fp.fee + tierFor(n).price * n;
+const clientsCost = (n: number) => tierFor(n).price * n;
 const firstTier = fp.tiers[0];
 const lowest = fp.tiers[fp.tiers.length - 1];
-const firmExamples = fp.examples.map((n) => ({ n, bill: firmBill(n), each: firmBill(n) / n, usual: fullPrice * n }));
+const firmExamples = fp.examples.map((n) => ({ n, each: tierFor(n).price, total: clientsCost(n), usual: fullPrice * n }));
 
 const lede = `Put all your clients' registered addresses with the Maggie O'Neill Centre. It's ${formatPrice(fp.fee)} a month for your firm, plus ${formatPrice(firstTier.price)} a client, dropping to ${formatPrice(lowest.price)} a client as you add more. Every client gets the full plan with ${dc.name}. You see all their post under one login. And every address helps a local charity.`;
 
@@ -80,7 +80,7 @@ const steps = [
 const faqs = [
   {
     q: 'How much is the firm plan?',
-    a: `It's ${formatPrice(fp.fee)} a month for your firm, plus a price for each client. The client price is tiered, so the more clients you add, the less each one costs. ${fp.tiers.map((t) => `${t.label}: ${formatPrice(t.price)} each a month`).join('. ')}. Every client is charged at the rate for your total. So 10 clients come to ${formatPrice(firmBill(10))} a month, and 25 clients come to ${formatPrice(firmBill(25))}. There's no VAT to add. The centre is a charity and isn't VAT registered. ${virtualOffice.terms}`,
+    a: `It's ${formatPrice(fp.fee)} a month for your firm, plus a price for each client. The client price is tiered, so the more clients you add, the less each one costs. ${fp.tiers.map((t) => `${t.label}: ${formatPrice(t.price)} each a month`).join('. ')}. Every client is charged at the rate for your total. So 10 clients cost ${formatPrice(clientsCost(10))} a month, and 25 clients cost ${formatPrice(clientsCost(25))}, plus the ${formatPrice(fp.fee)} firm fee. There's no VAT to add. The centre is a charity and isn't VAT registered. ${virtualOffice.terms}`,
   },
   {
     q: 'What does each client get?',
@@ -266,22 +266,23 @@ const schema = [
         </div>
         <div class="firm__examples">
           <h3>What would my firm pay?</h3>
-          <p>Your bill includes the {formatPrice(fp.fee)} firm fee. Reach the next band and every one of your clients drops to the lower price.</p>
+          <p>Reach the next band and every one of your clients drops to the lower price.</p>
           <table class="firm__table">
             <thead>
-              <tr><th scope="col">Clients</th><th scope="col">Your bill</th><th scope="col">Per client</th><th scope="col">Usually</th></tr>
+              <tr><th scope="col">Clients</th><th scope="col">Per client</th><th scope="col">Total</th><th scope="col">Usually</th></tr>
             </thead>
             <tbody>
               {firmExamples.map((e) => (
                 <tr>
                   <th scope="row">{e.n}</th>
-                  <td><strong>{formatPrice(e.bill)}</strong> a month</td>
-                  <td>{fmt(e.each)}</td>
+                  <td>{formatPrice(e.each)}</td>
+                  <td><strong>{formatPrice(e.total)}</strong> a month</td>
                   <td><s>£{e.usual.toLocaleString('en-GB')}</s></td>
                 </tr>
               ))}
             </tbody>
           </table>
+          <p class="firm__fee-note">Plus your {formatPrice(fp.fee)} a month firm fee.</p>
           <a class="btn btn--primary" href="#partner">Add your clients</a>
         </div>
       </div>
@@ -388,6 +389,7 @@ const schema = [
   .firm__table thead th { font: 700 15px/1.2 var(--font-display); color: var(--moc-purple-900); background: var(--moc-purple-tint); }
   .firm__table tbody th { font: 800 20px/1 var(--font-display); color: var(--moc-purple-900); }
   .firm__table td s { color: var(--moc-slate-text); }
+  .firm__fee-note { font-weight: 600; color: var(--moc-purple-900); }
   @media (max-width: 900px) { .firm__grid { grid-template-columns: 1fr; } }
   @media (max-width: 480px) { .firm__table th, .firm__table td { padding: 12px 10px; font-size: 15px; } }
   .prices { grid-template-columns: repeat(3, minmax(0, 1fr)); list-style: none; padding: 0; margin: 0; }
