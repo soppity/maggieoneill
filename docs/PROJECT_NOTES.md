@@ -48,3 +48,4 @@
 - NHS page (owner, Oct 2026): say Alder Hey, Primary Care Networks and NHS trusts in and around Merseyside. Don't name individual trusts or PCNs unless the owner confirms them.
 - Visit page (owner, Oct 2026): the way in is M57 junction 2, then the A57 towards Huyton. We are on the right; make a U-turn at the lights. Never junction 3 or the A526.
 - Visit page landmark (owner, Oct 2026): we share the site with Unity Childcare nursery and the Apostolic Church.
+- AV wording (owner, Oct 2026): meeting and training rooms have an LED flatscreen you connect to wirelessly (no cords across the room). The Pod is the exception: its screen plugs in with an HDMI cable. Never say 'wireless casting', AirPlay or 'Mac and PC casting'. The Auditorium has a stage, projector, sound and mics, run by a technician.

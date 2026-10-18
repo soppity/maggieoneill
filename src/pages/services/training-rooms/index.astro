@@ -33,7 +33,7 @@ const groups = rateGroups(['pod']);
 const rateSentences = groups.map((g) => `${the(g.rooms.map((r) => r.name))} cost ${formatPrice(g.hour)} an hour or ${formatPrice(g.day)} a day`);
 const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
-const intro = `Maggie O'Neill Centre is a hosted training venue in Huyton, near Liverpool. Training rooms start at ${formatPrice(trainingDayFrom)} a day. They seat groups from 2 up to ${auditorium.capacity.theatre}. Every meeting and training room has a screen with Mac and PC wireless casting and HDMI. Self-serve tea and coffee is in the room all day. Parking is free, and hosts are on site all day.`;
+const intro = `Maggie O'Neill Centre is a hosted training venue in Huyton, near Liverpool. Training rooms start at ${formatPrice(trainingDayFrom)} a day. They seat groups from 2 up to ${auditorium.capacity.theatre}. Every meeting and training room has an LED flatscreen you connect to wirelessly, so there are no cords across the room. Self-serve tea and coffee is in the room all day. Parking is free, and hosts are on site all day.`;
 
 const keyFacts = [
   { term: 'Prices', detail: `From ${formatPrice(trainingDayFrom)} a day. Everything is included.`, href: '#rooms', linkText: 'All room rates' },
@@ -66,7 +66,7 @@ const faqs = [
   },
   {
     q: 'Is there a screen in every training room?',
-    a: "Yes. Every meeting and training room at the Maggie O'Neill Centre has a screen. You can cast to it from a Mac or PC. Use AirPlay on MacBooks and iPads, or screen casting on Windows laptops. There's HDMI too, and we provide the HDMI cables. You also get 1Gb fibre WiFi, a flipchart and pens.",
+    a: "Yes. Every meeting and training room at the Maggie O'Neill Centre has an LED flatscreen. You connect to it wirelessly from a Mac or PC, so there are no cords across the room. We have HDMI cables too. You also get 1Gb fibre WiFi, a flipchart and pens.",
   },
   {
     q: 'Are tea and coffee included?',
