@@ -40,13 +40,13 @@ const rateSentences = groups.map(
 
 const description = `Hosted meeting rooms and boardrooms in Huyton, near Liverpool, from the ${pod.name} at ${formatPrice(pod.prices!.hour!)} an hour. Screen, tea and coffee and free parking included, ${parking.motorway}. Maggie O'Neill Centre.`;
 
-const intro = `The Maggie O'Neill Centre is in Huyton. It's 20 to 30 minutes from Liverpool city centre and ${parking.motorway}. We have meeting rooms for a one-to-one in the ${pod.name} or a whole team away day. Rooms cost from ${formatPrice(pod.prices!.hour!)} an hour. There are ${parking.spaces} free parking spaces outside. Every meeting and training room has a screen with Mac and PC wireless casting and HDMI. Self-serve tea and coffee is in the room, and hosts are here all day.`;
+const intro = `The Maggie O'Neill Centre is in Huyton. It's 20 to 30 minutes from Liverpool city centre and ${parking.motorway}. We have meeting rooms for a one-to-one in the ${pod.name} or a whole team away day. Rooms cost from ${formatPrice(pod.prices!.hour!)} an hour. There are ${parking.spaces} free parking spaces outside. Every room has a screen. Most have an LED flatscreen you connect to wirelessly, so there are no cords across the room. The Pod's screen plugs in with an HDMI cable. Self-serve tea and coffee is in the room, and hosts are here all day.`;
 
 const keyFacts = [
   { term: 'Prices', detail: `From ${formatPrice(pod.prices!.hour!)} an hour. Book by the hour or the day. Everything is included.`, href: '#rooms', linkText: 'All room rates' },
   { term: 'Rooms', detail: `${meetingRooms.length} rooms. The ${pod.name} seats ${pod.capacity.boardroom}, and bigger rooms fit whole teams.` },
   { term: 'Good for', detail: 'Team meetings, board meetings, interviews, client meetings and away days.' },
-  { term: 'Tech', detail: 'A screen with Mac and PC wireless casting and HDMI. Cables, 1Gb fibre WiFi, a flipchart and pens.' },
+  { term: 'Tech', detail: 'An LED flatscreen you connect to wirelessly, so no cords across the room. The Pod uses an HDMI cable. 1Gb fibre WiFi, a flipchart and pens.' },
   { term: 'Tea and coffee', detail: 'In your room all day. Self-serve and included.' },
   { term: 'Parking', detail: `Free ${parking.spaces}-space car park, ${parking.motorway}.` },
   { term: 'Your hosts', detail: 'Here all day. Just walk in and get started.' },
@@ -80,7 +80,7 @@ const faqs = [
   },
   {
     q: 'Is there a screen in every meeting room?',
-    a: "Yes. Every meeting and training room at the Maggie O'Neill Centre has a screen. You can cast to it from a Mac or PC, or plug in with HDMI. We give you the cables. There's 1Gb fibre WiFi, a flipchart and pens too.",
+    a: "Yes. Every meeting room at the Maggie O'Neill Centre has a screen. Most are LED flatscreens you connect to wirelessly, so there are no cords across the room. The Pod's screen plugs in with an HDMI cable, and we give you the cable. There's 1Gb fibre WiFi, a flipchart and pens too.",
   },
   {
     q: "Is parking free at the Maggie O'Neill Centre?",
@@ -152,7 +152,7 @@ const schema = [
   <div id="rooms">
     <RoomCards
       heading="Which meeting rooms can you hire?"
-      intro="Every room is hosted and set to your layout. Each has a screen with Mac and PC wireless casting and HDMI. Book by the hour or the day."
+      intro="Every room is hosted and set to your layout. Each has a screen you connect to wirelessly. The Pod's screen plugs in with an HDMI cable. Book by the hour or the day."
       order={order}
     />
   </div>

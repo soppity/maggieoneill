@@ -292,7 +292,7 @@ export const hostedEvent = [
   'Tea and coffee included, in or near every space you book',
   'Flipcharts if you need them',
   'Screens and sound in the Auditorium, set up and run by a technician (£)',
-  'Flatscreens with wireless casting in every breakout and networking space',
+  'LED flatscreens you connect to wirelessly in every breakout and networking space',
   '1Gb fibre WiFi throughout the building',
   'Free parking, with an overflow car park if it fills up',
   'A fridge for storing food',

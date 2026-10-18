@@ -13,7 +13,7 @@ const planList = virtualOffice.plans.map((p) => `${p.name} £${p.price}`).join('
 export const GET: APIRoute = () => {
   const body = `# ${site.name}
 
-> The ${site.name} is a charity-run training, meeting and event venue in Huyton, near Liverpool (${address.street}, ${address.postcode}), and a virtual office provider. Hosts are on site all day, rooms are set before you arrive, self-serve tea and coffee is in the room all day, every meeting and training room has a screen with Mac and PC wireless casting and HDMI, and parking is free. Profits fund Maggie's Meals and community support in Knowsley. Registered charity ${site.charityNumber}.
+> The ${site.name} is a charity-run training, meeting and event venue in Huyton, near Liverpool (${address.street}, ${address.postcode}), and a virtual office provider. Hosts are on site all day, rooms are set before you arrive, self-serve tea and coffee is in the room all day, every meeting and training room has an LED flatscreen you connect to wirelessly (the Pod uses an HDMI cable), and parking is free. Profits fund Maggie's Meals and community support in Knowsley. Registered charity ${site.charityNumber}.
 
 Key facts:
 - Phone ${contact.phone}. Text or WhatsApp ${contact.text}. Email ${contact.email}.
