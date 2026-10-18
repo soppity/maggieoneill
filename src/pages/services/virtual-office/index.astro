@@ -251,9 +251,10 @@ const voReviewCount = reviews.count;
 
   <section class="section" aria-labelledby="post-heading">
     <div class="container two-col two-col--media">
-      <div class="post-media">
+      <figure class="post-media">
         <Photo n={137} width={560} height={700} sizes="(max-width: 900px) 100vw, 440px" />
-      </div>
+        <figcaption>Tania, Community Manager</figcaption>
+      </figure>
       <div>
         <div class="section-head">
           <span class="eyebrow">Your post</span>
@@ -267,9 +268,6 @@ const voReviewCount = reviews.count;
           <li>On the {formatPrice(p40.price)} {p40.name} plan, we open and scan your post. You can read it in your mailbox app wherever you are.</li>
           <li>Pick-ups are from reception, {hours.summary}. Parking outside is free.</li>
         </ul>
-        <p class="post-review">
-          Salome runs Salowal Ltd. In her Google review, she says we tell her when her post arrives. She says her clients are greeted at reception too.
-        </p>
       </div>
     </div>
   </section>
@@ -329,10 +327,15 @@ const voReviewCount = reviews.count;
         <span class="eyebrow">Where your money goes</span>
         <h2 id="impact-heading">{site.closer}</h2>
       </div>
-      <p class="prose">
-        The Maggie O'Neill Centre is a registered charity (no. {site.charityNumber}). Profits from your virtual office fund Maggie's Meals, our social
-        supermarket. They also fund community support in Knowsley. Want to see it? Come for a tour any weekday.
-      </p>
+      <div class="impact__body">
+        <p class="prose">
+          The Maggie O'Neill Centre is a registered charity (no. {site.charityNumber}). Profits from your virtual office fund Maggie's Meals, our social
+          supermarket. They also fund community support in Knowsley. Want to see it? Come for a tour any weekday.
+        </p>
+        <div class="impact__photo">
+          <Photo n={110} width={480} height={360} sizes="(max-width: 900px) 100vw, 360px" />
+        </div>
+      </div>
     </div>
   </section>
 
@@ -379,7 +382,10 @@ const voReviewCount = reviews.count;
   .reasons ul { margin: 6px 0 0; padding-left: 20px; display: grid; gap: 8px; }
   .prose { display: flex; flex-direction: column; gap: 16px; font-size: var(--text-body-size); }
   .post-media :global(img) { aspect-ratio: 4 / 5; border-radius: var(--radius-card); object-position: top; max-height: 620px; }
-  .post-review { margin-top: 20px; padding: 18px 22px; border-left: 4px solid var(--moc-coral-500); background: var(--moc-white); border-radius: 0 var(--radius-tile) var(--radius-tile) 0; font-size: var(--text-small-size); }
+  .post-media { margin: 0; }
+  .impact__photo { margin-top: 20px; max-width: 360px; }
+  .impact__photo :global(img) { border-radius: var(--radius-card); }
+  .post-media figcaption { margin-top: 10px; font-size: var(--text-caption-size); color: var(--moc-slate-text); }
   .areas { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
   .areas li { padding: 10px 18px; border-radius: var(--radius-pill); background: var(--moc-purple-tint); color: var(--moc-purple-900); font-weight: 600; }
   .areas li.areas__uk { background: var(--moc-purple-700); color: var(--moc-white); }
