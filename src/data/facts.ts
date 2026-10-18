@@ -499,6 +499,9 @@ export const accountantPartners = {
     ],
     excludes: "Free meeting room hours and coffee aren't included. Want those for a client? They can come to us direct instead, with 20% off as your referral.",
     examples: [5, 10, 25, 50],
+    // Owner, Oct 2026: forwarding and post requests are billed to the firm, which rebills its own clients.
+    costs: "Forwarding (a flat £5 plus postage) and any other post requests are billed to your firm, not your client. Tell us what to do with each item, like forwarding it or having it collected, so it doesn't sit in storage and pick up storage fees. You rebill your clients however you like.",
+
   },
 };
 
