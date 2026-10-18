@@ -11,23 +11,15 @@ const pod = rooms.find((r) => r.slug === 'pod')!;
 
 const title = "Virtual Office vs Home Address | Maggie O'Neill Centre";
 const description =
-  "Should your business use your home address, a virtual office or a coworking space? Cost, privacy and what each includes, compared. From Maggie O'Neill Centre.";
+  "Should your business use your home address or a virtual office? Cost, privacy and what each includes, compared. From Maggie O'Neill Centre.";
 
 const answer =
-  "Your home address is free but public. A virtual office gives you a business address and keeps your home private. It costs a small monthly fee, and there's no desk. A coworking space gives you a desk and often an address too. But it costs more, because you're paying for the space. Pick the one that matches how you really work.";
+  "Your home address is free but public. A virtual office gives you a business address and keeps your home private. It costs a small monthly fee, and you keep working from home. Pick the one that matches how you really work.";
 
 const faqs = [
   {
     q: 'Should I use my home address for my business?',
     a: "You can, and it's free. But if you run a limited company, your home address is on the public Companies House register. It also goes on your website and invoices. A virtual office keeps your home private for a monthly fee.",
-  },
-  {
-    q: 'What is the difference between a virtual office and coworking?',
-    a: 'A virtual office gives you a business address and handles your post, but there’s no desk. A coworking space gives you somewhere to work, and many offer an address too. Coworking usually costs more, because you’re paying for the desk.',
-  },
-  {
-    q: 'Is a virtual office cheaper than coworking?',
-    a: `Usually, yes, because there's no desk to pay for. A virtual office at the Maggie O'Neill Centre starts at ${formatPrice(p20.price)} a month for a registered office and business address.`,
   },
   {
     q: 'Can I use a virtual office and work from home?',
@@ -39,7 +31,7 @@ const faqs = [
   },
   {
     q: "Does the Maggie O'Neill Centre offer coworking?",
-    a: `No. The Maggie O'Neill Centre offers virtual offices from ${formatPrice(p20.price)} a month. We also have meeting rooms by the hour and private offices to rent. They're all in one building in Huyton.`,
+    a: `No, we don't do coworking or hot desks. Need a quiet room to work or meet in? Book the ${pod.name} for ${formatPrice(pod.prices!.hour!)} an hour. Virtual offices start at ${formatPrice(p20.price)} a month.`,
   },
 ];
 ---
@@ -47,7 +39,7 @@ const faqs = [
   guide={guide}
   title={title}
   description={description}
-  tagline="Three ways to give your business an address."
+  tagline="Two ways to give your business an address."
   answer={answer}
   faqs={faqs}
   cta={{
@@ -57,19 +49,19 @@ const faqs = [
     label: 'Virtual office Liverpool',
   }}
 >
-  <h2>Home address, virtual office or coworking: compared</h2>
+  <h2>Home address or virtual office: compared</h2>
   <div class="table-wrap">
     <table>
       <thead>
-        <tr><th scope="col"><span class="visually-hidden">Question</span></th><th scope="col">Home address</th><th scope="col">Virtual office</th><th scope="col">Coworking space</th></tr>
+        <tr><th scope="col"><span class="visually-hidden">Question</span></th><th scope="col">Home address</th><th scope="col">Virtual office</th></tr>
       </thead>
       <tbody>
-        <tr><th scope="row">Cost</th><td>Free</td><td>A small monthly fee</td><td>Usually the most, as you pay for a desk</td></tr>
-        <tr><th scope="row">Keeps your home private</th><td>No</td><td>Yes</td><td>Yes, if it includes an address</td></tr>
-        <tr><th scope="row">Registered office for Companies House</th><td>Yes</td><td>Yes</td><td>Sometimes, as an extra</td></tr>
-        <tr><th scope="row">Somewhere to work</th><td>Yes</td><td>No</td><td>Yes</td></tr>
-        <tr><th scope="row">Post handled for you</th><td>No</td><td>Yes</td><td>Often</td></tr>
-        <tr><th scope="row">Meeting rooms</th><td>No</td><td>Often in the same building</td><td>Usually</td></tr>
+        <tr><th scope="row">Cost</th><td>Free</td><td>A small monthly fee</td></tr>
+        <tr><th scope="row">Keeps your home private</th><td>No</td><td>Yes</td></tr>
+        <tr><th scope="row">Registered office for Companies House</th><td>Yes</td><td>Yes</td></tr>
+        <tr><th scope="row">Somewhere to work</th><td>Yes</td><td>No</td></tr>
+        <tr><th scope="row">Post handled for you</th><td>No</td><td>Yes</td></tr>
+        <tr><th scope="row">Meeting rooms</th><td>No</td><td>Often in the same building</td></tr>
       </tbody>
     </table>
   </div>
@@ -95,25 +87,14 @@ const faqs = [
     adds your director's service address for {formatPrice(dc.price)} a month ({formatPrice(withCover(p20))} or {formatPrice(withCover(p40))}).
   </p>
 
-  <h2>Using a coworking space</h2>
-  <p>
-    A coworking space gives you somewhere to work outside the house, with other people around. Many offer a business address as an extra.
-    You pay for the desk whether you use it every day or once a week. So it usually costs more than a virtual office.
-  </p>
-  <p>
-    It makes sense if you need to get out of the house to work. Maybe you mainly want an address, and somewhere to meet clients now and then. Then a
-    virtual office and a meeting room by the hour usually cost less.
-  </p>
-
   <h2>Which one is right for you?</h2>
   <ul>
     <li><strong>Choose your home address</strong> if you're a sole trader. It suits you if you don't mind your address on your website and invoices.</li>
     <li><strong>Choose a virtual office</strong> if you work from home but want to keep your home private. You get a proper business address, and your post is looked after.</li>
-    <li><strong>Choose a coworking space</strong> if you need a desk away from home most days.</li>
   </ul>
   <p class="callout">
     Need to meet clients? At the Maggie O'Neill Centre, meeting rooms are in the same building as your virtual office address. The smallest is the
-    {' '}{pod.name}, a boardroom for {pod.capacity.boardroom}. Need a desk of your own? See <a href="/services/private-offices/">private offices</a>.
+    {' '}{pod.name}, a boardroom for {pod.capacity.boardroom}, at {formatPrice(pod.prices!.hour!)} an hour. Need a desk of your own? See <a href="/services/private-offices/">private offices</a>.
     Or start with <a href="/services/virtual-office/">registered office address plans in Liverpool</a>.
   </p>
 </Guide>

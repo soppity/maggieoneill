@@ -100,15 +100,15 @@ const faqs = [
   },
   {
     q: 'How much does conference venue hire cost?',
-    a: `The ${auditorium.name} costs from ${from} an hour, with a 3-hour minimum. Or you can pay a day rate. We quote for each conference. It depends on the rooms, layout and tech you need. The AV technician costs extra. You order food straight from our catering partner.`,
+    a: `The ${auditorium.name} costs from ${from} an hour, with a 3-hour minimum. Or you can pay a day rate. We quote for each conference. It depends on the rooms, layout and tech you need. The technician who runs the sound and projector costs extra. You order food straight from our catering partner.`,
   },
   {
     q: 'Why choose you over a hotel conference venue?',
     a: `Parking is free for everyone. Tea and coffee are included all day, not charged per head. Our hosts' only job is your event. Rooms are our whole business, not a side line to the bedrooms.`,
   },
   {
-    q: 'What AV is there for speakers?',
-    a: `The ${auditorium.name} has a stage, a lectern and microphones for up to six people at once. There's a projector, a sound system and lighting. A technician sets up and runs the AV on the day. You pay for this, and every ${auditorium.name} booking needs it. Every breakout room has a flatscreen with wireless casting.`,
+    q: 'What AV (sound, mics and screens) is there for speakers?',
+    a: `The ${auditorium.name} has a stage, a lectern and microphones for up to six people at once. There's a projector, a sound system and lighting. A technician sets up and runs the sound, mics and projector on the day. You pay for this, and every ${auditorium.name} booking needs it. Every breakout room has an LED flatscreen you connect to wirelessly. No cords stretched across the room.`,
   },
   {
     q: 'Can you cater for a conference?',
@@ -160,7 +160,7 @@ const schema = [
     title="A conference venue that's better than a hotel."
     lede={`Your guests park free right outside, ${parking.motorway}. They walk into a ${theatre}-seat Auditorium that's already set. Our hosts look after the day. You look after your speakers.`}
     image={114}
-    primary={{ label: 'Plan your conference', href: '#enquire' }}
+    primary={{ label: 'Get in touch', href: '#enquire', track: 'contact_click' }}
     secondary={{ label: `Call ${contact.phone}`, href: contact.phoneHref }}
   />
 
@@ -202,8 +202,8 @@ const schema = [
           <li>Up to {theatre} people theatre style, or {cab} cabaret style at tables.</li>
           <li>A stage, lectern and microphones for up to six speakers.</li>
           <li>A projector, sound system and lighting.</li>
-          <li>AV set up and run by a technician on the day (£).</li>
-          <li>Six breakout rooms for workshops. Each has a flatscreen and wireless casting.</li>
+          <li>Sound, mics and projector set up and run by a technician on the day (£).</li>
+          <li>Six breakout rooms for workshops. Each has an LED flatscreen you connect to wirelessly.</li>
           <li>Toilets just outside the doors. An accessible toilet on the same floor.</li>
           <li>Tea and coffee in the foyer.</li>
         </ul>

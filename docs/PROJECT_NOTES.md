@@ -39,3 +39,7 @@
 - Conference vs events (Oct 2026): /services/conference-venue/ owns conference, corporate meeting, "hotel alternative" and "with parking" searches. /services/event-space-business-and-community/ owns launches, talks, networking and community events. Don't let their titles or H1s overlap.
 - H1s (owner, Oct 2026, revised): written for the booker, never keyword-stuffed. The <title> tag keeps the search terms. Under the H1, one warm, natural sentence that sells the service to that buyer (no separate tagline). Home page H1 is "Looked after at Maggie's."
 - Tea and coffee (owner, Oct 2026): self-serve, already in the room all day. Hosts don't bring or serve it. Never write "we serve", "we bring" or "served in the room".
+- CTAs (owner, Oct 2026): "Check availability" (booking calendar) on training rooms, meeting rooms, care, fostering and council pages (one-off rooms). Oliver McGowan, NHS, events and conference get "Get in touch" only (big, complex bookings). The phone bar stays as it is.
+- AV (owner, Oct 2026): explain it. Rooms: LED flatscreens with wireless connections (no cords stretched across the room). Auditorium: sound, mics and projector run by a technician.
+- Hot desking and coworking (owner, Oct 2026): only mention them to say we don't do them, and offer the Pod at £20 an hour instead.
+- CQC registration office (owner, Oct 2026): £150 a month, 12-month lease, same exit clause as the taxi lease. Lease details form at /services/cqc-registration-address/apply/ (unlisted), form-name cqc-lease-details, goes to the GHL lease webhook.

@@ -10,12 +10,15 @@ interface Props {
   order?: string[];
   // Names and photos only, no prices. Room descriptions are never shown, so bookers aren't steered to one room.
   simple?: boolean;
+  // Owner, Oct 2026: big, complex bookings (NHS, Oliver McGowan, events, conferences) get "Get in touch", not the calendar.
+  enquire?: boolean;
 }
 const {
   heading = 'Which training rooms can you hire?',
   intro = 'Every room is hosted and set to your layout. Meeting and training rooms have a screen with Mac and PC wireless casting and HDMI. The Auditorium has a stage, a sound system, and screens and sound run by a technician. Prices include everything on the Hosted Day list.',
   order = ['summit', 'forum', 'community-room', 'foundry', 'hub', 'grove', 'auditorium', 'pod'],
   simple = false,
+  enquire = false,
 } = Astro.props;
 
 const list = order.map((slug) => rooms.find((r) => r.slug === slug)).filter(Boolean) as Room[];
@@ -52,7 +55,11 @@ const priceLine = (r: Room) =>
     </ul>
     <div class="room-cards__foot">
       <p>Not sure which room? Tell us your numbers and we'll pick one for you. <a href="/whats-included/">See everything that's included</a></p>
-      <a class="btn btn--primary" href={booking.url} target="_blank" rel="noopener" data-track="booking_click">Check availability</a>
+      {enquire ? (
+        <a class="btn btn--primary" href="#enquire" data-track="contact_click">Get in touch</a>
+      ) : (
+        <a class="btn btn--primary" href={booking.url} target="_blank" rel="noopener" data-track="booking_click">Check availability</a>
+      )}
     </div>
   </div>
 </section>

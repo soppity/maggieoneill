@@ -1,0 +1,19 @@
+---
+// Thank-you page for the "cqc-lease-details" form. noindex, not in the sitemap (see components/ThankYou.astro).
+import Base from '../../../layouts/Base.astro';
+import ThankYou from '../../../components/ThankYou.astro';
+import { contact, cqcRegistration as cqc } from '../../../data/facts';
+import { images } from '../../../data/images';
+---
+<Base title={"Thank You | CQC Registration Office | Maggie O'Neill Centre"} description="Thanks for getting in touch with the Maggie O'Neill Centre." ogImage={images[6].src} ogImageAlt={images[6].alt} noindex mobileBar="custom" mobileBarHref={contact.phoneHref} mobileBarLabel={`Call ${contact.phone}`}>
+  <ThankYou
+    form={cqc.formName}
+    heading={"Thanks, we've got your lease details."}
+    text={"We'll be in touch within one working day. We'll set up your direct debit and send your lease to sign."}
+    next={[]}
+    links={[
+    { label: 'Back to the CQC registration page', href: cqc.path }
+    ]}
+    showWhatsApp={false}
+  />
+</Base>
