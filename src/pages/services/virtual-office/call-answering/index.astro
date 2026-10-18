@@ -40,6 +40,7 @@ const whoFor = [
   { title: 'Sole traders', text: 'No receptionist, no missed work. Callers get an answer, not voicemail, even at night.' },
   { title: 'Clinics and therapists', text: "You're with a client. We take new enquiries and send them to you for after the session." },
   { title: 'Small offices', text: 'Cover lunch, busy mornings and days out. No need to hire anyone.' },
+  { title: 'Businesses with lots of calls', text: 'When the phones get busy, no caller waits on hold. Every call is answered, so nobody gives up and rings someone else.' },
 ];
 
 const faqs = [
@@ -210,7 +211,7 @@ const schema = [
   .choices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .choice { padding: 32px; display: flex; flex-direction: column; gap: 10px; background: var(--moc-bg); box-shadow: none; border: 1px solid var(--moc-border); }
   .choice p, .who__item p { color: var(--moc-slate-text); }
-  .who { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .who { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .who__item { display: flex; flex-direction: column; gap: 8px; padding-top: 18px; border-top: 3px solid var(--moc-coral-500); }
   .two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
   .prose { display: flex; flex-direction: column; gap: 16px; }
