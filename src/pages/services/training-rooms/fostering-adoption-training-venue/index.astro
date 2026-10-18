@@ -16,7 +16,7 @@ import Reviews from '../../../../components/sections/Reviews.astro';
 import Faqs from '../../../../components/sections/Faqs.astro';
 import FindUs from '../../../../components/sections/FindUs.astro';
 import Photo from '../../../../components/Photo.astro';
-import { accessibility, accessibilityFaq, contact, hours, listNames, parking, site } from '../../../../data/facts';
+import { accessibility, accessibilityFaq, contact, hours, listNames, parking, rooms, site } from '../../../../data/facts';
 import { clientLogos, images } from '../../../../data/images';
 import { larger } from '../../../../data/bookingTerms';
 import { breadcrumbNode, faqNode, serviceNode } from '../../../../lib/schema';
@@ -31,6 +31,7 @@ const description =
 
 const sessions = ['Adoption preparation courses', 'Skills to Foster', 'Foster carer training', 'Support groups', 'Panel meetings', 'Evening and weekend sessions'];
 
+const auditorium = rooms.find((r) => r.slug === 'auditorium')!;
 const intro = `Adoption in Merseyside, Knowsley Fostering and Foster4 choose the Maggie O'Neill Centre in Huyton, Knowsley. They train prospective adopters and foster carers here. The rooms are calm and clean. Your host is on site all day, and self-serve tea and coffee is in the room all day. Parking is free. Fostering and adoption teams from ${listNames(boroughs)} are welcome too.`;
 
 const keyFacts = [
@@ -88,7 +89,7 @@ const faqs = [
 ];
 
 const journey = [
-  { image: 1, caption: `The free car park, ${parking.motorway}.` },
+  { image: 186, caption: `The free car park, ${parking.motorway}.` },
   { image: 4, caption: 'The front door, with a ramp and handrails.' },
   { image: 6, caption: 'Reception, with chairs if anyone needs a moment away.' },
   { image: 35, caption: 'Your room, ready when you arrive.' },
@@ -182,7 +183,7 @@ const schema = [
   <div id="rooms">
     <RoomCards
       heading="Which rooms suit fostering and adoption training?"
-      intro="Calm, clean, private rooms. Tell us how many are coming. We'll suggest the right one."
+      intro={`Calm, clean, private rooms. Tell us how many are coming. We'll suggest the right one. For bigger training days and events, we also have the ${auditorium.name}, for up to ${auditorium.capacity.cabaret} cabaret or ${auditorium.capacity.theatre} theatre.`}
       order={['community-room', 'grove', 'forum', 'summit']}
       simple
     />
