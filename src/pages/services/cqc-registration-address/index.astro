@@ -11,7 +11,7 @@ import KeyFacts from '../../../components/sections/KeyFacts.astro';
 import Steps from '../../../components/sections/Steps.astro';
 import Faqs from '../../../components/sections/Faqs.astro';
 import FindUs from '../../../components/sections/FindUs.astro';
-import { address, contact, cqcRegistration as cqc, formatPrice, parking, site, trainingDayFrom } from '../../../data/facts';
+import { address, contact, cqcRegistration as cqc, parking, site } from '../../../data/facts';
 import { images } from '../../../data/images';
 import { breadcrumbNode, faqNode, serviceNode } from '../../../lib/schema';
 
@@ -29,7 +29,7 @@ const keyFacts = [
   { term: 'Price', detail: `£${cqc.price} a month. You pay by direct debit on the 1st.` },
   { term: 'Lease term', detail: `${cqc.termMonths} months.` },
   { term: 'Exit clause', detail: cqc.exitClause },
-  { term: 'Training', detail: `Training rooms on site from ${formatPrice(trainingDayFrom)} a day, for your mandatory training.`, href: '/services/training-rooms/care-training-venue/', linkText: 'Care training venue' },
+  { term: 'Training', detail: `${cqc.freeRoomHours} free meeting room hours a month, plus ${cqc.extraHoursDiscount}% off any extra hours. Use them for training, interviews or team meetings.`, href: '/services/training-rooms/care-training-venue/', linkText: 'Care training venue' },
   { term: 'Room to grow', detail: 'When you need your own office, ask about our private offices.', href: '/services/private-offices/', linkText: 'Private offices' },
 ];
 
@@ -58,7 +58,7 @@ const faqs = [
   },
   {
     q: 'Can we do our training here too?',
-    a: `Yes. Care providers run mandatory training here, like TMVA, medication, first aid and moving and handling. Training rooms start at ${formatPrice(trainingDayFrom)} a day.`,
+    a: `Yes. Care providers run mandatory training here, like TMVA, medication, first aid and moving and handling. Your lease includes ${cqc.freeRoomHours} free meeting room hours a month, plus ${cqc.extraHoursDiscount}% off any extra hours.`,
   },
   {
     q: 'What if we need a proper office later?',

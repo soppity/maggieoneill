@@ -519,6 +519,9 @@ export const cqcRegistration = {
   careProvidersHome: '20+',
   price: 150,
   termMonths: 12,
+  // Owner, Oct 2026: every CQC lease includes free meeting room hours and a discount on more.
+  freeRoomHours: 2,
+  extraHoursDiscount: 10,
   exitClause:
     "If CQC turns down your registration, you're released from the lease. The same goes if CQC cancels your registration after it's issued. It's built into the agreement.",
 };
