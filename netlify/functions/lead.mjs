@@ -8,6 +8,10 @@ const WEBHOOK =
 
 // Forms with their own GHL workflow get their own inbound webhook (keyed by form-name); everything else uses WEBHOOK.
 const ROUTES = {
+  // Owner, Oct 2026: taxi lease details get their own workflow. CQC lease details (cqc-lease-details) stay on WEBHOOK.
+  'operator-lease-details':
+    process.env.GHL_WEBHOOK_OPERATOR_LEASE ||
+    'https://services.leadconnectorhq.com/hooks/4cpmA1xPfhyLI1A2OPDr/webhook-trigger/cfd12825-666c-4987-a163-b61541fde075',
   'good-meeting-guide':
     process.env.GHL_WEBHOOK_GOOD_MEETING_GUIDE ||
     'https://services.leadconnectorhq.com/hooks/4cpmA1xPfhyLI1A2OPDr/webhook-trigger/380db4cf-9761-4a66-afee-9ab9acc33619',
