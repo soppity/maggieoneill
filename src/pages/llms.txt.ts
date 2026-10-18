@@ -30,7 +30,7 @@ Key facts:
 
 ## Rooms and venue hire
 - [Training rooms](${u('/services/training-rooms/')}): hosted training rooms near Liverpool, layouts, capacities and what's included
-- [Oliver McGowan training venue](${u('/services/training-rooms/oliver-mcgowan-training-venue/')}): accessible Auditorium for Tier 2 days, up to 60 cabaret with wheelchair space, adjustable lighting, a quiet room, and accessible parking outside
+- [Oliver McGowan training venue](${u('/services/training-rooms/oliver-mcgowan-training-venue/')}): accessible Auditorium for Tier 2 days, up to 60 banquet style with wheelchair space, adjustable lighting, a quiet room, and accessible parking outside
 - [Care training venue](${u('/services/training-rooms/care-training-venue/')}): mandatory training for support workers (TMVA, safety intervention, hoist, medication, first aid)
 - [Fostering and adoption training venue](${u('/services/training-rooms/fostering-adoption-training-venue/')}): calm rooms for preparation courses, with every borough welcome
 - [NHS training venue](${u('/services/training-rooms/nhs-training-venue/')}): clinical and admin training days and monthly meetings

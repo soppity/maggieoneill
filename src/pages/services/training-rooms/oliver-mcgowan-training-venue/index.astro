@@ -23,15 +23,16 @@ import { breadcrumbNode, faqNode, serviceNode, type Node } from '../../../../lib
 const path = '/services/training-rooms/oliver-mcgowan-training-venue/';
 const url = `${site.url}${path}`;
 const auditorium = rooms.find((r) => r.slug === 'auditorium')!;
+// Owner, Oct 2026: Tier 2 days are set banquet style (full round tables). Capacity as the cabaret figure until told otherwise.
 const seats = auditorium.capacity.cabaret!;
 
 const title = "Oliver McGowan Training Venue | Maggie O'Neill Centre";
-const description = `An accessible Tier 2 venue near Liverpool. The Auditorium seats ${seats} cabaret with space for wheelchairs, plus a quiet room. Maggie O'Neill Centre.`;
+const description = `An accessible Tier 2 venue near Liverpool. The Auditorium seats ${seats} banquet style with space for wheelchairs, plus a quiet room. Maggie O'Neill Centre.`;
 
-const intro = `Maggie O'Neill Centre in Huyton, near Liverpool, hosts Oliver McGowan Tier 2 face-to-face days in the Auditorium. It seats up to ${seats} cabaret style. There's space for wheelchairs between the tables. There's a quiet room off the Auditorium foyer, and the lighting can be changed. Accessible parking is right outside, and there's an accessible toilet on the same floor.`;
+const intro = `Maggie O'Neill Centre in Huyton, near Liverpool, hosts Oliver McGowan Tier 2 face-to-face days in the Auditorium. It seats up to ${seats} banquet style. There's space for wheelchairs between the tables. There's a quiet room off the Auditorium foyer, and the lighting can be changed. Accessible parking is right outside, and there's an accessible toilet on the same floor.`;
 
 const keyFacts = [
-  { term: 'Capacity', detail: `Up to ${seats} cabaret style. There's wheelchair space between the tables.` },
+  { term: 'Capacity', detail: `Up to ${seats} banquet style. There's wheelchair space between the tables.` },
   { term: 'Quiet room', detail: 'Off the Auditorium foyer. It has acoustic insulation, dim lights and a sign on the door.' },
   { term: 'Lighting', detail: 'You can change the Auditorium lighting to suit the group.' },
   { term: 'Arrival', detail: 'Accessible parking is right outside the Auditorium. Just ask and we\'ll open the side door.' },
@@ -44,11 +45,11 @@ const keyFacts = [
 const faqs = [
   {
     q: 'How many people fit in the Auditorium for Tier 2?',
-    a: `The Auditorium at the Maggie O'Neill Centre seats up to ${seats} people cabaret style for an Oliver McGowan Tier 2 day.`,
+    a: `The Auditorium at the Maggie O'Neill Centre seats up to ${seats} people banquet style, around full round tables, for an Oliver McGowan Tier 2 day.`,
   },
   {
     q: 'Can a wheelchair move between the tables?',
-    a: 'Yes. The cabaret layout in the Auditorium leaves space between the tables. A wheelchair can move around easily.',
+    a: 'Yes. The banquet layout in the Auditorium leaves space between the tables. A wheelchair can move around easily.',
   },
   {
     q: 'Where is the quiet room?',
@@ -86,7 +87,7 @@ const faqs = [
 
 const journey = [
   { image: 186, caption: 'The free car park. Accessible spaces are right outside the Auditorium. Just ask and we’ll open the side door.' },
-  { image: 117, caption: `The Auditorium, ready before anyone arrives. For Tier 2 it's set cabaret style for up to ${seats}. There's room for wheelchairs.` },
+  { image: 117, caption: `The Auditorium, ready before anyone arrives. For Tier 2 it's set banquet style for up to ${seats}. There's room for wheelchairs.` },
   { image: 114, caption: 'The Auditorium in use. The lighting can be lowered to suit the group.' },
   { image: 158, caption: 'The accessible toilet, a short walk from the Auditorium on the same floor. It has grab rails, a fold-down rail and a pull cord.' },
   { image: 132, caption: 'The kitchen, next to the accessible toilet.' },
@@ -110,7 +111,7 @@ const auditoriumPlace: Node = {
   maximumAttendeeCapacity: seats,
   image: images[117].src,
   amenityFeature: [
-    `Cabaret seating for up to ${seats} with wheelchair space between tables`,
+    `Banquet seating for up to ${seats} with wheelchair space between tables`,
     'Quiet room off the foyer with acoustic insulation and dim lights',
     'Adjustable lighting',
     'Accessible parking outside the Auditorium',
@@ -189,7 +190,7 @@ const schema = [
         <div class="section-head">
           <span class="eyebrow">Room for everyone</span>
           <h2 id="access-heading">Can a wheelchair user get around the Auditorium?</h2>
-          <p>Yes. The Auditorium seats up to {seats} cabaret style. There's space between the tables for a wheelchair to move around.</p>
+          <p>Yes. The Auditorium seats up to {seats} banquet style, around full round tables. There's space between the tables for a wheelchair to move around.</p>
         </div>
         <ul class="tick-list">
           <li>{accessibility.stepFree}</li>
@@ -198,9 +199,9 @@ const schema = [
         </ul>
         <figure class="layout-figure">
           <div class="layout-figure__art">
-            <LayoutDiagram layout="cabaret" title="Cabaret layout: round tables face the screen, with space between them for a wheelchair" />
+            <LayoutDiagram layout="banquet" title="Banquet layout: full round tables, with space between them for a wheelchair" />
           </div>
-          <figcaption>Cabaret layout. Round tables face the screen, with space between them for wheelchairs.</figcaption>
+          <figcaption>Banquet layout. Full round tables, with space between them for wheelchairs.</figcaption>
         </figure>
       </div>
       <figure class="media">
@@ -234,7 +235,7 @@ const schema = [
         <p>Full-day hire for Tier 2, set to your layout. Your trainers have nothing to sort out.</p>
       </div>
       <ul class="tick-list">
-        <li>The Auditorium set cabaret style before you arrive.</li>
+        <li>The Auditorium set banquet style before you arrive.</li>
         <li>Screen and sound tested before your trainers walk in.</li>
         <li>Tea and coffee in the room, all day.</li>
         <li>Invoices that work for NHS and ICB funding. PO numbers are welcome.</li>
