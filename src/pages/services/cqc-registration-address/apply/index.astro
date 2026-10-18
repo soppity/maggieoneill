@@ -2,7 +2,7 @@
 // CQC registration office: LEASE DETAILS FORM, 6 steps (owner, Oct 2026: "same lease details form minus anything
 // taxi related"). UNLISTED: noindex; not in the nav, footer, sitemap or llms.txt. Linked from the CQC page's CTAs.
 // Answers save in this browser (localStorage) so "Save and continue later" works on the same device.
-// Everything submits as one form, "cqc-lease-details", at step 6. It goes to the GHL lease webhook (lead.mjs) with that
+// Everything submits as one form, "cqc-lease-details", at step 6. It goes to its own GHL workflow (lead.mjs ROUTES) with that
 // form_name. Direct debit set-up and lease signing are handled by the team afterwards.
 import Base from '../../../../layouts/Base.astro';
 import { address, contact, cqcRegistration as cqc, site } from '../../../../data/facts';

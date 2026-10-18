@@ -508,7 +508,8 @@ export const operatorLicence = {
 
 // CQC registration office (owner, Oct 2026): a sublease, like the operator licence lease, so a care company can
 // register with CQC without renting an office it doesn't need. £150 a month, 12-month lease, same exit clause as the
-// taxi lease. The lease details form is /services/cqc-registration-address/apply/ (unlisted, like the taxi one).
+// taxi lease. The lease details form is /services/cqc-registration-address/apply/ (unlisted, like the taxi one), sent to
+// its own GHL workflow (netlify/functions/lead.mjs ROUTES).
 // Not a virtual office.
 export const cqcRegistration = {
   path: '/services/cqc-registration-address/',
