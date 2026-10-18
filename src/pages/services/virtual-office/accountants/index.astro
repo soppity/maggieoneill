@@ -1,7 +1,9 @@
 ---
 // For accountants (referral partners). Spec: Website Blueprint page 8b (Template: Service).
 // Audience: accountants, bookkeepers and company formation agents in Merseyside. Job: turn them into a steady source of
-// virtual office clients. No commission (accountants must disclose it), so the client gets 20% off instead.
+// virtual office clients. Two ways in (owner, Oct 2026): the firm plan (the firm pays a flat fee plus a set price per
+// client, facts.ts accountantPartners.firmPlan), or referral, where the client pays us and gets 20% off (no commission,
+// because accountants must disclose it).
 // PilotoMail screens: docs/assets/pilotomail/ (client names in the picker are anonymised: never show real ones).
 // Schema: Service (audience: accountants) + FAQPage + BreadcrumbList.
 import Base from '../../../../layouts/Base.astro';
@@ -21,7 +23,7 @@ const parent = '/services/virtual-office/';
 // SEO: the title and meta use "registered office" (the common search; title kept to 60 characters); visible copy says "registered address" (owner, Oct 2026).
 const title = "Registered Office for Accountants | Maggie O'Neill Centre";
 const description =
-  "Give your clients a registered office address near Liverpool at 20% off, and see all their post under one login. Maggie O'Neill Centre.";
+  `Registered office addresses for all your clients near Liverpool. £${ap.firmPlan.fee} a month for your firm, plus £${ap.firmPlan.perClient} a client, with Director's Cover. One login for all their post.`;
 
 const off = ap.discount;
 const [p20, p40] = virtualOffice.plans;
@@ -39,8 +41,12 @@ const priceGrid = [
 const discounted = (n: number, pct = off) => Math.round(n * (100 - pct)) / 100;
 const caOff = ap.callAnsweringDiscount;
 const fmt = (n: number) => (Number.isInteger(n) ? formatPrice(n) : `£${n.toFixed(2)}`);
+const fp = ap.firmPlan;
+const fullPrice = withCover(p40);
+const firmBill = (n: number) => fp.fee + fp.perClient * n;
+const firmExamples = fp.examples.map((n) => ({ n, bill: firmBill(n), each: firmBill(n) / n, usual: fullPrice * n }));
 
-const lede = `Refer your clients to the Maggie O'Neill Centre for their registered address. They get ${off}% off for as long as they stay. You see all their post under one login. And every address helps a local charity.`;
+const lede = `Put all your clients' registered addresses with the Maggie O'Neill Centre. It's ${formatPrice(fp.fee)} a month for your firm, plus ${formatPrice(fp.perClient)} a month for each client. Every client gets the full plan with ${dc.name}. You see all their post under one login. And every address helps a local charity.`;
 
 const benefits = [
   {
@@ -48,8 +54,8 @@ const benefits = [
     text: "Each client gets their own mailbox in PilotoMail. We add your email to it. Log in once, pick a client, and see their post. No more chasing a photo of a letter from HMRC.",
   },
   {
-    title: `${off}% off for your clients`,
-    text: `Every client you refer pays ${off}% less, for as long as they stay with us. It isn't an introductory offer.`,
+    title: `${formatPrice(fp.perClient)} a client`,
+    text: `Plus ${formatPrice(fp.fee)} a month for your firm. Each client gets the full plan with ${dc.name}, which is usually ${formatPrice(fullPrice)} a month.`,
   },
   {
     title: 'No more registered-address admin',
@@ -62,28 +68,44 @@ const benefits = [
 ];
 
 const steps = [
-  { title: 'Tell us you want to partner', text: "Call, email or message us. We'll have a quick chat and note down your practice." },
-  { title: 'Send your clients our way', text: `Your client signs up on the form below. They tell us you sent them. Their ${off}% off starts from day one.` },
-  { title: 'Your email goes on their mailbox', text: 'We add your email to their PilotoMail mailbox, so their post shows up under your one login.' },
+  { title: 'Tell us you want to partner', text: "Call, email or message us. We'll have a quick chat and set up your firm." },
+  { title: 'Add your clients', text: 'Send us your client list. Add as many as you like, and more whenever you want. We do the AML check on each one.' },
+  { title: 'Your email goes on their mailbox', text: "We add your email to each client's PilotoMail mailbox, so all their post shows up under your one login." },
   { title: 'See their post in one place', text: 'Log in, choose the client, and read what has arrived. Your client sees their own post too.' },
 ];
 
 const faqs = [
   {
+    q: 'How much is the firm plan?',
+    a: `It's ${formatPrice(fp.fee)} a month for your firm, plus ${formatPrice(fp.perClient)} a month for each client. So 10 clients come to ${formatPrice(firmBill(10))} a month, and 25 clients come to ${formatPrice(firmBill(25))}. There's no VAT to add. The centre is a charity and isn't VAT registered. ${virtualOffice.terms}`,
+  },
+  {
+    q: 'What does each client get?',
+    a: `The full plan with ${dc.name}. That's a registered office and business address, a director's service address, and post opened and scanned. Free meeting room hours and coffee aren't included. If a client wants those, they can come to us direct as your referral, with ${off}% off.`,
+  },
+  {
+    q: 'Who pays, and can I charge my clients?',
+    a: `Your firm pays us one monthly bill. What you charge your clients is up to you. Some firms include it in their fees. Others charge it on.`,
+  },
+  {
+    q: 'Is there a minimum number of clients?',
+    a: 'No. Start with a few and add more whenever you like. The more clients you add, the less each one costs you, because the firm fee is shared across them.',
+  },
+  {
     q: 'Do you pay accountants a referral fee?',
-    a: `No. Accountants have to tell their clients about any commission. So we don't pay a referral fee. Instead, we pass the saving straight to your client as ${off}% off. There's nothing to declare, and your client gets the benefit.`,
+    a: `No. Accountants have to tell their clients about any commission. So we don't pay a referral fee. On the firm plan, your firm is our customer, so there's no commission at all. If a client wants the extras, like meeting rooms and coffee, refer them to us direct and they get ${off}% off.`,
   },
   {
     q: 'How long does the discount last?',
-    a: `For as long as your client stays with the Maggie O'Neill Centre. It isn't an introductory offer.`,
+    a: `For referred clients, the ${off}% off lasts for as long as they stay with the Maggie O'Neill Centre. It isn't an introductory offer.`,
   },
   {
-    q: 'How much will my clients pay?',
+    q: 'If I refer clients instead, what do they pay?',
     a: `With ${off}% off, the ${p20.name} plan is ${fmt(discounted(p20.price))} a month, not ${formatPrice(p20.price)}. The ${p40.name} plan is ${fmt(discounted(p40.price))}, not ${formatPrice(p40.price)}. ${dc.name} is ${fmt(discounted(dc.price))} a month, not ${formatPrice(dc.price)}. So a plan with cover comes to ${fmt(discounted(withCover(p20)))}, not ${formatPrice(withCover(p20))}. Or ${fmt(discounted(withCover(p40)))}, not ${formatPrice(withCover(p40))}. ${ca.name} is ${caOff}% off, at ${fmt(discounted(ca.price, caOff))} a month, not ${formatPrice(ca.price)}. ${virtualOffice.terms}`,
   },
   {
     q: "How do I see my clients' post?",
-    a: "Through PilotoMail. It's the mailbox app our virtual office clients use. We add your email to the mailbox of each client you refer. So you log in once and choose which client's post to see.",
+    a: "Through PilotoMail. It's the mailbox app our virtual office clients use. We add your email to the mailbox of each of your clients. So you log in once and choose which client's post to see.",
   },
   {
     q: 'Do my clients still see their own post?',
@@ -103,19 +125,22 @@ const schema = [
   serviceNode({
     url,
     name: 'Registered address partner for accountants',
-    serviceType: 'Registered address referral partnership',
+    serviceType: 'Registered address service for accountants and their clients',
     description: lede,
     audience: ap.audience,
     areaServed: ['Liverpool', 'Merseyside', 'Knowsley'],
-    catalogName: `Virtual office plans at ${off}% off for referred clients`,
-    offers: virtualOffice.plans.map((p) => ({
+    catalogName: 'Registered address plans for accountants',
+    offers: [
+      { name: 'Firm plan: firm fee', price: fp.fee, description: 'Monthly fee for the accounting firm. One login for all clients\' post.' },
+      { name: 'Firm plan: per client', price: fp.perClient, description: `Each client: full plan with ${dc.name}, post opened and scanned. Meeting room hours and coffee not included.` },
+    ].concat(virtualOffice.plans.map((p) => ({
       name: `${p.name} (${off}% off for referred clients)`,
       price: discounted(p.price),
       description: p.summary,
     })).concat(
       { name: `${dc.name} add-on (${off}% off for referred clients)`, price: discounted(dc.price), description: dc.summary },
       { name: `${ca.name} add-on (${caOff}% off for referred clients)`, price: discounted(ca.price, caOff), description: ca.summary },
-    ),
+    )),
   }),
   breadcrumbNode(url, [
     { name: 'Home', url: `${site.url}/` },
@@ -144,7 +169,7 @@ const schema = [
 
   <Hero
     title="Your clients' post, handled. Your admin, gone."
-    lede={`Send your clients to us for their registered address. They save ${off}% for as long as they stay. You see all their post in one place. And every address helps a local charity.`}
+    lede={`Put all your clients' registered addresses with us. ${formatPrice(fp.fee)} a month for your firm, plus ${formatPrice(fp.perClient)} a client, with ${dc.name} included. You see all their post in one place. And every address helps a local charity.`}
     image={6}
     screen={{ src: '/images/pilotomail/mailbox-picker-hero.webp', width: 1400, height: 947, alt: "The PilotoMail 'Choose your mailbox' screen, listing example client companies under one accountant's login" }}
     primary={{ label: 'Become a partner', href: '#partner' }}
@@ -168,18 +193,68 @@ const schema = [
     </div>
   </section>
 
-  <section class="section section--cream" aria-labelledby="commission-heading">
+  <section class="section section--cream firm" id="firm-plan" aria-labelledby="firm-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">The firm plan</span>
+        <h2 id="firm-heading">How much does it cost for all my clients?</h2>
+        <p>
+          {formatPrice(fp.fee)} a month for your firm, plus {formatPrice(fp.perClient)} a month for each client. One bill, one login.
+          {' '}{virtualOffice.vat} {virtualOffice.terms}
+        </p>
+      </div>
+      <div class="firm__grid">
+        <div class="card firm__price">
+          <p class="firm__sum"><strong>{formatPrice(fp.fee)}</strong> a month for your firm</p>
+          <p class="firm__plus">+</p>
+          <p class="firm__sum"><strong>{formatPrice(fp.perClient)}</strong> a month per client</p>
+          <p class="firm__usual">Each client gets the full plan with {dc.name}, usually <s>{formatPrice(fullPrice)}</s> a month.</p>
+          <h3>Every client gets</h3>
+          <ul class="tick-list">
+            {fp.includes.map((i) => <li>{i}</li>)}
+          </ul>
+          <p class="firm__excl">{fp.excludes}</p>
+        </div>
+        <div class="firm__examples">
+          <h3>What would my firm pay?</h3>
+          <p>The more clients you add, the less each one costs. The firm fee is shared across them all.</p>
+          <table class="firm__table">
+            <thead>
+              <tr><th scope="col">Clients</th><th scope="col">Your bill</th><th scope="col">Per client</th><th scope="col">Usually</th></tr>
+            </thead>
+            <tbody>
+              {firmExamples.map((e) => (
+                <tr>
+                  <th scope="row">{e.n}</th>
+                  <td><strong>{formatPrice(e.bill)}</strong> a month</td>
+                  <td>{fmt(e.each)}</td>
+                  <td><s>£{e.usual.toLocaleString('en-GB')}</s></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <a class="btn btn--primary" href="#partner">Add your clients</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="commission-heading">
     <div class="container two-col">
       <div class="section-head">
-        <span class="eyebrow">No commission</span>
-        <h2 id="commission-heading">Why don't we pay a referral fee?</h2>
+        <span class="eyebrow">Want the extras?</span>
+        <h2 id="commission-heading">What if a client wants meeting rooms and coffee too?</h2>
       </div>
       <div class="prose">
         <p>
-          Accountants have to tell their clients about any commission they earn. So we don't pay one. Instead, the saving goes
-          straight to your client. They get {off}% off their virtual office, for as long as they stay.
+          Then refer them to us direct. They sign up and pay us themselves, with {off}% off any plan for as long as they stay.
+          They get everything a full-price client gets, like the free meeting room hours on the {p40.name} plan and coffee when they
+          call in. You still see their post under your one login.
         </p>
-        <p>There's nothing to declare. Your advice stays clean. And your client is better off for listening to you.</p>
+        <p>
+          We don't pay referral fees, because accountants have to tell their clients about any commission. So the saving goes
+          straight to your client. There's nothing to declare, and your advice stays clean.
+        </p>
       </div>
     </div>
   </section>
@@ -191,14 +266,14 @@ const schema = [
           <span class="eyebrow">One login</span>
           <h2 id="login-heading">How do you see your clients' post?</h2>
           <p>
-            Our virtual office clients use PilotoMail, a mailbox app. We add your email to the mailbox of each client you refer. So you
+            Our virtual office clients use PilotoMail, a mailbox app. We add your email to the mailbox of each of your clients. So you
             log in once and choose whose post you want to see.
           </p>
         </div>
         <ul class="tick-list">
-          <li>One login, however many clients you refer.</li>
+          <li>One login, however many clients you have with us.</li>
           <li>Pick a client from your list and read what has arrived.</li>
-          <li>On the {p40.name} plan, we open and scan the post. So you can read it the same day.</li>
+          <li>On the firm plan, we open and scan every client's post. So you can read it the same day.</li>
           <li>Your clients keep their own access too.</li>
         </ul>
       </div>
@@ -218,7 +293,7 @@ const schema = [
   <Steps
     id="how-heading"
     eyebrow="How it works"
-    heading="How does a referral work?"
+    heading="How does it work?"
     intro="Four steps, and most of them are ours."
     steps={steps}
   />
@@ -229,7 +304,7 @@ const schema = [
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Partner prices</span>
-        <h2 id="discount-heading">What do referred clients pay?</h2>
+        <h2 id="discount-heading">If you refer clients, what do they pay?</h2>
         <p>{off}% off every plan and {dc.name}. {ap.callAnsweringDiscount}% off {ca.name.toLowerCase()}. It lasts for as long as they stay. {virtualOffice.terms}</p>
       </div>
       <ul class="grid prices">
@@ -253,8 +328,8 @@ const schema = [
     <div class="container partner__inner">
       <div>
         <span class="eyebrow">Become a partner</span>
-        <h2 id="partner-heading">Want to refer your clients?</h2>
-        <p>Have a quick chat with us and we'll set you up. There's no contract and nothing to sign.</p>
+        <h2 id="partner-heading">Ready to add your clients?</h2>
+        <p>Have a quick chat with us and we'll set up your firm. There's no lock-in. {virtualOffice.terms.replace('No lock-in. ', '')}</p>
       </div>
       <div class="partner__actions">
         <a class="btn btn--primary" href={contact.phoneHref} data-track="phone_click">Call {contact.phone}</a>
@@ -268,7 +343,7 @@ const schema = [
 
   <VirtualOfficeForm
     heading="Signing up a client?"
-    intro={`Your client can fill this in themselves. Ask them to put your name or practice in the form. Then we can give them ${off}% off and add your email to their mailbox.`}
+    intro={`Referring a client? They can fill this in themselves. Ask them to put your name or practice in the form. Then we can give them ${off}% off and add your email to their mailbox. On the firm plan, just send us your client list instead.`}
   />
 
   <section class="section section--white more-links" aria-label="Related pages">
@@ -294,6 +369,22 @@ const schema = [
   .screen { margin: 0; display: flex; flex-direction: column; gap: 10px; }
   .screen img { width: 100%; height: auto; border-radius: var(--radius-card); box-shadow: var(--moc-shadow-card); }
   .screen figcaption { font-size: var(--text-small-size); color: var(--moc-slate-text); }
+  .firm__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 48px); align-items: start; }
+  .firm__price { padding: 32px; display: flex; flex-direction: column; gap: 12px; border-top: 4px solid var(--moc-coral-500); }
+  .firm__sum { color: var(--moc-slate-text); }
+  .firm__sum strong { font: 800 48px/1 var(--font-display); color: var(--moc-purple-900); letter-spacing: -0.02em; margin-right: 6px; }
+  .firm__plus { font: 800 28px/1 var(--font-display); color: var(--moc-coral-text); }
+  .firm__usual, .firm__excl { font-size: var(--text-small-size); color: var(--moc-slate-text); }
+  .firm__price h3 { margin-top: 8px; font-size: 19px; }
+  .firm__examples { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+  .firm__table { width: 100%; border-collapse: collapse; background: var(--moc-white); border-radius: var(--radius-card); overflow: hidden; box-shadow: var(--moc-shadow-card); font-size: 17px; }
+  .firm__table th, .firm__table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--moc-border); }
+  .firm__table tbody tr:last-child > * { border-bottom: 0; }
+  .firm__table thead th { font: 700 15px/1.2 var(--font-display); color: var(--moc-purple-900); background: var(--moc-purple-tint); }
+  .firm__table tbody th { font: 800 20px/1 var(--font-display); color: var(--moc-purple-900); }
+  .firm__table td s { color: var(--moc-slate-text); }
+  @media (max-width: 900px) { .firm__grid { grid-template-columns: 1fr; } }
+  @media (max-width: 480px) { .firm__table th, .firm__table td { padding: 12px 10px; font-size: 15px; } }
   .prices { grid-template-columns: repeat(3, minmax(0, 1fr)); list-style: none; padding: 0; margin: 0; }
   .price { padding: 26px 24px; display: flex; flex-direction: column; gap: 8px; border-top: 4px solid var(--moc-coral-500); }
   .price--cover { border-top-color: var(--moc-purple-700); }

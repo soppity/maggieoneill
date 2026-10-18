@@ -482,6 +482,24 @@ export const accountantPartners = {
   // Owner, Oct 2026: call answering gets 10% off its monthly fee for referred clients.
   callAnsweringDiscount: 10,
   audience: 'Accountants, bookkeepers and company formation agents',
+  // Owner, Oct 2026: the firm plan. The firm pays one monthly bill: a flat fee, plus a set price per client.
+  // Each client gets the full plan with Director's Cover, but not the meeting room hours or coffee that
+  // full-paying individual clients get. One login for all their clients' post. Clients who want the extras come to us
+  // direct as referrals, with 20% off (discount above).
+  firmPlan: {
+    fee: 50,
+    perClient: 10,
+    includes: [
+      'Registered office address for Companies House',
+      'Business address they can use everywhere',
+      "Director's Cover, so their home is off both places on Companies House",
+      'Post opened and scanned, so you can read it the same day',
+      'Pick-ups from reception, or forwarding for a flat £5 plus postage',
+      'AML checks on every client, done by us',
+    ],
+    excludes: "Free meeting room hours and coffee aren't included. Want those for a client? They can come to us direct instead, with 20% off as your referral.",
+    examples: [5, 10, 25, 50],
+  },
 };
 
 // Knowsley Private Hire Operator's Licence address (owner brief, Oct 2026; moved in from taxi.mobtc.co.uk).

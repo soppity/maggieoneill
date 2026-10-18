@@ -53,3 +53,4 @@
 - Post storage (owner, Oct 2026): virtual office post is securely stored, not looked after at reception. Pick-ups are still from reception.
 - Call answering (owner, Oct 2026): the AI answers lots of calls at once (effectively unlimited), so nobody waits on hold.
 - Call answering (owner, Oct 2026): it can be bought on its own. No virtual office plan is needed. Say so wherever its price appears.
+- Accountants (owner, Oct 2026): firm plan is £50 a month per firm plus £10 a month per client. Each client gets the full plan with Director's Cover, but no meeting room hours or coffee. One login for all their post. Clients who want the extras come to us direct as referrals, with 20% off.
