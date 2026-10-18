@@ -112,7 +112,7 @@ export const termsGeneral: LegalSection[] = [
         `Plans are paid monthly. ${vo.terms}`,
         'Your address goes live once our anti-money laundering (AML) checks are complete. We may refuse or end a service where the checks are not satisfied.',
         'You must use the address lawfully and keep your details with us up to date.',
-        `Post is handled in-house by our team. You can collect it from reception, ${hours.summary}, and on plans that include it we open and scan it so you can read it in your mailbox app.`,
+        `Post is handled in-house by our team and kept securely stored. You can collect it from reception, ${hours.summary}, and on plans that include it we open and scan it so you can read it in your mailbox app.`,
         "Director's Cover adds a director's service address to either plan.",
       ],
     ],

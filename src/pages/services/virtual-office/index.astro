@@ -30,7 +30,7 @@ const dc = virtualOffice.directorsCover;
 const ca = virtualOffice.callAnswering;
 const pod = rooms.find((r) => r.slug === 'pod')!;
 
-const intro = `A virtual office at the Maggie O'Neill Centre costs ${formatPrice(p20.price)} a month. You get a registered office address for Companies House. You also get a business address you can use everywhere. It's at ${address.street}, Huyton, near Liverpool, ${address.postcode}. Our own team looks after your post. Every piece is uploaded to your mailbox app, so you can see what's arrived. Then pick it up from reception, or ask us to forward it. Parking outside is free. The ${formatPrice(p40.price)} ${p40.name} plan adds unlimited post scanning. It also gives you 2 free meeting room hours a month, worth ${formatPrice(p40.price)}. Director's Cover adds a director's service address for ${formatPrice(dc.price)}. ${virtualOffice.vat} ${virtualOffice.terms}`;
+const intro = `A virtual office at the Maggie O'Neill Centre costs ${formatPrice(p20.price)} a month. You get a registered office address for Companies House. You also get a business address you can use everywhere. It's at ${address.street}, Huyton, near Liverpool, ${address.postcode}. Our own team handles your post and keeps it securely stored. Every piece is uploaded to your mailbox app, so you can see what's arrived. Then pick it up from reception, or ask us to forward it. Parking outside is free. The ${formatPrice(p40.price)} ${p40.name} plan adds unlimited post scanning. It also gives you 2 free meeting room hours a month, worth ${formatPrice(p40.price)}. Director's Cover adds a director's service address for ${formatPrice(dc.price)}. ${virtualOffice.vat} ${virtualOffice.terms}`;
 
 const keyFacts = [
   { term: 'Address', detail: `${address.street}, Huyton, Liverpool, ${address.postcode}. A real building with people in it.` },
@@ -91,7 +91,7 @@ const faqs = [
   },
   {
     q: 'Who handles my post?',
-    a: `We do, here at the Maggie O'Neill Centre. We don't send it to another company. Our own team looks after virtual office post at reception.`,
+    a: `We do, here at the Maggie O'Neill Centre. We don't send it to another company. Our own team handles virtual office post and keeps it securely stored.`,
   },
   {
     q: 'Can I collect my post, or have it forwarded?',
@@ -261,7 +261,7 @@ const voReviewCount = reviews.count;
           <p>Your post comes to real people at the Maggie O'Neill Centre, not a sorting office. We don't send it to another company.</p>
         </div>
         <ul class="tick-list">
-          <li>Our own team looks after virtual office post at reception.</li>
+          <li>Our own team handles your post and keeps it securely stored.</li>
           <li>On every plan, including {formatPrice(p20.price)} {p20.name}, every piece of post is uploaded to your mailbox app. So you can see what's arrived.</li>
           <li>Then pick it up, or ask us to forward it to you.</li>
           <li>On the {formatPrice(p40.price)} {p40.name} plan, we open and scan your post. You can read it in your mailbox app wherever you are.</li>

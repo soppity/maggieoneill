@@ -372,7 +372,7 @@ export const virtualOffice = {
     "A city-centre address doesn't help a local business get found locally. And when a client wants to meet, you pay to park. Here, parking is free and the M57 is 30 seconds away.",
     "You get a real building with hosts in it. They know your name and tell you when your post arrives. And there's a meeting room ready down the corridor.",
   ],
-  // Owner, Oct 2026: never name one person as the post handler. Post is handled by the team at reception.
+  // Owner, Oct 2026: never name one person as the post handler. Post is handled by our team and securely stored, not kept at reception.
   signUp: [
     { title: 'Tell us the basics', text: 'Your name, email, phone and the plan you want. It takes about a minute.' },
     { title: 'Complete your AML check', text: 'We send you a secure form for the anti-money laundering (AML) checks. The law needs these for registered office services.' },

@@ -50,3 +50,4 @@
 - Visit page landmark (owner, Oct 2026): we share the site with Unity Childcare nursery and the Apostolic Church.
 - AV wording (owner, Oct 2026): meeting and training rooms have an LED flatscreen you connect to wirelessly (no cords across the room). The Pod is the exception: its screen plugs in with an HDMI cable. Never say 'wireless casting', AirPlay or 'Mac and PC casting'. The Auditorium has a stage, projector, sound and mics, run by a technician.
 - Virtual office post (owner, Oct 2026): on every plan, including the £20 Address Only, each piece of post is uploaded to the mailbox app so the client can see it. They can pick it up or ask us to forward it. The £40 plan also opens and scans it.
+- Post storage (owner, Oct 2026): virtual office post is securely stored, not looked after at reception. Pick-ups are still from reception.
