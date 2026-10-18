@@ -487,7 +487,7 @@ export const accountantPartners = {
   // full-paying individual clients get. One login for all their clients' post. Clients who want the extras come to us
   // direct as referrals, with 20% off (discount above).
   firmPlan: {
-    // Sign-up form: components/sections/AccountantForm.astro, routed to its own GHL webhook in lead.mjs.
+    // Sign-up form: components/sections/AccountantForm.astro, sent to the one GHL webhook in lead.mjs.
     formName: 'accountant-firm',
     thankYou: '/thank-you/accountant-firm/',
     // Owner, Oct 2026: a monthly firm fee, plus a per-client price that depends on how many clients the firm has.
@@ -544,7 +544,7 @@ export const operatorLicence = {
 // CQC registration office (owner, Oct 2026): a sublease, like the operator licence lease, so a care company can
 // register with CQC without renting an office it doesn't need. £150 a month, 12-month lease, same exit clause as the
 // taxi lease. The lease details form is /services/cqc-registration-address/apply/ (unlisted, like the taxi one), sent to
-// its own GHL workflow (netlify/functions/lead.mjs ROUTES).
+// the one GHL webhook (netlify/functions/lead.mjs); the GHL workflow branches on form_name.
 // Not a virtual office.
 export const cqcRegistration = {
   path: '/services/cqc-registration-address/',

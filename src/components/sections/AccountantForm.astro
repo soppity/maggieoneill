@@ -1,6 +1,7 @@
 ---
 // Sign-up form for accountants (owner, Oct 2026). Posts to netlify/functions/lead.mjs with form_name
-// "accountant-firm", which forwards it to its own GHL inbound webhook (ROUTES), and to Netlify Forms as a backup.
+// "accountant-firm", which forwards it to the one GHL inbound webhook (the workflow branches on form_name), and to
+// Netlify Forms as a backup.
 // On success the visitor goes to the thank-you page.
 import '../../styles/forms.css';
 import { accountantPartners as ap, contact, formatPrice } from '../../data/facts';
