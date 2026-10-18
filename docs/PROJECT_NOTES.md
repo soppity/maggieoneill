@@ -45,3 +45,4 @@
 - CQC registration office (owner, Oct 2026): £150 a month, 12-month lease, same exit clause as the taxi lease. Lease details form at /services/cqc-registration-address/apply/ (unlisted), form-name cqc-lease-details, goes to the GHL lease webhook.
 - Webhooks (owner, Oct 2026): taxi lease details (operator-lease-details) → cfd12825…; Good Meeting Guide → 380db4cf…; CQC lease details (cqc-lease-details) → 28f03e3d… (its own workflow, never the taxi one); everything else, including exit-page-optin → db80a780… (netlify/functions/lead.mjs ROUTES).
 - Oliver McGowan Tier 2 days (owner, Oct 2026): the Auditorium is set banquet style (full round tables), not cabaret. Capacity still shown as up to 60.
+- NHS page (owner, Oct 2026): say Alder Hey, Primary Care Networks and NHS trusts in and around Merseyside. Don't name individual trusts or PCNs unless the owner confirms them.

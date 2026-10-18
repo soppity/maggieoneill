@@ -2,7 +2,7 @@
 // NHS training venue. Spec: Website Blueprint page 4 (Template: Sector) and PROJECT_NOTES.md.
 // Job: give NHS bookers a safe, local choice they can justify. Alder Hey (Sunflower House staff training) and
 // primary care networks (clinical and admin training days, monthly offsite meetings) are the lead examples.
-// Owner, Oct 2026: say "Primary Care Networks", never name a single PCN. PCNs use the Auditorium especially.
+// Owner, Oct 2026: also "NHS trusts in and around Merseyside" (no trust named). Say "Primary Care Networks", never name a single PCN. PCNs use the Auditorium especially.
 // We host the training; the NHS team delivers it.
 import Base from '../../../../layouts/Base.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
@@ -32,10 +32,10 @@ const title = "NHS Training Venue near Liverpool | Maggie O'Neill Centre";
 const description =
   "Hosted training rooms for NHS trusts and PCNs in Huyton. Clinical and admin training days, monthly team meetings and free parking. Maggie O'Neill Centre.";
 
-const intro = `NHS teams from Alder Hey Children's Hospital and Primary Care Networks train and meet at the Maggie O'Neill Centre. We're in Huyton, near Liverpool, ${parking.motorway}. Your room is set before you arrive. Hosts are on site all day, and self-serve tea and coffee is in the room all day. Parking is free for staff travelling in. Invoices and purchase orders work the way NHS finance teams need.`;
+const intro = `NHS teams from Alder Hey Children's Hospital, Primary Care Networks and NHS trusts in and around Merseyside train and meet at the Maggie O'Neill Centre. We're in Huyton, near Liverpool, ${parking.motorway}. Your room is set before you arrive. Hosts are on site all day, and self-serve tea and coffee is in the room all day. Parking is free for staff travelling in. Invoices and purchase orders work the way NHS finance teams need.`;
 
 const keyFacts = [
-  { term: 'Who uses it', detail: "Alder Hey Children's Hospital and Primary Care Networks." },
+  { term: 'Who uses it', detail: "Alder Hey Children's Hospital, Primary Care Networks and NHS trusts in and around Merseyside." },
   { term: 'Sessions', detail: 'Clinical and admin training days, protected learning time and team meetings.' },
   { term: 'The Auditorium', detail: `Up to ${auditorium.capacity.cabaret} cabaret or ${auditorium.capacity.theatre} theatre. It's popular with PCNs.` },
   { term: 'Prices', detail: `From ${formatPrice(hourFrom)} an hour or ${formatPrice(trainingDayFrom)} a day. Everything is included.`, href: '/whats-included/', linkText: "See what's included" },
@@ -48,7 +48,7 @@ const keyFacts = [
 const faqs = [
   {
     q: "Which NHS teams use the Maggie O'Neill Centre?",
-    a: "NHS teams from Alder Hey Children's Hospital and Primary Care Networks train and meet here. The Maggie O'Neill Centre is in Huyton, near Liverpool.",
+    a: "NHS teams from Alder Hey Children's Hospital, Primary Care Networks and NHS trusts in and around Merseyside train and meet here. The Maggie O'Neill Centre is in Huyton, near Liverpool.",
   },
   {
     q: 'Can we run clinical training here?',
@@ -127,7 +127,7 @@ const schema = [
 
   <Hero
     title="Your clinical and admin teams, trained close to home."
-    lede="Your teams give so much every day. Here the room is set before they arrive. Tea and coffee are ready and parking is free. Invoices and POs work the way your finance team needs. Alder Hey and Primary Care Network teams already train with us."
+    lede="Your teams give so much every day. Here the room is set before they arrive. Tea and coffee are ready and parking is free. Invoices and POs work the way your finance team needs. Alder Hey, Primary Care Network and NHS trust teams from across Merseyside already train with us."
     image={113}
     primary={{ label: 'Get in touch', href: '#enquire', track: 'contact_click' }}
     secondary={{ label: 'See the rooms', href: '#rooms' }}
