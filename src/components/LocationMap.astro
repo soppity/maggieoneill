@@ -1,0 +1,71 @@
+---
+// Branded "where we are" map (owner, Oct 2026). A simplified drawing traced from Google Maps: the M57, the M62, the
+// A57 (East Prescot Road) and nearby towns, so people can see at a glance that we're in Huyton, by the M57.
+// Not to scale and not for turn-by-turn directions: the "Show the map" button loads the real Google Map.
+// viewBox is 1000 x 564 (16:9), matching the Find us map box.
+---
+<svg class="location-map" viewBox="0 0 1000 564" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="location-map-title">
+  <title id="location-map-title">Map showing the Maggie O'Neill Centre in Huyton, between Liverpool and Prescot, next to the M57</title>
+  <rect width="1000" height="564" fill="#FAF3EB" />
+
+  <!-- Green spaces -->
+  <g fill="#E2EEDC">
+    <path d="M300 95c40-25 95-20 120 15s5 85-40 95-110-5-115-45 5-50 35-65z" />
+    <path d="M520 60c70-30 170-25 215 20s20 95-40 110-150 10-190-25-45-80 15-105z" />
+    <path d="M820 470c50-20 120-10 140 30s-10 64-60 64h-110c-20-40-10-80 30-94z" />
+    <path d="M440 440c40-15 90-5 100 25s-20 55-60 55-70-15-70-40 10-32 30-40z" />
+  </g>
+
+  <!-- Liverpool city centre -->
+  <circle cx="0" cy="355" r="95" fill="#EFE3D3" />
+
+  <!-- A roads -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0 355 C120 352 200 345 300 345 S380 355 420 352" stroke="#E7DCF6" stroke-width="7" />
+    <path d="M70 300 C160 300 230 300 300 305 S420 270 475 262 S560 262 590 248 S650 218 700 212" stroke="#E7DCF6" stroke-width="9" />
+    <path d="M700 212 C730 230 760 255 800 280 S880 310 1000 330" stroke="#E7DCF6" stroke-width="7" />
+    <path d="M700 212 C740 195 770 185 800 180 S900 120 980 40" stroke="#E7DCF6" stroke-width="7" />
+  </g>
+
+  <!-- Motorways -->
+  <g fill="none" stroke="#4A0D8F" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M470 0 C470 60 480 120 492 165 S520 205 560 212 S630 222 645 245 S660 320 668 360 S685 430 700 470 S715 530 725 564" />
+    <path d="M420 352 C460 356 480 380 510 392 S580 420 640 420 S700 410 740 402 S880 390 1000 364" />
+  </g>
+  <g font-family="Outfit, system-ui, sans-serif" font-weight="800" font-size="16" text-anchor="middle">
+    <rect x="660" y="292" width="46" height="24" rx="6" fill="#4A0D8F" />
+    <text x="683" y="309" fill="#FFFFFF">M57</text>
+    <rect x="452" y="70" width="46" height="24" rx="6" fill="#4A0D8F" />
+    <text x="475" y="87" fill="#FFFFFF">M57</text>
+    <rect x="800" y="380" width="46" height="24" rx="6" fill="#4A0D8F" />
+    <text x="823" y="397" fill="#FFFFFF">M62</text>
+  </g>
+
+  <!-- Place names -->
+  <g font-family="Outfit, system-ui, sans-serif" font-weight="700" fill="#2A0752" font-size="24">
+    <text x="18" y="395">Liverpool</text>
+    <text x="540" y="330">Huyton</text>
+    <text x="705" y="200">Prescot</text>
+    <text x="745" y="300">Whiston</text>
+    <text x="500" y="40">Knowsley</text>
+    <text x="880" y="30">St Helens</text>
+    <text x="460" y="330" font-size="15" font-weight="600" fill="#5F6673">Roby</text>
+    <text x="250" y="260" font-size="15" font-weight="600" fill="#5F6673">West Derby</text>
+  </g>
+
+  <!-- The centre -->
+  <g transform="translate(572 262)">
+    <circle r="34" fill="#F0603A" opacity="0.18" />
+    <path d="M0 6c-10-12-20-21-20-33a20 20 0 0 1 40 0c0 12-10 21-20 33z" fill="#F0603A" stroke="#FFFFFF" stroke-width="3" />
+    <circle cy="-27" r="7" fill="#FFFFFF" />
+  </g>
+  <g font-family="Outfit, system-ui, sans-serif">
+    <rect x="300" y="150" width="250" height="68" rx="16" fill="#FFFFFF" />
+    <text x="318" y="179" font-weight="800" font-size="21" fill="#2A0752">Maggie O'Neill Centre</text>
+    <text x="318" y="204" font-weight="600" font-size="17" fill="#BF401E">30 seconds from the M57</text>
+  </g>
+</svg>
+
+<style>
+  .location-map { display: block; width: 100%; height: 100%; }
+</style>

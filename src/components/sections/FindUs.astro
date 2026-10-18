@@ -1,7 +1,7 @@
 ---
-// Find us + enquiry. The map only loads when tapped. The GHL general form loads its script on this page only.
+// Find us + enquiry. A branded map drawing shows first; the Google Map only loads when tapped. The GHL general form loads its script on this page only.
 import GhlForm from '../GhlForm.astro';
-import Photo from '../Photo.astro';
+import LocationMap from '../LocationMap.astro';
 import { accessibility, address, contact, forms, hours, parking, site } from '../../data/facts';
 
 const form = forms.general;
@@ -24,7 +24,7 @@ const mapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(`${site.nam
         <li>Open {hours.summary}. {hours.extra}</li>
       </ul>
       <div class="find-us__map" data-map={mapEmbed}>
-        <Photo n={186} width={800} height={450} sizes="(max-width: 900px) 100vw, 540px" />
+        <LocationMap />
         <button type="button" class="btn btn--light find-us__map-btn">Show the map</button>
       </div>
       <p class="find-us__directions">
@@ -73,11 +73,13 @@ const mapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(`${site.nam
   .find-us__inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 64px); align-items: start; }
   .find-us .tick-list { font-size: var(--text-small-size); }
   .find-us__map { position: relative; margin-top: 28px; border-radius: var(--radius-card); overflow: hidden; aspect-ratio: 16 / 9; background: var(--moc-purple-tint); }
-  .find-us__map :global(img), .find-us__map :global(iframe) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-  .find-us__map-btn { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); box-shadow: var(--moc-shadow-card-hover); }
+  .find-us__map :global(svg), .find-us__map :global(iframe) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  /* Bottom right, so the button doesn't cover the pin on the branded map. */
+  .find-us__map-btn { position: absolute; right: 14px; bottom: 14px; box-shadow: var(--moc-shadow-card-hover); }
   .find-us__directions { margin-top: 14px; font-weight: 700; }
   .find-us__form { background: var(--moc-white); border-radius: var(--radius-card); box-shadow: var(--moc-shadow-card); padding: clamp(24px, 3vw, 36px); }
   .find-us__form > p { margin: 10px 0 20px; color: var(--moc-slate-text); }
   .find-us__iframe { width: 100%; }
   @media (max-width: 900px) { .find-us__inner { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .find-us__map-btn { min-height: 38px; padding: 8px 16px; font-size: 14px; right: 10px; bottom: 10px; } }
 </style>
