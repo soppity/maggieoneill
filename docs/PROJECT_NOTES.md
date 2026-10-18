@@ -52,3 +52,4 @@
 - Virtual office post (owner, Oct 2026): on every plan, including the £20 Address Only, a photo of each envelope (unopened) is uploaded to the mailbox app. Pick up from reception, or forwarding for a flat £5 plus postage. The £40 plan also opens and scans it.
 - Post storage (owner, Oct 2026): virtual office post is securely stored, not looked after at reception. Pick-ups are still from reception.
 - Call answering (owner, Oct 2026): the AI answers lots of calls at once (effectively unlimited), so nobody waits on hold.
+- Call answering (owner, Oct 2026): it can be bought on its own. No virtual office plan is needed. Say so wherever its price appears.

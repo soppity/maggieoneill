@@ -23,16 +23,16 @@ const pod = rooms.find((r) => r.slug === 'pod')!;
 const title = "Call Answering Service, £39 a Month | Maggie O'Neill Centre";
 const description = `Never miss a call. An AI voice agent answers 24/7 and emails you a summary, transcript and recording. ${price} a month from Maggie O'Neill Centre.`;
 
-const intro = `Call answering from the Maggie O'Neill Centre uses an AI voice agent that sounds like a person. It answers your business calls 24/7. When your availability is on, calls can be put through to you. When it's off, the AI takes a message. Then it emails you a summary, transcript and recording. It costs ${price} a month, plus ${per} per AI response. There's no charge per call.`;
+const intro = `Call answering from the Maggie O'Neill Centre uses an AI voice agent that sounds like a person. It answers your business calls 24/7. When your availability is on, calls can be put through to you. When it's off, the AI takes a message. Then it emails you a summary, transcript and recording. It costs ${price} a month, plus ${per} per AI response. There's no charge per call. You don't need a virtual office plan to use it.`;
 
 const keyFacts = [
-  { term: 'Price', detail: `${price} a month, plus ${per} per AI response. No charge per call.` },
+  { term: 'Price', detail: `${price} a month, plus ${per} per AI response. No charge per call. Works on its own, with no virtual office plan needed.` },
   { term: 'Who answers', detail: 'An AI voice agent that sounds like a person.' },
   { term: 'Hours', detail: '24 hours a day, 7 days a week.' },
   { term: 'Your availability', detail: 'On: calls can be put through to you. Off: the AI takes a message.' },
   { term: 'By email', detail: 'A summary, transcript and recording of every call.' },
   { term: 'Record', detail: 'Every call is stored in your CRM account.' },
-  { term: 'With a virtual office', detail: `Add it to any plan, from ${formatPrice(virtualOffice.from)} a month.`, href: '/services/virtual-office/', linkText: 'See virtual office plans' },
+  { term: 'With a virtual office', detail: `Optional. Add it to any plan, from ${formatPrice(virtualOffice.from)} a month, or just have call answering on its own.`, href: '/services/virtual-office/', linkText: 'See virtual office plans' },
 ];
 
 const whoFor = [
@@ -71,7 +71,7 @@ const faqs = [
   },
   {
     q: 'How do I sign up for call answering?',
-    a: "Fill in the virtual office form on this page. Say you'd like call answering. The Maggie O'Neill Centre will then set up your calls the way you want, with you.",
+    a: "Fill in the form on this page and say you'd like call answering. You don't need a virtual office plan. The Maggie O'Neill Centre will then set up your calls the way you want, with you.",
   },
 ];
 
@@ -117,7 +117,7 @@ const schema = [
     primary={{ label: 'Add call answering', href: '#get-your-address' }}
     secondary={{ label: 'How it works', href: '#how-heading' }}
   >
-    <p class="ca-price"><strong>{price}</strong> a month + {per} per AI response · no charge per call</p>
+    <p class="ca-price"><strong>{price}</strong> a month + {per} per AI response · no charge per call · no virtual office needed</p>
   </Hero>
 
   <KeyFacts heading="Call answering, in a few lines" intro={intro} facts={keyFacts} />
@@ -178,8 +178,8 @@ const schema = [
         <span class="eyebrow">Virtual office</span>
         <h2 id="vo-heading">Can I add call answering to a virtual office?</h2>
         <p>
-          Yes. Add call answering to any virtual office plan for {price} a month, plus {per} per AI response. Then the Maggie O'Neill Centre
-          looks after your address, your post and your calls.
+          Yes, if you want to. Add call answering to any virtual office plan for {price} a month, plus {per} per AI response. Then the Maggie O'Neill Centre
+          looks after your address, your post and your calls. But you don't have to. Call answering works on its own, with no virtual office plan.
         </p>
       </div>
       <div class="prose">
