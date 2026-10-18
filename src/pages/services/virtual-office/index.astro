@@ -30,13 +30,13 @@ const dc = virtualOffice.directorsCover;
 const ca = virtualOffice.callAnswering;
 const pod = rooms.find((r) => r.slug === 'pod')!;
 
-const intro = `A virtual office at the Maggie O'Neill Centre costs ${formatPrice(p20.price)} a month. You get a registered office address for Companies House. You also get a business address you can use everywhere. It's at ${address.street}, Huyton, near Liverpool, ${address.postcode}. Our own team handles your post and keeps it securely stored. Every piece is uploaded to your mailbox app, so you can see what's arrived. Then pick it up from reception, or ask us to forward it. Parking outside is free. The ${formatPrice(p40.price)} ${p40.name} plan adds unlimited post scanning. It also gives you 2 free meeting room hours a month, worth ${formatPrice(p40.price)}. Director's Cover adds a director's service address for ${formatPrice(dc.price)}. ${virtualOffice.vat} ${virtualOffice.terms}`;
+const intro = `A virtual office at the Maggie O'Neill Centre costs ${formatPrice(p20.price)} a month. You get a registered office address for Companies House. You also get a business address you can use everywhere. It's at ${address.street}, Huyton, near Liverpool, ${address.postcode}. Our own team handles your post and keeps it securely stored. We upload a photo of every envelope, unopened, to your mailbox app. So you can see what's arrived. Then pick it up from reception, or have it forwarded for ${virtualOffice.forwarding.text}. Parking outside is free. The ${formatPrice(p40.price)} ${p40.name} plan adds unlimited post scanning. It also gives you 2 free meeting room hours a month, worth ${formatPrice(p40.price)}. Director's Cover adds a director's service address for ${formatPrice(dc.price)}. ${virtualOffice.vat} ${virtualOffice.terms}`;
 
 const keyFacts = [
   { term: 'Address', detail: `${address.street}, Huyton, Liverpool, ${address.postcode}. A real building with people in it.` },
   { term: 'Prices', detail: `From ${formatPrice(p20.price)} a month for ${p20.name}, or ${formatPrice(p40.price)} for ${p40.name}. No VAT to add.`, href: '#plans', linkText: 'Compare plans' },
   { term: "Director's Cover", detail: `+${formatPrice(dc.price)} a month on either plan. Keeps your home off Companies House in both places.` },
-  { term: 'Post', detail: `Our own team looks after it. On every plan, each piece is uploaded for you to see. Pick it up or ask us to forward it. On the ${p40.name} plan, we open and scan it too.` },
+  { term: 'Post', detail: `Our own team keeps it securely stored. On every plan, you see a photo of each envelope, unopened. Pick it up, or have it forwarded for ${virtualOffice.forwarding.text}. On the ${p40.name} plan, we open and scan it too.` },
   { term: 'Meeting rooms', detail: `In the same building. The ${p40.name} plan includes 2 free hours a month.` },
   { term: 'Contract', detail: virtualOffice.terms },
   { term: 'Collect post', detail: `${hours.summary}. Free parking outside.` },
@@ -71,7 +71,7 @@ const faqs = [
   },
   {
     q: 'What is the cheapest virtual office in Liverpool that includes a registered office?',
-    a: `The ${p20.name} plan at the Maggie O'Neill Centre is ${formatPrice(p20.price)} a month. It includes a registered office address for Companies House and a business address. Every piece of post is uploaded to your mailbox app, so you can see it. Then pick it up from reception, or ask us to forward it. Cheaper prices elsewhere often cover a business address only. Then the registered office, post handling or a setup fee cost extra. So check what each price includes. Our guide to the cheapest virtual office address in the UK explains what to look for.`,
+    a: `The ${p20.name} plan at the Maggie O'Neill Centre is ${formatPrice(p20.price)} a month. It includes a registered office address for Companies House and a business address. We upload a photo of every envelope, unopened, to your mailbox app. Then pick it up from reception, or have it forwarded for ${virtualOffice.forwarding.text}. Cheaper prices elsewhere often cover a business address only. Then the registered office, post handling or a setup fee cost extra. So check what each price includes. Our guide to the cheapest virtual office address in the UK explains what to look for.`,
   },
   {
     q: 'Can I use the address as my registered office with Companies House?',
@@ -95,7 +95,7 @@ const faqs = [
   },
   {
     q: 'Can I collect my post, or have it forwarded?',
-    a: `Yes. You can pick up post from reception at the Maggie O'Neill Centre, ${hours.summary}. Parking is free while you do. Or ask us to forward it to you instead.`,
+    a: `Yes. You can pick up post from reception at the Maggie O'Neill Centre, ${hours.summary}. Parking is free while you do. Or we can forward it to you for ${virtualOffice.forwarding.text}.`,
   },
   {
     q: 'Can I meet clients at my virtual office address?',
@@ -262,8 +262,8 @@ const voReviewCount = reviews.count;
         </div>
         <ul class="tick-list">
           <li>Our own team handles your post and keeps it securely stored.</li>
-          <li>On every plan, including {formatPrice(p20.price)} {p20.name}, every piece of post is uploaded to your mailbox app. So you can see what's arrived.</li>
-          <li>Then pick it up, or ask us to forward it to you.</li>
+          <li>On every plan, including {formatPrice(p20.price)} {p20.name}, we upload a photo of every envelope, unopened, to your mailbox app. So you can see what's arrived.</li>
+          <li>Then pick it up, or have it forwarded for {virtualOffice.forwarding.text}.</li>
           <li>On the {formatPrice(p40.price)} {p40.name} plan, we open and scan your post. You can read it in your mailbox app wherever you are.</li>
           <li>Pick-ups are from reception, {hours.summary}. Parking outside is free.</li>
         </ul>

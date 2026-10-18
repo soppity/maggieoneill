@@ -322,8 +322,8 @@ export type PlanFeature = 'registeredOffice' | 'businessAddress' | 'postUploaded
 export const planFeatures: { key: PlanFeature; label: string }[] = [
   { key: 'registeredOffice', label: 'Registered office address for Companies House' },
   { key: 'businessAddress', label: 'Use it as your business address everywhere' },
-  { key: 'postUploaded', label: "Every piece of post uploaded to your mailbox app, so you can see what's arrived" },
-  { key: 'collectPost', label: 'Pick your post up from reception, or ask us to forward it' },
+  { key: 'postUploaded', label: "A photo of every envelope, unopened, in your mailbox app. So you can see what's arrived" },
+  { key: 'collectPost', label: 'Pick your post up from reception, or have it forwarded for a flat £5 plus postage' },
   { key: 'postScanned', label: 'Unlimited post opened and scanned, so you can read it anywhere' },
   { key: 'roomHours', label: '2 free meeting room hours a month, worth £40' },
   { key: 'coffee', label: 'Free coffee when you call in' },
@@ -336,7 +336,8 @@ export interface VirtualOfficePlan {
   features: PlanFeature[];
 }
 
-// Owner, Oct 2026: on every plan, each piece of post is uploaded so the client can see it, then picked up or forwarded.
+// Owner, Oct 2026: on every plan, a photo of each envelope (unopened) is uploaded, then the post is picked up or
+// forwarded (a flat £5 plus postage, virtualOffice.forwarding). The £40 plan also opens and scans it.
 const addressOnly: PlanFeature[] = ['registeredOffice', 'businessAddress', 'postUploaded', 'collectPost'];
 
 export const virtualOffice = {
@@ -345,7 +346,7 @@ export const virtualOffice = {
     {
       name: 'Address Only',
       price: 20,
-      summary: 'A registered office and business address. Every piece of post is uploaded for you to see. Then pick it up, or ask us to forward it.',
+      summary: 'A registered office and business address. We upload a photo of every envelope, unopened, so you can see what\'s arrived. Then pick it up, or have it forwarded.',
       features: addressOnly,
     },
     {
@@ -362,6 +363,7 @@ export const virtualOffice = {
       "Your plan replaces your home as your company's registered office. Director's Cover replaces it as your director's service address too. So new filings show our address in both places your home used to be.",
     short: 'Keep your home off Companies House in both places',
   },
+  forwarding: { fee: 5, text: 'a flat £5 plus postage' },
   terms: 'No lock-in. Cancel any time with one month\'s notice.',
   // Owner, Oct 2026: the centre is a charity and not VAT registered, so no VAT is added to any virtual office price.
   vat: 'No VAT is added. The centre is a charity and is not VAT registered. So the price you see is the price you pay.',

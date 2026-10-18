@@ -68,7 +68,7 @@ const step = full.price - addressOnly.price;
 
     <p class="plans__note">
       {dc.name} adds {formatPrice(dc.price)} a month to either plan. So {formatPrice(addressOnly.price)} becomes {formatPrice(withCover(addressOnly))}, and
-      {' '}{formatPrice(full.price)} becomes {formatPrice(withCover(full))}. If you move up to {full.name} later, your cover moves with you. Two free
+      {' '}{formatPrice(full.price)} becomes {formatPrice(withCover(full))}. If you move up to {full.name} later, your cover moves with you. On either plan, post forwarding is {virtualOffice.forwarding.text} each time. Two free
       meeting room hours a month are worth more than the {formatPrice(step)} between the plans. You can also add
       {' '}<a href="/services/virtual-office/call-answering/">call answering for {formatPrice(virtualOffice.callAnswering.price)} a month</a> to either plan.
     </p>
