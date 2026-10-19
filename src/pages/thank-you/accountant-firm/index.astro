@@ -1,0 +1,23 @@
+---
+// Thank-you page for the "accountant-firm" form. noindex, not in the sitemap (see components/ThankYou.astro).
+import Base from '../../../layouts/Base.astro';
+import ThankYou from '../../../components/ThankYou.astro';
+import { accountantPartners as ap, contact } from '../../../data/facts';
+import { images } from '../../../data/images';
+---
+<Base title={"Thank You | Accountant Partners | Maggie O'Neill Centre"} description="Thanks for getting in touch with the Maggie O'Neill Centre." ogImage={images[6].src} ogImageAlt={images[6].alt} noindex mobileBar="custom" mobileBarHref={contact.phoneHref} mobileBarLabel={`Call ${contact.phone}`}>
+  <ThankYou
+    form={ap.firmPlan.formName}
+    heading={"Thanks, we've got your details."}
+    text={"We'll call you within one working day to talk it through and set up your firm."}
+    next={[
+      { title: 'We call you', text: 'A quick chat about your firm and your clients.' },
+      { title: 'We set up your login', text: "We add your email to your clients' mailboxes, so you see all their post in one place." },
+      { title: 'We check your clients', text: 'We send each client a secure AML form. Once it is done, their address is live.' },
+    ]}
+    links={[
+      { label: 'Back to the accountants page', href: '/services/virtual-office/accountants/' },
+    ]}
+    showWhatsApp={false}
+  />
+</Base>

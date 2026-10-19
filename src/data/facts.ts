@@ -482,6 +482,37 @@ export const accountantPartners = {
   // Owner, Oct 2026: call answering gets 10% off its monthly fee for referred clients.
   callAnsweringDiscount: 10,
   audience: 'Accountants, bookkeepers and company formation agents',
+  // Owner, Oct 2026: the firm plan. The firm pays one monthly bill: a flat fee, plus a set price per client.
+  // Each client gets the full plan with Director's Cover, but not the meeting room hours or coffee that
+  // full-paying individual clients get. One login for all their clients' post. Clients who want the extras come to us
+  // direct as referrals, with 20% off (discount above).
+  firmPlan: {
+    // Sign-up form: components/sections/AccountantForm.astro, sent to the one GHL webhook in lead.mjs.
+    formName: 'accountant-firm',
+    thankYou: '/thank-you/accountant-firm/',
+    // Owner, Oct 2026: a monthly firm fee, plus a per-client price that depends on how many clients the firm has.
+    // Every client is charged at the rate for the firm's total number of clients.
+    fee: 50,
+    tiers: [
+      { max: 5, label: '1 to 5 clients', price: 20 },
+      { max: 10, label: '6 to 10 clients', price: 15 },
+      { max: 25, label: '11 to 25 clients', price: 12 },
+      { max: Infinity, label: '26 or more clients', price: 11 },
+    ],
+    includes: [
+      'Registered office address for Companies House',
+      'Business address they can use everywhere',
+      "Director's Cover, so their home is off both places on Companies House",
+      'Post opened and scanned, so you can read it the same day',
+      'Pick-ups from reception, or forwarding for a flat £5 plus postage',
+      'AML checks on every client, done by us',
+    ],
+    excludes: "Free meeting room hours and coffee aren't included. Want those for a client? They can come to us direct instead, with 20% off as your referral.",
+    examples: [5, 10, 25, 50],
+    // Owner, Oct 2026: forwarding and post requests are billed to the firm, which rebills its own clients.
+    costs: "Forwarding (a flat £5 plus postage) and any other post requests are billed to your firm, not your client. Tell us what to do with each item, like forwarding it or having it collected, so it doesn't sit in storage and pick up storage fees. You rebill your clients however you like.",
+
+  },
 };
 
 // Knowsley Private Hire Operator's Licence address (owner brief, Oct 2026; moved in from taxi.mobtc.co.uk).
@@ -513,7 +544,7 @@ export const operatorLicence = {
 // CQC registration office (owner, Oct 2026): a sublease, like the operator licence lease, so a care company can
 // register with CQC without renting an office it doesn't need. £150 a month, 12-month lease, same exit clause as the
 // taxi lease. The lease details form is /services/cqc-registration-address/apply/ (unlisted, like the taxi one), sent to
-// its own GHL workflow (netlify/functions/lead.mjs ROUTES).
+// the one GHL webhook (netlify/functions/lead.mjs); the GHL workflow branches on form_name.
 // Not a virtual office.
 export const cqcRegistration = {
   path: '/services/cqc-registration-address/',

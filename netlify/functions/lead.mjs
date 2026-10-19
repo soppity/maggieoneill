@@ -6,19 +6,8 @@ const WEBHOOK =
   process.env.GHL_WEBHOOK_URL ||
   'https://services.leadconnectorhq.com/hooks/4cpmA1xPfhyLI1A2OPDr/webhook-trigger/db80a780-d898-48a6-9a47-4dc139945d36';
 
-// Forms with their own GHL workflow get their own inbound webhook (keyed by form-name); everything else uses WEBHOOK.
-const ROUTES = {
-  // Owner, Oct 2026: taxi and CQC lease details each have their own workflow (different services, kept apart).
-  'operator-lease-details':
-    process.env.GHL_WEBHOOK_OPERATOR_LEASE ||
-    'https://services.leadconnectorhq.com/hooks/4cpmA1xPfhyLI1A2OPDr/webhook-trigger/cfd12825-666c-4987-a163-b61541fde075',
-  'cqc-lease-details':
-    process.env.GHL_WEBHOOK_CQC_LEASE ||
-    'https://services.leadconnectorhq.com/hooks/4cpmA1xPfhyLI1A2OPDr/webhook-trigger/28f03e3d-d61e-4351-84fb-c1557a5ca420',
-  'good-meeting-guide':
-    process.env.GHL_WEBHOOK_GOOD_MEETING_GUIDE ||
-    'https://services.leadconnectorhq.com/hooks/4cpmA1xPfhyLI1A2OPDr/webhook-trigger/380db4cf-9761-4a66-afee-9ab9acc33619',
-};
+// Owner, Oct 2026: every form goes to this one webhook, so there's one GHL workflow to review. That workflow branches
+// on form_name (operator-lease-details, cqc-lease-details, good-meeting-guide, exit-page-optin, accountant-firm, ...).
 
 const DROP = new Set(['bot-field', 'form-name']);
 
@@ -44,7 +33,7 @@ export const handler = async (event) => {
     page: event.headers?.referer || '',
   };
   try {
-    const res = await fetch(ROUTES[body.form_name] || WEBHOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: AbortSignal.timeout(8000) });
+    const res = await fetch(WEBHOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: AbortSignal.timeout(8000) });
     if (!res.ok) {
       const detail = (await res.text().catch(() => '')).slice(0, 300);
       console.error(`GoHighLevel webhook returned ${res.status}: ${detail}`);
