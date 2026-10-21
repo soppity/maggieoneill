@@ -521,7 +521,7 @@ export const accountantPartners = {
 // It lives only on the private application guide and in docs/knowledge/operators-licence.md (internal).
 // Owner, Oct 2026: after the taxi and CQC lease details forms are saved, the operator goes straight to GoCardless to set
 // up the direct debit mandate (one link for every price; the amount is set on our side). Set the link's success
-// redirect in GoCardless to the matching thank-you page with ?dd=1.
+// redirect in GoCardless to https://mobtc.co.uk/thank-you/direct-debit/ (one page for both leases).
 export const goCardless = {
   mandateUrl: 'https://pay.gocardless.com/BRT00038512ZH52',
 };
