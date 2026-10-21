@@ -57,3 +57,4 @@
 - Accountant sign-up form (owner, Oct 2026): AccountantForm.astro, form_name accountant-firm, sent to the one GHL webhook (branch on form_name). Thank-you page /thank-you/accountant-firm/.
 - GoCardless (owner, Oct 2026): taxi and CQC lease details forms redirect straight to the GoCardless mandate (one link, facts.ts goCardless) after saving. GoCardless should redirect back to /thank-you/direct-debit/ (shared by both).
 - Chat widget (21 Oct 2026): GHL chat widget is OFF. It broke embedded GHL form submissions (last submission 16 Oct, widget added 17 Oct). Every GHL form embed has a fallback link to open the form in a new tab.
+- Lease rule (owner, Oct 2026): no lease is issued until the GoCardless direct debit is set up. GoCardless emails the owner when a mandate is completed; a GHL lead with no GoCardless email means they stopped before the mandate.
