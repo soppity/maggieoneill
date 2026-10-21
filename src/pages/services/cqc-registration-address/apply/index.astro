@@ -3,9 +3,9 @@
 // taxi related"). UNLISTED: noindex; not in the nav, footer, sitemap or llms.txt. Linked from the CQC page's CTAs.
 // Answers save in this browser (localStorage) so "Save and continue later" works on the same device.
 // Everything submits as one form, "cqc-lease-details", at step 6. It goes to the one GHL webhook (lead.mjs), whose workflow branches on that
-// form_name. Direct debit set-up and lease signing are handled by the team afterwards.
+// form_name. On success the operator goes straight to the GoCardless mandate (facts.ts goCardless); lease signing follows.
 import Base from '../../../../layouts/Base.astro';
-import { address, contact, cqcRegistration as cqc, site } from '../../../../data/facts';
+import { address, contact, cqcRegistration as cqc, goCardless, site } from '../../../../data/facts';
 import { images } from '../../../../data/images';
 import '../../../../styles/forms.css';
 
@@ -171,7 +171,8 @@ const description = "Submit your lease details for a CQC registration office at 
       </form>
 
       <div class="form-thanks wiz__done" data-done hidden tabindex="-1">
-        <h2>Thanks! We'll be in touch within one working day. We'll set up your direct debit and send your lease to sign.</h2>
+        <h2>Thanks, your lease details are saved. Now set up your direct debit.</h2>
+        <p>We're taking you to GoCardless, our secure direct debit partner. It takes about 2 minutes. If nothing happens, <a href={goCardless.mandateUrl} data-gocardless data-track="gocardless_click">set up your direct debit here</a>.</p>
         <p>Questions in the meantime? Call <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a> or email <a href={`mailto:${contact.email}`}>{contact.email}</a>.</p>
       </div>
 
@@ -366,12 +367,14 @@ const description = "Submit your lease details for a CQC registration office at 
         const store = readStore(); delete store[val('email').toLowerCase()];
         localStorage.setItem(STORE, JSON.stringify(store));
       } catch { /* storage blocked: nothing to clear */ }
-      // Thank-you page for conversion tracking; the on-page message is the fallback if navigation is blocked.
+      // Owner, Oct 2026: straight on to the GoCardless mandate, so payment is set up before anything else. GoCardless
+      // sends them back to the thank-you page (?dd=1) when done. The on-page message is the fallback if navigation is blocked.
       form.hidden = true;
       ($('.wiz__progress') as HTMLElement).hidden = true;
       const done = $('[data-done]') as HTMLElement;
       done.hidden = false;
-      location.href = '/thank-you/cqc-lease-details/';
+      const gc = document.querySelector<HTMLAnchorElement>('[data-gocardless]');
+      if (gc) location.href = gc.href;
     } else {
       button.disabled = false;
       button.textContent = 'Submit lease details';

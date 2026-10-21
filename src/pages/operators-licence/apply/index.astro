@@ -3,10 +3,10 @@
 // noindex; not in the nav, footer, sitemap or llms.txt. Owner, Oct 2026: this is THE lease details form, linked from the
 // public operator licence page's CTAs and from the private guide.
 // Answers save in this browser (localStorage) so "Save and continue later" works on the same device.
-// Everything submits as one Netlify form, "operator-lease-details", at step 11. Direct debit set-up and lease signing
-// are handled by the team afterwards (there is no operator portal).
+// Everything submits as one Netlify form, "operator-lease-details", at step 11. On success the operator goes straight
+// to the GoCardless mandate (facts.ts goCardless); lease signing follows (there is no operator portal).
 import Base from '../../../layouts/Base.astro';
-import { address, contact, operatorLicence as ol, site } from '../../../data/facts';
+import { address, contact, goCardless, operatorLicence as ol, site } from '../../../data/facts';
 import '../../../styles/forms.css';
 
 const title = "Apply | Knowsley Operator Licence Address | Maggie O'Neill Centre";
@@ -232,7 +232,8 @@ const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 
       </form>
 
       <div class="form-thanks wiz__done" data-done hidden tabindex="-1">
-        <h2>Thanks! We'll be in touch within one working day. We'll set up your direct debit and send your lease to sign.</h2>
+        <h2>Thanks, your lease details are saved. Now set up your direct debit.</h2>
+        <p>We're taking you to GoCardless, our secure direct debit partner. It takes about 2 minutes. If nothing happens, <a href={goCardless.mandateUrl} data-gocardless data-track="gocardless_click">set up your direct debit here</a>.</p>
         <p>Questions in the meantime? Call <a href={contact.phoneHref} data-track="phone_click">{contact.phone}</a> or email <a href={`mailto:${contact.email}`}>{contact.email}</a>.</p>
       </div>
 
@@ -452,12 +453,14 @@ const vehicleLabels: Record<string, string> = { '1': '1 Vehicle', '2-10': '2 to 
         const store = readStore(); delete store[val('email').toLowerCase()];
         localStorage.setItem(STORE, JSON.stringify(store));
       } catch { /* storage blocked: nothing to clear */ }
-      // Thank-you page for conversion tracking; the on-page message is the fallback if navigation is blocked.
+      // Owner, Oct 2026: straight on to the GoCardless mandate, so payment is set up before anything else. GoCardless
+      // sends them back to the thank-you page (?dd=1) when done. The on-page message is the fallback if navigation is blocked.
       form.hidden = true;
       ($('.wiz__progress') as HTMLElement).hidden = true;
       const done = $('[data-done]') as HTMLElement;
       done.hidden = false;
-      location.href = '/thank-you/lease-details/';
+      const gc = document.querySelector<HTMLAnchorElement>('[data-gocardless]');
+      if (gc) location.href = gc.href;
     } else {
       button.disabled = false;
       button.textContent = 'Submit lease details';
