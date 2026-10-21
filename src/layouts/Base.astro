@@ -56,8 +56,10 @@ const { mobileBar = 'rooms', mobileBarHref, mobileBarLabel, preloadImage, ...seo
     <Footer mainNumberOnly={mobileBar === 'custom'} />
     <MobileBar variant={mobileBar} href={mobileBarHref} label={mobileBarLabel} />
     <CookieBanner />
-    {/* GoHighLevel chat widget (owner, Oct 2026). Exactly as GHL gives it. */}
-    <script is:inline src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6867944281758b32613bfc67"></script>
+    {/* GoHighLevel chat widget (owner, Oct 2026), switched OFF on 21 Oct 2026: embedded GHL form submissions stopped the
+        day after it went live (last one 16 Oct, widget added 17 Oct). Don't re-add it on any page with a GHL form embed
+        until it's been tested with a real form submission. The tag was:
+        <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6867944281758b32613bfc67"></script> */}
     <script>
       // Key events for GA4 via the dataLayer (SEO spec 8.1). GTM reads these once the container is added.
       type DL = Record<string, unknown>[];

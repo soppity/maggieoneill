@@ -7,7 +7,7 @@ Public facts also live in `src/data/facts.ts` (`operatorLicence`), which feeds t
 - Public: `/operators-licence/` (indexed, in the sitemap, nav under Virtual office, footer, llms.txt). CTAs: "Check if you qualify" → the lease details form at `/operators-licence/apply/`, and Call.
 - Unlisted (noindex, not in nav/footer/sitemap/llms, never linked from a public page): `/operators-licence/application-guide/`, `/operators-licence/apply/` (11-step lease details form, also linked from the public page's CTAs), `/operators-licence/exit/?borough=liverpool|sefton|other`.
 - Netlify forms: `operator-lease-details` (the lease details form) and `exit-page-optin`.
-- There is no operator portal (owner, Oct 2026). Documents are sent to the operator after they sign; direct debit set-up and lease signing are handled by the team.
+- There is no operator portal (owner, Oct 2026). Documents are sent to the operator after they sign; after the lease details form, the operator goes straight to the GoCardless mandate (https://pay.gocardless.com/BRT00038512ZH52); lease signing is handled by the team.
 - Signposted from the virtual office pages (strip after key facts, an FAQ, and a line by the sign-up form), because other boroughs accept a virtual office but Knowsley doesn't.
 
 ## Facts

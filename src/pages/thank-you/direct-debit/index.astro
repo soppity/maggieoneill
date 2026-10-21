@@ -1,0 +1,24 @@
+---
+// Where GoCardless sends people after they set up their mandate (one link is shared by the taxi and CQC leases, so
+// this page works for both). Set the GoCardless link's success redirect to https://mobtc.co.uk/thank-you/direct-debit/.
+// noindex, not in the sitemap (see components/ThankYou.astro).
+import Base from '../../../layouts/Base.astro';
+import ThankYou from '../../../components/ThankYou.astro';
+import { contact } from '../../../data/facts';
+import { images } from '../../../data/images';
+---
+<Base title={"Direct Debit Set Up | Maggie O'Neill Centre"} description="Your direct debit with the Maggie O'Neill Centre is set up." ogImage={images[6].src} ogImageAlt={images[6].alt} noindex mobileBar="custom" mobileBarHref={contact.phoneHref} mobileBarLabel={`Call ${contact.phone}`}>
+  <ThankYou
+    form="direct-debit"
+    eyebrow="All set"
+    heading={"Thanks, your direct debit is set up."}
+    text={"We've got your lease details too. We'll send your lease to sign within one working day."}
+    next={[
+      { title: 'We check your details', text: 'We look over what you sent and get your lease ready.' },
+      { title: 'You sign your lease', text: 'We email it to you to sign online.' },
+      { title: 'Your first payment', text: 'Your direct debit is taken on the 1st of the month.' },
+    ]}
+    links={[{ label: 'Back to the Maggie O’Neill Centre', href: '/' }]}
+    showWhatsApp={false}
+  />
+</Base>
