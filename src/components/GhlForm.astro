@@ -27,4 +27,11 @@ const { form } = Astro.props;
   data-cookie-consent="true"
   data-cookie-consent-provider="auto"
   title={form.name}></iframe>
+<p class="ghl-form__fallback">
+  Form not working? <a href={`https://api.leadconnectorhq.com/widget/form/${form.id}`} target="_blank" rel="noopener" data-track="form_fallback_click">Open it in a new tab</a>.
+</p>
 <script is:inline src="https://link.msgsndr.com/js/form_embed.js" defer></script>
+
+<style>
+  .ghl-form__fallback { margin: 8px 4px 4px; font-size: var(--text-small-size); color: var(--moc-slate-text); text-align: center; }
+</style>
